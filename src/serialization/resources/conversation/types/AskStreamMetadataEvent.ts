@@ -5,21 +5,13 @@
 import * as serializers from "../../../index";
 import * as MavenAGI from "../../../../api/index";
 import * as core from "../../../../core";
-import { Source } from "./Source";
+import { BotResponseMetadata } from "./BotResponseMetadata";
 
 export const AskStreamMetadataEvent: core.serialization.ObjectSchema<
     serializers.AskStreamMetadataEvent.Raw,
     MavenAGI.AskStreamMetadataEvent
-> = core.serialization.object({
-    followupQuestions: core.serialization.list(core.serialization.string()),
-    sources: core.serialization.list(Source),
-    score: core.serialization.number(),
-});
+> = core.serialization.object({}).extend(BotResponseMetadata);
 
 export declare namespace AskStreamMetadataEvent {
-    interface Raw {
-        followupQuestions: string[];
-        sources: Source.Raw[];
-        score: number;
-    }
+    interface Raw extends BotResponseMetadata.Raw {}
 }

@@ -4,14 +4,14 @@
 
 import * as MavenAGI from "../../../index";
 
-export type BotResponse = MavenAGI.BotResponse.Text | MavenAGI.BotResponse.ActionLink;
+export type BotResponse = MavenAGI.BotResponse.Text | MavenAGI.BotResponse.ActionForm;
 
 export declare namespace BotResponse {
-    interface Text extends MavenAGI.TextBotResponse {
+    interface Text extends MavenAGI.BotTextResponse {
         type: "text";
     }
 
-    interface ActionLink extends MavenAGI.ActionLinkBotResponse {
-        type: "actionLink";
+    interface ActionForm extends MavenAGI.BotActionFormResponse {
+        type: "actionForm";
     }
 }

@@ -4,4 +4,7 @@
 
 import * as MavenAGI from "../../../index";
 
-export interface AskStreamMetadataEvent extends MavenAGI.BotResponseMetadata {}
+export interface BotResponseMetadata {
+    followupQuestions: string[];
+    sources: MavenAGI.Source[];
+}

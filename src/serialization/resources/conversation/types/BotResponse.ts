@@ -5,14 +5,14 @@
 import * as serializers from "../../../index";
 import * as MavenAGI from "../../../../api/index";
 import * as core from "../../../../core";
-import { TextBotResponse } from "./TextBotResponse";
-import { ActionLinkBotResponse } from "./ActionLinkBotResponse";
+import { BotTextResponse } from "./BotTextResponse";
+import { BotActionFormResponse } from "./BotActionFormResponse";
 
 export const BotResponse: core.serialization.Schema<serializers.BotResponse.Raw, MavenAGI.BotResponse> =
     core.serialization
         .union("type", {
-            text: TextBotResponse,
-            actionLink: ActionLinkBotResponse,
+            text: BotTextResponse,
+            actionForm: BotActionFormResponse,
         })
         .transform<MavenAGI.BotResponse>({
             transform: (value) => value,
@@ -20,13 +20,13 @@ export const BotResponse: core.serialization.Schema<serializers.BotResponse.Raw,
         });
 
 export declare namespace BotResponse {
-    type Raw = BotResponse.Text | BotResponse.ActionLink;
+    type Raw = BotResponse.Text | BotResponse.ActionForm;
 
-    interface Text extends TextBotResponse.Raw {
+    interface Text extends BotTextResponse.Raw {
         type: "text";
     }
 
-    interface ActionLink extends ActionLinkBotResponse.Raw {
-        type: "actionLink";
+    interface ActionForm extends BotActionFormResponse.Raw {
+        type: "actionForm";
     }
 }

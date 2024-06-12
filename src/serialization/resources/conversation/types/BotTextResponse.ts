@@ -6,14 +6,14 @@ import * as serializers from "../../../index";
 import * as MavenAGI from "../../../../api/index";
 import * as core from "../../../../core";
 
-export const TextBotResponse: core.serialization.ObjectSchema<
-    serializers.TextBotResponse.Raw,
-    MavenAGI.TextBotResponse
+export const BotTextResponse: core.serialization.ObjectSchema<
+    serializers.BotTextResponse.Raw,
+    MavenAGI.BotTextResponse
 > = core.serialization.object({
     text: core.serialization.string(),
 });
 
-export declare namespace TextBotResponse {
+export declare namespace BotTextResponse {
     interface Raw {
         text: string;
     }

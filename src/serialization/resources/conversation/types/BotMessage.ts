@@ -7,6 +7,7 @@ import * as MavenAGI from "../../../../api/index";
 import * as core from "../../../../core";
 import { BotConversationMessageType } from "./BotConversationMessageType";
 import { BotResponse } from "./BotResponse";
+import { BotResponseMetadata } from "./BotResponseMetadata";
 import { ConversationMessageBase } from "./ConversationMessageBase";
 
 export const BotMessage: core.serialization.ObjectSchema<serializers.BotMessage.Raw, MavenAGI.BotMessage> =
@@ -14,6 +15,7 @@ export const BotMessage: core.serialization.ObjectSchema<serializers.BotMessage.
         .object({
             botMessageType: BotConversationMessageType,
             responses: core.serialization.list(BotResponse),
+            metadata: BotResponseMetadata,
         })
         .extend(ConversationMessageBase);
 
@@ -21,5 +23,6 @@ export declare namespace BotMessage {
     interface Raw extends ConversationMessageBase.Raw {
         botMessageType: BotConversationMessageType.Raw;
         responses: BotResponse.Raw[];
+        metadata: BotResponseMetadata.Raw;
     }
 }

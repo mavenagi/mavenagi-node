@@ -39,6 +39,7 @@ export class Conversation {
      * @throws {@link MavenAGI.ConversationAlreadyExistsError}
      * @throws {@link MavenAGI.InvalidConversationIdError}
      * @throws {@link MavenAGI.InvalidConversationMessageIdError}
+     * @throws {@link MavenAGI.EmptyConversationError}
      * @throws {@link MavenAGI.AgentNotFoundError}
      *
      * @example
@@ -64,7 +65,7 @@ export class Conversation {
                 "X-Agent-Id": await core.Supplier.get(this._options.agentId),
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "mavenagi",
-                "X-Fern-SDK-Version": "0.0.0-alpha.1",
+                "X-Fern-SDK-Version": "0.0.0-alpha.2",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
             },
@@ -105,6 +106,15 @@ export class Conversation {
                     );
                 case "InvalidConversationMessageIdError":
                     throw new MavenAGI.InvalidConversationMessageIdError(
+                        await serializers.ErrorMessage.parseOrThrow(_response.error.body, {
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
+                            breadcrumbsPrefix: ["response"],
+                        })
+                    );
+                case "EmptyConversationError":
+                    throw new MavenAGI.EmptyConversationError(
                         await serializers.ErrorMessage.parseOrThrow(_response.error.body, {
                             unrecognizedObjectKeys: "passthrough",
                             allowUnrecognizedUnionMembers: true,
@@ -172,7 +182,7 @@ export class Conversation {
                 "X-Agent-Id": await core.Supplier.get(this._options.agentId),
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "mavenagi",
-                "X-Fern-SDK-Version": "0.0.0-alpha.1",
+                "X-Fern-SDK-Version": "0.0.0-alpha.2",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
             },
@@ -269,7 +279,7 @@ export class Conversation {
                 "X-Agent-Id": await core.Supplier.get(this._options.agentId),
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "mavenagi",
-                "X-Fern-SDK-Version": "0.0.0-alpha.1",
+                "X-Fern-SDK-Version": "0.0.0-alpha.2",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
             },
@@ -376,7 +386,7 @@ export class Conversation {
                 "X-Agent-Id": await core.Supplier.get(this._options.agentId),
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "mavenagi",
-                "X-Fern-SDK-Version": "0.0.0-alpha.1",
+                "X-Fern-SDK-Version": "0.0.0-alpha.2",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
             },
@@ -458,7 +468,7 @@ export class Conversation {
                 "X-Agent-Id": await core.Supplier.get(this._options.agentId),
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "mavenagi",
-                "X-Fern-SDK-Version": "0.0.0-alpha.1",
+                "X-Fern-SDK-Version": "0.0.0-alpha.2",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
             },
@@ -557,7 +567,7 @@ export class Conversation {
                 "X-Agent-Id": await core.Supplier.get(this._options.agentId),
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "mavenagi",
-                "X-Fern-SDK-Version": "0.0.0-alpha.1",
+                "X-Fern-SDK-Version": "0.0.0-alpha.2",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
             },
@@ -681,7 +691,7 @@ export class Conversation {
                 "X-Agent-Id": await core.Supplier.get(this._options.agentId),
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "mavenagi",
-                "X-Fern-SDK-Version": "0.0.0-alpha.1",
+                "X-Fern-SDK-Version": "0.0.0-alpha.2",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
             },
@@ -748,8 +758,8 @@ export class Conversation {
     }
 
     protected async _getAuthorizationHeader(): Promise<string | undefined> {
-        const appId = await core.Supplier.get(this._options.appId);
-        const appSecret = await core.Supplier.get(this._options.appSecret);
+        const appId = (await core.Supplier.get(this._options.appId)) ?? process?.env["MAVENAGI_APP_ID"];
+        const appSecret = (await core.Supplier.get(this._options.appSecret)) ?? process?.env["MAVENAGI_APP_SECRET"];
         if (appId != null && appSecret != null) {
             return core.BasicAuth.toAuthorizationHeader({
                 username: appId,
