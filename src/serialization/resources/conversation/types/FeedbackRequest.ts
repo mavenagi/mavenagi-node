@@ -5,21 +5,13 @@
 import * as serializers from "../../../index";
 import * as MavenAGI from "../../../../api/index";
 import * as core from "../../../../core";
-import { FeedbackType } from "./FeedbackType";
+import { Feedback } from "../../commons/types/Feedback";
 
 export const FeedbackRequest: core.serialization.ObjectSchema<
     serializers.FeedbackRequest.Raw,
     MavenAGI.FeedbackRequest
-> = core.serialization.object({
-    conversationMessageId: core.serialization.property("conversation_message_id", core.serialization.string()),
-    text: core.serialization.string(),
-    type: FeedbackType,
-});
+> = Feedback;
 
 export declare namespace FeedbackRequest {
-    interface Raw {
-        conversation_message_id: string;
-        text: string;
-        type: FeedbackType.Raw;
-    }
+    type Raw = Feedback.Raw;
 }

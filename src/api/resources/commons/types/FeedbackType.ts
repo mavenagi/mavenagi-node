@@ -5,9 +5,11 @@
 /**
  * The type of feedback
  */
-export type FeedbackType = "THUMBS_UP" | "THUMBS_DOWN";
+export type FeedbackType = "THUMBS_UP" | "THUMBS_DOWN" | "INSERT" | "HANDOFF";
 
 export const FeedbackType = {
     ThumbsUp: "THUMBS_UP",
     ThumbsDown: "THUMBS_DOWN",
+    Insert: "INSERT",
+    Handoff: "HANDOFF",
 } as const;

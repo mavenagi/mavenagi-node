@@ -4,4 +4,4 @@
 
 import * as MavenAGI from "../../../index";
 
-export type FeedbackRequest = MavenAGI.Feedback;
+export interface ActionSetRequest extends MavenAGI.ActionSetBase {}

@@ -5,13 +5,13 @@
 import * as errors from "../../../../errors/index";
 import * as MavenAGI from "../../../index";
 
-export class InvalidFeedbackTypeError extends errors.MavenAGIError {
+export class ServerError extends errors.MavenAGIError {
     constructor(body: MavenAGI.ErrorMessage) {
         super({
-            message: "InvalidFeedbackTypeError",
-            statusCode: 400,
+            message: "ServerError",
+            statusCode: 500,
             body: body,
         });
-        Object.setPrototypeOf(this, InvalidFeedbackTypeError.prototype);
+        Object.setPrototypeOf(this, ServerError.prototype);
     }
 }

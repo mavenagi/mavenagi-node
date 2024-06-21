@@ -6,13 +6,15 @@ import * as serializers from "../../../index";
 import * as MavenAGI from "../../../../api/index";
 import * as core from "../../../../core";
 
-export const IdBody: core.serialization.ObjectSchema<serializers.IdBody.Raw, MavenAGI.IdBody> =
+export const ActionSetBase: core.serialization.ObjectSchema<serializers.ActionSetBase.Raw, MavenAGI.ActionSetBase> =
     core.serialization.object({
-        requestedId: core.serialization.string(),
+        id: core.serialization.string(),
+        name: core.serialization.string(),
     });
 
-export declare namespace IdBody {
+export declare namespace ActionSetBase {
     interface Raw {
-        requestedId: string;
+        id: string;
+        name: string;
     }
 }

@@ -36,14 +36,12 @@ export class Conversation {
      * @param {MavenAGI.ConversationRequest} request
      * @param {Conversation.RequestOptions} requestOptions - Request-specific configuration.
      *
-     * @throws {@link MavenAGI.ConversationAlreadyExistsError}
-     * @throws {@link MavenAGI.InvalidConversationIdError}
-     * @throws {@link MavenAGI.InvalidConversationMessageIdError}
-     * @throws {@link MavenAGI.EmptyConversationError}
-     * @throws {@link MavenAGI.AgentNotFoundError}
+     * @throws {@link MavenAGI.NotFoundError}
+     * @throws {@link MavenAGI.BadRequestError}
+     * @throws {@link MavenAGI.ServerError}
      *
      * @example
-     *     await mavenAgi.conversation.initialize({
+     *     await client.conversation.initialize({
      *         messages: [{}],
      *         id: "string",
      *         context: {}
@@ -65,7 +63,7 @@ export class Conversation {
                 "X-Agent-Id": await core.Supplier.get(this._options.agentId),
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "mavenagi",
-                "X-Fern-SDK-Version": "0.0.0-alpha.2",
+                "X-Fern-SDK-Version": "0.0.0-alpha.3",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
             },
@@ -85,9 +83,9 @@ export class Conversation {
         }
 
         if (_response.error.reason === "status-code") {
-            switch ((_response.error.body as any)?.["errorName"]) {
-                case "ConversationAlreadyExistsError":
-                    throw new MavenAGI.ConversationAlreadyExistsError(
+            switch (_response.error.statusCode) {
+                case 404:
+                    throw new MavenAGI.NotFoundError(
                         await serializers.ErrorMessage.parseOrThrow(_response.error.body, {
                             unrecognizedObjectKeys: "passthrough",
                             allowUnrecognizedUnionMembers: true,
@@ -95,8 +93,8 @@ export class Conversation {
                             breadcrumbsPrefix: ["response"],
                         })
                     );
-                case "InvalidConversationIdError":
-                    throw new MavenAGI.InvalidConversationIdError(
+                case 400:
+                    throw new MavenAGI.BadRequestError(
                         await serializers.ErrorMessage.parseOrThrow(_response.error.body, {
                             unrecognizedObjectKeys: "passthrough",
                             allowUnrecognizedUnionMembers: true,
@@ -104,26 +102,8 @@ export class Conversation {
                             breadcrumbsPrefix: ["response"],
                         })
                     );
-                case "InvalidConversationMessageIdError":
-                    throw new MavenAGI.InvalidConversationMessageIdError(
-                        await serializers.ErrorMessage.parseOrThrow(_response.error.body, {
-                            unrecognizedObjectKeys: "passthrough",
-                            allowUnrecognizedUnionMembers: true,
-                            allowUnrecognizedEnumValues: true,
-                            breadcrumbsPrefix: ["response"],
-                        })
-                    );
-                case "EmptyConversationError":
-                    throw new MavenAGI.EmptyConversationError(
-                        await serializers.ErrorMessage.parseOrThrow(_response.error.body, {
-                            unrecognizedObjectKeys: "passthrough",
-                            allowUnrecognizedUnionMembers: true,
-                            allowUnrecognizedEnumValues: true,
-                            breadcrumbsPrefix: ["response"],
-                        })
-                    );
-                case "AgentNotFoundError":
-                    throw new MavenAGI.AgentNotFoundError(
+                case 500:
+                    throw new MavenAGI.ServerError(
                         await serializers.ErrorMessage.parseOrThrow(_response.error.body, {
                             unrecognizedObjectKeys: "passthrough",
                             allowUnrecognizedUnionMembers: true,
@@ -157,14 +137,15 @@ export class Conversation {
     /**
      * Get a conversation
      *
-     * @param {string} conversationId - The ID of a conversation to get
+     * @param {string} conversationId - The ID of the conversation to get
      * @param {Conversation.RequestOptions} requestOptions - Request-specific configuration.
      *
-     * @throws {@link MavenAGI.ConversationNotFoundError}
-     * @throws {@link MavenAGI.AgentNotFoundError}
+     * @throws {@link MavenAGI.NotFoundError}
+     * @throws {@link MavenAGI.BadRequestError}
+     * @throws {@link MavenAGI.ServerError}
      *
      * @example
-     *     await mavenAgi.conversation.get("string")
+     *     await client.conversation.get("string")
      */
     public async get(
         conversationId: string,
@@ -182,7 +163,7 @@ export class Conversation {
                 "X-Agent-Id": await core.Supplier.get(this._options.agentId),
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "mavenagi",
-                "X-Fern-SDK-Version": "0.0.0-alpha.2",
+                "X-Fern-SDK-Version": "0.0.0-alpha.3",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
             },
@@ -201,9 +182,9 @@ export class Conversation {
         }
 
         if (_response.error.reason === "status-code") {
-            switch ((_response.error.body as any)?.["errorName"]) {
-                case "ConversationNotFoundError":
-                    throw new MavenAGI.ConversationNotFoundError(
+            switch (_response.error.statusCode) {
+                case 404:
+                    throw new MavenAGI.NotFoundError(
                         await serializers.ErrorMessage.parseOrThrow(_response.error.body, {
                             unrecognizedObjectKeys: "passthrough",
                             allowUnrecognizedUnionMembers: true,
@@ -211,8 +192,17 @@ export class Conversation {
                             breadcrumbsPrefix: ["response"],
                         })
                     );
-                case "AgentNotFoundError":
-                    throw new MavenAGI.AgentNotFoundError(
+                case 400:
+                    throw new MavenAGI.BadRequestError(
+                        await serializers.ErrorMessage.parseOrThrow(_response.error.body, {
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
+                            breadcrumbsPrefix: ["response"],
+                        })
+                    );
+                case 500:
+                    throw new MavenAGI.ServerError(
                         await serializers.ErrorMessage.parseOrThrow(_response.error.body, {
                             unrecognizedObjectKeys: "passthrough",
                             allowUnrecognizedUnionMembers: true,
@@ -250,12 +240,12 @@ export class Conversation {
      * @param {MavenAGI.ConversationMessageRequest[]} request
      * @param {Conversation.RequestOptions} requestOptions - Request-specific configuration.
      *
-     * @throws {@link MavenAGI.ConversationNotFoundError}
-     * @throws {@link MavenAGI.InvalidConversationMessageIdError}
-     * @throws {@link MavenAGI.AgentNotFoundError}
+     * @throws {@link MavenAGI.NotFoundError}
+     * @throws {@link MavenAGI.BadRequestError}
+     * @throws {@link MavenAGI.ServerError}
      *
      * @example
-     *     await mavenAgi.conversation.appendNewMessages("string", [{
+     *     await client.conversation.appendNewMessages("string", [{
      *             text: "string",
      *             userMessageType: MavenAGI.UserConversationMessageType.User,
      *             id: "string",
@@ -279,7 +269,7 @@ export class Conversation {
                 "X-Agent-Id": await core.Supplier.get(this._options.agentId),
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "mavenagi",
-                "X-Fern-SDK-Version": "0.0.0-alpha.2",
+                "X-Fern-SDK-Version": "0.0.0-alpha.3",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
             },
@@ -301,9 +291,9 @@ export class Conversation {
         }
 
         if (_response.error.reason === "status-code") {
-            switch ((_response.error.body as any)?.["errorName"]) {
-                case "ConversationNotFoundError":
-                    throw new MavenAGI.ConversationNotFoundError(
+            switch (_response.error.statusCode) {
+                case 404:
+                    throw new MavenAGI.NotFoundError(
                         await serializers.ErrorMessage.parseOrThrow(_response.error.body, {
                             unrecognizedObjectKeys: "passthrough",
                             allowUnrecognizedUnionMembers: true,
@@ -311,8 +301,8 @@ export class Conversation {
                             breadcrumbsPrefix: ["response"],
                         })
                     );
-                case "InvalidConversationMessageIdError":
-                    throw new MavenAGI.InvalidConversationMessageIdError(
+                case 400:
+                    throw new MavenAGI.BadRequestError(
                         await serializers.ErrorMessage.parseOrThrow(_response.error.body, {
                             unrecognizedObjectKeys: "passthrough",
                             allowUnrecognizedUnionMembers: true,
@@ -320,8 +310,8 @@ export class Conversation {
                             breadcrumbsPrefix: ["response"],
                         })
                     );
-                case "AgentNotFoundError":
-                    throw new MavenAGI.AgentNotFoundError(
+                case 500:
+                    throw new MavenAGI.ServerError(
                         await serializers.ErrorMessage.parseOrThrow(_response.error.body, {
                             unrecognizedObjectKeys: "passthrough",
                             allowUnrecognizedUnionMembers: true,
@@ -359,11 +349,12 @@ export class Conversation {
      * @param {MavenAGI.AskRequest} request
      * @param {Conversation.RequestOptions} requestOptions - Request-specific configuration.
      *
-     * @throws {@link MavenAGI.InvalidConversationIdError}
-     * @throws {@link MavenAGI.AgentNotFoundError}
+     * @throws {@link MavenAGI.NotFoundError}
+     * @throws {@link MavenAGI.BadRequestError}
+     * @throws {@link MavenAGI.ServerError}
      *
      * @example
-     *     await mavenAgi.conversation.ask("string", {
+     *     await client.conversation.ask("string", {
      *         id: "string",
      *         text: "string",
      *         context: {}
@@ -386,7 +377,7 @@ export class Conversation {
                 "X-Agent-Id": await core.Supplier.get(this._options.agentId),
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "mavenagi",
-                "X-Fern-SDK-Version": "0.0.0-alpha.2",
+                "X-Fern-SDK-Version": "0.0.0-alpha.3",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
             },
@@ -406,9 +397,9 @@ export class Conversation {
         }
 
         if (_response.error.reason === "status-code") {
-            switch ((_response.error.body as any)?.["errorName"]) {
-                case "InvalidConversationIdError":
-                    throw new MavenAGI.InvalidConversationIdError(
+            switch (_response.error.statusCode) {
+                case 404:
+                    throw new MavenAGI.NotFoundError(
                         await serializers.ErrorMessage.parseOrThrow(_response.error.body, {
                             unrecognizedObjectKeys: "passthrough",
                             allowUnrecognizedUnionMembers: true,
@@ -416,8 +407,17 @@ export class Conversation {
                             breadcrumbsPrefix: ["response"],
                         })
                     );
-                case "AgentNotFoundError":
-                    throw new MavenAGI.AgentNotFoundError(
+                case 400:
+                    throw new MavenAGI.BadRequestError(
+                        await serializers.ErrorMessage.parseOrThrow(_response.error.body, {
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
+                            breadcrumbsPrefix: ["response"],
+                        })
+                    );
+                case 500:
+                    throw new MavenAGI.ServerError(
                         await serializers.ErrorMessage.parseOrThrow(_response.error.body, {
                             unrecognizedObjectKeys: "passthrough",
                             allowUnrecognizedUnionMembers: true,
@@ -468,7 +468,7 @@ export class Conversation {
                 "X-Agent-Id": await core.Supplier.get(this._options.agentId),
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "mavenagi",
-                "X-Fern-SDK-Version": "0.0.0-alpha.2",
+                "X-Fern-SDK-Version": "0.0.0-alpha.3",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
             },
@@ -499,9 +499,27 @@ export class Conversation {
         }
 
         if (_response.error.reason === "status-code") {
-            switch ((_response.error.body as any)?.["errorName"]) {
-                case "AgentNotFoundError":
-                    throw new MavenAGI.AgentNotFoundError(
+            switch (_response.error.statusCode) {
+                case 404:
+                    throw new MavenAGI.NotFoundError(
+                        await serializers.ErrorMessage.parseOrThrow(_response.error.body, {
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
+                            breadcrumbsPrefix: ["response"],
+                        })
+                    );
+                case 400:
+                    throw new MavenAGI.BadRequestError(
+                        await serializers.ErrorMessage.parseOrThrow(_response.error.body, {
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
+                            breadcrumbsPrefix: ["response"],
+                        })
+                    );
+                case 500:
+                    throw new MavenAGI.ServerError(
                         await serializers.ErrorMessage.parseOrThrow(_response.error.body, {
                             unrecognizedObjectKeys: "passthrough",
                             allowUnrecognizedUnionMembers: true,
@@ -539,14 +557,12 @@ export class Conversation {
      * @param {MavenAGI.GenerateMavenSuggestionsRequest} request
      * @param {Conversation.RequestOptions} requestOptions - Request-specific configuration.
      *
-     * @throws {@link MavenAGI.InvalidConversationIdError}
-     * @throws {@link MavenAGI.ConversationNotFoundError}
-     * @throws {@link MavenAGI.ConversationMessageNotFoundError}
-     * @throws {@link MavenAGI.InvalidConversationMessageIdError}
-     * @throws {@link MavenAGI.AgentNotFoundError}
+     * @throws {@link MavenAGI.NotFoundError}
+     * @throws {@link MavenAGI.BadRequestError}
+     * @throws {@link MavenAGI.ServerError}
      *
      * @example
-     *     await mavenAgi.conversation.generateMavenSuggestions("string", {
+     *     await client.conversation.generateMavenSuggestions("string", {
      *         messageIds: ["string"]
      *     })
      */
@@ -567,7 +583,7 @@ export class Conversation {
                 "X-Agent-Id": await core.Supplier.get(this._options.agentId),
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "mavenagi",
-                "X-Fern-SDK-Version": "0.0.0-alpha.2",
+                "X-Fern-SDK-Version": "0.0.0-alpha.3",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
             },
@@ -589,9 +605,9 @@ export class Conversation {
         }
 
         if (_response.error.reason === "status-code") {
-            switch ((_response.error.body as any)?.["errorName"]) {
-                case "InvalidConversationIdError":
-                    throw new MavenAGI.InvalidConversationIdError(
+            switch (_response.error.statusCode) {
+                case 404:
+                    throw new MavenAGI.NotFoundError(
                         await serializers.ErrorMessage.parseOrThrow(_response.error.body, {
                             unrecognizedObjectKeys: "passthrough",
                             allowUnrecognizedUnionMembers: true,
@@ -599,8 +615,8 @@ export class Conversation {
                             breadcrumbsPrefix: ["response"],
                         })
                     );
-                case "ConversationNotFoundError":
-                    throw new MavenAGI.ConversationNotFoundError(
+                case 400:
+                    throw new MavenAGI.BadRequestError(
                         await serializers.ErrorMessage.parseOrThrow(_response.error.body, {
                             unrecognizedObjectKeys: "passthrough",
                             allowUnrecognizedUnionMembers: true,
@@ -608,26 +624,8 @@ export class Conversation {
                             breadcrumbsPrefix: ["response"],
                         })
                     );
-                case "ConversationMessageNotFoundError":
-                    throw new MavenAGI.ConversationMessageNotFoundError(
-                        await serializers.ErrorMessage.parseOrThrow(_response.error.body, {
-                            unrecognizedObjectKeys: "passthrough",
-                            allowUnrecognizedUnionMembers: true,
-                            allowUnrecognizedEnumValues: true,
-                            breadcrumbsPrefix: ["response"],
-                        })
-                    );
-                case "InvalidConversationMessageIdError":
-                    throw new MavenAGI.InvalidConversationMessageIdError(
-                        await serializers.ErrorMessage.parseOrThrow(_response.error.body, {
-                            unrecognizedObjectKeys: "passthrough",
-                            allowUnrecognizedUnionMembers: true,
-                            allowUnrecognizedEnumValues: true,
-                            breadcrumbsPrefix: ["response"],
-                        })
-                    );
-                case "AgentNotFoundError":
-                    throw new MavenAGI.AgentNotFoundError(
+                case 500:
+                    throw new MavenAGI.ServerError(
                         await serializers.ErrorMessage.parseOrThrow(_response.error.body, {
                             unrecognizedObjectKeys: "passthrough",
                             allowUnrecognizedUnionMembers: true,
@@ -664,15 +662,17 @@ export class Conversation {
      * @param {MavenAGI.FeedbackRequest} request
      * @param {Conversation.RequestOptions} requestOptions - Request-specific configuration.
      *
-     * @throws {@link MavenAGI.InvalidFeedbackTypeError}
-     * @throws {@link MavenAGI.ConversationMessageNotFoundError}
-     * @throws {@link MavenAGI.AgentNotFoundError}
+     * @throws {@link MavenAGI.NotFoundError}
+     * @throws {@link MavenAGI.BadRequestError}
+     * @throws {@link MavenAGI.ServerError}
      *
      * @example
-     *     await mavenAgi.conversation.createFeedback({
+     *     await client.conversation.createFeedback({
+     *         id: "string",
+     *         conversationId: "string",
      *         conversationMessageId: "string",
-     *         text: "string",
-     *         type: MavenAGI.FeedbackType.ThumbsUp
+     *         type: MavenAGI.FeedbackType.ThumbsUp,
+     *         text: "string"
      *     })
      */
     public async createFeedback(
@@ -691,7 +691,7 @@ export class Conversation {
                 "X-Agent-Id": await core.Supplier.get(this._options.agentId),
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "mavenagi",
-                "X-Fern-SDK-Version": "0.0.0-alpha.2",
+                "X-Fern-SDK-Version": "0.0.0-alpha.3",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
             },
@@ -706,9 +706,9 @@ export class Conversation {
         }
 
         if (_response.error.reason === "status-code") {
-            switch ((_response.error.body as any)?.["errorName"]) {
-                case "InvalidFeedbackTypeError":
-                    throw new MavenAGI.InvalidFeedbackTypeError(
+            switch (_response.error.statusCode) {
+                case 404:
+                    throw new MavenAGI.NotFoundError(
                         await serializers.ErrorMessage.parseOrThrow(_response.error.body, {
                             unrecognizedObjectKeys: "passthrough",
                             allowUnrecognizedUnionMembers: true,
@@ -716,8 +716,8 @@ export class Conversation {
                             breadcrumbsPrefix: ["response"],
                         })
                     );
-                case "ConversationMessageNotFoundError":
-                    throw new MavenAGI.ConversationMessageNotFoundError(
+                case 400:
+                    throw new MavenAGI.BadRequestError(
                         await serializers.ErrorMessage.parseOrThrow(_response.error.body, {
                             unrecognizedObjectKeys: "passthrough",
                             allowUnrecognizedUnionMembers: true,
@@ -725,8 +725,127 @@ export class Conversation {
                             breadcrumbsPrefix: ["response"],
                         })
                     );
-                case "AgentNotFoundError":
-                    throw new MavenAGI.AgentNotFoundError(
+                case 500:
+                    throw new MavenAGI.ServerError(
+                        await serializers.ErrorMessage.parseOrThrow(_response.error.body, {
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
+                            breadcrumbsPrefix: ["response"],
+                        })
+                    );
+                default:
+                    throw new errors.MavenAGIError({
+                        statusCode: _response.error.statusCode,
+                        body: _response.error.body,
+                    });
+            }
+        }
+
+        switch (_response.error.reason) {
+            case "non-json":
+                throw new errors.MavenAGIError({
+                    statusCode: _response.error.statusCode,
+                    body: _response.error.rawBody,
+                });
+            case "timeout":
+                throw new errors.MavenAGITimeoutError();
+            case "unknown":
+                throw new errors.MavenAGIError({
+                    message: _response.error.errorMessage,
+                });
+        }
+    }
+
+    /**
+     * Submit a filled out action form
+     *
+     * @param {string} conversationId - The ID of a conversation the form being submitted belongs to
+     * @param {MavenAGI.ActionExecutionRequest} request
+     * @param {Conversation.RequestOptions} requestOptions - Request-specific configuration.
+     *
+     * @throws {@link MavenAGI.NotFoundError}
+     * @throws {@link MavenAGI.BadRequestError}
+     * @throws {@link MavenAGI.ServerError}
+     *
+     * @example
+     *     await client.conversation.submitActionForm("string", {
+     *         actionFormId: "string",
+     *         userContext: {
+     *             name: "string",
+     *             id: {
+     *                 "string": "string"
+     *             },
+     *             email: "string",
+     *             context: {
+     *                 "string": "string"
+     *             }
+     *         },
+     *         parameters: {
+     *             "string": {
+     *                 "key": "value"
+     *             }
+     *         }
+     *     })
+     */
+    public async submitActionForm(
+        conversationId: string,
+        request: MavenAGI.ActionExecutionRequest,
+        requestOptions?: Conversation.RequestOptions
+    ): Promise<MavenAGI.ActionExecutionResponse> {
+        const _response = await (this._options.fetcher ?? core.fetcher)({
+            url: urlJoin(
+                (await core.Supplier.get(this._options.environment)) ?? environments.MavenAGIEnvironment.Production,
+                `/v1/conversations/${encodeURIComponent(conversationId)}/submit-form`
+            ),
+            method: "POST",
+            headers: {
+                Authorization: await this._getAuthorizationHeader(),
+                "X-Organization-Id": await core.Supplier.get(this._options.organizationId),
+                "X-Agent-Id": await core.Supplier.get(this._options.agentId),
+                "X-Fern-Language": "JavaScript",
+                "X-Fern-SDK-Name": "mavenagi",
+                "X-Fern-SDK-Version": "0.0.0-alpha.3",
+                "X-Fern-Runtime": core.RUNTIME.type,
+                "X-Fern-Runtime-Version": core.RUNTIME.version,
+            },
+            contentType: "application/json",
+            body: await serializers.ActionExecutionRequest.jsonOrThrow(request, { unrecognizedObjectKeys: "strip" }),
+            timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
+            maxRetries: requestOptions?.maxRetries,
+            abortSignal: requestOptions?.abortSignal,
+        });
+        if (_response.ok) {
+            return await serializers.ActionExecutionResponse.parseOrThrow(_response.body, {
+                unrecognizedObjectKeys: "passthrough",
+                allowUnrecognizedUnionMembers: true,
+                allowUnrecognizedEnumValues: true,
+                breadcrumbsPrefix: ["response"],
+            });
+        }
+
+        if (_response.error.reason === "status-code") {
+            switch (_response.error.statusCode) {
+                case 404:
+                    throw new MavenAGI.NotFoundError(
+                        await serializers.ErrorMessage.parseOrThrow(_response.error.body, {
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
+                            breadcrumbsPrefix: ["response"],
+                        })
+                    );
+                case 400:
+                    throw new MavenAGI.BadRequestError(
+                        await serializers.ErrorMessage.parseOrThrow(_response.error.body, {
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
+                            breadcrumbsPrefix: ["response"],
+                        })
+                    );
+                case 500:
+                    throw new MavenAGI.ServerError(
                         await serializers.ErrorMessage.parseOrThrow(_response.error.body, {
                             unrecognizedObjectKeys: "passthrough",
                             allowUnrecognizedUnionMembers: true,

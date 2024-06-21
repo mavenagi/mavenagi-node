@@ -4,6 +4,8 @@
 
 import * as environments from "./environments";
 import * as core from "./core";
+import { ActionSet } from "./api/resources/actionSet/client/Client";
+import { Action } from "./api/resources/action/client/Client";
 import { Conversation } from "./api/resources/conversation/client/Client";
 import { Knowledge } from "./api/resources/knowledge/client/Client";
 
@@ -26,6 +28,18 @@ export declare namespace MavenAGIClient {
 
 export class MavenAGIClient {
     constructor(protected readonly _options: MavenAGIClient.Options) {}
+
+    protected _actionSet: ActionSet | undefined;
+
+    public get actionSet(): ActionSet {
+        return (this._actionSet ??= new ActionSet(this._options));
+    }
+
+    protected _action: Action | undefined;
+
+    public get action(): Action {
+        return (this._action ??= new Action(this._options));
+    }
 
     protected _conversation: Conversation | undefined;
 

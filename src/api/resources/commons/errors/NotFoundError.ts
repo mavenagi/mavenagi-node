@@ -5,13 +5,13 @@
 import * as errors from "../../../../errors/index";
 import * as MavenAGI from "../../../index";
 
-export class InvalidConversationIdError extends errors.MavenAGIError {
+export class NotFoundError extends errors.MavenAGIError {
     constructor(body: MavenAGI.ErrorMessage) {
         super({
-            message: "InvalidConversationIdError",
-            statusCode: 400,
+            message: "NotFoundError",
+            statusCode: 404,
             body: body,
         });
-        Object.setPrototypeOf(this, InvalidConversationIdError.prototype);
+        Object.setPrototypeOf(this, NotFoundError.prototype);
     }
 }

@@ -11,6 +11,7 @@ export const BotActionFormResponse: core.serialization.ObjectSchema<
     serializers.BotActionFormResponse.Raw,
     MavenAGI.BotActionFormResponse
 > = core.serialization.object({
+    id: core.serialization.string(),
     formLabel: core.serialization.string(),
     fields: core.serialization.list(ActionFormField),
     submitLabel: core.serialization.string(),
@@ -18,6 +19,7 @@ export const BotActionFormResponse: core.serialization.ObjectSchema<
 
 export declare namespace BotActionFormResponse {
     interface Raw {
+        id: string;
         formLabel: string;
         fields: ActionFormField.Raw[];
         submitLabel: string;

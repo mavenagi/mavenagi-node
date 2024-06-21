@@ -16,18 +16,18 @@ npm i -s mavenagi
 Instantiate and use the client with the following:
 
 ```typescript
+import * as environments from "../src/environments";
 import { MavenAGIClient } from "mavenagi";
 
-const mavenAgi = new MavenAGIClient({
+const client = new MavenAGIClient({
     appId: "YOUR_APP_ID",
     appSecret: "YOUR_APP_SECRET",
     organizationId: "YOUR_ORGANIZATION_ID",
     agentId: "YOUR_AGENT_ID",
 });
-await mavenAgi.conversation.initialize({
-    messages: [{}],
+await client.actionSet.create({
     id: "string",
-    context: {},
+    name: "string",
 });
 ```
 
@@ -37,10 +37,10 @@ When the API returns a non-success status code (4xx or 5xx response), a subclass
 will be thrown.
 
 ```typescript
-import { MavenAGIError } from 'mavenagi';
+import { MavenAGIError } from "mavenagi";
 
 try {
-    await mavenAgi.initialize(...);
+    await client.create(...);
 } catch (err) {
     if (err instanceof MavenAGIError) {
         console.log(err.statusCode);
@@ -65,7 +65,7 @@ A request is deemed retriable when any of the following HTTP status codes is ret
 Use the `maxRetries` request option to configure this behavior.
 
 ```typescript
-const response = await mavenAgi.initialize(..., {
+const response = await client.create(..., {
     maxRetries: 0 // override maxRetries at the request level
 });
 ```
@@ -75,7 +75,7 @@ const response = await mavenAgi.initialize(..., {
 The SDK defaults to a 60 second timeout. Use the `timeoutInSeconds` option to configure this behavior.
 
 ```typescript
-const response = await mavenAgi.initialize(..., {
+const response = await client.create(..., {
     timeoutInSeconds: 30 // override timeout to 30s
 });
 ```
@@ -86,7 +86,7 @@ The SDK allows users to abort requests at any point by passing in an abort signa
 
 ```typescript
 const controller = new AbortController();
-const response = await mavenAgi.initialize(..., {
+const response = await client.create(..., {
     abortSignal: controller.signal
 });
 controller.abort(); // aborts the request
@@ -110,9 +110,9 @@ The SDK provides a way for your to customize the underlying HTTP client / Fetch 
 unsupported environment, this provides a way for you to break glass and ensure the SDK works.
 
 ```typescript
-import { MavenAGIClient } from 'mavenagi';
+import { MavenAGIClient } from "mavenagi";
 
-const mavenAgi = new MavenAGIClient({
+const client = new MavenAGIClient({
     ...
     fetcher: // provide your implementation here
 });

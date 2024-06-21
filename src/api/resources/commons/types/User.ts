@@ -7,4 +7,5 @@ export interface User {
     /** The unique ID of the user */
     id?: Record<string, string>;
     email?: string;
+    context?: Record<string, string>;
 }

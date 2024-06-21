@@ -7,7 +7,7 @@ import * as MavenAGI from "../../../index";
 export interface KnowledgeDocument extends MavenAGI.KnowledgeDocumentId {
     /** The title of the document. Will be shown as part of answers. */
     title: string;
-    /** The content of the document */
+    /** The content of the document. Not shown directly to users. */
     content: string;
     /** The URL of the document. Should be visible to end users. Will be shown as part of answers. */
     url?: string;

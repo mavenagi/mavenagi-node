@@ -5,6 +5,7 @@
 import * as MavenAGI from "../../../index";
 
 export interface BotActionFormResponse {
+    id: string;
     formLabel: string;
     fields: MavenAGI.ActionFormField[];
     submitLabel: string;

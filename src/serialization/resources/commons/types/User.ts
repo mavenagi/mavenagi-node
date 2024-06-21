@@ -10,6 +10,7 @@ export const User: core.serialization.ObjectSchema<serializers.User.Raw, MavenAG
     name: core.serialization.string().optional(),
     id: core.serialization.record(core.serialization.string(), core.serialization.string()).optional(),
     email: core.serialization.string().optional(),
+    context: core.serialization.record(core.serialization.string(), core.serialization.string()).optional(),
 });
 
 export declare namespace User {
@@ -17,5 +18,6 @@ export declare namespace User {
         name?: string | null;
         id?: Record<string, string> | null;
         email?: string | null;
+        context?: Record<string, string> | null;
     }
 }

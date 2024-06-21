@@ -30,15 +30,17 @@ export class Knowledge {
     constructor(protected readonly _options: Knowledge.Options) {}
 
     /**
-     * Create knowledge base
+     * Create a new knowledge base.
      *
      * @param {MavenAGI.KnowledgeBase} request
      * @param {Knowledge.RequestOptions} requestOptions - Request-specific configuration.
      *
-     * @throws {@link MavenAGI.AgentNotFoundError}
+     * @throws {@link MavenAGI.NotFoundError}
+     * @throws {@link MavenAGI.BadRequestError}
+     * @throws {@link MavenAGI.ServerError}
      *
      * @example
-     *     await mavenAgi.knowledge.createKnowledgeBase({
+     *     await client.knowledge.createKnowledgeBase({
      *         displayName: "string",
      *         type: MavenAGI.KnowledgeBaseType.Api,
      *         url: "string",
@@ -61,7 +63,7 @@ export class Knowledge {
                 "X-Agent-Id": await core.Supplier.get(this._options.agentId),
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "mavenagi",
-                "X-Fern-SDK-Version": "0.0.0-alpha.2",
+                "X-Fern-SDK-Version": "0.0.0-alpha.3",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
             },
@@ -81,9 +83,27 @@ export class Knowledge {
         }
 
         if (_response.error.reason === "status-code") {
-            switch ((_response.error.body as any)?.["errorName"]) {
-                case "AgentNotFoundError":
-                    throw new MavenAGI.AgentNotFoundError(
+            switch (_response.error.statusCode) {
+                case 404:
+                    throw new MavenAGI.NotFoundError(
+                        await serializers.ErrorMessage.parseOrThrow(_response.error.body, {
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
+                            breadcrumbsPrefix: ["response"],
+                        })
+                    );
+                case 400:
+                    throw new MavenAGI.BadRequestError(
+                        await serializers.ErrorMessage.parseOrThrow(_response.error.body, {
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
+                            breadcrumbsPrefix: ["response"],
+                        })
+                    );
+                case 500:
+                    throw new MavenAGI.ServerError(
                         await serializers.ErrorMessage.parseOrThrow(_response.error.body, {
                             unrecognizedObjectKeys: "passthrough",
                             allowUnrecognizedUnionMembers: true,
@@ -115,18 +135,17 @@ export class Knowledge {
     }
 
     /**
-     * Create a new knowledge base version. Only supported on API knowledge bases.
+     * Create a new knowledge base version. Only supported on API knowledge bases. Will throw an exception if there is an existing version in progress.
      *
      * @param {MavenAGI.KnowledgeBaseVersion} request
      * @param {Knowledge.RequestOptions} requestOptions - Request-specific configuration.
      *
-     * @throws {@link MavenAGI.VersionInProgressError}
-     * @throws {@link MavenAGI.IneligibleKnowledgeBaseError}
-     * @throws {@link MavenAGI.KnowledgeBaseNotFoundError}
-     * @throws {@link MavenAGI.AgentNotFoundError}
+     * @throws {@link MavenAGI.NotFoundError}
+     * @throws {@link MavenAGI.BadRequestError}
+     * @throws {@link MavenAGI.ServerError}
      *
      * @example
-     *     await mavenAgi.knowledge.createKnowledgeBaseVersion({
+     *     await client.knowledge.createKnowledgeBaseVersion({
      *         knowledgeBaseId: "string",
      *         type: MavenAGI.KnowledgeBaseVersionType.Full
      *     })
@@ -147,7 +166,7 @@ export class Knowledge {
                 "X-Agent-Id": await core.Supplier.get(this._options.agentId),
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "mavenagi",
-                "X-Fern-SDK-Version": "0.0.0-alpha.2",
+                "X-Fern-SDK-Version": "0.0.0-alpha.3",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
             },
@@ -167,36 +186,27 @@ export class Knowledge {
         }
 
         if (_response.error.reason === "status-code") {
-            switch ((_response.error.body as any)?.["errorName"]) {
-                case "VersionInProgressError":
-                    throw new MavenAGI.VersionInProgressError(
-                        await serializers.IdBody.parseOrThrow(_response.error.body, {
+            switch (_response.error.statusCode) {
+                case 404:
+                    throw new MavenAGI.NotFoundError(
+                        await serializers.ErrorMessage.parseOrThrow(_response.error.body, {
                             unrecognizedObjectKeys: "passthrough",
                             allowUnrecognizedUnionMembers: true,
                             allowUnrecognizedEnumValues: true,
                             breadcrumbsPrefix: ["response"],
                         })
                     );
-                case "IneligibleKnowledgeBaseError":
-                    throw new MavenAGI.IneligibleKnowledgeBaseError(
-                        await serializers.IdBody.parseOrThrow(_response.error.body, {
+                case 400:
+                    throw new MavenAGI.BadRequestError(
+                        await serializers.ErrorMessage.parseOrThrow(_response.error.body, {
                             unrecognizedObjectKeys: "passthrough",
                             allowUnrecognizedUnionMembers: true,
                             allowUnrecognizedEnumValues: true,
                             breadcrumbsPrefix: ["response"],
                         })
                     );
-                case "KnowledgeBaseNotFoundError":
-                    throw new MavenAGI.KnowledgeBaseNotFoundError(
-                        await serializers.IdBody.parseOrThrow(_response.error.body, {
-                            unrecognizedObjectKeys: "passthrough",
-                            allowUnrecognizedUnionMembers: true,
-                            allowUnrecognizedEnumValues: true,
-                            breadcrumbsPrefix: ["response"],
-                        })
-                    );
-                case "AgentNotFoundError":
-                    throw new MavenAGI.AgentNotFoundError(
+                case 500:
+                    throw new MavenAGI.ServerError(
                         await serializers.ErrorMessage.parseOrThrow(_response.error.body, {
                             unrecognizedObjectKeys: "passthrough",
                             allowUnrecognizedUnionMembers: true,
@@ -228,18 +238,17 @@ export class Knowledge {
     }
 
     /**
-     * Finalize a knowledge base version. Required to indicate a version is complete.
+     * Finalize the latest knowledge base version. Required to indicate the version is complete. Will throw an exception if the latest version is not in progress.
      *
      * @param {MavenAGI.KnowledgeBaseId} request
      * @param {Knowledge.RequestOptions} requestOptions - Request-specific configuration.
      *
-     * @throws {@link MavenAGI.VersionNotInProgressError}
-     * @throws {@link MavenAGI.IneligibleKnowledgeBaseError}
-     * @throws {@link MavenAGI.KnowledgeBaseNotFoundError}
-     * @throws {@link MavenAGI.AgentNotFoundError}
+     * @throws {@link MavenAGI.NotFoundError}
+     * @throws {@link MavenAGI.BadRequestError}
+     * @throws {@link MavenAGI.ServerError}
      *
      * @example
-     *     await mavenAgi.knowledge.finalizeKnowledgeBaseVersion({
+     *     await client.knowledge.finalizeKnowledgeBaseVersion({
      *         knowledgeBaseId: "string"
      *     })
      */
@@ -259,7 +268,7 @@ export class Knowledge {
                 "X-Agent-Id": await core.Supplier.get(this._options.agentId),
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "mavenagi",
-                "X-Fern-SDK-Version": "0.0.0-alpha.2",
+                "X-Fern-SDK-Version": "0.0.0-alpha.3",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
             },
@@ -274,36 +283,27 @@ export class Knowledge {
         }
 
         if (_response.error.reason === "status-code") {
-            switch ((_response.error.body as any)?.["errorName"]) {
-                case "VersionNotInProgressError":
-                    throw new MavenAGI.VersionNotInProgressError(
-                        await serializers.IdBody.parseOrThrow(_response.error.body, {
+            switch (_response.error.statusCode) {
+                case 404:
+                    throw new MavenAGI.NotFoundError(
+                        await serializers.ErrorMessage.parseOrThrow(_response.error.body, {
                             unrecognizedObjectKeys: "passthrough",
                             allowUnrecognizedUnionMembers: true,
                             allowUnrecognizedEnumValues: true,
                             breadcrumbsPrefix: ["response"],
                         })
                     );
-                case "IneligibleKnowledgeBaseError":
-                    throw new MavenAGI.IneligibleKnowledgeBaseError(
-                        await serializers.IdBody.parseOrThrow(_response.error.body, {
+                case 400:
+                    throw new MavenAGI.BadRequestError(
+                        await serializers.ErrorMessage.parseOrThrow(_response.error.body, {
                             unrecognizedObjectKeys: "passthrough",
                             allowUnrecognizedUnionMembers: true,
                             allowUnrecognizedEnumValues: true,
                             breadcrumbsPrefix: ["response"],
                         })
                     );
-                case "KnowledgeBaseNotFoundError":
-                    throw new MavenAGI.KnowledgeBaseNotFoundError(
-                        await serializers.IdBody.parseOrThrow(_response.error.body, {
-                            unrecognizedObjectKeys: "passthrough",
-                            allowUnrecognizedUnionMembers: true,
-                            allowUnrecognizedEnumValues: true,
-                            breadcrumbsPrefix: ["response"],
-                        })
-                    );
-                case "AgentNotFoundError":
-                    throw new MavenAGI.AgentNotFoundError(
+                case 500:
+                    throw new MavenAGI.ServerError(
                         await serializers.ErrorMessage.parseOrThrow(_response.error.body, {
                             unrecognizedObjectKeys: "passthrough",
                             allowUnrecognizedUnionMembers: true,
@@ -335,19 +335,17 @@ export class Knowledge {
     }
 
     /**
-     * Create knowledge document
+     * Create knowledge document. Requires an existing knowledge base with an in progress version. Will throw an exception if the latest version is not in progress.
      *
      * @param {MavenAGI.KnowledgeDocument} request
      * @param {Knowledge.RequestOptions} requestOptions - Request-specific configuration.
      *
-     * @throws {@link MavenAGI.VersionNotInProgressError}
-     * @throws {@link MavenAGI.IneligibleKnowledgeBaseError}
-     * @throws {@link MavenAGI.KnowledgeBaseNotFoundError}
-     * @throws {@link MavenAGI.DocumentCreationError}
-     * @throws {@link MavenAGI.AgentNotFoundError}
+     * @throws {@link MavenAGI.NotFoundError}
+     * @throws {@link MavenAGI.BadRequestError}
+     * @throws {@link MavenAGI.ServerError}
      *
      * @example
-     *     await mavenAgi.knowledge.createKnowledgeDocument({
+     *     await client.knowledge.createKnowledgeDocument({
      *         title: "string",
      *         content: "string",
      *         url: "string",
@@ -375,7 +373,7 @@ export class Knowledge {
                 "X-Agent-Id": await core.Supplier.get(this._options.agentId),
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "mavenagi",
-                "X-Fern-SDK-Version": "0.0.0-alpha.2",
+                "X-Fern-SDK-Version": "0.0.0-alpha.3",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
             },
@@ -395,38 +393,27 @@ export class Knowledge {
         }
 
         if (_response.error.reason === "status-code") {
-            switch ((_response.error.body as any)?.["errorName"]) {
-                case "VersionNotInProgressError":
-                    throw new MavenAGI.VersionNotInProgressError(
-                        await serializers.IdBody.parseOrThrow(_response.error.body, {
+            switch (_response.error.statusCode) {
+                case 404:
+                    throw new MavenAGI.NotFoundError(
+                        await serializers.ErrorMessage.parseOrThrow(_response.error.body, {
                             unrecognizedObjectKeys: "passthrough",
                             allowUnrecognizedUnionMembers: true,
                             allowUnrecognizedEnumValues: true,
                             breadcrumbsPrefix: ["response"],
                         })
                     );
-                case "IneligibleKnowledgeBaseError":
-                    throw new MavenAGI.IneligibleKnowledgeBaseError(
-                        await serializers.IdBody.parseOrThrow(_response.error.body, {
+                case 400:
+                    throw new MavenAGI.BadRequestError(
+                        await serializers.ErrorMessage.parseOrThrow(_response.error.body, {
                             unrecognizedObjectKeys: "passthrough",
                             allowUnrecognizedUnionMembers: true,
                             allowUnrecognizedEnumValues: true,
                             breadcrumbsPrefix: ["response"],
                         })
                     );
-                case "KnowledgeBaseNotFoundError":
-                    throw new MavenAGI.KnowledgeBaseNotFoundError(
-                        await serializers.IdBody.parseOrThrow(_response.error.body, {
-                            unrecognizedObjectKeys: "passthrough",
-                            allowUnrecognizedUnionMembers: true,
-                            allowUnrecognizedEnumValues: true,
-                            breadcrumbsPrefix: ["response"],
-                        })
-                    );
-                case "DocumentCreationError":
-                    throw new MavenAGI.DocumentCreationError();
-                case "AgentNotFoundError":
-                    throw new MavenAGI.AgentNotFoundError(
+                case 500:
+                    throw new MavenAGI.ServerError(
                         await serializers.ErrorMessage.parseOrThrow(_response.error.body, {
                             unrecognizedObjectKeys: "passthrough",
                             allowUnrecognizedUnionMembers: true,
@@ -458,18 +445,17 @@ export class Knowledge {
     }
 
     /**
-     * Update knowledge document
+     * Update knowledge document. Requires an existing knowledge base with an in progress version of type PARTIAL. Will throw an exception if the latest version is not in progress.
      *
      * @param {MavenAGI.KnowledgeDocument} request
      * @param {Knowledge.RequestOptions} requestOptions - Request-specific configuration.
      *
-     * @throws {@link MavenAGI.VersionNotInProgressError}
-     * @throws {@link MavenAGI.KnowledgeBaseNotFoundError}
-     * @throws {@link MavenAGI.DocumentNotFoundError}
-     * @throws {@link MavenAGI.AgentNotFoundError}
+     * @throws {@link MavenAGI.NotFoundError}
+     * @throws {@link MavenAGI.BadRequestError}
+     * @throws {@link MavenAGI.ServerError}
      *
      * @example
-     *     await mavenAgi.knowledge.updateKnowledgeDocument({
+     *     await client.knowledge.updateKnowledgeDocument({
      *         title: "string",
      *         content: "string",
      *         url: "string",
@@ -497,7 +483,7 @@ export class Knowledge {
                 "X-Agent-Id": await core.Supplier.get(this._options.agentId),
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "mavenagi",
-                "X-Fern-SDK-Version": "0.0.0-alpha.2",
+                "X-Fern-SDK-Version": "0.0.0-alpha.3",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
             },
@@ -517,36 +503,27 @@ export class Knowledge {
         }
 
         if (_response.error.reason === "status-code") {
-            switch ((_response.error.body as any)?.["errorName"]) {
-                case "VersionNotInProgressError":
-                    throw new MavenAGI.VersionNotInProgressError(
-                        await serializers.IdBody.parseOrThrow(_response.error.body, {
+            switch (_response.error.statusCode) {
+                case 404:
+                    throw new MavenAGI.NotFoundError(
+                        await serializers.ErrorMessage.parseOrThrow(_response.error.body, {
                             unrecognizedObjectKeys: "passthrough",
                             allowUnrecognizedUnionMembers: true,
                             allowUnrecognizedEnumValues: true,
                             breadcrumbsPrefix: ["response"],
                         })
                     );
-                case "KnowledgeBaseNotFoundError":
-                    throw new MavenAGI.KnowledgeBaseNotFoundError(
-                        await serializers.IdBody.parseOrThrow(_response.error.body, {
+                case 400:
+                    throw new MavenAGI.BadRequestError(
+                        await serializers.ErrorMessage.parseOrThrow(_response.error.body, {
                             unrecognizedObjectKeys: "passthrough",
                             allowUnrecognizedUnionMembers: true,
                             allowUnrecognizedEnumValues: true,
                             breadcrumbsPrefix: ["response"],
                         })
                     );
-                case "DocumentNotFoundError":
-                    throw new MavenAGI.DocumentNotFoundError(
-                        await serializers.IdBody.parseOrThrow(_response.error.body, {
-                            unrecognizedObjectKeys: "passthrough",
-                            allowUnrecognizedUnionMembers: true,
-                            allowUnrecognizedEnumValues: true,
-                            breadcrumbsPrefix: ["response"],
-                        })
-                    );
-                case "AgentNotFoundError":
-                    throw new MavenAGI.AgentNotFoundError(
+                case 500:
+                    throw new MavenAGI.ServerError(
                         await serializers.ErrorMessage.parseOrThrow(_response.error.body, {
                             unrecognizedObjectKeys: "passthrough",
                             allowUnrecognizedUnionMembers: true,
@@ -578,18 +555,17 @@ export class Knowledge {
     }
 
     /**
-     * Delete knowledge document
+     * Delete knowledge document. Requires an existing knowledge base with an in progress version of type PARTIAL. Will throw an exception if the latest version is not in progress.
      *
      * @param {MavenAGI.KnowledgeDocumentId} request
      * @param {Knowledge.RequestOptions} requestOptions - Request-specific configuration.
      *
-     * @throws {@link MavenAGI.VersionNotInProgressError}
-     * @throws {@link MavenAGI.KnowledgeBaseNotFoundError}
-     * @throws {@link MavenAGI.DocumentNotFoundError}
-     * @throws {@link MavenAGI.AgentNotFoundError}
+     * @throws {@link MavenAGI.NotFoundError}
+     * @throws {@link MavenAGI.BadRequestError}
+     * @throws {@link MavenAGI.ServerError}
      *
      * @example
-     *     await mavenAgi.knowledge.deleteKnowledgeDocument({
+     *     await client.knowledge.deleteKnowledgeDocument({
      *         knowledgeBaseId: "string",
      *         documentId: "string"
      *     })
@@ -610,7 +586,7 @@ export class Knowledge {
                 "X-Agent-Id": await core.Supplier.get(this._options.agentId),
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "mavenagi",
-                "X-Fern-SDK-Version": "0.0.0-alpha.2",
+                "X-Fern-SDK-Version": "0.0.0-alpha.3",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
             },
@@ -625,36 +601,27 @@ export class Knowledge {
         }
 
         if (_response.error.reason === "status-code") {
-            switch ((_response.error.body as any)?.["errorName"]) {
-                case "VersionNotInProgressError":
-                    throw new MavenAGI.VersionNotInProgressError(
-                        await serializers.IdBody.parseOrThrow(_response.error.body, {
+            switch (_response.error.statusCode) {
+                case 404:
+                    throw new MavenAGI.NotFoundError(
+                        await serializers.ErrorMessage.parseOrThrow(_response.error.body, {
                             unrecognizedObjectKeys: "passthrough",
                             allowUnrecognizedUnionMembers: true,
                             allowUnrecognizedEnumValues: true,
                             breadcrumbsPrefix: ["response"],
                         })
                     );
-                case "KnowledgeBaseNotFoundError":
-                    throw new MavenAGI.KnowledgeBaseNotFoundError(
-                        await serializers.IdBody.parseOrThrow(_response.error.body, {
+                case 400:
+                    throw new MavenAGI.BadRequestError(
+                        await serializers.ErrorMessage.parseOrThrow(_response.error.body, {
                             unrecognizedObjectKeys: "passthrough",
                             allowUnrecognizedUnionMembers: true,
                             allowUnrecognizedEnumValues: true,
                             breadcrumbsPrefix: ["response"],
                         })
                     );
-                case "DocumentNotFoundError":
-                    throw new MavenAGI.DocumentNotFoundError(
-                        await serializers.IdBody.parseOrThrow(_response.error.body, {
-                            unrecognizedObjectKeys: "passthrough",
-                            allowUnrecognizedUnionMembers: true,
-                            allowUnrecognizedEnumValues: true,
-                            breadcrumbsPrefix: ["response"],
-                        })
-                    );
-                case "AgentNotFoundError":
-                    throw new MavenAGI.AgentNotFoundError(
+                case 500:
+                    throw new MavenAGI.ServerError(
                         await serializers.ErrorMessage.parseOrThrow(_response.error.body, {
                             unrecognizedObjectKeys: "passthrough",
                             allowUnrecognizedUnionMembers: true,

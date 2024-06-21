@@ -5,13 +5,13 @@
 import * as errors from "../../../../errors/index";
 import * as MavenAGI from "../../../index";
 
-export class IneligibleKnowledgeBaseError extends errors.MavenAGIError {
-    constructor(body: MavenAGI.IdBody) {
+export class BadRequestError extends errors.MavenAGIError {
+    constructor(body: MavenAGI.ErrorMessage) {
         super({
-            message: "IneligibleKnowledgeBaseError",
+            message: "BadRequestError",
             statusCode: 400,
             body: body,
         });
-        Object.setPrototypeOf(this, IneligibleKnowledgeBaseError.prototype);
+        Object.setPrototypeOf(this, BadRequestError.prototype);
     }
 }

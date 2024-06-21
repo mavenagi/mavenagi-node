@@ -7,8 +7,8 @@ import * as MavenAGI from "../../../../api/index";
 import * as core from "../../../../core";
 
 export const FeedbackType: core.serialization.Schema<serializers.FeedbackType.Raw, MavenAGI.FeedbackType> =
-    core.serialization.enum_(["THUMBS_UP", "THUMBS_DOWN"]);
+    core.serialization.enum_(["THUMBS_UP", "THUMBS_DOWN", "INSERT", "HANDOFF"]);
 
 export declare namespace FeedbackType {
-    type Raw = "THUMBS_UP" | "THUMBS_DOWN";
+    type Raw = "THUMBS_UP" | "THUMBS_DOWN" | "INSERT" | "HANDOFF";
 }
