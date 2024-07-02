@@ -13,7 +13,7 @@ export const Feedback: core.serialization.ObjectSchema<serializers.Feedback.Raw,
         conversationId: core.serialization.string(),
         conversationMessageId: core.serialization.string(),
         type: FeedbackType,
-        text: core.serialization.string(),
+        text: core.serialization.string().optional(),
     });
 
 export declare namespace Feedback {
@@ -22,6 +22,6 @@ export declare namespace Feedback {
         conversationId: string;
         conversationMessageId: string;
         type: FeedbackType.Raw;
-        text: string;
+        text?: string | null;
     }
 }

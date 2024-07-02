@@ -14,5 +14,5 @@ export interface Feedback {
     /** The type of feedback */
     type: MavenAGI.FeedbackType;
     /** The feedback text */
-    text: string;
+    text?: string;
 }

@@ -4,10 +4,11 @@
 
 import * as environments from "./environments";
 import * as core from "./core";
-import { ActionSet } from "./api/resources/actionSet/client/Client";
-import { Action } from "./api/resources/action/client/Client";
+import { Actions } from "./api/resources/actions/client/Client";
 import { Conversation } from "./api/resources/conversation/client/Client";
 import { Knowledge } from "./api/resources/knowledge/client/Client";
+import { Triggers } from "./api/resources/triggers/client/Client";
+import { User } from "./api/resources/user/client/Client";
 
 export declare namespace MavenAGIClient {
     interface Options {
@@ -29,16 +30,10 @@ export declare namespace MavenAGIClient {
 export class MavenAGIClient {
     constructor(protected readonly _options: MavenAGIClient.Options) {}
 
-    protected _actionSet: ActionSet | undefined;
+    protected _actions: Actions | undefined;
 
-    public get actionSet(): ActionSet {
-        return (this._actionSet ??= new ActionSet(this._options));
-    }
-
-    protected _action: Action | undefined;
-
-    public get action(): Action {
-        return (this._action ??= new Action(this._options));
+    public get actions(): Actions {
+        return (this._actions ??= new Actions(this._options));
     }
 
     protected _conversation: Conversation | undefined;
@@ -51,5 +46,17 @@ export class MavenAGIClient {
 
     public get knowledge(): Knowledge {
         return (this._knowledge ??= new Knowledge(this._options));
+    }
+
+    protected _triggers: Triggers | undefined;
+
+    public get triggers(): Triggers {
+        return (this._triggers ??= new Triggers(this._options));
+    }
+
+    protected _user: User | undefined;
+
+    public get user(): User {
+        return (this._user ??= new User(this._options));
     }
 }

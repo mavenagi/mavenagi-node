@@ -4,4 +4,7 @@ export * from "./KnowledgeBaseType";
 export * from "./KnowledgeBaseVersion";
 export * from "./KnowledgeBaseVersionType";
 export * from "./KnowledgeDocumentId";
-export * from "./KnowledgeDocument";
+export * from "./BaseKnowledgeDocument";
+export * from "./KnowledgeDocumentRequest";
+export * from "./KnowledgeDocumentContentType";
+export * from "./KnowledgeDocumentResponse";

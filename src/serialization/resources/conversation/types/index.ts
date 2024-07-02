@@ -1,4 +1,7 @@
 export * from "./AskRequest";
+export * from "./ResponseConfig";
+export * from "./Capability";
+export * from "./ResponseLength";
 export * from "./GenerateMavenSuggestionsRequest";
 export * from "./ConversationBase";
 export * from "./ConversationResponse";

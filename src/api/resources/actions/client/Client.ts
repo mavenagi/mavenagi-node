@@ -9,7 +9,7 @@ import * as serializers from "../../../../serialization/index";
 import urlJoin from "url-join";
 import * as errors from "../../../../errors/index";
 
-export declare namespace Knowledge {
+export declare namespace Actions {
     interface Options {
         environment?: core.Supplier<environments.MavenAGIEnvironment | string>;
         appId?: core.Supplier<string | undefined>;
@@ -26,35 +26,33 @@ export declare namespace Knowledge {
     }
 }
 
-export class Knowledge {
-    constructor(protected readonly _options: Knowledge.Options) {}
+export class Actions {
+    constructor(protected readonly _options: Actions.Options) {}
 
     /**
-     * Create a new knowledge base.
+     * Update an action set or create it if it doesn't exist
      *
-     * @param {MavenAGI.KnowledgeBase} request
-     * @param {Knowledge.RequestOptions} requestOptions - Request-specific configuration.
+     * @param {MavenAGI.ActionSetRequest} request
+     * @param {Actions.RequestOptions} requestOptions - Request-specific configuration.
      *
      * @throws {@link MavenAGI.NotFoundError}
      * @throws {@link MavenAGI.BadRequestError}
      * @throws {@link MavenAGI.ServerError}
      *
      * @example
-     *     await client.knowledge.createKnowledgeBase({
-     *         displayName: "string",
-     *         type: MavenAGI.KnowledgeBaseType.Api,
-     *         url: "string",
-     *         knowledgeBaseId: "string"
+     *     await client.actions.createActionSet({
+     *         id: "string",
+     *         name: "string"
      *     })
      */
-    public async createKnowledgeBase(
-        request: MavenAGI.KnowledgeBase,
-        requestOptions?: Knowledge.RequestOptions
-    ): Promise<MavenAGI.KnowledgeBase> {
+    public async createActionSet(
+        request: MavenAGI.ActionSetRequest,
+        requestOptions?: Actions.RequestOptions
+    ): Promise<MavenAGI.ActionSetResponse> {
         const _response = await (this._options.fetcher ?? core.fetcher)({
             url: urlJoin(
                 (await core.Supplier.get(this._options.environment)) ?? environments.MavenAGIEnvironment.Production,
-                "/v1/knowledge"
+                "/v1/actions/sets"
             ),
             method: "POST",
             headers: {
@@ -68,13 +66,13 @@ export class Knowledge {
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
             },
             contentType: "application/json",
-            body: await serializers.KnowledgeBase.jsonOrThrow(request, { unrecognizedObjectKeys: "strip" }),
+            body: await serializers.ActionSetRequest.jsonOrThrow(request, { unrecognizedObjectKeys: "strip" }),
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
             maxRetries: requestOptions?.maxRetries,
             abortSignal: requestOptions?.abortSignal,
         });
         if (_response.ok) {
-            return await serializers.KnowledgeBase.parseOrThrow(_response.body, {
+            return await serializers.ActionSetResponse.parseOrThrow(_response.body, {
                 unrecognizedObjectKeys: "passthrough",
                 allowUnrecognizedUnionMembers: true,
                 allowUnrecognizedEnumValues: true,
@@ -135,26 +133,26 @@ export class Knowledge {
     }
 
     /**
-     * Get an existing knowledge base.
+     * Get an action set by its supplied ID
      *
-     * @param {string} knowledgeBaseId - The ID of the knowledge base to get
-     * @param {Knowledge.RequestOptions} requestOptions - Request-specific configuration.
+     * @param {string} actionSetId - The ID of the action set to get
+     * @param {Actions.RequestOptions} requestOptions - Request-specific configuration.
      *
      * @throws {@link MavenAGI.NotFoundError}
      * @throws {@link MavenAGI.BadRequestError}
      * @throws {@link MavenAGI.ServerError}
      *
      * @example
-     *     await client.knowledge.getKnowledgeBase("string")
+     *     await client.actions.getActionSet("string")
      */
-    public async getKnowledgeBase(
-        knowledgeBaseId: string,
-        requestOptions?: Knowledge.RequestOptions
-    ): Promise<MavenAGI.KnowledgeBase> {
+    public async getActionSet(
+        actionSetId: string,
+        requestOptions?: Actions.RequestOptions
+    ): Promise<MavenAGI.ActionSetResponse> {
         const _response = await (this._options.fetcher ?? core.fetcher)({
             url: urlJoin(
                 (await core.Supplier.get(this._options.environment)) ?? environments.MavenAGIEnvironment.Production,
-                `/v1/knowledge/${encodeURIComponent(knowledgeBaseId)}`
+                `/v1/actions/sets/${encodeURIComponent(actionSetId)}`
             ),
             method: "GET",
             headers: {
@@ -173,7 +171,7 @@ export class Knowledge {
             abortSignal: requestOptions?.abortSignal,
         });
         if (_response.ok) {
-            return await serializers.KnowledgeBase.parseOrThrow(_response.body, {
+            return await serializers.ActionSetResponse.parseOrThrow(_response.body, {
                 unrecognizedObjectKeys: "passthrough",
                 allowUnrecognizedUnionMembers: true,
                 allowUnrecognizedEnumValues: true,
@@ -234,31 +232,25 @@ export class Knowledge {
     }
 
     /**
-     * Create a new knowledge base version. Only supported on API knowledge bases. Will throw an exception if there is an existing version in progress.
+     * Delete an action set
      *
-     * @param {MavenAGI.KnowledgeBaseVersion} request
-     * @param {Knowledge.RequestOptions} requestOptions - Request-specific configuration.
+     * @param {string} actionSetId - The ID of the action set to delete
+     * @param {Actions.RequestOptions} requestOptions - Request-specific configuration.
      *
      * @throws {@link MavenAGI.NotFoundError}
      * @throws {@link MavenAGI.BadRequestError}
      * @throws {@link MavenAGI.ServerError}
      *
      * @example
-     *     await client.knowledge.createKnowledgeBaseVersion({
-     *         knowledgeBaseId: "string",
-     *         type: MavenAGI.KnowledgeBaseVersionType.Full
-     *     })
+     *     await client.actions.deleteActionSet("string")
      */
-    public async createKnowledgeBaseVersion(
-        request: MavenAGI.KnowledgeBaseVersion,
-        requestOptions?: Knowledge.RequestOptions
-    ): Promise<MavenAGI.KnowledgeBaseVersion> {
+    public async deleteActionSet(actionSetId: string, requestOptions?: Actions.RequestOptions): Promise<void> {
         const _response = await (this._options.fetcher ?? core.fetcher)({
             url: urlJoin(
                 (await core.Supplier.get(this._options.environment)) ?? environments.MavenAGIEnvironment.Production,
-                "/v1/knowledge/version"
+                `/v1/actions/sets/${encodeURIComponent(actionSetId)}`
             ),
-            method: "POST",
+            method: "DELETE",
             headers: {
                 Authorization: await this._getAuthorizationHeader(),
                 "X-Organization-Id": await core.Supplier.get(this._options.organizationId),
@@ -270,109 +262,6 @@ export class Knowledge {
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
             },
             contentType: "application/json",
-            body: await serializers.KnowledgeBaseVersion.jsonOrThrow(request, { unrecognizedObjectKeys: "strip" }),
-            timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
-            maxRetries: requestOptions?.maxRetries,
-            abortSignal: requestOptions?.abortSignal,
-        });
-        if (_response.ok) {
-            return await serializers.KnowledgeBaseVersion.parseOrThrow(_response.body, {
-                unrecognizedObjectKeys: "passthrough",
-                allowUnrecognizedUnionMembers: true,
-                allowUnrecognizedEnumValues: true,
-                breadcrumbsPrefix: ["response"],
-            });
-        }
-
-        if (_response.error.reason === "status-code") {
-            switch (_response.error.statusCode) {
-                case 404:
-                    throw new MavenAGI.NotFoundError(
-                        await serializers.ErrorMessage.parseOrThrow(_response.error.body, {
-                            unrecognizedObjectKeys: "passthrough",
-                            allowUnrecognizedUnionMembers: true,
-                            allowUnrecognizedEnumValues: true,
-                            breadcrumbsPrefix: ["response"],
-                        })
-                    );
-                case 400:
-                    throw new MavenAGI.BadRequestError(
-                        await serializers.ErrorMessage.parseOrThrow(_response.error.body, {
-                            unrecognizedObjectKeys: "passthrough",
-                            allowUnrecognizedUnionMembers: true,
-                            allowUnrecognizedEnumValues: true,
-                            breadcrumbsPrefix: ["response"],
-                        })
-                    );
-                case 500:
-                    throw new MavenAGI.ServerError(
-                        await serializers.ErrorMessage.parseOrThrow(_response.error.body, {
-                            unrecognizedObjectKeys: "passthrough",
-                            allowUnrecognizedUnionMembers: true,
-                            allowUnrecognizedEnumValues: true,
-                            breadcrumbsPrefix: ["response"],
-                        })
-                    );
-                default:
-                    throw new errors.MavenAGIError({
-                        statusCode: _response.error.statusCode,
-                        body: _response.error.body,
-                    });
-            }
-        }
-
-        switch (_response.error.reason) {
-            case "non-json":
-                throw new errors.MavenAGIError({
-                    statusCode: _response.error.statusCode,
-                    body: _response.error.rawBody,
-                });
-            case "timeout":
-                throw new errors.MavenAGITimeoutError();
-            case "unknown":
-                throw new errors.MavenAGIError({
-                    message: _response.error.errorMessage,
-                });
-        }
-    }
-
-    /**
-     * Finalize the latest knowledge base version. Required to indicate the version is complete. Will throw an exception if the latest version is not in progress.
-     *
-     * @param {MavenAGI.KnowledgeBaseId} request
-     * @param {Knowledge.RequestOptions} requestOptions - Request-specific configuration.
-     *
-     * @throws {@link MavenAGI.NotFoundError}
-     * @throws {@link MavenAGI.BadRequestError}
-     * @throws {@link MavenAGI.ServerError}
-     *
-     * @example
-     *     await client.knowledge.finalizeKnowledgeBaseVersion({
-     *         knowledgeBaseId: "string"
-     *     })
-     */
-    public async finalizeKnowledgeBaseVersion(
-        request: MavenAGI.KnowledgeBaseId,
-        requestOptions?: Knowledge.RequestOptions
-    ): Promise<void> {
-        const _response = await (this._options.fetcher ?? core.fetcher)({
-            url: urlJoin(
-                (await core.Supplier.get(this._options.environment)) ?? environments.MavenAGIEnvironment.Production,
-                "/v1/knowledge/version/finalize"
-            ),
-            method: "POST",
-            headers: {
-                Authorization: await this._getAuthorizationHeader(),
-                "X-Organization-Id": await core.Supplier.get(this._options.organizationId),
-                "X-Agent-Id": await core.Supplier.get(this._options.agentId),
-                "X-Fern-Language": "JavaScript",
-                "X-Fern-SDK-Name": "mavenagi",
-                "X-Fern-SDK-Version": "0.0.0-alpha.4",
-                "X-Fern-Runtime": core.RUNTIME.type,
-                "X-Fern-Runtime-Version": core.RUNTIME.version,
-            },
-            contentType: "application/json",
-            body: await serializers.KnowledgeBaseId.jsonOrThrow(request, { unrecognizedObjectKeys: "strip" }),
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
             maxRetries: requestOptions?.maxRetries,
             abortSignal: requestOptions?.abortSignal,
@@ -434,148 +323,36 @@ export class Knowledge {
     }
 
     /**
-     * Create knowledge document. Requires an existing knowledge base with an in progress version. Will throw an exception if the latest version is not in progress.
+     * Update an action or create it if it doesn't exist
      *
-     * @param {MavenAGI.KnowledgeDocumentRequest} request
-     * @param {Knowledge.RequestOptions} requestOptions - Request-specific configuration.
-     *
-     * @throws {@link MavenAGI.NotFoundError}
-     * @throws {@link MavenAGI.BadRequestError}
-     * @throws {@link MavenAGI.ServerError}
-     *
-     * @example
-     *     await client.knowledge.createKnowledgeDocument({
-     *         contentType: MavenAGI.KnowledgeDocumentContentType.Html,
-     *         content: "string",
-     *         title: "string",
-     *         url: "string",
-     *         language: "string",
-     *         createdAt: new Date("2024-01-15T09:30:00.000Z"),
-     *         updatedAt: new Date("2024-01-15T09:30:00.000Z"),
-     *         author: "string",
-     *         knowledgeBaseId: "string",
-     *         documentId: "string"
-     *     })
-     */
-    public async createKnowledgeDocument(
-        request: MavenAGI.KnowledgeDocumentRequest,
-        requestOptions?: Knowledge.RequestOptions
-    ): Promise<MavenAGI.KnowledgeDocumentResponse> {
-        const _response = await (this._options.fetcher ?? core.fetcher)({
-            url: urlJoin(
-                (await core.Supplier.get(this._options.environment)) ?? environments.MavenAGIEnvironment.Production,
-                "/v1/knowledge/document"
-            ),
-            method: "POST",
-            headers: {
-                Authorization: await this._getAuthorizationHeader(),
-                "X-Organization-Id": await core.Supplier.get(this._options.organizationId),
-                "X-Agent-Id": await core.Supplier.get(this._options.agentId),
-                "X-Fern-Language": "JavaScript",
-                "X-Fern-SDK-Name": "mavenagi",
-                "X-Fern-SDK-Version": "0.0.0-alpha.4",
-                "X-Fern-Runtime": core.RUNTIME.type,
-                "X-Fern-Runtime-Version": core.RUNTIME.version,
-            },
-            contentType: "application/json",
-            body: await serializers.KnowledgeDocumentRequest.jsonOrThrow(request, { unrecognizedObjectKeys: "strip" }),
-            timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
-            maxRetries: requestOptions?.maxRetries,
-            abortSignal: requestOptions?.abortSignal,
-        });
-        if (_response.ok) {
-            return await serializers.KnowledgeDocumentResponse.parseOrThrow(_response.body, {
-                unrecognizedObjectKeys: "passthrough",
-                allowUnrecognizedUnionMembers: true,
-                allowUnrecognizedEnumValues: true,
-                breadcrumbsPrefix: ["response"],
-            });
-        }
-
-        if (_response.error.reason === "status-code") {
-            switch (_response.error.statusCode) {
-                case 404:
-                    throw new MavenAGI.NotFoundError(
-                        await serializers.ErrorMessage.parseOrThrow(_response.error.body, {
-                            unrecognizedObjectKeys: "passthrough",
-                            allowUnrecognizedUnionMembers: true,
-                            allowUnrecognizedEnumValues: true,
-                            breadcrumbsPrefix: ["response"],
-                        })
-                    );
-                case 400:
-                    throw new MavenAGI.BadRequestError(
-                        await serializers.ErrorMessage.parseOrThrow(_response.error.body, {
-                            unrecognizedObjectKeys: "passthrough",
-                            allowUnrecognizedUnionMembers: true,
-                            allowUnrecognizedEnumValues: true,
-                            breadcrumbsPrefix: ["response"],
-                        })
-                    );
-                case 500:
-                    throw new MavenAGI.ServerError(
-                        await serializers.ErrorMessage.parseOrThrow(_response.error.body, {
-                            unrecognizedObjectKeys: "passthrough",
-                            allowUnrecognizedUnionMembers: true,
-                            allowUnrecognizedEnumValues: true,
-                            breadcrumbsPrefix: ["response"],
-                        })
-                    );
-                default:
-                    throw new errors.MavenAGIError({
-                        statusCode: _response.error.statusCode,
-                        body: _response.error.body,
-                    });
-            }
-        }
-
-        switch (_response.error.reason) {
-            case "non-json":
-                throw new errors.MavenAGIError({
-                    statusCode: _response.error.statusCode,
-                    body: _response.error.rawBody,
-                });
-            case "timeout":
-                throw new errors.MavenAGITimeoutError();
-            case "unknown":
-                throw new errors.MavenAGIError({
-                    message: _response.error.errorMessage,
-                });
-        }
-    }
-
-    /**
-     * Update knowledge document. Requires an existing knowledge base with an in progress version of type PARTIAL. Will throw an exception if the latest version is not in progress.
-     *
-     * @param {MavenAGI.KnowledgeDocumentRequest} request
-     * @param {Knowledge.RequestOptions} requestOptions - Request-specific configuration.
+     * @param {MavenAGI.Action} request
+     * @param {Actions.RequestOptions} requestOptions - Request-specific configuration.
      *
      * @throws {@link MavenAGI.NotFoundError}
      * @throws {@link MavenAGI.BadRequestError}
      * @throws {@link MavenAGI.ServerError}
      *
      * @example
-     *     await client.knowledge.updateKnowledgeDocument({
-     *         contentType: MavenAGI.KnowledgeDocumentContentType.Html,
-     *         content: "string",
-     *         title: "string",
-     *         url: "string",
-     *         language: "string",
-     *         createdAt: new Date("2024-01-15T09:30:00.000Z"),
-     *         updatedAt: new Date("2024-01-15T09:30:00.000Z"),
-     *         author: "string",
-     *         knowledgeBaseId: "string",
-     *         documentId: "string"
+     *     await client.actions.registerAction({
+     *         id: "string",
+     *         actionSetId: "string",
+     *         appId: "string",
+     *         name: "string",
+     *         description: "string",
+     *         userInteractionRequired: true,
+     *         buttonName: "string",
+     *         requiredUserContextFieldNames: new Set(["string"]),
+     *         userFormParameters: [{}]
      *     })
      */
-    public async updateKnowledgeDocument(
-        request: MavenAGI.KnowledgeDocumentRequest,
-        requestOptions?: Knowledge.RequestOptions
-    ): Promise<MavenAGI.KnowledgeDocumentResponse> {
+    public async registerAction(
+        request: MavenAGI.Action,
+        requestOptions?: Actions.RequestOptions
+    ): Promise<MavenAGI.Action> {
         const _response = await (this._options.fetcher ?? core.fetcher)({
             url: urlJoin(
                 (await core.Supplier.get(this._options.environment)) ?? environments.MavenAGIEnvironment.Production,
-                "/v1/knowledge/document"
+                "/v1/actions"
             ),
             method: "PUT",
             headers: {
@@ -589,13 +366,13 @@ export class Knowledge {
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
             },
             contentType: "application/json",
-            body: await serializers.KnowledgeDocumentRequest.jsonOrThrow(request, { unrecognizedObjectKeys: "strip" }),
+            body: await serializers.Action.jsonOrThrow(request, { unrecognizedObjectKeys: "strip" }),
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
             maxRetries: requestOptions?.maxRetries,
             abortSignal: requestOptions?.abortSignal,
         });
         if (_response.ok) {
-            return await serializers.KnowledgeDocumentResponse.parseOrThrow(_response.body, {
+            return await serializers.Action.parseOrThrow(_response.body, {
                 unrecognizedObjectKeys: "passthrough",
                 allowUnrecognizedUnionMembers: true,
                 allowUnrecognizedEnumValues: true,
@@ -656,29 +433,119 @@ export class Knowledge {
     }
 
     /**
-     * Delete knowledge document. Requires an existing knowledge base with an in progress version of type PARTIAL. Will throw an exception if the latest version is not in progress.
+     * Get an action by its supplied ID
      *
-     * @param {MavenAGI.KnowledgeDocumentId} request
-     * @param {Knowledge.RequestOptions} requestOptions - Request-specific configuration.
+     * @param {string} actionId - The ID of the action to get
+     * @param {Actions.RequestOptions} requestOptions - Request-specific configuration.
      *
      * @throws {@link MavenAGI.NotFoundError}
      * @throws {@link MavenAGI.BadRequestError}
      * @throws {@link MavenAGI.ServerError}
      *
      * @example
-     *     await client.knowledge.deleteKnowledgeDocument({
-     *         knowledgeBaseId: "string",
-     *         documentId: "string"
-     *     })
+     *     await client.actions.getAction("string")
      */
-    public async deleteKnowledgeDocument(
-        request: MavenAGI.KnowledgeDocumentId,
-        requestOptions?: Knowledge.RequestOptions
-    ): Promise<void> {
+    public async getAction(actionId: string, requestOptions?: Actions.RequestOptions): Promise<MavenAGI.Action> {
         const _response = await (this._options.fetcher ?? core.fetcher)({
             url: urlJoin(
                 (await core.Supplier.get(this._options.environment)) ?? environments.MavenAGIEnvironment.Production,
-                "/v1/knowledge/document"
+                `/v1/actions/${encodeURIComponent(actionId)}`
+            ),
+            method: "GET",
+            headers: {
+                Authorization: await this._getAuthorizationHeader(),
+                "X-Organization-Id": await core.Supplier.get(this._options.organizationId),
+                "X-Agent-Id": await core.Supplier.get(this._options.agentId),
+                "X-Fern-Language": "JavaScript",
+                "X-Fern-SDK-Name": "mavenagi",
+                "X-Fern-SDK-Version": "0.0.0-alpha.4",
+                "X-Fern-Runtime": core.RUNTIME.type,
+                "X-Fern-Runtime-Version": core.RUNTIME.version,
+            },
+            contentType: "application/json",
+            timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
+            maxRetries: requestOptions?.maxRetries,
+            abortSignal: requestOptions?.abortSignal,
+        });
+        if (_response.ok) {
+            return await serializers.Action.parseOrThrow(_response.body, {
+                unrecognizedObjectKeys: "passthrough",
+                allowUnrecognizedUnionMembers: true,
+                allowUnrecognizedEnumValues: true,
+                breadcrumbsPrefix: ["response"],
+            });
+        }
+
+        if (_response.error.reason === "status-code") {
+            switch (_response.error.statusCode) {
+                case 404:
+                    throw new MavenAGI.NotFoundError(
+                        await serializers.ErrorMessage.parseOrThrow(_response.error.body, {
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
+                            breadcrumbsPrefix: ["response"],
+                        })
+                    );
+                case 400:
+                    throw new MavenAGI.BadRequestError(
+                        await serializers.ErrorMessage.parseOrThrow(_response.error.body, {
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
+                            breadcrumbsPrefix: ["response"],
+                        })
+                    );
+                case 500:
+                    throw new MavenAGI.ServerError(
+                        await serializers.ErrorMessage.parseOrThrow(_response.error.body, {
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
+                            breadcrumbsPrefix: ["response"],
+                        })
+                    );
+                default:
+                    throw new errors.MavenAGIError({
+                        statusCode: _response.error.statusCode,
+                        body: _response.error.body,
+                    });
+            }
+        }
+
+        switch (_response.error.reason) {
+            case "non-json":
+                throw new errors.MavenAGIError({
+                    statusCode: _response.error.statusCode,
+                    body: _response.error.rawBody,
+                });
+            case "timeout":
+                throw new errors.MavenAGITimeoutError();
+            case "unknown":
+                throw new errors.MavenAGIError({
+                    message: _response.error.errorMessage,
+                });
+        }
+    }
+
+    /**
+     * Delete an action
+     *
+     * @param {string} actionId - The ID of the action to delete
+     * @param {Actions.RequestOptions} requestOptions - Request-specific configuration.
+     *
+     * @throws {@link MavenAGI.NotFoundError}
+     * @throws {@link MavenAGI.BadRequestError}
+     * @throws {@link MavenAGI.ServerError}
+     *
+     * @example
+     *     await client.actions.deleteAction("string")
+     */
+    public async deleteAction(actionId: string, requestOptions?: Actions.RequestOptions): Promise<void> {
+        const _response = await (this._options.fetcher ?? core.fetcher)({
+            url: urlJoin(
+                (await core.Supplier.get(this._options.environment)) ?? environments.MavenAGIEnvironment.Production,
+                `/v1/actions/${encodeURIComponent(actionId)}`
             ),
             method: "DELETE",
             headers: {
@@ -692,7 +559,6 @@ export class Knowledge {
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
             },
             contentType: "application/json",
-            body: await serializers.KnowledgeDocumentId.jsonOrThrow(request, { unrecognizedObjectKeys: "strip" }),
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
             maxRetries: requestOptions?.maxRetries,
             abortSignal: requestOptions?.abortSignal,

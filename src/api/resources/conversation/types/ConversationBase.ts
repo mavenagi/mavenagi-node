@@ -9,4 +9,6 @@ export interface ConversationBase {
     id: string;
     /** The context of the conversation */
     context?: MavenAGI.ConversationContext;
+    /** Optional configurations for responses to this conversation */
+    responseConfig?: MavenAGI.ResponseConfig;
 }

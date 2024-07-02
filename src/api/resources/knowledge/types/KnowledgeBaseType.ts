@@ -3,7 +3,7 @@
  */
 
 /**
- * The type of knowledge base version
+ * API knowledge bases are managed by a Maven App. URL knowledge bases will start a web crawl of the provided URL. RSS knowledge bases will parse documents from the RSS returned from the provided URL.
  */
 export type KnowledgeBaseType = "API" | "URL" | "RSS";
 

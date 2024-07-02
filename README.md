@@ -25,7 +25,7 @@ const client = new MavenAGIClient({
     organizationId: "YOUR_ORGANIZATION_ID",
     agentId: "YOUR_AGENT_ID",
 });
-await client.actionSet.create({
+await client.actions.createActionSet({
     id: "string",
     name: "string",
 });
@@ -40,7 +40,7 @@ will be thrown.
 import { MavenAGIError } from "mavenagi";
 
 try {
-    await client.create(...);
+    await client.createActionSet(...);
 } catch (err) {
     if (err instanceof MavenAGIError) {
         console.log(err.statusCode);
@@ -50,43 +50,13 @@ try {
 }
 ```
 
-## Retries
-
-The SDK is instrumented with automatic retries with exponential backoff. A request will be retried as long
-as the request is deemed retriable and the number of retry attempts has not grown larger than the configured
-retry limit (default: 2).
-
-A request is deemed retriable when any of the following HTTP status codes is returned:
-
--   [408](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/408) (Timeout)
--   [429](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/429) (Too Many Requests)
--   [5XX](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/500) (Internal Server Errors)
-
-Use the `maxRetries` request option to configure this behavior.
-
-```typescript
-const response = await client.create(..., {
-    maxRetries: 0 // override maxRetries at the request level
-});
-```
-
-## Timeouts
-
-The SDK defaults to a 60 second timeout. Use the `timeoutInSeconds` option to configure this behavior.
-
-```typescript
-const response = await client.create(..., {
-    timeoutInSeconds: 30 // override timeout to 30s
-});
-```
-
 ## Aborting Requests
 
 The SDK allows users to abort requests at any point by passing in an abort signal.
 
 ```typescript
 const controller = new AbortController();
-const response = await client.create(..., {
+const response = await client.createActionSet(..., {
     abortSignal: controller.signal
 });
 controller.abort(); // aborts the request
@@ -115,6 +85,60 @@ import { MavenAGIClient } from "mavenagi";
 const client = new MavenAGIClient({
     ...
     fetcher: // provide your implementation here
+});
+```
+
+## Advanced
+
+### Retries
+
+The SDK is instrumented with automatic retries with exponential backoff. A request will be retried as long
+as the request is deemed retriable and the number of retry attempts has not grown larger than the configured
+retry limit (default: 2).
+
+A request is deemed retriable when any of the following HTTP status codes is returned:
+
+-   [408](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/408) (Timeout)
+-   [429](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/429) (Too Many Requests)
+-   [5XX](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/500) (Internal Server Errors)
+
+Use the `maxRetries` request option to configure this behavior.
+
+```typescript
+const response = await client.createActionSet(..., {
+    maxRetries: 0 // override maxRetries at the request level
+});
+```
+
+## Advanced
+
+### Retries
+
+The SDK is instrumented with automatic retries with exponential backoff. A request will be retried as long
+as the request is deemed retriable and the number of retry attempts has not grown larger than the configured
+retry limit (default: 2).
+
+A request is deemed retriable when any of the following HTTP status codes is returned:
+
+-   [408](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/408) (Timeout)
+-   [429](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/429) (Too Many Requests)
+-   [5XX](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/500) (Internal Server Errors)
+
+Use the `maxRetries` request option to configure this behavior.
+
+```typescript
+const response = await client.createActionSet(..., {
+    maxRetries: 0 // override maxRetries at the request level
+});
+```
+
+### Timeouts
+
+The SDK defaults to a 60 second timeout. Use the `timeoutInSeconds` option to configure this behavior.
+
+```typescript
+const response = await client.createActionSet(..., {
+    timeoutInSeconds: 30 // override timeout to 30s
 });
 ```
 

@@ -11,4 +11,6 @@ export interface AskRequest {
     text: string;
     /** The context of the message */
     context?: MavenAGI.ConversationMessageContext;
+    /** Optional configuration for responses to this conversation. Only applies to new conversations. */
+    responseConfig?: MavenAGI.ResponseConfig;
 }
