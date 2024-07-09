@@ -6,15 +6,13 @@ import * as serializers from "../../../index";
 import * as MavenAGI from "../../../../api/index";
 import * as core from "../../../../core";
 
-export const ActionSetBase: core.serialization.ObjectSchema<serializers.ActionSetBase.Raw, MavenAGI.ActionSetBase> =
+export const EntityIdBase: core.serialization.ObjectSchema<serializers.EntityIdBase.Raw, MavenAGI.EntityIdBase> =
     core.serialization.object({
-        id: core.serialization.string(),
-        name: core.serialization.string(),
+        referenceId: core.serialization.string(),
     });
 
-export declare namespace ActionSetBase {
+export declare namespace EntityIdBase {
     interface Raw {
-        id: string;
-        name: string;
+        referenceId: string;
     }
 }

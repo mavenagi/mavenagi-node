@@ -8,15 +8,15 @@ import { Actions } from "./api/resources/actions/client/Client";
 import { Conversation } from "./api/resources/conversation/client/Client";
 import { Knowledge } from "./api/resources/knowledge/client/Client";
 import { Triggers } from "./api/resources/triggers/client/Client";
-import { User } from "./api/resources/user/client/Client";
+import { Users } from "./api/resources/users/client/Client";
 
 export declare namespace MavenAGIClient {
     interface Options {
         environment?: core.Supplier<environments.MavenAGIEnvironment | string>;
         appId?: core.Supplier<string | undefined>;
         appSecret?: core.Supplier<string | undefined>;
-        organizationId: core.Supplier<string>;
-        agentId: core.Supplier<string>;
+        xOrganizationId: core.Supplier<string>;
+        xAgentId: core.Supplier<string>;
         fetcher?: core.FetchFunction;
     }
 
@@ -54,9 +54,9 @@ export class MavenAGIClient {
         return (this._triggers ??= new Triggers(this._options));
     }
 
-    protected _user: User | undefined;
+    protected _users: Users | undefined;
 
-    public get user(): User {
-        return (this._user ??= new User(this._options));
+    public get users(): Users {
+        return (this._users ??= new Users(this._options));
     }
 }

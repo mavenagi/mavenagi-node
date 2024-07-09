@@ -11,6 +11,7 @@ export const ActionParameter: core.serialization.ObjectSchema<
     MavenAGI.ActionParameter
 > = core.serialization.object({
     id: core.serialization.string(),
+    label: core.serialization.string(),
     description: core.serialization.string(),
     required: core.serialization.boolean(),
 });
@@ -18,6 +19,7 @@ export const ActionParameter: core.serialization.ObjectSchema<
 export declare namespace ActionParameter {
     interface Raw {
         id: string;
+        label: string;
         description: string;
         required: boolean;
     }

@@ -7,4 +7,6 @@ import * as MavenAGI from "../../../index";
 export interface ConversationRequest extends MavenAGI.ConversationBase {
     /** The messages in the conversation */
     messages: MavenAGI.ConversationMessageRequest[];
+    /** The context of the conversation */
+    context?: MavenAGI.ConversationContext;
 }

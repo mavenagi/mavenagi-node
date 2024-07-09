@@ -4,13 +4,7 @@
 
 import * as MavenAGI from "../../../index";
 
-export interface Action {
-    /** Externally supplied ID to uniquely identify this action */
-    id: string;
-    /** The ID of the action set this action belongs to. Must be an existing action set ID. */
-    actionSetId: string;
-    /** The maven app id of the app that runs this action */
-    appId: string;
+export interface ActionBase {
     /** The name of the action */
     name: string;
     /** The description of the action. This helps Maven decide when to trigger the action and is not displayed directly to the end user. */

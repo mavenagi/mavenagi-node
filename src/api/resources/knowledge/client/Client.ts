@@ -14,8 +14,8 @@ export declare namespace Knowledge {
         environment?: core.Supplier<environments.MavenAGIEnvironment | string>;
         appId?: core.Supplier<string | undefined>;
         appSecret?: core.Supplier<string | undefined>;
-        organizationId: core.Supplier<string>;
-        agentId: core.Supplier<string>;
+        xOrganizationId: core.Supplier<string>;
+        xAgentId: core.Supplier<string>;
         fetcher?: core.FetchFunction;
     }
 
@@ -59,11 +59,11 @@ export class Knowledge {
             method: "POST",
             headers: {
                 Authorization: await this._getAuthorizationHeader(),
-                "X-Organization-Id": await core.Supplier.get(this._options.organizationId),
-                "X-Agent-Id": await core.Supplier.get(this._options.agentId),
+                "X-Organization-Id": await core.Supplier.get(this._options.xOrganizationId),
+                "X-Agent-Id": await core.Supplier.get(this._options.xAgentId),
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "mavenagi",
-                "X-Fern-SDK-Version": "0.0.0-alpha.4",
+                "X-Fern-SDK-Version": "0.0.0-alpha.5",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
             },
@@ -159,11 +159,11 @@ export class Knowledge {
             method: "GET",
             headers: {
                 Authorization: await this._getAuthorizationHeader(),
-                "X-Organization-Id": await core.Supplier.get(this._options.organizationId),
-                "X-Agent-Id": await core.Supplier.get(this._options.agentId),
+                "X-Organization-Id": await core.Supplier.get(this._options.xOrganizationId),
+                "X-Agent-Id": await core.Supplier.get(this._options.xAgentId),
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "mavenagi",
-                "X-Fern-SDK-Version": "0.0.0-alpha.4",
+                "X-Fern-SDK-Version": "0.0.0-alpha.5",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
             },
@@ -261,11 +261,11 @@ export class Knowledge {
             method: "POST",
             headers: {
                 Authorization: await this._getAuthorizationHeader(),
-                "X-Organization-Id": await core.Supplier.get(this._options.organizationId),
-                "X-Agent-Id": await core.Supplier.get(this._options.agentId),
+                "X-Organization-Id": await core.Supplier.get(this._options.xOrganizationId),
+                "X-Agent-Id": await core.Supplier.get(this._options.xAgentId),
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "mavenagi",
-                "X-Fern-SDK-Version": "0.0.0-alpha.4",
+                "X-Fern-SDK-Version": "0.0.0-alpha.5",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
             },
@@ -363,11 +363,11 @@ export class Knowledge {
             method: "POST",
             headers: {
                 Authorization: await this._getAuthorizationHeader(),
-                "X-Organization-Id": await core.Supplier.get(this._options.organizationId),
-                "X-Agent-Id": await core.Supplier.get(this._options.agentId),
+                "X-Organization-Id": await core.Supplier.get(this._options.xOrganizationId),
+                "X-Agent-Id": await core.Supplier.get(this._options.xAgentId),
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "mavenagi",
-                "X-Fern-SDK-Version": "0.0.0-alpha.4",
+                "X-Fern-SDK-Version": "0.0.0-alpha.5",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
             },
@@ -469,11 +469,11 @@ export class Knowledge {
             method: "POST",
             headers: {
                 Authorization: await this._getAuthorizationHeader(),
-                "X-Organization-Id": await core.Supplier.get(this._options.organizationId),
-                "X-Agent-Id": await core.Supplier.get(this._options.agentId),
+                "X-Organization-Id": await core.Supplier.get(this._options.xOrganizationId),
+                "X-Agent-Id": await core.Supplier.get(this._options.xAgentId),
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "mavenagi",
-                "X-Fern-SDK-Version": "0.0.0-alpha.4",
+                "X-Fern-SDK-Version": "0.0.0-alpha.5",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
             },
@@ -580,11 +580,11 @@ export class Knowledge {
             method: "PUT",
             headers: {
                 Authorization: await this._getAuthorizationHeader(),
-                "X-Organization-Id": await core.Supplier.get(this._options.organizationId),
-                "X-Agent-Id": await core.Supplier.get(this._options.agentId),
+                "X-Organization-Id": await core.Supplier.get(this._options.xOrganizationId),
+                "X-Agent-Id": await core.Supplier.get(this._options.xAgentId),
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "mavenagi",
-                "X-Fern-SDK-Version": "0.0.0-alpha.4",
+                "X-Fern-SDK-Version": "0.0.0-alpha.5",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
             },
@@ -683,11 +683,11 @@ export class Knowledge {
             method: "DELETE",
             headers: {
                 Authorization: await this._getAuthorizationHeader(),
-                "X-Organization-Id": await core.Supplier.get(this._options.organizationId),
-                "X-Agent-Id": await core.Supplier.get(this._options.agentId),
+                "X-Organization-Id": await core.Supplier.get(this._options.xOrganizationId),
+                "X-Agent-Id": await core.Supplier.get(this._options.xAgentId),
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "mavenagi",
-                "X-Fern-SDK-Version": "0.0.0-alpha.4",
+                "X-Fern-SDK-Version": "0.0.0-alpha.5",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
             },

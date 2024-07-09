@@ -7,8 +7,6 @@ import * as MavenAGI from "../../../index";
 export interface ConversationBase {
     /** Externally supplied ID to uniquely identify this conversation */
     id: string;
-    /** The context of the conversation */
-    context?: MavenAGI.ConversationContext;
     /** Optional configurations for responses to this conversation */
     responseConfig?: MavenAGI.ResponseConfig;
 }

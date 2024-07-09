@@ -5,7 +5,6 @@
 import * as serializers from "../../../index";
 import * as MavenAGI from "../../../../api/index";
 import * as core from "../../../../core";
-import { ConversationContext } from "./ConversationContext";
 import { ResponseConfig } from "./ResponseConfig";
 
 export const ConversationBase: core.serialization.ObjectSchema<
@@ -13,14 +12,12 @@ export const ConversationBase: core.serialization.ObjectSchema<
     MavenAGI.ConversationBase
 > = core.serialization.object({
     id: core.serialization.string(),
-    context: ConversationContext.optional(),
     responseConfig: ResponseConfig.optional(),
 });
 
 export declare namespace ConversationBase {
     interface Raw {
         id: string;
-        context?: ConversationContext.Raw | null;
         responseConfig?: ResponseConfig.Raw | null;
     }
 }

@@ -4,9 +4,7 @@
 
 import * as MavenAGI from "../../../index";
 
-export interface EventTrigger {
-    /** Externally supplied ID to uniquely identify this event trigger */
-    id: string;
+export interface EventTriggerBase {
     /** The description of what the event trigger does, shown in the Maven Dashboard */
     description: string;
     /** The type of event trigger this app wishes to handle */

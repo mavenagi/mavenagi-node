@@ -7,11 +7,8 @@ import * as MavenAGI from "../../../../api/index";
 import * as core from "../../../../core";
 import { ActionParameter } from "./ActionParameter";
 
-export const Action: core.serialization.ObjectSchema<serializers.Action.Raw, MavenAGI.Action> =
+export const ActionBase: core.serialization.ObjectSchema<serializers.ActionBase.Raw, MavenAGI.ActionBase> =
     core.serialization.object({
-        id: core.serialization.string(),
-        actionSetId: core.serialization.string(),
-        appId: core.serialization.string(),
         name: core.serialization.string(),
         description: core.serialization.string(),
         userInteractionRequired: core.serialization.boolean(),
@@ -20,11 +17,8 @@ export const Action: core.serialization.ObjectSchema<serializers.Action.Raw, Mav
         userFormParameters: core.serialization.list(ActionParameter),
     });
 
-export declare namespace Action {
+export declare namespace ActionBase {
     interface Raw {
-        id: string;
-        actionSetId: string;
-        appId: string;
         name: string;
         description: string;
         userInteractionRequired: boolean;

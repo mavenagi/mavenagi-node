@@ -14,8 +14,8 @@ export declare namespace Triggers {
         environment?: core.Supplier<environments.MavenAGIEnvironment | string>;
         appId?: core.Supplier<string | undefined>;
         appSecret?: core.Supplier<string | undefined>;
-        organizationId: core.Supplier<string>;
-        agentId: core.Supplier<string>;
+        xOrganizationId: core.Supplier<string>;
+        xAgentId: core.Supplier<string>;
         fetcher?: core.FetchFunction;
     }
 
@@ -32,7 +32,7 @@ export class Triggers {
     /**
      * Update an event trigger or create it if it doesn't exist.
      *
-     * @param {MavenAGI.EventTrigger} request
+     * @param {MavenAGI.EventTriggerRequest} request
      * @param {Triggers.RequestOptions} requestOptions - Request-specific configuration.
      *
      * @throws {@link MavenAGI.NotFoundError}
@@ -41,15 +41,17 @@ export class Triggers {
      *
      * @example
      *     await client.triggers.registerTrigger({
-     *         id: "string",
-     *         description: "string",
+     *         entityId: {
+     *             referenceId: "store-in-snowflake"
+     *         },
+     *         description: "Stores conversation data in Snowflake",
      *         type: MavenAGI.EventTriggerType.ConversationCreated
      *     })
      */
     public async registerTrigger(
-        request: MavenAGI.EventTrigger,
+        request: MavenAGI.EventTriggerRequest,
         requestOptions?: Triggers.RequestOptions
-    ): Promise<MavenAGI.EventTrigger> {
+    ): Promise<MavenAGI.EventTriggerResponse> {
         const _response = await (this._options.fetcher ?? core.fetcher)({
             url: urlJoin(
                 (await core.Supplier.get(this._options.environment)) ?? environments.MavenAGIEnvironment.Production,
@@ -58,22 +60,22 @@ export class Triggers {
             method: "PUT",
             headers: {
                 Authorization: await this._getAuthorizationHeader(),
-                "X-Organization-Id": await core.Supplier.get(this._options.organizationId),
-                "X-Agent-Id": await core.Supplier.get(this._options.agentId),
+                "X-Organization-Id": await core.Supplier.get(this._options.xOrganizationId),
+                "X-Agent-Id": await core.Supplier.get(this._options.xAgentId),
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "mavenagi",
-                "X-Fern-SDK-Version": "0.0.0-alpha.4",
+                "X-Fern-SDK-Version": "0.0.0-alpha.5",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
             },
             contentType: "application/json",
-            body: await serializers.EventTrigger.jsonOrThrow(request, { unrecognizedObjectKeys: "strip" }),
+            body: await serializers.EventTriggerRequest.jsonOrThrow(request, { unrecognizedObjectKeys: "strip" }),
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
             maxRetries: requestOptions?.maxRetries,
             abortSignal: requestOptions?.abortSignal,
         });
         if (_response.ok) {
-            return await serializers.EventTrigger.parseOrThrow(_response.body, {
+            return await serializers.EventTriggerResponse.parseOrThrow(_response.body, {
                 unrecognizedObjectKeys: "passthrough",
                 allowUnrecognizedUnionMembers: true,
                 allowUnrecognizedEnumValues: true,
@@ -136,7 +138,7 @@ export class Triggers {
     /**
      * Get an event trigger by its supplied ID
      *
-     * @param {string} triggerId - The ID of the event trigger to get
+     * @param {string} referenceId - The reference ID of the event trigger to get. All other entity ID fields are inferred from the request.
      * @param {Triggers.RequestOptions} requestOptions - Request-specific configuration.
      *
      * @throws {@link MavenAGI.NotFoundError}
@@ -144,25 +146,25 @@ export class Triggers {
      * @throws {@link MavenAGI.ServerError}
      *
      * @example
-     *     await client.triggers.getTrigger("string")
+     *     await client.triggers.getTrigger("store-in-snowflake")
      */
     public async getTrigger(
-        triggerId: string,
+        referenceId: string,
         requestOptions?: Triggers.RequestOptions
-    ): Promise<MavenAGI.EventTrigger> {
+    ): Promise<MavenAGI.EventTriggerResponse> {
         const _response = await (this._options.fetcher ?? core.fetcher)({
             url: urlJoin(
                 (await core.Supplier.get(this._options.environment)) ?? environments.MavenAGIEnvironment.Production,
-                `/v1/triggers/${encodeURIComponent(triggerId)}`
+                `/v1/triggers/${encodeURIComponent(referenceId)}`
             ),
             method: "GET",
             headers: {
                 Authorization: await this._getAuthorizationHeader(),
-                "X-Organization-Id": await core.Supplier.get(this._options.organizationId),
-                "X-Agent-Id": await core.Supplier.get(this._options.agentId),
+                "X-Organization-Id": await core.Supplier.get(this._options.xOrganizationId),
+                "X-Agent-Id": await core.Supplier.get(this._options.xAgentId),
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "mavenagi",
-                "X-Fern-SDK-Version": "0.0.0-alpha.4",
+                "X-Fern-SDK-Version": "0.0.0-alpha.5",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
             },
@@ -172,7 +174,7 @@ export class Triggers {
             abortSignal: requestOptions?.abortSignal,
         });
         if (_response.ok) {
-            return await serializers.EventTrigger.parseOrThrow(_response.body, {
+            return await serializers.EventTriggerResponse.parseOrThrow(_response.body, {
                 unrecognizedObjectKeys: "passthrough",
                 allowUnrecognizedUnionMembers: true,
                 allowUnrecognizedEnumValues: true,
@@ -235,7 +237,7 @@ export class Triggers {
     /**
      * Unregister an event trigger
      *
-     * @param {string} triggerId - The ID of the event trigger to unregister
+     * @param {string} referenceId - The reference ID of the event trigger to unregister. All other entity ID fields are inferred from the request.
      * @param {Triggers.RequestOptions} requestOptions - Request-specific configuration.
      *
      * @throws {@link MavenAGI.NotFoundError}
@@ -243,22 +245,22 @@ export class Triggers {
      * @throws {@link MavenAGI.ServerError}
      *
      * @example
-     *     await client.triggers.unregisterTrigger("string")
+     *     await client.triggers.unregisterTrigger("store-in-snowflake")
      */
-    public async unregisterTrigger(triggerId: string, requestOptions?: Triggers.RequestOptions): Promise<void> {
+    public async unregisterTrigger(referenceId: string, requestOptions?: Triggers.RequestOptions): Promise<void> {
         const _response = await (this._options.fetcher ?? core.fetcher)({
             url: urlJoin(
                 (await core.Supplier.get(this._options.environment)) ?? environments.MavenAGIEnvironment.Production,
-                `/v1/triggers/${encodeURIComponent(triggerId)}`
+                `/v1/triggers/${encodeURIComponent(referenceId)}`
             ),
             method: "DELETE",
             headers: {
                 Authorization: await this._getAuthorizationHeader(),
-                "X-Organization-Id": await core.Supplier.get(this._options.organizationId),
-                "X-Agent-Id": await core.Supplier.get(this._options.agentId),
+                "X-Organization-Id": await core.Supplier.get(this._options.xOrganizationId),
+                "X-Agent-Id": await core.Supplier.get(this._options.xAgentId),
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "mavenagi",
-                "X-Fern-SDK-Version": "0.0.0-alpha.4",
+                "X-Fern-SDK-Version": "0.0.0-alpha.5",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
             },

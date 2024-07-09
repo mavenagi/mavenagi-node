@@ -17,17 +17,23 @@ Instantiate and use the client with the following:
 
 ```typescript
 import * as environments from "../src/environments";
-import { MavenAGIClient } from "mavenagi";
+import { MavenAGIClient, MavenAGI } from "mavenagi";
 
 const client = new MavenAGIClient({
     appId: "YOUR_APP_ID",
     appSecret: "YOUR_APP_SECRET",
-    organizationId: "YOUR_ORGANIZATION_ID",
-    agentId: "YOUR_AGENT_ID",
+    xOrganizationId: "YOUR_X_ORGANIZATION_ID",
+    xAgentId: "YOUR_X_AGENT_ID",
 });
-await client.actions.createActionSet({
+await client.conversation.initialize({
+    messages: [{}],
+    context: {},
     id: "string",
-    name: "string",
+    responseConfig: {
+        capabilities: [MavenAGI.Capability.Markdown],
+        isCopilot: true,
+        responseLength: MavenAGI.ResponseLength.Short,
+    },
 });
 ```
 
@@ -40,7 +46,7 @@ will be thrown.
 import { MavenAGIError } from "mavenagi";
 
 try {
-    await client.createActionSet(...);
+    await client.initialize(...);
 } catch (err) {
     if (err instanceof MavenAGIError) {
         console.log(err.statusCode);
@@ -56,7 +62,7 @@ The SDK allows users to abort requests at any point by passing in an abort signa
 
 ```typescript
 const controller = new AbortController();
-const response = await client.createActionSet(..., {
+const response = await client.initialize(..., {
     abortSignal: controller.signal
 });
 controller.abort(); // aborts the request
@@ -105,29 +111,7 @@ A request is deemed retriable when any of the following HTTP status codes is ret
 Use the `maxRetries` request option to configure this behavior.
 
 ```typescript
-const response = await client.createActionSet(..., {
-    maxRetries: 0 // override maxRetries at the request level
-});
-```
-
-## Advanced
-
-### Retries
-
-The SDK is instrumented with automatic retries with exponential backoff. A request will be retried as long
-as the request is deemed retriable and the number of retry attempts has not grown larger than the configured
-retry limit (default: 2).
-
-A request is deemed retriable when any of the following HTTP status codes is returned:
-
--   [408](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/408) (Timeout)
--   [429](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/429) (Too Many Requests)
--   [5XX](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/500) (Internal Server Errors)
-
-Use the `maxRetries` request option to configure this behavior.
-
-```typescript
-const response = await client.createActionSet(..., {
+const response = await client.initialize(..., {
     maxRetries: 0 // override maxRetries at the request level
 });
 ```
@@ -137,7 +121,7 @@ const response = await client.createActionSet(..., {
 The SDK defaults to a 60 second timeout. Use the `timeoutInSeconds` option to configure this behavior.
 
 ```typescript
-const response = await client.createActionSet(..., {
+const response = await client.initialize(..., {
     timeoutInSeconds: 30 // override timeout to 30s
 });
 ```

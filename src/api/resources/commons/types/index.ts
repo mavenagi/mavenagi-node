@@ -1,4 +1,7 @@
 export * from "./ErrorMessage";
+export * from "./EntityType";
+export * from "./EntityIdBase";
+export * from "./EntityId";
 export * from "./User";
 export * from "./FeedbackType";
 export * from "./Feedback";

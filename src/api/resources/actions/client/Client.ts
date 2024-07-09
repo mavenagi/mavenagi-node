@@ -14,8 +14,8 @@ export declare namespace Actions {
         environment?: core.Supplier<environments.MavenAGIEnvironment | string>;
         appId?: core.Supplier<string | undefined>;
         appSecret?: core.Supplier<string | undefined>;
-        organizationId: core.Supplier<string>;
-        agentId: core.Supplier<string>;
+        xOrganizationId: core.Supplier<string>;
+        xAgentId: core.Supplier<string>;
         fetcher?: core.FetchFunction;
     }
 
@@ -30,302 +30,9 @@ export class Actions {
     constructor(protected readonly _options: Actions.Options) {}
 
     /**
-     * Update an action set or create it if it doesn't exist
-     *
-     * @param {MavenAGI.ActionSetRequest} request
-     * @param {Actions.RequestOptions} requestOptions - Request-specific configuration.
-     *
-     * @throws {@link MavenAGI.NotFoundError}
-     * @throws {@link MavenAGI.BadRequestError}
-     * @throws {@link MavenAGI.ServerError}
-     *
-     * @example
-     *     await client.actions.createActionSet({
-     *         id: "string",
-     *         name: "string"
-     *     })
-     */
-    public async createActionSet(
-        request: MavenAGI.ActionSetRequest,
-        requestOptions?: Actions.RequestOptions
-    ): Promise<MavenAGI.ActionSetResponse> {
-        const _response = await (this._options.fetcher ?? core.fetcher)({
-            url: urlJoin(
-                (await core.Supplier.get(this._options.environment)) ?? environments.MavenAGIEnvironment.Production,
-                "/v1/actions/sets"
-            ),
-            method: "POST",
-            headers: {
-                Authorization: await this._getAuthorizationHeader(),
-                "X-Organization-Id": await core.Supplier.get(this._options.organizationId),
-                "X-Agent-Id": await core.Supplier.get(this._options.agentId),
-                "X-Fern-Language": "JavaScript",
-                "X-Fern-SDK-Name": "mavenagi",
-                "X-Fern-SDK-Version": "0.0.0-alpha.4",
-                "X-Fern-Runtime": core.RUNTIME.type,
-                "X-Fern-Runtime-Version": core.RUNTIME.version,
-            },
-            contentType: "application/json",
-            body: await serializers.ActionSetRequest.jsonOrThrow(request, { unrecognizedObjectKeys: "strip" }),
-            timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
-            maxRetries: requestOptions?.maxRetries,
-            abortSignal: requestOptions?.abortSignal,
-        });
-        if (_response.ok) {
-            return await serializers.ActionSetResponse.parseOrThrow(_response.body, {
-                unrecognizedObjectKeys: "passthrough",
-                allowUnrecognizedUnionMembers: true,
-                allowUnrecognizedEnumValues: true,
-                breadcrumbsPrefix: ["response"],
-            });
-        }
-
-        if (_response.error.reason === "status-code") {
-            switch (_response.error.statusCode) {
-                case 404:
-                    throw new MavenAGI.NotFoundError(
-                        await serializers.ErrorMessage.parseOrThrow(_response.error.body, {
-                            unrecognizedObjectKeys: "passthrough",
-                            allowUnrecognizedUnionMembers: true,
-                            allowUnrecognizedEnumValues: true,
-                            breadcrumbsPrefix: ["response"],
-                        })
-                    );
-                case 400:
-                    throw new MavenAGI.BadRequestError(
-                        await serializers.ErrorMessage.parseOrThrow(_response.error.body, {
-                            unrecognizedObjectKeys: "passthrough",
-                            allowUnrecognizedUnionMembers: true,
-                            allowUnrecognizedEnumValues: true,
-                            breadcrumbsPrefix: ["response"],
-                        })
-                    );
-                case 500:
-                    throw new MavenAGI.ServerError(
-                        await serializers.ErrorMessage.parseOrThrow(_response.error.body, {
-                            unrecognizedObjectKeys: "passthrough",
-                            allowUnrecognizedUnionMembers: true,
-                            allowUnrecognizedEnumValues: true,
-                            breadcrumbsPrefix: ["response"],
-                        })
-                    );
-                default:
-                    throw new errors.MavenAGIError({
-                        statusCode: _response.error.statusCode,
-                        body: _response.error.body,
-                    });
-            }
-        }
-
-        switch (_response.error.reason) {
-            case "non-json":
-                throw new errors.MavenAGIError({
-                    statusCode: _response.error.statusCode,
-                    body: _response.error.rawBody,
-                });
-            case "timeout":
-                throw new errors.MavenAGITimeoutError();
-            case "unknown":
-                throw new errors.MavenAGIError({
-                    message: _response.error.errorMessage,
-                });
-        }
-    }
-
-    /**
-     * Get an action set by its supplied ID
-     *
-     * @param {string} actionSetId - The ID of the action set to get
-     * @param {Actions.RequestOptions} requestOptions - Request-specific configuration.
-     *
-     * @throws {@link MavenAGI.NotFoundError}
-     * @throws {@link MavenAGI.BadRequestError}
-     * @throws {@link MavenAGI.ServerError}
-     *
-     * @example
-     *     await client.actions.getActionSet("string")
-     */
-    public async getActionSet(
-        actionSetId: string,
-        requestOptions?: Actions.RequestOptions
-    ): Promise<MavenAGI.ActionSetResponse> {
-        const _response = await (this._options.fetcher ?? core.fetcher)({
-            url: urlJoin(
-                (await core.Supplier.get(this._options.environment)) ?? environments.MavenAGIEnvironment.Production,
-                `/v1/actions/sets/${encodeURIComponent(actionSetId)}`
-            ),
-            method: "GET",
-            headers: {
-                Authorization: await this._getAuthorizationHeader(),
-                "X-Organization-Id": await core.Supplier.get(this._options.organizationId),
-                "X-Agent-Id": await core.Supplier.get(this._options.agentId),
-                "X-Fern-Language": "JavaScript",
-                "X-Fern-SDK-Name": "mavenagi",
-                "X-Fern-SDK-Version": "0.0.0-alpha.4",
-                "X-Fern-Runtime": core.RUNTIME.type,
-                "X-Fern-Runtime-Version": core.RUNTIME.version,
-            },
-            contentType: "application/json",
-            timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
-            maxRetries: requestOptions?.maxRetries,
-            abortSignal: requestOptions?.abortSignal,
-        });
-        if (_response.ok) {
-            return await serializers.ActionSetResponse.parseOrThrow(_response.body, {
-                unrecognizedObjectKeys: "passthrough",
-                allowUnrecognizedUnionMembers: true,
-                allowUnrecognizedEnumValues: true,
-                breadcrumbsPrefix: ["response"],
-            });
-        }
-
-        if (_response.error.reason === "status-code") {
-            switch (_response.error.statusCode) {
-                case 404:
-                    throw new MavenAGI.NotFoundError(
-                        await serializers.ErrorMessage.parseOrThrow(_response.error.body, {
-                            unrecognizedObjectKeys: "passthrough",
-                            allowUnrecognizedUnionMembers: true,
-                            allowUnrecognizedEnumValues: true,
-                            breadcrumbsPrefix: ["response"],
-                        })
-                    );
-                case 400:
-                    throw new MavenAGI.BadRequestError(
-                        await serializers.ErrorMessage.parseOrThrow(_response.error.body, {
-                            unrecognizedObjectKeys: "passthrough",
-                            allowUnrecognizedUnionMembers: true,
-                            allowUnrecognizedEnumValues: true,
-                            breadcrumbsPrefix: ["response"],
-                        })
-                    );
-                case 500:
-                    throw new MavenAGI.ServerError(
-                        await serializers.ErrorMessage.parseOrThrow(_response.error.body, {
-                            unrecognizedObjectKeys: "passthrough",
-                            allowUnrecognizedUnionMembers: true,
-                            allowUnrecognizedEnumValues: true,
-                            breadcrumbsPrefix: ["response"],
-                        })
-                    );
-                default:
-                    throw new errors.MavenAGIError({
-                        statusCode: _response.error.statusCode,
-                        body: _response.error.body,
-                    });
-            }
-        }
-
-        switch (_response.error.reason) {
-            case "non-json":
-                throw new errors.MavenAGIError({
-                    statusCode: _response.error.statusCode,
-                    body: _response.error.rawBody,
-                });
-            case "timeout":
-                throw new errors.MavenAGITimeoutError();
-            case "unknown":
-                throw new errors.MavenAGIError({
-                    message: _response.error.errorMessage,
-                });
-        }
-    }
-
-    /**
-     * Delete an action set
-     *
-     * @param {string} actionSetId - The ID of the action set to delete
-     * @param {Actions.RequestOptions} requestOptions - Request-specific configuration.
-     *
-     * @throws {@link MavenAGI.NotFoundError}
-     * @throws {@link MavenAGI.BadRequestError}
-     * @throws {@link MavenAGI.ServerError}
-     *
-     * @example
-     *     await client.actions.deleteActionSet("string")
-     */
-    public async deleteActionSet(actionSetId: string, requestOptions?: Actions.RequestOptions): Promise<void> {
-        const _response = await (this._options.fetcher ?? core.fetcher)({
-            url: urlJoin(
-                (await core.Supplier.get(this._options.environment)) ?? environments.MavenAGIEnvironment.Production,
-                `/v1/actions/sets/${encodeURIComponent(actionSetId)}`
-            ),
-            method: "DELETE",
-            headers: {
-                Authorization: await this._getAuthorizationHeader(),
-                "X-Organization-Id": await core.Supplier.get(this._options.organizationId),
-                "X-Agent-Id": await core.Supplier.get(this._options.agentId),
-                "X-Fern-Language": "JavaScript",
-                "X-Fern-SDK-Name": "mavenagi",
-                "X-Fern-SDK-Version": "0.0.0-alpha.4",
-                "X-Fern-Runtime": core.RUNTIME.type,
-                "X-Fern-Runtime-Version": core.RUNTIME.version,
-            },
-            contentType: "application/json",
-            timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
-            maxRetries: requestOptions?.maxRetries,
-            abortSignal: requestOptions?.abortSignal,
-        });
-        if (_response.ok) {
-            return;
-        }
-
-        if (_response.error.reason === "status-code") {
-            switch (_response.error.statusCode) {
-                case 404:
-                    throw new MavenAGI.NotFoundError(
-                        await serializers.ErrorMessage.parseOrThrow(_response.error.body, {
-                            unrecognizedObjectKeys: "passthrough",
-                            allowUnrecognizedUnionMembers: true,
-                            allowUnrecognizedEnumValues: true,
-                            breadcrumbsPrefix: ["response"],
-                        })
-                    );
-                case 400:
-                    throw new MavenAGI.BadRequestError(
-                        await serializers.ErrorMessage.parseOrThrow(_response.error.body, {
-                            unrecognizedObjectKeys: "passthrough",
-                            allowUnrecognizedUnionMembers: true,
-                            allowUnrecognizedEnumValues: true,
-                            breadcrumbsPrefix: ["response"],
-                        })
-                    );
-                case 500:
-                    throw new MavenAGI.ServerError(
-                        await serializers.ErrorMessage.parseOrThrow(_response.error.body, {
-                            unrecognizedObjectKeys: "passthrough",
-                            allowUnrecognizedUnionMembers: true,
-                            allowUnrecognizedEnumValues: true,
-                            breadcrumbsPrefix: ["response"],
-                        })
-                    );
-                default:
-                    throw new errors.MavenAGIError({
-                        statusCode: _response.error.statusCode,
-                        body: _response.error.body,
-                    });
-            }
-        }
-
-        switch (_response.error.reason) {
-            case "non-json":
-                throw new errors.MavenAGIError({
-                    statusCode: _response.error.statusCode,
-                    body: _response.error.rawBody,
-                });
-            case "timeout":
-                throw new errors.MavenAGITimeoutError();
-            case "unknown":
-                throw new errors.MavenAGIError({
-                    message: _response.error.errorMessage,
-                });
-        }
-    }
-
-    /**
      * Update an action or create it if it doesn't exist
      *
-     * @param {MavenAGI.Action} request
+     * @param {MavenAGI.ActionRequest} request
      * @param {Actions.RequestOptions} requestOptions - Request-specific configuration.
      *
      * @throws {@link MavenAGI.NotFoundError}
@@ -333,22 +40,21 @@ export class Actions {
      * @throws {@link MavenAGI.ServerError}
      *
      * @example
-     *     await client.actions.registerAction({
-     *         id: "string",
-     *         actionSetId: "string",
-     *         appId: "string",
-     *         name: "string",
-     *         description: "string",
-     *         userInteractionRequired: true,
-     *         buttonName: "string",
-     *         requiredUserContextFieldNames: new Set(["string"]),
-     *         userFormParameters: [{}]
+     *     await client.actions.createOrUpdateAction({
+     *         entityId: {
+     *             referenceId: "get-balance"
+     *         },
+     *         name: "Get the user's balance",
+     *         description: "This action calls an API to get the user's current balance.",
+     *         userInteractionRequired: false,
+     *         requiredUserContextFieldNames: new Set(["my-billing-system.userId"]),
+     *         userFormParameters: []
      *     })
      */
-    public async registerAction(
-        request: MavenAGI.Action,
+    public async createOrUpdateAction(
+        request: MavenAGI.ActionRequest,
         requestOptions?: Actions.RequestOptions
-    ): Promise<MavenAGI.Action> {
+    ): Promise<MavenAGI.ActionResponse> {
         const _response = await (this._options.fetcher ?? core.fetcher)({
             url: urlJoin(
                 (await core.Supplier.get(this._options.environment)) ?? environments.MavenAGIEnvironment.Production,
@@ -357,22 +63,22 @@ export class Actions {
             method: "PUT",
             headers: {
                 Authorization: await this._getAuthorizationHeader(),
-                "X-Organization-Id": await core.Supplier.get(this._options.organizationId),
-                "X-Agent-Id": await core.Supplier.get(this._options.agentId),
+                "X-Organization-Id": await core.Supplier.get(this._options.xOrganizationId),
+                "X-Agent-Id": await core.Supplier.get(this._options.xAgentId),
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "mavenagi",
-                "X-Fern-SDK-Version": "0.0.0-alpha.4",
+                "X-Fern-SDK-Version": "0.0.0-alpha.5",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
             },
             contentType: "application/json",
-            body: await serializers.Action.jsonOrThrow(request, { unrecognizedObjectKeys: "strip" }),
+            body: await serializers.ActionRequest.jsonOrThrow(request, { unrecognizedObjectKeys: "strip" }),
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
             maxRetries: requestOptions?.maxRetries,
             abortSignal: requestOptions?.abortSignal,
         });
         if (_response.ok) {
-            return await serializers.Action.parseOrThrow(_response.body, {
+            return await serializers.ActionResponse.parseOrThrow(_response.body, {
                 unrecognizedObjectKeys: "passthrough",
                 allowUnrecognizedUnionMembers: true,
                 allowUnrecognizedEnumValues: true,
@@ -435,7 +141,7 @@ export class Actions {
     /**
      * Get an action by its supplied ID
      *
-     * @param {string} actionId - The ID of the action to get
+     * @param {string} referenceId - The reference ID of the action to get. All other entity ID fields are inferred from the request.
      * @param {Actions.RequestOptions} requestOptions - Request-specific configuration.
      *
      * @throws {@link MavenAGI.NotFoundError}
@@ -443,22 +149,25 @@ export class Actions {
      * @throws {@link MavenAGI.ServerError}
      *
      * @example
-     *     await client.actions.getAction("string")
+     *     await client.actions.getAction("get-balance")
      */
-    public async getAction(actionId: string, requestOptions?: Actions.RequestOptions): Promise<MavenAGI.Action> {
+    public async getAction(
+        referenceId: string,
+        requestOptions?: Actions.RequestOptions
+    ): Promise<MavenAGI.ActionResponse> {
         const _response = await (this._options.fetcher ?? core.fetcher)({
             url: urlJoin(
                 (await core.Supplier.get(this._options.environment)) ?? environments.MavenAGIEnvironment.Production,
-                `/v1/actions/${encodeURIComponent(actionId)}`
+                `/v1/actions/${encodeURIComponent(referenceId)}`
             ),
             method: "GET",
             headers: {
                 Authorization: await this._getAuthorizationHeader(),
-                "X-Organization-Id": await core.Supplier.get(this._options.organizationId),
-                "X-Agent-Id": await core.Supplier.get(this._options.agentId),
+                "X-Organization-Id": await core.Supplier.get(this._options.xOrganizationId),
+                "X-Agent-Id": await core.Supplier.get(this._options.xAgentId),
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "mavenagi",
-                "X-Fern-SDK-Version": "0.0.0-alpha.4",
+                "X-Fern-SDK-Version": "0.0.0-alpha.5",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
             },
@@ -468,7 +177,7 @@ export class Actions {
             abortSignal: requestOptions?.abortSignal,
         });
         if (_response.ok) {
-            return await serializers.Action.parseOrThrow(_response.body, {
+            return await serializers.ActionResponse.parseOrThrow(_response.body, {
                 unrecognizedObjectKeys: "passthrough",
                 allowUnrecognizedUnionMembers: true,
                 allowUnrecognizedEnumValues: true,
@@ -531,7 +240,7 @@ export class Actions {
     /**
      * Delete an action
      *
-     * @param {string} actionId - The ID of the action to delete
+     * @param {string} referenceId - The reference ID of the action to unregister. All other entity ID fields are inferred from the request.
      * @param {Actions.RequestOptions} requestOptions - Request-specific configuration.
      *
      * @throws {@link MavenAGI.NotFoundError}
@@ -539,22 +248,22 @@ export class Actions {
      * @throws {@link MavenAGI.ServerError}
      *
      * @example
-     *     await client.actions.deleteAction("string")
+     *     await client.actions.deleteAction("get-balance")
      */
-    public async deleteAction(actionId: string, requestOptions?: Actions.RequestOptions): Promise<void> {
+    public async deleteAction(referenceId: string, requestOptions?: Actions.RequestOptions): Promise<void> {
         const _response = await (this._options.fetcher ?? core.fetcher)({
             url: urlJoin(
                 (await core.Supplier.get(this._options.environment)) ?? environments.MavenAGIEnvironment.Production,
-                `/v1/actions/${encodeURIComponent(actionId)}`
+                `/v1/actions/${encodeURIComponent(referenceId)}`
             ),
             method: "DELETE",
             headers: {
                 Authorization: await this._getAuthorizationHeader(),
-                "X-Organization-Id": await core.Supplier.get(this._options.organizationId),
-                "X-Agent-Id": await core.Supplier.get(this._options.agentId),
+                "X-Organization-Id": await core.Supplier.get(this._options.xOrganizationId),
+                "X-Agent-Id": await core.Supplier.get(this._options.xAgentId),
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "mavenagi",
-                "X-Fern-SDK-Version": "0.0.0-alpha.4",
+                "X-Fern-SDK-Version": "0.0.0-alpha.5",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
             },

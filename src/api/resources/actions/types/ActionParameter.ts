@@ -4,6 +4,7 @@
 
 export interface ActionParameter {
     id: string;
+    label: string;
     description: string;
     required: boolean;
 }

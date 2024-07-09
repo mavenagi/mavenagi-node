@@ -7,16 +7,16 @@ import * as MavenAGI from "../../../../api/index";
 import * as core from "../../../../core";
 import { EventTriggerType } from "./EventTriggerType";
 
-export const EventTrigger: core.serialization.ObjectSchema<serializers.EventTrigger.Raw, MavenAGI.EventTrigger> =
-    core.serialization.object({
-        id: core.serialization.string(),
-        description: core.serialization.string(),
-        type: EventTriggerType,
-    });
+export const EventTriggerBase: core.serialization.ObjectSchema<
+    serializers.EventTriggerBase.Raw,
+    MavenAGI.EventTriggerBase
+> = core.serialization.object({
+    description: core.serialization.string(),
+    type: EventTriggerType,
+});
 
-export declare namespace EventTrigger {
+export declare namespace EventTriggerBase {
     interface Raw {
-        id: string;
         description: string;
         type: EventTriggerType.Raw;
     }

@@ -15,8 +15,8 @@ export declare namespace Conversation {
         environment?: core.Supplier<environments.MavenAGIEnvironment | string>;
         appId?: core.Supplier<string | undefined>;
         appSecret?: core.Supplier<string | undefined>;
-        organizationId: core.Supplier<string>;
-        agentId: core.Supplier<string>;
+        xOrganizationId: core.Supplier<string>;
+        xAgentId: core.Supplier<string>;
         fetcher?: core.FetchFunction;
     }
 
@@ -43,8 +43,8 @@ export class Conversation {
      * @example
      *     await client.conversation.initialize({
      *         messages: [{}],
-     *         id: "string",
      *         context: {},
+     *         id: "string",
      *         responseConfig: {
      *             capabilities: [MavenAGI.Capability.Markdown],
      *             isCopilot: true,
@@ -64,11 +64,11 @@ export class Conversation {
             method: "POST",
             headers: {
                 Authorization: await this._getAuthorizationHeader(),
-                "X-Organization-Id": await core.Supplier.get(this._options.organizationId),
-                "X-Agent-Id": await core.Supplier.get(this._options.agentId),
+                "X-Organization-Id": await core.Supplier.get(this._options.xOrganizationId),
+                "X-Agent-Id": await core.Supplier.get(this._options.xAgentId),
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "mavenagi",
-                "X-Fern-SDK-Version": "0.0.0-alpha.4",
+                "X-Fern-SDK-Version": "0.0.0-alpha.5",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
             },
@@ -164,11 +164,11 @@ export class Conversation {
             method: "GET",
             headers: {
                 Authorization: await this._getAuthorizationHeader(),
-                "X-Organization-Id": await core.Supplier.get(this._options.organizationId),
-                "X-Agent-Id": await core.Supplier.get(this._options.agentId),
+                "X-Organization-Id": await core.Supplier.get(this._options.xOrganizationId),
+                "X-Agent-Id": await core.Supplier.get(this._options.xAgentId),
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "mavenagi",
-                "X-Fern-SDK-Version": "0.0.0-alpha.4",
+                "X-Fern-SDK-Version": "0.0.0-alpha.5",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
             },
@@ -270,11 +270,11 @@ export class Conversation {
             method: "POST",
             headers: {
                 Authorization: await this._getAuthorizationHeader(),
-                "X-Organization-Id": await core.Supplier.get(this._options.organizationId),
-                "X-Agent-Id": await core.Supplier.get(this._options.agentId),
+                "X-Organization-Id": await core.Supplier.get(this._options.xOrganizationId),
+                "X-Agent-Id": await core.Supplier.get(this._options.xAgentId),
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "mavenagi",
-                "X-Fern-SDK-Version": "0.0.0-alpha.4",
+                "X-Fern-SDK-Version": "0.0.0-alpha.5",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
             },
@@ -379,11 +379,11 @@ export class Conversation {
             method: "POST",
             headers: {
                 Authorization: await this._getAuthorizationHeader(),
-                "X-Organization-Id": await core.Supplier.get(this._options.organizationId),
-                "X-Agent-Id": await core.Supplier.get(this._options.agentId),
+                "X-Organization-Id": await core.Supplier.get(this._options.xOrganizationId),
+                "X-Agent-Id": await core.Supplier.get(this._options.xAgentId),
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "mavenagi",
-                "X-Fern-SDK-Version": "0.0.0-alpha.4",
+                "X-Fern-SDK-Version": "0.0.0-alpha.5",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
             },
@@ -470,11 +470,11 @@ export class Conversation {
             method: "POST",
             headers: {
                 Authorization: await this._getAuthorizationHeader(),
-                "X-Organization-Id": await core.Supplier.get(this._options.organizationId),
-                "X-Agent-Id": await core.Supplier.get(this._options.agentId),
+                "X-Organization-Id": await core.Supplier.get(this._options.xOrganizationId),
+                "X-Agent-Id": await core.Supplier.get(this._options.xAgentId),
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "mavenagi",
-                "X-Fern-SDK-Version": "0.0.0-alpha.4",
+                "X-Fern-SDK-Version": "0.0.0-alpha.5",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
             },
@@ -585,11 +585,11 @@ export class Conversation {
             method: "POST",
             headers: {
                 Authorization: await this._getAuthorizationHeader(),
-                "X-Organization-Id": await core.Supplier.get(this._options.organizationId),
-                "X-Agent-Id": await core.Supplier.get(this._options.agentId),
+                "X-Organization-Id": await core.Supplier.get(this._options.xOrganizationId),
+                "X-Agent-Id": await core.Supplier.get(this._options.xAgentId),
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "mavenagi",
-                "X-Fern-SDK-Version": "0.0.0-alpha.4",
+                "X-Fern-SDK-Version": "0.0.0-alpha.5",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
             },
@@ -693,11 +693,11 @@ export class Conversation {
             method: "POST",
             headers: {
                 Authorization: await this._getAuthorizationHeader(),
-                "X-Organization-Id": await core.Supplier.get(this._options.organizationId),
-                "X-Agent-Id": await core.Supplier.get(this._options.agentId),
+                "X-Organization-Id": await core.Supplier.get(this._options.xOrganizationId),
+                "X-Agent-Id": await core.Supplier.get(this._options.xAgentId),
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "mavenagi",
-                "X-Fern-SDK-Version": "0.0.0-alpha.4",
+                "X-Fern-SDK-Version": "0.0.0-alpha.5",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
             },
@@ -807,11 +807,11 @@ export class Conversation {
             method: "POST",
             headers: {
                 Authorization: await this._getAuthorizationHeader(),
-                "X-Organization-Id": await core.Supplier.get(this._options.organizationId),
-                "X-Agent-Id": await core.Supplier.get(this._options.agentId),
+                "X-Organization-Id": await core.Supplier.get(this._options.xOrganizationId),
+                "X-Agent-Id": await core.Supplier.get(this._options.xAgentId),
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "mavenagi",
-                "X-Fern-SDK-Version": "0.0.0-alpha.4",
+                "X-Fern-SDK-Version": "0.0.0-alpha.5",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
             },
@@ -823,6 +823,112 @@ export class Conversation {
         });
         if (_response.ok) {
             return await serializers.ActionExecutionResponse.parseOrThrow(_response.body, {
+                unrecognizedObjectKeys: "passthrough",
+                allowUnrecognizedUnionMembers: true,
+                allowUnrecognizedEnumValues: true,
+                breadcrumbsPrefix: ["response"],
+            });
+        }
+
+        if (_response.error.reason === "status-code") {
+            switch (_response.error.statusCode) {
+                case 404:
+                    throw new MavenAGI.NotFoundError(
+                        await serializers.ErrorMessage.parseOrThrow(_response.error.body, {
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
+                            breadcrumbsPrefix: ["response"],
+                        })
+                    );
+                case 400:
+                    throw new MavenAGI.BadRequestError(
+                        await serializers.ErrorMessage.parseOrThrow(_response.error.body, {
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
+                            breadcrumbsPrefix: ["response"],
+                        })
+                    );
+                case 500:
+                    throw new MavenAGI.ServerError(
+                        await serializers.ErrorMessage.parseOrThrow(_response.error.body, {
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
+                            breadcrumbsPrefix: ["response"],
+                        })
+                    );
+                default:
+                    throw new errors.MavenAGIError({
+                        statusCode: _response.error.statusCode,
+                        body: _response.error.body,
+                    });
+            }
+        }
+
+        switch (_response.error.reason) {
+            case "non-json":
+                throw new errors.MavenAGIError({
+                    statusCode: _response.error.statusCode,
+                    body: _response.error.rawBody,
+                });
+            case "timeout":
+                throw new errors.MavenAGITimeoutError();
+            case "unknown":
+                throw new errors.MavenAGIError({
+                    message: _response.error.errorMessage,
+                });
+        }
+    }
+
+    /**
+     * Add metadata to an existing conversation's Context. If a metadata field already exists, it will be overwritten.
+     *
+     * @param {string} conversationId - The ID of a conversation the metadata being added belongs to
+     * @param {Record<string, string>} request
+     * @param {Conversation.RequestOptions} requestOptions - Request-specific configuration.
+     *
+     * @throws {@link MavenAGI.NotFoundError}
+     * @throws {@link MavenAGI.BadRequestError}
+     * @throws {@link MavenAGI.ServerError}
+     *
+     * @example
+     *     await client.conversation.addConversationMetadata("string", {
+     *         "string": "string"
+     *     })
+     */
+    public async addConversationMetadata(
+        conversationId: string,
+        request: Record<string, string>,
+        requestOptions?: Conversation.RequestOptions
+    ): Promise<Record<string, string>> {
+        const _response = await (this._options.fetcher ?? core.fetcher)({
+            url: urlJoin(
+                (await core.Supplier.get(this._options.environment)) ?? environments.MavenAGIEnvironment.Production,
+                `/v1/conversations/${encodeURIComponent(conversationId)}/metadata`
+            ),
+            method: "POST",
+            headers: {
+                Authorization: await this._getAuthorizationHeader(),
+                "X-Organization-Id": await core.Supplier.get(this._options.xOrganizationId),
+                "X-Agent-Id": await core.Supplier.get(this._options.xAgentId),
+                "X-Fern-Language": "JavaScript",
+                "X-Fern-SDK-Name": "mavenagi",
+                "X-Fern-SDK-Version": "0.0.0-alpha.5",
+                "X-Fern-Runtime": core.RUNTIME.type,
+                "X-Fern-Runtime-Version": core.RUNTIME.version,
+            },
+            contentType: "application/json",
+            body: await serializers.conversation.addConversationMetadata.Request.jsonOrThrow(request, {
+                unrecognizedObjectKeys: "strip",
+            }),
+            timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
+            maxRetries: requestOptions?.maxRetries,
+            abortSignal: requestOptions?.abortSignal,
+        });
+        if (_response.ok) {
+            return await serializers.conversation.addConversationMetadata.Response.parseOrThrow(_response.body, {
                 unrecognizedObjectKeys: "passthrough",
                 allowUnrecognizedUnionMembers: true,
                 allowUnrecognizedEnumValues: true,

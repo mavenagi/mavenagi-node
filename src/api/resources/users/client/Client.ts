@@ -9,13 +9,13 @@ import * as serializers from "../../../../serialization/index";
 import urlJoin from "url-join";
 import * as errors from "../../../../errors/index";
 
-export declare namespace User {
+export declare namespace Users {
     interface Options {
         environment?: core.Supplier<environments.MavenAGIEnvironment | string>;
         appId?: core.Supplier<string | undefined>;
         appSecret?: core.Supplier<string | undefined>;
-        organizationId: core.Supplier<string>;
-        agentId: core.Supplier<string>;
+        xOrganizationId: core.Supplier<string>;
+        xAgentId: core.Supplier<string>;
         fetcher?: core.FetchFunction;
     }
 
@@ -26,21 +26,21 @@ export declare namespace User {
     }
 }
 
-export class User {
-    constructor(protected readonly _options: User.Options) {}
+export class Users {
+    constructor(protected readonly _options: Users.Options) {}
 
     /**
      * Create a new user or update an existing one
      *
      * @param {MavenAGI.AppUser} request
-     * @param {User.RequestOptions} requestOptions - Request-specific configuration.
+     * @param {Users.RequestOptions} requestOptions - Request-specific configuration.
      *
      * @throws {@link MavenAGI.NotFoundError}
      * @throws {@link MavenAGI.BadRequestError}
      * @throws {@link MavenAGI.ServerError}
      *
      * @example
-     *     await client.user.upsertAppUser({
+     *     await client.users.upsertAppUser({
      *         id: "string",
      *         userIdentifiers: {
      *             identifiers: new Set([{}])
@@ -52,7 +52,7 @@ export class User {
      */
     public async upsertAppUser(
         request: MavenAGI.AppUser,
-        requestOptions?: User.RequestOptions
+        requestOptions?: Users.RequestOptions
     ): Promise<MavenAGI.AppUser> {
         const _response = await (this._options.fetcher ?? core.fetcher)({
             url: urlJoin(
@@ -62,11 +62,11 @@ export class User {
             method: "PUT",
             headers: {
                 Authorization: await this._getAuthorizationHeader(),
-                "X-Organization-Id": await core.Supplier.get(this._options.organizationId),
-                "X-Agent-Id": await core.Supplier.get(this._options.agentId),
+                "X-Organization-Id": await core.Supplier.get(this._options.xOrganizationId),
+                "X-Agent-Id": await core.Supplier.get(this._options.xAgentId),
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "mavenagi",
-                "X-Fern-SDK-Version": "0.0.0-alpha.4",
+                "X-Fern-SDK-Version": "0.0.0-alpha.5",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
             },
@@ -141,16 +141,16 @@ export class User {
      * Get a user
      *
      * @param {string} userId - The ID of the user to get
-     * @param {User.RequestOptions} requestOptions - Request-specific configuration.
+     * @param {Users.RequestOptions} requestOptions - Request-specific configuration.
      *
      * @throws {@link MavenAGI.NotFoundError}
      * @throws {@link MavenAGI.BadRequestError}
      * @throws {@link MavenAGI.ServerError}
      *
      * @example
-     *     await client.user.getAppUser("string")
+     *     await client.users.getAppUser("string")
      */
-    public async getAppUser(userId: string, requestOptions?: User.RequestOptions): Promise<MavenAGI.AppUser> {
+    public async getAppUser(userId: string, requestOptions?: Users.RequestOptions): Promise<MavenAGI.AppUser> {
         const _response = await (this._options.fetcher ?? core.fetcher)({
             url: urlJoin(
                 (await core.Supplier.get(this._options.environment)) ?? environments.MavenAGIEnvironment.Production,
@@ -159,11 +159,11 @@ export class User {
             method: "GET",
             headers: {
                 Authorization: await this._getAuthorizationHeader(),
-                "X-Organization-Id": await core.Supplier.get(this._options.organizationId),
-                "X-Agent-Id": await core.Supplier.get(this._options.agentId),
+                "X-Organization-Id": await core.Supplier.get(this._options.xOrganizationId),
+                "X-Agent-Id": await core.Supplier.get(this._options.xAgentId),
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "mavenagi",
-                "X-Fern-SDK-Version": "0.0.0-alpha.4",
+                "X-Fern-SDK-Version": "0.0.0-alpha.5",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
             },
