@@ -22,8 +22,8 @@ import { MavenAGIClient, MavenAGI } from "mavenagi";
 const client = new MavenAGIClient({
     appId: "YOUR_APP_ID",
     appSecret: "YOUR_APP_SECRET",
-    xOrganizationId: "YOUR_X_ORGANIZATION_ID",
-    xAgentId: "YOUR_X_AGENT_ID",
+    organizationId: "YOUR_ORGANIZATION_ID",
+    agentId: "YOUR_AGENT_ID",
 });
 await client.conversation.initialize({
     messages: [{}],

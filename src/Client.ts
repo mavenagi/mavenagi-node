@@ -15,8 +15,8 @@ export declare namespace MavenAGIClient {
         environment?: core.Supplier<environments.MavenAGIEnvironment | string>;
         appId?: core.Supplier<string | undefined>;
         appSecret?: core.Supplier<string | undefined>;
-        xOrganizationId: core.Supplier<string>;
-        xAgentId: core.Supplier<string>;
+        organizationId: core.Supplier<string>;
+        agentId: core.Supplier<string>;
         fetcher?: core.FetchFunction;
     }
 

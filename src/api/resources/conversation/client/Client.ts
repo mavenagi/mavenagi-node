@@ -15,8 +15,8 @@ export declare namespace Conversation {
         environment?: core.Supplier<environments.MavenAGIEnvironment | string>;
         appId?: core.Supplier<string | undefined>;
         appSecret?: core.Supplier<string | undefined>;
-        xOrganizationId: core.Supplier<string>;
-        xAgentId: core.Supplier<string>;
+        organizationId: core.Supplier<string>;
+        agentId: core.Supplier<string>;
         fetcher?: core.FetchFunction;
     }
 
@@ -64,11 +64,11 @@ export class Conversation {
             method: "POST",
             headers: {
                 Authorization: await this._getAuthorizationHeader(),
-                "X-Organization-Id": await core.Supplier.get(this._options.xOrganizationId),
-                "X-Agent-Id": await core.Supplier.get(this._options.xAgentId),
+                "X-Organization-Id": await core.Supplier.get(this._options.organizationId),
+                "X-Agent-Id": await core.Supplier.get(this._options.agentId),
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "mavenagi",
-                "X-Fern-SDK-Version": "0.0.0-alpha.6",
+                "X-Fern-SDK-Version": "0.0.0-alpha.7",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
             },
@@ -164,11 +164,11 @@ export class Conversation {
             method: "GET",
             headers: {
                 Authorization: await this._getAuthorizationHeader(),
-                "X-Organization-Id": await core.Supplier.get(this._options.xOrganizationId),
-                "X-Agent-Id": await core.Supplier.get(this._options.xAgentId),
+                "X-Organization-Id": await core.Supplier.get(this._options.organizationId),
+                "X-Agent-Id": await core.Supplier.get(this._options.agentId),
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "mavenagi",
-                "X-Fern-SDK-Version": "0.0.0-alpha.6",
+                "X-Fern-SDK-Version": "0.0.0-alpha.7",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
             },
@@ -270,11 +270,11 @@ export class Conversation {
             method: "POST",
             headers: {
                 Authorization: await this._getAuthorizationHeader(),
-                "X-Organization-Id": await core.Supplier.get(this._options.xOrganizationId),
-                "X-Agent-Id": await core.Supplier.get(this._options.xAgentId),
+                "X-Organization-Id": await core.Supplier.get(this._options.organizationId),
+                "X-Agent-Id": await core.Supplier.get(this._options.agentId),
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "mavenagi",
-                "X-Fern-SDK-Version": "0.0.0-alpha.6",
+                "X-Fern-SDK-Version": "0.0.0-alpha.7",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
             },
@@ -379,11 +379,11 @@ export class Conversation {
             method: "POST",
             headers: {
                 Authorization: await this._getAuthorizationHeader(),
-                "X-Organization-Id": await core.Supplier.get(this._options.xOrganizationId),
-                "X-Agent-Id": await core.Supplier.get(this._options.xAgentId),
+                "X-Organization-Id": await core.Supplier.get(this._options.organizationId),
+                "X-Agent-Id": await core.Supplier.get(this._options.agentId),
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "mavenagi",
-                "X-Fern-SDK-Version": "0.0.0-alpha.6",
+                "X-Fern-SDK-Version": "0.0.0-alpha.7",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
             },
@@ -470,11 +470,11 @@ export class Conversation {
             method: "POST",
             headers: {
                 Authorization: await this._getAuthorizationHeader(),
-                "X-Organization-Id": await core.Supplier.get(this._options.xOrganizationId),
-                "X-Agent-Id": await core.Supplier.get(this._options.xAgentId),
+                "X-Organization-Id": await core.Supplier.get(this._options.organizationId),
+                "X-Agent-Id": await core.Supplier.get(this._options.agentId),
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "mavenagi",
-                "X-Fern-SDK-Version": "0.0.0-alpha.6",
+                "X-Fern-SDK-Version": "0.0.0-alpha.7",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
             },
@@ -585,11 +585,11 @@ export class Conversation {
             method: "POST",
             headers: {
                 Authorization: await this._getAuthorizationHeader(),
-                "X-Organization-Id": await core.Supplier.get(this._options.xOrganizationId),
-                "X-Agent-Id": await core.Supplier.get(this._options.xAgentId),
+                "X-Organization-Id": await core.Supplier.get(this._options.organizationId),
+                "X-Agent-Id": await core.Supplier.get(this._options.agentId),
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "mavenagi",
-                "X-Fern-SDK-Version": "0.0.0-alpha.6",
+                "X-Fern-SDK-Version": "0.0.0-alpha.7",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
             },
@@ -693,11 +693,11 @@ export class Conversation {
             method: "POST",
             headers: {
                 Authorization: await this._getAuthorizationHeader(),
-                "X-Organization-Id": await core.Supplier.get(this._options.xOrganizationId),
-                "X-Agent-Id": await core.Supplier.get(this._options.xAgentId),
+                "X-Organization-Id": await core.Supplier.get(this._options.organizationId),
+                "X-Agent-Id": await core.Supplier.get(this._options.agentId),
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "mavenagi",
-                "X-Fern-SDK-Version": "0.0.0-alpha.6",
+                "X-Fern-SDK-Version": "0.0.0-alpha.7",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
             },
@@ -807,11 +807,11 @@ export class Conversation {
             method: "POST",
             headers: {
                 Authorization: await this._getAuthorizationHeader(),
-                "X-Organization-Id": await core.Supplier.get(this._options.xOrganizationId),
-                "X-Agent-Id": await core.Supplier.get(this._options.xAgentId),
+                "X-Organization-Id": await core.Supplier.get(this._options.organizationId),
+                "X-Agent-Id": await core.Supplier.get(this._options.agentId),
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "mavenagi",
-                "X-Fern-SDK-Version": "0.0.0-alpha.6",
+                "X-Fern-SDK-Version": "0.0.0-alpha.7",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
             },
@@ -911,11 +911,11 @@ export class Conversation {
             method: "POST",
             headers: {
                 Authorization: await this._getAuthorizationHeader(),
-                "X-Organization-Id": await core.Supplier.get(this._options.xOrganizationId),
-                "X-Agent-Id": await core.Supplier.get(this._options.xAgentId),
+                "X-Organization-Id": await core.Supplier.get(this._options.organizationId),
+                "X-Agent-Id": await core.Supplier.get(this._options.agentId),
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "mavenagi",
-                "X-Fern-SDK-Version": "0.0.0-alpha.6",
+                "X-Fern-SDK-Version": "0.0.0-alpha.7",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
             },
