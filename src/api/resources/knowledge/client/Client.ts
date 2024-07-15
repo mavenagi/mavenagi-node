@@ -30,9 +30,9 @@ export class Knowledge {
     constructor(protected readonly _options: Knowledge.Options) {}
 
     /**
-     * Create a new knowledge base.
+     * Update a knowledge base or create it if it doesn't exist.
      *
-     * @param {MavenAGI.KnowledgeBase} request
+     * @param {MavenAGI.KnowledgeBaseRequest} request
      * @param {Knowledge.RequestOptions} requestOptions - Request-specific configuration.
      *
      * @throws {@link MavenAGI.NotFoundError}
@@ -40,41 +40,42 @@ export class Knowledge {
      * @throws {@link MavenAGI.ServerError}
      *
      * @example
-     *     await client.knowledge.createKnowledgeBase({
-     *         displayName: "string",
-     *         type: MavenAGI.KnowledgeBaseType.Api,
-     *         url: "string",
-     *         knowledgeBaseId: "string"
+     *     await client.knowledge.createOrUpdateKnowledgeBase({
+     *         knowledgeBaseId: {
+     *             referenceId: "help-center"
+     *         },
+     *         name: "Help center",
+     *         type: MavenAGI.KnowledgeBaseType.Api
      *     })
      */
-    public async createKnowledgeBase(
-        request: MavenAGI.KnowledgeBase,
+    public async createOrUpdateKnowledgeBase(
+        request: MavenAGI.KnowledgeBaseRequest,
         requestOptions?: Knowledge.RequestOptions
-    ): Promise<MavenAGI.KnowledgeBase> {
+    ): Promise<MavenAGI.KnowledgeBaseResponse> {
         const _response = await (this._options.fetcher ?? core.fetcher)({
             url: urlJoin(
                 (await core.Supplier.get(this._options.environment)) ?? environments.MavenAGIEnvironment.Production,
                 "/v1/knowledge"
             ),
-            method: "POST",
+            method: "PUT",
             headers: {
                 Authorization: await this._getAuthorizationHeader(),
                 "X-Organization-Id": await core.Supplier.get(this._options.organizationId),
                 "X-Agent-Id": await core.Supplier.get(this._options.agentId),
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "mavenagi",
-                "X-Fern-SDK-Version": "0.0.0-alpha.7",
+                "X-Fern-SDK-Version": "0.0.0-alpha.8",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
             },
             contentType: "application/json",
-            body: await serializers.KnowledgeBase.jsonOrThrow(request, { unrecognizedObjectKeys: "strip" }),
+            body: await serializers.KnowledgeBaseRequest.jsonOrThrow(request, { unrecognizedObjectKeys: "strip" }),
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
             maxRetries: requestOptions?.maxRetries,
             abortSignal: requestOptions?.abortSignal,
         });
         if (_response.ok) {
-            return await serializers.KnowledgeBase.parseOrThrow(_response.body, {
+            return await serializers.KnowledgeBaseResponse.parseOrThrow(_response.body, {
                 unrecognizedObjectKeys: "passthrough",
                 allowUnrecognizedUnionMembers: true,
                 allowUnrecognizedEnumValues: true,
@@ -135,9 +136,9 @@ export class Knowledge {
     }
 
     /**
-     * Get an existing knowledge base.
+     * Get an existing knowledge base by its supplied ID
      *
-     * @param {string} knowledgeBaseId - The ID of the knowledge base to get
+     * @param {string} knowledgeBaseReferenceId - The reference ID of the knowledge base to get. All other entity ID fields are inferred from the request.
      * @param {Knowledge.RequestOptions} requestOptions - Request-specific configuration.
      *
      * @throws {@link MavenAGI.NotFoundError}
@@ -145,16 +146,16 @@ export class Knowledge {
      * @throws {@link MavenAGI.ServerError}
      *
      * @example
-     *     await client.knowledge.getKnowledgeBase("string")
+     *     await client.knowledge.getKnowledgeBase("help-center")
      */
     public async getKnowledgeBase(
-        knowledgeBaseId: string,
+        knowledgeBaseReferenceId: string,
         requestOptions?: Knowledge.RequestOptions
-    ): Promise<MavenAGI.KnowledgeBase> {
+    ): Promise<MavenAGI.KnowledgeBaseResponse> {
         const _response = await (this._options.fetcher ?? core.fetcher)({
             url: urlJoin(
                 (await core.Supplier.get(this._options.environment)) ?? environments.MavenAGIEnvironment.Production,
-                `/v1/knowledge/${encodeURIComponent(knowledgeBaseId)}`
+                `/v1/knowledge/${encodeURIComponent(knowledgeBaseReferenceId)}`
             ),
             method: "GET",
             headers: {
@@ -163,7 +164,7 @@ export class Knowledge {
                 "X-Agent-Id": await core.Supplier.get(this._options.agentId),
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "mavenagi",
-                "X-Fern-SDK-Version": "0.0.0-alpha.7",
+                "X-Fern-SDK-Version": "0.0.0-alpha.8",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
             },
@@ -173,7 +174,7 @@ export class Knowledge {
             abortSignal: requestOptions?.abortSignal,
         });
         if (_response.ok) {
-            return await serializers.KnowledgeBase.parseOrThrow(_response.body, {
+            return await serializers.KnowledgeBaseResponse.parseOrThrow(_response.body, {
                 unrecognizedObjectKeys: "passthrough",
                 allowUnrecognizedUnionMembers: true,
                 allowUnrecognizedEnumValues: true,
@@ -236,6 +237,7 @@ export class Knowledge {
     /**
      * Create a new knowledge base version. Only supported on API knowledge bases. Will throw an exception if there is an existing version in progress.
      *
+     * @param {string} knowledgeBaseReferenceId - The reference ID of the knowledge base to create a version for. All other entity ID fields are inferred from the request.
      * @param {MavenAGI.KnowledgeBaseVersion} request
      * @param {Knowledge.RequestOptions} requestOptions - Request-specific configuration.
      *
@@ -244,19 +246,19 @@ export class Knowledge {
      * @throws {@link MavenAGI.ServerError}
      *
      * @example
-     *     await client.knowledge.createKnowledgeBaseVersion({
-     *         knowledgeBaseId: "string",
+     *     await client.knowledge.createKnowledgeBaseVersion("help-center", {
      *         type: MavenAGI.KnowledgeBaseVersionType.Full
      *     })
      */
     public async createKnowledgeBaseVersion(
+        knowledgeBaseReferenceId: string,
         request: MavenAGI.KnowledgeBaseVersion,
         requestOptions?: Knowledge.RequestOptions
     ): Promise<MavenAGI.KnowledgeBaseVersion> {
         const _response = await (this._options.fetcher ?? core.fetcher)({
             url: urlJoin(
                 (await core.Supplier.get(this._options.environment)) ?? environments.MavenAGIEnvironment.Production,
-                "/v1/knowledge/version"
+                `/v1/knowledge/${encodeURIComponent(knowledgeBaseReferenceId)}/version`
             ),
             method: "POST",
             headers: {
@@ -265,7 +267,7 @@ export class Knowledge {
                 "X-Agent-Id": await core.Supplier.get(this._options.agentId),
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "mavenagi",
-                "X-Fern-SDK-Version": "0.0.0-alpha.7",
+                "X-Fern-SDK-Version": "0.0.0-alpha.8",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
             },
@@ -339,7 +341,7 @@ export class Knowledge {
     /**
      * Finalize the latest knowledge base version. Required to indicate the version is complete. Will throw an exception if the latest version is not in progress.
      *
-     * @param {MavenAGI.KnowledgeBaseId} request
+     * @param {string} knowledgeBaseReferenceId - The reference ID of the knowledge base to finalize a version for. All other entity ID fields are inferred from the request.
      * @param {Knowledge.RequestOptions} requestOptions - Request-specific configuration.
      *
      * @throws {@link MavenAGI.NotFoundError}
@@ -347,18 +349,16 @@ export class Knowledge {
      * @throws {@link MavenAGI.ServerError}
      *
      * @example
-     *     await client.knowledge.finalizeKnowledgeBaseVersion({
-     *         knowledgeBaseId: "string"
-     *     })
+     *     await client.knowledge.finalizeKnowledgeBaseVersion("help-center")
      */
     public async finalizeKnowledgeBaseVersion(
-        request: MavenAGI.KnowledgeBaseId,
+        knowledgeBaseReferenceId: string,
         requestOptions?: Knowledge.RequestOptions
     ): Promise<void> {
         const _response = await (this._options.fetcher ?? core.fetcher)({
             url: urlJoin(
                 (await core.Supplier.get(this._options.environment)) ?? environments.MavenAGIEnvironment.Production,
-                "/v1/knowledge/version/finalize"
+                `/v1/knowledge/${encodeURIComponent(knowledgeBaseReferenceId)}/version/finalize`
             ),
             method: "POST",
             headers: {
@@ -367,12 +367,11 @@ export class Knowledge {
                 "X-Agent-Id": await core.Supplier.get(this._options.agentId),
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "mavenagi",
-                "X-Fern-SDK-Version": "0.0.0-alpha.7",
+                "X-Fern-SDK-Version": "0.0.0-alpha.8",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
             },
             contentType: "application/json",
-            body: await serializers.KnowledgeBaseId.jsonOrThrow(request, { unrecognizedObjectKeys: "strip" }),
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
             maxRetries: requestOptions?.maxRetries,
             abortSignal: requestOptions?.abortSignal,
@@ -436,6 +435,7 @@ export class Knowledge {
     /**
      * Create knowledge document. Requires an existing knowledge base with an in progress version. Will throw an exception if the latest version is not in progress.
      *
+     * @param {string} knowledgeBaseReferenceId - The reference ID of the knowledge base to create a document for. All other entity ID fields are inferred from the request.
      * @param {MavenAGI.KnowledgeDocumentRequest} request
      * @param {Knowledge.RequestOptions} requestOptions - Request-specific configuration.
      *
@@ -444,27 +444,24 @@ export class Knowledge {
      * @throws {@link MavenAGI.ServerError}
      *
      * @example
-     *     await client.knowledge.createKnowledgeDocument({
-     *         contentType: MavenAGI.KnowledgeDocumentContentType.Html,
-     *         content: "string",
-     *         title: "string",
-     *         url: "string",
-     *         language: "string",
-     *         createdAt: new Date("2024-01-15T09:30:00.000Z"),
-     *         updatedAt: new Date("2024-01-15T09:30:00.000Z"),
-     *         author: "string",
-     *         knowledgeBaseId: "string",
-     *         documentId: "string"
+     *     await client.knowledge.createKnowledgeDocument("help-center", {
+     *         knowledgeDocumentId: {
+     *             referenceId: "getting-started"
+     *         },
+     *         contentType: MavenAGI.KnowledgeDocumentContentType.Markdown,
+     *         content: "## Getting started\\nThis is a getting started guide for the help center.",
+     *         title: "Getting started"
      *     })
      */
     public async createKnowledgeDocument(
+        knowledgeBaseReferenceId: string,
         request: MavenAGI.KnowledgeDocumentRequest,
         requestOptions?: Knowledge.RequestOptions
     ): Promise<MavenAGI.KnowledgeDocumentResponse> {
         const _response = await (this._options.fetcher ?? core.fetcher)({
             url: urlJoin(
                 (await core.Supplier.get(this._options.environment)) ?? environments.MavenAGIEnvironment.Production,
-                "/v1/knowledge/document"
+                `/v1/knowledge/${encodeURIComponent(knowledgeBaseReferenceId)}/document`
             ),
             method: "POST",
             headers: {
@@ -473,7 +470,7 @@ export class Knowledge {
                 "X-Agent-Id": await core.Supplier.get(this._options.agentId),
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "mavenagi",
-                "X-Fern-SDK-Version": "0.0.0-alpha.7",
+                "X-Fern-SDK-Version": "0.0.0-alpha.8",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
             },
@@ -545,8 +542,9 @@ export class Knowledge {
     }
 
     /**
-     * Update knowledge document. Requires an existing knowledge base with an in progress version of type PARTIAL. Will throw an exception if the latest version is not in progress.
+     * Not yet implemented. Update knowledge document. Requires an existing knowledge base with an in progress version of type PARTIAL. Will throw an exception if the latest version is not in progress.
      *
+     * @param {string} knowledgeBaseReferenceId - The reference ID of the knowledge base that contains the document to update. All other entity ID fields are inferred from the request.
      * @param {MavenAGI.KnowledgeDocumentRequest} request
      * @param {Knowledge.RequestOptions} requestOptions - Request-specific configuration.
      *
@@ -555,27 +553,24 @@ export class Knowledge {
      * @throws {@link MavenAGI.ServerError}
      *
      * @example
-     *     await client.knowledge.updateKnowledgeDocument({
-     *         contentType: MavenAGI.KnowledgeDocumentContentType.Html,
-     *         content: "string",
-     *         title: "string",
-     *         url: "string",
-     *         language: "string",
-     *         createdAt: new Date("2024-01-15T09:30:00.000Z"),
-     *         updatedAt: new Date("2024-01-15T09:30:00.000Z"),
-     *         author: "string",
-     *         knowledgeBaseId: "string",
-     *         documentId: "string"
+     *     await client.knowledge.updateKnowledgeDocument("help-center", {
+     *         knowledgeDocumentId: {
+     *             referenceId: "getting-started"
+     *         },
+     *         contentType: MavenAGI.KnowledgeDocumentContentType.Markdown,
+     *         content: "## Getting started\\nThis is a getting started guide for the help center.",
+     *         title: "Getting started"
      *     })
      */
     public async updateKnowledgeDocument(
+        knowledgeBaseReferenceId: string,
         request: MavenAGI.KnowledgeDocumentRequest,
         requestOptions?: Knowledge.RequestOptions
     ): Promise<MavenAGI.KnowledgeDocumentResponse> {
         const _response = await (this._options.fetcher ?? core.fetcher)({
             url: urlJoin(
                 (await core.Supplier.get(this._options.environment)) ?? environments.MavenAGIEnvironment.Production,
-                "/v1/knowledge/document"
+                `/v1/knowledge/${encodeURIComponent(knowledgeBaseReferenceId)}/document`
             ),
             method: "PUT",
             headers: {
@@ -584,7 +579,7 @@ export class Knowledge {
                 "X-Agent-Id": await core.Supplier.get(this._options.agentId),
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "mavenagi",
-                "X-Fern-SDK-Version": "0.0.0-alpha.7",
+                "X-Fern-SDK-Version": "0.0.0-alpha.8",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
             },
@@ -656,9 +651,10 @@ export class Knowledge {
     }
 
     /**
-     * Delete knowledge document. Requires an existing knowledge base with an in progress version of type PARTIAL. Will throw an exception if the latest version is not in progress.
+     * Not yet implemented. Delete knowledge document. Requires an existing knowledge base with an in progress version of type PARTIAL. Will throw an exception if the latest version is not in progress.
      *
-     * @param {MavenAGI.KnowledgeDocumentId} request
+     * @param {string} knowledgeBaseReferenceId - The reference ID of the knowledge base that contains the document to delete. All other entity ID fields are inferred from the request
+     * @param {string} knowledgeDocumentReferenceId - The reference ID of the knowledge document to delete. All other entity ID fields are inferred from the request.
      * @param {Knowledge.RequestOptions} requestOptions - Request-specific configuration.
      *
      * @throws {@link MavenAGI.NotFoundError}
@@ -666,19 +662,19 @@ export class Knowledge {
      * @throws {@link MavenAGI.ServerError}
      *
      * @example
-     *     await client.knowledge.deleteKnowledgeDocument({
-     *         knowledgeBaseId: "string",
-     *         documentId: "string"
-     *     })
+     *     await client.knowledge.deleteKnowledgeDocument("help-center", "getting-started")
      */
     public async deleteKnowledgeDocument(
-        request: MavenAGI.KnowledgeDocumentId,
+        knowledgeBaseReferenceId: string,
+        knowledgeDocumentReferenceId: string,
         requestOptions?: Knowledge.RequestOptions
     ): Promise<void> {
         const _response = await (this._options.fetcher ?? core.fetcher)({
             url: urlJoin(
                 (await core.Supplier.get(this._options.environment)) ?? environments.MavenAGIEnvironment.Production,
-                "/v1/knowledge/document"
+                `/v1/knowledge/${encodeURIComponent(knowledgeBaseReferenceId)}/${encodeURIComponent(
+                    knowledgeDocumentReferenceId
+                )}/document`
             ),
             method: "DELETE",
             headers: {
@@ -687,12 +683,11 @@ export class Knowledge {
                 "X-Agent-Id": await core.Supplier.get(this._options.agentId),
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "mavenagi",
-                "X-Fern-SDK-Version": "0.0.0-alpha.7",
+                "X-Fern-SDK-Version": "0.0.0-alpha.8",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
             },
             contentType: "application/json",
-            body: await serializers.KnowledgeDocumentId.jsonOrThrow(request, { unrecognizedObjectKeys: "strip" }),
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
             maxRetries: requestOptions?.maxRetries,
             abortSignal: requestOptions?.abortSignal,

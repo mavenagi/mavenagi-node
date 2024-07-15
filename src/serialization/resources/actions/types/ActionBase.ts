@@ -5,6 +5,7 @@
 import * as serializers from "../../../index";
 import * as MavenAGI from "../../../../api/index";
 import * as core from "../../../../core";
+import { Preconditions } from "./Preconditions";
 import { ActionParameter } from "./ActionParameter";
 
 export const ActionBase: core.serialization.ObjectSchema<serializers.ActionBase.Raw, MavenAGI.ActionBase> =
@@ -13,7 +14,7 @@ export const ActionBase: core.serialization.ObjectSchema<serializers.ActionBase.
         description: core.serialization.string(),
         userInteractionRequired: core.serialization.boolean(),
         buttonName: core.serialization.string().optional(),
-        requiredUserContextFieldNames: core.serialization.set(core.serialization.string()),
+        preconditions: Preconditions,
         userFormParameters: core.serialization.list(ActionParameter),
     });
 
@@ -23,7 +24,7 @@ export declare namespace ActionBase {
         description: string;
         userInteractionRequired: boolean;
         buttonName?: string | null;
-        requiredUserContextFieldNames: string[];
+        preconditions: Preconditions.Raw;
         userFormParameters: ActionParameter.Raw[];
     }
 }

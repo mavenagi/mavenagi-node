@@ -11,13 +11,11 @@ export const KnowledgeBaseVersion: core.serialization.ObjectSchema<
     serializers.KnowledgeBaseVersion.Raw,
     MavenAGI.KnowledgeBaseVersion
 > = core.serialization.object({
-    knowledgeBaseId: core.serialization.property("knowledge_base_id", core.serialization.string()),
     type: KnowledgeBaseVersionType,
 });
 
 export declare namespace KnowledgeBaseVersion {
     interface Raw {
-        knowledge_base_id: string;
         type: KnowledgeBaseVersionType.Raw;
     }
 }

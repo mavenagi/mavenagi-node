@@ -7,17 +7,19 @@ import * as MavenAGI from "../../../index";
 /**
  * @example
  *     {
- *         entityId: {
+ *         actionId: {
  *             referenceId: "get-balance"
  *         },
  *         name: "Get the user's balance",
  *         description: "This action calls an API to get the user's current balance.",
  *         userInteractionRequired: false,
- *         requiredUserContextFieldNames: new Set(["my-billing-system.userId"]),
+ *         preconditions: {
+ *             requiredUserContextFieldNames: new Set(["my-billing-system.userId"])
+ *         },
  *         userFormParameters: []
  *     }
  */
 export interface ActionRequest extends MavenAGI.ActionBase {
     /** ID that uniquely identifies this action */
-    entityId: MavenAGI.EntityIdBase;
+    actionId: MavenAGI.EntityIdBase;
 }

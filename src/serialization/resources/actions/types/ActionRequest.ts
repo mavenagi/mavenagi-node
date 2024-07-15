@@ -11,12 +11,12 @@ import { ActionBase } from "./ActionBase";
 export const ActionRequest: core.serialization.ObjectSchema<serializers.ActionRequest.Raw, MavenAGI.ActionRequest> =
     core.serialization
         .object({
-            entityId: EntityIdBase,
+            actionId: EntityIdBase,
         })
         .extend(ActionBase);
 
 export declare namespace ActionRequest {
     interface Raw extends ActionBase.Raw {
-        entityId: EntityIdBase.Raw;
+        actionId: EntityIdBase.Raw;
     }
 }

@@ -13,12 +13,12 @@ export const EventTriggerResponse: core.serialization.ObjectSchema<
     MavenAGI.EventTriggerResponse
 > = core.serialization
     .object({
-        entityId: EntityId,
+        triggerId: EntityId,
     })
     .extend(EventTriggerBase);
 
 export declare namespace EventTriggerResponse {
     interface Raw extends EventTriggerBase.Raw {
-        entityId: EntityId.Raw;
+        triggerId: EntityId.Raw;
     }
 }

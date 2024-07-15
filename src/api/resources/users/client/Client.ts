@@ -32,7 +32,7 @@ export class Users {
     /**
      * Create a new user or update an existing one
      *
-     * @param {MavenAGI.AppUser} request
+     * @param {MavenAGI.AppUserRequest} request
      * @param {Users.RequestOptions} requestOptions - Request-specific configuration.
      *
      * @throws {@link MavenAGI.NotFoundError}
@@ -51,9 +51,9 @@ export class Users {
      *     })
      */
     public async upsertAppUser(
-        request: MavenAGI.AppUser,
+        request: MavenAGI.AppUserRequest,
         requestOptions?: Users.RequestOptions
-    ): Promise<MavenAGI.AppUser> {
+    ): Promise<MavenAGI.AppUserResponse> {
         const _response = await (this._options.fetcher ?? core.fetcher)({
             url: urlJoin(
                 (await core.Supplier.get(this._options.environment)) ?? environments.MavenAGIEnvironment.Production,
@@ -66,18 +66,18 @@ export class Users {
                 "X-Agent-Id": await core.Supplier.get(this._options.agentId),
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "mavenagi",
-                "X-Fern-SDK-Version": "0.0.0-alpha.7",
+                "X-Fern-SDK-Version": "0.0.0-alpha.8",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
             },
             contentType: "application/json",
-            body: await serializers.AppUser.jsonOrThrow(request, { unrecognizedObjectKeys: "strip" }),
+            body: await serializers.AppUserRequest.jsonOrThrow(request, { unrecognizedObjectKeys: "strip" }),
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
             maxRetries: requestOptions?.maxRetries,
             abortSignal: requestOptions?.abortSignal,
         });
         if (_response.ok) {
-            return await serializers.AppUser.parseOrThrow(_response.body, {
+            return await serializers.AppUserResponse.parseOrThrow(_response.body, {
                 unrecognizedObjectKeys: "passthrough",
                 allowUnrecognizedUnionMembers: true,
                 allowUnrecognizedEnumValues: true,
@@ -140,7 +140,7 @@ export class Users {
     /**
      * Get a user
      *
-     * @param {string} userId - The ID of the user to get
+     * @param {string} userId - Externally supplied unique ID of the user
      * @param {Users.RequestOptions} requestOptions - Request-specific configuration.
      *
      * @throws {@link MavenAGI.NotFoundError}
@@ -150,7 +150,7 @@ export class Users {
      * @example
      *     await client.users.getAppUser("string")
      */
-    public async getAppUser(userId: string, requestOptions?: Users.RequestOptions): Promise<MavenAGI.AppUser> {
+    public async getAppUser(userId: string, requestOptions?: Users.RequestOptions): Promise<MavenAGI.AppUserResponse> {
         const _response = await (this._options.fetcher ?? core.fetcher)({
             url: urlJoin(
                 (await core.Supplier.get(this._options.environment)) ?? environments.MavenAGIEnvironment.Production,
@@ -163,7 +163,7 @@ export class Users {
                 "X-Agent-Id": await core.Supplier.get(this._options.agentId),
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "mavenagi",
-                "X-Fern-SDK-Version": "0.0.0-alpha.7",
+                "X-Fern-SDK-Version": "0.0.0-alpha.8",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
             },
@@ -173,7 +173,7 @@ export class Users {
             abortSignal: requestOptions?.abortSignal,
         });
         if (_response.ok) {
-            return await serializers.AppUser.parseOrThrow(_response.body, {
+            return await serializers.AppUserResponse.parseOrThrow(_response.body, {
                 unrecognizedObjectKeys: "passthrough",
                 allowUnrecognizedUnionMembers: true,
                 allowUnrecognizedEnumValues: true,

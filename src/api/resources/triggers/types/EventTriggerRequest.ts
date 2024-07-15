@@ -7,7 +7,7 @@ import * as MavenAGI from "../../../index";
 /**
  * @example
  *     {
- *         entityId: {
+ *         triggerId: {
  *             referenceId: "store-in-snowflake"
  *         },
  *         description: "Stores conversation data in Snowflake",
@@ -16,5 +16,5 @@ import * as MavenAGI from "../../../index";
  */
 export interface EventTriggerRequest extends MavenAGI.EventTriggerBase {
     /** ID that uniquely identifies this event trigger */
-    entityId: MavenAGI.EntityIdBase;
+    triggerId: MavenAGI.EntityIdBase;
 }

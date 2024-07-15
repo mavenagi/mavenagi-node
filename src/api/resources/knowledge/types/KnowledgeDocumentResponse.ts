@@ -4,7 +4,23 @@
 
 import * as MavenAGI from "../../../index";
 
+/**
+ * @example
+ *     {
+ *         knowledgeDocumentId: {
+ *             referenceId: "getting-started",
+ *             appId: "readme",
+ *             organizationId: "acme",
+ *             agentId: "support",
+ *             type: MavenAGI.EntityType.KnowledgeDocument
+ *         },
+ *         content: "## Getting started This is a getting started guide for the help center.",
+ *         title: "Getting started"
+ *     }
+ */
 export interface KnowledgeDocumentResponse extends MavenAGI.BaseKnowledgeDocument {
+    /** ID that uniquely identifies this knowledge document within its knowledge base */
+    knowledgeDocumentId: MavenAGI.EntityId;
     /** The content of the document in markdown format. Not shown directly to users. */
     content: string;
 }

@@ -5,17 +5,17 @@
 import * as serializers from "../../../index";
 import * as MavenAGI from "../../../../api/index";
 import * as core from "../../../../core";
-import { AppUserIdentifyingProperty } from "./AppUserIdentifyingProperty";
+import { AppUserIdentifier } from "./AppUserIdentifier";
 
 export const AppUserIdentification: core.serialization.ObjectSchema<
     serializers.AppUserIdentification.Raw,
     MavenAGI.AppUserIdentification
 > = core.serialization.object({
-    identifiers: core.serialization.list(AppUserIdentifyingProperty),
+    identifiers: core.serialization.list(AppUserIdentifier),
 });
 
 export declare namespace AppUserIdentification {
     interface Raw {
-        identifiers: AppUserIdentifyingProperty.Raw[];
+        identifiers: AppUserIdentifier.Raw[];
     }
 }

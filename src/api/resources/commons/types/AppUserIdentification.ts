@@ -5,6 +5,6 @@
 import * as MavenAGI from "../../../index";
 
 export interface AppUserIdentification {
-    /** At least one identifying property must be provided. etc */
-    identifiers: MavenAGI.AppUserIdentifyingProperty[];
+    /** At least one identifying property must be provided */
+    identifiers: MavenAGI.AppUserIdentifier[];
 }

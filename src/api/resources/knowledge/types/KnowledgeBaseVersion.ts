@@ -4,9 +4,13 @@
 
 import * as MavenAGI from "../../../index";
 
+/**
+ * @example
+ *     {
+ *         type: MavenAGI.KnowledgeBaseVersionType.Full
+ *     }
+ */
 export interface KnowledgeBaseVersion {
-    /** External ID of the knowledge base used to create a new version */
-    knowledgeBaseId: string;
     /** Indicates whether the completed version constitutes a full or partial refresh of the knowledge base. Deleting and updating documents is only supported for partial refreshes. */
     type: MavenAGI.KnowledgeBaseVersionType;
 }

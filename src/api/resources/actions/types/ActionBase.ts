@@ -5,15 +5,16 @@
 import * as MavenAGI from "../../../index";
 
 export interface ActionBase {
-    /** The name of the action */
+    /** The name of the action. This is displayed to the end user as part of forms when user interaction is required. It is also used to help Maven decide if the action is relevant to a conversation. */
     name: string;
-    /** The description of the action. This helps Maven decide when to trigger the action and is not displayed directly to the end user. */
+    /** The description of the action. This helps Maven decide if the action is relevant to a conversation and is not displayed directly to the end user. */
     description: string;
-    /** Whether the action requires user interaction to execute */
+    /** Whether the action requires user interaction to execute. If false, and all of the required action parameters are known, the LLM may call the action automatically. If true, an conversations ask call will return a BotActionFormResponse which must be submitted by an API caller. API callers must display a button with the buttonName label to confirm the user's intent. */
     userInteractionRequired: boolean;
-    /** When user interaction is required, the name of the button that is shown to the end user to execute the action */
+    /** When user interaction is required, the name of the button that is shown to the end user to confirm execution of the action */
     buttonName?: string;
-    /** The names of the user context fields required by the action */
-    requiredUserContextFieldNames: Set<string>;
+    /** The preconditions that must be met for an action to be relevant to a conversation. Can be used to restrict actions to certain types of users. */
+    preconditions: MavenAGI.Preconditions;
+    /** The parameters that the action uses as input. An action will only be executed when all of the required parameters are provided. During execution, actions all have access to the full Conversation and User objects. Parameter values may be inferred from the user's conversation by the LLM. */
     userFormParameters: MavenAGI.ActionParameter[];
 }

@@ -5,29 +5,26 @@
 import * as serializers from "../../../index";
 import * as MavenAGI from "../../../../api/index";
 import * as core from "../../../../core";
-import { KnowledgeDocumentId } from "./KnowledgeDocumentId";
 
 export const BaseKnowledgeDocument: core.serialization.ObjectSchema<
     serializers.BaseKnowledgeDocument.Raw,
     MavenAGI.BaseKnowledgeDocument
-> = core.serialization
-    .object({
-        title: core.serialization.string(),
-        url: core.serialization.string().optional(),
-        language: core.serialization.string().optional(),
-        createdAt: core.serialization.property("created_at", core.serialization.date().optional()),
-        updatedAt: core.serialization.property("updated_at", core.serialization.date().optional()),
-        author: core.serialization.string().optional(),
-    })
-    .extend(KnowledgeDocumentId);
+> = core.serialization.object({
+    title: core.serialization.string(),
+    url: core.serialization.string().optional(),
+    language: core.serialization.string().optional(),
+    createdAt: core.serialization.date().optional(),
+    updatedAt: core.serialization.date().optional(),
+    author: core.serialization.string().optional(),
+});
 
 export declare namespace BaseKnowledgeDocument {
-    interface Raw extends KnowledgeDocumentId.Raw {
+    interface Raw {
         title: string;
         url?: string | null;
         language?: string | null;
-        created_at?: string | null;
-        updated_at?: string | null;
+        createdAt?: string | null;
+        updatedAt?: string | null;
         author?: string | null;
     }
 }

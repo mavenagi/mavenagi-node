@@ -7,15 +7,15 @@ import * as MavenAGI from "../../../../api/index";
 import * as core from "../../../../core";
 import { AppUserIdentifyingPropertyType } from "./AppUserIdentifyingPropertyType";
 
-export const AppUserIdentifyingProperty: core.serialization.ObjectSchema<
-    serializers.AppUserIdentifyingProperty.Raw,
-    MavenAGI.AppUserIdentifyingProperty
+export const AppUserIdentifier: core.serialization.ObjectSchema<
+    serializers.AppUserIdentifier.Raw,
+    MavenAGI.AppUserIdentifier
 > = core.serialization.object({
     value: core.serialization.string(),
     userIdentifyingPropertyType: AppUserIdentifyingPropertyType,
 });
 
-export declare namespace AppUserIdentifyingProperty {
+export declare namespace AppUserIdentifier {
     interface Raw {
         value: string;
         userIdentifyingPropertyType: AppUserIdentifyingPropertyType.Raw;

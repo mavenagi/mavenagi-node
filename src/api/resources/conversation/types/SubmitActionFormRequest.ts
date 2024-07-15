@@ -4,7 +4,7 @@
 
 import * as MavenAGI from "../../../index";
 
-export interface ActionExecutionRequest {
+export interface SubmitActionFormRequest {
     actionFormId: string;
     userContext: MavenAGI.User;
     /** Map of parameter names to values */

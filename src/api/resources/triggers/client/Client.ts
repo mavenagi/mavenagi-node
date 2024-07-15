@@ -40,15 +40,15 @@ export class Triggers {
      * @throws {@link MavenAGI.ServerError}
      *
      * @example
-     *     await client.triggers.registerTrigger({
-     *         entityId: {
+     *     await client.triggers.createOrUpdate({
+     *         triggerId: {
      *             referenceId: "store-in-snowflake"
      *         },
      *         description: "Stores conversation data in Snowflake",
      *         type: MavenAGI.EventTriggerType.ConversationCreated
      *     })
      */
-    public async registerTrigger(
+    public async createOrUpdate(
         request: MavenAGI.EventTriggerRequest,
         requestOptions?: Triggers.RequestOptions
     ): Promise<MavenAGI.EventTriggerResponse> {
@@ -64,7 +64,7 @@ export class Triggers {
                 "X-Agent-Id": await core.Supplier.get(this._options.agentId),
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "mavenagi",
-                "X-Fern-SDK-Version": "0.0.0-alpha.7",
+                "X-Fern-SDK-Version": "0.0.0-alpha.8",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
             },
@@ -138,7 +138,7 @@ export class Triggers {
     /**
      * Get an event trigger by its supplied ID
      *
-     * @param {string} referenceId - The reference ID of the event trigger to get. All other entity ID fields are inferred from the request.
+     * @param {string} triggerReferenceId - The reference ID of the event trigger to get. All other entity ID fields are inferred from the request.
      * @param {Triggers.RequestOptions} requestOptions - Request-specific configuration.
      *
      * @throws {@link MavenAGI.NotFoundError}
@@ -146,16 +146,16 @@ export class Triggers {
      * @throws {@link MavenAGI.ServerError}
      *
      * @example
-     *     await client.triggers.getTrigger("store-in-snowflake")
+     *     await client.triggers.get("store-in-snowflake")
      */
-    public async getTrigger(
-        referenceId: string,
+    public async get(
+        triggerReferenceId: string,
         requestOptions?: Triggers.RequestOptions
     ): Promise<MavenAGI.EventTriggerResponse> {
         const _response = await (this._options.fetcher ?? core.fetcher)({
             url: urlJoin(
                 (await core.Supplier.get(this._options.environment)) ?? environments.MavenAGIEnvironment.Production,
-                `/v1/triggers/${encodeURIComponent(referenceId)}`
+                `/v1/triggers/${encodeURIComponent(triggerReferenceId)}`
             ),
             method: "GET",
             headers: {
@@ -164,7 +164,7 @@ export class Triggers {
                 "X-Agent-Id": await core.Supplier.get(this._options.agentId),
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "mavenagi",
-                "X-Fern-SDK-Version": "0.0.0-alpha.7",
+                "X-Fern-SDK-Version": "0.0.0-alpha.8",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
             },
@@ -235,9 +235,9 @@ export class Triggers {
     }
 
     /**
-     * Unregister an event trigger
+     * Delete an event trigger
      *
-     * @param {string} referenceId - The reference ID of the event trigger to unregister. All other entity ID fields are inferred from the request.
+     * @param {string} triggerReferenceId - The reference ID of the event trigger to unregister. All other entity ID fields are inferred from the request.
      * @param {Triggers.RequestOptions} requestOptions - Request-specific configuration.
      *
      * @throws {@link MavenAGI.NotFoundError}
@@ -245,13 +245,13 @@ export class Triggers {
      * @throws {@link MavenAGI.ServerError}
      *
      * @example
-     *     await client.triggers.unregisterTrigger("store-in-snowflake")
+     *     await client.triggers.delete("store-in-snowflake")
      */
-    public async unregisterTrigger(referenceId: string, requestOptions?: Triggers.RequestOptions): Promise<void> {
+    public async delete(triggerReferenceId: string, requestOptions?: Triggers.RequestOptions): Promise<void> {
         const _response = await (this._options.fetcher ?? core.fetcher)({
             url: urlJoin(
                 (await core.Supplier.get(this._options.environment)) ?? environments.MavenAGIEnvironment.Production,
-                `/v1/triggers/${encodeURIComponent(referenceId)}`
+                `/v1/triggers/${encodeURIComponent(triggerReferenceId)}`
             ),
             method: "DELETE",
             headers: {
@@ -260,7 +260,7 @@ export class Triggers {
                 "X-Agent-Id": await core.Supplier.get(this._options.agentId),
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "mavenagi",
-                "X-Fern-SDK-Version": "0.0.0-alpha.7",
+                "X-Fern-SDK-Version": "0.0.0-alpha.8",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
             },

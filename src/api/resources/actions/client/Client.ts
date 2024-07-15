@@ -40,18 +40,20 @@ export class Actions {
      * @throws {@link MavenAGI.ServerError}
      *
      * @example
-     *     await client.actions.createOrUpdateAction({
-     *         entityId: {
+     *     await client.actions.createOrUpdate({
+     *         actionId: {
      *             referenceId: "get-balance"
      *         },
      *         name: "Get the user's balance",
      *         description: "This action calls an API to get the user's current balance.",
      *         userInteractionRequired: false,
-     *         requiredUserContextFieldNames: new Set(["my-billing-system.userId"]),
+     *         preconditions: {
+     *             requiredUserContextFieldNames: new Set(["my-billing-system.userId"])
+     *         },
      *         userFormParameters: []
      *     })
      */
-    public async createOrUpdateAction(
+    public async createOrUpdate(
         request: MavenAGI.ActionRequest,
         requestOptions?: Actions.RequestOptions
     ): Promise<MavenAGI.ActionResponse> {
@@ -67,7 +69,7 @@ export class Actions {
                 "X-Agent-Id": await core.Supplier.get(this._options.agentId),
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "mavenagi",
-                "X-Fern-SDK-Version": "0.0.0-alpha.7",
+                "X-Fern-SDK-Version": "0.0.0-alpha.8",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
             },
@@ -141,7 +143,7 @@ export class Actions {
     /**
      * Get an action by its supplied ID
      *
-     * @param {string} referenceId - The reference ID of the action to get. All other entity ID fields are inferred from the request.
+     * @param {string} actionReferenceId - The reference ID of the action to get. All other entity ID fields are inferred from the request.
      * @param {Actions.RequestOptions} requestOptions - Request-specific configuration.
      *
      * @throws {@link MavenAGI.NotFoundError}
@@ -149,16 +151,16 @@ export class Actions {
      * @throws {@link MavenAGI.ServerError}
      *
      * @example
-     *     await client.actions.getAction("get-balance")
+     *     await client.actions.get("get-balance")
      */
-    public async getAction(
-        referenceId: string,
+    public async get(
+        actionReferenceId: string,
         requestOptions?: Actions.RequestOptions
     ): Promise<MavenAGI.ActionResponse> {
         const _response = await (this._options.fetcher ?? core.fetcher)({
             url: urlJoin(
                 (await core.Supplier.get(this._options.environment)) ?? environments.MavenAGIEnvironment.Production,
-                `/v1/actions/${encodeURIComponent(referenceId)}`
+                `/v1/actions/${encodeURIComponent(actionReferenceId)}`
             ),
             method: "GET",
             headers: {
@@ -167,7 +169,7 @@ export class Actions {
                 "X-Agent-Id": await core.Supplier.get(this._options.agentId),
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "mavenagi",
-                "X-Fern-SDK-Version": "0.0.0-alpha.7",
+                "X-Fern-SDK-Version": "0.0.0-alpha.8",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
             },
@@ -240,7 +242,7 @@ export class Actions {
     /**
      * Delete an action
      *
-     * @param {string} referenceId - The reference ID of the action to unregister. All other entity ID fields are inferred from the request.
+     * @param {string} actionReferenceId - The reference ID of the action to unregister. All other entity ID fields are inferred from the request.
      * @param {Actions.RequestOptions} requestOptions - Request-specific configuration.
      *
      * @throws {@link MavenAGI.NotFoundError}
@@ -248,13 +250,13 @@ export class Actions {
      * @throws {@link MavenAGI.ServerError}
      *
      * @example
-     *     await client.actions.deleteAction("get-balance")
+     *     await client.actions.delete("get-balance")
      */
-    public async deleteAction(referenceId: string, requestOptions?: Actions.RequestOptions): Promise<void> {
+    public async delete(actionReferenceId: string, requestOptions?: Actions.RequestOptions): Promise<void> {
         const _response = await (this._options.fetcher ?? core.fetcher)({
             url: urlJoin(
                 (await core.Supplier.get(this._options.environment)) ?? environments.MavenAGIEnvironment.Production,
-                `/v1/actions/${encodeURIComponent(referenceId)}`
+                `/v1/actions/${encodeURIComponent(actionReferenceId)}`
             ),
             method: "DELETE",
             headers: {
@@ -263,7 +265,7 @@ export class Actions {
                 "X-Agent-Id": await core.Supplier.get(this._options.agentId),
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "mavenagi",
-                "X-Fern-SDK-Version": "0.0.0-alpha.7",
+                "X-Fern-SDK-Version": "0.0.0-alpha.8",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
             },
