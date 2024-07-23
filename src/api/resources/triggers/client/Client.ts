@@ -64,7 +64,7 @@ export class Triggers {
                 "X-Agent-Id": await core.Supplier.get(this._options.agentId),
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "mavenagi",
-                "X-Fern-SDK-Version": "0.0.0-alpha.8",
+                "X-Fern-SDK-Version": "0.0.0-alpha.9",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
             },
@@ -164,7 +164,7 @@ export class Triggers {
                 "X-Agent-Id": await core.Supplier.get(this._options.agentId),
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "mavenagi",
-                "X-Fern-SDK-Version": "0.0.0-alpha.8",
+                "X-Fern-SDK-Version": "0.0.0-alpha.9",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
             },
@@ -237,7 +237,7 @@ export class Triggers {
     /**
      * Delete an event trigger
      *
-     * @param {string} triggerReferenceId - The reference ID of the event trigger to unregister. All other entity ID fields are inferred from the request.
+     * @param {string} triggerReferenceId - The reference ID of the event trigger to delete. All other entity ID fields are inferred from the request.
      * @param {Triggers.RequestOptions} requestOptions - Request-specific configuration.
      *
      * @throws {@link MavenAGI.NotFoundError}
@@ -260,7 +260,7 @@ export class Triggers {
                 "X-Agent-Id": await core.Supplier.get(this._options.agentId),
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "mavenagi",
-                "X-Fern-SDK-Version": "0.0.0-alpha.8",
+                "X-Fern-SDK-Version": "0.0.0-alpha.9",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
             },

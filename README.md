@@ -26,6 +26,9 @@ const client = new MavenAGIClient({
     agentId: "YOUR_AGENT_ID",
 });
 await client.conversation.initialize({
+    conversationId: {
+        referenceId: "string",
+    },
     messages: [{}],
     context: {},
     id: "string",
