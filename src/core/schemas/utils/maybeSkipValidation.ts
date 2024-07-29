@@ -1,4 +1,5 @@
 import { BaseSchema, MaybeValid, SchemaOptions } from "../Schema";
+import { MaybePromise } from "./MaybePromise";
 
 export function maybeSkipValidation<S extends BaseSchema<Raw, Parsed>, Raw, Parsed>(schema: S): S {
     return {
@@ -9,10 +10,10 @@ export function maybeSkipValidation<S extends BaseSchema<Raw, Parsed>, Raw, Pars
 }
 
 function transformAndMaybeSkipValidation<T>(
-    transform: (value: unknown, opts?: SchemaOptions) => MaybeValid<T>
-): (value: unknown, opts?: SchemaOptions) => MaybeValid<T> {
-    return (value, opts): MaybeValid<T> => {
-        const transformed = transform(value, opts);
+    transform: (value: unknown, opts?: SchemaOptions) => MaybePromise<MaybeValid<T>>
+): (value: unknown, opts?: SchemaOptions) => MaybePromise<MaybeValid<T>> {
+    return async (value, opts): Promise<MaybeValid<T>> => {
+        const transformed = await transform(value, opts);
         const { skipValidation = false } = opts ?? {};
         if (!transformed.ok && skipValidation) {
             // eslint-disable-next-line no-console

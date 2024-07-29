@@ -69,7 +69,6 @@ export const RUNTIME: Runtime = evaluateRuntime();
 export interface Runtime {
     type: "browser" | "web-worker" | "deno" | "bun" | "node" | "react-native" | "unknown" | "workerd";
     version?: string;
-    parsedVersion?: number;
 }
 
 function evaluateRuntime(): Runtime {
@@ -110,7 +109,6 @@ function evaluateRuntime(): Runtime {
         return {
             type: "node",
             version: process.versions.node,
-            parsedVersion: Number(process.versions.node.split(".")[0]),
         };
     }
 

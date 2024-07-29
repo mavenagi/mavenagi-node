@@ -15,24 +15,15 @@ export declare namespace MavenAGIClient {
         environment?: core.Supplier<environments.MavenAGIEnvironment | string>;
         appId?: core.Supplier<string | undefined>;
         appSecret?: core.Supplier<string | undefined>;
-        /** Override the X-Organization-Id header */
         organizationId: core.Supplier<string>;
-        /** Override the X-Agent-Id header */
         agentId: core.Supplier<string>;
         fetcher?: core.FetchFunction;
     }
 
     interface RequestOptions {
-        /** The maximum time to wait for a response in seconds. */
         timeoutInSeconds?: number;
-        /** The number of times to retry the request. Defaults to 2. */
         maxRetries?: number;
-        /** A hook to abort the request. */
         abortSignal?: AbortSignal;
-        /** Override the X-Organization-Id header */
-        organizationId?: string;
-        /** Override the X-Agent-Id header */
-        agentId?: string;
     }
 }
 

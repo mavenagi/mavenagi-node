@@ -4,6 +4,7 @@ import { filterObject } from "../../utils/filterObject";
 import { getErrorMessageForIncorrectType } from "../../utils/getErrorMessageForIncorrectType";
 import { isPlainObject } from "../../utils/isPlainObject";
 import { keys } from "../../utils/keys";
+import { MaybePromise } from "../../utils/MaybePromise";
 import { maybeSkipValidation } from "../../utils/maybeSkipValidation";
 import { partition } from "../../utils/partition";
 import { getObjectLikeUtils } from "../object-like";
@@ -33,12 +34,15 @@ export function object<ParsedKeys extends string, T extends PropertySchemas<Pars
         inferParsedObjectFromPropertySchemas<T>
     > = {
         _getRawProperties: () =>
-            Object.entries(schemas).map(([parsedKey, propertySchema]) =>
-                isProperty(propertySchema) ? propertySchema.rawKey : parsedKey
-            ) as unknown as (keyof inferRawObjectFromPropertySchemas<T>)[],
-        _getParsedProperties: () => keys(schemas) as unknown as (keyof inferParsedObjectFromPropertySchemas<T>)[],
+            Promise.resolve(
+                Object.entries(schemas).map(([parsedKey, propertySchema]) =>
+                    isProperty(propertySchema) ? propertySchema.rawKey : parsedKey
+                ) as unknown as (keyof inferRawObjectFromPropertySchemas<T>)[]
+            ),
+        _getParsedProperties: () =>
+            Promise.resolve(keys(schemas) as unknown as (keyof inferParsedObjectFromPropertySchemas<T>)[]),
 
-        parse: (raw, opts) => {
+        parse: async (raw, opts) => {
             const rawKeyToProperty: Record<string, ObjectPropertyWithRawKey> = {};
             const requiredKeys: string[] = [];
 
@@ -81,11 +85,10 @@ export function object<ParsedKeys extends string, T extends PropertySchemas<Pars
                 unrecognizedObjectKeys: opts?.unrecognizedObjectKeys,
                 skipValidation: opts?.skipValidation,
                 breadcrumbsPrefix: opts?.breadcrumbsPrefix,
-                omitUndefined: opts?.omitUndefined,
             });
         },
 
-        json: (parsed, opts) => {
+        json: async (parsed, opts) => {
             const requiredKeys: string[] = [];
 
             for (const [parsedKey, schemaOrObjectProperty] of entries(schemas)) {
@@ -103,7 +106,9 @@ export function object<ParsedKeys extends string, T extends PropertySchemas<Pars
                 requiredKeys,
                 getProperty: (
                     parsedKey
-                ): { transformedKey: string; transform: (propertyValue: unknown) => MaybeValid<any> } | undefined => {
+                ):
+                    | { transformedKey: string; transform: (propertyValue: unknown) => MaybePromise<MaybeValid<any>> }
+                    | undefined => {
                     const property = schemas[parsedKey as keyof T];
 
                     // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
@@ -134,7 +139,6 @@ export function object<ParsedKeys extends string, T extends PropertySchemas<Pars
                 unrecognizedObjectKeys: opts?.unrecognizedObjectKeys,
                 skipValidation: opts?.skipValidation,
                 breadcrumbsPrefix: opts?.breadcrumbsPrefix,
-                omitUndefined: opts?.omitUndefined,
             });
         },
 
@@ -149,7 +153,7 @@ export function object<ParsedKeys extends string, T extends PropertySchemas<Pars
     };
 }
 
-function validateAndTransformObject<Transformed>({
+async function validateAndTransformObject<Transformed>({
     value,
     requiredKeys,
     getProperty,
@@ -161,12 +165,11 @@ function validateAndTransformObject<Transformed>({
     requiredKeys: string[];
     getProperty: (
         preTransformedKey: string
-    ) => { transformedKey: string; transform: (propertyValue: unknown) => MaybeValid<any> } | undefined;
+    ) => { transformedKey: string; transform: (propertyValue: unknown) => MaybePromise<MaybeValid<any>> } | undefined;
     unrecognizedObjectKeys: "fail" | "passthrough" | "strip" | undefined;
     skipValidation: boolean | undefined;
     breadcrumbsPrefix: string[] | undefined;
-    omitUndefined: boolean | undefined;
-}): MaybeValid<Transformed> {
+}): Promise<MaybeValid<Transformed>> {
     if (!isPlainObject(value)) {
         return {
             ok: false,
@@ -189,7 +192,7 @@ function validateAndTransformObject<Transformed>({
         if (property != null) {
             missingRequiredKeys.delete(preTransformedKey);
 
-            const value = property.transform(preTransformedItemValue);
+            const value = await property.transform(preTransformedItemValue);
             if (value.ok) {
                 transformed[property.transformedKey] = value.value;
             } else {
@@ -239,19 +242,25 @@ export function getObjectUtils<Raw, Parsed>(schema: BaseObjectSchema<Raw, Parsed
     return {
         extend: <RawExtension, ParsedExtension>(extension: ObjectSchema<RawExtension, ParsedExtension>) => {
             const baseSchema: BaseObjectSchema<Raw & RawExtension, Parsed & ParsedExtension> = {
-                _getParsedProperties: () => [...schema._getParsedProperties(), ...extension._getParsedProperties()],
-                _getRawProperties: () => [...schema._getRawProperties(), ...extension._getRawProperties()],
-                parse: (raw, opts) => {
+                _getParsedProperties: async () => [
+                    ...(await schema._getParsedProperties()),
+                    ...(await extension._getParsedProperties()),
+                ],
+                _getRawProperties: async () => [
+                    ...(await schema._getRawProperties()),
+                    ...(await extension._getRawProperties()),
+                ],
+                parse: async (raw, opts) => {
                     return validateAndTransformExtendedObject({
-                        extensionKeys: extension._getRawProperties(),
+                        extensionKeys: await extension._getRawProperties(),
                         value: raw,
                         transformBase: (rawBase) => schema.parse(rawBase, opts),
                         transformExtension: (rawExtension) => extension.parse(rawExtension, opts),
                     });
                 },
-                json: (parsed, opts) => {
+                json: async (parsed, opts) => {
                     return validateAndTransformExtendedObject({
-                        extensionKeys: extension._getParsedProperties(),
+                        extensionKeys: await extension._getParsedProperties(),
                         value: parsed,
                         transformBase: (parsedBase) => schema.json(parsedBase, opts),
                         transformExtension: (parsedExtension) => extension.json(parsedExtension, opts),
@@ -270,7 +279,7 @@ export function getObjectUtils<Raw, Parsed>(schema: BaseObjectSchema<Raw, Parsed
     };
 }
 
-function validateAndTransformExtendedObject<PreTransformedExtension, TransformedBase, TransformedExtension>({
+async function validateAndTransformExtendedObject<PreTransformedExtension, TransformedBase, TransformedExtension>({
     extensionKeys,
     value,
     transformBase,
@@ -278,16 +287,16 @@ function validateAndTransformExtendedObject<PreTransformedExtension, Transformed
 }: {
     extensionKeys: (keyof PreTransformedExtension)[];
     value: unknown;
-    transformBase: (value: unknown) => MaybeValid<TransformedBase>;
-    transformExtension: (value: unknown) => MaybeValid<TransformedExtension>;
-}): MaybeValid<TransformedBase & TransformedExtension> {
+    transformBase: (value: unknown) => MaybePromise<MaybeValid<TransformedBase>>;
+    transformExtension: (value: unknown) => MaybePromise<MaybeValid<TransformedExtension>>;
+}): Promise<MaybeValid<TransformedBase & TransformedExtension>> {
     const extensionPropertiesSet = new Set(extensionKeys);
     const [extensionProperties, baseProperties] = partition(keys(value), (key) =>
         extensionPropertiesSet.has(key as keyof PreTransformedExtension)
     );
 
-    const transformedBase = transformBase(filterObject(value, baseProperties));
-    const transformedExtension = transformExtension(filterObject(value, extensionProperties));
+    const transformedBase = await transformBase(filterObject(value, baseProperties));
+    const transformedExtension = await transformExtension(filterObject(value, extensionProperties));
 
     if (transformedBase.ok && transformedExtension.ok) {
         return {

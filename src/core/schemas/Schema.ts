@@ -1,4 +1,5 @@
 import { SchemaUtils } from "./builders";
+import { MaybePromise } from "./utils/MaybePromise";
 
 export type Schema<Raw = unknown, Parsed = unknown> = BaseSchema<Raw, Parsed> & SchemaUtils<Raw, Parsed>;
 
@@ -6,9 +7,9 @@ export type inferRaw<S extends Schema> = S extends Schema<infer Raw, any> ? Raw 
 export type inferParsed<S extends Schema> = S extends Schema<any, infer Parsed> ? Parsed : never;
 
 export interface BaseSchema<Raw, Parsed> {
-    parse: (raw: unknown, opts?: SchemaOptions) => MaybeValid<Parsed>;
-    json: (parsed: unknown, opts?: SchemaOptions) => MaybeValid<Raw>;
-    getType: () => SchemaType | SchemaType;
+    parse: (raw: unknown, opts?: SchemaOptions) => MaybePromise<MaybeValid<Parsed>>;
+    json: (parsed: unknown, opts?: SchemaOptions) => MaybePromise<MaybeValid<Raw>>;
+    getType: () => SchemaType | Promise<SchemaType>;
 }
 
 export const SchemaType = {
@@ -90,9 +91,4 @@ export interface SchemaOptions {
      * helpful for zurg's internal debug logging.
      */
     breadcrumbsPrefix?: string[];
-
-    /**
-     * whether to send 'null' for optional properties explicitly set to 'undefined'.
-     */
-    omitUndefined?: boolean;
 }
