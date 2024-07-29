@@ -7,4 +7,5 @@ export interface ActionFormField {
     label: string;
     description: string;
     required: boolean;
+    suggestion?: string;
 }

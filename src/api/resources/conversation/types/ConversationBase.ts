@@ -5,8 +5,6 @@
 import * as MavenAGI from "../../../index";
 
 export interface ConversationBase {
-    /** Externally supplied ID to uniquely identify this conversation */
-    id: string;
     /** Optional configurations for responses to this conversation */
     responseConfig?: MavenAGI.ResponseConfig;
 }

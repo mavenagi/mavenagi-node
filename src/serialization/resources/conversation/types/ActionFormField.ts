@@ -14,6 +14,7 @@ export const ActionFormField: core.serialization.ObjectSchema<
     label: core.serialization.string(),
     description: core.serialization.string(),
     required: core.serialization.boolean(),
+    suggestion: core.serialization.string().optional(),
 });
 
 export declare namespace ActionFormField {
@@ -22,5 +23,6 @@ export declare namespace ActionFormField {
         label: string;
         description: string;
         required: boolean;
+        suggestion?: string | null;
     }
 }

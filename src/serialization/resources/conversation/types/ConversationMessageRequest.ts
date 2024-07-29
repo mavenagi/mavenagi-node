@@ -5,13 +5,20 @@
 import * as serializers from "../../../index";
 import * as MavenAGI from "../../../../api/index";
 import * as core from "../../../../core";
-import { UserMessage } from "./UserMessage";
+import { EntityIdBase } from "../../commons/types/EntityIdBase";
+import { UserMessageBase } from "./UserMessageBase";
 
 export const ConversationMessageRequest: core.serialization.ObjectSchema<
     serializers.ConversationMessageRequest.Raw,
     MavenAGI.ConversationMessageRequest
-> = core.serialization.object({}).extend(UserMessage);
+> = core.serialization
+    .object({
+        conversationMessageId: EntityIdBase,
+    })
+    .extend(UserMessageBase);
 
 export declare namespace ConversationMessageRequest {
-    interface Raw extends UserMessage.Raw {}
+    interface Raw extends UserMessageBase.Raw {
+        conversationMessageId: EntityIdBase.Raw;
+    }
 }

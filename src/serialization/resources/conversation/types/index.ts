@@ -9,6 +9,7 @@ export * from "./ConversationRequest";
 export * from "./ConversationMessageRequest";
 export * from "./ConversationMessageBase";
 export * from "./ConversationMessageResponse";
+export * from "./UserMessageBase";
 export * from "./UserMessage";
 export * from "./BotMessage";
 export * from "./BotResponseMetadata";

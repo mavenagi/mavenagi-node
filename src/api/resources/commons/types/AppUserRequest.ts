@@ -4,4 +4,7 @@
 
 import * as MavenAGI from "../../../index";
 
-export type AppUserRequest = MavenAGI.AppUser;
+export interface AppUserRequest extends MavenAGI.AppUser {
+    /** ID that uniquely identifies this app user */
+    appUserId: MavenAGI.EntityIdBase;
+}

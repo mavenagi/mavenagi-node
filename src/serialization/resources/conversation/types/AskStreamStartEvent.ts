@@ -5,16 +5,17 @@
 import * as serializers from "../../../index";
 import * as MavenAGI from "../../../../api/index";
 import * as core from "../../../../core";
+import { EntityId } from "../../commons/types/EntityId";
 
 export const AskStreamStartEvent: core.serialization.ObjectSchema<
     serializers.AskStreamStartEvent.Raw,
     MavenAGI.AskStreamStartEvent
 > = core.serialization.object({
-    id: core.serialization.string(),
+    conversationMessageId: EntityId,
 });
 
 export declare namespace AskStreamStartEvent {
     interface Raw {
-        id: string;
+        conversationMessageId: EntityId.Raw;
     }
 }

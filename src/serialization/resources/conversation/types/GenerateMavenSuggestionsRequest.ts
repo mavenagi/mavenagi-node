@@ -5,16 +5,17 @@
 import * as serializers from "../../../index";
 import * as MavenAGI from "../../../../api/index";
 import * as core from "../../../../core";
+import { EntityIdBase } from "../../commons/types/EntityIdBase";
 
 export const GenerateMavenSuggestionsRequest: core.serialization.ObjectSchema<
     serializers.GenerateMavenSuggestionsRequest.Raw,
     MavenAGI.GenerateMavenSuggestionsRequest
 > = core.serialization.object({
-    messageIds: core.serialization.list(core.serialization.string()),
+    conversationMessageIds: core.serialization.list(EntityIdBase),
 });
 
 export declare namespace GenerateMavenSuggestionsRequest {
     interface Raw {
-        messageIds: string[];
+        conversationMessageIds: EntityIdBase.Raw[];
     }
 }

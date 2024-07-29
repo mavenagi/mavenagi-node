@@ -11,13 +11,11 @@ export const ConversationBase: core.serialization.ObjectSchema<
     serializers.ConversationBase.Raw,
     MavenAGI.ConversationBase
 > = core.serialization.object({
-    id: core.serialization.string(),
     responseConfig: ResponseConfig.optional(),
 });
 
 export declare namespace ConversationBase {
     interface Raw {
-        id: string;
         responseConfig?: ResponseConfig.Raw | null;
     }
 }

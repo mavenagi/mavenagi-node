@@ -5,8 +5,6 @@
 import * as MavenAGI from "../../../index";
 
 export interface AppUser {
-    /** Externally supplied unique ID of the user */
-    id: string;
     userIdentifiers?: MavenAGI.AppUserIdentification;
-    metadata?: Record<string, string>;
+    metadata?: Record<string, MavenAGI.UserData>;
 }

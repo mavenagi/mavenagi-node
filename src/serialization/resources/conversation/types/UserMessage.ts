@@ -5,20 +5,18 @@
 import * as serializers from "../../../index";
 import * as MavenAGI from "../../../../api/index";
 import * as core from "../../../../core";
-import { UserConversationMessageType } from "./UserConversationMessageType";
-import { ConversationMessageBase } from "./ConversationMessageBase";
+import { EntityId } from "../../commons/types/EntityId";
+import { UserMessageBase } from "./UserMessageBase";
 
 export const UserMessage: core.serialization.ObjectSchema<serializers.UserMessage.Raw, MavenAGI.UserMessage> =
     core.serialization
         .object({
-            text: core.serialization.string(),
-            userMessageType: UserConversationMessageType,
+            conversationMessageId: EntityId,
         })
-        .extend(ConversationMessageBase);
+        .extend(UserMessageBase);
 
 export declare namespace UserMessage {
-    interface Raw extends ConversationMessageBase.Raw {
-        text: string;
-        userMessageType: UserConversationMessageType.Raw;
+    interface Raw extends UserMessageBase.Raw {
+        conversationMessageId: EntityId.Raw;
     }
 }

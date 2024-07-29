@@ -16,7 +16,6 @@ npm i -s mavenagi
 Instantiate and use the client with the following:
 
 ```typescript
-import * as environments from "../src/environments";
 import { MavenAGIClient, MavenAGI } from "mavenagi";
 
 const client = new MavenAGIClient({
@@ -31,7 +30,6 @@ await client.conversation.initialize({
     },
     messages: [{}],
     context: {},
-    id: "string",
     responseConfig: {
         capabilities: [MavenAGI.Capability.Markdown],
         isCopilot: true,
@@ -49,7 +47,7 @@ will be thrown.
 import { MavenAGIError } from "mavenagi";
 
 try {
-    await client.initialize(...);
+    await client.conversation.initialize(...);
 } catch (err) {
     if (err instanceof MavenAGIError) {
         console.log(err.statusCode);
@@ -114,7 +112,7 @@ A request is deemed retriable when any of the following HTTP status codes is ret
 Use the `maxRetries` request option to configure this behavior.
 
 ```typescript
-const response = await client.initialize(..., {
+const response = await client.conversation.initialize(..., {
     maxRetries: 0 // override maxRetries at the request level
 });
 ```
@@ -124,8 +122,46 @@ const response = await client.initialize(..., {
 The SDK defaults to a 60 second timeout. Use the `timeoutInSeconds` option to configure this behavior.
 
 ```typescript
-const response = await client.initialize(..., {
+const response = await client.conversation.initialize(..., {
     timeoutInSeconds: 30 // override timeout to 30s
+});
+```
+
+### Aborting Requests
+
+The SDK allows users to abort requests at any point by passing in an abort signal.
+
+```typescript
+const controller = new AbortController();
+const response = await client.conversation.initialize(..., {
+    abortSignal: controller.signal
+});
+controller.abort(); // aborts the request
+```
+
+### Runtime Compatibility
+
+The SDK defaults to `node-fetch` but will use the global fetch client if present. The SDK works in the following
+runtimes:
+
+-   Node.js 18+
+-   Vercel
+-   Cloudflare Workers
+-   Deno v1.25+
+-   Bun 1.0+
+-   React Native
+
+### Customizing Fetch Client
+
+The SDK provides a way for your to customize the underlying HTTP client / Fetch function. If you're running in an
+unsupported environment, this provides a way for you to break glass and ensure the SDK works.
+
+```typescript
+import { MavenAGIClient } from "mavenagi";
+
+const client = new MavenAGIClient({
+    ...
+    fetcher: // provide your implementation here
 });
 ```
 

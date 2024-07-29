@@ -4,8 +4,7 @@
 
 import * as MavenAGI from "../../../index";
 
-export interface UserMessage extends MavenAGI.ConversationMessageBase {
-    /** The text of the message. Cannot be empty */
-    text: string;
-    userMessageType: MavenAGI.UserConversationMessageType;
+export interface UserMessage extends MavenAGI.UserMessageBase {
+    /** The ID that uniquely identifies this message within the conversation */
+    conversationMessageId: MavenAGI.EntityId;
 }

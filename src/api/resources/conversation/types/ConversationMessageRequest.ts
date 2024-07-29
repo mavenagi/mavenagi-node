@@ -4,4 +4,7 @@
 
 import * as MavenAGI from "../../../index";
 
-export interface ConversationMessageRequest extends MavenAGI.UserMessage {}
+export interface ConversationMessageRequest extends MavenAGI.UserMessageBase {
+    /** The ID that uniquely identifies this message within the conversation */
+    conversationMessageId: MavenAGI.EntityIdBase;
+}

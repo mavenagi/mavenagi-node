@@ -5,6 +5,8 @@
 import * as MavenAGI from "../../../index";
 
 export interface BotMessage extends MavenAGI.ConversationMessageBase {
+    /** The ID that uniquely identifies this message within the conversation */
+    conversationMessageId: MavenAGI.EntityId;
     botMessageType: MavenAGI.BotConversationMessageType;
     responses: MavenAGI.BotResponse[];
     metadata: MavenAGI.BotResponseMetadata;

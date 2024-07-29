@@ -5,12 +5,13 @@
 import * as serializers from "../../../index";
 import * as MavenAGI from "../../../../api/index";
 import * as core from "../../../../core";
+import { EntityIdBase } from "../../commons/types/EntityIdBase";
 import { ConversationMessageContext } from "./ConversationMessageContext";
 import { ResponseConfig } from "./ResponseConfig";
 
 export const AskRequest: core.serialization.ObjectSchema<serializers.AskRequest.Raw, MavenAGI.AskRequest> =
     core.serialization.object({
-        id: core.serialization.string(),
+        conversationMessageId: EntityIdBase,
         text: core.serialization.string(),
         context: ConversationMessageContext.optional(),
         responseConfig: ResponseConfig.optional(),
@@ -18,7 +19,7 @@ export const AskRequest: core.serialization.ObjectSchema<serializers.AskRequest.
 
 export declare namespace AskRequest {
     interface Raw {
-        id: string;
+        conversationMessageId: EntityIdBase.Raw;
         text: string;
         context?: ConversationMessageContext.Raw | null;
         responseConfig?: ResponseConfig.Raw | null;

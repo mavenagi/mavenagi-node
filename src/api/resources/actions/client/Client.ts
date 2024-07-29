@@ -14,15 +14,24 @@ export declare namespace Actions {
         environment?: core.Supplier<environments.MavenAGIEnvironment | string>;
         appId?: core.Supplier<string | undefined>;
         appSecret?: core.Supplier<string | undefined>;
+        /** Override the X-Organization-Id header */
         organizationId: core.Supplier<string>;
+        /** Override the X-Agent-Id header */
         agentId: core.Supplier<string>;
         fetcher?: core.FetchFunction;
     }
 
     interface RequestOptions {
+        /** The maximum time to wait for a response in seconds. */
         timeoutInSeconds?: number;
+        /** The number of times to retry the request. Defaults to 2. */
         maxRetries?: number;
+        /** A hook to abort the request. */
         abortSignal?: AbortSignal;
+        /** Override the X-Organization-Id header */
+        organizationId?: string;
+        /** Override the X-Agent-Id header */
+        agentId?: string;
     }
 }
 
@@ -69,18 +78,19 @@ export class Actions {
                 "X-Agent-Id": await core.Supplier.get(this._options.agentId),
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "mavenagi",
-                "X-Fern-SDK-Version": "0.0.0-alpha.9",
+                "X-Fern-SDK-Version": "0.0.0-alpha.10",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
             },
             contentType: "application/json",
-            body: await serializers.ActionRequest.jsonOrThrow(request, { unrecognizedObjectKeys: "strip" }),
+            requestType: "json",
+            body: serializers.ActionRequest.jsonOrThrow(request, { unrecognizedObjectKeys: "strip" }),
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
             maxRetries: requestOptions?.maxRetries,
             abortSignal: requestOptions?.abortSignal,
         });
         if (_response.ok) {
-            return await serializers.ActionResponse.parseOrThrow(_response.body, {
+            return serializers.ActionResponse.parseOrThrow(_response.body, {
                 unrecognizedObjectKeys: "passthrough",
                 allowUnrecognizedUnionMembers: true,
                 allowUnrecognizedEnumValues: true,
@@ -92,7 +102,7 @@ export class Actions {
             switch (_response.error.statusCode) {
                 case 404:
                     throw new MavenAGI.NotFoundError(
-                        await serializers.ErrorMessage.parseOrThrow(_response.error.body, {
+                        serializers.ErrorMessage.parseOrThrow(_response.error.body, {
                             unrecognizedObjectKeys: "passthrough",
                             allowUnrecognizedUnionMembers: true,
                             allowUnrecognizedEnumValues: true,
@@ -101,7 +111,7 @@ export class Actions {
                     );
                 case 400:
                     throw new MavenAGI.BadRequestError(
-                        await serializers.ErrorMessage.parseOrThrow(_response.error.body, {
+                        serializers.ErrorMessage.parseOrThrow(_response.error.body, {
                             unrecognizedObjectKeys: "passthrough",
                             allowUnrecognizedUnionMembers: true,
                             allowUnrecognizedEnumValues: true,
@@ -110,7 +120,7 @@ export class Actions {
                     );
                 case 500:
                     throw new MavenAGI.ServerError(
-                        await serializers.ErrorMessage.parseOrThrow(_response.error.body, {
+                        serializers.ErrorMessage.parseOrThrow(_response.error.body, {
                             unrecognizedObjectKeys: "passthrough",
                             allowUnrecognizedUnionMembers: true,
                             allowUnrecognizedEnumValues: true,
@@ -169,17 +179,18 @@ export class Actions {
                 "X-Agent-Id": await core.Supplier.get(this._options.agentId),
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "mavenagi",
-                "X-Fern-SDK-Version": "0.0.0-alpha.9",
+                "X-Fern-SDK-Version": "0.0.0-alpha.10",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
             },
             contentType: "application/json",
+            requestType: "json",
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
             maxRetries: requestOptions?.maxRetries,
             abortSignal: requestOptions?.abortSignal,
         });
         if (_response.ok) {
-            return await serializers.ActionResponse.parseOrThrow(_response.body, {
+            return serializers.ActionResponse.parseOrThrow(_response.body, {
                 unrecognizedObjectKeys: "passthrough",
                 allowUnrecognizedUnionMembers: true,
                 allowUnrecognizedEnumValues: true,
@@ -191,7 +202,7 @@ export class Actions {
             switch (_response.error.statusCode) {
                 case 404:
                     throw new MavenAGI.NotFoundError(
-                        await serializers.ErrorMessage.parseOrThrow(_response.error.body, {
+                        serializers.ErrorMessage.parseOrThrow(_response.error.body, {
                             unrecognizedObjectKeys: "passthrough",
                             allowUnrecognizedUnionMembers: true,
                             allowUnrecognizedEnumValues: true,
@@ -200,7 +211,7 @@ export class Actions {
                     );
                 case 400:
                     throw new MavenAGI.BadRequestError(
-                        await serializers.ErrorMessage.parseOrThrow(_response.error.body, {
+                        serializers.ErrorMessage.parseOrThrow(_response.error.body, {
                             unrecognizedObjectKeys: "passthrough",
                             allowUnrecognizedUnionMembers: true,
                             allowUnrecognizedEnumValues: true,
@@ -209,7 +220,7 @@ export class Actions {
                     );
                 case 500:
                     throw new MavenAGI.ServerError(
-                        await serializers.ErrorMessage.parseOrThrow(_response.error.body, {
+                        serializers.ErrorMessage.parseOrThrow(_response.error.body, {
                             unrecognizedObjectKeys: "passthrough",
                             allowUnrecognizedUnionMembers: true,
                             allowUnrecognizedEnumValues: true,
@@ -265,11 +276,12 @@ export class Actions {
                 "X-Agent-Id": await core.Supplier.get(this._options.agentId),
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "mavenagi",
-                "X-Fern-SDK-Version": "0.0.0-alpha.9",
+                "X-Fern-SDK-Version": "0.0.0-alpha.10",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
             },
             contentType: "application/json",
+            requestType: "json",
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
             maxRetries: requestOptions?.maxRetries,
             abortSignal: requestOptions?.abortSignal,
@@ -282,7 +294,7 @@ export class Actions {
             switch (_response.error.statusCode) {
                 case 404:
                     throw new MavenAGI.NotFoundError(
-                        await serializers.ErrorMessage.parseOrThrow(_response.error.body, {
+                        serializers.ErrorMessage.parseOrThrow(_response.error.body, {
                             unrecognizedObjectKeys: "passthrough",
                             allowUnrecognizedUnionMembers: true,
                             allowUnrecognizedEnumValues: true,
@@ -291,7 +303,7 @@ export class Actions {
                     );
                 case 400:
                     throw new MavenAGI.BadRequestError(
-                        await serializers.ErrorMessage.parseOrThrow(_response.error.body, {
+                        serializers.ErrorMessage.parseOrThrow(_response.error.body, {
                             unrecognizedObjectKeys: "passthrough",
                             allowUnrecognizedUnionMembers: true,
                             allowUnrecognizedEnumValues: true,
@@ -300,7 +312,7 @@ export class Actions {
                     );
                 case 500:
                     throw new MavenAGI.ServerError(
-                        await serializers.ErrorMessage.parseOrThrow(_response.error.body, {
+                        serializers.ErrorMessage.parseOrThrow(_response.error.body, {
                             unrecognizedObjectKeys: "passthrough",
                             allowUnrecognizedUnionMembers: true,
                             allowUnrecognizedEnumValues: true,

@@ -5,13 +5,20 @@
 import * as serializers from "../../../index";
 import * as MavenAGI from "../../../../api/index";
 import * as core from "../../../../core";
+import { EntityId } from "./EntityId";
 import { AppUser } from "./AppUser";
 
 export const AppUserResponse: core.serialization.ObjectSchema<
     serializers.AppUserResponse.Raw,
     MavenAGI.AppUserResponse
-> = AppUser;
+> = core.serialization
+    .object({
+        appUserId: EntityId,
+    })
+    .extend(AppUser);
 
 export declare namespace AppUserResponse {
-    type Raw = AppUser.Raw;
+    interface Raw extends AppUser.Raw {
+        appUserId: EntityId.Raw;
+    }
 }
