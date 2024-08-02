@@ -4,4 +4,11 @@
 
 import * as MavenAGI from "../../../index";
 
-export type FeedbackRequest = MavenAGI.Feedback;
+export interface FeedbackRequest extends MavenAGI.FeedbackBase {
+    /** The ID that uniquely identifies this feedback */
+    feedbackId: MavenAGI.EntityIdBase;
+    /** The ID that uniquely identifies the the conversation the feedback is about */
+    conversationId: MavenAGI.EntityIdBase;
+    /** The ID that uniquely identifies the message within the conversation the feedback is about */
+    conversationMessageId: MavenAGI.EntityIdBase;
+}

@@ -7,20 +7,14 @@ import * as MavenAGI from "../../../../api/index";
 import * as core from "../../../../core";
 import { FeedbackType } from "./FeedbackType";
 
-export const Feedback: core.serialization.ObjectSchema<serializers.Feedback.Raw, MavenAGI.Feedback> =
+export const FeedbackBase: core.serialization.ObjectSchema<serializers.FeedbackBase.Raw, MavenAGI.FeedbackBase> =
     core.serialization.object({
-        id: core.serialization.string(),
-        conversationId: core.serialization.string(),
-        conversationMessageId: core.serialization.string(),
         type: FeedbackType,
         text: core.serialization.string().optional(),
     });
 
-export declare namespace Feedback {
+export declare namespace FeedbackBase {
     interface Raw {
-        id: string;
-        conversationId: string;
-        conversationMessageId: string;
         type: FeedbackType.Raw;
         text?: string | null;
     }

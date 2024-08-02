@@ -11,7 +11,8 @@ export type EntityType =
     | "USER"
     | "USER_EVENT"
     | "EVENT_TRIGGER"
-    | "USER_PROFILE";
+    | "USER_PROFILE"
+    | "FEEDBACK";
 
 export const EntityType = {
     Conversation: "CONVERSATION",
@@ -23,4 +24,5 @@ export const EntityType = {
     UserEvent: "USER_EVENT",
     EventTrigger: "EVENT_TRIGGER",
     UserProfile: "USER_PROFILE",
+    Feedback: "FEEDBACK",
 } as const;

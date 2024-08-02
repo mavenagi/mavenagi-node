@@ -17,6 +17,7 @@ export const EntityType: core.serialization.Schema<serializers.EntityType.Raw, M
         "USER_EVENT",
         "EVENT_TRIGGER",
         "USER_PROFILE",
+        "FEEDBACK",
     ]);
 
 export declare namespace EntityType {
@@ -29,5 +30,6 @@ export declare namespace EntityType {
         | "USER"
         | "USER_EVENT"
         | "EVENT_TRIGGER"
-        | "USER_PROFILE";
+        | "USER_PROFILE"
+        | "FEEDBACK";
 }

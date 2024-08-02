@@ -5,13 +5,24 @@
 import * as serializers from "../../../index";
 import * as MavenAGI from "../../../../api/index";
 import * as core from "../../../../core";
-import { Feedback } from "../../commons/types/Feedback";
+import { EntityIdBase } from "../../commons/types/EntityIdBase";
+import { FeedbackBase } from "../../commons/types/FeedbackBase";
 
 export const FeedbackRequest: core.serialization.ObjectSchema<
     serializers.FeedbackRequest.Raw,
     MavenAGI.FeedbackRequest
-> = Feedback;
+> = core.serialization
+    .object({
+        feedbackId: EntityIdBase,
+        conversationId: EntityIdBase,
+        conversationMessageId: EntityIdBase,
+    })
+    .extend(FeedbackBase);
 
 export declare namespace FeedbackRequest {
-    type Raw = Feedback.Raw;
+    interface Raw extends FeedbackBase.Raw {
+        feedbackId: EntityIdBase.Raw;
+        conversationId: EntityIdBase.Raw;
+        conversationMessageId: EntityIdBase.Raw;
+    }
 }
