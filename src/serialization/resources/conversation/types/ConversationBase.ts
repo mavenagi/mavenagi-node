@@ -12,10 +12,22 @@ export const ConversationBase: core.serialization.ObjectSchema<
     MavenAGI.ConversationBase
 > = core.serialization.object({
     responseConfig: ResponseConfig.optional(),
+    subject: core.serialization.string().optional(),
+    url: core.serialization.string().optional(),
+    createdAt: core.serialization.date().optional(),
+    updatedAt: core.serialization.date().optional(),
+    tags: core.serialization.set(core.serialization.string()).optional(),
+    metadata: core.serialization.record(core.serialization.string(), core.serialization.string()).optional(),
 });
 
 export declare namespace ConversationBase {
     interface Raw {
         responseConfig?: ResponseConfig.Raw | null;
+        subject?: string | null;
+        url?: string | null;
+        createdAt?: string | null;
+        updatedAt?: string | null;
+        tags?: string[] | null;
+        metadata?: Record<string, string> | null;
     }
 }

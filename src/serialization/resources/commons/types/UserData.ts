@@ -10,12 +10,12 @@ import { VisibilityType } from "./VisibilityType";
 export const UserData: core.serialization.ObjectSchema<serializers.UserData.Raw, MavenAGI.UserData> =
     core.serialization.object({
         value: core.serialization.string(),
-        visibility: VisibilityType.optional(),
+        visibility: VisibilityType,
     });
 
 export declare namespace UserData {
     interface Raw {
         value: string;
-        visibility?: VisibilityType.Raw | null;
+        visibility: VisibilityType.Raw;
     }
 }

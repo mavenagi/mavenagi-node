@@ -5,6 +5,7 @@
 import * as MavenAGI from "../../../index";
 
 export interface AppUser {
-    userIdentifiers?: MavenAGI.AppUserIdentification;
-    metadata?: Record<string, MavenAGI.UserData>;
+    /** Used to determine whether two users from different apps are the same */
+    identifiers: MavenAGI.AppUserIdentifier[];
+    data: Record<string, MavenAGI.UserData>;
 }

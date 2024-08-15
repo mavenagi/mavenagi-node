@@ -7,5 +7,5 @@ import * as MavenAGI from "../../../index";
 export interface AppUserIdentifier {
     /** The identifying property text */
     value: string;
-    userIdentifyingPropertyType: MavenAGI.AppUserIdentifyingPropertyType;
+    type: MavenAGI.AppUserIdentifyingPropertyType;
 }

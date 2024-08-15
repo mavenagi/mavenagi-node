@@ -7,4 +7,16 @@ import * as MavenAGI from "../../../index";
 export interface ConversationBase {
     /** Optional configurations for responses to this conversation */
     responseConfig?: MavenAGI.ResponseConfig;
+    /** The subject of the conversation */
+    subject?: string;
+    /** The url of the conversation */
+    url?: string;
+    /** The date and time the conversation was created */
+    createdAt?: Date;
+    /** The date and time the conversation was last updated */
+    updatedAt?: Date;
+    /** The tags of the conversation. Used for filtering in Agent Designer. */
+    tags?: Set<string>;
+    /** The metadata of the conversation. */
+    metadata?: Record<string, string>;
 }

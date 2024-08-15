@@ -18,8 +18,6 @@ export * from "./BotTextResponse";
 export * from "./BotActionFormResponse";
 export * from "./ActionFormField";
 export * from "./SubmitActionFormRequest";
-export * from "./ConversationContext";
-export * from "./ConversationMessageContext";
 export * from "./UserConversationMessageType";
 export * from "./BotConversationMessageType";
 export * from "./FeedbackRequest";

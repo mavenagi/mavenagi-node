@@ -9,6 +9,4 @@ export interface ConversationResponse extends MavenAGI.ConversationBase {
     conversationId: MavenAGI.EntityId;
     /** The messages in the conversation */
     messages: MavenAGI.ConversationMessageResponse[];
-    /** The context of the conversation */
-    context: MavenAGI.ConversationContext;
 }

@@ -216,7 +216,7 @@ await client.actions.delete("get-balance");
 <dl>
 <dd>
 
-Pre-populate a new conversation with messages
+Initialize a new conversation. Only required if the ask request wishes to supply conversation level data or when syncing to external systems.
 
 </dd>
 </dl>
@@ -237,11 +237,18 @@ await client.conversation.initialize({
         referenceId: "string",
     },
     messages: [{}],
-    context: {},
     responseConfig: {
         capabilities: [MavenAGI.Capability.Markdown],
         isCopilot: true,
         responseLength: MavenAGI.ResponseLength.Short,
+    },
+    subject: "string",
+    url: "string",
+    createdAt: new Date("2024-01-15T09:30:00.000Z"),
+    updatedAt: new Date("2024-01-15T09:30:00.000Z"),
+    tags: new Set(["string"]),
+    metadata: {
+        string: "string",
     },
 });
 ```
@@ -374,9 +381,13 @@ await client.conversation.appendNewMessages("string", [
         conversationMessageId: {
             referenceId: "string",
         },
+        userId: {
+            referenceId: "string",
+        },
         text: "string",
         userMessageType: MavenAGI.UserConversationMessageType.User,
-        context: {},
+        createdAt: new Date("2024-01-15T09:30:00.000Z"),
+        updatedAt: new Date("2024-01-15T09:30:00.000Z"),
     },
 ]);
 ```
@@ -433,7 +444,7 @@ await client.conversation.appendNewMessages("string", [
 <dl>
 <dd>
 
-Ask a question in a conversation
+Ask a question
 
 </dd>
 </dl>
@@ -453,9 +464,10 @@ await client.conversation.ask("string", {
     conversationMessageId: {
         referenceId: "string",
     },
+    userId: {
+        referenceId: "string",
+    },
     text: "string",
-    context: {},
-    responseConfig: {},
 });
 ```
 
@@ -531,9 +543,10 @@ await client.conversation.askStream("string", {
     conversationMessageId: {
         referenceId: "string",
     },
+    userId: {
+        referenceId: "string",
+    },
     text: "string",
-    context: {},
-    responseConfig: {},
 });
 ```
 
@@ -654,7 +667,7 @@ await client.conversation.generateMavenSuggestions("string", {
 </dl>
 </details>
 
-<details><summary><code>client.conversation.<a href="/src/api/resources/conversation/client/Client.ts">createFeedback</a>({ ...params }) -> void</code></summary>
+<details><summary><code>client.conversation.<a href="/src/api/resources/conversation/client/Client.ts">createFeedback</a>({ ...params }) -> MavenAGI.Feedback</code></summary>
 <dl>
 <dd>
 
@@ -759,16 +772,6 @@ Submit a filled out action form
 ```typescript
 await client.conversation.submitActionForm("string", {
     actionFormId: "string",
-    userContext: {
-        name: "string",
-        id: {
-            string: "string",
-        },
-        email: "string",
-        context: {
-            string: "string",
-        },
-    },
     parameters: {
         string: {
             key: "value",
@@ -829,7 +832,7 @@ await client.conversation.submitActionForm("string", {
 <dl>
 <dd>
 
-Add metadata to an existing conversation's Context. If a metadata field already exists, it will be overwritten.
+Add metadata to an existing conversation. If a metadata field already exists, it will be overwritten.
 
 </dd>
 </dl>
@@ -1586,7 +1589,7 @@ await client.triggers.delete("store-in-snowflake");
 
 ## Users
 
-<details><summary><code>client.users.<a href="/src/api/resources/users/client/Client.ts">upsertAppUser</a>({ ...params }) -> MavenAGI.AppUserResponse</code></summary>
+<details><summary><code>client.users.<a href="/src/api/resources/users/client/Client.ts">createOrUpdate</a>({ ...params }) -> MavenAGI.AppUserResponse</code></summary>
 <dl>
 <dd>
 
@@ -1598,7 +1601,7 @@ await client.triggers.delete("store-in-snowflake");
 <dl>
 <dd>
 
-Create a new user or update an existing one
+Update a user or create it if it doesn't exist.
 
 </dd>
 </dl>
@@ -1614,15 +1617,21 @@ Create a new user or update an existing one
 <dd>
 
 ```typescript
-await client.users.upsertAppUser({
-    appUserId: {
-        referenceId: "string",
+await client.users.createOrUpdate({
+    userId: {
+        referenceId: "user-0",
     },
-    userIdentifiers: {
-        identifiers: new Set([{}]),
-    },
-    metadata: {
-        string: {},
+    identifiers: new Set([
+        {
+            value: "joe@myapp.com",
+            type: MavenAGI.AppUserIdentifyingPropertyType.Email,
+        },
+    ]),
+    data: {
+        name: {
+            value: "Joe",
+            visibility: MavenAGI.VisibilityType.Visible,
+        },
     },
 });
 ```
@@ -1659,7 +1668,7 @@ await client.users.upsertAppUser({
 </dl>
 </details>
 
-<details><summary><code>client.users.<a href="/src/api/resources/users/client/Client.ts">getAppUser</a>(userId) -> MavenAGI.AppUserResponse</code></summary>
+<details><summary><code>client.users.<a href="/src/api/resources/users/client/Client.ts">get</a>(userId) -> MavenAGI.AppUserResponse</code></summary>
 <dl>
 <dd>
 
@@ -1671,7 +1680,7 @@ await client.users.upsertAppUser({
 <dl>
 <dd>
 
-Get a user
+Get a user by its supplied ID
 
 </dd>
 </dl>
@@ -1687,7 +1696,7 @@ Get a user
 <dd>
 
 ```typescript
-await client.users.getAppUser("string");
+await client.users.get("user-0");
 ```
 
 </dd>
@@ -1703,7 +1712,7 @@ await client.users.getAppUser("string");
 <dl>
 <dd>
 
-**userId:** `string` — Externally supplied unique ID of the user
+**userId:** `string` — The reference ID of the user to get. All other entity ID fields are inferred from the request.
 
 </dd>
 </dl>

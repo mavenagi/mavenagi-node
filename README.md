@@ -29,11 +29,18 @@ await client.conversation.initialize({
         referenceId: "string",
     },
     messages: [{}],
-    context: {},
     responseConfig: {
         capabilities: [MavenAGI.Capability.Markdown],
         isCopilot: true,
         responseLength: MavenAGI.ResponseLength.Short,
+    },
+    subject: "string",
+    url: "string",
+    createdAt: new Date("2024-01-15T09:30:00.000Z"),
+    updatedAt: new Date("2024-01-15T09:30:00.000Z"),
+    tags: new Set(["string"]),
+    metadata: {
+        string: "string",
     },
 });
 ```

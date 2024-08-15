@@ -7,7 +7,6 @@ import * as MavenAGI from "../../../../api/index";
 import * as core from "../../../../core";
 import { EntityIdBase } from "../../commons/types/EntityIdBase";
 import { ConversationMessageRequest } from "./ConversationMessageRequest";
-import { ConversationContext } from "./ConversationContext";
 import { ConversationBase } from "./ConversationBase";
 
 export const ConversationRequest: core.serialization.ObjectSchema<
@@ -17,7 +16,6 @@ export const ConversationRequest: core.serialization.ObjectSchema<
     .object({
         conversationId: EntityIdBase,
         messages: core.serialization.list(ConversationMessageRequest),
-        context: ConversationContext.optional(),
     })
     .extend(ConversationBase);
 
@@ -25,6 +23,5 @@ export declare namespace ConversationRequest {
     interface Raw extends ConversationBase.Raw {
         conversationId: EntityIdBase.Raw;
         messages: ConversationMessageRequest.Raw[];
-        context?: ConversationContext.Raw | null;
     }
 }

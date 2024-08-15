@@ -5,6 +5,7 @@
 import * as serializers from "../../../index";
 import * as MavenAGI from "../../../../api/index";
 import * as core from "../../../../core";
+import { EntityIdBase } from "../../commons/types/EntityIdBase";
 import { UserConversationMessageType } from "./UserConversationMessageType";
 import { ConversationMessageBase } from "./ConversationMessageBase";
 
@@ -13,6 +14,7 @@ export const UserMessageBase: core.serialization.ObjectSchema<
     MavenAGI.UserMessageBase
 > = core.serialization
     .object({
+        userId: EntityIdBase,
         text: core.serialization.string(),
         userMessageType: UserConversationMessageType,
     })
@@ -20,6 +22,7 @@ export const UserMessageBase: core.serialization.ObjectSchema<
 
 export declare namespace UserMessageBase {
     interface Raw extends ConversationMessageBase.Raw {
+        userId: EntityIdBase.Raw;
         text: string;
         userMessageType: UserConversationMessageType.Raw;
     }

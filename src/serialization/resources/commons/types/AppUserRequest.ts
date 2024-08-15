@@ -11,12 +11,12 @@ import { AppUser } from "./AppUser";
 export const AppUserRequest: core.serialization.ObjectSchema<serializers.AppUserRequest.Raw, MavenAGI.AppUserRequest> =
     core.serialization
         .object({
-            appUserId: EntityIdBase,
+            userId: EntityIdBase,
         })
         .extend(AppUser);
 
 export declare namespace AppUserRequest {
     interface Raw extends AppUser.Raw {
-        appUserId: EntityIdBase.Raw;
+        userId: EntityIdBase.Raw;
     }
 }

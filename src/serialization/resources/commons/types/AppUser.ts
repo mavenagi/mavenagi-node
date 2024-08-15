@@ -5,18 +5,18 @@
 import * as serializers from "../../../index";
 import * as MavenAGI from "../../../../api/index";
 import * as core from "../../../../core";
-import { AppUserIdentification } from "./AppUserIdentification";
+import { AppUserIdentifier } from "./AppUserIdentifier";
 import { UserData } from "./UserData";
 
 export const AppUser: core.serialization.ObjectSchema<serializers.AppUser.Raw, MavenAGI.AppUser> =
     core.serialization.object({
-        userIdentifiers: AppUserIdentification.optional(),
-        metadata: core.serialization.record(core.serialization.string(), UserData).optional(),
+        identifiers: core.serialization.list(AppUserIdentifier),
+        data: core.serialization.record(core.serialization.string(), UserData),
     });
 
 export declare namespace AppUser {
     interface Raw {
-        userIdentifiers?: AppUserIdentification.Raw | null;
-        metadata?: Record<string, UserData.Raw> | null;
+        identifiers: AppUserIdentifier.Raw[];
+        data: Record<string, UserData.Raw>;
     }
 }

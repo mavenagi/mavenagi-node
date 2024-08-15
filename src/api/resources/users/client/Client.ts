@@ -39,7 +39,7 @@ export class Users {
     constructor(protected readonly _options: Users.Options) {}
 
     /**
-     * Create a new user or update an existing one
+     * Update a user or create it if it doesn't exist.
      *
      * @param {MavenAGI.AppUserRequest} request
      * @param {Users.RequestOptions} requestOptions - Request-specific configuration.
@@ -49,19 +49,23 @@ export class Users {
      * @throws {@link MavenAGI.ServerError}
      *
      * @example
-     *     await client.users.upsertAppUser({
-     *         appUserId: {
-     *             referenceId: "string"
+     *     await client.users.createOrUpdate({
+     *         userId: {
+     *             referenceId: "user-0"
      *         },
-     *         userIdentifiers: {
-     *             identifiers: new Set([{}])
-     *         },
-     *         metadata: {
-     *             "string": {}
+     *         identifiers: new Set([{
+     *                 value: "joe@myapp.com",
+     *                 type: MavenAGI.AppUserIdentifyingPropertyType.Email
+     *             }]),
+     *         data: {
+     *             "name": {
+     *                 value: "Joe",
+     *                 visibility: MavenAGI.VisibilityType.Visible
+     *             }
      *         }
      *     })
      */
-    public async upsertAppUser(
+    public async createOrUpdate(
         request: MavenAGI.AppUserRequest,
         requestOptions?: Users.RequestOptions
     ): Promise<MavenAGI.AppUserResponse> {
@@ -77,7 +81,7 @@ export class Users {
                 "X-Agent-Id": await core.Supplier.get(this._options.agentId),
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "mavenagi",
-                "X-Fern-SDK-Version": "0.0.0-alpha.12",
+                "X-Fern-SDK-Version": "0.0.0-alpha.14",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
             },
@@ -150,9 +154,9 @@ export class Users {
     }
 
     /**
-     * Get a user
+     * Get a user by its supplied ID
      *
-     * @param {string} userId - Externally supplied unique ID of the user
+     * @param {string} userId - The reference ID of the user to get. All other entity ID fields are inferred from the request.
      * @param {Users.RequestOptions} requestOptions - Request-specific configuration.
      *
      * @throws {@link MavenAGI.NotFoundError}
@@ -160,13 +164,13 @@ export class Users {
      * @throws {@link MavenAGI.ServerError}
      *
      * @example
-     *     await client.users.getAppUser("string")
+     *     await client.users.get("user-0")
      */
-    public async getAppUser(userId: string, requestOptions?: Users.RequestOptions): Promise<MavenAGI.AppUserResponse> {
+    public async get(userId: string, requestOptions?: Users.RequestOptions): Promise<MavenAGI.AppUserResponse> {
         const _response = await (this._options.fetcher ?? core.fetcher)({
             url: urlJoin(
                 (await core.Supplier.get(this._options.environment)) ?? environments.MavenAGIEnvironment.Production,
-                `/v1/users/agent_user/${encodeURIComponent(userId)}`
+                `/v1/users/${encodeURIComponent(userId)}`
             ),
             method: "GET",
             headers: {
@@ -175,7 +179,7 @@ export class Users {
                 "X-Agent-Id": await core.Supplier.get(this._options.agentId),
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "mavenagi",
-                "X-Fern-SDK-Version": "0.0.0-alpha.12",
+                "X-Fern-SDK-Version": "0.0.0-alpha.14",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
             },

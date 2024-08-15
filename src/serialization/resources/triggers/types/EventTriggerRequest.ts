@@ -6,7 +6,7 @@ import * as serializers from "../../../index";
 import * as MavenAGI from "../../../../api/index";
 import * as core from "../../../../core";
 import { EntityIdBase } from "../../commons/types/EntityIdBase";
-import { EventTriggerBase } from "./EventTriggerBase";
+import { EventTriggerBase } from "../../commons/types/EventTriggerBase";
 
 export const EventTriggerRequest: core.serialization.ObjectSchema<
     serializers.EventTriggerRequest.Raw,

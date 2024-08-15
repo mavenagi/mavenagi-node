@@ -8,5 +8,5 @@ export interface UserData {
     /** The value of the user metadata */
     value: string;
     /** The visibility of the user metadata */
-    visibility?: MavenAGI.VisibilityType;
+    visibility: MavenAGI.VisibilityType;
 }

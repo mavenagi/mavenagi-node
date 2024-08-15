@@ -12,12 +12,12 @@ export const AppUserIdentifier: core.serialization.ObjectSchema<
     MavenAGI.AppUserIdentifier
 > = core.serialization.object({
     value: core.serialization.string(),
-    userIdentifyingPropertyType: AppUserIdentifyingPropertyType,
+    type: AppUserIdentifyingPropertyType,
 });
 
 export declare namespace AppUserIdentifier {
     interface Raw {
         value: string;
-        userIdentifyingPropertyType: AppUserIdentifyingPropertyType.Raw;
+        type: AppUserIdentifyingPropertyType.Raw;
     }
 }

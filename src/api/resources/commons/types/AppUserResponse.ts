@@ -4,7 +4,39 @@
 
 import * as MavenAGI from "../../../index";
 
+/**
+ * @example
+ *     {
+ *         userId: {
+ *             referenceId: "user-0",
+ *             appId: "myapp",
+ *             organizationId: "acme",
+ *             agentId: "support",
+ *             type: MavenAGI.EntityType.UserProfile
+ *         },
+ *         identifiers: new Set([{
+ *                 value: "joe@myapp.com",
+ *                 type: MavenAGI.AppUserIdentifyingPropertyType.Email
+ *             }]),
+ *         data: {
+ *             "name": {
+ *                 value: "Joe",
+ *                 visibility: MavenAGI.VisibilityType.Visible
+ *             }
+ *         },
+ *         allUserData: {
+ *             "myapp": {
+ *                 "name": "Joe"
+ *             },
+ *             "defaultUserData": {
+ *                 "name": "Joe"
+ *             }
+ *         }
+ *     }
+ */
 export interface AppUserResponse extends MavenAGI.AppUser {
-    /** ID that uniquely identifies this app user */
-    appUserId: MavenAGI.EntityId;
+    /** ID that uniquely identifies this user */
+    userId: MavenAGI.EntityId;
+    /** Data from all apps */
+    allUserData: Record<string, Record<string, string>>;
 }

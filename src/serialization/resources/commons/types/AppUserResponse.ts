@@ -13,12 +13,17 @@ export const AppUserResponse: core.serialization.ObjectSchema<
     MavenAGI.AppUserResponse
 > = core.serialization
     .object({
-        appUserId: EntityId,
+        userId: EntityId,
+        allUserData: core.serialization.record(
+            core.serialization.string(),
+            core.serialization.record(core.serialization.string(), core.serialization.string())
+        ),
     })
     .extend(AppUser);
 
 export declare namespace AppUserResponse {
     interface Raw extends AppUser.Raw {
-        appUserId: EntityId.Raw;
+        userId: EntityId.Raw;
+        allUserData: Record<string, Record<string, string>>;
     }
 }

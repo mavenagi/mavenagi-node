@@ -5,17 +5,18 @@
 import * as serializers from "../../../index";
 import * as MavenAGI from "../../../../api/index";
 import * as core from "../../../../core";
-import { ConversationMessageContext } from "./ConversationMessageContext";
 
 export const ConversationMessageBase: core.serialization.ObjectSchema<
     serializers.ConversationMessageBase.Raw,
     MavenAGI.ConversationMessageBase
 > = core.serialization.object({
-    context: ConversationMessageContext.optional(),
+    createdAt: core.serialization.date().optional(),
+    updatedAt: core.serialization.date().optional(),
 });
 
 export declare namespace ConversationMessageBase {
     interface Raw {
-        context?: ConversationMessageContext.Raw | null;
+        createdAt?: string | null;
+        updatedAt?: string | null;
     }
 }

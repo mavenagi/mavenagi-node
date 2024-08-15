@@ -40,7 +40,7 @@ export class Conversation {
     constructor(protected readonly _options: Conversation.Options) {}
 
     /**
-     * Pre-populate a new conversation with messages
+     * Initialize a new conversation. Only required if the ask request wishes to supply conversation level data or when syncing to external systems.
      *
      * @param {MavenAGI.ConversationRequest} request
      * @param {Conversation.RequestOptions} requestOptions - Request-specific configuration.
@@ -55,11 +55,18 @@ export class Conversation {
      *             referenceId: "string"
      *         },
      *         messages: [{}],
-     *         context: {},
      *         responseConfig: {
      *             capabilities: [MavenAGI.Capability.Markdown],
      *             isCopilot: true,
      *             responseLength: MavenAGI.ResponseLength.Short
+     *         },
+     *         subject: "string",
+     *         url: "string",
+     *         createdAt: new Date("2024-01-15T09:30:00.000Z"),
+     *         updatedAt: new Date("2024-01-15T09:30:00.000Z"),
+     *         tags: new Set(["string"]),
+     *         metadata: {
+     *             "string": "string"
      *         }
      *     })
      */
@@ -79,7 +86,7 @@ export class Conversation {
                 "X-Agent-Id": await core.Supplier.get(this._options.agentId),
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "mavenagi",
-                "X-Fern-SDK-Version": "0.0.0-alpha.12",
+                "X-Fern-SDK-Version": "0.0.0-alpha.14",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
             },
@@ -180,7 +187,7 @@ export class Conversation {
                 "X-Agent-Id": await core.Supplier.get(this._options.agentId),
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "mavenagi",
-                "X-Fern-SDK-Version": "0.0.0-alpha.12",
+                "X-Fern-SDK-Version": "0.0.0-alpha.14",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
             },
@@ -267,9 +274,13 @@ export class Conversation {
      *             conversationMessageId: {
      *                 referenceId: "string"
      *             },
+     *             userId: {
+     *                 referenceId: "string"
+     *             },
      *             text: "string",
      *             userMessageType: MavenAGI.UserConversationMessageType.User,
-     *             context: {}
+     *             createdAt: new Date("2024-01-15T09:30:00.000Z"),
+     *             updatedAt: new Date("2024-01-15T09:30:00.000Z")
      *         }])
      */
     public async appendNewMessages(
@@ -289,7 +300,7 @@ export class Conversation {
                 "X-Agent-Id": await core.Supplier.get(this._options.agentId),
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "mavenagi",
-                "X-Fern-SDK-Version": "0.0.0-alpha.12",
+                "X-Fern-SDK-Version": "0.0.0-alpha.14",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
             },
@@ -364,7 +375,7 @@ export class Conversation {
     }
 
     /**
-     * Ask a question in a conversation
+     * Ask a question
      *
      * @param {string} conversationId - The ID of a new or existing conversation to use as context for the question
      * @param {MavenAGI.AskRequest} request
@@ -379,9 +390,10 @@ export class Conversation {
      *         conversationMessageId: {
      *             referenceId: "string"
      *         },
-     *         text: "string",
-     *         context: {},
-     *         responseConfig: {}
+     *         userId: {
+     *             referenceId: "string"
+     *         },
+     *         text: "string"
      *     })
      */
     public async ask(
@@ -401,7 +413,7 @@ export class Conversation {
                 "X-Agent-Id": await core.Supplier.get(this._options.agentId),
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "mavenagi",
-                "X-Fern-SDK-Version": "0.0.0-alpha.12",
+                "X-Fern-SDK-Version": "0.0.0-alpha.14",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
             },
@@ -493,7 +505,7 @@ export class Conversation {
                 "X-Agent-Id": await core.Supplier.get(this._options.agentId),
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "mavenagi",
-                "X-Fern-SDK-Version": "0.0.0-alpha.12",
+                "X-Fern-SDK-Version": "0.0.0-alpha.14",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
             },
@@ -611,7 +623,7 @@ export class Conversation {
                 "X-Agent-Id": await core.Supplier.get(this._options.agentId),
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "mavenagi",
-                "X-Fern-SDK-Version": "0.0.0-alpha.12",
+                "X-Fern-SDK-Version": "0.0.0-alpha.14",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
             },
@@ -711,7 +723,7 @@ export class Conversation {
     public async createFeedback(
         request: MavenAGI.FeedbackRequest,
         requestOptions?: Conversation.RequestOptions
-    ): Promise<void> {
+    ): Promise<MavenAGI.Feedback> {
         const _response = await (this._options.fetcher ?? core.fetcher)({
             url: urlJoin(
                 (await core.Supplier.get(this._options.environment)) ?? environments.MavenAGIEnvironment.Production,
@@ -724,7 +736,7 @@ export class Conversation {
                 "X-Agent-Id": await core.Supplier.get(this._options.agentId),
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "mavenagi",
-                "X-Fern-SDK-Version": "0.0.0-alpha.12",
+                "X-Fern-SDK-Version": "0.0.0-alpha.14",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
             },
@@ -736,7 +748,12 @@ export class Conversation {
             abortSignal: requestOptions?.abortSignal,
         });
         if (_response.ok) {
-            return;
+            return serializers.Feedback.parseOrThrow(_response.body, {
+                unrecognizedObjectKeys: "passthrough",
+                allowUnrecognizedUnionMembers: true,
+                allowUnrecognizedEnumValues: true,
+                breadcrumbsPrefix: ["response"],
+            });
         }
 
         if (_response.error.reason === "status-code") {
@@ -805,16 +822,6 @@ export class Conversation {
      * @example
      *     await client.conversation.submitActionForm("string", {
      *         actionFormId: "string",
-     *         userContext: {
-     *             name: "string",
-     *             id: {
-     *                 "string": "string"
-     *             },
-     *             email: "string",
-     *             context: {
-     *                 "string": "string"
-     *             }
-     *         },
      *         parameters: {
      *             "string": {
      *                 "key": "value"
@@ -839,7 +846,7 @@ export class Conversation {
                 "X-Agent-Id": await core.Supplier.get(this._options.agentId),
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "mavenagi",
-                "X-Fern-SDK-Version": "0.0.0-alpha.12",
+                "X-Fern-SDK-Version": "0.0.0-alpha.14",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
             },
@@ -912,7 +919,7 @@ export class Conversation {
     }
 
     /**
-     * Add metadata to an existing conversation's Context. If a metadata field already exists, it will be overwritten.
+     * Add metadata to an existing conversation. If a metadata field already exists, it will be overwritten.
      *
      * @param {string} conversationId - The ID of a conversation the metadata being added belongs to
      * @param {Record<string, string>} request
@@ -944,7 +951,7 @@ export class Conversation {
                 "X-Agent-Id": await core.Supplier.get(this._options.agentId),
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "mavenagi",
-                "X-Fern-SDK-Version": "0.0.0-alpha.12",
+                "X-Fern-SDK-Version": "0.0.0-alpha.14",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
             },

@@ -5,21 +5,18 @@
 import * as serializers from "../../../index";
 import * as MavenAGI from "../../../../api/index";
 import * as core from "../../../../core";
-import { User } from "../../commons/types/User";
 
 export const SubmitActionFormRequest: core.serialization.ObjectSchema<
     serializers.SubmitActionFormRequest.Raw,
     MavenAGI.SubmitActionFormRequest
 > = core.serialization.object({
     actionFormId: core.serialization.string(),
-    userContext: User,
     parameters: core.serialization.record(core.serialization.string(), core.serialization.unknown()),
 });
 
 export declare namespace SubmitActionFormRequest {
     interface Raw {
         actionFormId: string;
-        userContext: User.Raw;
         parameters: Record<string, unknown>;
     }
 }
