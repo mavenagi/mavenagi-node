@@ -5,6 +5,7 @@
 import * as environments from "./environments";
 import * as core from "./core";
 import { Actions } from "./api/resources/actions/client/Client";
+import { AppSettings } from "./api/resources/appSettings/client/Client";
 import { Conversation } from "./api/resources/conversation/client/Client";
 import { Knowledge } from "./api/resources/knowledge/client/Client";
 import { Triggers } from "./api/resources/triggers/client/Client";
@@ -43,6 +44,12 @@ export class MavenAGIClient {
 
     public get actions(): Actions {
         return (this._actions ??= new Actions(this._options));
+    }
+
+    protected _appSettings: AppSettings | undefined;
+
+    public get appSettings(): AppSettings {
+        return (this._appSettings ??= new AppSettings(this._options));
     }
 
     protected _conversation: Conversation | undefined;

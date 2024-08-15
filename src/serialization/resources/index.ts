@@ -8,3 +8,4 @@ export * as knowledge from "./knowledge";
 export * from "./knowledge/types";
 export * as triggers from "./triggers";
 export * from "./triggers/types";
+export * as appSettings from "./appSettings";

@@ -9,4 +9,5 @@ export * from "./knowledge/types";
 export * as triggers from "./triggers";
 export * from "./triggers/types";
 export * from "./commons/errors";
+export * as appSettings from "./appSettings";
 export * as users from "./users";
