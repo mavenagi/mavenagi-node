@@ -5,10 +5,10 @@
 import * as MavenAGI from "../../../index";
 
 export interface ResponseConfig {
-    /** List of capabilities supported by the caller. Defaults to all */
-    capabilities?: MavenAGI.Capability[];
+    /** List of capabilities supported by the caller. Defaults to all. Only the markdown capability is supported at this time. If not provided, responses will be plain text. */
+    capabilities: MavenAGI.Capability[];
     /** Whether the response is for an human agent (true) or an end user (false). Defaults to false. */
-    isCopilot?: boolean;
+    isCopilot: boolean;
     /** The desired response length. Defaults to ResponseLength.MEDIUM. */
-    responseLength?: MavenAGI.ResponseLength;
+    responseLength: MavenAGI.ResponseLength;
 }

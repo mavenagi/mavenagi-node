@@ -10,15 +10,15 @@ import { ResponseLength } from "./ResponseLength";
 
 export const ResponseConfig: core.serialization.ObjectSchema<serializers.ResponseConfig.Raw, MavenAGI.ResponseConfig> =
     core.serialization.object({
-        capabilities: core.serialization.list(Capability).optional(),
-        isCopilot: core.serialization.boolean().optional(),
-        responseLength: ResponseLength.optional(),
+        capabilities: core.serialization.list(Capability),
+        isCopilot: core.serialization.boolean(),
+        responseLength: ResponseLength,
     });
 
 export declare namespace ResponseConfig {
     interface Raw {
-        capabilities?: Capability.Raw[] | null;
-        isCopilot?: boolean | null;
-        responseLength?: ResponseLength.Raw | null;
+        capabilities: Capability.Raw[];
+        isCopilot: boolean;
+        responseLength: ResponseLength.Raw;
     }
 }
