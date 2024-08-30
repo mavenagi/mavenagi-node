@@ -4,6 +4,18 @@
 
 import * as MavenAGI from "../../../index";
 
+/**
+ * @example
+ *     {
+ *         conversationMessageId: {
+ *             referenceId: "message-1"
+ *         },
+ *         userId: {
+ *             referenceId: "user-1"
+ *         },
+ *         text: "How do I reset my password?"
+ *     }
+ */
 export interface AskRequest {
     /** Externally supplied ID to uniquely identify this message within the conversation */
     conversationMessageId: MavenAGI.EntityIdBase;

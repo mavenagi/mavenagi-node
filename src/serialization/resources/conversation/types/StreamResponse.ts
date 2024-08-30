@@ -6,6 +6,7 @@ import * as serializers from "../../../index";
 import * as MavenAGI from "../../../../api/index";
 import * as core from "../../../../core";
 import { AskStreamTextEvent } from "./AskStreamTextEvent";
+import { AskStreamActionEvent } from "./AskStreamActionEvent";
 import { AskStreamMetadataEvent } from "./AskStreamMetadataEvent";
 import { AskStreamStartEvent } from "./AskStreamStartEvent";
 import { AskStreamEndEvent } from "./AskStreamEndEvent";
@@ -14,6 +15,7 @@ export const StreamResponse: core.serialization.Schema<serializers.StreamRespons
     core.serialization
         .union("eventType", {
             text: AskStreamTextEvent,
+            action: AskStreamActionEvent,
             metadata: AskStreamMetadataEvent,
             start: AskStreamStartEvent,
             end: AskStreamEndEvent,
@@ -24,10 +26,19 @@ export const StreamResponse: core.serialization.Schema<serializers.StreamRespons
         });
 
 export declare namespace StreamResponse {
-    type Raw = StreamResponse.Text | StreamResponse.Metadata | StreamResponse.Start | StreamResponse.End;
+    type Raw =
+        | StreamResponse.Text
+        | StreamResponse.Action
+        | StreamResponse.Metadata
+        | StreamResponse.Start
+        | StreamResponse.End;
 
     interface Text extends AskStreamTextEvent.Raw {
         eventType: "text";
+    }
+
+    interface Action extends AskStreamActionEvent.Raw {
+        eventType: "action";
     }
 
     interface Metadata extends AskStreamMetadataEvent.Raw {

@@ -6,6 +6,7 @@ import * as MavenAGI from "../../../index";
 
 export type StreamResponse =
     | MavenAGI.StreamResponse.Text
+    | MavenAGI.StreamResponse.Action
     | MavenAGI.StreamResponse.Metadata
     | MavenAGI.StreamResponse.Start
     | MavenAGI.StreamResponse.End;
@@ -13,6 +14,10 @@ export type StreamResponse =
 export declare namespace StreamResponse {
     interface Text extends MavenAGI.AskStreamTextEvent {
         eventType: "text";
+    }
+
+    interface Action extends MavenAGI.AskStreamActionEvent {
+        eventType: "action";
     }
 
     interface Metadata extends MavenAGI.AskStreamMetadataEvent {

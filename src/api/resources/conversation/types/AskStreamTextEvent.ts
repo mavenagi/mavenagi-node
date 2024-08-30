@@ -3,5 +3,6 @@
  */
 
 export interface AskStreamTextEvent {
+    /** A partial response to the question. All stream text events should be concatenated to form the full response. */
     contents: string;
 }

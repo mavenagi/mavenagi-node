@@ -519,12 +519,12 @@ Ask a question
 ```typescript
 await client.conversation.ask("string", {
     conversationMessageId: {
-        referenceId: "string",
+        referenceId: "message-1",
     },
     userId: {
-        referenceId: "string",
+        referenceId: "user-1",
     },
-    text: "string",
+    text: "How do I reset my password?",
 });
 ```
 
@@ -580,7 +580,7 @@ await client.conversation.ask("string", {
 <dl>
 <dd>
 
-Ask a question
+Ask a question with a streaming response. The response will be sent as a stream of events. The text portions of stream responses should be concatenated to form the full response text. Action and metadata events should overwrite past data and do not need concatenation.
 
 </dd>
 </dl>
@@ -596,14 +596,14 @@ Ask a question
 <dd>
 
 ```typescript
-await client.conversation.askStream("string", {
+await client.conversation.askStream("conversation-0", {
     conversationMessageId: {
-        referenceId: "string",
+        referenceId: "message-1",
     },
     userId: {
-        referenceId: "string",
+        referenceId: "user-1",
     },
-    text: "string",
+    text: "How do I reset my password?",
 });
 ```
 
@@ -706,6 +706,69 @@ await client.conversation.generateMavenSuggestions("string", {
 <dd>
 
 **request:** `MavenAGI.GenerateMavenSuggestionsRequest`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Conversation.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.conversation.<a href="/src/api/resources/conversation/client/Client.ts">categorize</a>(conversationId) -> MavenAGI.CategorizationResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Uses an LLM flow to categorize the conversation. Experimental.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.conversation.categorize("string");
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**conversationId:** `string` — The ID of the conversation to categorize
 
 </dd>
 </dl>
