@@ -10,5 +10,5 @@ export interface ConversationAnalysis {
     /** Generated agent response summary of the conversation */
     agentResponse?: string;
     /** Generated sentiment of the conversation */
-    sentiment: MavenAGI.Sentiment;
+    sentiment?: MavenAGI.Sentiment;
 }
