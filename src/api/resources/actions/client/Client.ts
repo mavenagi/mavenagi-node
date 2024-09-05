@@ -56,10 +56,18 @@ export class Actions {
      *         name: "Get the user's balance",
      *         description: "This action calls an API to get the user's current balance.",
      *         userInteractionRequired: false,
-     *         preconditions: {
-     *             requiredUserContextFieldNames: new Set(["my-billing-system.userId"])
-     *         },
-     *         userFormParameters: []
+     *         userFormParameters: [],
+     *         precondition: {
+     *             preconditionType: "group",
+     *             operator: MavenAGI.PreconditionGroupOperator.And,
+     *             preconditions: [{
+     *                     preconditionType: "user",
+     *                     key: "userKey"
+     *                 }, {
+     *                     preconditionType: "user",
+     *                     key: "userKey2"
+     *                 }]
+     *         }
      *     })
      */
     public async createOrUpdate(
@@ -78,7 +86,7 @@ export class Actions {
                 "X-Agent-Id": await core.Supplier.get(this._options.agentId),
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "mavenagi",
-                "X-Fern-SDK-Version": "0.0.0-alpha.18",
+                "X-Fern-SDK-Version": "0.0.0-alpha.19",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
             },
@@ -179,7 +187,7 @@ export class Actions {
                 "X-Agent-Id": await core.Supplier.get(this._options.agentId),
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "mavenagi",
-                "X-Fern-SDK-Version": "0.0.0-alpha.18",
+                "X-Fern-SDK-Version": "0.0.0-alpha.19",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
             },
@@ -276,7 +284,7 @@ export class Actions {
                 "X-Agent-Id": await core.Supplier.get(this._options.agentId),
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "mavenagi",
-                "X-Fern-SDK-Version": "0.0.0-alpha.18",
+                "X-Fern-SDK-Version": "0.0.0-alpha.19",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
             },

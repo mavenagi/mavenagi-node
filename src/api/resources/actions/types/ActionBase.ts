@@ -14,7 +14,7 @@ export interface ActionBase {
     /** When user interaction is required, the name of the button that is shown to the end user to confirm execution of the action */
     buttonName?: string;
     /** The preconditions that must be met for an action to be relevant to a conversation. Can be used to restrict actions to certain types of users. */
-    preconditions: MavenAGI.Preconditions;
+    precondition?: MavenAGI.Precondition;
     /** The parameters that the action uses as input. An action will only be executed when all of the required parameters are provided. During execution, actions all have access to the full Conversation and User objects. Parameter values may be inferred from the user's conversation by the LLM. */
     userFormParameters: MavenAGI.ActionParameter[];
 }

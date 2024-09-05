@@ -17,10 +17,18 @@ import * as MavenAGI from "../../../index";
  *         name: "Get the user's balance",
  *         description: "This action calls an API to get the user's current balance.",
  *         userInteractionRequired: false,
- *         preconditions: {
- *             requiredUserContextFieldNames: new Set(["my-billing-system.userId"])
- *         },
- *         userFormParameters: []
+ *         userFormParameters: [],
+ *         precondition: {
+ *             preconditionType: "group",
+ *             operator: MavenAGI.PreconditionGroupOperator.And,
+ *             preconditions: [{
+ *                     preconditionType: "user",
+ *                     key: "userKey"
+ *                 }, {
+ *                     preconditionType: "user",
+ *                     key: "userKey2"
+ *                 }]
+ *         }
  *     }
  */
 export interface ActionResponse extends MavenAGI.ActionBase {
