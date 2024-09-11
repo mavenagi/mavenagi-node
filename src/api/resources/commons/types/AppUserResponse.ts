@@ -27,10 +27,10 @@ import * as MavenAGI from "../../../index";
  *         allUserData: {
  *             "myapp": {
  *                 "name": "Joe"
- *             },
- *             "defaultUserData": {
- *                 "name": "Joe"
  *             }
+ *         },
+ *         defaultUserData: {
+ *             "name": "Joe"
  *         }
  *     }
  */
@@ -39,4 +39,6 @@ export interface AppUserResponse extends MavenAGI.AppUser {
     userId: MavenAGI.EntityId;
     /** Data from all apps */
     allUserData: Record<string, Record<string, string>>;
+    /** Default data for this user */
+    defaultUserData: Record<string, string>;
 }

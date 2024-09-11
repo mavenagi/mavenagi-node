@@ -7,7 +7,9 @@ import * as MavenAGI from "../../../index";
 export type ConversationPrecondition =
     /**
      * The tags that must be present in the conversation context for the precondition to be met */
-    MavenAGI.ConversationPrecondition.Tags | MavenAGI.ConversationPrecondition.Metadata;
+    | MavenAGI.ConversationPrecondition.Tags
+    | MavenAGI.ConversationPrecondition.Metadata
+    | MavenAGI.ConversationPrecondition.ActionExecuted;
 
 export declare namespace ConversationPrecondition {
     interface Tags {
@@ -17,5 +19,9 @@ export declare namespace ConversationPrecondition {
 
     interface Metadata extends MavenAGI.MetadataPrecondition {
         conversationPreconditionType: "metadata";
+    }
+
+    interface ActionExecuted extends MavenAGI.ConversationExecutedActionPrecondition {
+        conversationPreconditionType: "actionExecuted";
     }
 }

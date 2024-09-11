@@ -8,3 +8,4 @@ export * from "./PreconditionOperator";
 export * from "./ConversationPrecondition";
 export * from "./PreconditionGroup";
 export * from "./PreconditionGroupOperator";
+export * from "./ConversationExecutedActionPrecondition";

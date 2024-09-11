@@ -6,6 +6,7 @@ import * as serializers from "../../../index";
 import * as MavenAGI from "../../../../api/index";
 import * as core from "../../../../core";
 import { MetadataPrecondition } from "./MetadataPrecondition";
+import { ConversationExecutedActionPrecondition } from "./ConversationExecutedActionPrecondition";
 
 export const ConversationPrecondition: core.serialization.Schema<
     serializers.ConversationPrecondition.Raw,
@@ -16,6 +17,7 @@ export const ConversationPrecondition: core.serialization.Schema<
             value: core.serialization.set(core.serialization.string()),
         }),
         metadata: MetadataPrecondition,
+        actionExecuted: ConversationExecutedActionPrecondition,
     })
     .transform<MavenAGI.ConversationPrecondition>({
         transform: (value) => value,
@@ -23,7 +25,10 @@ export const ConversationPrecondition: core.serialization.Schema<
     });
 
 export declare namespace ConversationPrecondition {
-    type Raw = ConversationPrecondition.Tags | ConversationPrecondition.Metadata;
+    type Raw =
+        | ConversationPrecondition.Tags
+        | ConversationPrecondition.Metadata
+        | ConversationPrecondition.ActionExecuted;
 
     interface Tags {
         conversationPreconditionType: "tags";
@@ -32,5 +37,9 @@ export declare namespace ConversationPrecondition {
 
     interface Metadata extends MetadataPrecondition.Raw {
         conversationPreconditionType: "metadata";
+    }
+
+    interface ActionExecuted extends ConversationExecutedActionPrecondition.Raw {
+        conversationPreconditionType: "actionExecuted";
     }
 }
