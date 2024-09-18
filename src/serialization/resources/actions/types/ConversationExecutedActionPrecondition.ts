@@ -5,20 +5,20 @@
 import * as serializers from "../../../index";
 import * as MavenAGI from "../../../../api/index";
 import * as core from "../../../../core";
-import { PreconditionOperator } from "./PreconditionOperator";
+import { PreconditionBase } from "./PreconditionBase";
 
 export const ConversationExecutedActionPrecondition: core.serialization.ObjectSchema<
     serializers.ConversationExecutedActionPrecondition.Raw,
     MavenAGI.ConversationExecutedActionPrecondition
-> = core.serialization.object({
-    operator: PreconditionOperator.optional(),
-    actionId: core.serialization.string(),
-    appId: core.serialization.string().optional(),
-});
+> = core.serialization
+    .object({
+        actionId: core.serialization.string(),
+        appId: core.serialization.string().optional(),
+    })
+    .extend(PreconditionBase);
 
 export declare namespace ConversationExecutedActionPrecondition {
-    interface Raw {
-        operator?: PreconditionOperator.Raw | null;
+    interface Raw extends PreconditionBase.Raw {
         actionId: string;
         appId?: string | null;
     }

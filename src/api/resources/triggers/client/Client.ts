@@ -54,7 +54,7 @@ export class Triggers {
      *             referenceId: "store-in-snowflake"
      *         },
      *         description: "Stores conversation data in Snowflake",
-     *         type: MavenAGI.EventTriggerType.ConversationCreated
+     *         type: "CONVERSATION_CREATED"
      *     })
      */
     public async createOrUpdate(
@@ -73,7 +73,8 @@ export class Triggers {
                 "X-Agent-Id": await core.Supplier.get(this._options.agentId),
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "mavenagi",
-                "X-Fern-SDK-Version": "0.0.0-alpha.20",
+                "X-Fern-SDK-Version": "0.0.0-alpha.21",
+                "User-Agent": "mavenagi/0.0.0-alpha.21",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
             },
@@ -174,7 +175,8 @@ export class Triggers {
                 "X-Agent-Id": await core.Supplier.get(this._options.agentId),
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "mavenagi",
-                "X-Fern-SDK-Version": "0.0.0-alpha.20",
+                "X-Fern-SDK-Version": "0.0.0-alpha.21",
+                "User-Agent": "mavenagi/0.0.0-alpha.21",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
             },
@@ -271,7 +273,8 @@ export class Triggers {
                 "X-Agent-Id": await core.Supplier.get(this._options.agentId),
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "mavenagi",
-                "X-Fern-SDK-Version": "0.0.0-alpha.20",
+                "X-Fern-SDK-Version": "0.0.0-alpha.21",
+                "User-Agent": "mavenagi/0.0.0-alpha.21",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
             },

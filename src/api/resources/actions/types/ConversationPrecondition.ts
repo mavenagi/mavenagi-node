@@ -5,16 +5,13 @@
 import * as MavenAGI from "../../../index";
 
 export type ConversationPrecondition =
-    /**
-     * The tags that must be present in the conversation context for the precondition to be met */
     | MavenAGI.ConversationPrecondition.Tags
     | MavenAGI.ConversationPrecondition.Metadata
     | MavenAGI.ConversationPrecondition.ActionExecuted;
 
 export declare namespace ConversationPrecondition {
-    interface Tags {
+    interface Tags extends MavenAGI.TagsPrecondition {
         conversationPreconditionType: "tags";
-        value: Set<string>;
     }
 
     interface Metadata extends MavenAGI.MetadataPrecondition {

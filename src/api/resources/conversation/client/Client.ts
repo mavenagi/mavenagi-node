@@ -54,16 +54,27 @@ export class Conversation {
      *         conversationId: {
      *             referenceId: "string"
      *         },
-     *         messages: [{}],
+     *         messages: [{
+     *                 conversationMessageId: {
+     *                     referenceId: "string"
+     *                 },
+     *                 userId: {
+     *                     referenceId: "string"
+     *                 },
+     *                 text: "string",
+     *                 userMessageType: "USER",
+     *                 createdAt: "2024-01-15T09:30:00Z",
+     *                 updatedAt: "2024-01-15T09:30:00Z"
+     *             }],
      *         responseConfig: {
-     *             capabilities: [MavenAGI.Capability.Markdown],
+     *             capabilities: ["MARKDOWN"],
      *             isCopilot: true,
-     *             responseLength: MavenAGI.ResponseLength.Short
+     *             responseLength: "SHORT"
      *         },
      *         subject: "string",
      *         url: "string",
-     *         createdAt: new Date("2024-01-15T09:30:00.000Z"),
-     *         updatedAt: new Date("2024-01-15T09:30:00.000Z"),
+     *         createdAt: "2024-01-15T09:30:00Z",
+     *         updatedAt: "2024-01-15T09:30:00Z",
      *         tags: new Set(["string"]),
      *         metadata: {
      *             "string": "string"
@@ -86,7 +97,8 @@ export class Conversation {
                 "X-Agent-Id": await core.Supplier.get(this._options.agentId),
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "mavenagi",
-                "X-Fern-SDK-Version": "0.0.0-alpha.20",
+                "X-Fern-SDK-Version": "0.0.0-alpha.21",
+                "User-Agent": "mavenagi/0.0.0-alpha.21",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
             },
@@ -187,7 +199,8 @@ export class Conversation {
                 "X-Agent-Id": await core.Supplier.get(this._options.agentId),
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "mavenagi",
-                "X-Fern-SDK-Version": "0.0.0-alpha.20",
+                "X-Fern-SDK-Version": "0.0.0-alpha.21",
+                "User-Agent": "mavenagi/0.0.0-alpha.21",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
             },
@@ -278,9 +291,9 @@ export class Conversation {
      *                 referenceId: "string"
      *             },
      *             text: "string",
-     *             userMessageType: MavenAGI.UserConversationMessageType.User,
-     *             createdAt: new Date("2024-01-15T09:30:00.000Z"),
-     *             updatedAt: new Date("2024-01-15T09:30:00.000Z")
+     *             userMessageType: "USER",
+     *             createdAt: "2024-01-15T09:30:00Z",
+     *             updatedAt: "2024-01-15T09:30:00Z"
      *         }])
      */
     public async appendNewMessages(
@@ -300,7 +313,8 @@ export class Conversation {
                 "X-Agent-Id": await core.Supplier.get(this._options.agentId),
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "mavenagi",
-                "X-Fern-SDK-Version": "0.0.0-alpha.20",
+                "X-Fern-SDK-Version": "0.0.0-alpha.21",
+                "User-Agent": "mavenagi/0.0.0-alpha.21",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
             },
@@ -413,7 +427,8 @@ export class Conversation {
                 "X-Agent-Id": await core.Supplier.get(this._options.agentId),
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "mavenagi",
-                "X-Fern-SDK-Version": "0.0.0-alpha.20",
+                "X-Fern-SDK-Version": "0.0.0-alpha.21",
+                "User-Agent": "mavenagi/0.0.0-alpha.21",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
             },
@@ -505,7 +520,8 @@ export class Conversation {
                 "X-Agent-Id": await core.Supplier.get(this._options.agentId),
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "mavenagi",
-                "X-Fern-SDK-Version": "0.0.0-alpha.20",
+                "X-Fern-SDK-Version": "0.0.0-alpha.21",
+                "User-Agent": "mavenagi/0.0.0-alpha.21",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
             },
@@ -623,7 +639,8 @@ export class Conversation {
                 "X-Agent-Id": await core.Supplier.get(this._options.agentId),
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "mavenagi",
-                "X-Fern-SDK-Version": "0.0.0-alpha.20",
+                "X-Fern-SDK-Version": "0.0.0-alpha.21",
+                "User-Agent": "mavenagi/0.0.0-alpha.21",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
             },
@@ -724,7 +741,8 @@ export class Conversation {
                 "X-Agent-Id": await core.Supplier.get(this._options.agentId),
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "mavenagi",
-                "X-Fern-SDK-Version": "0.0.0-alpha.20",
+                "X-Fern-SDK-Version": "0.0.0-alpha.21",
+                "User-Agent": "mavenagi/0.0.0-alpha.21",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
             },
@@ -816,7 +834,7 @@ export class Conversation {
      *         conversationMessageId: {
      *             referenceId: "string"
      *         },
-     *         type: MavenAGI.FeedbackType.ThumbsUp,
+     *         type: "THUMBS_UP",
      *         text: "string"
      *     })
      */
@@ -836,7 +854,8 @@ export class Conversation {
                 "X-Agent-Id": await core.Supplier.get(this._options.agentId),
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "mavenagi",
-                "X-Fern-SDK-Version": "0.0.0-alpha.20",
+                "X-Fern-SDK-Version": "0.0.0-alpha.21",
+                "User-Agent": "mavenagi/0.0.0-alpha.21",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
             },
@@ -946,7 +965,8 @@ export class Conversation {
                 "X-Agent-Id": await core.Supplier.get(this._options.agentId),
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "mavenagi",
-                "X-Fern-SDK-Version": "0.0.0-alpha.20",
+                "X-Fern-SDK-Version": "0.0.0-alpha.21",
+                "User-Agent": "mavenagi/0.0.0-alpha.21",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
             },
@@ -1051,7 +1071,8 @@ export class Conversation {
                 "X-Agent-Id": await core.Supplier.get(this._options.agentId),
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "mavenagi",
-                "X-Fern-SDK-Version": "0.0.0-alpha.20",
+                "X-Fern-SDK-Version": "0.0.0-alpha.21",
+                "User-Agent": "mavenagi/0.0.0-alpha.21",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
             },

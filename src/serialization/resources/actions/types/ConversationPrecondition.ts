@@ -5,6 +5,7 @@
 import * as serializers from "../../../index";
 import * as MavenAGI from "../../../../api/index";
 import * as core from "../../../../core";
+import { TagsPrecondition } from "./TagsPrecondition";
 import { MetadataPrecondition } from "./MetadataPrecondition";
 import { ConversationExecutedActionPrecondition } from "./ConversationExecutedActionPrecondition";
 
@@ -13,9 +14,7 @@ export const ConversationPrecondition: core.serialization.Schema<
     MavenAGI.ConversationPrecondition
 > = core.serialization
     .union("conversationPreconditionType", {
-        tags: core.serialization.object({
-            value: core.serialization.set(core.serialization.string()),
-        }),
+        tags: TagsPrecondition,
         metadata: MetadataPrecondition,
         actionExecuted: ConversationExecutedActionPrecondition,
     })
@@ -30,9 +29,8 @@ export declare namespace ConversationPrecondition {
         | ConversationPrecondition.Metadata
         | ConversationPrecondition.ActionExecuted;
 
-    interface Tags {
+    interface Tags extends TagsPrecondition.Raw {
         conversationPreconditionType: "tags";
-        value: string[];
     }
 
     interface Metadata extends MetadataPrecondition.Raw {

@@ -55,12 +55,12 @@ export class Users {
      *         },
      *         identifiers: new Set([{
      *                 value: "joe@myapp.com",
-     *                 type: MavenAGI.AppUserIdentifyingPropertyType.Email
+     *                 type: "EMAIL"
      *             }]),
      *         data: {
      *             "name": {
      *                 value: "Joe",
-     *                 visibility: MavenAGI.VisibilityType.Visible
+     *                 visibility: "VISIBLE"
      *             }
      *         }
      *     })
@@ -81,7 +81,8 @@ export class Users {
                 "X-Agent-Id": await core.Supplier.get(this._options.agentId),
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "mavenagi",
-                "X-Fern-SDK-Version": "0.0.0-alpha.20",
+                "X-Fern-SDK-Version": "0.0.0-alpha.21",
+                "User-Agent": "mavenagi/0.0.0-alpha.21",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
             },
@@ -179,7 +180,8 @@ export class Users {
                 "X-Agent-Id": await core.Supplier.get(this._options.agentId),
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "mavenagi",
-                "X-Fern-SDK-Version": "0.0.0-alpha.20",
+                "X-Fern-SDK-Version": "0.0.0-alpha.21",
+                "User-Agent": "mavenagi/0.0.0-alpha.21",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
             },

@@ -40,7 +40,7 @@ await client.actions.createOrUpdate({
     userFormParameters: [],
     precondition: {
         preconditionType: "group",
-        operator: MavenAGI.PreconditionGroupOperator.And,
+        operator: "AND",
         preconditions: [
             {
                 preconditionType: "user",
@@ -304,16 +304,29 @@ await client.conversation.initialize({
     conversationId: {
         referenceId: "string",
     },
-    messages: [{}],
+    messages: [
+        {
+            conversationMessageId: {
+                referenceId: "string",
+            },
+            userId: {
+                referenceId: "string",
+            },
+            text: "string",
+            userMessageType: "USER",
+            createdAt: "2024-01-15T09:30:00Z",
+            updatedAt: "2024-01-15T09:30:00Z",
+        },
+    ],
     responseConfig: {
-        capabilities: [MavenAGI.Capability.Markdown],
+        capabilities: ["MARKDOWN"],
         isCopilot: true,
-        responseLength: MavenAGI.ResponseLength.Short,
+        responseLength: "SHORT",
     },
     subject: "string",
     url: "string",
-    createdAt: new Date("2024-01-15T09:30:00.000Z"),
-    updatedAt: new Date("2024-01-15T09:30:00.000Z"),
+    createdAt: "2024-01-15T09:30:00Z",
+    updatedAt: "2024-01-15T09:30:00Z",
     tags: new Set(["string"]),
     metadata: {
         string: "string",
@@ -453,9 +466,9 @@ await client.conversation.appendNewMessages("string", [
             referenceId: "string",
         },
         text: "string",
-        userMessageType: MavenAGI.UserConversationMessageType.User,
-        createdAt: new Date("2024-01-15T09:30:00.000Z"),
-        updatedAt: new Date("2024-01-15T09:30:00.000Z"),
+        userMessageType: "USER",
+        createdAt: "2024-01-15T09:30:00Z",
+        updatedAt: "2024-01-15T09:30:00Z",
     },
 ]);
 ```
@@ -836,7 +849,7 @@ await client.conversation.createFeedback({
     conversationMessageId: {
         referenceId: "string",
     },
-    type: MavenAGI.FeedbackType.ThumbsUp,
+    type: "THUMBS_UP",
     text: "string",
 });
 ```
@@ -1059,7 +1072,7 @@ await client.knowledge.createOrUpdateKnowledgeBase({
         referenceId: "help-center",
     },
     name: "Help center",
-    type: MavenAGI.KnowledgeBaseType.Api,
+    type: "API",
 });
 ```
 
@@ -1187,7 +1200,7 @@ Create a new knowledge base version. Only supported on API knowledge bases. Will
 
 ```typescript
 await client.knowledge.createKnowledgeBaseVersion("help-center", {
-    type: MavenAGI.KnowledgeBaseVersionType.Full,
+    type: "FULL",
 });
 ```
 
@@ -1326,7 +1339,7 @@ await client.knowledge.createKnowledgeDocument("help-center", {
     knowledgeDocumentId: {
         referenceId: "getting-started",
     },
-    contentType: MavenAGI.KnowledgeDocumentContentType.Markdown,
+    contentType: "MARKDOWN",
     content: "## Getting started\\nThis is a getting started guide for the help center.",
     title: "Getting started",
 });
@@ -1404,7 +1417,7 @@ await client.knowledge.updateKnowledgeDocument("help-center", {
     knowledgeDocumentId: {
         referenceId: "getting-started",
     },
-    contentType: MavenAGI.KnowledgeDocumentContentType.Markdown,
+    contentType: "MARKDOWN",
     content: "## Getting started\\nThis is a getting started guide for the help center.",
     title: "Getting started",
 });
@@ -1556,7 +1569,7 @@ await client.triggers.createOrUpdate({
         referenceId: "store-in-snowflake",
     },
     description: "Stores conversation data in Snowflake",
-    type: MavenAGI.EventTriggerType.ConversationCreated,
+    type: "CONVERSATION_CREATED",
 });
 ```
 
@@ -1755,13 +1768,13 @@ await client.users.createOrUpdate({
     identifiers: new Set([
         {
             value: "joe@myapp.com",
-            type: MavenAGI.AppUserIdentifyingPropertyType.Email,
+            type: "EMAIL",
         },
     ]),
     data: {
         name: {
             value: "Joe",
-            visibility: MavenAGI.VisibilityType.Visible,
+            visibility: "VISIBLE",
         },
     },
 });

@@ -16,7 +16,7 @@ npm i -s mavenagi
 Instantiate and use the client with the following:
 
 ```typescript
-import { MavenAGIClient, MavenAGI } from "mavenagi";
+import { MavenAGIClient } from "mavenagi";
 
 const client = new MavenAGIClient({
     appId: "YOUR_APP_ID",
@@ -28,16 +28,29 @@ await client.conversation.initialize({
     conversationId: {
         referenceId: "string",
     },
-    messages: [{}],
+    messages: [
+        {
+            conversationMessageId: {
+                referenceId: "string",
+            },
+            userId: {
+                referenceId: "string",
+            },
+            text: "string",
+            userMessageType: "USER",
+            createdAt: "2024-01-15T09:30:00Z",
+            updatedAt: "2024-01-15T09:30:00Z",
+        },
+    ],
     responseConfig: {
-        capabilities: [MavenAGI.Capability.Markdown],
+        capabilities: ["MARKDOWN"],
         isCopilot: true,
-        responseLength: MavenAGI.ResponseLength.Short,
+        responseLength: "SHORT",
     },
     subject: "string",
     url: "string",
-    createdAt: new Date("2024-01-15T09:30:00.000Z"),
-    updatedAt: new Date("2024-01-15T09:30:00.000Z"),
+    createdAt: "2024-01-15T09:30:00Z",
+    updatedAt: "2024-01-15T09:30:00Z",
     tags: new Set(["string"]),
     metadata: {
         string: "string",

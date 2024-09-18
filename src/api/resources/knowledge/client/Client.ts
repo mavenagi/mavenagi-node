@@ -54,7 +54,7 @@ export class Knowledge {
      *             referenceId: "help-center"
      *         },
      *         name: "Help center",
-     *         type: MavenAGI.KnowledgeBaseType.Api
+     *         type: "API"
      *     })
      */
     public async createOrUpdateKnowledgeBase(
@@ -73,7 +73,8 @@ export class Knowledge {
                 "X-Agent-Id": await core.Supplier.get(this._options.agentId),
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "mavenagi",
-                "X-Fern-SDK-Version": "0.0.0-alpha.20",
+                "X-Fern-SDK-Version": "0.0.0-alpha.21",
+                "User-Agent": "mavenagi/0.0.0-alpha.21",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
             },
@@ -174,7 +175,8 @@ export class Knowledge {
                 "X-Agent-Id": await core.Supplier.get(this._options.agentId),
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "mavenagi",
-                "X-Fern-SDK-Version": "0.0.0-alpha.20",
+                "X-Fern-SDK-Version": "0.0.0-alpha.21",
+                "User-Agent": "mavenagi/0.0.0-alpha.21",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
             },
@@ -258,7 +260,7 @@ export class Knowledge {
      *
      * @example
      *     await client.knowledge.createKnowledgeBaseVersion("help-center", {
-     *         type: MavenAGI.KnowledgeBaseVersionType.Full
+     *         type: "FULL"
      *     })
      */
     public async createKnowledgeBaseVersion(
@@ -278,7 +280,8 @@ export class Knowledge {
                 "X-Agent-Id": await core.Supplier.get(this._options.agentId),
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "mavenagi",
-                "X-Fern-SDK-Version": "0.0.0-alpha.20",
+                "X-Fern-SDK-Version": "0.0.0-alpha.21",
+                "User-Agent": "mavenagi/0.0.0-alpha.21",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
             },
@@ -379,7 +382,8 @@ export class Knowledge {
                 "X-Agent-Id": await core.Supplier.get(this._options.agentId),
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "mavenagi",
-                "X-Fern-SDK-Version": "0.0.0-alpha.20",
+                "X-Fern-SDK-Version": "0.0.0-alpha.21",
+                "User-Agent": "mavenagi/0.0.0-alpha.21",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
             },
@@ -461,7 +465,7 @@ export class Knowledge {
      *         knowledgeDocumentId: {
      *             referenceId: "getting-started"
      *         },
-     *         contentType: MavenAGI.KnowledgeDocumentContentType.Markdown,
+     *         contentType: "MARKDOWN",
      *         content: "## Getting started\\nThis is a getting started guide for the help center.",
      *         title: "Getting started"
      *     })
@@ -483,7 +487,8 @@ export class Knowledge {
                 "X-Agent-Id": await core.Supplier.get(this._options.agentId),
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "mavenagi",
-                "X-Fern-SDK-Version": "0.0.0-alpha.20",
+                "X-Fern-SDK-Version": "0.0.0-alpha.21",
+                "User-Agent": "mavenagi/0.0.0-alpha.21",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
             },
@@ -571,7 +576,7 @@ export class Knowledge {
      *         knowledgeDocumentId: {
      *             referenceId: "getting-started"
      *         },
-     *         contentType: MavenAGI.KnowledgeDocumentContentType.Markdown,
+     *         contentType: "MARKDOWN",
      *         content: "## Getting started\\nThis is a getting started guide for the help center.",
      *         title: "Getting started"
      *     })
@@ -593,7 +598,8 @@ export class Knowledge {
                 "X-Agent-Id": await core.Supplier.get(this._options.agentId),
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "mavenagi",
-                "X-Fern-SDK-Version": "0.0.0-alpha.20",
+                "X-Fern-SDK-Version": "0.0.0-alpha.21",
+                "User-Agent": "mavenagi/0.0.0-alpha.21",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
             },
@@ -698,7 +704,8 @@ export class Knowledge {
                 "X-Agent-Id": await core.Supplier.get(this._options.agentId),
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "mavenagi",
-                "X-Fern-SDK-Version": "0.0.0-alpha.20",
+                "X-Fern-SDK-Version": "0.0.0-alpha.21",
+                "User-Agent": "mavenagi/0.0.0-alpha.21",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
             },
