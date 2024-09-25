@@ -13,6 +13,8 @@ export const ConversationAnalysis: core.serialization.ObjectSchema<
 > = core.serialization.object({
     userRequest: core.serialization.string().optional(),
     agentResponse: core.serialization.string().optional(),
+    resolutionStatus: core.serialization.string().optional(),
+    category: core.serialization.string().optional(),
     sentiment: Sentiment.optional(),
 });
 
@@ -20,6 +22,8 @@ export declare namespace ConversationAnalysis {
     interface Raw {
         userRequest?: string | null;
         agentResponse?: string | null;
+        resolutionStatus?: string | null;
+        category?: string | null;
         sentiment?: Sentiment.Raw | null;
     }
 }
