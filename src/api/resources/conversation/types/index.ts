@@ -1,5 +1,6 @@
 export * from "./AskRequest";
 export * from "./ResponseConfig";
+export * from "./Attachment";
 export * from "./Capability";
 export * from "./ResponseLength";
 export * from "./GenerateMavenSuggestionsRequest";

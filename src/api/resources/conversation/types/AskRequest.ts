@@ -13,7 +13,11 @@ import * as MavenAGI from "../../../index";
  *         userId: {
  *             referenceId: "user-1"
  *         },
- *         text: "How do I reset my password?"
+ *         text: "How do I reset my password?",
+ *         attachments: [{
+ *                 type: "image/png",
+ *                 content: "iVBORw0KGgo..."
+ *             }]
  *     }
  */
 export interface AskRequest {
@@ -23,4 +27,6 @@ export interface AskRequest {
     userId: MavenAGI.EntityIdBase;
     /** The text of the message */
     text: string;
+    /** The attachments to the message. */
+    attachments?: MavenAGI.Attachment[];
 }

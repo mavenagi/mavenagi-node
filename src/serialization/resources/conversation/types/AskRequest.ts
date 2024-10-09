@@ -6,12 +6,14 @@ import * as serializers from "../../../index";
 import * as MavenAGI from "../../../../api/index";
 import * as core from "../../../../core";
 import { EntityIdBase } from "../../commons/types/EntityIdBase";
+import { Attachment } from "./Attachment";
 
 export const AskRequest: core.serialization.ObjectSchema<serializers.AskRequest.Raw, MavenAGI.AskRequest> =
     core.serialization.object({
         conversationMessageId: EntityIdBase,
         userId: EntityIdBase,
         text: core.serialization.string(),
+        attachments: core.serialization.list(Attachment).optional(),
     });
 
 export declare namespace AskRequest {
@@ -19,5 +21,6 @@ export declare namespace AskRequest {
         conversationMessageId: EntityIdBase.Raw;
         userId: EntityIdBase.Raw;
         text: string;
+        attachments?: Attachment.Raw[] | null;
     }
 }

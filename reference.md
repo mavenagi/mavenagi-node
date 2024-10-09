@@ -559,6 +559,12 @@ await client.conversation.ask("string", {
         referenceId: "user-1",
     },
     text: "How do I reset my password?",
+    attachments: [
+        {
+            type: "image/png",
+            content: "iVBORw0KGgo...",
+        },
+    ],
 });
 ```
 
@@ -638,6 +644,12 @@ await client.conversation.askStream("conversation-0", {
         referenceId: "user-1",
     },
     text: "How do I reset my password?",
+    attachments: [
+        {
+            type: "image/png",
+            content: "iVBORw0KGgo...",
+        },
+    ],
 });
 ```
 
