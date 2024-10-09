@@ -97,8 +97,8 @@ export class Conversation {
                 "X-Agent-Id": await core.Supplier.get(this._options.agentId),
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "mavenagi",
-                "X-Fern-SDK-Version": "0.0.0-alpha.22",
-                "User-Agent": "mavenagi/0.0.0-alpha.22",
+                "X-Fern-SDK-Version": "0.0.0-alpha.23",
+                "User-Agent": "mavenagi/0.0.0-alpha.23",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
             },
@@ -174,6 +174,7 @@ export class Conversation {
      * Get a conversation
      *
      * @param {string} conversationId - The ID of the conversation to get
+     * @param {MavenAGI.ConversationGetRequest} request
      * @param {Conversation.RequestOptions} requestOptions - Request-specific configuration.
      *
      * @throws {@link MavenAGI.NotFoundError}
@@ -181,12 +182,21 @@ export class Conversation {
      * @throws {@link MavenAGI.ServerError}
      *
      * @example
-     *     await client.conversation.get("string")
+     *     await client.conversation.get("string", {
+     *         appId: "string"
+     *     })
      */
     public async get(
         conversationId: string,
+        request: MavenAGI.ConversationGetRequest = {},
         requestOptions?: Conversation.RequestOptions
     ): Promise<MavenAGI.ConversationResponse> {
+        const { appId } = request;
+        const _queryParams: Record<string, string | string[] | object | object[]> = {};
+        if (appId != null) {
+            _queryParams["appId"] = appId;
+        }
+
         const _response = await (this._options.fetcher ?? core.fetcher)({
             url: urlJoin(
                 (await core.Supplier.get(this._options.environment)) ?? environments.MavenAGIEnvironment.Production,
@@ -199,12 +209,13 @@ export class Conversation {
                 "X-Agent-Id": await core.Supplier.get(this._options.agentId),
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "mavenagi",
-                "X-Fern-SDK-Version": "0.0.0-alpha.22",
-                "User-Agent": "mavenagi/0.0.0-alpha.22",
+                "X-Fern-SDK-Version": "0.0.0-alpha.23",
+                "User-Agent": "mavenagi/0.0.0-alpha.23",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
             },
             contentType: "application/json",
+            queryParameters: _queryParams,
             requestType: "json",
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
             maxRetries: requestOptions?.maxRetries,
@@ -313,8 +324,8 @@ export class Conversation {
                 "X-Agent-Id": await core.Supplier.get(this._options.agentId),
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "mavenagi",
-                "X-Fern-SDK-Version": "0.0.0-alpha.22",
-                "User-Agent": "mavenagi/0.0.0-alpha.22",
+                "X-Fern-SDK-Version": "0.0.0-alpha.23",
+                "User-Agent": "mavenagi/0.0.0-alpha.23",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
             },
@@ -427,8 +438,8 @@ export class Conversation {
                 "X-Agent-Id": await core.Supplier.get(this._options.agentId),
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "mavenagi",
-                "X-Fern-SDK-Version": "0.0.0-alpha.22",
-                "User-Agent": "mavenagi/0.0.0-alpha.22",
+                "X-Fern-SDK-Version": "0.0.0-alpha.23",
+                "User-Agent": "mavenagi/0.0.0-alpha.23",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
             },
@@ -520,8 +531,8 @@ export class Conversation {
                 "X-Agent-Id": await core.Supplier.get(this._options.agentId),
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "mavenagi",
-                "X-Fern-SDK-Version": "0.0.0-alpha.22",
-                "User-Agent": "mavenagi/0.0.0-alpha.22",
+                "X-Fern-SDK-Version": "0.0.0-alpha.23",
+                "User-Agent": "mavenagi/0.0.0-alpha.23",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
             },
@@ -639,8 +650,8 @@ export class Conversation {
                 "X-Agent-Id": await core.Supplier.get(this._options.agentId),
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "mavenagi",
-                "X-Fern-SDK-Version": "0.0.0-alpha.22",
-                "User-Agent": "mavenagi/0.0.0-alpha.22",
+                "X-Fern-SDK-Version": "0.0.0-alpha.23",
+                "User-Agent": "mavenagi/0.0.0-alpha.23",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
             },
@@ -741,8 +752,8 @@ export class Conversation {
                 "X-Agent-Id": await core.Supplier.get(this._options.agentId),
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "mavenagi",
-                "X-Fern-SDK-Version": "0.0.0-alpha.22",
-                "User-Agent": "mavenagi/0.0.0-alpha.22",
+                "X-Fern-SDK-Version": "0.0.0-alpha.23",
+                "User-Agent": "mavenagi/0.0.0-alpha.23",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
             },
@@ -854,8 +865,8 @@ export class Conversation {
                 "X-Agent-Id": await core.Supplier.get(this._options.agentId),
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "mavenagi",
-                "X-Fern-SDK-Version": "0.0.0-alpha.22",
-                "User-Agent": "mavenagi/0.0.0-alpha.22",
+                "X-Fern-SDK-Version": "0.0.0-alpha.23",
+                "User-Agent": "mavenagi/0.0.0-alpha.23",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
             },
@@ -965,8 +976,8 @@ export class Conversation {
                 "X-Agent-Id": await core.Supplier.get(this._options.agentId),
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "mavenagi",
-                "X-Fern-SDK-Version": "0.0.0-alpha.22",
-                "User-Agent": "mavenagi/0.0.0-alpha.22",
+                "X-Fern-SDK-Version": "0.0.0-alpha.23",
+                "User-Agent": "mavenagi/0.0.0-alpha.23",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
             },
@@ -1071,8 +1082,8 @@ export class Conversation {
                 "X-Agent-Id": await core.Supplier.get(this._options.agentId),
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "mavenagi",
-                "X-Fern-SDK-Version": "0.0.0-alpha.22",
-                "User-Agent": "mavenagi/0.0.0-alpha.22",
+                "X-Fern-SDK-Version": "0.0.0-alpha.23",
+                "User-Agent": "mavenagi/0.0.0-alpha.23",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
             },

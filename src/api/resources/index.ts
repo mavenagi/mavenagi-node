@@ -11,3 +11,4 @@ export * from "./triggers/types";
 export * from "./commons/errors";
 export * as appSettings from "./appSettings";
 export * as users from "./users";
+export * from "./conversation/client/requests";

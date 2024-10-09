@@ -1,6 +1,6 @@
 # Mavenagi TypeScript Library
 
-[![fern shield](https://img.shields.io/badge/%F0%9F%8C%BF-SDK%20generated%20by%20Fern-brightgreen)](https://github.com/fern-api/fern)
+[![fern shield](https://img.shields.io/badge/%F0%9F%8C%BF-Built%20with%20Fern-brightgreen)](https://buildwithfern.com?utm_source=github&utm_medium=github&utm_campaign=readme&utm_source=https%3A%2F%2Fgithub.com%2Fmavenagi%2Fmavenagi-node)
 [![npm shield](https://img.shields.io/npm/v/mavenagi)](https://www.npmjs.com/package/mavenagi)
 
 The Mavenagi TypeScript library provides convenient access to the Mavenagi API from TypeScript.
@@ -58,23 +58,17 @@ await client.conversation.initialize({
 });
 ```
 
-## Exception Handling
+## Request And Response Types
 
-When the API returns a non-success status code (4xx or 5xx response), a subclass of the following error
-will be thrown.
+The SDK exports all request and response types as TypeScript interfaces. Simply import them with the
+following namespace:
 
 ```typescript
-import { MavenAGIError } from "mavenagi";
+import { MavenAGI } from "mavenagi";
 
-try {
-    await client.conversation.initialize(...);
-} catch (err) {
-    if (err instanceof MavenAGIError) {
-        console.log(err.statusCode);
-        console.log(err.message);
-        console.log(err.body);
-    }
-}
+const request: MavenAGI.ConversationGetRequest = {
+    ...
+};
 ```
 
 ## Aborting Requests
@@ -113,6 +107,25 @@ const client = new MavenAGIClient({
     ...
     fetcher: // provide your implementation here
 });
+```
+
+## Exception Handling
+
+When the API returns a non-success status code (4xx or 5xx response), a subclass of the following error
+will be thrown.
+
+```typescript
+import { MavenAGIError } from "mavenagi";
+
+try {
+    await client.conversation.initialize(...);
+} catch (err) {
+    if (err instanceof MavenAGIError) {
+        console.log(err.statusCode);
+        console.log(err.message);
+        console.log(err.body);
+    }
+}
 ```
 
 ## Advanced

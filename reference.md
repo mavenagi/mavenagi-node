@@ -366,7 +366,7 @@ await client.conversation.initialize({
 </dl>
 </details>
 
-<details><summary><code>client.conversation.<a href="/src/api/resources/conversation/client/Client.ts">get</a>(conversationId) -> MavenAGI.ConversationResponse</code></summary>
+<details><summary><code>client.conversation.<a href="/src/api/resources/conversation/client/Client.ts">get</a>(conversationId, { ...params }) -> MavenAGI.ConversationResponse</code></summary>
 <dl>
 <dd>
 
@@ -394,7 +394,9 @@ Get a conversation
 <dd>
 
 ```typescript
-await client.conversation.get("string");
+await client.conversation.get("string", {
+    appId: "string",
+});
 ```
 
 </dd>
@@ -411,6 +413,14 @@ await client.conversation.get("string");
 <dd>
 
 **conversationId:** `string` — The ID of the conversation to get
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `MavenAGI.ConversationGetRequest`
 
 </dd>
 </dl>
