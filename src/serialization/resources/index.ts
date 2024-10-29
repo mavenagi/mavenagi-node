@@ -6,6 +6,8 @@ export * as conversation from "./conversation";
 export * from "./conversation/types";
 export * as knowledge from "./knowledge";
 export * from "./knowledge/types";
+export * as translations from "./translations";
+export * from "./translations/types";
 export * as triggers from "./triggers";
 export * from "./triggers/types";
 export * as appSettings from "./appSettings";

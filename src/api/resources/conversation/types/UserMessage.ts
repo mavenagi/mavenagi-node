@@ -7,4 +7,6 @@ import * as MavenAGI from "../../../index";
 export interface UserMessage extends MavenAGI.UserMessageBase {
     /** The ID that uniquely identifies this message within the conversation */
     conversationMessageId: MavenAGI.EntityId;
+    /** The language of the message in ISO 639-1 code format */
+    language?: string;
 }

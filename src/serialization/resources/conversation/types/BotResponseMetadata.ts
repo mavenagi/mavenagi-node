@@ -13,11 +13,13 @@ export const BotResponseMetadata: core.serialization.ObjectSchema<
 > = core.serialization.object({
     followupQuestions: core.serialization.list(core.serialization.string()),
     sources: core.serialization.list(Source),
+    language: core.serialization.string().optional(),
 });
 
 export declare namespace BotResponseMetadata {
     interface Raw {
         followupQuestions: string[];
         sources: Source.Raw[];
+        language?: string | null;
     }
 }

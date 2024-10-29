@@ -1556,6 +1556,74 @@ await client.knowledge.deleteKnowledgeDocument("help-center", "getting-started")
 </dl>
 </details>
 
+## Translations
+
+<details><summary><code>client.translations.<a href="/src/api/resources/translations/client/Client.ts">translate</a>({ ...params }) -> MavenAGI.TranslationResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Translate text from one language to another
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.translations.translate({
+    text: "Hello world",
+    targetLanguage: "es",
+});
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `MavenAGI.TranslationRequest`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Translations.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
 ## Triggers
 
 <details><summary><code>client.triggers.<a href="/src/api/resources/triggers/client/Client.ts">createOrUpdate</a>({ ...params }) -> MavenAGI.EventTriggerResponse</code></summary>

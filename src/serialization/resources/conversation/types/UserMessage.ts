@@ -12,11 +12,13 @@ export const UserMessage: core.serialization.ObjectSchema<serializers.UserMessag
     core.serialization
         .object({
             conversationMessageId: EntityId,
+            language: core.serialization.string().optional(),
         })
         .extend(UserMessageBase);
 
 export declare namespace UserMessage {
     interface Raw extends UserMessageBase.Raw {
         conversationMessageId: EntityId.Raw;
+        language?: string | null;
     }
 }

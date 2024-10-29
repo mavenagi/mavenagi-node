@@ -8,6 +8,7 @@ import { Actions } from "./api/resources/actions/client/Client";
 import { AppSettings } from "./api/resources/appSettings/client/Client";
 import { Conversation } from "./api/resources/conversation/client/Client";
 import { Knowledge } from "./api/resources/knowledge/client/Client";
+import { Translations } from "./api/resources/translations/client/Client";
 import { Triggers } from "./api/resources/triggers/client/Client";
 import { Users } from "./api/resources/users/client/Client";
 
@@ -62,6 +63,12 @@ export class MavenAGIClient {
 
     public get knowledge(): Knowledge {
         return (this._knowledge ??= new Knowledge(this._options));
+    }
+
+    protected _translations: Translations | undefined;
+
+    public get translations(): Translations {
+        return (this._translations ??= new Translations(this._options));
     }
 
     protected _triggers: Triggers | undefined;

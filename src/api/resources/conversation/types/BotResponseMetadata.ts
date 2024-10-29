@@ -7,4 +7,6 @@ import * as MavenAGI from "../../../index";
 export interface BotResponseMetadata {
     followupQuestions: string[];
     sources: MavenAGI.Source[];
+    /** The language of the message in ISO 639-1 code format */
+    language?: string;
 }

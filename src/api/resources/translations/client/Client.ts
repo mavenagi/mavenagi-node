@@ -9,7 +9,7 @@ import * as serializers from "../../../../serialization/index";
 import urlJoin from "url-join";
 import * as errors from "../../../../errors/index";
 
-export declare namespace Users {
+export declare namespace Translations {
     interface Options {
         environment?: core.Supplier<environments.MavenAGIEnvironment | string>;
         appId?: core.Supplier<string | undefined>;
@@ -35,46 +35,35 @@ export declare namespace Users {
     }
 }
 
-export class Users {
-    constructor(protected readonly _options: Users.Options) {}
+export class Translations {
+    constructor(protected readonly _options: Translations.Options) {}
 
     /**
-     * Update a user or create it if it doesn't exist.
+     * Translate text from one language to another
      *
-     * @param {MavenAGI.AppUserRequest} request
-     * @param {Users.RequestOptions} requestOptions - Request-specific configuration.
+     * @param {MavenAGI.TranslationRequest} request
+     * @param {Translations.RequestOptions} requestOptions - Request-specific configuration.
      *
      * @throws {@link MavenAGI.NotFoundError}
      * @throws {@link MavenAGI.BadRequestError}
      * @throws {@link MavenAGI.ServerError}
      *
      * @example
-     *     await client.users.createOrUpdate({
-     *         userId: {
-     *             referenceId: "user-0"
-     *         },
-     *         identifiers: new Set([{
-     *                 value: "joe@myapp.com",
-     *                 type: "EMAIL"
-     *             }]),
-     *         data: {
-     *             "name": {
-     *                 value: "Joe",
-     *                 visibility: "VISIBLE"
-     *             }
-     *         }
+     *     await client.translations.translate({
+     *         text: "Hello world",
+     *         targetLanguage: "es"
      *     })
      */
-    public async createOrUpdate(
-        request: MavenAGI.AppUserRequest,
-        requestOptions?: Users.RequestOptions
-    ): Promise<MavenAGI.AppUserResponse> {
+    public async translate(
+        request: MavenAGI.TranslationRequest,
+        requestOptions?: Translations.RequestOptions
+    ): Promise<MavenAGI.TranslationResponse> {
         const _response = await (this._options.fetcher ?? core.fetcher)({
             url: urlJoin(
                 (await core.Supplier.get(this._options.environment)) ?? environments.MavenAGIEnvironment.Production,
-                "/v1/users"
+                "/v1/translations/translate"
             ),
-            method: "PUT",
+            method: "POST",
             headers: {
                 Authorization: await this._getAuthorizationHeader(),
                 "X-Organization-Id": await core.Supplier.get(this._options.organizationId),
@@ -88,111 +77,13 @@ export class Users {
             },
             contentType: "application/json",
             requestType: "json",
-            body: serializers.AppUserRequest.jsonOrThrow(request, { unrecognizedObjectKeys: "strip" }),
+            body: serializers.TranslationRequest.jsonOrThrow(request, { unrecognizedObjectKeys: "strip" }),
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
             maxRetries: requestOptions?.maxRetries,
             abortSignal: requestOptions?.abortSignal,
         });
         if (_response.ok) {
-            return serializers.AppUserResponse.parseOrThrow(_response.body, {
-                unrecognizedObjectKeys: "passthrough",
-                allowUnrecognizedUnionMembers: true,
-                allowUnrecognizedEnumValues: true,
-                breadcrumbsPrefix: ["response"],
-            });
-        }
-
-        if (_response.error.reason === "status-code") {
-            switch (_response.error.statusCode) {
-                case 404:
-                    throw new MavenAGI.NotFoundError(
-                        serializers.ErrorMessage.parseOrThrow(_response.error.body, {
-                            unrecognizedObjectKeys: "passthrough",
-                            allowUnrecognizedUnionMembers: true,
-                            allowUnrecognizedEnumValues: true,
-                            breadcrumbsPrefix: ["response"],
-                        })
-                    );
-                case 400:
-                    throw new MavenAGI.BadRequestError(
-                        serializers.ErrorMessage.parseOrThrow(_response.error.body, {
-                            unrecognizedObjectKeys: "passthrough",
-                            allowUnrecognizedUnionMembers: true,
-                            allowUnrecognizedEnumValues: true,
-                            breadcrumbsPrefix: ["response"],
-                        })
-                    );
-                case 500:
-                    throw new MavenAGI.ServerError(
-                        serializers.ErrorMessage.parseOrThrow(_response.error.body, {
-                            unrecognizedObjectKeys: "passthrough",
-                            allowUnrecognizedUnionMembers: true,
-                            allowUnrecognizedEnumValues: true,
-                            breadcrumbsPrefix: ["response"],
-                        })
-                    );
-                default:
-                    throw new errors.MavenAGIError({
-                        statusCode: _response.error.statusCode,
-                        body: _response.error.body,
-                    });
-            }
-        }
-
-        switch (_response.error.reason) {
-            case "non-json":
-                throw new errors.MavenAGIError({
-                    statusCode: _response.error.statusCode,
-                    body: _response.error.rawBody,
-                });
-            case "timeout":
-                throw new errors.MavenAGITimeoutError();
-            case "unknown":
-                throw new errors.MavenAGIError({
-                    message: _response.error.errorMessage,
-                });
-        }
-    }
-
-    /**
-     * Get a user by its supplied ID
-     *
-     * @param {string} userId - The reference ID of the user to get. All other entity ID fields are inferred from the request.
-     * @param {Users.RequestOptions} requestOptions - Request-specific configuration.
-     *
-     * @throws {@link MavenAGI.NotFoundError}
-     * @throws {@link MavenAGI.BadRequestError}
-     * @throws {@link MavenAGI.ServerError}
-     *
-     * @example
-     *     await client.users.get("user-0")
-     */
-    public async get(userId: string, requestOptions?: Users.RequestOptions): Promise<MavenAGI.AppUserResponse> {
-        const _response = await (this._options.fetcher ?? core.fetcher)({
-            url: urlJoin(
-                (await core.Supplier.get(this._options.environment)) ?? environments.MavenAGIEnvironment.Production,
-                `/v1/users/${encodeURIComponent(userId)}`
-            ),
-            method: "GET",
-            headers: {
-                Authorization: await this._getAuthorizationHeader(),
-                "X-Organization-Id": await core.Supplier.get(this._options.organizationId),
-                "X-Agent-Id": await core.Supplier.get(this._options.agentId),
-                "X-Fern-Language": "JavaScript",
-                "X-Fern-SDK-Name": "mavenagi",
-                "X-Fern-SDK-Version": "0.0.0-alpha.28",
-                "User-Agent": "mavenagi/0.0.0-alpha.28",
-                "X-Fern-Runtime": core.RUNTIME.type,
-                "X-Fern-Runtime-Version": core.RUNTIME.version,
-            },
-            contentType: "application/json",
-            requestType: "json",
-            timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
-            maxRetries: requestOptions?.maxRetries,
-            abortSignal: requestOptions?.abortSignal,
-        });
-        if (_response.ok) {
-            return serializers.AppUserResponse.parseOrThrow(_response.body, {
+            return serializers.TranslationResponse.parseOrThrow(_response.body, {
                 unrecognizedObjectKeys: "passthrough",
                 allowUnrecognizedUnionMembers: true,
                 allowUnrecognizedEnumValues: true,
