@@ -1,6 +1,6 @@
 {
     "name": "mavenagi",
-    "version": "0.0.0-alpha.28",
+    "version": "0.0.0-alpha.29",
     "private": false,
     "repository": "https://github.com/mavenagi/mavenagi-node",
     "main": "./index.js",
