@@ -8,10 +8,10 @@ import * as MavenAGI from "../../../index";
  * @example
  *     {
  *         conversationMessageId: {
- *             referenceId: "message-1"
+ *             referenceId: "message-0"
  *         },
  *         userId: {
- *             referenceId: "user-1"
+ *             referenceId: "user-0"
  *         },
  *         text: "How do I reset my password?",
  *         attachments: [{

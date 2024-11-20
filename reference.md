@@ -304,20 +304,7 @@ await client.conversation.initialize({
     conversationId: {
         referenceId: "string",
     },
-    messages: [
-        {
-            conversationMessageId: {
-                referenceId: "string",
-            },
-            userId: {
-                referenceId: "string",
-            },
-            text: "string",
-            userMessageType: "USER",
-            createdAt: "2024-01-15T09:30:00Z",
-            updatedAt: "2024-01-15T09:30:00Z",
-        },
-    ],
+    messages: [{}],
     responseConfig: {
         capabilities: ["MARKDOWN"],
         isCopilot: true,
@@ -325,8 +312,8 @@ await client.conversation.initialize({
     },
     subject: "string",
     url: "string",
-    createdAt: "2024-01-15T09:30:00Z",
-    updatedAt: "2024-01-15T09:30:00Z",
+    createdAt: new Date("2024-01-15T09:30:00.000Z"),
+    updatedAt: new Date("2024-01-15T09:30:00.000Z"),
     tags: new Set(["string"]),
     metadata: {
         string: "string",
@@ -477,8 +464,8 @@ await client.conversation.appendNewMessages("string", [
         },
         text: "string",
         userMessageType: "USER",
-        createdAt: "2024-01-15T09:30:00Z",
-        updatedAt: "2024-01-15T09:30:00Z",
+        createdAt: new Date("2024-01-15T09:30:00.000Z"),
+        updatedAt: new Date("2024-01-15T09:30:00.000Z"),
     },
 ]);
 ```
@@ -551,12 +538,12 @@ Ask a question
 <dd>
 
 ```typescript
-await client.conversation.ask("string", {
+await client.conversation.ask("conversation-0", {
     conversationMessageId: {
-        referenceId: "message-1",
+        referenceId: "message-0",
     },
     userId: {
-        referenceId: "user-1",
+        referenceId: "user-0",
     },
     text: "How do I reset my password?",
     attachments: [
@@ -638,10 +625,10 @@ Ask a question with a streaming response. The response will be sent as a stream 
 ```typescript
 await client.conversation.askStream("conversation-0", {
     conversationMessageId: {
-        referenceId: "message-1",
+        referenceId: "message-0",
     },
     userId: {
-        referenceId: "user-1",
+        referenceId: "user-0",
     },
     text: "How do I reset my password?",
     attachments: [
@@ -845,7 +832,7 @@ await client.conversation.categorize("string");
 <dl>
 <dd>
 
-Create feedback
+Update feedback or create it if it doesn't exist
 
 </dd>
 </dl>
@@ -863,16 +850,16 @@ Create feedback
 ```typescript
 await client.conversation.createFeedback({
     feedbackId: {
-        referenceId: "string",
+        referenceId: "feedback-0",
     },
     conversationId: {
-        referenceId: "string",
+        referenceId: "conversation-0",
     },
     conversationMessageId: {
-        referenceId: "string",
+        referenceId: "message-1",
     },
     type: "THUMBS_UP",
-    text: "string",
+    text: "Great answer!",
 });
 ```
 

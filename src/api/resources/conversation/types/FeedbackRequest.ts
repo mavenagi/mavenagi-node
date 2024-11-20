@@ -4,6 +4,22 @@
 
 import * as MavenAGI from "../../../index";
 
+/**
+ * @example
+ *     {
+ *         feedbackId: {
+ *             referenceId: "feedback-0"
+ *         },
+ *         conversationId: {
+ *             referenceId: "conversation-0"
+ *         },
+ *         conversationMessageId: {
+ *             referenceId: "message-1"
+ *         },
+ *         type: MavenAGI.FeedbackType.ThumbsUp,
+ *         text: "Great answer!"
+ *     }
+ */
 export interface FeedbackRequest extends MavenAGI.FeedbackBase {
     /** The ID that uniquely identifies this feedback */
     feedbackId: MavenAGI.EntityIdBase;

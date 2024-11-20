@@ -28,20 +28,7 @@ await client.conversation.initialize({
     conversationId: {
         referenceId: "string",
     },
-    messages: [
-        {
-            conversationMessageId: {
-                referenceId: "string",
-            },
-            userId: {
-                referenceId: "string",
-            },
-            text: "string",
-            userMessageType: "USER",
-            createdAt: "2024-01-15T09:30:00Z",
-            updatedAt: "2024-01-15T09:30:00Z",
-        },
-    ],
+    messages: [{}],
     responseConfig: {
         capabilities: ["MARKDOWN"],
         isCopilot: true,
@@ -49,8 +36,8 @@ await client.conversation.initialize({
     },
     subject: "string",
     url: "string",
-    createdAt: "2024-01-15T09:30:00Z",
-    updatedAt: "2024-01-15T09:30:00Z",
+    createdAt: new Date("2024-01-15T09:30:00.000Z"),
+    updatedAt: new Date("2024-01-15T09:30:00.000Z"),
     tags: new Set(["string"]),
     metadata: {
         string: "string",

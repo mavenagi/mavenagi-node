@@ -20,6 +20,8 @@ export * from "./BotTextResponse";
 export * from "./BotActionFormResponse";
 export * from "./ActionFormField";
 export * from "./SubmitActionFormRequest";
+export * from "./BotChartResponse";
+export * from "./ChartSpecSchema";
 export * from "./UserConversationMessageType";
 export * from "./Sentiment";
 export * from "./BotConversationMessageType";

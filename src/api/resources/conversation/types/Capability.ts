@@ -11,10 +11,14 @@ export type Capability =
     | "FORMS"
     /**
      * Whether the response should include images. Not yet supported. */
-    | "IMAGES";
+    | "IMAGES"
+    /**
+     * Whether the response should include a Highcharts typescript chart if applicable. Not yet supported. */
+    | "CHARTS_HIGHCHARTS_TS";
 
 export const Capability = {
     Markdown: "MARKDOWN",
     Forms: "FORMS",
     Images: "IMAGES",
+    ChartsHighchartsTs: "CHARTS_HIGHCHARTS_TS",
 } as const;

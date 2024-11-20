@@ -7,8 +7,8 @@ import * as MavenAGI from "../../../../api/index";
 import * as core from "../../../../core";
 
 export const Capability: core.serialization.Schema<serializers.Capability.Raw, MavenAGI.Capability> =
-    core.serialization.enum_(["MARKDOWN", "FORMS", "IMAGES"]);
+    core.serialization.enum_(["MARKDOWN", "FORMS", "IMAGES", "CHARTS_HIGHCHARTS_TS"]);
 
 export declare namespace Capability {
-    type Raw = "MARKDOWN" | "FORMS" | "IMAGES";
+    type Raw = "MARKDOWN" | "FORMS" | "IMAGES" | "CHARTS_HIGHCHARTS_TS";
 }

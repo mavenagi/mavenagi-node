@@ -4,6 +4,34 @@
 
 import * as MavenAGI from "../../../index";
 
+/**
+ * @example
+ *     {
+ *         feedbackId: {
+ *             referenceId: "feedback-0",
+ *             appId: "myapp",
+ *             organizationId: "acme",
+ *             agentId: "support",
+ *             type: MavenAGI.EntityType.Feedback
+ *         },
+ *         conversationId: {
+ *             referenceId: "conversation-0",
+ *             appId: "myapp",
+ *             organizationId: "acme",
+ *             agentId: "support",
+ *             type: MavenAGI.EntityType.Conversation
+ *         },
+ *         conversationMessageId: {
+ *             referenceId: "message-1",
+ *             appId: "myapp",
+ *             organizationId: "acme",
+ *             agentId: "support",
+ *             type: MavenAGI.EntityType.ConversationMessage
+ *         },
+ *         type: MavenAGI.FeedbackType.ThumbsUp,
+ *         text: "Great answer!"
+ *     }
+ */
 export interface Feedback extends MavenAGI.FeedbackBase {
     /** The ID of the piece of feedback */
     feedbackId: MavenAGI.EntityId;

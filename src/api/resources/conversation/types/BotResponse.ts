@@ -4,7 +4,7 @@
 
 import * as MavenAGI from "../../../index";
 
-export type BotResponse = MavenAGI.BotResponse.Text | MavenAGI.BotResponse.ActionForm;
+export type BotResponse = MavenAGI.BotResponse.Text | MavenAGI.BotResponse.ActionForm | MavenAGI.BotResponse.Chart;
 
 export declare namespace BotResponse {
     interface Text extends MavenAGI.BotTextResponse {
@@ -13,5 +13,9 @@ export declare namespace BotResponse {
 
     interface ActionForm extends MavenAGI.BotActionFormResponse {
         type: "actionForm";
+    }
+
+    interface Chart extends MavenAGI.BotChartResponse {
+        type: "chart";
     }
 }
