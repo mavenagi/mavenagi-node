@@ -4,8 +4,11 @@
 
 import * as MavenAGI from "../../../index";
 
+/**
+ * Will only be provided if the responseConfig contains the charts_highcharts_ts capability.
+ */
 export interface BotChartResponse {
-    /** The name/label of the chart */
+    /** The label of the chart */
     label: string;
     specSchema: MavenAGI.ChartSpecSchema;
     /** The spec string for the chart. For HIGHCHARTS_TS charts, the spec is the json object that represents the chart options. */

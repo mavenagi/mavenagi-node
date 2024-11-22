@@ -9,4 +9,6 @@ export interface UserMessage extends MavenAGI.UserMessageBase {
     conversationMessageId: MavenAGI.EntityId;
     /** The language of the message in ISO 639-1 code format */
     language?: string;
+    /** The attachments associated with the message */
+    attachments: MavenAGI.UserMessageAttachment[];
 }

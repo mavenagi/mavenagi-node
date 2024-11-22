@@ -4,7 +4,7 @@
 
 export type Capability =
     /**
-     * Whether the response should include markdown formatting. If not provided, the response will be plain text. */
+     * Whether the response should include markdown formatting. If not provided, the response will be plain text. Not respected while streaming. */
     | "MARKDOWN"
     /**
      * Whether the response should include forms. Not yet supported. */
@@ -13,7 +13,7 @@ export type Capability =
      * Whether the response should include images. Not yet supported. */
     | "IMAGES"
     /**
-     * Whether the response should include a Highcharts typescript chart if applicable. Not yet supported. */
+     * Whether the response should include a Highcharts typescript chart if applicable. */
     | "CHARTS_HIGHCHARTS_TS";
 
 export const Capability = {

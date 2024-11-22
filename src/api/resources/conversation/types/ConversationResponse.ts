@@ -31,7 +31,10 @@ import * as MavenAGI from "../../../index";
  *                 userId: {
  *                     referenceId: "user-0"
  *                 },
- *                 text: "How do I reset my password?"
+ *                 text: "How do I reset my password?",
+ *                 attachments: [{
+ *                         url: "https://example.com/attachment-0"
+ *                     }]
  *             }, {
  *                 type: "bot",
  *                 botMessageType: MavenAGI.BotConversationMessageType.BotResponse,

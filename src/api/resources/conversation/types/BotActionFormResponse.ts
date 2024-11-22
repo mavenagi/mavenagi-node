@@ -4,6 +4,9 @@
 
 import * as MavenAGI from "../../../index";
 
+/**
+ * This response should be rendered as a form which users can submit. Upon submission call the submit action form API.
+ */
 export interface BotActionFormResponse {
     id: string;
     formLabel: string;

@@ -7,6 +7,7 @@ import * as MavenAGI from "../../../../api/index";
 import * as core from "../../../../core";
 import { AskStreamTextEvent } from "./AskStreamTextEvent";
 import { AskStreamActionEvent } from "./AskStreamActionEvent";
+import { AskStreamChartEvent } from "./AskStreamChartEvent";
 import { AskStreamMetadataEvent } from "./AskStreamMetadataEvent";
 import { AskStreamStartEvent } from "./AskStreamStartEvent";
 import { AskStreamEndEvent } from "./AskStreamEndEvent";
@@ -16,6 +17,7 @@ export const StreamResponse: core.serialization.Schema<serializers.StreamRespons
         .union("eventType", {
             text: AskStreamTextEvent,
             action: AskStreamActionEvent,
+            chart: AskStreamChartEvent,
             metadata: AskStreamMetadataEvent,
             start: AskStreamStartEvent,
             end: AskStreamEndEvent,
@@ -29,6 +31,7 @@ export declare namespace StreamResponse {
     type Raw =
         | StreamResponse.Text
         | StreamResponse.Action
+        | StreamResponse.Chart
         | StreamResponse.Metadata
         | StreamResponse.Start
         | StreamResponse.End;
@@ -39,6 +42,10 @@ export declare namespace StreamResponse {
 
     interface Action extends AskStreamActionEvent.Raw {
         eventType: "action";
+    }
+
+    interface Chart extends AskStreamChartEvent.Raw {
+        eventType: "chart";
     }
 
     interface Metadata extends AskStreamMetadataEvent.Raw {

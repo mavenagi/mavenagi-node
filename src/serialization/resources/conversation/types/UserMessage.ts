@@ -6,6 +6,7 @@ import * as serializers from "../../../index";
 import * as MavenAGI from "../../../../api/index";
 import * as core from "../../../../core";
 import { EntityId } from "../../commons/types/EntityId";
+import { UserMessageAttachment } from "./UserMessageAttachment";
 import { UserMessageBase } from "./UserMessageBase";
 
 export const UserMessage: core.serialization.ObjectSchema<serializers.UserMessage.Raw, MavenAGI.UserMessage> =
@@ -13,6 +14,7 @@ export const UserMessage: core.serialization.ObjectSchema<serializers.UserMessag
         .object({
             conversationMessageId: EntityId,
             language: core.serialization.string().optional(),
+            attachments: core.serialization.list(UserMessageAttachment),
         })
         .extend(UserMessageBase);
 
@@ -20,5 +22,6 @@ export declare namespace UserMessage {
     interface Raw extends UserMessageBase.Raw {
         conversationMessageId: EntityId.Raw;
         language?: string | null;
+        attachments: UserMessageAttachment.Raw[];
     }
 }

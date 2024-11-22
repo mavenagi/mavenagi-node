@@ -5,7 +5,7 @@
 import * as MavenAGI from "../../../index";
 
 export interface ResponseConfig {
-    /** List of capabilities supported by the caller. Defaults to all. Only the markdown capability is supported at this time. If not provided, responses will be plain text. */
+    /** List of capabilities supported by the caller. Defaults to everything except charts_highcharts_ts. Note that the forms and images capabilities are not respected at this time. */
     capabilities: MavenAGI.Capability[];
     /** Whether the response is for an human agent (true) or an end user (false). Defaults to false. */
     isCopilot: boolean;
