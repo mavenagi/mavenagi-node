@@ -852,6 +852,9 @@ await client.conversation.createFeedback({
     feedbackId: {
         referenceId: "feedback-0",
     },
+    userId: {
+        referenceId: "user-0",
+    },
     conversationId: {
         referenceId: "conversation-0",
     },

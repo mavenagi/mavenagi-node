@@ -13,6 +13,8 @@ export const Feedback: core.serialization.ObjectSchema<serializers.Feedback.Raw,
         feedbackId: EntityId,
         conversationId: EntityId,
         conversationMessageId: EntityId,
+        userId: EntityId.optional(),
+        createdAt: core.serialization.date().optional(),
     })
     .extend(FeedbackBase);
 
@@ -21,5 +23,7 @@ export declare namespace Feedback {
         feedbackId: EntityId.Raw;
         conversationId: EntityId.Raw;
         conversationMessageId: EntityId.Raw;
+        userId?: EntityId.Raw | null;
+        createdAt?: string | null;
     }
 }

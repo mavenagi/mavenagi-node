@@ -28,6 +28,13 @@ import * as MavenAGI from "../../../index";
  *             agentId: "support",
  *             type: MavenAGI.EntityType.ConversationMessage
  *         },
+ *         userId: {
+ *             referenceId: "user-0",
+ *             appId: "myapp",
+ *             organizationId: "acme",
+ *             agentId: "support",
+ *             type: MavenAGI.EntityType.User
+ *         },
  *         type: MavenAGI.FeedbackType.ThumbsUp,
  *         text: "Great answer!"
  *     }
@@ -39,4 +46,8 @@ export interface Feedback extends MavenAGI.FeedbackBase {
     conversationId: MavenAGI.EntityId;
     /** The ID of the conversation message the feedback is about */
     conversationMessageId: MavenAGI.EntityId;
+    /** The ID of the user who created the feedback */
+    userId?: MavenAGI.EntityId;
+    /** The date and time the feedback was created */
+    createdAt?: Date;
 }

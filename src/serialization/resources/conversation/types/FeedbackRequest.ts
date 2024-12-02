@@ -16,6 +16,7 @@ export const FeedbackRequest: core.serialization.ObjectSchema<
         feedbackId: EntityIdBase,
         conversationId: EntityIdBase,
         conversationMessageId: EntityIdBase,
+        userId: EntityIdBase.optional(),
     })
     .extend(FeedbackBase);
 
@@ -24,5 +25,6 @@ export declare namespace FeedbackRequest {
         feedbackId: EntityIdBase.Raw;
         conversationId: EntityIdBase.Raw;
         conversationMessageId: EntityIdBase.Raw;
+        userId?: EntityIdBase.Raw | null;
     }
 }

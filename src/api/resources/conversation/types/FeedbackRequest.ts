@@ -10,6 +10,9 @@ import * as MavenAGI from "../../../index";
  *         feedbackId: {
  *             referenceId: "feedback-0"
  *         },
+ *         userId: {
+ *             referenceId: "user-0"
+ *         },
  *         conversationId: {
  *             referenceId: "conversation-0"
  *         },
@@ -27,4 +30,6 @@ export interface FeedbackRequest extends MavenAGI.FeedbackBase {
     conversationId: MavenAGI.EntityIdBase;
     /** The ID that uniquely identifies the message within the conversation the feedback is about */
     conversationMessageId: MavenAGI.EntityIdBase;
+    /** The ID of the user who is creating the feedback */
+    userId?: MavenAGI.EntityIdBase;
 }
