@@ -52,22 +52,17 @@ export class Conversation {
      * @example
      *     await client.conversation.initialize({
      *         conversationId: {
-     *             referenceId: "string"
+     *             referenceId: "referenceId"
      *         },
-     *         messages: [{}],
-     *         responseConfig: {
-     *             capabilities: ["MARKDOWN"],
-     *             isCopilot: true,
-     *             responseLength: "SHORT"
-     *         },
-     *         subject: "string",
-     *         url: "string",
-     *         createdAt: new Date("2024-01-15T09:30:00.000Z"),
-     *         updatedAt: new Date("2024-01-15T09:30:00.000Z"),
-     *         tags: new Set(["string"]),
-     *         metadata: {
-     *             "string": "string"
-     *         }
+     *         messages: [{
+     *                 conversationMessageId: {
+     *                     referenceId: "referenceId"
+     *                 }
+     *             }, {
+     *                 conversationMessageId: {
+     *                     referenceId: "referenceId"
+     *                 }
+     *             }]
      *     })
      */
     public async initialize(
@@ -86,8 +81,8 @@ export class Conversation {
                 "X-Agent-Id": await core.Supplier.get(this._options.agentId),
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "mavenagi",
-                "X-Fern-SDK-Version": "1.0.2",
-                "User-Agent": "mavenagi/1.0.2",
+                "X-Fern-SDK-Version": "1.0.3",
+                "User-Agent": "mavenagi/1.0.3",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
             },
@@ -171,9 +166,7 @@ export class Conversation {
      * @throws {@link MavenAGI.ServerError}
      *
      * @example
-     *     await client.conversation.get("string", {
-     *         appId: "string"
-     *     })
+     *     await client.conversation.get("conversationId")
      */
     public async get(
         conversationId: string,
@@ -198,8 +191,8 @@ export class Conversation {
                 "X-Agent-Id": await core.Supplier.get(this._options.agentId),
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "mavenagi",
-                "X-Fern-SDK-Version": "1.0.2",
-                "User-Agent": "mavenagi/1.0.2",
+                "X-Fern-SDK-Version": "1.0.3",
+                "User-Agent": "mavenagi/1.0.3",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
             },
@@ -283,17 +276,14 @@ export class Conversation {
      * @throws {@link MavenAGI.ServerError}
      *
      * @example
-     *     await client.conversation.appendNewMessages("string", [{
+     *     await client.conversation.appendNewMessages("conversationId", [{
      *             conversationMessageId: {
-     *                 referenceId: "string"
-     *             },
-     *             userId: {
-     *                 referenceId: "string"
-     *             },
-     *             text: "string",
-     *             userMessageType: "USER",
-     *             createdAt: new Date("2024-01-15T09:30:00.000Z"),
-     *             updatedAt: new Date("2024-01-15T09:30:00.000Z")
+     *                 referenceId: "referenceId"
+     *             }
+     *         }, {
+     *             conversationMessageId: {
+     *                 referenceId: "referenceId"
+     *             }
      *         }])
      */
     public async appendNewMessages(
@@ -313,8 +303,8 @@ export class Conversation {
                 "X-Agent-Id": await core.Supplier.get(this._options.agentId),
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "mavenagi",
-                "X-Fern-SDK-Version": "1.0.2",
-                "User-Agent": "mavenagi/1.0.2",
+                "X-Fern-SDK-Version": "1.0.3",
+                "User-Agent": "mavenagi/1.0.3",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
             },
@@ -431,8 +421,8 @@ export class Conversation {
                 "X-Agent-Id": await core.Supplier.get(this._options.agentId),
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "mavenagi",
-                "X-Fern-SDK-Version": "1.0.2",
-                "User-Agent": "mavenagi/1.0.2",
+                "X-Fern-SDK-Version": "1.0.3",
+                "User-Agent": "mavenagi/1.0.3",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
             },
@@ -524,8 +514,8 @@ export class Conversation {
                 "X-Agent-Id": await core.Supplier.get(this._options.agentId),
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "mavenagi",
-                "X-Fern-SDK-Version": "1.0.2",
-                "User-Agent": "mavenagi/1.0.2",
+                "X-Fern-SDK-Version": "1.0.3",
+                "User-Agent": "mavenagi/1.0.3",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
             },
@@ -620,9 +610,11 @@ export class Conversation {
      * @throws {@link MavenAGI.ServerError}
      *
      * @example
-     *     await client.conversation.generateMavenSuggestions("string", {
+     *     await client.conversation.generateMavenSuggestions("conversationId", {
      *         conversationMessageIds: [{
-     *                 referenceId: "string"
+     *                 referenceId: "referenceId"
+     *             }, {
+     *                 referenceId: "referenceId"
      *             }]
      *     })
      */
@@ -643,8 +635,8 @@ export class Conversation {
                 "X-Agent-Id": await core.Supplier.get(this._options.agentId),
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "mavenagi",
-                "X-Fern-SDK-Version": "1.0.2",
-                "User-Agent": "mavenagi/1.0.2",
+                "X-Fern-SDK-Version": "1.0.3",
+                "User-Agent": "mavenagi/1.0.3",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
             },
@@ -727,7 +719,7 @@ export class Conversation {
      * @throws {@link MavenAGI.ServerError}
      *
      * @example
-     *     await client.conversation.categorize("string")
+     *     await client.conversation.categorize("conversationId")
      */
     public async categorize(
         conversationId: string,
@@ -745,8 +737,8 @@ export class Conversation {
                 "X-Agent-Id": await core.Supplier.get(this._options.agentId),
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "mavenagi",
-                "X-Fern-SDK-Version": "1.0.2",
-                "User-Agent": "mavenagi/1.0.2",
+                "X-Fern-SDK-Version": "1.0.3",
+                "User-Agent": "mavenagi/1.0.3",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
             },
@@ -861,8 +853,8 @@ export class Conversation {
                 "X-Agent-Id": await core.Supplier.get(this._options.agentId),
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "mavenagi",
-                "X-Fern-SDK-Version": "1.0.2",
-                "User-Agent": "mavenagi/1.0.2",
+                "X-Fern-SDK-Version": "1.0.3",
+                "User-Agent": "mavenagi/1.0.3",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
             },
@@ -946,10 +938,10 @@ export class Conversation {
      * @throws {@link MavenAGI.ServerError}
      *
      * @example
-     *     await client.conversation.submitActionForm("string", {
-     *         actionFormId: "string",
+     *     await client.conversation.submitActionForm("conversationId", {
+     *         actionFormId: "actionFormId",
      *         parameters: {
-     *             "string": {
+     *             "parameters": {
      *                 "key": "value"
      *             }
      *         }
@@ -972,8 +964,8 @@ export class Conversation {
                 "X-Agent-Id": await core.Supplier.get(this._options.agentId),
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "mavenagi",
-                "X-Fern-SDK-Version": "1.0.2",
-                "User-Agent": "mavenagi/1.0.2",
+                "X-Fern-SDK-Version": "1.0.3",
+                "User-Agent": "mavenagi/1.0.3",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
             },
@@ -1057,7 +1049,7 @@ export class Conversation {
      * @throws {@link MavenAGI.ServerError}
      *
      * @example
-     *     await client.conversation.addConversationMetadata("string", {
+     *     await client.conversation.addConversationMetadata("conversationId", {
      *         "string": "string"
      *     })
      */
@@ -1078,8 +1070,8 @@ export class Conversation {
                 "X-Agent-Id": await core.Supplier.get(this._options.agentId),
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "mavenagi",
-                "X-Fern-SDK-Version": "1.0.2",
-                "User-Agent": "mavenagi/1.0.2",
+                "X-Fern-SDK-Version": "1.0.3",
+                "User-Agent": "mavenagi/1.0.3",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
             },

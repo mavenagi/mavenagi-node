@@ -302,22 +302,20 @@ Initialize a new conversation. Only required if the ask request wishes to supply
 ```typescript
 await client.conversation.initialize({
     conversationId: {
-        referenceId: "string",
+        referenceId: "referenceId",
     },
-    messages: [{}],
-    responseConfig: {
-        capabilities: ["MARKDOWN"],
-        isCopilot: true,
-        responseLength: "SHORT",
-    },
-    subject: "string",
-    url: "string",
-    createdAt: new Date("2024-01-15T09:30:00.000Z"),
-    updatedAt: new Date("2024-01-15T09:30:00.000Z"),
-    tags: new Set(["string"]),
-    metadata: {
-        string: "string",
-    },
+    messages: [
+        {
+            conversationMessageId: {
+                referenceId: "referenceId",
+            },
+        },
+        {
+            conversationMessageId: {
+                referenceId: "referenceId",
+            },
+        },
+    ],
 });
 ```
 
@@ -381,9 +379,7 @@ Get a conversation
 <dd>
 
 ```typescript
-await client.conversation.get("string", {
-    appId: "string",
-});
+await client.conversation.get("conversationId");
 ```
 
 </dd>
@@ -454,18 +450,16 @@ Append messages to an existing conversation. The conversation must be initialize
 <dd>
 
 ```typescript
-await client.conversation.appendNewMessages("string", [
+await client.conversation.appendNewMessages("conversationId", [
     {
         conversationMessageId: {
-            referenceId: "string",
+            referenceId: "referenceId",
         },
-        userId: {
-            referenceId: "string",
+    },
+    {
+        conversationMessageId: {
+            referenceId: "referenceId",
         },
-        text: "string",
-        userMessageType: "USER",
-        createdAt: new Date("2024-01-15T09:30:00.000Z"),
-        updatedAt: new Date("2024-01-15T09:30:00.000Z"),
     },
 ]);
 ```
@@ -708,10 +702,13 @@ Generate a response suggestion for each requested message id in a conversation
 <dd>
 
 ```typescript
-await client.conversation.generateMavenSuggestions("string", {
+await client.conversation.generateMavenSuggestions("conversationId", {
     conversationMessageIds: [
         {
-            referenceId: "string",
+            referenceId: "referenceId",
+        },
+        {
+            referenceId: "referenceId",
         },
     ],
 });
@@ -785,7 +782,7 @@ Uses an LLM flow to categorize the conversation. Experimental.
 <dd>
 
 ```typescript
-await client.conversation.categorize("string");
+await client.conversation.categorize("conversationId");
 ```
 
 </dd>
@@ -926,10 +923,10 @@ Submit a filled out action form
 <dd>
 
 ```typescript
-await client.conversation.submitActionForm("string", {
-    actionFormId: "string",
+await client.conversation.submitActionForm("conversationId", {
+    actionFormId: "actionFormId",
     parameters: {
-        string: {
+        parameters: {
             key: "value",
         },
     },
@@ -1004,7 +1001,7 @@ Add metadata to an existing conversation. If a metadata field already exists, it
 <dd>
 
 ```typescript
-await client.conversation.addConversationMetadata("string", {
+await client.conversation.addConversationMetadata("conversationId", {
     string: "string",
 });
 ```

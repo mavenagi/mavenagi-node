@@ -26,22 +26,20 @@ const client = new MavenAGIClient({
 });
 await client.conversation.initialize({
     conversationId: {
-        referenceId: "string",
+        referenceId: "referenceId",
     },
-    messages: [{}],
-    responseConfig: {
-        capabilities: ["MARKDOWN"],
-        isCopilot: true,
-        responseLength: "SHORT",
-    },
-    subject: "string",
-    url: "string",
-    createdAt: new Date("2024-01-15T09:30:00.000Z"),
-    updatedAt: new Date("2024-01-15T09:30:00.000Z"),
-    tags: new Set(["string"]),
-    metadata: {
-        string: "string",
-    },
+    messages: [
+        {
+            conversationMessageId: {
+                referenceId: "referenceId",
+            },
+        },
+        {
+            conversationMessageId: {
+                referenceId: "referenceId",
+            },
+        },
+    ],
 });
 ```
 

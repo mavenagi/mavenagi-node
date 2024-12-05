@@ -4,9 +4,7 @@
 
 /**
  * @example
- *     {
- *         appId: "string"
- *     }
+ *     {}
  */
 export interface ConversationGetRequest {
     /**
