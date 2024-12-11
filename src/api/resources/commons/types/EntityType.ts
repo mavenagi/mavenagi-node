@@ -9,7 +9,7 @@ export type EntityType =
     | "KNOWLEDGE_DOCUMENT"
     | "ACTION"
     | "USER"
-    | "USER_EVENT"
+    | "EVENT"
     | "EVENT_TRIGGER"
     | "USER_PROFILE"
     | "FEEDBACK";
@@ -21,7 +21,7 @@ export const EntityType = {
     KnowledgeDocument: "KNOWLEDGE_DOCUMENT",
     Action: "ACTION",
     User: "USER",
-    UserEvent: "USER_EVENT",
+    Event: "EVENT",
     EventTrigger: "EVENT_TRIGGER",
     UserProfile: "USER_PROFILE",
     Feedback: "FEEDBACK",

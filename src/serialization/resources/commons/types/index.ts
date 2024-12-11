@@ -15,3 +15,4 @@ export * from "./AppUserResponse";
 export * from "./EventTriggerBase";
 export * from "./EventTriggerResponse";
 export * from "./EventTriggerType";
+export * from "./ActionParameterType";
