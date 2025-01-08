@@ -32,6 +32,8 @@ export declare namespace Users {
         organizationId?: string;
         /** Override the X-Agent-Id header */
         agentId?: string;
+        /** Additional headers to include in the request. */
+        headers?: Record<string, string>;
     }
 }
 
@@ -81,10 +83,11 @@ export class Users {
                 "X-Agent-Id": await core.Supplier.get(this._options.agentId),
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "mavenagi",
-                "X-Fern-SDK-Version": "1.0.4",
-                "User-Agent": "mavenagi/1.0.4",
+                "X-Fern-SDK-Version": "1.0.5",
+                "User-Agent": "mavenagi/1.0.5",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
+                ...requestOptions?.headers,
             },
             contentType: "application/json",
             requestType: "json",
@@ -146,7 +149,7 @@ export class Users {
                     body: _response.error.rawBody,
                 });
             case "timeout":
-                throw new errors.MavenAGITimeoutError();
+                throw new errors.MavenAGITimeoutError("Timeout exceeded when calling PUT /v1/users.");
             case "unknown":
                 throw new errors.MavenAGIError({
                     message: _response.error.errorMessage,
@@ -158,6 +161,7 @@ export class Users {
      * Get a user by its supplied ID
      *
      * @param {string} userId - The reference ID of the user to get. All other entity ID fields are inferred from the request.
+     * @param {MavenAGI.UserGetRequest} request
      * @param {Users.RequestOptions} requestOptions - Request-specific configuration.
      *
      * @throws {@link MavenAGI.NotFoundError}
@@ -167,7 +171,17 @@ export class Users {
      * @example
      *     await client.users.get("user-0")
      */
-    public async get(userId: string, requestOptions?: Users.RequestOptions): Promise<MavenAGI.AppUserResponse> {
+    public async get(
+        userId: string,
+        request: MavenAGI.UserGetRequest = {},
+        requestOptions?: Users.RequestOptions
+    ): Promise<MavenAGI.AppUserResponse> {
+        const { appId } = request;
+        const _queryParams: Record<string, string | string[] | object | object[]> = {};
+        if (appId != null) {
+            _queryParams["appId"] = appId;
+        }
+
         const _response = await (this._options.fetcher ?? core.fetcher)({
             url: urlJoin(
                 (await core.Supplier.get(this._options.environment)) ?? environments.MavenAGIEnvironment.Production,
@@ -180,12 +194,14 @@ export class Users {
                 "X-Agent-Id": await core.Supplier.get(this._options.agentId),
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "mavenagi",
-                "X-Fern-SDK-Version": "1.0.4",
-                "User-Agent": "mavenagi/1.0.4",
+                "X-Fern-SDK-Version": "1.0.5",
+                "User-Agent": "mavenagi/1.0.5",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
+                ...requestOptions?.headers,
             },
             contentType: "application/json",
+            queryParameters: _queryParams,
             requestType: "json",
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
             maxRetries: requestOptions?.maxRetries,
@@ -244,7 +260,7 @@ export class Users {
                     body: _response.error.rawBody,
                 });
             case "timeout":
-                throw new errors.MavenAGITimeoutError();
+                throw new errors.MavenAGITimeoutError("Timeout exceeded when calling GET /v1/users/{userId}.");
             case "unknown":
                 throw new errors.MavenAGIError({
                     message: _response.error.errorMessage,

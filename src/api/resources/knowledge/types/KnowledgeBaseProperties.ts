@@ -11,4 +11,6 @@ export interface KnowledgeBaseProperties {
     type: MavenAGI.KnowledgeBaseType;
     /** The URL to pull content from for RSS and URL knowledge bases. */
     url?: string;
+    /** (Beta) The preconditions that must be met for knowledge base be relevant to a conversation. Can be used to limit knowledge to certain types of users. */
+    precondition?: MavenAGI.Precondition;
 }

@@ -3,7 +3,6 @@
  */
 
 export type AppUserIdentifyingPropertyType = "EMAIL" | "PHONE_NUMBER";
-
 export const AppUserIdentifyingPropertyType = {
     Email: "EMAIL",
     PhoneNumber: "PHONE_NUMBER",

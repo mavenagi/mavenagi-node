@@ -8,12 +8,12 @@ export type ConversationMessageResponse =
     | MavenAGI.ConversationMessageResponse.User
     | MavenAGI.ConversationMessageResponse.Bot;
 
-export declare namespace ConversationMessageResponse {
-    interface User extends MavenAGI.UserMessage {
+export namespace ConversationMessageResponse {
+    export interface User extends MavenAGI.UserMessage {
         type: "user";
     }
 
-    interface Bot extends MavenAGI.BotMessage {
+    export interface Bot extends MavenAGI.BotMessage {
         type: "bot";
     }
 }

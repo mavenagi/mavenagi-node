@@ -5,7 +5,7 @@
 import * as serializers from "../../../index";
 import * as MavenAGI from "../../../../api/index";
 import * as core from "../../../../core";
-import { BotChartResponse } from "./BotChartResponse";
+import { BotChartResponse } from "../../commons/types/BotChartResponse";
 
 export const AskStreamChartEvent: core.serialization.ObjectSchema<
     serializers.AskStreamChartEvent.Raw,

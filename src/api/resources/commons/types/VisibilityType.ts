@@ -3,7 +3,6 @@
  */
 
 export type VisibilityType = "VISIBLE" | "PARTIALLY_VISIBLE" | "HIDDEN";
-
 export const VisibilityType = {
     Visible: "VISIBLE",
     PartiallyVisible: "PARTIALLY_VISIBLE",

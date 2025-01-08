@@ -5,7 +5,8 @@
 import * as serializers from "../../../index";
 import * as MavenAGI from "../../../../api/index";
 import * as core from "../../../../core";
-import { ActionParameterType } from "../../commons/types/ActionParameterType";
+import { ActionParameterType } from "./ActionParameterType";
+import { ActionEnumOption } from "./ActionEnumOption";
 
 export const ActionFormField: core.serialization.ObjectSchema<
     serializers.ActionFormField.Raw,
@@ -17,6 +18,7 @@ export const ActionFormField: core.serialization.ObjectSchema<
     required: core.serialization.boolean(),
     suggestion: core.serialization.unknown().optional(),
     type: ActionParameterType,
+    enumOptions: core.serialization.list(ActionEnumOption).optional(),
 });
 
 export declare namespace ActionFormField {
@@ -27,5 +29,6 @@ export declare namespace ActionFormField {
         required: boolean;
         suggestion?: unknown | null;
         type: ActionParameterType.Raw;
+        enumOptions?: ActionEnumOption.Raw[] | null;
     }
 }

@@ -7,7 +7,7 @@ import * as MavenAGI from "../../../../api/index";
 import * as core from "../../../../core";
 import { EntityIdBase } from "../../commons/types/EntityIdBase";
 import { ConversationMessageRequest } from "./ConversationMessageRequest";
-import { ConversationBase } from "./ConversationBase";
+import { ConversationBase } from "../../commons/types/ConversationBase";
 
 export const ConversationRequest: core.serialization.ObjectSchema<
     serializers.ConversationRequest.Raw,

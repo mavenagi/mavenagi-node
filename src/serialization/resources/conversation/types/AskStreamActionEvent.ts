@@ -5,7 +5,7 @@
 import * as serializers from "../../../index";
 import * as MavenAGI from "../../../../api/index";
 import * as core from "../../../../core";
-import { BotActionFormResponse } from "./BotActionFormResponse";
+import { BotActionFormResponse } from "../../commons/types/BotActionFormResponse";
 
 export const AskStreamActionEvent: core.serialization.ObjectSchema<
     serializers.AskStreamActionEvent.Raw,

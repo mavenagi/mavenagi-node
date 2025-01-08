@@ -6,7 +6,6 @@
  * The type of knowledge base version
  */
 export type KnowledgeBaseVersionType = "FULL" | "PARTIAL";
-
 export const KnowledgeBaseVersionType = {
     Full: "FULL",
     Partial: "PARTIAL",

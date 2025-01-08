@@ -6,7 +6,7 @@ import * as serializers from "../../../index";
 import * as MavenAGI from "../../../../api/index";
 import * as core from "../../../../core";
 import { EntityIdBase } from "../../commons/types/EntityIdBase";
-import { ActionBase } from "./ActionBase";
+import { ActionBase } from "../../commons/types/ActionBase";
 
 export const ActionRequest: core.serialization.ObjectSchema<serializers.ActionRequest.Raw, MavenAGI.ActionRequest> =
     core.serialization

@@ -11,6 +11,10 @@ The Mavenagi TypeScript library provides convenient access to the Mavenagi API f
 npm i -s mavenagi
 ```
 
+## Reference
+
+A full reference for this library is available [here](./reference.md).
+
 ## Usage
 
 Instantiate and use the client with the following:
@@ -41,19 +45,6 @@ await client.conversation.initialize({
         },
     ],
 });
-```
-
-## Request And Response Types
-
-The SDK exports all request and response types as TypeScript interfaces. Simply import them with the
-following namespace:
-
-```typescript
-import { MavenAGI } from "mavenagi";
-
-const request: MavenAGI.ConversationGetRequest = {
-    ...
-};
 ```
 
 ## Aborting Requests
@@ -94,6 +85,19 @@ const client = new MavenAGIClient({
 });
 ```
 
+## Request And Response Types
+
+The SDK exports all request and response types as TypeScript interfaces. Simply import them with the
+following namespace:
+
+```typescript
+import { MavenAGI } from "mavenagi";
+
+const request: MavenAGI.ConversationGetRequest = {
+    ...
+};
+```
+
 ## Exception Handling
 
 When the API returns a non-success status code (4xx or 5xx response), a subclass of the following error
@@ -114,6 +118,18 @@ try {
 ```
 
 ## Advanced
+
+### Additional Headers
+
+If you would like to send additional headers as part of the request, use the `headers` request option.
+
+```typescript
+const response = await client.conversation.initialize(..., {
+    headers: {
+        'X-Custom-Header': 'custom value'
+    }
+});
+```
 
 ### Retries
 

@@ -6,7 +6,6 @@
  * The type of the knowledge document content. Markdown preferred.
  */
 export type KnowledgeDocumentContentType = "HTML" | "MARKDOWN";
-
 export const KnowledgeDocumentContentType = {
     Html: "HTML",
     Markdown: "MARKDOWN",

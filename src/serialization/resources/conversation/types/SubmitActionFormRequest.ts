@@ -12,11 +12,13 @@ export const SubmitActionFormRequest: core.serialization.ObjectSchema<
 > = core.serialization.object({
     actionFormId: core.serialization.string(),
     parameters: core.serialization.record(core.serialization.string(), core.serialization.unknown()),
+    transientData: core.serialization.record(core.serialization.string(), core.serialization.string()).optional(),
 });
 
 export declare namespace SubmitActionFormRequest {
     interface Raw {
         actionFormId: string;
         parameters: Record<string, unknown>;
+        transientData?: Record<string, string> | null;
     }
 }

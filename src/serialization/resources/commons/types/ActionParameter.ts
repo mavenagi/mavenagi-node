@@ -5,7 +5,8 @@
 import * as serializers from "../../../index";
 import * as MavenAGI from "../../../../api/index";
 import * as core from "../../../../core";
-import { ActionParameterType } from "../../commons/types/ActionParameterType";
+import { ActionParameterType } from "./ActionParameterType";
+import { ActionEnumOption } from "./ActionEnumOption";
 
 export const ActionParameter: core.serialization.ObjectSchema<
     serializers.ActionParameter.Raw,
@@ -16,6 +17,7 @@ export const ActionParameter: core.serialization.ObjectSchema<
     description: core.serialization.string(),
     required: core.serialization.boolean(),
     type: ActionParameterType.optional(),
+    enumOptions: core.serialization.list(ActionEnumOption).optional(),
 });
 
 export declare namespace ActionParameter {
@@ -25,5 +27,6 @@ export declare namespace ActionParameter {
         description: string;
         required: boolean;
         type?: ActionParameterType.Raw | null;
+        enumOptions?: ActionEnumOption.Raw[] | null;
     }
 }

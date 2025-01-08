@@ -3,7 +3,6 @@
  */
 
 export type PreconditionOperator = "NOT";
-
 export const PreconditionOperator = {
     Not: "NOT",
 } as const;

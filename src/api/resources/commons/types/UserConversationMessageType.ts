@@ -6,7 +6,6 @@
  * The type of user message
  */
 export type UserConversationMessageType = "USER" | "HUMAN_AGENT" | "EXTERNAL_SYSTEM";
-
 export const UserConversationMessageType = {
     User: "USER",
     HumanAgent: "HUMAN_AGENT",

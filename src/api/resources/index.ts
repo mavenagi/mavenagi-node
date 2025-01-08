@@ -14,3 +14,4 @@ export * from "./commons/errors";
 export * as appSettings from "./appSettings";
 export * as users from "./users";
 export * from "./conversation/client/requests";
+export * from "./users/client/requests";

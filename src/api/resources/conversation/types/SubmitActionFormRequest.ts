@@ -6,4 +6,6 @@ export interface SubmitActionFormRequest {
     actionFormId: string;
     /** Map of parameter IDs to values provided by the user. All required action fields must be provided. */
     parameters: Record<string, unknown>;
+    /** Transient data which the Maven platform will not persist. This data will only be forwarded to actions taken. For example, one may put in user tokens as transient data. */
+    transientData?: Record<string, string>;
 }

@@ -5,7 +5,7 @@
 import * as serializers from "../../../index";
 import * as MavenAGI from "../../../../api/index";
 import * as core from "../../../../core";
-import { EntityId } from "../../commons/types/EntityId";
+import { EntityId } from "./EntityId";
 import { BotConversationMessageType } from "./BotConversationMessageType";
 import { BotResponse } from "./BotResponse";
 import { BotResponseMetadata } from "./BotResponseMetadata";

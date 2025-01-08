@@ -23,17 +23,17 @@ export type Precondition =
     | MavenAGI.Precondition.Conversation
     | MavenAGI.Precondition.Group;
 
-export declare namespace Precondition {
-    interface User extends MavenAGI.MetadataPrecondition {
+export namespace Precondition {
+    export interface User extends MavenAGI.MetadataPrecondition {
         preconditionType: "user";
     }
 
-    interface Conversation {
+    export interface Conversation {
         preconditionType: "conversation";
         value: MavenAGI.ConversationPrecondition;
     }
 
-    interface Group extends MavenAGI.PreconditionGroup {
+    export interface Group extends MavenAGI.PreconditionGroup {
         preconditionType: "group";
     }
 }

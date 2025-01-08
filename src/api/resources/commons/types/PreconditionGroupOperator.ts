@@ -3,7 +3,6 @@
  */
 
 export type PreconditionGroupOperator = "AND" | "OR";
-
 export const PreconditionGroupOperator = {
     And: "AND",
     Or: "OR",

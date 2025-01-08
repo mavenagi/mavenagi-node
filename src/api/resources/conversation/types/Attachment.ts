@@ -5,6 +5,6 @@
 export interface Attachment {
     /** The mime-type of the attachment. Supported types are {image/jpeg, image/jpg, image/png, image/gif, image/webp}. */
     type: string;
-    /** The attachment data. */
+    /** The attachment data, up to 5MB. */
     content: string;
 }

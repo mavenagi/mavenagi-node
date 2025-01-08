@@ -32,6 +32,8 @@ export declare namespace Knowledge {
         organizationId?: string;
         /** Override the X-Agent-Id header */
         agentId?: string;
+        /** Additional headers to include in the request. */
+        headers?: Record<string, string>;
     }
 }
 
@@ -73,10 +75,11 @@ export class Knowledge {
                 "X-Agent-Id": await core.Supplier.get(this._options.agentId),
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "mavenagi",
-                "X-Fern-SDK-Version": "1.0.4",
-                "User-Agent": "mavenagi/1.0.4",
+                "X-Fern-SDK-Version": "1.0.5",
+                "User-Agent": "mavenagi/1.0.5",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
+                ...requestOptions?.headers,
             },
             contentType: "application/json",
             requestType: "json",
@@ -138,7 +141,7 @@ export class Knowledge {
                     body: _response.error.rawBody,
                 });
             case "timeout":
-                throw new errors.MavenAGITimeoutError();
+                throw new errors.MavenAGITimeoutError("Timeout exceeded when calling PUT /v1/knowledge.");
             case "unknown":
                 throw new errors.MavenAGIError({
                     message: _response.error.errorMessage,
@@ -175,10 +178,11 @@ export class Knowledge {
                 "X-Agent-Id": await core.Supplier.get(this._options.agentId),
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "mavenagi",
-                "X-Fern-SDK-Version": "1.0.4",
-                "User-Agent": "mavenagi/1.0.4",
+                "X-Fern-SDK-Version": "1.0.5",
+                "User-Agent": "mavenagi/1.0.5",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
+                ...requestOptions?.headers,
             },
             contentType: "application/json",
             requestType: "json",
@@ -239,7 +243,9 @@ export class Knowledge {
                     body: _response.error.rawBody,
                 });
             case "timeout":
-                throw new errors.MavenAGITimeoutError();
+                throw new errors.MavenAGITimeoutError(
+                    "Timeout exceeded when calling GET /v1/knowledge/{knowledgeBaseReferenceId}."
+                );
             case "unknown":
                 throw new errors.MavenAGIError({
                     message: _response.error.errorMessage,
@@ -280,10 +286,11 @@ export class Knowledge {
                 "X-Agent-Id": await core.Supplier.get(this._options.agentId),
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "mavenagi",
-                "X-Fern-SDK-Version": "1.0.4",
-                "User-Agent": "mavenagi/1.0.4",
+                "X-Fern-SDK-Version": "1.0.5",
+                "User-Agent": "mavenagi/1.0.5",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
+                ...requestOptions?.headers,
             },
             contentType: "application/json",
             requestType: "json",
@@ -345,7 +352,9 @@ export class Knowledge {
                     body: _response.error.rawBody,
                 });
             case "timeout":
-                throw new errors.MavenAGITimeoutError();
+                throw new errors.MavenAGITimeoutError(
+                    "Timeout exceeded when calling POST /v1/knowledge/{knowledgeBaseReferenceId}/version."
+                );
             case "unknown":
                 throw new errors.MavenAGIError({
                     message: _response.error.errorMessage,
@@ -382,10 +391,11 @@ export class Knowledge {
                 "X-Agent-Id": await core.Supplier.get(this._options.agentId),
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "mavenagi",
-                "X-Fern-SDK-Version": "1.0.4",
-                "User-Agent": "mavenagi/1.0.4",
+                "X-Fern-SDK-Version": "1.0.5",
+                "User-Agent": "mavenagi/1.0.5",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
+                ...requestOptions?.headers,
             },
             contentType: "application/json",
             requestType: "json",
@@ -441,7 +451,9 @@ export class Knowledge {
                     body: _response.error.rawBody,
                 });
             case "timeout":
-                throw new errors.MavenAGITimeoutError();
+                throw new errors.MavenAGITimeoutError(
+                    "Timeout exceeded when calling POST /v1/knowledge/{knowledgeBaseReferenceId}/version/finalize."
+                );
             case "unknown":
                 throw new errors.MavenAGIError({
                     message: _response.error.errorMessage,
@@ -487,10 +499,11 @@ export class Knowledge {
                 "X-Agent-Id": await core.Supplier.get(this._options.agentId),
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "mavenagi",
-                "X-Fern-SDK-Version": "1.0.4",
-                "User-Agent": "mavenagi/1.0.4",
+                "X-Fern-SDK-Version": "1.0.5",
+                "User-Agent": "mavenagi/1.0.5",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
+                ...requestOptions?.headers,
             },
             contentType: "application/json",
             requestType: "json",
@@ -552,7 +565,9 @@ export class Knowledge {
                     body: _response.error.rawBody,
                 });
             case "timeout":
-                throw new errors.MavenAGITimeoutError();
+                throw new errors.MavenAGITimeoutError(
+                    "Timeout exceeded when calling POST /v1/knowledge/{knowledgeBaseReferenceId}/document."
+                );
             case "unknown":
                 throw new errors.MavenAGIError({
                     message: _response.error.errorMessage,
@@ -598,10 +613,11 @@ export class Knowledge {
                 "X-Agent-Id": await core.Supplier.get(this._options.agentId),
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "mavenagi",
-                "X-Fern-SDK-Version": "1.0.4",
-                "User-Agent": "mavenagi/1.0.4",
+                "X-Fern-SDK-Version": "1.0.5",
+                "User-Agent": "mavenagi/1.0.5",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
+                ...requestOptions?.headers,
             },
             contentType: "application/json",
             requestType: "json",
@@ -663,7 +679,9 @@ export class Knowledge {
                     body: _response.error.rawBody,
                 });
             case "timeout":
-                throw new errors.MavenAGITimeoutError();
+                throw new errors.MavenAGITimeoutError(
+                    "Timeout exceeded when calling PUT /v1/knowledge/{knowledgeBaseReferenceId}/document."
+                );
             case "unknown":
                 throw new errors.MavenAGIError({
                     message: _response.error.errorMessage,
@@ -704,10 +722,11 @@ export class Knowledge {
                 "X-Agent-Id": await core.Supplier.get(this._options.agentId),
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "mavenagi",
-                "X-Fern-SDK-Version": "1.0.4",
-                "User-Agent": "mavenagi/1.0.4",
+                "X-Fern-SDK-Version": "1.0.5",
+                "User-Agent": "mavenagi/1.0.5",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
+                ...requestOptions?.headers,
             },
             contentType: "application/json",
             requestType: "json",
@@ -763,7 +782,9 @@ export class Knowledge {
                     body: _response.error.rawBody,
                 });
             case "timeout":
-                throw new errors.MavenAGITimeoutError();
+                throw new errors.MavenAGITimeoutError(
+                    "Timeout exceeded when calling DELETE /v1/knowledge/{knowledgeBaseReferenceId}/{knowledgeDocumentReferenceId}/document."
+                );
             case "unknown":
                 throw new errors.MavenAGIError({
                     message: _response.error.errorMessage,

@@ -546,6 +546,10 @@ await client.conversation.ask("conversation-0", {
             content: "iVBORw0KGgo...",
         },
     ],
+    transientData: {
+        userToken: "abcdef123",
+        queryApiKey: "foobar456",
+    },
 });
 ```
 
@@ -617,7 +621,7 @@ Ask a question with a streaming response. The response will be sent as a stream 
 <dd>
 
 ```typescript
-await client.conversation.askStream("conversation-0", {
+const response = await client.conversation.askStream("conversation-0", {
     conversationMessageId: {
         referenceId: "message-0",
     },
@@ -631,7 +635,14 @@ await client.conversation.askStream("conversation-0", {
             content: "iVBORw0KGgo...",
         },
     ],
+    transientData: {
+        userToken: "abcdef123",
+        queryApiKey: "foobar456",
+    },
 });
+for await (const item of response) {
+    console.log(item);
+}
 ```
 
 </dd>
@@ -1889,7 +1900,7 @@ await client.users.createOrUpdate({
 </dl>
 </details>
 
-<details><summary><code>client.users.<a href="/src/api/resources/users/client/Client.ts">get</a>(userId) -> MavenAGI.AppUserResponse</code></summary>
+<details><summary><code>client.users.<a href="/src/api/resources/users/client/Client.ts">get</a>(userId, { ...params }) -> MavenAGI.AppUserResponse</code></summary>
 <dl>
 <dd>
 
@@ -1934,6 +1945,14 @@ await client.users.get("user-0");
 <dd>
 
 **userId:** `string` — The reference ID of the user to get. All other entity ID fields are inferred from the request.
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `MavenAGI.UserGetRequest`
 
 </dd>
 </dl>

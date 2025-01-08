@@ -33,6 +33,8 @@ export declare namespace Conversation {
         organizationId?: string;
         /** Override the X-Agent-Id header */
         agentId?: string;
+        /** Additional headers to include in the request. */
+        headers?: Record<string, string>;
     }
 }
 
@@ -81,10 +83,11 @@ export class Conversation {
                 "X-Agent-Id": await core.Supplier.get(this._options.agentId),
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "mavenagi",
-                "X-Fern-SDK-Version": "1.0.4",
-                "User-Agent": "mavenagi/1.0.4",
+                "X-Fern-SDK-Version": "1.0.5",
+                "User-Agent": "mavenagi/1.0.5",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
+                ...requestOptions?.headers,
             },
             contentType: "application/json",
             requestType: "json",
@@ -146,7 +149,7 @@ export class Conversation {
                     body: _response.error.rawBody,
                 });
             case "timeout":
-                throw new errors.MavenAGITimeoutError();
+                throw new errors.MavenAGITimeoutError("Timeout exceeded when calling POST /v1/conversations.");
             case "unknown":
                 throw new errors.MavenAGIError({
                     message: _response.error.errorMessage,
@@ -191,10 +194,11 @@ export class Conversation {
                 "X-Agent-Id": await core.Supplier.get(this._options.agentId),
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "mavenagi",
-                "X-Fern-SDK-Version": "1.0.4",
-                "User-Agent": "mavenagi/1.0.4",
+                "X-Fern-SDK-Version": "1.0.5",
+                "User-Agent": "mavenagi/1.0.5",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
+                ...requestOptions?.headers,
             },
             contentType: "application/json",
             queryParameters: _queryParams,
@@ -256,7 +260,9 @@ export class Conversation {
                     body: _response.error.rawBody,
                 });
             case "timeout":
-                throw new errors.MavenAGITimeoutError();
+                throw new errors.MavenAGITimeoutError(
+                    "Timeout exceeded when calling GET /v1/conversations/{conversationId}."
+                );
             case "unknown":
                 throw new errors.MavenAGIError({
                     message: _response.error.errorMessage,
@@ -303,10 +309,11 @@ export class Conversation {
                 "X-Agent-Id": await core.Supplier.get(this._options.agentId),
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "mavenagi",
-                "X-Fern-SDK-Version": "1.0.4",
-                "User-Agent": "mavenagi/1.0.4",
+                "X-Fern-SDK-Version": "1.0.5",
+                "User-Agent": "mavenagi/1.0.5",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
+                ...requestOptions?.headers,
             },
             contentType: "application/json",
             requestType: "json",
@@ -370,7 +377,9 @@ export class Conversation {
                     body: _response.error.rawBody,
                 });
             case "timeout":
-                throw new errors.MavenAGITimeoutError();
+                throw new errors.MavenAGITimeoutError(
+                    "Timeout exceeded when calling POST /v1/conversations/{conversationId}/messages."
+                );
             case "unknown":
                 throw new errors.MavenAGIError({
                     message: _response.error.errorMessage,
@@ -401,7 +410,11 @@ export class Conversation {
      *         attachments: [{
      *                 type: "image/png",
      *                 content: "iVBORw0KGgo..."
-     *             }]
+     *             }],
+     *         transientData: {
+     *             "userToken": "abcdef123",
+     *             "queryApiKey": "foobar456"
+     *         }
      *     })
      */
     public async ask(
@@ -421,10 +434,11 @@ export class Conversation {
                 "X-Agent-Id": await core.Supplier.get(this._options.agentId),
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "mavenagi",
-                "X-Fern-SDK-Version": "1.0.4",
-                "User-Agent": "mavenagi/1.0.4",
+                "X-Fern-SDK-Version": "1.0.5",
+                "User-Agent": "mavenagi/1.0.5",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
+                ...requestOptions?.headers,
             },
             contentType: "application/json",
             requestType: "json",
@@ -486,7 +500,9 @@ export class Conversation {
                     body: _response.error.rawBody,
                 });
             case "timeout":
-                throw new errors.MavenAGITimeoutError();
+                throw new errors.MavenAGITimeoutError(
+                    "Timeout exceeded when calling POST /v1/conversations/{conversationId}/ask."
+                );
             case "unknown":
                 throw new errors.MavenAGIError({
                     message: _response.error.errorMessage,
@@ -514,10 +530,11 @@ export class Conversation {
                 "X-Agent-Id": await core.Supplier.get(this._options.agentId),
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "mavenagi",
-                "X-Fern-SDK-Version": "1.0.4",
-                "User-Agent": "mavenagi/1.0.4",
+                "X-Fern-SDK-Version": "1.0.5",
+                "User-Agent": "mavenagi/1.0.5",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
+                ...requestOptions?.headers,
             },
             contentType: "application/json",
             requestType: "json",
@@ -590,7 +607,9 @@ export class Conversation {
                     body: _response.error.rawBody,
                 });
             case "timeout":
-                throw new errors.MavenAGITimeoutError();
+                throw new errors.MavenAGITimeoutError(
+                    "Timeout exceeded when calling POST /v1/conversations/{conversationId}/ask_stream."
+                );
             case "unknown":
                 throw new errors.MavenAGIError({
                     message: _response.error.errorMessage,
@@ -635,10 +654,11 @@ export class Conversation {
                 "X-Agent-Id": await core.Supplier.get(this._options.agentId),
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "mavenagi",
-                "X-Fern-SDK-Version": "1.0.4",
-                "User-Agent": "mavenagi/1.0.4",
+                "X-Fern-SDK-Version": "1.0.5",
+                "User-Agent": "mavenagi/1.0.5",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
+                ...requestOptions?.headers,
             },
             contentType: "application/json",
             requestType: "json",
@@ -700,7 +720,9 @@ export class Conversation {
                     body: _response.error.rawBody,
                 });
             case "timeout":
-                throw new errors.MavenAGITimeoutError();
+                throw new errors.MavenAGITimeoutError(
+                    "Timeout exceeded when calling POST /v1/conversations/{conversationId}/generate_maven_suggestions."
+                );
             case "unknown":
                 throw new errors.MavenAGIError({
                     message: _response.error.errorMessage,
@@ -737,10 +759,11 @@ export class Conversation {
                 "X-Agent-Id": await core.Supplier.get(this._options.agentId),
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "mavenagi",
-                "X-Fern-SDK-Version": "1.0.4",
-                "User-Agent": "mavenagi/1.0.4",
+                "X-Fern-SDK-Version": "1.0.5",
+                "User-Agent": "mavenagi/1.0.5",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
+                ...requestOptions?.headers,
             },
             contentType: "application/json",
             requestType: "json",
@@ -801,7 +824,9 @@ export class Conversation {
                     body: _response.error.rawBody,
                 });
             case "timeout":
-                throw new errors.MavenAGITimeoutError();
+                throw new errors.MavenAGITimeoutError(
+                    "Timeout exceeded when calling POST /v1/conversations/{conversationId}/categorize."
+                );
             case "unknown":
                 throw new errors.MavenAGIError({
                     message: _response.error.errorMessage,
@@ -853,10 +878,11 @@ export class Conversation {
                 "X-Agent-Id": await core.Supplier.get(this._options.agentId),
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "mavenagi",
-                "X-Fern-SDK-Version": "1.0.4",
-                "User-Agent": "mavenagi/1.0.4",
+                "X-Fern-SDK-Version": "1.0.5",
+                "User-Agent": "mavenagi/1.0.5",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
+                ...requestOptions?.headers,
             },
             contentType: "application/json",
             requestType: "json",
@@ -918,7 +944,7 @@ export class Conversation {
                     body: _response.error.rawBody,
                 });
             case "timeout":
-                throw new errors.MavenAGITimeoutError();
+                throw new errors.MavenAGITimeoutError("Timeout exceeded when calling POST /v1/conversations/feedback.");
             case "unknown":
                 throw new errors.MavenAGIError({
                     message: _response.error.errorMessage,
@@ -964,10 +990,11 @@ export class Conversation {
                 "X-Agent-Id": await core.Supplier.get(this._options.agentId),
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "mavenagi",
-                "X-Fern-SDK-Version": "1.0.4",
-                "User-Agent": "mavenagi/1.0.4",
+                "X-Fern-SDK-Version": "1.0.5",
+                "User-Agent": "mavenagi/1.0.5",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
+                ...requestOptions?.headers,
             },
             contentType: "application/json",
             requestType: "json",
@@ -1029,7 +1056,9 @@ export class Conversation {
                     body: _response.error.rawBody,
                 });
             case "timeout":
-                throw new errors.MavenAGITimeoutError();
+                throw new errors.MavenAGITimeoutError(
+                    "Timeout exceeded when calling POST /v1/conversations/{conversationId}/submit-form."
+                );
             case "unknown":
                 throw new errors.MavenAGIError({
                     message: _response.error.errorMessage,
@@ -1070,10 +1099,11 @@ export class Conversation {
                 "X-Agent-Id": await core.Supplier.get(this._options.agentId),
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "mavenagi",
-                "X-Fern-SDK-Version": "1.0.4",
-                "User-Agent": "mavenagi/1.0.4",
+                "X-Fern-SDK-Version": "1.0.5",
+                "User-Agent": "mavenagi/1.0.5",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
+                ...requestOptions?.headers,
             },
             contentType: "application/json",
             requestType: "json",
@@ -1137,7 +1167,9 @@ export class Conversation {
                     body: _response.error.rawBody,
                 });
             case "timeout":
-                throw new errors.MavenAGITimeoutError();
+                throw new errors.MavenAGITimeoutError(
+                    "Timeout exceeded when calling POST /v1/conversations/{conversationId}/metadata."
+                );
             case "unknown":
                 throw new errors.MavenAGIError({
                     message: _response.error.errorMessage,

@@ -12,28 +12,28 @@ export type StreamResponse =
     | MavenAGI.StreamResponse.Start
     | MavenAGI.StreamResponse.End;
 
-export declare namespace StreamResponse {
-    interface Text extends MavenAGI.AskStreamTextEvent {
+export namespace StreamResponse {
+    export interface Text extends MavenAGI.AskStreamTextEvent {
         eventType: "text";
     }
 
-    interface Action extends MavenAGI.AskStreamActionEvent {
+    export interface Action extends MavenAGI.AskStreamActionEvent {
         eventType: "action";
     }
 
-    interface Chart extends MavenAGI.AskStreamChartEvent {
+    export interface Chart extends MavenAGI.AskStreamChartEvent {
         eventType: "chart";
     }
 
-    interface Metadata extends MavenAGI.AskStreamMetadataEvent {
+    export interface Metadata extends MavenAGI.AskStreamMetadataEvent {
         eventType: "metadata";
     }
 
-    interface Start extends MavenAGI.AskStreamStartEvent {
+    export interface Start extends MavenAGI.AskStreamStartEvent {
         eventType: "start";
     }
 
-    interface End extends MavenAGI.AskStreamEndEvent {
+    export interface End extends MavenAGI.AskStreamEndEvent {
         eventType: "end";
     }
 }

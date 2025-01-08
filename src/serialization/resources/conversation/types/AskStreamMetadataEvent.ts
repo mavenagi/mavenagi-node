@@ -5,7 +5,7 @@
 import * as serializers from "../../../index";
 import * as MavenAGI from "../../../../api/index";
 import * as core from "../../../../core";
-import { BotResponseMetadata } from "./BotResponseMetadata";
+import { BotResponseMetadata } from "../../commons/types/BotResponseMetadata";
 
 export const AskStreamMetadataEvent: core.serialization.ObjectSchema<
     serializers.AskStreamMetadataEvent.Raw,

@@ -3,7 +3,6 @@
  */
 
 export type EventTriggerType = "CONVERSATION_CREATED" | "FEEDBACK_CREATED";
-
 export const EventTriggerType = {
     ConversationCreated: "CONVERSATION_CREATED",
     FeedbackCreated: "FEEDBACK_CREATED",

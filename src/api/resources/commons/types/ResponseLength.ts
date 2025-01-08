@@ -3,7 +3,6 @@
  */
 
 export type ResponseLength = "SHORT" | "MEDIUM" | "LONG";
-
 export const ResponseLength = {
     Short: "SHORT",
     Medium: "MEDIUM",

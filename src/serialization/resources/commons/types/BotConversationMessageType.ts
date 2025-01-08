@@ -9,8 +9,8 @@ import * as core from "../../../../core";
 export const BotConversationMessageType: core.serialization.Schema<
     serializers.BotConversationMessageType.Raw,
     MavenAGI.BotConversationMessageType
-> = core.serialization.enum_(["BOT_RESPONSE", "BOT_SUGGESTION", "ACTION_RESPONSE"]);
+> = core.serialization.enum_(["BOT_RESPONSE", "BOT_SUGGESTION"]);
 
 export declare namespace BotConversationMessageType {
-    type Raw = "BOT_RESPONSE" | "BOT_SUGGESTION" | "ACTION_RESPONSE";
+    type Raw = "BOT_RESPONSE" | "BOT_SUGGESTION";
 }

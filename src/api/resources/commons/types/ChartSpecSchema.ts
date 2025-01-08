@@ -3,7 +3,6 @@
  */
 
 export type ChartSpecSchema = "HIGHCHARTS_TS";
-
 export const ChartSpecSchema = {
     HighchartsTs: "HIGHCHARTS_TS",
 } as const;

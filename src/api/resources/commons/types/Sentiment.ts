@@ -6,7 +6,6 @@
  * The sentiment of the conversation
  */
 export type Sentiment = "POSITIVE" | "NEGATIVE" | "NEUTRAL" | "MIXED" | "UNKNOWN";
-
 export const Sentiment = {
     Positive: "POSITIVE",
     Negative: "NEGATIVE",

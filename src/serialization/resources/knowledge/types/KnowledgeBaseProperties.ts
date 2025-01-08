@@ -14,6 +14,7 @@ export const KnowledgeBaseProperties: core.serialization.ObjectSchema<
     name: core.serialization.string(),
     type: KnowledgeBaseType,
     url: core.serialization.string().optional(),
+    precondition: core.serialization.lazy(() => serializers.Precondition).optional(),
 });
 
 export declare namespace KnowledgeBaseProperties {
@@ -21,5 +22,6 @@ export declare namespace KnowledgeBaseProperties {
         name: string;
         type: KnowledgeBaseType.Raw;
         url?: string | null;
+        precondition?: serializers.Precondition.Raw | null;
     }
 }

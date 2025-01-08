@@ -3,7 +3,6 @@
  */
 
 export type ActionParameterType = "STRING" | "BOOLEAN" | "NUMBER";
-
 export const ActionParameterType = {
     String: "STRING",
     Boolean: "BOOLEAN",

@@ -3,7 +3,6 @@
  */
 
 export type Capability = "MARKDOWN" | "FORMS" | "IMAGES" | "CHARTS_HIGHCHARTS_TS";
-
 export const Capability = {
     Markdown: "MARKDOWN",
     Forms: "FORMS",

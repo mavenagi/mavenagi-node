@@ -35,49 +35,45 @@ export declare namespace MavenAGIClient {
         organizationId?: string;
         /** Override the X-Agent-Id header */
         agentId?: string;
+        /** Additional headers to include in the request. */
+        headers?: Record<string, string>;
     }
 }
 
 export class MavenAGIClient {
-    constructor(protected readonly _options: MavenAGIClient.Options) {}
-
     protected _actions: Actions | undefined;
+    protected _appSettings: AppSettings | undefined;
+    protected _conversation: Conversation | undefined;
+    protected _knowledge: Knowledge | undefined;
+    protected _translations: Translations | undefined;
+    protected _triggers: Triggers | undefined;
+    protected _users: Users | undefined;
+
+    constructor(protected readonly _options: MavenAGIClient.Options) {}
 
     public get actions(): Actions {
         return (this._actions ??= new Actions(this._options));
     }
 
-    protected _appSettings: AppSettings | undefined;
-
     public get appSettings(): AppSettings {
         return (this._appSettings ??= new AppSettings(this._options));
     }
-
-    protected _conversation: Conversation | undefined;
 
     public get conversation(): Conversation {
         return (this._conversation ??= new Conversation(this._options));
     }
 
-    protected _knowledge: Knowledge | undefined;
-
     public get knowledge(): Knowledge {
         return (this._knowledge ??= new Knowledge(this._options));
     }
-
-    protected _translations: Translations | undefined;
 
     public get translations(): Translations {
         return (this._translations ??= new Translations(this._options));
     }
 
-    protected _triggers: Triggers | undefined;
-
     public get triggers(): Triggers {
         return (this._triggers ??= new Triggers(this._options));
     }
-
-    protected _users: Users | undefined;
 
     public get users(): Users {
         return (this._users ??= new Users(this._options));

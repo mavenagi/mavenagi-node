@@ -9,16 +9,16 @@ export type ConversationPrecondition =
     | MavenAGI.ConversationPrecondition.Metadata
     | MavenAGI.ConversationPrecondition.ActionExecuted;
 
-export declare namespace ConversationPrecondition {
-    interface Tags extends MavenAGI.TagsPrecondition {
+export namespace ConversationPrecondition {
+    export interface Tags extends MavenAGI.TagsPrecondition {
         conversationPreconditionType: "tags";
     }
 
-    interface Metadata extends MavenAGI.MetadataPrecondition {
+    export interface Metadata extends MavenAGI.MetadataPrecondition {
         conversationPreconditionType: "metadata";
     }
 
-    interface ActionExecuted extends MavenAGI.ConversationExecutedActionPrecondition {
+    export interface ActionExecuted extends MavenAGI.ConversationExecutedActionPrecondition {
         conversationPreconditionType: "actionExecuted";
     }
 }
