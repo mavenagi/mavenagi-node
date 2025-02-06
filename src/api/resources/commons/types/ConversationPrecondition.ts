@@ -7,7 +7,8 @@ import * as MavenAGI from "../../../index";
 export type ConversationPrecondition =
     | MavenAGI.ConversationPrecondition.Tags
     | MavenAGI.ConversationPrecondition.Metadata
-    | MavenAGI.ConversationPrecondition.ActionExecuted;
+    | MavenAGI.ConversationPrecondition.ActionExecuted
+    | MavenAGI.ConversationPrecondition.ResponseConfig;
 
 export namespace ConversationPrecondition {
     export interface Tags extends MavenAGI.TagsPrecondition {
@@ -20,5 +21,9 @@ export namespace ConversationPrecondition {
 
     export interface ActionExecuted extends MavenAGI.ConversationExecutedActionPrecondition {
         conversationPreconditionType: "actionExecuted";
+    }
+
+    export interface ResponseConfig extends MavenAGI.ResponseConfigPrecondition {
+        conversationPreconditionType: "responseConfig";
     }
 }

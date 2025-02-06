@@ -13,3 +13,7 @@ export * from "./AskStreamMetadataEvent";
 export * from "./AskStreamStartEvent";
 export * from "./AskStreamEndEvent";
 export * from "./CategorizationResponse";
+export * from "./ConversationField";
+export * from "./Quality";
+export * from "./QualityReason";
+export * from "./ConversationFilter";

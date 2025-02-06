@@ -8,6 +8,7 @@ import * as core from "../../../../core";
 import { TagsPrecondition } from "./TagsPrecondition";
 import { MetadataPrecondition } from "./MetadataPrecondition";
 import { ConversationExecutedActionPrecondition } from "./ConversationExecutedActionPrecondition";
+import { ResponseConfigPrecondition } from "./ResponseConfigPrecondition";
 
 export const ConversationPrecondition: core.serialization.Schema<
     serializers.ConversationPrecondition.Raw,
@@ -17,6 +18,7 @@ export const ConversationPrecondition: core.serialization.Schema<
         tags: TagsPrecondition,
         metadata: MetadataPrecondition,
         actionExecuted: ConversationExecutedActionPrecondition,
+        responseConfig: ResponseConfigPrecondition,
     })
     .transform<MavenAGI.ConversationPrecondition>({
         transform: (value) => value,
@@ -27,7 +29,8 @@ export declare namespace ConversationPrecondition {
     type Raw =
         | ConversationPrecondition.Tags
         | ConversationPrecondition.Metadata
-        | ConversationPrecondition.ActionExecuted;
+        | ConversationPrecondition.ActionExecuted
+        | ConversationPrecondition.ResponseConfig;
 
     interface Tags extends TagsPrecondition.Raw {
         conversationPreconditionType: "tags";
@@ -39,5 +42,9 @@ export declare namespace ConversationPrecondition {
 
     interface ActionExecuted extends ConversationExecutedActionPrecondition.Raw {
         conversationPreconditionType: "actionExecuted";
+    }
+
+    interface ResponseConfig extends ResponseConfigPrecondition.Raw {
+        conversationPreconditionType: "responseConfig";
     }
 }

@@ -5,6 +5,7 @@
 import * as environments from "./environments";
 import * as core from "./core";
 import { Actions } from "./api/resources/actions/client/Client";
+import { Analytics } from "./api/resources/analytics/client/Client";
 import { AppSettings } from "./api/resources/appSettings/client/Client";
 import { Conversation } from "./api/resources/conversation/client/Client";
 import { Knowledge } from "./api/resources/knowledge/client/Client";
@@ -42,6 +43,7 @@ export declare namespace MavenAGIClient {
 
 export class MavenAGIClient {
     protected _actions: Actions | undefined;
+    protected _analytics: Analytics | undefined;
     protected _appSettings: AppSettings | undefined;
     protected _conversation: Conversation | undefined;
     protected _knowledge: Knowledge | undefined;
@@ -53,6 +55,10 @@ export class MavenAGIClient {
 
     public get actions(): Actions {
         return (this._actions ??= new Actions(this._options));
+    }
+
+    public get analytics(): Analytics {
+        return (this._analytics ??= new Analytics(this._options));
     }
 
     public get appSettings(): AppSettings {

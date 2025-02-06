@@ -83,8 +83,8 @@ export class Conversation {
                 "X-Agent-Id": await core.Supplier.get(this._options.agentId),
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "mavenagi",
-                "X-Fern-SDK-Version": "1.0.5",
-                "User-Agent": "mavenagi/1.0.5",
+                "X-Fern-SDK-Version": "1.0.6",
+                "User-Agent": "mavenagi/1.0.6",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...requestOptions?.headers,
@@ -194,8 +194,8 @@ export class Conversation {
                 "X-Agent-Id": await core.Supplier.get(this._options.agentId),
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "mavenagi",
-                "X-Fern-SDK-Version": "1.0.5",
-                "User-Agent": "mavenagi/1.0.5",
+                "X-Fern-SDK-Version": "1.0.6",
+                "User-Agent": "mavenagi/1.0.6",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...requestOptions?.headers,
@@ -271,7 +271,124 @@ export class Conversation {
     }
 
     /**
-     * Append messages to an existing conversation. The conversation must be initialized first. If a message with the same id already exists, it will be ignored.
+     * Wipes a conversation of all user data.
+     * The conversation ID will still exist and non-user specific data will still be retained.
+     * Attempts to modify or add messages to the conversation will throw an error.
+     *
+     * <Warning>This is a destructive operation and cannot be undone. <br/><br/>
+     * The exact fields cleared include: the conversation subject, userRequest, agentResponse.
+     * As well as the text response, followup questions, and backend LLM prompt of all messages.</Warning>
+     *
+     * @param {string} conversationId - The ID of the conversation to delete
+     * @param {MavenAGI.ConversationDeleteRequest} request
+     * @param {Conversation.RequestOptions} requestOptions - Request-specific configuration.
+     *
+     * @throws {@link MavenAGI.NotFoundError}
+     * @throws {@link MavenAGI.BadRequestError}
+     * @throws {@link MavenAGI.ServerError}
+     *
+     * @example
+     *     await client.conversation.delete("conversation-0", {
+     *         reason: "GDPR deletion request 1234."
+     *     })
+     */
+    public async delete(
+        conversationId: string,
+        request: MavenAGI.ConversationDeleteRequest,
+        requestOptions?: Conversation.RequestOptions
+    ): Promise<void> {
+        const { appId, reason } = request;
+        const _queryParams: Record<string, string | string[] | object | object[]> = {};
+        if (appId != null) {
+            _queryParams["appId"] = appId;
+        }
+
+        _queryParams["reason"] = reason;
+        const _response = await (this._options.fetcher ?? core.fetcher)({
+            url: urlJoin(
+                (await core.Supplier.get(this._options.environment)) ?? environments.MavenAGIEnvironment.Production,
+                `/v1/conversations/${encodeURIComponent(conversationId)}`
+            ),
+            method: "DELETE",
+            headers: {
+                Authorization: await this._getAuthorizationHeader(),
+                "X-Organization-Id": await core.Supplier.get(this._options.organizationId),
+                "X-Agent-Id": await core.Supplier.get(this._options.agentId),
+                "X-Fern-Language": "JavaScript",
+                "X-Fern-SDK-Name": "mavenagi",
+                "X-Fern-SDK-Version": "1.0.6",
+                "User-Agent": "mavenagi/1.0.6",
+                "X-Fern-Runtime": core.RUNTIME.type,
+                "X-Fern-Runtime-Version": core.RUNTIME.version,
+                ...requestOptions?.headers,
+            },
+            contentType: "application/json",
+            queryParameters: _queryParams,
+            requestType: "json",
+            timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
+            maxRetries: requestOptions?.maxRetries,
+            abortSignal: requestOptions?.abortSignal,
+        });
+        if (_response.ok) {
+            return;
+        }
+
+        if (_response.error.reason === "status-code") {
+            switch (_response.error.statusCode) {
+                case 404:
+                    throw new MavenAGI.NotFoundError(
+                        serializers.ErrorMessage.parseOrThrow(_response.error.body, {
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
+                            breadcrumbsPrefix: ["response"],
+                        })
+                    );
+                case 400:
+                    throw new MavenAGI.BadRequestError(
+                        serializers.ErrorMessage.parseOrThrow(_response.error.body, {
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
+                            breadcrumbsPrefix: ["response"],
+                        })
+                    );
+                case 500:
+                    throw new MavenAGI.ServerError(
+                        serializers.ErrorMessage.parseOrThrow(_response.error.body, {
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
+                            breadcrumbsPrefix: ["response"],
+                        })
+                    );
+                default:
+                    throw new errors.MavenAGIError({
+                        statusCode: _response.error.statusCode,
+                        body: _response.error.body,
+                    });
+            }
+        }
+
+        switch (_response.error.reason) {
+            case "non-json":
+                throw new errors.MavenAGIError({
+                    statusCode: _response.error.statusCode,
+                    body: _response.error.rawBody,
+                });
+            case "timeout":
+                throw new errors.MavenAGITimeoutError(
+                    "Timeout exceeded when calling DELETE /v1/conversations/{conversationId}."
+                );
+            case "unknown":
+                throw new errors.MavenAGIError({
+                    message: _response.error.errorMessage,
+                });
+        }
+    }
+
+    /**
+     * Append messages to an existing conversation. The conversation must be initialized first. If a message with the same ID already exists, it will be ignored. Messages do not allow modification.
      *
      * @param {string} conversationId - The ID of the conversation to append messages to
      * @param {MavenAGI.ConversationMessageRequest[]} request
@@ -309,8 +426,8 @@ export class Conversation {
                 "X-Agent-Id": await core.Supplier.get(this._options.agentId),
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "mavenagi",
-                "X-Fern-SDK-Version": "1.0.5",
-                "User-Agent": "mavenagi/1.0.5",
+                "X-Fern-SDK-Version": "1.0.6",
+                "User-Agent": "mavenagi/1.0.6",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...requestOptions?.headers,
@@ -388,7 +505,15 @@ export class Conversation {
     }
 
     /**
-     * Ask a question
+     * Get an answer from Maven for a given user question. If the user question or its answer already exists,
+     * they will be reused and will not be updated. Messages do not allow modification once generated.
+     *
+     * Concurrency Behavior:
+     * - If another API call is made for the same user question while a response is mid-stream, partial answers may be returned.
+     * - The second caller will receive a truncated or partial response depending on where the first stream is in its processing. The first caller's stream will remain unaffected and continue delivering the full response.
+     *
+     * Known Limitation:
+     * - The API does not currently expose metadata indicating whether a response or message is incomplete. This will be addressed in a future update.
      *
      * @param {string} conversationId - The ID of a new or existing conversation to use as context for the question
      * @param {MavenAGI.AskRequest} request
@@ -434,8 +559,8 @@ export class Conversation {
                 "X-Agent-Id": await core.Supplier.get(this._options.agentId),
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "mavenagi",
-                "X-Fern-SDK-Version": "1.0.5",
-                "User-Agent": "mavenagi/1.0.5",
+                "X-Fern-SDK-Version": "1.0.6",
+                "User-Agent": "mavenagi/1.0.6",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...requestOptions?.headers,
@@ -511,7 +636,19 @@ export class Conversation {
     }
 
     /**
-     * Ask a question with a streaming response. The response will be sent as a stream of events. The text portions of stream responses should be concatenated to form the full response text. Action and metadata events should overwrite past data and do not need concatenation.
+     * Get an answer from Maven for a given user question with a streaming response. The response will be sent as a stream of events.
+     * The text portions of stream responses should be concatenated to form the full response text.
+     * Action and metadata events should overwrite past data and do not need concatenation.
+     *
+     * If the user question or its answer already exists, they will be reused and will not be updated.
+     * Messages do not allow modification once generated.
+     *
+     * Concurrency Behavior:
+     * - If another API call is made for the same user question while a response is mid-stream, partial answers may be returned.
+     * - The second caller will receive a truncated or partial response depending on where the first stream is in its processing. The first caller's stream will remain unaffected and continue delivering the full response.
+     *
+     * Known Limitation:
+     * - The API does not currently expose metadata indicating whether a response or message is incomplete. This will be addressed in a future update.
      */
     public async askStream(
         conversationId: string,
@@ -530,8 +667,8 @@ export class Conversation {
                 "X-Agent-Id": await core.Supplier.get(this._options.agentId),
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "mavenagi",
-                "X-Fern-SDK-Version": "1.0.5",
-                "User-Agent": "mavenagi/1.0.5",
+                "X-Fern-SDK-Version": "1.0.6",
+                "User-Agent": "mavenagi/1.0.6",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...requestOptions?.headers,
@@ -618,7 +755,7 @@ export class Conversation {
     }
 
     /**
-     * Generate a response suggestion for each requested message id in a conversation
+     * This method is deprecated and will be removed in a future release. Use either `ask` or `askStream` instead.
      *
      * @param {string} conversationId - The ID of a conversation the messages belong to
      * @param {MavenAGI.GenerateMavenSuggestionsRequest} request
@@ -654,8 +791,8 @@ export class Conversation {
                 "X-Agent-Id": await core.Supplier.get(this._options.agentId),
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "mavenagi",
-                "X-Fern-SDK-Version": "1.0.5",
-                "User-Agent": "mavenagi/1.0.5",
+                "X-Fern-SDK-Version": "1.0.6",
+                "User-Agent": "mavenagi/1.0.6",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...requestOptions?.headers,
@@ -759,8 +896,8 @@ export class Conversation {
                 "X-Agent-Id": await core.Supplier.get(this._options.agentId),
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "mavenagi",
-                "X-Fern-SDK-Version": "1.0.5",
-                "User-Agent": "mavenagi/1.0.5",
+                "X-Fern-SDK-Version": "1.0.6",
+                "User-Agent": "mavenagi/1.0.6",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...requestOptions?.headers,
@@ -878,8 +1015,8 @@ export class Conversation {
                 "X-Agent-Id": await core.Supplier.get(this._options.agentId),
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "mavenagi",
-                "X-Fern-SDK-Version": "1.0.5",
-                "User-Agent": "mavenagi/1.0.5",
+                "X-Fern-SDK-Version": "1.0.6",
+                "User-Agent": "mavenagi/1.0.6",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...requestOptions?.headers,
@@ -990,8 +1127,8 @@ export class Conversation {
                 "X-Agent-Id": await core.Supplier.get(this._options.agentId),
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "mavenagi",
-                "X-Fern-SDK-Version": "1.0.5",
-                "User-Agent": "mavenagi/1.0.5",
+                "X-Fern-SDK-Version": "1.0.6",
+                "User-Agent": "mavenagi/1.0.6",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...requestOptions?.headers,
@@ -1099,8 +1236,8 @@ export class Conversation {
                 "X-Agent-Id": await core.Supplier.get(this._options.agentId),
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "mavenagi",
-                "X-Fern-SDK-Version": "1.0.5",
-                "User-Agent": "mavenagi/1.0.5",
+                "X-Fern-SDK-Version": "1.0.6",
+                "User-Agent": "mavenagi/1.0.6",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...requestOptions?.headers,

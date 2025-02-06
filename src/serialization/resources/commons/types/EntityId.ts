@@ -5,22 +5,17 @@
 import * as serializers from "../../../index";
 import * as MavenAGI from "../../../../api/index";
 import * as core from "../../../../core";
-import { EntityType } from "./EntityType";
-import { EntityIdBase } from "./EntityIdBase";
+import { EntityIdWithoutAgent } from "./EntityIdWithoutAgent";
 
 export const EntityId: core.serialization.ObjectSchema<serializers.EntityId.Raw, MavenAGI.EntityId> = core.serialization
     .object({
-        type: EntityType,
-        appId: core.serialization.string(),
         organizationId: core.serialization.string(),
         agentId: core.serialization.string(),
     })
-    .extend(EntityIdBase);
+    .extend(EntityIdWithoutAgent);
 
 export declare namespace EntityId {
-    interface Raw extends EntityIdBase.Raw {
-        type: EntityType.Raw;
-        appId: string;
+    interface Raw extends EntityIdWithoutAgent.Raw {
         organizationId: string;
         agentId: string;
     }

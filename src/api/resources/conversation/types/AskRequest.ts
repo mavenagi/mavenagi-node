@@ -25,7 +25,7 @@ import * as MavenAGI from "../../../index";
  *     }
  */
 export interface AskRequest {
-    /** Externally supplied ID to uniquely identify this message within the conversation */
+    /** Externally supplied ID to uniquely identify this message within the conversation. If a message with this ID already exists it will be reused and will not be updated. */
     conversationMessageId: MavenAGI.EntityIdBase;
     /** Externally supplied ID to uniquely identify the user that created this message */
     userId: MavenAGI.EntityIdBase;

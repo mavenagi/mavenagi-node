@@ -4,13 +4,12 @@
 
 import * as MavenAGI from "../../../index";
 
-export interface EntityId extends MavenAGI.EntityIdBase {
-    /** The object type */
-    type: MavenAGI.EntityType;
-    /** The ID of the application that created this object */
-    appId: string;
-    /** The ID of the organization that this object belongs too */
+/**
+ * A fully specified object ID, unique across the entire system.
+ */
+export interface EntityId extends MavenAGI.EntityIdWithoutAgent {
+    /** The ID of the organization that this object belongs to */
     organizationId: string;
-    /** The ID of the agent that this object belongs too */
+    /** The ID of the agent that this object belongs to */
     agentId: string;
 }
