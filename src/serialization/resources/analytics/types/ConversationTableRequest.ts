@@ -5,9 +5,9 @@
 import * as serializers from "../../../index";
 import * as MavenAGI from "../../../../api/index";
 import * as core from "../../../../core";
-import { TimeInterval } from "../../analyticsCommons/types/TimeInterval";
-import { GroupBy } from "./GroupBy";
-import { ColumnDefinition } from "./ColumnDefinition";
+import { TimeInterval } from "./TimeInterval";
+import { ConversationGroupBy } from "./ConversationGroupBy";
+import { ConversationColumnDefinition } from "./ConversationColumnDefinition";
 import { ConversationAnalyticsRequest } from "./ConversationAnalyticsRequest";
 
 export const ConversationTableRequest: core.serialization.ObjectSchema<
@@ -16,15 +16,15 @@ export const ConversationTableRequest: core.serialization.ObjectSchema<
 > = core.serialization
     .object({
         timeGrouping: TimeInterval.optional(),
-        fieldGroupings: core.serialization.list(GroupBy),
-        columnDefinitions: core.serialization.list(ColumnDefinition),
+        fieldGroupings: core.serialization.list(ConversationGroupBy),
+        columnDefinitions: core.serialization.list(ConversationColumnDefinition),
     })
     .extend(ConversationAnalyticsRequest);
 
 export declare namespace ConversationTableRequest {
     interface Raw extends ConversationAnalyticsRequest.Raw {
         timeGrouping?: TimeInterval.Raw | null;
-        fieldGroupings: GroupBy.Raw[];
-        columnDefinitions: ColumnDefinition.Raw[];
+        fieldGroupings: ConversationGroupBy.Raw[];
+        columnDefinitions: ConversationColumnDefinition.Raw[];
     }
 }

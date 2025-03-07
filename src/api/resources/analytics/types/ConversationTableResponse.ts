@@ -29,11 +29,8 @@ import * as MavenAGI from "../../../index";
  *                         value: 150
  *                     },
  *                     "percentile_handle_time": {
- *                         type: "percentileMap",
- *                         value: {
- *                             "25": 100,
- *                             "75": 250
- *                         }
+ *                         type: "millisecond",
+ *                         value: 110
  *                     }
  *                 }
  *             }, {
@@ -57,11 +54,8 @@ import * as MavenAGI from "../../../index";
  *                         value: 300
  *                     },
  *                     "percentile_handle_time": {
- *                         type: "percentileMap",
- *                         value: {
- *                             "25": 200,
- *                             "75": 400
- *                         }
+ *                         type: "millisecond",
+ *                         value: 250
  *                     }
  *                 }
  *             }, {
@@ -81,11 +75,8 @@ import * as MavenAGI from "../../../index";
  *                         value: 180
  *                     },
  *                     "percentile_handle_time": {
- *                         type: "percentileMap",
- *                         value: {
- *                             "25": 130,
- *                             "75": 280
- *                         }
+ *                         type: "millisecond",
+ *                         value: 180
  *                     }
  *                 }
  *             }, {
@@ -109,19 +100,14 @@ import * as MavenAGI from "../../../index";
  *                         value: 320
  *                     },
  *                     "percentile_handle_time": {
- *                         type: "percentileMap",
- *                         value: {
- *                             "25": 220,
- *                             "75": 420
- *                         }
+ *                         type: "millisecond",
+ *                         value: 220
  *                     }
  *                 }
  *             }]
  *     }
  */
-export interface ConversationTableResponse {
-    /** Column headers in the table, aligning with the column definitions specified in the request. */
-    headers: string[];
+export interface ConversationTableResponse extends MavenAGI.TableResponseBase {
     /**
      * The dataset rows, where each row represents a unique combination of grouping field values.
      * The identifier map contains grouping field names mapped to their respective values.

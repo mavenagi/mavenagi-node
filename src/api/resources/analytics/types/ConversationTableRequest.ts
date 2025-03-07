@@ -23,30 +23,27 @@ import * as MavenAGI from "../../../index";
  *                 header: "avg_first_response_time",
  *                 metric: {
  *                     type: "average",
- *                     targetField: MavenAGI.ConversationField.FirstResponseTime
+ *                     targetField: MavenAGI.NumericConversationField.FirstResponseTime
  *                 }
  *             }, {
  *                 header: "percentile_handle_time",
  *                 metric: {
  *                     type: "percentile",
- *                     targetField: MavenAGI.ConversationField.HandleTime,
- *                     percentiles: [25, 75]
+ *                     targetField: MavenAGI.NumericConversationField.HandleTime,
+ *                     percentile: 25
  *                 }
  *             }]
  *     }
  */
 export interface ConversationTableRequest extends MavenAGI.ConversationAnalyticsRequest {
-    /**
-     * Defines the time interval for grouping data. If specified, data is grouped accordingly based on the time they were created.
-     * Example: If set to "DAY," data will be aggregated by day.
-     */
+    /** Defines the time interval for grouping data. If specified, data is grouped accordingly  based on the time they were created. Example: If set to "DAY," data will be aggregated by day. */
     timeGrouping?: MavenAGI.TimeInterval;
     /**
      * Specifies the fields by which data should be grouped. Each unique combination forms a row.
      * If multiple fields are provided, the result is grouped by their unique value combinations.
      * If empty, all data is aggregated into a single row.
      */
-    fieldGroupings: MavenAGI.GroupBy[];
+    fieldGroupings: MavenAGI.ConversationGroupBy[];
     /** Specifies the metrics to be displayed as columns. Column headers act as keys, with computed metric values as their mapped values. There needs to be at least one column definition in the table request. */
-    columnDefinitions: MavenAGI.ColumnDefinition[];
+    columnDefinitions: MavenAGI.ConversationColumnDefinition[];
 }

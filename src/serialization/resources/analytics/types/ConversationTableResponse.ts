@@ -6,18 +6,19 @@ import * as serializers from "../../../index";
 import * as MavenAGI from "../../../../api/index";
 import * as core from "../../../../core";
 import { ConversationRow } from "./ConversationRow";
+import { TableResponseBase } from "./TableResponseBase";
 
 export const ConversationTableResponse: core.serialization.ObjectSchema<
     serializers.ConversationTableResponse.Raw,
     MavenAGI.ConversationTableResponse
-> = core.serialization.object({
-    headers: core.serialization.list(core.serialization.string()),
-    rows: core.serialization.list(ConversationRow),
-});
+> = core.serialization
+    .object({
+        rows: core.serialization.list(ConversationRow),
+    })
+    .extend(TableResponseBase);
 
 export declare namespace ConversationTableResponse {
-    interface Raw {
-        headers: string[];
+    interface Raw extends TableResponseBase.Raw {
         rows: ConversationRow.Raw[];
     }
 }

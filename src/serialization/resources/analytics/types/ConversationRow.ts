@@ -5,21 +5,21 @@
 import * as serializers from "../../../index";
 import * as MavenAGI from "../../../../api/index";
 import * as core from "../../../../core";
-import { FieldValue } from "../../analyticsCommons/types/FieldValue";
+import { FieldValue } from "./FieldValue";
 import { ConversationField } from "../../conversation/types/ConversationField";
-import { CellData } from "../../analyticsCommons/types/CellData";
+import { RowBase } from "./RowBase";
 
 export const ConversationRow: core.serialization.ObjectSchema<
     serializers.ConversationRow.Raw,
     MavenAGI.ConversationRow
-> = core.serialization.object({
-    identifier: core.serialization.record(ConversationField, FieldValue.optional()),
-    data: core.serialization.record(core.serialization.string(), CellData),
-});
+> = core.serialization
+    .object({
+        identifier: core.serialization.record(ConversationField, FieldValue.optional()),
+    })
+    .extend(RowBase);
 
 export declare namespace ConversationRow {
-    interface Raw {
+    interface Raw extends RowBase.Raw {
         identifier: Record<ConversationField.Raw, FieldValue.Raw | null | undefined>;
-        data: Record<string, CellData.Raw>;
     }
 }

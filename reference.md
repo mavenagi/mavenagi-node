@@ -272,7 +272,7 @@ await client.analytics.getConversationTable({
             metric: {
                 type: "percentile",
                 targetField: "HandleTime",
-                percentiles: [25, 75],
+                percentile: 25,
             },
         },
     ],
@@ -293,6 +293,160 @@ await client.analytics.getConversationTable({
 <dd>
 
 **request:** `MavenAGI.ConversationTableRequest`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Analytics.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.analytics.<a href="/src/api/resources/analytics/client/Client.ts">getConversationChart</a>({ ...params }) -> MavenAGI.ChartResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Fetches conversation data visualized in a chart format. Supported chart types include pie chart, date histogram, and stacked bar charts.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.analytics.getConversationChart({
+    type: "pieChart",
+    conversationFilter: {
+        languages: ["en", "es"],
+    },
+    groupBy: {
+        field: "Category",
+    },
+    metric: {
+        type: "count",
+    },
+});
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `MavenAGI.ConversationChartRequest`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Analytics.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.analytics.<a href="/src/api/resources/analytics/client/Client.ts">getFeedbackTable</a>({ ...params }) -> MavenAGI.FeedbackTableResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Retrieves structured feedback data formatted as a table, allowing users to group, filter, and define specific metrics to display as columns.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.analytics.getFeedbackTable({
+    feedbackFilter: {
+        types: ["THUMBS_UP", "INSERT"],
+    },
+    fieldGroupings: [
+        {
+            field: "CreatedBy",
+        },
+    ],
+    columnDefinitions: [
+        {
+            header: "feedback_count",
+            metric: {
+                type: "count",
+            },
+        },
+    ],
+});
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `MavenAGI.FeedbackTableRequest`
 
 </dd>
 </dl>
@@ -404,11 +558,21 @@ await client.conversation.initialize({
     },
     messages: [
         {
+            userId: {
+                referenceId: "referenceId",
+            },
+            text: "text",
+            userMessageType: "USER",
             conversationMessageId: {
                 referenceId: "referenceId",
             },
         },
         {
+            userId: {
+                referenceId: "referenceId",
+            },
+            text: "text",
+            userMessageType: "USER",
             conversationMessageId: {
                 referenceId: "referenceId",
             },
@@ -629,11 +793,21 @@ Append messages to an existing conversation. The conversation must be initialize
 ```typescript
 await client.conversation.appendNewMessages("conversationId", [
     {
+        userId: {
+            referenceId: "referenceId",
+        },
+        text: "text",
+        userMessageType: "USER",
         conversationMessageId: {
             referenceId: "referenceId",
         },
     },
     {
+        userId: {
+            referenceId: "referenceId",
+        },
+        text: "text",
+        userMessageType: "USER",
         conversationMessageId: {
             referenceId: "referenceId",
         },
@@ -2152,6 +2326,82 @@ await client.users.get("user-0");
 <dd>
 
 **request:** `MavenAGI.UserGetRequest`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Users.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.users.<a href="/src/api/resources/users/client/Client.ts">delete</a>(userId, { ...params }) -> void</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Deletes all identifiers and user data saved by the specified app.
+Does not modify data or identifiers saved by other apps.
+
+If this user is linked to a user from another app, it will not be unlinked. Unlinking of users is not yet supported.
+
+<Warning>This is a destructive operation and cannot be undone.</Warning>
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.users.delete("user-0");
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**userId:** `string` — The reference ID of the user to delete. All other entity ID fields are inferred from the request.
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `MavenAGI.UserDeleteRequest`
 
 </dd>
 </dl>

@@ -4,12 +4,10 @@
 
 import * as MavenAGI from "../../../index";
 
-export interface ConversationRow {
+export interface ConversationRow extends MavenAGI.RowBase {
     /**
      * A unique identifier for each row, consisting of field names mapped to their respective values.
      * This includes time groupings and any specified field groupings.
      */
     identifier: Record<MavenAGI.ConversationField, MavenAGI.FieldValue | undefined>;
-    /** The actual row data, where keys represent column headers and values contain the respective metric results. */
-    data: Record<string, MavenAGI.CellData>;
 }

@@ -57,7 +57,7 @@ await client.analytics.getConversationTable({
             metric: {
                 type: "percentile",
                 targetField: "HandleTime",
-                percentiles: [25, 75],
+                percentile: 25,
             },
         },
     ],
