@@ -15,7 +15,7 @@ export const PreconditionBase: core.serialization.ObjectSchema<
 });
 
 export declare namespace PreconditionBase {
-    interface Raw {
+    export interface Raw {
         operator?: PreconditionOperator.Raw | null;
     }
 }

@@ -11,8 +11,10 @@ import * as errors from "../../../../errors/index";
 import * as stream from "stream";
 
 export declare namespace Conversation {
-    interface Options {
+    export interface Options {
         environment?: core.Supplier<environments.MavenAGIEnvironment | string>;
+        /** Specify a custom URL to connect the client to. */
+        baseUrl?: core.Supplier<string>;
         appId?: core.Supplier<string | undefined>;
         appSecret?: core.Supplier<string | undefined>;
         /** Override the X-Organization-Id header */
@@ -22,7 +24,7 @@ export declare namespace Conversation {
         fetcher?: core.FetchFunction;
     }
 
-    interface RequestOptions {
+    export interface RequestOptions {
         /** The maximum time to wait for a response in seconds. */
         timeoutInSeconds?: number;
         /** The number of times to retry the request. Defaults to 2. */
@@ -53,6 +55,11 @@ export class Conversation {
      *
      * @example
      *     await client.conversation.initialize({
+     *         allMetadata: {
+     *             "allMetadata": {
+     *                 "allMetadata": "allMetadata"
+     *             }
+     *         },
      *         conversationId: {
      *             referenceId: "referenceId"
      *         },
@@ -79,12 +86,14 @@ export class Conversation {
      */
     public async initialize(
         request: MavenAGI.ConversationRequest,
-        requestOptions?: Conversation.RequestOptions
+        requestOptions?: Conversation.RequestOptions,
     ): Promise<MavenAGI.ConversationResponse> {
         const _response = await (this._options.fetcher ?? core.fetcher)({
             url: urlJoin(
-                (await core.Supplier.get(this._options.environment)) ?? environments.MavenAGIEnvironment.Production,
-                "/v1/conversations"
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)) ??
+                    environments.MavenAGIEnvironment.Production,
+                "/v1/conversations",
             ),
             method: "POST",
             headers: {
@@ -93,8 +102,8 @@ export class Conversation {
                 "X-Agent-Id": await core.Supplier.get(this._options.agentId),
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "mavenagi",
-                "X-Fern-SDK-Version": "1.0.7",
-                "User-Agent": "mavenagi/1.0.7",
+                "X-Fern-SDK-Version": "1.0.8",
+                "User-Agent": "mavenagi/1.0.8",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...requestOptions?.headers,
@@ -124,7 +133,7 @@ export class Conversation {
                             allowUnrecognizedUnionMembers: true,
                             allowUnrecognizedEnumValues: true,
                             breadcrumbsPrefix: ["response"],
-                        })
+                        }),
                     );
                 case 400:
                     throw new MavenAGI.BadRequestError(
@@ -133,7 +142,7 @@ export class Conversation {
                             allowUnrecognizedUnionMembers: true,
                             allowUnrecognizedEnumValues: true,
                             breadcrumbsPrefix: ["response"],
-                        })
+                        }),
                     );
                 case 500:
                     throw new MavenAGI.ServerError(
@@ -142,7 +151,7 @@ export class Conversation {
                             allowUnrecognizedUnionMembers: true,
                             allowUnrecognizedEnumValues: true,
                             breadcrumbsPrefix: ["response"],
-                        })
+                        }),
                     );
                 default:
                     throw new errors.MavenAGIError({
@@ -184,18 +193,20 @@ export class Conversation {
     public async get(
         conversationId: string,
         request: MavenAGI.ConversationGetRequest = {},
-        requestOptions?: Conversation.RequestOptions
+        requestOptions?: Conversation.RequestOptions,
     ): Promise<MavenAGI.ConversationResponse> {
         const { appId } = request;
-        const _queryParams: Record<string, string | string[] | object | object[]> = {};
+        const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
         if (appId != null) {
             _queryParams["appId"] = appId;
         }
 
         const _response = await (this._options.fetcher ?? core.fetcher)({
             url: urlJoin(
-                (await core.Supplier.get(this._options.environment)) ?? environments.MavenAGIEnvironment.Production,
-                `/v1/conversations/${encodeURIComponent(conversationId)}`
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)) ??
+                    environments.MavenAGIEnvironment.Production,
+                `/v1/conversations/${encodeURIComponent(conversationId)}`,
             ),
             method: "GET",
             headers: {
@@ -204,8 +215,8 @@ export class Conversation {
                 "X-Agent-Id": await core.Supplier.get(this._options.agentId),
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "mavenagi",
-                "X-Fern-SDK-Version": "1.0.7",
-                "User-Agent": "mavenagi/1.0.7",
+                "X-Fern-SDK-Version": "1.0.8",
+                "User-Agent": "mavenagi/1.0.8",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...requestOptions?.headers,
@@ -235,7 +246,7 @@ export class Conversation {
                             allowUnrecognizedUnionMembers: true,
                             allowUnrecognizedEnumValues: true,
                             breadcrumbsPrefix: ["response"],
-                        })
+                        }),
                     );
                 case 400:
                     throw new MavenAGI.BadRequestError(
@@ -244,7 +255,7 @@ export class Conversation {
                             allowUnrecognizedUnionMembers: true,
                             allowUnrecognizedEnumValues: true,
                             breadcrumbsPrefix: ["response"],
-                        })
+                        }),
                     );
                 case 500:
                     throw new MavenAGI.ServerError(
@@ -253,7 +264,7 @@ export class Conversation {
                             allowUnrecognizedUnionMembers: true,
                             allowUnrecognizedEnumValues: true,
                             breadcrumbsPrefix: ["response"],
-                        })
+                        }),
                     );
                 default:
                     throw new errors.MavenAGIError({
@@ -271,7 +282,7 @@ export class Conversation {
                 });
             case "timeout":
                 throw new errors.MavenAGITimeoutError(
-                    "Timeout exceeded when calling GET /v1/conversations/{conversationId}."
+                    "Timeout exceeded when calling GET /v1/conversations/{conversationId}.",
                 );
             case "unknown":
                 throw new errors.MavenAGIError({
@@ -305,10 +316,10 @@ export class Conversation {
     public async delete(
         conversationId: string,
         request: MavenAGI.ConversationDeleteRequest,
-        requestOptions?: Conversation.RequestOptions
+        requestOptions?: Conversation.RequestOptions,
     ): Promise<void> {
         const { appId, reason } = request;
-        const _queryParams: Record<string, string | string[] | object | object[]> = {};
+        const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
         if (appId != null) {
             _queryParams["appId"] = appId;
         }
@@ -316,8 +327,10 @@ export class Conversation {
         _queryParams["reason"] = reason;
         const _response = await (this._options.fetcher ?? core.fetcher)({
             url: urlJoin(
-                (await core.Supplier.get(this._options.environment)) ?? environments.MavenAGIEnvironment.Production,
-                `/v1/conversations/${encodeURIComponent(conversationId)}`
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)) ??
+                    environments.MavenAGIEnvironment.Production,
+                `/v1/conversations/${encodeURIComponent(conversationId)}`,
             ),
             method: "DELETE",
             headers: {
@@ -326,8 +339,8 @@ export class Conversation {
                 "X-Agent-Id": await core.Supplier.get(this._options.agentId),
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "mavenagi",
-                "X-Fern-SDK-Version": "1.0.7",
-                "User-Agent": "mavenagi/1.0.7",
+                "X-Fern-SDK-Version": "1.0.8",
+                "User-Agent": "mavenagi/1.0.8",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...requestOptions?.headers,
@@ -352,7 +365,7 @@ export class Conversation {
                             allowUnrecognizedUnionMembers: true,
                             allowUnrecognizedEnumValues: true,
                             breadcrumbsPrefix: ["response"],
-                        })
+                        }),
                     );
                 case 400:
                     throw new MavenAGI.BadRequestError(
@@ -361,7 +374,7 @@ export class Conversation {
                             allowUnrecognizedUnionMembers: true,
                             allowUnrecognizedEnumValues: true,
                             breadcrumbsPrefix: ["response"],
-                        })
+                        }),
                     );
                 case 500:
                     throw new MavenAGI.ServerError(
@@ -370,7 +383,7 @@ export class Conversation {
                             allowUnrecognizedUnionMembers: true,
                             allowUnrecognizedEnumValues: true,
                             breadcrumbsPrefix: ["response"],
-                        })
+                        }),
                     );
                 default:
                     throw new errors.MavenAGIError({
@@ -388,7 +401,7 @@ export class Conversation {
                 });
             case "timeout":
                 throw new errors.MavenAGITimeoutError(
-                    "Timeout exceeded when calling DELETE /v1/conversations/{conversationId}."
+                    "Timeout exceeded when calling DELETE /v1/conversations/{conversationId}.",
                 );
             case "unknown":
                 throw new errors.MavenAGIError({
@@ -432,12 +445,14 @@ export class Conversation {
     public async appendNewMessages(
         conversationId: string,
         request: MavenAGI.ConversationMessageRequest[],
-        requestOptions?: Conversation.RequestOptions
+        requestOptions?: Conversation.RequestOptions,
     ): Promise<MavenAGI.ConversationResponse> {
         const _response = await (this._options.fetcher ?? core.fetcher)({
             url: urlJoin(
-                (await core.Supplier.get(this._options.environment)) ?? environments.MavenAGIEnvironment.Production,
-                `/v1/conversations/${encodeURIComponent(conversationId)}/messages`
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)) ??
+                    environments.MavenAGIEnvironment.Production,
+                `/v1/conversations/${encodeURIComponent(conversationId)}/messages`,
             ),
             method: "POST",
             headers: {
@@ -446,8 +461,8 @@ export class Conversation {
                 "X-Agent-Id": await core.Supplier.get(this._options.agentId),
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "mavenagi",
-                "X-Fern-SDK-Version": "1.0.7",
-                "User-Agent": "mavenagi/1.0.7",
+                "X-Fern-SDK-Version": "1.0.8",
+                "User-Agent": "mavenagi/1.0.8",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...requestOptions?.headers,
@@ -479,7 +494,7 @@ export class Conversation {
                             allowUnrecognizedUnionMembers: true,
                             allowUnrecognizedEnumValues: true,
                             breadcrumbsPrefix: ["response"],
-                        })
+                        }),
                     );
                 case 400:
                     throw new MavenAGI.BadRequestError(
@@ -488,7 +503,7 @@ export class Conversation {
                             allowUnrecognizedUnionMembers: true,
                             allowUnrecognizedEnumValues: true,
                             breadcrumbsPrefix: ["response"],
-                        })
+                        }),
                     );
                 case 500:
                     throw new MavenAGI.ServerError(
@@ -497,7 +512,7 @@ export class Conversation {
                             allowUnrecognizedUnionMembers: true,
                             allowUnrecognizedEnumValues: true,
                             breadcrumbsPrefix: ["response"],
-                        })
+                        }),
                     );
                 default:
                     throw new errors.MavenAGIError({
@@ -515,7 +530,7 @@ export class Conversation {
                 });
             case "timeout":
                 throw new errors.MavenAGITimeoutError(
-                    "Timeout exceeded when calling POST /v1/conversations/{conversationId}/messages."
+                    "Timeout exceeded when calling POST /v1/conversations/{conversationId}/messages.",
                 );
             case "unknown":
                 throw new errors.MavenAGIError({
@@ -565,12 +580,14 @@ export class Conversation {
     public async ask(
         conversationId: string,
         request: MavenAGI.AskRequest,
-        requestOptions?: Conversation.RequestOptions
+        requestOptions?: Conversation.RequestOptions,
     ): Promise<MavenAGI.ConversationResponse> {
         const _response = await (this._options.fetcher ?? core.fetcher)({
             url: urlJoin(
-                (await core.Supplier.get(this._options.environment)) ?? environments.MavenAGIEnvironment.Production,
-                `/v1/conversations/${encodeURIComponent(conversationId)}/ask`
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)) ??
+                    environments.MavenAGIEnvironment.Production,
+                `/v1/conversations/${encodeURIComponent(conversationId)}/ask`,
             ),
             method: "POST",
             headers: {
@@ -579,8 +596,8 @@ export class Conversation {
                 "X-Agent-Id": await core.Supplier.get(this._options.agentId),
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "mavenagi",
-                "X-Fern-SDK-Version": "1.0.7",
-                "User-Agent": "mavenagi/1.0.7",
+                "X-Fern-SDK-Version": "1.0.8",
+                "User-Agent": "mavenagi/1.0.8",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...requestOptions?.headers,
@@ -610,7 +627,7 @@ export class Conversation {
                             allowUnrecognizedUnionMembers: true,
                             allowUnrecognizedEnumValues: true,
                             breadcrumbsPrefix: ["response"],
-                        })
+                        }),
                     );
                 case 400:
                     throw new MavenAGI.BadRequestError(
@@ -619,7 +636,7 @@ export class Conversation {
                             allowUnrecognizedUnionMembers: true,
                             allowUnrecognizedEnumValues: true,
                             breadcrumbsPrefix: ["response"],
-                        })
+                        }),
                     );
                 case 500:
                     throw new MavenAGI.ServerError(
@@ -628,7 +645,7 @@ export class Conversation {
                             allowUnrecognizedUnionMembers: true,
                             allowUnrecognizedEnumValues: true,
                             breadcrumbsPrefix: ["response"],
-                        })
+                        }),
                     );
                 default:
                     throw new errors.MavenAGIError({
@@ -646,7 +663,7 @@ export class Conversation {
                 });
             case "timeout":
                 throw new errors.MavenAGITimeoutError(
-                    "Timeout exceeded when calling POST /v1/conversations/{conversationId}/ask."
+                    "Timeout exceeded when calling POST /v1/conversations/{conversationId}/ask.",
                 );
             case "unknown":
                 throw new errors.MavenAGIError({
@@ -673,12 +690,14 @@ export class Conversation {
     public async askStream(
         conversationId: string,
         request: MavenAGI.AskRequest,
-        requestOptions?: Conversation.RequestOptions
+        requestOptions?: Conversation.RequestOptions,
     ): Promise<core.Stream<MavenAGI.StreamResponse>> {
         const _response = await (this._options.fetcher ?? core.fetcher)<stream.Readable>({
             url: urlJoin(
-                (await core.Supplier.get(this._options.environment)) ?? environments.MavenAGIEnvironment.Production,
-                `/v1/conversations/${encodeURIComponent(conversationId)}/ask_stream`
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)) ??
+                    environments.MavenAGIEnvironment.Production,
+                `/v1/conversations/${encodeURIComponent(conversationId)}/ask_stream`,
             ),
             method: "POST",
             headers: {
@@ -687,8 +706,8 @@ export class Conversation {
                 "X-Agent-Id": await core.Supplier.get(this._options.agentId),
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "mavenagi",
-                "X-Fern-SDK-Version": "1.0.7",
-                "User-Agent": "mavenagi/1.0.7",
+                "X-Fern-SDK-Version": "1.0.8",
+                "User-Agent": "mavenagi/1.0.8",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...requestOptions?.headers,
@@ -729,7 +748,7 @@ export class Conversation {
                             allowUnrecognizedUnionMembers: true,
                             allowUnrecognizedEnumValues: true,
                             breadcrumbsPrefix: ["response"],
-                        })
+                        }),
                     );
                 case 400:
                     throw new MavenAGI.BadRequestError(
@@ -738,7 +757,7 @@ export class Conversation {
                             allowUnrecognizedUnionMembers: true,
                             allowUnrecognizedEnumValues: true,
                             breadcrumbsPrefix: ["response"],
-                        })
+                        }),
                     );
                 case 500:
                     throw new MavenAGI.ServerError(
@@ -747,7 +766,7 @@ export class Conversation {
                             allowUnrecognizedUnionMembers: true,
                             allowUnrecognizedEnumValues: true,
                             breadcrumbsPrefix: ["response"],
-                        })
+                        }),
                     );
                 default:
                     throw new errors.MavenAGIError({
@@ -765,7 +784,7 @@ export class Conversation {
                 });
             case "timeout":
                 throw new errors.MavenAGITimeoutError(
-                    "Timeout exceeded when calling POST /v1/conversations/{conversationId}/ask_stream."
+                    "Timeout exceeded when calling POST /v1/conversations/{conversationId}/ask_stream.",
                 );
             case "unknown":
                 throw new errors.MavenAGIError({
@@ -797,12 +816,14 @@ export class Conversation {
     public async generateMavenSuggestions(
         conversationId: string,
         request: MavenAGI.GenerateMavenSuggestionsRequest,
-        requestOptions?: Conversation.RequestOptions
+        requestOptions?: Conversation.RequestOptions,
     ): Promise<MavenAGI.ConversationResponse> {
         const _response = await (this._options.fetcher ?? core.fetcher)({
             url: urlJoin(
-                (await core.Supplier.get(this._options.environment)) ?? environments.MavenAGIEnvironment.Production,
-                `/v1/conversations/${encodeURIComponent(conversationId)}/generate_maven_suggestions`
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)) ??
+                    environments.MavenAGIEnvironment.Production,
+                `/v1/conversations/${encodeURIComponent(conversationId)}/generate_maven_suggestions`,
             ),
             method: "POST",
             headers: {
@@ -811,8 +832,8 @@ export class Conversation {
                 "X-Agent-Id": await core.Supplier.get(this._options.agentId),
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "mavenagi",
-                "X-Fern-SDK-Version": "1.0.7",
-                "User-Agent": "mavenagi/1.0.7",
+                "X-Fern-SDK-Version": "1.0.8",
+                "User-Agent": "mavenagi/1.0.8",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...requestOptions?.headers,
@@ -842,7 +863,7 @@ export class Conversation {
                             allowUnrecognizedUnionMembers: true,
                             allowUnrecognizedEnumValues: true,
                             breadcrumbsPrefix: ["response"],
-                        })
+                        }),
                     );
                 case 400:
                     throw new MavenAGI.BadRequestError(
@@ -851,7 +872,7 @@ export class Conversation {
                             allowUnrecognizedUnionMembers: true,
                             allowUnrecognizedEnumValues: true,
                             breadcrumbsPrefix: ["response"],
-                        })
+                        }),
                     );
                 case 500:
                     throw new MavenAGI.ServerError(
@@ -860,7 +881,7 @@ export class Conversation {
                             allowUnrecognizedUnionMembers: true,
                             allowUnrecognizedEnumValues: true,
                             breadcrumbsPrefix: ["response"],
-                        })
+                        }),
                     );
                 default:
                     throw new errors.MavenAGIError({
@@ -878,7 +899,7 @@ export class Conversation {
                 });
             case "timeout":
                 throw new errors.MavenAGITimeoutError(
-                    "Timeout exceeded when calling POST /v1/conversations/{conversationId}/generate_maven_suggestions."
+                    "Timeout exceeded when calling POST /v1/conversations/{conversationId}/generate_maven_suggestions.",
                 );
             case "unknown":
                 throw new errors.MavenAGIError({
@@ -902,12 +923,14 @@ export class Conversation {
      */
     public async categorize(
         conversationId: string,
-        requestOptions?: Conversation.RequestOptions
+        requestOptions?: Conversation.RequestOptions,
     ): Promise<MavenAGI.CategorizationResponse> {
         const _response = await (this._options.fetcher ?? core.fetcher)({
             url: urlJoin(
-                (await core.Supplier.get(this._options.environment)) ?? environments.MavenAGIEnvironment.Production,
-                `/v1/conversations/${encodeURIComponent(conversationId)}/categorize`
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)) ??
+                    environments.MavenAGIEnvironment.Production,
+                `/v1/conversations/${encodeURIComponent(conversationId)}/categorize`,
             ),
             method: "POST",
             headers: {
@@ -916,8 +939,8 @@ export class Conversation {
                 "X-Agent-Id": await core.Supplier.get(this._options.agentId),
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "mavenagi",
-                "X-Fern-SDK-Version": "1.0.7",
-                "User-Agent": "mavenagi/1.0.7",
+                "X-Fern-SDK-Version": "1.0.8",
+                "User-Agent": "mavenagi/1.0.8",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...requestOptions?.headers,
@@ -946,7 +969,7 @@ export class Conversation {
                             allowUnrecognizedUnionMembers: true,
                             allowUnrecognizedEnumValues: true,
                             breadcrumbsPrefix: ["response"],
-                        })
+                        }),
                     );
                 case 400:
                     throw new MavenAGI.BadRequestError(
@@ -955,7 +978,7 @@ export class Conversation {
                             allowUnrecognizedUnionMembers: true,
                             allowUnrecognizedEnumValues: true,
                             breadcrumbsPrefix: ["response"],
-                        })
+                        }),
                     );
                 case 500:
                     throw new MavenAGI.ServerError(
@@ -964,7 +987,7 @@ export class Conversation {
                             allowUnrecognizedUnionMembers: true,
                             allowUnrecognizedEnumValues: true,
                             breadcrumbsPrefix: ["response"],
-                        })
+                        }),
                     );
                 default:
                     throw new errors.MavenAGIError({
@@ -982,7 +1005,7 @@ export class Conversation {
                 });
             case "timeout":
                 throw new errors.MavenAGITimeoutError(
-                    "Timeout exceeded when calling POST /v1/conversations/{conversationId}/categorize."
+                    "Timeout exceeded when calling POST /v1/conversations/{conversationId}/categorize.",
                 );
             case "unknown":
                 throw new errors.MavenAGIError({
@@ -1021,12 +1044,14 @@ export class Conversation {
      */
     public async createFeedback(
         request: MavenAGI.FeedbackRequest,
-        requestOptions?: Conversation.RequestOptions
+        requestOptions?: Conversation.RequestOptions,
     ): Promise<MavenAGI.Feedback> {
         const _response = await (this._options.fetcher ?? core.fetcher)({
             url: urlJoin(
-                (await core.Supplier.get(this._options.environment)) ?? environments.MavenAGIEnvironment.Production,
-                "/v1/conversations/feedback"
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)) ??
+                    environments.MavenAGIEnvironment.Production,
+                "/v1/conversations/feedback",
             ),
             method: "POST",
             headers: {
@@ -1035,8 +1060,8 @@ export class Conversation {
                 "X-Agent-Id": await core.Supplier.get(this._options.agentId),
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "mavenagi",
-                "X-Fern-SDK-Version": "1.0.7",
-                "User-Agent": "mavenagi/1.0.7",
+                "X-Fern-SDK-Version": "1.0.8",
+                "User-Agent": "mavenagi/1.0.8",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...requestOptions?.headers,
@@ -1066,7 +1091,7 @@ export class Conversation {
                             allowUnrecognizedUnionMembers: true,
                             allowUnrecognizedEnumValues: true,
                             breadcrumbsPrefix: ["response"],
-                        })
+                        }),
                     );
                 case 400:
                     throw new MavenAGI.BadRequestError(
@@ -1075,7 +1100,7 @@ export class Conversation {
                             allowUnrecognizedUnionMembers: true,
                             allowUnrecognizedEnumValues: true,
                             breadcrumbsPrefix: ["response"],
-                        })
+                        }),
                     );
                 case 500:
                     throw new MavenAGI.ServerError(
@@ -1084,7 +1109,7 @@ export class Conversation {
                             allowUnrecognizedUnionMembers: true,
                             allowUnrecognizedEnumValues: true,
                             breadcrumbsPrefix: ["response"],
-                        })
+                        }),
                     );
                 default:
                     throw new errors.MavenAGIError({
@@ -1133,12 +1158,14 @@ export class Conversation {
     public async submitActionForm(
         conversationId: string,
         request: MavenAGI.SubmitActionFormRequest,
-        requestOptions?: Conversation.RequestOptions
+        requestOptions?: Conversation.RequestOptions,
     ): Promise<MavenAGI.ConversationResponse> {
         const _response = await (this._options.fetcher ?? core.fetcher)({
             url: urlJoin(
-                (await core.Supplier.get(this._options.environment)) ?? environments.MavenAGIEnvironment.Production,
-                `/v1/conversations/${encodeURIComponent(conversationId)}/submit-form`
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)) ??
+                    environments.MavenAGIEnvironment.Production,
+                `/v1/conversations/${encodeURIComponent(conversationId)}/submit-form`,
             ),
             method: "POST",
             headers: {
@@ -1147,8 +1174,8 @@ export class Conversation {
                 "X-Agent-Id": await core.Supplier.get(this._options.agentId),
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "mavenagi",
-                "X-Fern-SDK-Version": "1.0.7",
-                "User-Agent": "mavenagi/1.0.7",
+                "X-Fern-SDK-Version": "1.0.8",
+                "User-Agent": "mavenagi/1.0.8",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...requestOptions?.headers,
@@ -1178,7 +1205,7 @@ export class Conversation {
                             allowUnrecognizedUnionMembers: true,
                             allowUnrecognizedEnumValues: true,
                             breadcrumbsPrefix: ["response"],
-                        })
+                        }),
                     );
                 case 400:
                     throw new MavenAGI.BadRequestError(
@@ -1187,7 +1214,7 @@ export class Conversation {
                             allowUnrecognizedUnionMembers: true,
                             allowUnrecognizedEnumValues: true,
                             breadcrumbsPrefix: ["response"],
-                        })
+                        }),
                     );
                 case 500:
                     throw new MavenAGI.ServerError(
@@ -1196,7 +1223,7 @@ export class Conversation {
                             allowUnrecognizedUnionMembers: true,
                             allowUnrecognizedEnumValues: true,
                             breadcrumbsPrefix: ["response"],
-                        })
+                        }),
                     );
                 default:
                     throw new errors.MavenAGIError({
@@ -1214,7 +1241,7 @@ export class Conversation {
                 });
             case "timeout":
                 throw new errors.MavenAGITimeoutError(
-                    "Timeout exceeded when calling POST /v1/conversations/{conversationId}/submit-form."
+                    "Timeout exceeded when calling POST /v1/conversations/{conversationId}/submit-form.",
                 );
             case "unknown":
                 throw new errors.MavenAGIError({
@@ -1224,7 +1251,9 @@ export class Conversation {
     }
 
     /**
-     * Add metadata to an existing conversation. If a metadata field already exists, it will be overwritten.
+     * Replaced by `updateConversationMetadata`.
+     *
+     * Adds metadata to an existing conversation. If a metadata field already exists, it will be overwritten.
      *
      * @param {string} conversationId - The ID of a conversation the metadata being added belongs to
      * @param {Record<string, string>} request
@@ -1242,12 +1271,14 @@ export class Conversation {
     public async addConversationMetadata(
         conversationId: string,
         request: Record<string, string>,
-        requestOptions?: Conversation.RequestOptions
+        requestOptions?: Conversation.RequestOptions,
     ): Promise<Record<string, string>> {
         const _response = await (this._options.fetcher ?? core.fetcher)({
             url: urlJoin(
-                (await core.Supplier.get(this._options.environment)) ?? environments.MavenAGIEnvironment.Production,
-                `/v1/conversations/${encodeURIComponent(conversationId)}/metadata`
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)) ??
+                    environments.MavenAGIEnvironment.Production,
+                `/v1/conversations/${encodeURIComponent(conversationId)}/metadata`,
             ),
             method: "POST",
             headers: {
@@ -1256,8 +1287,8 @@ export class Conversation {
                 "X-Agent-Id": await core.Supplier.get(this._options.agentId),
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "mavenagi",
-                "X-Fern-SDK-Version": "1.0.7",
-                "User-Agent": "mavenagi/1.0.7",
+                "X-Fern-SDK-Version": "1.0.8",
+                "User-Agent": "mavenagi/1.0.8",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...requestOptions?.headers,
@@ -1289,7 +1320,7 @@ export class Conversation {
                             allowUnrecognizedUnionMembers: true,
                             allowUnrecognizedEnumValues: true,
                             breadcrumbsPrefix: ["response"],
-                        })
+                        }),
                     );
                 case 400:
                     throw new MavenAGI.BadRequestError(
@@ -1298,7 +1329,7 @@ export class Conversation {
                             allowUnrecognizedUnionMembers: true,
                             allowUnrecognizedEnumValues: true,
                             breadcrumbsPrefix: ["response"],
-                        })
+                        }),
                     );
                 case 500:
                     throw new MavenAGI.ServerError(
@@ -1307,7 +1338,7 @@ export class Conversation {
                             allowUnrecognizedUnionMembers: true,
                             allowUnrecognizedEnumValues: true,
                             breadcrumbsPrefix: ["response"],
-                        })
+                        }),
                     );
                 default:
                     throw new errors.MavenAGIError({
@@ -1325,7 +1356,127 @@ export class Conversation {
                 });
             case "timeout":
                 throw new errors.MavenAGITimeoutError(
-                    "Timeout exceeded when calling POST /v1/conversations/{conversationId}/metadata."
+                    "Timeout exceeded when calling POST /v1/conversations/{conversationId}/metadata.",
+                );
+            case "unknown":
+                throw new errors.MavenAGIError({
+                    message: _response.error.errorMessage,
+                });
+        }
+    }
+
+    /**
+     * Update metadata supplied by the calling application for an existing conversation.
+     * Does not modify metadata saved by other apps.
+     *
+     * If a metadata field already exists for the calling app, it will be overwritten.
+     * If it does not exist, it will be added. Will not remove metadata fields.
+     *
+     * Returns all metadata saved by any app on the conversation.
+     *
+     * @param {string} conversationId - The ID of the conversation to modify metadata for
+     * @param {MavenAGI.UpdateMetadataRequest} request
+     * @param {Conversation.RequestOptions} requestOptions - Request-specific configuration.
+     *
+     * @throws {@link MavenAGI.NotFoundError}
+     * @throws {@link MavenAGI.BadRequestError}
+     * @throws {@link MavenAGI.ServerError}
+     *
+     * @example
+     *     await client.conversation.updateConversationMetadata("conversation-0", {
+     *         appId: "conversation-owning-app",
+     *         values: {
+     *             "key": "newValue"
+     *         }
+     *     })
+     */
+    public async updateConversationMetadata(
+        conversationId: string,
+        request: MavenAGI.UpdateMetadataRequest,
+        requestOptions?: Conversation.RequestOptions,
+    ): Promise<MavenAGI.ConversationMetadata> {
+        const _response = await (this._options.fetcher ?? core.fetcher)({
+            url: urlJoin(
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)) ??
+                    environments.MavenAGIEnvironment.Production,
+                `/v1/conversations/${encodeURIComponent(conversationId)}/metadata`,
+            ),
+            method: "PUT",
+            headers: {
+                Authorization: await this._getAuthorizationHeader(),
+                "X-Organization-Id": await core.Supplier.get(this._options.organizationId),
+                "X-Agent-Id": await core.Supplier.get(this._options.agentId),
+                "X-Fern-Language": "JavaScript",
+                "X-Fern-SDK-Name": "mavenagi",
+                "X-Fern-SDK-Version": "1.0.8",
+                "User-Agent": "mavenagi/1.0.8",
+                "X-Fern-Runtime": core.RUNTIME.type,
+                "X-Fern-Runtime-Version": core.RUNTIME.version,
+                ...requestOptions?.headers,
+            },
+            contentType: "application/json",
+            requestType: "json",
+            body: serializers.UpdateMetadataRequest.jsonOrThrow(request, { unrecognizedObjectKeys: "strip" }),
+            timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
+            maxRetries: requestOptions?.maxRetries,
+            abortSignal: requestOptions?.abortSignal,
+        });
+        if (_response.ok) {
+            return serializers.ConversationMetadata.parseOrThrow(_response.body, {
+                unrecognizedObjectKeys: "passthrough",
+                allowUnrecognizedUnionMembers: true,
+                allowUnrecognizedEnumValues: true,
+                breadcrumbsPrefix: ["response"],
+            });
+        }
+
+        if (_response.error.reason === "status-code") {
+            switch (_response.error.statusCode) {
+                case 404:
+                    throw new MavenAGI.NotFoundError(
+                        serializers.ErrorMessage.parseOrThrow(_response.error.body, {
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
+                            breadcrumbsPrefix: ["response"],
+                        }),
+                    );
+                case 400:
+                    throw new MavenAGI.BadRequestError(
+                        serializers.ErrorMessage.parseOrThrow(_response.error.body, {
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
+                            breadcrumbsPrefix: ["response"],
+                        }),
+                    );
+                case 500:
+                    throw new MavenAGI.ServerError(
+                        serializers.ErrorMessage.parseOrThrow(_response.error.body, {
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
+                            breadcrumbsPrefix: ["response"],
+                        }),
+                    );
+                default:
+                    throw new errors.MavenAGIError({
+                        statusCode: _response.error.statusCode,
+                        body: _response.error.body,
+                    });
+            }
+        }
+
+        switch (_response.error.reason) {
+            case "non-json":
+                throw new errors.MavenAGIError({
+                    statusCode: _response.error.statusCode,
+                    body: _response.error.rawBody,
+                });
+            case "timeout":
+                throw new errors.MavenAGITimeoutError(
+                    "Timeout exceeded when calling PUT /v1/conversations/{conversationId}/metadata.",
                 );
             case "unknown":
                 throw new errors.MavenAGIError({

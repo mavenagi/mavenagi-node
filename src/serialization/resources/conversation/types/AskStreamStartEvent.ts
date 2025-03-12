@@ -15,7 +15,7 @@ export const AskStreamStartEvent: core.serialization.ObjectSchema<
 });
 
 export declare namespace AskStreamStartEvent {
-    interface Raw {
+    export interface Raw {
         conversationMessageId: EntityId.Raw;
     }
 }

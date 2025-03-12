@@ -13,7 +13,7 @@ export const RowBase: core.serialization.ObjectSchema<serializers.RowBase.Raw, M
     });
 
 export declare namespace RowBase {
-    interface Raw {
+    export interface Raw {
         data: Record<string, CellData.Raw>;
     }
 }

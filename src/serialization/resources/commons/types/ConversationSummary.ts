@@ -16,7 +16,7 @@ export const ConversationSummary: core.serialization.ObjectSchema<
 });
 
 export declare namespace ConversationSummary {
-    interface Raw {
+    export interface Raw {
         actionIds: EntityIdWithoutAgent.Raw[];
         incompleteActionIds: EntityIdWithoutAgent.Raw[];
     }

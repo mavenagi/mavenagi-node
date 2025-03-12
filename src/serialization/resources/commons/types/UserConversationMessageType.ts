@@ -12,5 +12,5 @@ export const UserConversationMessageType: core.serialization.Schema<
 > = core.serialization.enum_(["USER", "HUMAN_AGENT", "EXTERNAL_SYSTEM"]);
 
 export declare namespace UserConversationMessageType {
-    type Raw = "USER" | "HUMAN_AGENT" | "EXTERNAL_SYSTEM";
+    export type Raw = "USER" | "HUMAN_AGENT" | "EXTERNAL_SYSTEM";
 }

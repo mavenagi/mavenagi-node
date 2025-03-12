@@ -12,7 +12,9 @@ export type EntityType =
     | "EVENT"
     | "EVENT_TRIGGER"
     | "USER_PROFILE"
-    | "FEEDBACK";
+    | "FEEDBACK"
+    | "INBOX_ITEM"
+    | "INBOX_ITEM_FIX";
 export const EntityType = {
     Conversation: "CONVERSATION",
     ConversationMessage: "CONVERSATION_MESSAGE",
@@ -24,4 +26,6 @@ export const EntityType = {
     EventTrigger: "EVENT_TRIGGER",
     UserProfile: "USER_PROFILE",
     Feedback: "FEEDBACK",
+    InboxItem: "INBOX_ITEM",
+    InboxItemFix: "INBOX_ITEM_FIX",
 } as const;

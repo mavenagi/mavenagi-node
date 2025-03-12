@@ -26,25 +26,25 @@ export const ConversationPrecondition: core.serialization.Schema<
     });
 
 export declare namespace ConversationPrecondition {
-    type Raw =
+    export type Raw =
         | ConversationPrecondition.Tags
         | ConversationPrecondition.Metadata
         | ConversationPrecondition.ActionExecuted
         | ConversationPrecondition.ResponseConfig;
 
-    interface Tags extends TagsPrecondition.Raw {
+    export interface Tags extends TagsPrecondition.Raw {
         conversationPreconditionType: "tags";
     }
 
-    interface Metadata extends MetadataPrecondition.Raw {
+    export interface Metadata extends MetadataPrecondition.Raw {
         conversationPreconditionType: "metadata";
     }
 
-    interface ActionExecuted extends ConversationExecutedActionPrecondition.Raw {
+    export interface ActionExecuted extends ConversationExecutedActionPrecondition.Raw {
         conversationPreconditionType: "actionExecuted";
     }
 
-    interface ResponseConfig extends ResponseConfigPrecondition.Raw {
+    export interface ResponseConfig extends ResponseConfigPrecondition.Raw {
         conversationPreconditionType: "responseConfig";
     }
 }

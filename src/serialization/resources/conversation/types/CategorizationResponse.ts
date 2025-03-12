@@ -14,7 +14,7 @@ export const CategorizationResponse: core.serialization.ObjectSchema<
 });
 
 export declare namespace CategorizationResponse {
-    interface Raw {
+    export interface Raw {
         category?: string | null;
     }
 }

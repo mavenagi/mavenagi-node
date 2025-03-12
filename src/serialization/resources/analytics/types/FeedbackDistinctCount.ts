@@ -15,7 +15,7 @@ export const FeedbackDistinctCount: core.serialization.ObjectSchema<
 });
 
 export declare namespace FeedbackDistinctCount {
-    interface Raw {
+    export interface Raw {
         targetField: FeedbackField.Raw;
     }
 }

@@ -10,5 +10,5 @@ export const ChartSpecSchema: core.serialization.Schema<serializers.ChartSpecSch
     core.serialization.enum_(["HIGHCHARTS_TS"]);
 
 export declare namespace ChartSpecSchema {
-    type Raw = "HIGHCHARTS_TS";
+    export type Raw = "HIGHCHARTS_TS";
 }

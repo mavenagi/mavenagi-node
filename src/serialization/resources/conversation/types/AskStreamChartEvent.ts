@@ -13,5 +13,5 @@ export const AskStreamChartEvent: core.serialization.ObjectSchema<
 > = core.serialization.object({}).extend(BotChartResponse);
 
 export declare namespace AskStreamChartEvent {
-    interface Raw extends BotChartResponse.Raw {}
+    export interface Raw extends BotChartResponse.Raw {}
 }

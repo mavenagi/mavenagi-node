@@ -20,4 +20,5 @@ export interface ConversationFilter {
     responseLength?: MavenAGI.ResponseLength[];
     sentiment?: MavenAGI.Sentiment[];
     tags?: string[];
+    resolutionStatus?: MavenAGI.ResolutionStatus[];
 }

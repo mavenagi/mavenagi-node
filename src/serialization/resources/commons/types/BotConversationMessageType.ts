@@ -12,5 +12,5 @@ export const BotConversationMessageType: core.serialization.Schema<
 > = core.serialization.enum_(["BOT_RESPONSE", "BOT_SUGGESTION"]);
 
 export declare namespace BotConversationMessageType {
-    type Raw = "BOT_RESPONSE" | "BOT_SUGGESTION";
+    export type Raw = "BOT_RESPONSE" | "BOT_SUGGESTION";
 }

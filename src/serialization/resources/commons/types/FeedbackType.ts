@@ -10,5 +10,5 @@ export const FeedbackType: core.serialization.Schema<serializers.FeedbackType.Ra
     core.serialization.enum_(["THUMBS_UP", "THUMBS_DOWN", "INSERT", "HANDOFF"]);
 
 export declare namespace FeedbackType {
-    type Raw = "THUMBS_UP" | "THUMBS_DOWN" | "INSERT" | "HANDOFF";
+    export type Raw = "THUMBS_UP" | "THUMBS_DOWN" | "INSERT" | "HANDOFF";
 }

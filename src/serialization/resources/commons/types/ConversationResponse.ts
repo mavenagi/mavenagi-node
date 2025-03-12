@@ -25,7 +25,7 @@ export const ConversationResponse: core.serialization.ObjectSchema<
     .extend(ConversationBase);
 
 export declare namespace ConversationResponse {
-    interface Raw extends ConversationBase.Raw {
+    export interface Raw extends ConversationBase.Raw {
         conversationId: EntityId.Raw;
         messages: ConversationMessageResponse.Raw[];
         analysis: ConversationAnalysis.Raw;

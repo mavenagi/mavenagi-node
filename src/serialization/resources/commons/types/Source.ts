@@ -13,7 +13,7 @@ export const Source: core.serialization.ObjectSchema<serializers.Source.Raw, Mav
     });
 
 export declare namespace Source {
-    interface Raw {
+    export interface Raw {
         title: string;
         url: string;
     }

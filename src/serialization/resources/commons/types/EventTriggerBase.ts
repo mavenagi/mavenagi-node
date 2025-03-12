@@ -16,7 +16,7 @@ export const EventTriggerBase: core.serialization.ObjectSchema<
 });
 
 export declare namespace EventTriggerBase {
-    interface Raw {
+    export interface Raw {
         description: string;
         type: EventTriggerType.Raw;
     }

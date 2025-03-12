@@ -12,7 +12,7 @@ export const Range: core.serialization.ObjectSchema<serializers.Range.Raw, Maven
 });
 
 export declare namespace Range {
-    interface Raw {
+    export interface Raw {
         from?: number | null;
         to?: number | null;
     }

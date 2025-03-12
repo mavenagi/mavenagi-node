@@ -553,6 +553,11 @@ Initialize a new conversation. Only required if the ask request wishes to supply
 
 ```typescript
 await client.conversation.initialize({
+    allMetadata: {
+        allMetadata: {
+            allMetadata: "allMetadata",
+        },
+    },
     conversationId: {
         referenceId: "referenceId",
     },
@@ -872,16 +877,16 @@ they will be reused and will not be updated. Messages do not allow modification 
 
 Concurrency Behavior:
 
--   If another API call is made for the same user question while a response is mid-stream, partial answers may be returned.
--   The second caller will receive a truncated or partial response depending on where the first stream is in its processing. The first caller's stream will remain unaffected and continue delivering the full response.
+- If another API call is made for the same user question while a response is mid-stream, partial answers may be returned.
+- The second caller will receive a truncated or partial response depending on where the first stream is in its processing. The first caller's stream will remain unaffected and continue delivering the full response.
 
 Known Limitation:
 
--   The API does not currently expose metadata indicating whether a response or message is incomplete. This will be addressed in a future update.
-</dd>
-</dl>
-</dd>
-</dl>
+- The API does not currently expose metadata indicating whether a response or message is incomplete. This will be addressed in a future update.
+  </dd>
+  </dl>
+  </dd>
+  </dl>
 
 #### 🔌 Usage
 
@@ -974,16 +979,16 @@ Messages do not allow modification once generated.
 
 Concurrency Behavior:
 
--   If another API call is made for the same user question while a response is mid-stream, partial answers may be returned.
--   The second caller will receive a truncated or partial response depending on where the first stream is in its processing. The first caller's stream will remain unaffected and continue delivering the full response.
+- If another API call is made for the same user question while a response is mid-stream, partial answers may be returned.
+- The second caller will receive a truncated or partial response depending on where the first stream is in its processing. The first caller's stream will remain unaffected and continue delivering the full response.
 
 Known Limitation:
 
--   The API does not currently expose metadata indicating whether a response or message is incomplete. This will be addressed in a future update.
-</dd>
-</dl>
-</dd>
-</dl>
+- The API does not currently expose metadata indicating whether a response or message is incomplete. This will be addressed in a future update.
+  </dd>
+  </dl>
+  </dd>
+  </dl>
 
 #### 🔌 Usage
 
@@ -1369,7 +1374,9 @@ await client.conversation.submitActionForm("conversationId", {
 <dl>
 <dd>
 
-Add metadata to an existing conversation. If a metadata field already exists, it will be overwritten.
+Replaced by `updateConversationMetadata`.
+
+Adds metadata to an existing conversation. If a metadata field already exists, it will be overwritten.
 
 </dd>
 </dl>
@@ -1420,6 +1427,445 @@ await client.conversation.addConversationMetadata("conversationId", {
 <dd>
 
 **requestOptions:** `Conversation.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.conversation.<a href="/src/api/resources/conversation/client/Client.ts">updateConversationMetadata</a>(conversationId, { ...params }) -> MavenAGI.ConversationMetadata</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Update metadata supplied by the calling application for an existing conversation.
+Does not modify metadata saved by other apps.
+
+If a metadata field already exists for the calling app, it will be overwritten.
+If it does not exist, it will be added. Will not remove metadata fields.
+
+Returns all metadata saved by any app on the conversation.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.conversation.updateConversationMetadata("conversation-0", {
+    appId: "conversation-owning-app",
+    values: {
+        key: "newValue",
+    },
+});
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**conversationId:** `string` — The ID of the conversation to modify metadata for
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `MavenAGI.UpdateMetadataRequest`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Conversation.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+## Inbox
+
+<details><summary><code>client.inbox.<a href="/src/api/resources/inbox/client/Client.ts">search</a>({ ...params }) -> MavenAGI.InboxSearchResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Retrieve a paginated list of inbox items for an agent.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.inbox.search({});
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `MavenAGI.InboxSearchRequest`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Inbox.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.inbox.<a href="/src/api/resources/inbox/client/Client.ts">get</a>(inboxItemId, { ...params }) -> MavenAGI.InboxItem</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Retrieve details of a specific inbox item by its ID.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.inbox.get("inboxItemId", {
+    appId: "appId",
+});
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**inboxItemId:** `string` — The ID of the inbox item to get. All other entity ID fields are inferred from the request.
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `MavenAGI.InboxItemRequest`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Inbox.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.inbox.<a href="/src/api/resources/inbox/client/Client.ts">getFix</a>(inboxItemFixId, { ...params }) -> MavenAGI.InboxItemFix</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Retrieve a suggested fix. Includes document information if the fix is a Missing Knowledge suggestion.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.inbox.getFix("inboxItemFixId", {
+    appId: "appId",
+});
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**inboxItemFixId:** `string` — Unique identifier for the inbox fix.
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `MavenAGI.InboxItemFixRequest`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Inbox.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.inbox.<a href="/src/api/resources/inbox/client/Client.ts">applyFix</a>(inboxItemFixId, { ...params }) -> void</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Apply a fix to an inbox item with a specific document.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.inbox.applyFix("inboxItemFixId", {
+    appId: "appId",
+});
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**inboxItemFixId:** `string` — Unique identifier for the inbox fix.
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `MavenAGI.ApplyInboxItemFixRequest`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Inbox.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.inbox.<a href="/src/api/resources/inbox/client/Client.ts">ignore</a>(inboxItemId, { ...params }) -> void</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Ignore a specific inbox item by its ID.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.inbox.ignore("inboxItemId", {
+    appId: "appId",
+});
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**inboxItemId:** `string` — Unique identifier for the inbox item.
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `MavenAGI.InboxItemIgnoreRequest`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Inbox.RequestOptions`
 
 </dd>
 </dl>

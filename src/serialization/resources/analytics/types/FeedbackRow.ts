@@ -17,7 +17,7 @@ export const FeedbackRow: core.serialization.ObjectSchema<serializers.FeedbackRo
         .extend(RowBase);
 
 export declare namespace FeedbackRow {
-    interface Raw extends RowBase.Raw {
+    export interface Raw extends RowBase.Raw {
         identifier: Record<FeedbackField.Raw, FieldValue.Raw | null | undefined>;
     }
 }

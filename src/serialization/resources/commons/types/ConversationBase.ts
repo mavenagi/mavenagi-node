@@ -18,10 +18,14 @@ export const ConversationBase: core.serialization.ObjectSchema<
     updatedAt: core.serialization.date().optional(),
     tags: core.serialization.set(core.serialization.string()).optional(),
     metadata: core.serialization.record(core.serialization.string(), core.serialization.string()).optional(),
+    allMetadata: core.serialization.record(
+        core.serialization.string(),
+        core.serialization.record(core.serialization.string(), core.serialization.string()),
+    ),
 });
 
 export declare namespace ConversationBase {
-    interface Raw {
+    export interface Raw {
         responseConfig?: ResponseConfig.Raw | null;
         subject?: string | null;
         url?: string | null;
@@ -29,5 +33,6 @@ export declare namespace ConversationBase {
         updatedAt?: string | null;
         tags?: string[] | null;
         metadata?: Record<string, string> | null;
+        allMetadata: Record<string, Record<string, string>>;
     }
 }

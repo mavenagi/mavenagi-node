@@ -12,5 +12,5 @@ export const KnowledgeBaseType: core.serialization.Schema<
 > = core.serialization.enum_(["API", "URL", "RSS"]);
 
 export declare namespace KnowledgeBaseType {
-    type Raw = "API" | "URL" | "RSS";
+    export type Raw = "API" | "URL" | "RSS";
 }

@@ -14,7 +14,7 @@ export const Series: core.serialization.ObjectSchema<serializers.Series.Raw, Mav
     });
 
 export declare namespace Series {
-    interface Raw {
+    export interface Raw {
         name: string;
         data: LabeledPoint.Raw[];
     }

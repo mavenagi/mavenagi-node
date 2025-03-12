@@ -13,7 +13,7 @@ export const EntityIdFilter: core.serialization.ObjectSchema<serializers.EntityI
     });
 
 export declare namespace EntityIdFilter {
-    interface Raw {
+    export interface Raw {
         referenceId: string;
         appId: string;
     }

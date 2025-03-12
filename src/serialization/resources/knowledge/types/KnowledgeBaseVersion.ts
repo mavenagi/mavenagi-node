@@ -15,7 +15,7 @@ export const KnowledgeBaseVersion: core.serialization.ObjectSchema<
 });
 
 export declare namespace KnowledgeBaseVersion {
-    interface Raw {
+    export interface Raw {
         type: KnowledgeBaseVersionType.Raw;
     }
 }

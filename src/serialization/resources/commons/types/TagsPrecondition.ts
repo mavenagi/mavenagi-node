@@ -17,7 +17,7 @@ export const TagsPrecondition: core.serialization.ObjectSchema<
     .extend(PreconditionBase);
 
 export declare namespace TagsPrecondition {
-    interface Raw extends PreconditionBase.Raw {
+    export interface Raw extends PreconditionBase.Raw {
         tags: string[];
     }
 }

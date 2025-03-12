@@ -5,18 +5,18 @@
 import * as serializers from "../../../index";
 import * as MavenAGI from "../../../../api/index";
 import * as core from "../../../../core";
-import { PieChartRequest } from "./PieChartRequest";
-import { DateHistogramRequest } from "./DateHistogramRequest";
-import { BarChartRequest } from "./BarChartRequest";
+import { ConversationPieChartRequest } from "./ConversationPieChartRequest";
+import { ConversationDateHistogramRequest } from "./ConversationDateHistogramRequest";
+import { ConversationBarChartRequest } from "./ConversationBarChartRequest";
 
 export const ConversationChartRequest: core.serialization.Schema<
     serializers.ConversationChartRequest.Raw,
     MavenAGI.ConversationChartRequest
 > = core.serialization
     .union("type", {
-        pieChart: PieChartRequest,
-        dateHistogram: DateHistogramRequest,
-        barChart: BarChartRequest,
+        pieChart: ConversationPieChartRequest,
+        dateHistogram: ConversationDateHistogramRequest,
+        barChart: ConversationBarChartRequest,
     })
     .transform<MavenAGI.ConversationChartRequest>({
         transform: (value) => value,
@@ -24,20 +24,20 @@ export const ConversationChartRequest: core.serialization.Schema<
     });
 
 export declare namespace ConversationChartRequest {
-    type Raw =
+    export type Raw =
         | ConversationChartRequest.PieChart
         | ConversationChartRequest.DateHistogram
         | ConversationChartRequest.BarChart;
 
-    interface PieChart extends PieChartRequest.Raw {
+    export interface PieChart extends ConversationPieChartRequest.Raw {
         type: "pieChart";
     }
 
-    interface DateHistogram extends DateHistogramRequest.Raw {
+    export interface DateHistogram extends ConversationDateHistogramRequest.Raw {
         type: "dateHistogram";
     }
 
-    interface BarChart extends BarChartRequest.Raw {
+    export interface BarChart extends ConversationBarChartRequest.Raw {
         type: "barChart";
     }
 }

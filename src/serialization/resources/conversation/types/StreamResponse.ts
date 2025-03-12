@@ -28,7 +28,7 @@ export const StreamResponse: core.serialization.Schema<serializers.StreamRespons
         });
 
 export declare namespace StreamResponse {
-    type Raw =
+    export type Raw =
         | StreamResponse.Text
         | StreamResponse.Action
         | StreamResponse.Chart
@@ -36,27 +36,27 @@ export declare namespace StreamResponse {
         | StreamResponse.Start
         | StreamResponse.End;
 
-    interface Text extends AskStreamTextEvent.Raw {
+    export interface Text extends AskStreamTextEvent.Raw {
         eventType: "text";
     }
 
-    interface Action extends AskStreamActionEvent.Raw {
+    export interface Action extends AskStreamActionEvent.Raw {
         eventType: "action";
     }
 
-    interface Chart extends AskStreamChartEvent.Raw {
+    export interface Chart extends AskStreamChartEvent.Raw {
         eventType: "chart";
     }
 
-    interface Metadata extends AskStreamMetadataEvent.Raw {
+    export interface Metadata extends AskStreamMetadataEvent.Raw {
         eventType: "metadata";
     }
 
-    interface Start extends AskStreamStartEvent.Raw {
+    export interface Start extends AskStreamStartEvent.Raw {
         eventType: "start";
     }
 
-    interface End extends AskStreamEndEvent.Raw {
+    export interface End extends AskStreamEndEvent.Raw {
         eventType: "end";
     }
 }

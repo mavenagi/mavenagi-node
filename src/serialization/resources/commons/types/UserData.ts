@@ -14,7 +14,7 @@ export const UserData: core.serialization.ObjectSchema<serializers.UserData.Raw,
     });
 
 export declare namespace UserData {
-    interface Raw {
+    export interface Raw {
         value: string;
         visibility: VisibilityType.Raw;
     }

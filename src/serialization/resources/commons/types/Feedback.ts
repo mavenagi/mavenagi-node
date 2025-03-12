@@ -19,7 +19,7 @@ export const Feedback: core.serialization.ObjectSchema<serializers.Feedback.Raw,
     .extend(FeedbackBase);
 
 export declare namespace Feedback {
-    interface Raw extends FeedbackBase.Raw {
+    export interface Raw extends FeedbackBase.Raw {
         feedbackId: EntityId.Raw;
         conversationId: EntityId.Raw;
         conversationMessageId: EntityId.Raw;

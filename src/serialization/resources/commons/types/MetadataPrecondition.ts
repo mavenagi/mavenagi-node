@@ -18,7 +18,7 @@ export const MetadataPrecondition: core.serialization.ObjectSchema<
     .extend(PreconditionBase);
 
 export declare namespace MetadataPrecondition {
-    interface Raw extends PreconditionBase.Raw {
+    export interface Raw extends PreconditionBase.Raw {
         key: string;
         value?: string | null;
     }

@@ -18,7 +18,7 @@ export const ConversationExecutedActionPrecondition: core.serialization.ObjectSc
     .extend(PreconditionBase);
 
 export declare namespace ConversationExecutedActionPrecondition {
-    interface Raw extends PreconditionBase.Raw {
+    export interface Raw extends PreconditionBase.Raw {
         actionId: string;
         appId?: string | null;
     }

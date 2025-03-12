@@ -17,6 +17,8 @@ export interface ConversationBase {
     updatedAt?: Date;
     /** The tags of the conversation. Used for filtering in Agent Designer. */
     tags?: Set<string>;
-    /** The metadata of the conversation. */
+    /** The metadata of the conversation supplied by the app which created the conversation. */
     metadata?: Record<string, string>;
+    /** All metadata for the conversation. Keyed by appId. */
+    allMetadata: Record<string, Record<string, string>>;
 }

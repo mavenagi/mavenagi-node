@@ -19,7 +19,7 @@ export const BaseKnowledgeDocument: core.serialization.ObjectSchema<
 });
 
 export declare namespace BaseKnowledgeDocument {
-    interface Raw {
+    export interface Raw {
         title: string;
         url?: string | null;
         language?: string | null;

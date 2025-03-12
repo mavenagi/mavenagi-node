@@ -8,14 +8,17 @@ import { Actions } from "./api/resources/actions/client/Client";
 import { Analytics } from "./api/resources/analytics/client/Client";
 import { AppSettings } from "./api/resources/appSettings/client/Client";
 import { Conversation } from "./api/resources/conversation/client/Client";
+import { Inbox } from "./api/resources/inbox/client/Client";
 import { Knowledge } from "./api/resources/knowledge/client/Client";
 import { Translations } from "./api/resources/translations/client/Client";
 import { Triggers } from "./api/resources/triggers/client/Client";
 import { Users } from "./api/resources/users/client/Client";
 
 export declare namespace MavenAGIClient {
-    interface Options {
+    export interface Options {
         environment?: core.Supplier<environments.MavenAGIEnvironment | string>;
+        /** Specify a custom URL to connect the client to. */
+        baseUrl?: core.Supplier<string>;
         appId?: core.Supplier<string | undefined>;
         appSecret?: core.Supplier<string | undefined>;
         /** Override the X-Organization-Id header */
@@ -25,7 +28,7 @@ export declare namespace MavenAGIClient {
         fetcher?: core.FetchFunction;
     }
 
-    interface RequestOptions {
+    export interface RequestOptions {
         /** The maximum time to wait for a response in seconds. */
         timeoutInSeconds?: number;
         /** The number of times to retry the request. Defaults to 2. */
@@ -46,6 +49,7 @@ export class MavenAGIClient {
     protected _analytics: Analytics | undefined;
     protected _appSettings: AppSettings | undefined;
     protected _conversation: Conversation | undefined;
+    protected _inbox: Inbox | undefined;
     protected _knowledge: Knowledge | undefined;
     protected _translations: Translations | undefined;
     protected _triggers: Triggers | undefined;
@@ -67,6 +71,10 @@ export class MavenAGIClient {
 
     public get conversation(): Conversation {
         return (this._conversation ??= new Conversation(this._options));
+    }
+
+    public get inbox(): Inbox {
+        return (this._inbox ??= new Inbox(this._options));
     }
 
     public get knowledge(): Knowledge {

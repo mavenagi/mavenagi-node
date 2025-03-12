@@ -12,5 +12,5 @@ export const KnowledgeBaseVersionType: core.serialization.Schema<
 > = core.serialization.enum_(["FULL", "PARTIAL"]);
 
 export declare namespace KnowledgeBaseVersionType {
-    type Raw = "FULL" | "PARTIAL";
+    export type Raw = "FULL" | "PARTIAL";
 }

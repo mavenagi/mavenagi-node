@@ -21,7 +21,7 @@ export const ActionParameter: core.serialization.ObjectSchema<
 });
 
 export declare namespace ActionParameter {
-    interface Raw {
+    export interface Raw {
         id: string;
         label: string;
         description: string;

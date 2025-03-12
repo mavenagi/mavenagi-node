@@ -5,12 +5,14 @@
 export type NumericConversationField =
     | "ThumbsUpCount"
     | "ThumbsDownCount"
+    | "InsertCount"
     | "UserMessageCount"
     | "HandleTime"
     | "FirstResponseTime";
 export const NumericConversationField = {
     ThumbsUpCount: "ThumbsUpCount",
     ThumbsDownCount: "ThumbsDownCount",
+    InsertCount: "InsertCount",
     UserMessageCount: "UserMessageCount",
     HandleTime: "HandleTime",
     FirstResponseTime: "FirstResponseTime",

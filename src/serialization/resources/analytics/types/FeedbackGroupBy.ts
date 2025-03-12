@@ -18,7 +18,7 @@ export const FeedbackGroupBy: core.serialization.ObjectSchema<
     .extend(GroupByBase);
 
 export declare namespace FeedbackGroupBy {
-    interface Raw extends GroupByBase.Raw {
+    export interface Raw extends GroupByBase.Raw {
         field: FeedbackField.Raw;
     }
 }

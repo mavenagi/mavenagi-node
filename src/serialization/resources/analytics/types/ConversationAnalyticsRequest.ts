@@ -15,7 +15,7 @@ export const ConversationAnalyticsRequest: core.serialization.ObjectSchema<
 });
 
 export declare namespace ConversationAnalyticsRequest {
-    interface Raw {
+    export interface Raw {
         conversationFilter?: ConversationFilter.Raw | null;
     }
 }

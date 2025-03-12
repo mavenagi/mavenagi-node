@@ -10,8 +10,10 @@ import urlJoin from "url-join";
 import * as errors from "../../../../errors/index";
 
 export declare namespace Translations {
-    interface Options {
+    export interface Options {
         environment?: core.Supplier<environments.MavenAGIEnvironment | string>;
+        /** Specify a custom URL to connect the client to. */
+        baseUrl?: core.Supplier<string>;
         appId?: core.Supplier<string | undefined>;
         appSecret?: core.Supplier<string | undefined>;
         /** Override the X-Organization-Id header */
@@ -21,7 +23,7 @@ export declare namespace Translations {
         fetcher?: core.FetchFunction;
     }
 
-    interface RequestOptions {
+    export interface RequestOptions {
         /** The maximum time to wait for a response in seconds. */
         timeoutInSeconds?: number;
         /** The number of times to retry the request. Defaults to 2. */
@@ -58,12 +60,14 @@ export class Translations {
      */
     public async translate(
         request: MavenAGI.TranslationRequest,
-        requestOptions?: Translations.RequestOptions
+        requestOptions?: Translations.RequestOptions,
     ): Promise<MavenAGI.TranslationResponse> {
         const _response = await (this._options.fetcher ?? core.fetcher)({
             url: urlJoin(
-                (await core.Supplier.get(this._options.environment)) ?? environments.MavenAGIEnvironment.Production,
-                "/v1/translations/translate"
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)) ??
+                    environments.MavenAGIEnvironment.Production,
+                "/v1/translations/translate",
             ),
             method: "POST",
             headers: {
@@ -72,8 +76,8 @@ export class Translations {
                 "X-Agent-Id": await core.Supplier.get(this._options.agentId),
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "mavenagi",
-                "X-Fern-SDK-Version": "1.0.7",
-                "User-Agent": "mavenagi/1.0.7",
+                "X-Fern-SDK-Version": "1.0.8",
+                "User-Agent": "mavenagi/1.0.8",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...requestOptions?.headers,
@@ -103,7 +107,7 @@ export class Translations {
                             allowUnrecognizedUnionMembers: true,
                             allowUnrecognizedEnumValues: true,
                             breadcrumbsPrefix: ["response"],
-                        })
+                        }),
                     );
                 case 400:
                     throw new MavenAGI.BadRequestError(
@@ -112,7 +116,7 @@ export class Translations {
                             allowUnrecognizedUnionMembers: true,
                             allowUnrecognizedEnumValues: true,
                             breadcrumbsPrefix: ["response"],
-                        })
+                        }),
                     );
                 case 500:
                     throw new MavenAGI.ServerError(
@@ -121,7 +125,7 @@ export class Translations {
                             allowUnrecognizedUnionMembers: true,
                             allowUnrecognizedEnumValues: true,
                             breadcrumbsPrefix: ["response"],
-                        })
+                        }),
                     );
                 default:
                     throw new errors.MavenAGIError({

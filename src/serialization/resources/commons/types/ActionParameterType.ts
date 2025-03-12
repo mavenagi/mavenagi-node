@@ -12,5 +12,5 @@ export const ActionParameterType: core.serialization.Schema<
 > = core.serialization.enum_(["STRING", "BOOLEAN", "NUMBER"]);
 
 export declare namespace ActionParameterType {
-    type Raw = "STRING" | "BOOLEAN" | "NUMBER";
+    export type Raw = "STRING" | "BOOLEAN" | "NUMBER";
 }

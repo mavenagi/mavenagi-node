@@ -12,5 +12,5 @@ export const PreconditionOperator: core.serialization.Schema<
 > = core.serialization.enum_(["NOT"]);
 
 export declare namespace PreconditionOperator {
-    type Raw = "NOT";
+    export type Raw = "NOT";
 }

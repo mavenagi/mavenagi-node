@@ -34,7 +34,7 @@ export const FieldValue: core.serialization.Schema<serializers.FieldValue.Raw, M
     });
 
 export declare namespace FieldValue {
-    type Raw =
+    export type Raw =
         | FieldValue.DateTime
         | FieldValue.String
         | FieldValue.Double
@@ -43,36 +43,36 @@ export declare namespace FieldValue {
         | FieldValue.Boolean
         | FieldValue.EntityId;
 
-    interface DateTime {
+    export interface DateTime {
         type: "dateTime";
         value: string;
     }
 
-    interface String {
+    export interface String {
         type: "string";
         value: string;
     }
 
-    interface Double {
+    export interface Double {
         type: "double";
         value: number;
     }
 
-    interface Long {
+    export interface Long {
         type: "long";
         value: number;
     }
 
-    interface Range extends Range.Raw {
+    export interface Range extends Range.Raw {
         type: "range";
     }
 
-    interface Boolean {
+    export interface Boolean {
         type: "boolean";
         value: boolean;
     }
 
-    interface EntityId extends EntityIdFilter.Raw {
+    export interface EntityId extends EntityIdFilter.Raw {
         type: "entityId";
     }
 }

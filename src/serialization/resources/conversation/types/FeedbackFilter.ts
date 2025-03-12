@@ -16,7 +16,7 @@ export const FeedbackFilter: core.serialization.ObjectSchema<serializers.Feedbac
     });
 
 export declare namespace FeedbackFilter {
-    interface Raw {
+    export interface Raw {
         search?: string | null;
         createdAfter?: string | null;
         createdBefore?: string | null;

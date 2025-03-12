@@ -16,7 +16,7 @@ export const PreconditionGroup: core.serialization.ObjectSchema<
 });
 
 export declare namespace PreconditionGroup {
-    interface Raw {
+    export interface Raw {
         operator: PreconditionGroupOperator.Raw;
         preconditions: serializers.Precondition.Raw[];
     }

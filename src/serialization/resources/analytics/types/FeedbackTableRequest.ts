@@ -22,7 +22,7 @@ export const FeedbackTableRequest: core.serialization.ObjectSchema<
     .extend(FeedbackAnalyticsRequest);
 
 export declare namespace FeedbackTableRequest {
-    interface Raw extends FeedbackAnalyticsRequest.Raw {
+    export interface Raw extends FeedbackAnalyticsRequest.Raw {
         timeGrouping?: TimeInterval.Raw | null;
         fieldGroupings: FeedbackGroupBy.Raw[];
         columnDefinitions: FeedbackColumnDefinition.Raw[];

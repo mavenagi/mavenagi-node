@@ -18,7 +18,7 @@ export const EventTriggerRequest: core.serialization.ObjectSchema<
     .extend(EventTriggerBase);
 
 export declare namespace EventTriggerRequest {
-    interface Raw extends EventTriggerBase.Raw {
+    export interface Raw extends EventTriggerBase.Raw {
         triggerId: EntityIdBase.Raw;
     }
 }

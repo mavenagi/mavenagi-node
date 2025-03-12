@@ -10,5 +10,5 @@ export const Sentiment: core.serialization.Schema<serializers.Sentiment.Raw, Mav
     core.serialization.enum_(["POSITIVE", "NEGATIVE", "NEUTRAL", "MIXED", "UNKNOWN"]);
 
 export declare namespace Sentiment {
-    type Raw = "POSITIVE" | "NEGATIVE" | "NEUTRAL" | "MIXED" | "UNKNOWN";
+    export type Raw = "POSITIVE" | "NEGATIVE" | "NEUTRAL" | "MIXED" | "UNKNOWN";
 }

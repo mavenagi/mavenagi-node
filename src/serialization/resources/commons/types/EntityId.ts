@@ -15,7 +15,7 @@ export const EntityId: core.serialization.ObjectSchema<serializers.EntityId.Raw,
     .extend(EntityIdWithoutAgent);
 
 export declare namespace EntityId {
-    interface Raw extends EntityIdWithoutAgent.Raw {
+    export interface Raw extends EntityIdWithoutAgent.Raw {
         organizationId: string;
         agentId: string;
     }

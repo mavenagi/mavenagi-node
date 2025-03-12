@@ -34,7 +34,7 @@ export const ConversationMetric: core.serialization.Schema<
     });
 
 export declare namespace ConversationMetric {
-    type Raw =
+    export type Raw =
         | ConversationMetric.Count
         | ConversationMetric.Sum
         | ConversationMetric.Average
@@ -44,35 +44,35 @@ export declare namespace ConversationMetric {
         | ConversationMetric.Median
         | ConversationMetric.DistinctCount;
 
-    interface Count extends ConversationCount.Raw {
+    export interface Count extends ConversationCount.Raw {
         type: "count";
     }
 
-    interface Sum extends ConversationSum.Raw {
+    export interface Sum extends ConversationSum.Raw {
         type: "sum";
     }
 
-    interface Average extends ConversationAverage.Raw {
+    export interface Average extends ConversationAverage.Raw {
         type: "average";
     }
 
-    interface Min extends ConversationMin.Raw {
+    export interface Min extends ConversationMin.Raw {
         type: "min";
     }
 
-    interface Max extends ConversationMax.Raw {
+    export interface Max extends ConversationMax.Raw {
         type: "max";
     }
 
-    interface Percentile extends ConversationPercentile.Raw {
+    export interface Percentile extends ConversationPercentile.Raw {
         type: "percentile";
     }
 
-    interface Median extends ConversationMedian.Raw {
+    export interface Median extends ConversationMedian.Raw {
         type: "median";
     }
 
-    interface DistinctCount extends ConversationDistinctCount.Raw {
+    export interface DistinctCount extends ConversationDistinctCount.Raw {
         type: "distinctCount";
     }
 }

@@ -18,7 +18,7 @@ export const ConversationTableResponse: core.serialization.ObjectSchema<
     .extend(TableResponseBase);
 
 export declare namespace ConversationTableResponse {
-    interface Raw extends TableResponseBase.Raw {
+    export interface Raw extends TableResponseBase.Raw {
         rows: ConversationRow.Raw[];
     }
 }

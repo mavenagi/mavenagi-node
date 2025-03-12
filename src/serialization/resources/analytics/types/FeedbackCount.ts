@@ -10,5 +10,5 @@ export const FeedbackCount: core.serialization.ObjectSchema<serializers.Feedback
     core.serialization.object({});
 
 export declare namespace FeedbackCount {
-    interface Raw {}
+    export interface Raw {}
 }

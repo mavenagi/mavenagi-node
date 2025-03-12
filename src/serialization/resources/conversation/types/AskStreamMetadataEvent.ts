@@ -13,5 +13,5 @@ export const AskStreamMetadataEvent: core.serialization.ObjectSchema<
 > = core.serialization.object({}).extend(BotResponseMetadata);
 
 export declare namespace AskStreamMetadataEvent {
-    interface Raw extends BotResponseMetadata.Raw {}
+    export interface Raw extends BotResponseMetadata.Raw {}
 }

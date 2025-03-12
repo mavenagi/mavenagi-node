@@ -13,5 +13,5 @@ export const AskStreamActionEvent: core.serialization.ObjectSchema<
 > = core.serialization.object({}).extend(BotActionFormResponse);
 
 export declare namespace AskStreamActionEvent {
-    interface Raw extends BotActionFormResponse.Raw {}
+    export interface Raw extends BotActionFormResponse.Raw {}
 }

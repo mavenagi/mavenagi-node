@@ -10,5 +10,5 @@ export const Capability: core.serialization.Schema<serializers.Capability.Raw, M
     core.serialization.enum_(["MARKDOWN", "FORMS", "IMAGES", "CHARTS_HIGHCHARTS_TS"]);
 
 export declare namespace Capability {
-    type Raw = "MARKDOWN" | "FORMS" | "IMAGES" | "CHARTS_HIGHCHARTS_TS";
+    export type Raw = "MARKDOWN" | "FORMS" | "IMAGES" | "CHARTS_HIGHCHARTS_TS";
 }

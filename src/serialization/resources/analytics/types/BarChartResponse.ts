@@ -15,7 +15,7 @@ export const BarChartResponse: core.serialization.ObjectSchema<
 });
 
 export declare namespace BarChartResponse {
-    interface Raw {
+    export interface Raw {
         series: Series.Raw[];
     }
 }

@@ -12,5 +12,5 @@ export const AppUserIdentifyingPropertyType: core.serialization.Schema<
 > = core.serialization.enum_(["EMAIL", "PHONE_NUMBER"]);
 
 export declare namespace AppUserIdentifyingPropertyType {
-    type Raw = "EMAIL" | "PHONE_NUMBER";
+    export type Raw = "EMAIL" | "PHONE_NUMBER";
 }

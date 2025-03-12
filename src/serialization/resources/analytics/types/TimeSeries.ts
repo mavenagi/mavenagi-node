@@ -14,7 +14,7 @@ export const TimeSeries: core.serialization.ObjectSchema<serializers.TimeSeries.
     });
 
 export declare namespace TimeSeries {
-    interface Raw {
+    export interface Raw {
         name: string;
         data: TimeDataPoint.Raw[];
     }

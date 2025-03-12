@@ -5,26 +5,25 @@
 import * as serializers from "../../../index";
 import * as MavenAGI from "../../../../api/index";
 import * as core from "../../../../core";
-import { TimeInterval } from "./TimeInterval";
 import { ConversationGroupBy } from "./ConversationGroupBy";
 import { ConversationMetric } from "./ConversationMetric";
 import { ConversationAnalyticsRequest } from "./ConversationAnalyticsRequest";
 
-export const DateHistogramRequest: core.serialization.ObjectSchema<
-    serializers.DateHistogramRequest.Raw,
-    MavenAGI.DateHistogramRequest
+export const ConversationBarChartRequest: core.serialization.ObjectSchema<
+    serializers.ConversationBarChartRequest.Raw,
+    MavenAGI.ConversationBarChartRequest
 > = core.serialization
     .object({
-        timeInterval: TimeInterval,
-        groupBy: ConversationGroupBy.optional(),
+        barDefinition: ConversationGroupBy,
         metric: ConversationMetric,
+        verticalGrouping: ConversationGroupBy.optional(),
     })
     .extend(ConversationAnalyticsRequest);
 
-export declare namespace DateHistogramRequest {
-    interface Raw extends ConversationAnalyticsRequest.Raw {
-        timeInterval: TimeInterval.Raw;
-        groupBy?: ConversationGroupBy.Raw | null;
+export declare namespace ConversationBarChartRequest {
+    export interface Raw extends ConversationAnalyticsRequest.Raw {
+        barDefinition: ConversationGroupBy.Raw;
         metric: ConversationMetric.Raw;
+        verticalGrouping?: ConversationGroupBy.Raw | null;
     }
 }

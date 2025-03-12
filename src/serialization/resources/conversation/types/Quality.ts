@@ -13,5 +13,5 @@ export const Quality: core.serialization.Schema<serializers.Quality.Raw, MavenAG
 ]);
 
 export declare namespace Quality {
-    type Raw = "GOOD" | "NEEDS_IMPROVEMENT" | "UNKNOWN";
+    export type Raw = "GOOD" | "NEEDS_IMPROVEMENT" | "UNKNOWN";
 }

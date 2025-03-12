@@ -14,7 +14,7 @@ export const TableResponseBase: core.serialization.ObjectSchema<
 });
 
 export declare namespace TableResponseBase {
-    interface Raw {
+    export interface Raw {
         headers: string[];
     }
 }

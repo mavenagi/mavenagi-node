@@ -12,11 +12,18 @@ export const NumericConversationField: core.serialization.Schema<
 > = core.serialization.enum_([
     "ThumbsUpCount",
     "ThumbsDownCount",
+    "InsertCount",
     "UserMessageCount",
     "HandleTime",
     "FirstResponseTime",
 ]);
 
 export declare namespace NumericConversationField {
-    type Raw = "ThumbsUpCount" | "ThumbsDownCount" | "UserMessageCount" | "HandleTime" | "FirstResponseTime";
+    export type Raw =
+        | "ThumbsUpCount"
+        | "ThumbsDownCount"
+        | "InsertCount"
+        | "UserMessageCount"
+        | "HandleTime"
+        | "FirstResponseTime";
 }

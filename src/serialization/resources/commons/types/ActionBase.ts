@@ -18,7 +18,7 @@ export const ActionBase: core.serialization.ObjectSchema<serializers.ActionBase.
     });
 
 export declare namespace ActionBase {
-    interface Raw {
+    export interface Raw {
         name: string;
         description: string;
         userInteractionRequired: boolean;

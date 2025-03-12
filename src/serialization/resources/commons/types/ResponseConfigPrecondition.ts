@@ -22,7 +22,7 @@ export const ResponseConfigPrecondition: core.serialization.ObjectSchema<
     .extend(PreconditionBase);
 
 export declare namespace ResponseConfigPrecondition {
-    interface Raw extends PreconditionBase.Raw {
+    export interface Raw extends PreconditionBase.Raw {
         useMarkdown?: boolean | null;
         useForms?: boolean | null;
         useImages?: boolean | null;

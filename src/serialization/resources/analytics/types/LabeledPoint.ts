@@ -13,7 +13,7 @@ export const LabeledPoint: core.serialization.ObjectSchema<serializers.LabeledPo
     });
 
 export declare namespace LabeledPoint {
-    interface Raw {
+    export interface Raw {
         label: string;
         y: number;
     }

@@ -27,24 +27,24 @@ export const CellData: core.serialization.Schema<serializers.CellData.Raw, Maven
     });
 
 export declare namespace CellData {
-    type Raw = CellData.Double | CellData.Long | CellData.Millisecond | CellData.String;
+    export type Raw = CellData.Double | CellData.Long | CellData.Millisecond | CellData.String;
 
-    interface Double {
+    export interface Double {
         type: "double";
         value: number;
     }
 
-    interface Long {
+    export interface Long {
         type: "long";
         value: number;
     }
 
-    interface Millisecond {
+    export interface Millisecond {
         type: "millisecond";
         value: number;
     }
 
-    interface String {
+    export interface String {
         type: "string";
         value: string;
     }

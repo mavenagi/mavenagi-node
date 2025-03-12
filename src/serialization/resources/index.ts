@@ -6,6 +6,8 @@ export * as commons from "./commons";
 export * from "./commons/types";
 export * as conversation from "./conversation";
 export * from "./conversation/types";
+export * as inbox from "./inbox";
+export * from "./inbox/types";
 export * as knowledge from "./knowledge";
 export * from "./knowledge/types";
 export * as translations from "./translations";

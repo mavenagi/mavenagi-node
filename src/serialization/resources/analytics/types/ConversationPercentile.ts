@@ -17,7 +17,7 @@ export const ConversationPercentile: core.serialization.ObjectSchema<
     .extend(ConversationNumericMetric);
 
 export declare namespace ConversationPercentile {
-    interface Raw extends ConversationNumericMetric.Raw {
+    export interface Raw extends ConversationNumericMetric.Raw {
         percentile: number;
     }
 }

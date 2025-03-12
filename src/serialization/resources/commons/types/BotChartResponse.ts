@@ -17,7 +17,7 @@ export const BotChartResponse: core.serialization.ObjectSchema<
 });
 
 export declare namespace BotChartResponse {
-    interface Raw {
+    export interface Raw {
         label: string;
         specSchema: ChartSpecSchema.Raw;
         spec: string;

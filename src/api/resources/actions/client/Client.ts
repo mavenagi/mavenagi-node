@@ -10,8 +10,10 @@ import urlJoin from "url-join";
 import * as errors from "../../../../errors/index";
 
 export declare namespace Actions {
-    interface Options {
+    export interface Options {
         environment?: core.Supplier<environments.MavenAGIEnvironment | string>;
+        /** Specify a custom URL to connect the client to. */
+        baseUrl?: core.Supplier<string>;
         appId?: core.Supplier<string | undefined>;
         appSecret?: core.Supplier<string | undefined>;
         /** Override the X-Organization-Id header */
@@ -21,7 +23,7 @@ export declare namespace Actions {
         fetcher?: core.FetchFunction;
     }
 
-    interface RequestOptions {
+    export interface RequestOptions {
         /** The maximum time to wait for a response in seconds. */
         timeoutInSeconds?: number;
         /** The number of times to retry the request. Defaults to 2. */
@@ -74,12 +76,14 @@ export class Actions {
      */
     public async createOrUpdate(
         request: MavenAGI.ActionRequest,
-        requestOptions?: Actions.RequestOptions
+        requestOptions?: Actions.RequestOptions,
     ): Promise<MavenAGI.ActionResponse> {
         const _response = await (this._options.fetcher ?? core.fetcher)({
             url: urlJoin(
-                (await core.Supplier.get(this._options.environment)) ?? environments.MavenAGIEnvironment.Production,
-                "/v1/actions"
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)) ??
+                    environments.MavenAGIEnvironment.Production,
+                "/v1/actions",
             ),
             method: "PUT",
             headers: {
@@ -88,8 +92,8 @@ export class Actions {
                 "X-Agent-Id": await core.Supplier.get(this._options.agentId),
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "mavenagi",
-                "X-Fern-SDK-Version": "1.0.7",
-                "User-Agent": "mavenagi/1.0.7",
+                "X-Fern-SDK-Version": "1.0.8",
+                "User-Agent": "mavenagi/1.0.8",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...requestOptions?.headers,
@@ -119,7 +123,7 @@ export class Actions {
                             allowUnrecognizedUnionMembers: true,
                             allowUnrecognizedEnumValues: true,
                             breadcrumbsPrefix: ["response"],
-                        })
+                        }),
                     );
                 case 400:
                     throw new MavenAGI.BadRequestError(
@@ -128,7 +132,7 @@ export class Actions {
                             allowUnrecognizedUnionMembers: true,
                             allowUnrecognizedEnumValues: true,
                             breadcrumbsPrefix: ["response"],
-                        })
+                        }),
                     );
                 case 500:
                     throw new MavenAGI.ServerError(
@@ -137,7 +141,7 @@ export class Actions {
                             allowUnrecognizedUnionMembers: true,
                             allowUnrecognizedEnumValues: true,
                             breadcrumbsPrefix: ["response"],
-                        })
+                        }),
                     );
                 default:
                     throw new errors.MavenAGIError({
@@ -177,12 +181,14 @@ export class Actions {
      */
     public async get(
         actionReferenceId: string,
-        requestOptions?: Actions.RequestOptions
+        requestOptions?: Actions.RequestOptions,
     ): Promise<MavenAGI.ActionResponse> {
         const _response = await (this._options.fetcher ?? core.fetcher)({
             url: urlJoin(
-                (await core.Supplier.get(this._options.environment)) ?? environments.MavenAGIEnvironment.Production,
-                `/v1/actions/${encodeURIComponent(actionReferenceId)}`
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)) ??
+                    environments.MavenAGIEnvironment.Production,
+                `/v1/actions/${encodeURIComponent(actionReferenceId)}`,
             ),
             method: "GET",
             headers: {
@@ -191,8 +197,8 @@ export class Actions {
                 "X-Agent-Id": await core.Supplier.get(this._options.agentId),
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "mavenagi",
-                "X-Fern-SDK-Version": "1.0.7",
-                "User-Agent": "mavenagi/1.0.7",
+                "X-Fern-SDK-Version": "1.0.8",
+                "User-Agent": "mavenagi/1.0.8",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...requestOptions?.headers,
@@ -221,7 +227,7 @@ export class Actions {
                             allowUnrecognizedUnionMembers: true,
                             allowUnrecognizedEnumValues: true,
                             breadcrumbsPrefix: ["response"],
-                        })
+                        }),
                     );
                 case 400:
                     throw new MavenAGI.BadRequestError(
@@ -230,7 +236,7 @@ export class Actions {
                             allowUnrecognizedUnionMembers: true,
                             allowUnrecognizedEnumValues: true,
                             breadcrumbsPrefix: ["response"],
-                        })
+                        }),
                     );
                 case 500:
                     throw new MavenAGI.ServerError(
@@ -239,7 +245,7 @@ export class Actions {
                             allowUnrecognizedUnionMembers: true,
                             allowUnrecognizedEnumValues: true,
                             breadcrumbsPrefix: ["response"],
-                        })
+                        }),
                     );
                 default:
                     throw new errors.MavenAGIError({
@@ -257,7 +263,7 @@ export class Actions {
                 });
             case "timeout":
                 throw new errors.MavenAGITimeoutError(
-                    "Timeout exceeded when calling GET /v1/actions/{actionReferenceId}."
+                    "Timeout exceeded when calling GET /v1/actions/{actionReferenceId}.",
                 );
             case "unknown":
                 throw new errors.MavenAGIError({
@@ -282,8 +288,10 @@ export class Actions {
     public async delete(actionReferenceId: string, requestOptions?: Actions.RequestOptions): Promise<void> {
         const _response = await (this._options.fetcher ?? core.fetcher)({
             url: urlJoin(
-                (await core.Supplier.get(this._options.environment)) ?? environments.MavenAGIEnvironment.Production,
-                `/v1/actions/${encodeURIComponent(actionReferenceId)}`
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)) ??
+                    environments.MavenAGIEnvironment.Production,
+                `/v1/actions/${encodeURIComponent(actionReferenceId)}`,
             ),
             method: "DELETE",
             headers: {
@@ -292,8 +300,8 @@ export class Actions {
                 "X-Agent-Id": await core.Supplier.get(this._options.agentId),
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "mavenagi",
-                "X-Fern-SDK-Version": "1.0.7",
-                "User-Agent": "mavenagi/1.0.7",
+                "X-Fern-SDK-Version": "1.0.8",
+                "User-Agent": "mavenagi/1.0.8",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...requestOptions?.headers,
@@ -317,7 +325,7 @@ export class Actions {
                             allowUnrecognizedUnionMembers: true,
                             allowUnrecognizedEnumValues: true,
                             breadcrumbsPrefix: ["response"],
-                        })
+                        }),
                     );
                 case 400:
                     throw new MavenAGI.BadRequestError(
@@ -326,7 +334,7 @@ export class Actions {
                             allowUnrecognizedUnionMembers: true,
                             allowUnrecognizedEnumValues: true,
                             breadcrumbsPrefix: ["response"],
-                        })
+                        }),
                     );
                 case 500:
                     throw new MavenAGI.ServerError(
@@ -335,7 +343,7 @@ export class Actions {
                             allowUnrecognizedUnionMembers: true,
                             allowUnrecognizedEnumValues: true,
                             breadcrumbsPrefix: ["response"],
-                        })
+                        }),
                     );
                 default:
                     throw new errors.MavenAGIError({
@@ -353,7 +361,7 @@ export class Actions {
                 });
             case "timeout":
                 throw new errors.MavenAGITimeoutError(
-                    "Timeout exceeded when calling DELETE /v1/actions/{actionReferenceId}."
+                    "Timeout exceeded when calling DELETE /v1/actions/{actionReferenceId}.",
                 );
             case "unknown":
                 throw new errors.MavenAGIError({

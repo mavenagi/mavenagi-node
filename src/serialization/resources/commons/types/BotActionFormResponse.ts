@@ -18,7 +18,7 @@ export const BotActionFormResponse: core.serialization.ObjectSchema<
 });
 
 export declare namespace BotActionFormResponse {
-    interface Raw {
+    export interface Raw {
         id: string;
         formLabel: string;
         fields: ActionFormField.Raw[];

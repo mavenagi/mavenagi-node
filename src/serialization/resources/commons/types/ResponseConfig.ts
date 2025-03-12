@@ -16,7 +16,7 @@ export const ResponseConfig: core.serialization.ObjectSchema<serializers.Respons
     });
 
 export declare namespace ResponseConfig {
-    interface Raw {
+    export interface Raw {
         capabilities: Capability.Raw[];
         isCopilot: boolean;
         responseLength: ResponseLength.Raw;

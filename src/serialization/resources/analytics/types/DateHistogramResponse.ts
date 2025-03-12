@@ -15,7 +15,7 @@ export const DateHistogramResponse: core.serialization.ObjectSchema<
 });
 
 export declare namespace DateHistogramResponse {
-    interface Raw {
+    export interface Raw {
         timeSeries: TimeSeries.Raw[];
     }
 }

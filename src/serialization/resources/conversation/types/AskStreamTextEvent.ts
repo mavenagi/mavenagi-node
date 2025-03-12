@@ -14,7 +14,7 @@ export const AskStreamTextEvent: core.serialization.ObjectSchema<
 });
 
 export declare namespace AskStreamTextEvent {
-    interface Raw {
+    export interface Raw {
         contents: string;
     }
 }

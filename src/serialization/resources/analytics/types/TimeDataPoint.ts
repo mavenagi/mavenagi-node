@@ -13,7 +13,7 @@ export const TimeDataPoint: core.serialization.ObjectSchema<serializers.TimeData
     });
 
 export declare namespace TimeDataPoint {
-    interface Raw {
+    export interface Raw {
         x: number;
         y: number;
     }

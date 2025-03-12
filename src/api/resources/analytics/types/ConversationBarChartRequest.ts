@@ -4,7 +4,7 @@
 
 import * as MavenAGI from "../../../index";
 
-export interface BarChartRequest extends MavenAGI.ConversationAnalyticsRequest {
+export interface ConversationBarChartRequest extends MavenAGI.ConversationAnalyticsRequest {
     /**
      * Determines how data is grouped along the x-axis. Each unique value forms a separate bar.
      * The name of the bar is derived from the grouping field's value or range.

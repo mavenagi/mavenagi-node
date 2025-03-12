@@ -23,6 +23,7 @@ export const ConversationField: core.serialization.Schema<
     "ResponseLength",
     "ThumbsUpCount",
     "ThumbsDownCount",
+    "InsertCount",
     "Tags",
     "UserMessageCount",
     "Languages",
@@ -33,7 +34,7 @@ export const ConversationField: core.serialization.Schema<
 ]);
 
 export declare namespace ConversationField {
-    type Raw =
+    export type Raw =
         | "Category"
         | "FirstResponseTime"
         | "HandleTime"
@@ -47,6 +48,7 @@ export declare namespace ConversationField {
         | "ResponseLength"
         | "ThumbsUpCount"
         | "ThumbsDownCount"
+        | "InsertCount"
         | "Tags"
         | "UserMessageCount"
         | "Languages"

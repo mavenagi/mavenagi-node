@@ -22,17 +22,17 @@ export const BotResponse: core.serialization.Schema<serializers.BotResponse.Raw,
         });
 
 export declare namespace BotResponse {
-    type Raw = BotResponse.Text | BotResponse.ActionForm | BotResponse.Chart;
+    export type Raw = BotResponse.Text | BotResponse.ActionForm | BotResponse.Chart;
 
-    interface Text extends BotTextResponse.Raw {
+    export interface Text extends BotTextResponse.Raw {
         type: "text";
     }
 
-    interface ActionForm extends BotActionFormResponse.Raw {
+    export interface ActionForm extends BotActionFormResponse.Raw {
         type: "actionForm";
     }
 
-    interface Chart extends BotChartResponse.Raw {
+    export interface Chart extends BotChartResponse.Raw {
         type: "chart";
     }
 }

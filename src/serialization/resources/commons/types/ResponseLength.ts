@@ -10,5 +10,5 @@ export const ResponseLength: core.serialization.Schema<serializers.ResponseLengt
     core.serialization.enum_(["SHORT", "MEDIUM", "LONG"]);
 
 export declare namespace ResponseLength {
-    type Raw = "SHORT" | "MEDIUM" | "LONG";
+    export type Raw = "SHORT" | "MEDIUM" | "LONG";
 }

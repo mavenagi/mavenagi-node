@@ -16,6 +16,7 @@ export type ConversationField =
     | "ResponseLength"
     | "ThumbsUpCount"
     | "ThumbsDownCount"
+    | "InsertCount"
     | "Tags"
     | "UserMessageCount"
     | "Languages"
@@ -37,6 +38,7 @@ export const ConversationField = {
     ResponseLength: "ResponseLength",
     ThumbsUpCount: "ThumbsUpCount",
     ThumbsDownCount: "ThumbsDownCount",
+    InsertCount: "InsertCount",
     Tags: "Tags",
     UserMessageCount: "UserMessageCount",
     Languages: "Languages",

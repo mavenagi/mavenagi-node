@@ -22,13 +22,13 @@ export const ConversationMessageResponse: core.serialization.Schema<
     });
 
 export declare namespace ConversationMessageResponse {
-    type Raw = ConversationMessageResponse.User | ConversationMessageResponse.Bot;
+    export type Raw = ConversationMessageResponse.User | ConversationMessageResponse.Bot;
 
-    interface User extends UserMessage.Raw {
+    export interface User extends UserMessage.Raw {
         type: "user";
     }
 
-    interface Bot extends BotMessage.Raw {
+    export interface Bot extends BotMessage.Raw {
         type: "bot";
     }
 }

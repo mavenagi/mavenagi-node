@@ -19,7 +19,7 @@ export const ConversationRow: core.serialization.ObjectSchema<
     .extend(RowBase);
 
 export declare namespace ConversationRow {
-    interface Raw extends RowBase.Raw {
+    export interface Raw extends RowBase.Raw {
         identifier: Record<ConversationField.Raw, FieldValue.Raw | null | undefined>;
     }
 }

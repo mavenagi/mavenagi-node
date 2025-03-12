@@ -13,5 +13,5 @@ export const ConversationMax: core.serialization.ObjectSchema<
 > = core.serialization.object({}).extend(ConversationNumericMetric);
 
 export declare namespace ConversationMax {
-    interface Raw extends ConversationNumericMetric.Raw {}
+    export interface Raw extends ConversationNumericMetric.Raw {}
 }

@@ -13,5 +13,5 @@ export const ConversationDistinctCount: core.serialization.ObjectSchema<
 > = core.serialization.object({}).extend(ConversationBasicMetric);
 
 export declare namespace ConversationDistinctCount {
-    interface Raw extends ConversationBasicMetric.Raw {}
+    export interface Raw extends ConversationBasicMetric.Raw {}
 }

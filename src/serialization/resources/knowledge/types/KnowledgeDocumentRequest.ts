@@ -21,7 +21,7 @@ export const KnowledgeDocumentRequest: core.serialization.ObjectSchema<
     .extend(BaseKnowledgeDocument);
 
 export declare namespace KnowledgeDocumentRequest {
-    interface Raw extends BaseKnowledgeDocument.Raw {
+    export interface Raw extends BaseKnowledgeDocument.Raw {
         knowledgeDocumentId: EntityIdBase.Raw;
         contentType: KnowledgeDocumentContentType.Raw;
         content: string;

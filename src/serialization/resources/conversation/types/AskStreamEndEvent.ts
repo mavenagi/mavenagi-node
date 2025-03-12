@@ -15,7 +15,7 @@ export const AskStreamEndEvent: core.serialization.ObjectSchema<
 });
 
 export declare namespace AskStreamEndEvent {
-    interface Raw {
+    export interface Raw {
         error?: ErrorMessage.Raw | null;
     }
 }

@@ -20,7 +20,7 @@ export const QualityReason: core.serialization.Schema<serializers.QualityReason.
     ]);
 
 export declare namespace QualityReason {
-    type Raw =
+    export type Raw =
         | "MISSING_KNOWLEDGE"
         | "MISSING_USER_INFORMATION"
         | "MISSING_ACTION"

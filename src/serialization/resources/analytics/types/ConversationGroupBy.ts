@@ -20,7 +20,7 @@ export const ConversationGroupBy: core.serialization.ObjectSchema<
     .extend(GroupByBase);
 
 export declare namespace ConversationGroupBy {
-    interface Raw extends GroupByBase.Raw {
+    export interface Raw extends GroupByBase.Raw {
         field: ConversationField.Raw;
         ranges?: Range.Raw[] | null;
     }

@@ -4,7 +4,7 @@
 
 import * as MavenAGI from "../../../index";
 
-export interface PieChartRequest extends MavenAGI.ConversationAnalyticsRequest {
+export interface ConversationPieChartRequest extends MavenAGI.ConversationAnalyticsRequest {
     /** Field used to group data into slices for the pie chart. */
     groupBy: MavenAGI.ConversationGroupBy;
     /** Metric defining the value for each pie slice, stored in the y-axis value. */

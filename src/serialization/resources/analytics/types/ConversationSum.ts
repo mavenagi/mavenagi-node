@@ -13,5 +13,5 @@ export const ConversationSum: core.serialization.ObjectSchema<
 > = core.serialization.object({}).extend(ConversationNumericMetric);
 
 export declare namespace ConversationSum {
-    interface Raw extends ConversationNumericMetric.Raw {}
+    export interface Raw extends ConversationNumericMetric.Raw {}
 }

@@ -23,6 +23,8 @@ import * as MavenAGI from "../../../index";
  *             actionIds: [],
  *             incompleteActionIds: []
  *         },
+ *         metadata: {},
+ *         allMetadata: {},
  *         messages: [{
  *                 type: "user",
  *                 userMessageType: MavenAGI.UserConversationMessageType.User,

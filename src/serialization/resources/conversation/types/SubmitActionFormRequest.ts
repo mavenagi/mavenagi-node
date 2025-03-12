@@ -16,7 +16,7 @@ export const SubmitActionFormRequest: core.serialization.ObjectSchema<
 });
 
 export declare namespace SubmitActionFormRequest {
-    interface Raw {
+    export interface Raw {
         actionFormId: string;
         parameters: Record<string, unknown>;
         transientData?: Record<string, string> | null;

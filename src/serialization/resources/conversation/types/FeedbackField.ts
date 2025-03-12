@@ -10,5 +10,5 @@ export const FeedbackField: core.serialization.Schema<serializers.FeedbackField.
     core.serialization.enum_(["Type", "CreatedBy", "CreatedAt"]);
 
 export declare namespace FeedbackField {
-    type Raw = "Type" | "CreatedBy" | "CreatedAt";
+    export type Raw = "Type" | "CreatedBy" | "CreatedAt";
 }

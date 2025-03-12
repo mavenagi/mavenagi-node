@@ -17,7 +17,7 @@ export const BotResponseMetadata: core.serialization.ObjectSchema<
 });
 
 export declare namespace BotResponseMetadata {
-    interface Raw {
+    export interface Raw {
         followupQuestions: string[];
         sources: Source.Raw[];
         language?: string | null;

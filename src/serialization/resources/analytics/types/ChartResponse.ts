@@ -22,17 +22,17 @@ export const ChartResponse: core.serialization.Schema<serializers.ChartResponse.
         });
 
 export declare namespace ChartResponse {
-    type Raw = ChartResponse.PieChart | ChartResponse.DateHistogram | ChartResponse.BarChart;
+    export type Raw = ChartResponse.PieChart | ChartResponse.DateHistogram | ChartResponse.BarChart;
 
-    interface PieChart extends PieChartResponse.Raw {
+    export interface PieChart extends PieChartResponse.Raw {
         type: "pieChart";
     }
 
-    interface DateHistogram extends DateHistogramResponse.Raw {
+    export interface DateHistogram extends DateHistogramResponse.Raw {
         type: "dateHistogram";
     }
 
-    interface BarChart extends BarChartResponse.Raw {
+    export interface BarChart extends BarChartResponse.Raw {
         type: "barChart";
     }
 }

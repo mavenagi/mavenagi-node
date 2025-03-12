@@ -20,7 +20,7 @@ export const ConversationRequest: core.serialization.ObjectSchema<
     .extend(ConversationBase);
 
 export declare namespace ConversationRequest {
-    interface Raw extends ConversationBase.Raw {
+    export interface Raw extends ConversationBase.Raw {
         conversationId: EntityIdBase.Raw;
         messages: ConversationMessageRequest.Raw[];
     }

@@ -18,7 +18,7 @@ export const ConversationColumnDefinition: core.serialization.ObjectSchema<
     .extend(ColumnDefinitionBase);
 
 export declare namespace ConversationColumnDefinition {
-    interface Raw extends ColumnDefinitionBase.Raw {
+    export interface Raw extends ColumnDefinitionBase.Raw {
         metric: ConversationMetric.Raw;
     }
 }

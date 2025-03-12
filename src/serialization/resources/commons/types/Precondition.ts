@@ -23,18 +23,18 @@ export const Precondition: core.serialization.Schema<serializers.Precondition.Ra
         });
 
 export declare namespace Precondition {
-    type Raw = Precondition.User | Precondition.Conversation | Precondition.Group;
+    export type Raw = Precondition.User | Precondition.Conversation | Precondition.Group;
 
-    interface User extends MetadataPrecondition.Raw {
+    export interface User extends MetadataPrecondition.Raw {
         preconditionType: "user";
     }
 
-    interface Conversation {
+    export interface Conversation {
         preconditionType: "conversation";
         value: ConversationPrecondition.Raw;
     }
 
-    interface Group extends serializers.PreconditionGroup.Raw {
+    export interface Group extends serializers.PreconditionGroup.Raw {
         preconditionType: "group";
     }
 }

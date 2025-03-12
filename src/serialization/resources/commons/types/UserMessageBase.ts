@@ -21,7 +21,7 @@ export const UserMessageBase: core.serialization.ObjectSchema<
     .extend(ConversationMessageBase);
 
 export declare namespace UserMessageBase {
-    interface Raw extends ConversationMessageBase.Raw {
+    export interface Raw extends ConversationMessageBase.Raw {
         userId: EntityIdBase.Raw;
         text: string;
         userMessageType: UserConversationMessageType.Raw;

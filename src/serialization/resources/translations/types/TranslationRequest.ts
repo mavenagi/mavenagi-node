@@ -15,7 +15,7 @@ export const TranslationRequest: core.serialization.ObjectSchema<
 });
 
 export declare namespace TranslationRequest {
-    interface Raw {
+    export interface Raw {
         text: string;
         targetLanguage: string;
     }

@@ -22,7 +22,7 @@ export const ConversationTableRequest: core.serialization.ObjectSchema<
     .extend(ConversationAnalyticsRequest);
 
 export declare namespace ConversationTableRequest {
-    interface Raw extends ConversationAnalyticsRequest.Raw {
+    export interface Raw extends ConversationAnalyticsRequest.Raw {
         timeGrouping?: TimeInterval.Raw | null;
         fieldGroupings: ConversationGroupBy.Raw[];
         columnDefinitions: ConversationColumnDefinition.Raw[];

@@ -12,5 +12,5 @@ export const ConversationCount: core.serialization.ObjectSchema<
 > = core.serialization.object({});
 
 export declare namespace ConversationCount {
-    interface Raw {}
+    export interface Raw {}
 }

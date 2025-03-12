@@ -15,7 +15,7 @@ export const PieChartResponse: core.serialization.ObjectSchema<
 });
 
 export declare namespace PieChartResponse {
-    interface Raw {
+    export interface Raw {
         series: Series.Raw;
     }
 }

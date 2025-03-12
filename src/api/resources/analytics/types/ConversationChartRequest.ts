@@ -57,15 +57,15 @@ export type ConversationChartRequest =
     | MavenAGI.ConversationChartRequest.BarChart;
 
 export namespace ConversationChartRequest {
-    export interface PieChart extends MavenAGI.PieChartRequest {
+    export interface PieChart extends MavenAGI.ConversationPieChartRequest {
         type: "pieChart";
     }
 
-    export interface DateHistogram extends MavenAGI.DateHistogramRequest {
+    export interface DateHistogram extends MavenAGI.ConversationDateHistogramRequest {
         type: "dateHistogram";
     }
 
-    export interface BarChart extends MavenAGI.BarChartRequest {
+    export interface BarChart extends MavenAGI.ConversationBarChartRequest {
         type: "barChart";
     }
 }

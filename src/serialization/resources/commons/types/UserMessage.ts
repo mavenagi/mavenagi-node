@@ -19,7 +19,7 @@ export const UserMessage: core.serialization.ObjectSchema<serializers.UserMessag
         .extend(UserMessageBase);
 
 export declare namespace UserMessage {
-    interface Raw extends UserMessageBase.Raw {
+    export interface Raw extends UserMessageBase.Raw {
         conversationMessageId: EntityId.Raw;
         language?: string | null;
         attachments: UserMessageAttachment.Raw[];

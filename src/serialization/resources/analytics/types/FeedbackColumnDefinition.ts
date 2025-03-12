@@ -18,7 +18,7 @@ export const FeedbackColumnDefinition: core.serialization.ObjectSchema<
     .extend(ColumnDefinitionBase);
 
 export declare namespace FeedbackColumnDefinition {
-    interface Raw extends ColumnDefinitionBase.Raw {
+    export interface Raw extends ColumnDefinitionBase.Raw {
         metric: FeedbackMetric.Raw;
     }
 }

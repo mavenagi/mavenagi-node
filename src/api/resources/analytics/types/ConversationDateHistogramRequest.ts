@@ -4,7 +4,7 @@
 
 import * as MavenAGI from "../../../index";
 
-export interface DateHistogramRequest extends MavenAGI.ConversationAnalyticsRequest {
+export interface ConversationDateHistogramRequest extends MavenAGI.ConversationAnalyticsRequest {
     /** Time-based grouping interval (e.g., HOUR, DAY, WEEK) for the date histogram. */
     timeInterval: MavenAGI.TimeInterval;
     /** Groups data before applying calculations, forming a separate time series for each group. */

@@ -16,7 +16,7 @@ export const AppUserIdentifier: core.serialization.ObjectSchema<
 });
 
 export declare namespace AppUserIdentifier {
-    interface Raw {
+    export interface Raw {
         value: string;
         type: AppUserIdentifyingPropertyType.Raw;
     }

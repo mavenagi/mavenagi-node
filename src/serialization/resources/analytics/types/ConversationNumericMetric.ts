@@ -15,7 +15,7 @@ export const ConversationNumericMetric: core.serialization.ObjectSchema<
 });
 
 export declare namespace ConversationNumericMetric {
-    interface Raw {
+    export interface Raw {
         targetField: NumericConversationField.Raw;
     }
 }

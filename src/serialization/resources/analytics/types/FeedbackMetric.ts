@@ -20,13 +20,13 @@ export const FeedbackMetric: core.serialization.Schema<serializers.FeedbackMetri
         });
 
 export declare namespace FeedbackMetric {
-    type Raw = FeedbackMetric.Count | FeedbackMetric.DistinctCount;
+    export type Raw = FeedbackMetric.Count | FeedbackMetric.DistinctCount;
 
-    interface Count extends FeedbackCount.Raw {
+    export interface Count extends FeedbackCount.Raw {
         type: "count";
     }
 
-    interface DistinctCount extends FeedbackDistinctCount.Raw {
+    export interface DistinctCount extends FeedbackDistinctCount.Raw {
         type: "distinctCount";
     }
 }

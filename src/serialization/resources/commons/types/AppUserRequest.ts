@@ -16,7 +16,7 @@ export const AppUserRequest: core.serialization.ObjectSchema<serializers.AppUser
         .extend(AppUser);
 
 export declare namespace AppUserRequest {
-    interface Raw extends AppUser.Raw {
+    export interface Raw extends AppUser.Raw {
         userId: EntityIdBase.Raw;
     }
 }

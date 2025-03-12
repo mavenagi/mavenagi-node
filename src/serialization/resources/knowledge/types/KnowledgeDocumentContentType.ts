@@ -12,5 +12,5 @@ export const KnowledgeDocumentContentType: core.serialization.Schema<
 > = core.serialization.enum_(["HTML", "MARKDOWN"]);
 
 export declare namespace KnowledgeDocumentContentType {
-    type Raw = "HTML" | "MARKDOWN";
+    export type Raw = "HTML" | "MARKDOWN";
 }

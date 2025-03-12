@@ -9,21 +9,19 @@ import { ConversationGroupBy } from "./ConversationGroupBy";
 import { ConversationMetric } from "./ConversationMetric";
 import { ConversationAnalyticsRequest } from "./ConversationAnalyticsRequest";
 
-export const BarChartRequest: core.serialization.ObjectSchema<
-    serializers.BarChartRequest.Raw,
-    MavenAGI.BarChartRequest
+export const ConversationPieChartRequest: core.serialization.ObjectSchema<
+    serializers.ConversationPieChartRequest.Raw,
+    MavenAGI.ConversationPieChartRequest
 > = core.serialization
     .object({
-        barDefinition: ConversationGroupBy,
+        groupBy: ConversationGroupBy,
         metric: ConversationMetric,
-        verticalGrouping: ConversationGroupBy.optional(),
     })
     .extend(ConversationAnalyticsRequest);
 
-export declare namespace BarChartRequest {
-    interface Raw extends ConversationAnalyticsRequest.Raw {
-        barDefinition: ConversationGroupBy.Raw;
+export declare namespace ConversationPieChartRequest {
+    export interface Raw extends ConversationAnalyticsRequest.Raw {
+        groupBy: ConversationGroupBy.Raw;
         metric: ConversationMetric.Raw;
-        verticalGrouping?: ConversationGroupBy.Raw | null;
     }
 }

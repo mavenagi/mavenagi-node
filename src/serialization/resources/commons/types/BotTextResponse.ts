@@ -14,7 +14,7 @@ export const BotTextResponse: core.serialization.ObjectSchema<
 });
 
 export declare namespace BotTextResponse {
-    interface Raw {
+    export interface Raw {
         text: string;
     }
 }

@@ -15,7 +15,7 @@ export const GenerateMavenSuggestionsRequest: core.serialization.ObjectSchema<
 });
 
 export declare namespace GenerateMavenSuggestionsRequest {
-    interface Raw {
+    export interface Raw {
         conversationMessageIds: EntityIdBase.Raw[];
     }
 }

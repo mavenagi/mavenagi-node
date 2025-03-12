@@ -18,7 +18,7 @@ export const AskRequest: core.serialization.ObjectSchema<serializers.AskRequest.
     });
 
 export declare namespace AskRequest {
-    interface Raw {
+    export interface Raw {
         conversationMessageId: EntityIdBase.Raw;
         userId: EntityIdBase.Raw;
         text: string;

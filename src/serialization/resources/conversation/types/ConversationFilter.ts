@@ -11,6 +11,7 @@ import { Quality } from "./Quality";
 import { QualityReason } from "./QualityReason";
 import { ResponseLength } from "../../commons/types/ResponseLength";
 import { Sentiment } from "../../commons/types/Sentiment";
+import { ResolutionStatus } from "./ResolutionStatus";
 
 export const ConversationFilter: core.serialization.ObjectSchema<
     serializers.ConversationFilter.Raw,
@@ -31,10 +32,11 @@ export const ConversationFilter: core.serialization.ObjectSchema<
     responseLength: core.serialization.list(ResponseLength).optional(),
     sentiment: core.serialization.list(Sentiment).optional(),
     tags: core.serialization.list(core.serialization.string()).optional(),
+    resolutionStatus: core.serialization.list(ResolutionStatus).optional(),
 });
 
 export declare namespace ConversationFilter {
-    interface Raw {
+    export interface Raw {
         search?: string | null;
         createdAfter?: string | null;
         createdBefore?: string | null;
@@ -50,5 +52,6 @@ export declare namespace ConversationFilter {
         responseLength?: ResponseLength.Raw[] | null;
         sentiment?: Sentiment.Raw[] | null;
         tags?: string[] | null;
+        resolutionStatus?: ResolutionStatus.Raw[] | null;
     }
 }

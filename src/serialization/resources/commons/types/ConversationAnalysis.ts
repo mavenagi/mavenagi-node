@@ -19,7 +19,7 @@ export const ConversationAnalysis: core.serialization.ObjectSchema<
 });
 
 export declare namespace ConversationAnalysis {
-    interface Raw {
+    export interface Raw {
         userRequest?: string | null;
         agentResponse?: string | null;
         resolutionStatus?: string | null;

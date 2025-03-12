@@ -14,7 +14,7 @@ export const ColumnDefinitionBase: core.serialization.ObjectSchema<
 });
 
 export declare namespace ColumnDefinitionBase {
-    interface Raw {
+    export interface Raw {
         header: string;
     }
 }

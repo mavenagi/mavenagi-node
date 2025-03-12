@@ -18,7 +18,7 @@ export const KnowledgeBaseProperties: core.serialization.ObjectSchema<
 });
 
 export declare namespace KnowledgeBaseProperties {
-    interface Raw {
+    export interface Raw {
         name: string;
         type: KnowledgeBaseType.Raw;
         url?: string | null;

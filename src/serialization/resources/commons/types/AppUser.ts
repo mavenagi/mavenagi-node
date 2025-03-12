@@ -15,7 +15,7 @@ export const AppUser: core.serialization.ObjectSchema<serializers.AppUser.Raw, M
     });
 
 export declare namespace AppUser {
-    interface Raw {
+    export interface Raw {
         identifiers: AppUserIdentifier.Raw[];
         data: Record<string, UserData.Raw>;
     }

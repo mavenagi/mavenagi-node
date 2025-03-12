@@ -15,7 +15,7 @@ export const FeedbackAnalyticsRequest: core.serialization.ObjectSchema<
 });
 
 export declare namespace FeedbackAnalyticsRequest {
-    interface Raw {
+    export interface Raw {
         feedbackFilter?: FeedbackFilter.Raw | null;
     }
 }

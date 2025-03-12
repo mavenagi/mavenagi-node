@@ -12,5 +12,5 @@ export const PreconditionGroupOperator: core.serialization.Schema<
 > = core.serialization.enum_(["AND", "OR"]);
 
 export declare namespace PreconditionGroupOperator {
-    type Raw = "AND" | "OR";
+    export type Raw = "AND" | "OR";
 }

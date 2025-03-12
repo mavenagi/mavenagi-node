@@ -10,8 +10,10 @@ import urlJoin from "url-join";
 import * as errors from "../../../../errors/index";
 
 export declare namespace Knowledge {
-    interface Options {
+    export interface Options {
         environment?: core.Supplier<environments.MavenAGIEnvironment | string>;
+        /** Specify a custom URL to connect the client to. */
+        baseUrl?: core.Supplier<string>;
         appId?: core.Supplier<string | undefined>;
         appSecret?: core.Supplier<string | undefined>;
         /** Override the X-Organization-Id header */
@@ -21,7 +23,7 @@ export declare namespace Knowledge {
         fetcher?: core.FetchFunction;
     }
 
-    interface RequestOptions {
+    export interface RequestOptions {
         /** The maximum time to wait for a response in seconds. */
         timeoutInSeconds?: number;
         /** The number of times to retry the request. Defaults to 2. */
@@ -61,12 +63,14 @@ export class Knowledge {
      */
     public async createOrUpdateKnowledgeBase(
         request: MavenAGI.KnowledgeBaseRequest,
-        requestOptions?: Knowledge.RequestOptions
+        requestOptions?: Knowledge.RequestOptions,
     ): Promise<MavenAGI.KnowledgeBaseResponse> {
         const _response = await (this._options.fetcher ?? core.fetcher)({
             url: urlJoin(
-                (await core.Supplier.get(this._options.environment)) ?? environments.MavenAGIEnvironment.Production,
-                "/v1/knowledge"
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)) ??
+                    environments.MavenAGIEnvironment.Production,
+                "/v1/knowledge",
             ),
             method: "PUT",
             headers: {
@@ -75,8 +79,8 @@ export class Knowledge {
                 "X-Agent-Id": await core.Supplier.get(this._options.agentId),
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "mavenagi",
-                "X-Fern-SDK-Version": "1.0.7",
-                "User-Agent": "mavenagi/1.0.7",
+                "X-Fern-SDK-Version": "1.0.8",
+                "User-Agent": "mavenagi/1.0.8",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...requestOptions?.headers,
@@ -106,7 +110,7 @@ export class Knowledge {
                             allowUnrecognizedUnionMembers: true,
                             allowUnrecognizedEnumValues: true,
                             breadcrumbsPrefix: ["response"],
-                        })
+                        }),
                     );
                 case 400:
                     throw new MavenAGI.BadRequestError(
@@ -115,7 +119,7 @@ export class Knowledge {
                             allowUnrecognizedUnionMembers: true,
                             allowUnrecognizedEnumValues: true,
                             breadcrumbsPrefix: ["response"],
-                        })
+                        }),
                     );
                 case 500:
                     throw new MavenAGI.ServerError(
@@ -124,7 +128,7 @@ export class Knowledge {
                             allowUnrecognizedUnionMembers: true,
                             allowUnrecognizedEnumValues: true,
                             breadcrumbsPrefix: ["response"],
-                        })
+                        }),
                     );
                 default:
                     throw new errors.MavenAGIError({
@@ -164,12 +168,14 @@ export class Knowledge {
      */
     public async getKnowledgeBase(
         knowledgeBaseReferenceId: string,
-        requestOptions?: Knowledge.RequestOptions
+        requestOptions?: Knowledge.RequestOptions,
     ): Promise<MavenAGI.KnowledgeBaseResponse> {
         const _response = await (this._options.fetcher ?? core.fetcher)({
             url: urlJoin(
-                (await core.Supplier.get(this._options.environment)) ?? environments.MavenAGIEnvironment.Production,
-                `/v1/knowledge/${encodeURIComponent(knowledgeBaseReferenceId)}`
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)) ??
+                    environments.MavenAGIEnvironment.Production,
+                `/v1/knowledge/${encodeURIComponent(knowledgeBaseReferenceId)}`,
             ),
             method: "GET",
             headers: {
@@ -178,8 +184,8 @@ export class Knowledge {
                 "X-Agent-Id": await core.Supplier.get(this._options.agentId),
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "mavenagi",
-                "X-Fern-SDK-Version": "1.0.7",
-                "User-Agent": "mavenagi/1.0.7",
+                "X-Fern-SDK-Version": "1.0.8",
+                "User-Agent": "mavenagi/1.0.8",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...requestOptions?.headers,
@@ -208,7 +214,7 @@ export class Knowledge {
                             allowUnrecognizedUnionMembers: true,
                             allowUnrecognizedEnumValues: true,
                             breadcrumbsPrefix: ["response"],
-                        })
+                        }),
                     );
                 case 400:
                     throw new MavenAGI.BadRequestError(
@@ -217,7 +223,7 @@ export class Knowledge {
                             allowUnrecognizedUnionMembers: true,
                             allowUnrecognizedEnumValues: true,
                             breadcrumbsPrefix: ["response"],
-                        })
+                        }),
                     );
                 case 500:
                     throw new MavenAGI.ServerError(
@@ -226,7 +232,7 @@ export class Knowledge {
                             allowUnrecognizedUnionMembers: true,
                             allowUnrecognizedEnumValues: true,
                             breadcrumbsPrefix: ["response"],
-                        })
+                        }),
                     );
                 default:
                     throw new errors.MavenAGIError({
@@ -244,7 +250,7 @@ export class Knowledge {
                 });
             case "timeout":
                 throw new errors.MavenAGITimeoutError(
-                    "Timeout exceeded when calling GET /v1/knowledge/{knowledgeBaseReferenceId}."
+                    "Timeout exceeded when calling GET /v1/knowledge/{knowledgeBaseReferenceId}.",
                 );
             case "unknown":
                 throw new errors.MavenAGIError({
@@ -272,12 +278,14 @@ export class Knowledge {
     public async createKnowledgeBaseVersion(
         knowledgeBaseReferenceId: string,
         request: MavenAGI.KnowledgeBaseVersion,
-        requestOptions?: Knowledge.RequestOptions
+        requestOptions?: Knowledge.RequestOptions,
     ): Promise<MavenAGI.KnowledgeBaseVersion> {
         const _response = await (this._options.fetcher ?? core.fetcher)({
             url: urlJoin(
-                (await core.Supplier.get(this._options.environment)) ?? environments.MavenAGIEnvironment.Production,
-                `/v1/knowledge/${encodeURIComponent(knowledgeBaseReferenceId)}/version`
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)) ??
+                    environments.MavenAGIEnvironment.Production,
+                `/v1/knowledge/${encodeURIComponent(knowledgeBaseReferenceId)}/version`,
             ),
             method: "POST",
             headers: {
@@ -286,8 +294,8 @@ export class Knowledge {
                 "X-Agent-Id": await core.Supplier.get(this._options.agentId),
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "mavenagi",
-                "X-Fern-SDK-Version": "1.0.7",
-                "User-Agent": "mavenagi/1.0.7",
+                "X-Fern-SDK-Version": "1.0.8",
+                "User-Agent": "mavenagi/1.0.8",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...requestOptions?.headers,
@@ -317,7 +325,7 @@ export class Knowledge {
                             allowUnrecognizedUnionMembers: true,
                             allowUnrecognizedEnumValues: true,
                             breadcrumbsPrefix: ["response"],
-                        })
+                        }),
                     );
                 case 400:
                     throw new MavenAGI.BadRequestError(
@@ -326,7 +334,7 @@ export class Knowledge {
                             allowUnrecognizedUnionMembers: true,
                             allowUnrecognizedEnumValues: true,
                             breadcrumbsPrefix: ["response"],
-                        })
+                        }),
                     );
                 case 500:
                     throw new MavenAGI.ServerError(
@@ -335,7 +343,7 @@ export class Knowledge {
                             allowUnrecognizedUnionMembers: true,
                             allowUnrecognizedEnumValues: true,
                             breadcrumbsPrefix: ["response"],
-                        })
+                        }),
                     );
                 default:
                     throw new errors.MavenAGIError({
@@ -353,7 +361,7 @@ export class Knowledge {
                 });
             case "timeout":
                 throw new errors.MavenAGITimeoutError(
-                    "Timeout exceeded when calling POST /v1/knowledge/{knowledgeBaseReferenceId}/version."
+                    "Timeout exceeded when calling POST /v1/knowledge/{knowledgeBaseReferenceId}/version.",
                 );
             case "unknown":
                 throw new errors.MavenAGIError({
@@ -377,12 +385,14 @@ export class Knowledge {
      */
     public async finalizeKnowledgeBaseVersion(
         knowledgeBaseReferenceId: string,
-        requestOptions?: Knowledge.RequestOptions
+        requestOptions?: Knowledge.RequestOptions,
     ): Promise<void> {
         const _response = await (this._options.fetcher ?? core.fetcher)({
             url: urlJoin(
-                (await core.Supplier.get(this._options.environment)) ?? environments.MavenAGIEnvironment.Production,
-                `/v1/knowledge/${encodeURIComponent(knowledgeBaseReferenceId)}/version/finalize`
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)) ??
+                    environments.MavenAGIEnvironment.Production,
+                `/v1/knowledge/${encodeURIComponent(knowledgeBaseReferenceId)}/version/finalize`,
             ),
             method: "POST",
             headers: {
@@ -391,8 +401,8 @@ export class Knowledge {
                 "X-Agent-Id": await core.Supplier.get(this._options.agentId),
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "mavenagi",
-                "X-Fern-SDK-Version": "1.0.7",
-                "User-Agent": "mavenagi/1.0.7",
+                "X-Fern-SDK-Version": "1.0.8",
+                "User-Agent": "mavenagi/1.0.8",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...requestOptions?.headers,
@@ -416,7 +426,7 @@ export class Knowledge {
                             allowUnrecognizedUnionMembers: true,
                             allowUnrecognizedEnumValues: true,
                             breadcrumbsPrefix: ["response"],
-                        })
+                        }),
                     );
                 case 400:
                     throw new MavenAGI.BadRequestError(
@@ -425,7 +435,7 @@ export class Knowledge {
                             allowUnrecognizedUnionMembers: true,
                             allowUnrecognizedEnumValues: true,
                             breadcrumbsPrefix: ["response"],
-                        })
+                        }),
                     );
                 case 500:
                     throw new MavenAGI.ServerError(
@@ -434,7 +444,7 @@ export class Knowledge {
                             allowUnrecognizedUnionMembers: true,
                             allowUnrecognizedEnumValues: true,
                             breadcrumbsPrefix: ["response"],
-                        })
+                        }),
                     );
                 default:
                     throw new errors.MavenAGIError({
@@ -452,7 +462,7 @@ export class Knowledge {
                 });
             case "timeout":
                 throw new errors.MavenAGITimeoutError(
-                    "Timeout exceeded when calling POST /v1/knowledge/{knowledgeBaseReferenceId}/version/finalize."
+                    "Timeout exceeded when calling POST /v1/knowledge/{knowledgeBaseReferenceId}/version/finalize.",
                 );
             case "unknown":
                 throw new errors.MavenAGIError({
@@ -485,12 +495,14 @@ export class Knowledge {
     public async createKnowledgeDocument(
         knowledgeBaseReferenceId: string,
         request: MavenAGI.KnowledgeDocumentRequest,
-        requestOptions?: Knowledge.RequestOptions
+        requestOptions?: Knowledge.RequestOptions,
     ): Promise<MavenAGI.KnowledgeDocumentResponse> {
         const _response = await (this._options.fetcher ?? core.fetcher)({
             url: urlJoin(
-                (await core.Supplier.get(this._options.environment)) ?? environments.MavenAGIEnvironment.Production,
-                `/v1/knowledge/${encodeURIComponent(knowledgeBaseReferenceId)}/document`
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)) ??
+                    environments.MavenAGIEnvironment.Production,
+                `/v1/knowledge/${encodeURIComponent(knowledgeBaseReferenceId)}/document`,
             ),
             method: "POST",
             headers: {
@@ -499,8 +511,8 @@ export class Knowledge {
                 "X-Agent-Id": await core.Supplier.get(this._options.agentId),
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "mavenagi",
-                "X-Fern-SDK-Version": "1.0.7",
-                "User-Agent": "mavenagi/1.0.7",
+                "X-Fern-SDK-Version": "1.0.8",
+                "User-Agent": "mavenagi/1.0.8",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...requestOptions?.headers,
@@ -530,7 +542,7 @@ export class Knowledge {
                             allowUnrecognizedUnionMembers: true,
                             allowUnrecognizedEnumValues: true,
                             breadcrumbsPrefix: ["response"],
-                        })
+                        }),
                     );
                 case 400:
                     throw new MavenAGI.BadRequestError(
@@ -539,7 +551,7 @@ export class Knowledge {
                             allowUnrecognizedUnionMembers: true,
                             allowUnrecognizedEnumValues: true,
                             breadcrumbsPrefix: ["response"],
-                        })
+                        }),
                     );
                 case 500:
                     throw new MavenAGI.ServerError(
@@ -548,7 +560,7 @@ export class Knowledge {
                             allowUnrecognizedUnionMembers: true,
                             allowUnrecognizedEnumValues: true,
                             breadcrumbsPrefix: ["response"],
-                        })
+                        }),
                     );
                 default:
                     throw new errors.MavenAGIError({
@@ -566,7 +578,7 @@ export class Knowledge {
                 });
             case "timeout":
                 throw new errors.MavenAGITimeoutError(
-                    "Timeout exceeded when calling POST /v1/knowledge/{knowledgeBaseReferenceId}/document."
+                    "Timeout exceeded when calling POST /v1/knowledge/{knowledgeBaseReferenceId}/document.",
                 );
             case "unknown":
                 throw new errors.MavenAGIError({
@@ -599,12 +611,14 @@ export class Knowledge {
     public async updateKnowledgeDocument(
         knowledgeBaseReferenceId: string,
         request: MavenAGI.KnowledgeDocumentRequest,
-        requestOptions?: Knowledge.RequestOptions
+        requestOptions?: Knowledge.RequestOptions,
     ): Promise<MavenAGI.KnowledgeDocumentResponse> {
         const _response = await (this._options.fetcher ?? core.fetcher)({
             url: urlJoin(
-                (await core.Supplier.get(this._options.environment)) ?? environments.MavenAGIEnvironment.Production,
-                `/v1/knowledge/${encodeURIComponent(knowledgeBaseReferenceId)}/document`
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)) ??
+                    environments.MavenAGIEnvironment.Production,
+                `/v1/knowledge/${encodeURIComponent(knowledgeBaseReferenceId)}/document`,
             ),
             method: "PUT",
             headers: {
@@ -613,8 +627,8 @@ export class Knowledge {
                 "X-Agent-Id": await core.Supplier.get(this._options.agentId),
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "mavenagi",
-                "X-Fern-SDK-Version": "1.0.7",
-                "User-Agent": "mavenagi/1.0.7",
+                "X-Fern-SDK-Version": "1.0.8",
+                "User-Agent": "mavenagi/1.0.8",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...requestOptions?.headers,
@@ -644,7 +658,7 @@ export class Knowledge {
                             allowUnrecognizedUnionMembers: true,
                             allowUnrecognizedEnumValues: true,
                             breadcrumbsPrefix: ["response"],
-                        })
+                        }),
                     );
                 case 400:
                     throw new MavenAGI.BadRequestError(
@@ -653,7 +667,7 @@ export class Knowledge {
                             allowUnrecognizedUnionMembers: true,
                             allowUnrecognizedEnumValues: true,
                             breadcrumbsPrefix: ["response"],
-                        })
+                        }),
                     );
                 case 500:
                     throw new MavenAGI.ServerError(
@@ -662,7 +676,7 @@ export class Knowledge {
                             allowUnrecognizedUnionMembers: true,
                             allowUnrecognizedEnumValues: true,
                             breadcrumbsPrefix: ["response"],
-                        })
+                        }),
                     );
                 default:
                     throw new errors.MavenAGIError({
@@ -680,7 +694,7 @@ export class Knowledge {
                 });
             case "timeout":
                 throw new errors.MavenAGITimeoutError(
-                    "Timeout exceeded when calling PUT /v1/knowledge/{knowledgeBaseReferenceId}/document."
+                    "Timeout exceeded when calling PUT /v1/knowledge/{knowledgeBaseReferenceId}/document.",
                 );
             case "unknown":
                 throw new errors.MavenAGIError({
@@ -706,14 +720,14 @@ export class Knowledge {
     public async deleteKnowledgeDocument(
         knowledgeBaseReferenceId: string,
         knowledgeDocumentReferenceId: string,
-        requestOptions?: Knowledge.RequestOptions
+        requestOptions?: Knowledge.RequestOptions,
     ): Promise<void> {
         const _response = await (this._options.fetcher ?? core.fetcher)({
             url: urlJoin(
-                (await core.Supplier.get(this._options.environment)) ?? environments.MavenAGIEnvironment.Production,
-                `/v1/knowledge/${encodeURIComponent(knowledgeBaseReferenceId)}/${encodeURIComponent(
-                    knowledgeDocumentReferenceId
-                )}/document`
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)) ??
+                    environments.MavenAGIEnvironment.Production,
+                `/v1/knowledge/${encodeURIComponent(knowledgeBaseReferenceId)}/${encodeURIComponent(knowledgeDocumentReferenceId)}/document`,
             ),
             method: "DELETE",
             headers: {
@@ -722,8 +736,8 @@ export class Knowledge {
                 "X-Agent-Id": await core.Supplier.get(this._options.agentId),
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "mavenagi",
-                "X-Fern-SDK-Version": "1.0.7",
-                "User-Agent": "mavenagi/1.0.7",
+                "X-Fern-SDK-Version": "1.0.8",
+                "User-Agent": "mavenagi/1.0.8",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...requestOptions?.headers,
@@ -747,7 +761,7 @@ export class Knowledge {
                             allowUnrecognizedUnionMembers: true,
                             allowUnrecognizedEnumValues: true,
                             breadcrumbsPrefix: ["response"],
-                        })
+                        }),
                     );
                 case 400:
                     throw new MavenAGI.BadRequestError(
@@ -756,7 +770,7 @@ export class Knowledge {
                             allowUnrecognizedUnionMembers: true,
                             allowUnrecognizedEnumValues: true,
                             breadcrumbsPrefix: ["response"],
-                        })
+                        }),
                     );
                 case 500:
                     throw new MavenAGI.ServerError(
@@ -765,7 +779,7 @@ export class Knowledge {
                             allowUnrecognizedUnionMembers: true,
                             allowUnrecognizedEnumValues: true,
                             breadcrumbsPrefix: ["response"],
-                        })
+                        }),
                     );
                 default:
                     throw new errors.MavenAGIError({
@@ -783,7 +797,7 @@ export class Knowledge {
                 });
             case "timeout":
                 throw new errors.MavenAGITimeoutError(
-                    "Timeout exceeded when calling DELETE /v1/knowledge/{knowledgeBaseReferenceId}/{knowledgeDocumentReferenceId}/document."
+                    "Timeout exceeded when calling DELETE /v1/knowledge/{knowledgeBaseReferenceId}/{knowledgeDocumentReferenceId}/document.",
                 );
             case "unknown":
                 throw new errors.MavenAGIError({

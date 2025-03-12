@@ -22,7 +22,7 @@ export const BotMessage: core.serialization.ObjectSchema<serializers.BotMessage.
         .extend(ConversationMessageBase);
 
 export declare namespace BotMessage {
-    interface Raw extends ConversationMessageBase.Raw {
+    export interface Raw extends ConversationMessageBase.Raw {
         conversationMessageId: EntityId.Raw;
         botMessageType: BotConversationMessageType.Raw;
         responses: BotResponse.Raw[];

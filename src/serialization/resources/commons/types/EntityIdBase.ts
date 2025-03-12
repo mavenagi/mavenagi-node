@@ -12,7 +12,7 @@ export const EntityIdBase: core.serialization.ObjectSchema<serializers.EntityIdB
     });
 
 export declare namespace EntityIdBase {
-    interface Raw {
+    export interface Raw {
         referenceId: string;
     }
 }

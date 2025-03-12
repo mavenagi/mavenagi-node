@@ -13,5 +13,5 @@ export const Request: core.serialization.Schema<
 > = core.serialization.list(ConversationMessageRequest);
 
 export declare namespace Request {
-    type Raw = ConversationMessageRequest.Raw[];
+    export type Raw = ConversationMessageRequest.Raw[];
 }

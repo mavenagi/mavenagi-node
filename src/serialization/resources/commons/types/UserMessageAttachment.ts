@@ -14,7 +14,7 @@ export const UserMessageAttachment: core.serialization.ObjectSchema<
 });
 
 export declare namespace UserMessageAttachment {
-    interface Raw {
+    export interface Raw {
         url: string;
     }
 }

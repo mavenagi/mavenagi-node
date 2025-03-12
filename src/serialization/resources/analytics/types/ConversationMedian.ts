@@ -13,5 +13,5 @@ export const ConversationMedian: core.serialization.ObjectSchema<
 > = core.serialization.object({}).extend(ConversationNumericMetric);
 
 export declare namespace ConversationMedian {
-    interface Raw extends ConversationNumericMetric.Raw {}
+    export interface Raw extends ConversationNumericMetric.Raw {}
 }

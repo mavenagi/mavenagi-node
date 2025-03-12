@@ -10,5 +10,5 @@ export const VisibilityType: core.serialization.Schema<serializers.VisibilityTyp
     core.serialization.enum_(["VISIBLE", "PARTIALLY_VISIBLE", "HIDDEN"]);
 
 export declare namespace VisibilityType {
-    type Raw = "VISIBLE" | "PARTIALLY_VISIBLE" | "HIDDEN";
+    export type Raw = "VISIBLE" | "PARTIALLY_VISIBLE" | "HIDDEN";
 }

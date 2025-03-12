@@ -16,7 +16,7 @@ export const ActionRequest: core.serialization.ObjectSchema<serializers.ActionRe
         .extend(ActionBase);
 
 export declare namespace ActionRequest {
-    interface Raw extends ActionBase.Raw {
+    export interface Raw extends ActionBase.Raw {
         actionId: EntityIdBase.Raw;
     }
 }

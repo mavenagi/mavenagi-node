@@ -15,7 +15,7 @@ export const ConversationMessageBase: core.serialization.ObjectSchema<
 });
 
 export declare namespace ConversationMessageBase {
-    interface Raw {
+    export interface Raw {
         createdAt?: string | null;
         updatedAt?: string | null;
     }

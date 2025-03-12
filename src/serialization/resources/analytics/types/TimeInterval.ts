@@ -10,5 +10,5 @@ export const TimeInterval: core.serialization.Schema<serializers.TimeInterval.Ra
     core.serialization.enum_(["HOUR", "DAY", "WEEK", "MONTH", "YEAR"]);
 
 export declare namespace TimeInterval {
-    type Raw = "HOUR" | "DAY" | "WEEK" | "MONTH" | "YEAR";
+    export type Raw = "HOUR" | "DAY" | "WEEK" | "MONTH" | "YEAR";
 }

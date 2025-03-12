@@ -13,7 +13,7 @@ export const Attachment: core.serialization.ObjectSchema<serializers.Attachment.
     });
 
 export declare namespace Attachment {
-    interface Raw {
+    export interface Raw {
         type: string;
         content: string;
     }

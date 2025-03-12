@@ -15,7 +15,7 @@ export const ActionEnumOption: core.serialization.ObjectSchema<
 });
 
 export declare namespace ActionEnumOption {
-    interface Raw {
+    export interface Raw {
         label: string;
         value?: unknown;
     }

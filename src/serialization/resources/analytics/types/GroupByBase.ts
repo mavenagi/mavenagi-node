@@ -12,7 +12,7 @@ export const GroupByBase: core.serialization.ObjectSchema<serializers.GroupByBas
     });
 
 export declare namespace GroupByBase {
-    interface Raw {
+    export interface Raw {
         limit?: number | null;
     }
 }

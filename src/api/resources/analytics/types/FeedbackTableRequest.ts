@@ -31,6 +31,7 @@ export interface FeedbackTableRequest extends MavenAGI.FeedbackAnalyticsRequest 
      * Specifies the fields by which data should be grouped. Each unique combination forms a row.
      * If multiple fields are provided, the result is grouped by their unique value combinations.
      * If empty, all data is aggregated into a single row.
+     * Note: The field CreatedAt should not be used here, all the time-based grouping should be done using the timeGrouping field.
      */
     fieldGroupings: MavenAGI.FeedbackGroupBy[];
     /**

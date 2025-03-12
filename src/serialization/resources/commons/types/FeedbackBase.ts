@@ -14,7 +14,7 @@ export const FeedbackBase: core.serialization.ObjectSchema<serializers.FeedbackB
     });
 
 export declare namespace FeedbackBase {
-    interface Raw {
+    export interface Raw {
         type: FeedbackType.Raw;
         text?: string | null;
     }
