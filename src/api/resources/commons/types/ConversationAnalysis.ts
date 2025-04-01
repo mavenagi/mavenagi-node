@@ -15,4 +15,6 @@ export interface ConversationAnalysis {
     category?: string;
     /** Generated sentiment of the conversation */
     sentiment?: MavenAGI.Sentiment;
+    /** Whether the conversation was resolved by Maven */
+    resolvedByMaven?: boolean;
 }

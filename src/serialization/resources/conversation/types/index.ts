@@ -18,6 +18,8 @@ export * from "./NumericConversationField";
 export * from "./ResolutionStatus";
 export * from "./Quality";
 export * from "./QualityReason";
+export * from "./ConversationsSearchRequest";
+export * from "./ConversationsResponse";
 export * from "./ConversationFilter";
 export * from "./FeedbackField";
 export * from "./FeedbackFilter";

@@ -4,9 +4,23 @@
 
 import * as MavenAGI from "../../../index";
 
-export interface ConversationRequest extends MavenAGI.ConversationBase {
+export interface ConversationRequest {
     /** An externally supplied ID to uniquely identify this conversation */
     conversationId: MavenAGI.EntityIdBase;
+    /** Optional configurations for responses to this conversation */
+    responseConfig?: MavenAGI.ResponseConfig;
+    /** The subject of the conversation */
+    subject?: string;
+    /** The url of the conversation */
+    url?: string;
+    /** The date and time the conversation was created */
+    createdAt?: Date;
+    /** The date and time the conversation was last updated */
+    updatedAt?: Date;
+    /** The tags of the conversation. Used for filtering in Agent Designer. */
+    tags?: Set<string>;
+    /** The metadata of the conversation supplied by the app which created the conversation. */
+    metadata?: Record<string, string>;
     /** The messages in the conversation */
     messages: MavenAGI.ConversationMessageRequest[];
 }

@@ -10,8 +10,7 @@ import * as MavenAGI from "../../../index";
  *         knowledgeBaseId: {
  *             referenceId: "help-center"
  *         },
- *         name: "Help center",
- *         type: MavenAGI.KnowledgeBaseType.Api
+ *         name: "Help center"
  *     }
  */
 export interface KnowledgeBaseRequest extends MavenAGI.KnowledgeBaseProperties {

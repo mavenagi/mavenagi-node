@@ -5,23 +5,18 @@
 import * as serializers from "../../../index";
 import * as MavenAGI from "../../../../api/index";
 import * as core from "../../../../core";
-import { KnowledgeBaseType } from "./KnowledgeBaseType";
 
 export const KnowledgeBaseProperties: core.serialization.ObjectSchema<
     serializers.KnowledgeBaseProperties.Raw,
     MavenAGI.KnowledgeBaseProperties
 > = core.serialization.object({
     name: core.serialization.string(),
-    type: KnowledgeBaseType,
-    url: core.serialization.string().optional(),
     precondition: core.serialization.lazy(() => serializers.Precondition).optional(),
 });
 
 export declare namespace KnowledgeBaseProperties {
     export interface Raw {
         name: string;
-        type: KnowledgeBaseType.Raw;
-        url?: string | null;
         precondition?: serializers.Precondition.Raw | null;
     }
 }

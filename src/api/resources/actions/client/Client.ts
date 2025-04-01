@@ -71,7 +71,8 @@ export class Actions {
      *                     preconditionType: "user",
      *                     key: "userKey2"
      *                 }]
-     *         }
+     *         },
+     *         language: "en"
      *     })
      */
     public async createOrUpdate(
@@ -92,8 +93,8 @@ export class Actions {
                 "X-Agent-Id": await core.Supplier.get(this._options.agentId),
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "mavenagi",
-                "X-Fern-SDK-Version": "1.0.8",
-                "User-Agent": "mavenagi/1.0.8",
+                "X-Fern-SDK-Version": "1.0.9",
+                "User-Agent": "mavenagi/1.0.9",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...requestOptions?.headers,
@@ -197,8 +198,8 @@ export class Actions {
                 "X-Agent-Id": await core.Supplier.get(this._options.agentId),
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "mavenagi",
-                "X-Fern-SDK-Version": "1.0.8",
-                "User-Agent": "mavenagi/1.0.8",
+                "X-Fern-SDK-Version": "1.0.9",
+                "User-Agent": "mavenagi/1.0.9",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...requestOptions?.headers,
@@ -300,8 +301,8 @@ export class Actions {
                 "X-Agent-Id": await core.Supplier.get(this._options.agentId),
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "mavenagi",
-                "X-Fern-SDK-Version": "1.0.8",
-                "User-Agent": "mavenagi/1.0.8",
+                "X-Fern-SDK-Version": "1.0.9",
+                "User-Agent": "mavenagi/1.0.9",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...requestOptions?.headers,

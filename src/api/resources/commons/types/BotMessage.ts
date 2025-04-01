@@ -10,4 +10,5 @@ export interface BotMessage extends MavenAGI.ConversationMessageBase {
     botMessageType: MavenAGI.BotConversationMessageType;
     responses: MavenAGI.BotResponse[];
     metadata: MavenAGI.BotResponseMetadata;
+    status: MavenAGI.BotMessageStatus;
 }

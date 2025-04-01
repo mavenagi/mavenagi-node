@@ -21,4 +21,5 @@ export interface ConversationFilter {
     sentiment?: MavenAGI.Sentiment[];
     tags?: string[];
     resolutionStatus?: MavenAGI.ResolutionStatus[];
+    resolvedByMaven?: boolean;
 }

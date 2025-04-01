@@ -14,8 +14,7 @@ import * as MavenAGI from "../../../index";
  *             agentId: "support",
  *             type: MavenAGI.EntityType.KnowledgeBase
  *         },
- *         name: "Help center",
- *         type: MavenAGI.KnowledgeBaseType.Api
+ *         name: "Help center"
  *     }
  */
 export interface KnowledgeBaseResponse extends MavenAGI.KnowledgeBaseProperties {

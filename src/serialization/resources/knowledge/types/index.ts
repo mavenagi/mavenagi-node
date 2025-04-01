@@ -1,5 +1,4 @@
 export * from "./KnowledgeBaseProperties";
-export * from "./KnowledgeBaseType";
 export * from "./KnowledgeBaseRequest";
 export * from "./KnowledgeBaseResponse";
 export * from "./KnowledgeBaseVersion";

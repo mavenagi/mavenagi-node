@@ -6,10 +6,13 @@ import * as serializers from "../../../index";
 import * as MavenAGI from "../../../../api/index";
 import * as core from "../../../../core";
 import { ResponseConfig } from "./ResponseConfig";
+import { EntityId } from "./EntityId";
+import { ConversationAnalysis } from "./ConversationAnalysis";
+import { ConversationSummary } from "./ConversationSummary";
 
-export const ConversationBase: core.serialization.ObjectSchema<
-    serializers.ConversationBase.Raw,
-    MavenAGI.ConversationBase
+export const BaseConversationResponse: core.serialization.ObjectSchema<
+    serializers.BaseConversationResponse.Raw,
+    MavenAGI.BaseConversationResponse
 > = core.serialization.object({
     responseConfig: ResponseConfig.optional(),
     subject: core.serialization.string().optional(),
@@ -22,9 +25,13 @@ export const ConversationBase: core.serialization.ObjectSchema<
         core.serialization.string(),
         core.serialization.record(core.serialization.string(), core.serialization.string()),
     ),
+    conversationId: EntityId,
+    analysis: ConversationAnalysis,
+    summary: ConversationSummary,
+    deleted: core.serialization.boolean(),
 });
 
-export declare namespace ConversationBase {
+export declare namespace BaseConversationResponse {
     export interface Raw {
         responseConfig?: ResponseConfig.Raw | null;
         subject?: string | null;
@@ -34,5 +41,9 @@ export declare namespace ConversationBase {
         tags?: string[] | null;
         metadata?: Record<string, string> | null;
         allMetadata: Record<string, Record<string, string>>;
+        conversationId: EntityId.Raw;
+        analysis: ConversationAnalysis.Raw;
+        summary: ConversationSummary.Raw;
+        deleted: boolean;
     }
 }

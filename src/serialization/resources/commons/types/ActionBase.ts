@@ -15,6 +15,7 @@ export const ActionBase: core.serialization.ObjectSchema<serializers.ActionBase.
         buttonName: core.serialization.string().optional(),
         precondition: core.serialization.lazy(() => serializers.Precondition).optional(),
         userFormParameters: core.serialization.list(ActionParameter),
+        language: core.serialization.string().optional(),
     });
 
 export declare namespace ActionBase {
@@ -25,5 +26,6 @@ export declare namespace ActionBase {
         buttonName?: string | null;
         precondition?: serializers.Precondition.Raw | null;
         userFormParameters: ActionParameter.Raw[];
+        language?: string | null;
     }
 }

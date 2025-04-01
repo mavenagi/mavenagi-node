@@ -5,31 +5,20 @@
 import * as serializers from "../../../index";
 import * as MavenAGI from "../../../../api/index";
 import * as core from "../../../../core";
-import { EntityId } from "./EntityId";
 import { ConversationMessageResponse } from "./ConversationMessageResponse";
-import { ConversationAnalysis } from "./ConversationAnalysis";
-import { ConversationSummary } from "./ConversationSummary";
-import { ConversationBase } from "./ConversationBase";
+import { BaseConversationResponse } from "./BaseConversationResponse";
 
 export const ConversationResponse: core.serialization.ObjectSchema<
     serializers.ConversationResponse.Raw,
     MavenAGI.ConversationResponse
 > = core.serialization
     .object({
-        conversationId: EntityId,
         messages: core.serialization.list(ConversationMessageResponse),
-        analysis: ConversationAnalysis,
-        summary: ConversationSummary,
-        deleted: core.serialization.boolean(),
     })
-    .extend(ConversationBase);
+    .extend(BaseConversationResponse);
 
 export declare namespace ConversationResponse {
-    export interface Raw extends ConversationBase.Raw {
-        conversationId: EntityId.Raw;
+    export interface Raw extends BaseConversationResponse.Raw {
         messages: ConversationMessageResponse.Raw[];
-        analysis: ConversationAnalysis.Raw;
-        summary: ConversationSummary.Raw;
-        deleted: boolean;
     }
 }

@@ -24,7 +24,8 @@ import * as MavenAGI from "../../../index";
  *                     preconditionType: "user",
  *                     key: "userKey2"
  *                 }]
- *         }
+ *         },
+ *         language: "en"
  *     }
  */
 export interface ActionRequest extends MavenAGI.ActionBase {

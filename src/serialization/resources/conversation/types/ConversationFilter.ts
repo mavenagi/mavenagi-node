@@ -33,6 +33,7 @@ export const ConversationFilter: core.serialization.ObjectSchema<
     sentiment: core.serialization.list(Sentiment).optional(),
     tags: core.serialization.list(core.serialization.string()).optional(),
     resolutionStatus: core.serialization.list(ResolutionStatus).optional(),
+    resolvedByMaven: core.serialization.boolean().optional(),
 });
 
 export declare namespace ConversationFilter {
@@ -53,5 +54,6 @@ export declare namespace ConversationFilter {
         sentiment?: Sentiment.Raw[] | null;
         tags?: string[] | null;
         resolutionStatus?: ResolutionStatus.Raw[] | null;
+        resolvedByMaven?: boolean | null;
     }
 }

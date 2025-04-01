@@ -16,6 +16,7 @@ export const ConversationAnalysis: core.serialization.ObjectSchema<
     resolutionStatus: core.serialization.string().optional(),
     category: core.serialization.string().optional(),
     sentiment: Sentiment.optional(),
+    resolvedByMaven: core.serialization.boolean().optional(),
 });
 
 export declare namespace ConversationAnalysis {
@@ -25,5 +26,6 @@ export declare namespace ConversationAnalysis {
         resolutionStatus?: string | null;
         category?: string | null;
         sentiment?: Sentiment.Raw | null;
+        resolvedByMaven?: boolean | null;
     }
 }

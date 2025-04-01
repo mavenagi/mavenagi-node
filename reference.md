@@ -52,6 +52,7 @@ await client.actions.createOrUpdate({
             },
         ],
     },
+    language: "en",
 });
 ```
 
@@ -553,11 +554,6 @@ Initialize a new conversation. Only required if the ask request wishes to supply
 
 ```typescript
 await client.conversation.initialize({
-    allMetadata: {
-        allMetadata: {
-            allMetadata: "allMetadata",
-        },
-    },
     conversationId: {
         referenceId: "referenceId",
     },
@@ -1519,6 +1515,69 @@ await client.conversation.updateConversationMetadata("conversation-0", {
 </dl>
 </details>
 
+<details><summary><code>client.conversation.<a href="/src/api/resources/conversation/client/Client.ts">search</a>({ ...params }) -> MavenAGI.ConversationsResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Search conversations
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.conversation.search({});
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `MavenAGI.ConversationsSearchRequest`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Conversation.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
 ## Inbox
 
 <details><summary><code>client.inbox.<a href="/src/api/resources/inbox/client/Client.ts">search</a>({ ...params }) -> MavenAGI.InboxSearchResponse</code></summary>
@@ -1911,7 +1970,6 @@ await client.knowledge.createOrUpdateKnowledgeBase({
         referenceId: "help-center",
     },
     name: "Help center",
-    type: "API",
 });
 ```
 
