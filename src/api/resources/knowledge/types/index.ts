@@ -1,6 +1,7 @@
 export * from "./KnowledgeBaseProperties";
 export * from "./KnowledgeBaseRequest";
 export * from "./KnowledgeBaseResponse";
+export * from "./KnowledgeBaseType";
 export * from "./KnowledgeBaseVersion";
 export * from "./KnowledgeBaseVersionType";
 export * from "./BaseKnowledgeDocument";

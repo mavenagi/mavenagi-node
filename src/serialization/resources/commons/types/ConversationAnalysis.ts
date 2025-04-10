@@ -6,6 +6,8 @@ import * as serializers from "../../../index";
 import * as MavenAGI from "../../../../api/index";
 import * as core from "../../../../core";
 import { Sentiment } from "./Sentiment";
+import { Quality } from "./Quality";
+import { QualityReason } from "./QualityReason";
 
 export const ConversationAnalysis: core.serialization.ObjectSchema<
     serializers.ConversationAnalysis.Raw,
@@ -16,7 +18,10 @@ export const ConversationAnalysis: core.serialization.ObjectSchema<
     resolutionStatus: core.serialization.string().optional(),
     category: core.serialization.string().optional(),
     sentiment: Sentiment.optional(),
+    quality: Quality.optional(),
+    qualityReason: QualityReason.optional(),
     resolvedByMaven: core.serialization.boolean().optional(),
+    primaryLanguage: core.serialization.string().optional(),
 });
 
 export declare namespace ConversationAnalysis {
@@ -26,6 +31,9 @@ export declare namespace ConversationAnalysis {
         resolutionStatus?: string | null;
         category?: string | null;
         sentiment?: Sentiment.Raw | null;
+        quality?: Quality.Raw | null;
+        qualityReason?: QualityReason.Raw | null;
         resolvedByMaven?: boolean | null;
+        primaryLanguage?: string | null;
     }
 }

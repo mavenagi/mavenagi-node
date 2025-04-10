@@ -78,8 +78,8 @@ export class Knowledge {
                 "X-Agent-Id": await core.Supplier.get(this._options.agentId),
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "mavenagi",
-                "X-Fern-SDK-Version": "1.0.9",
-                "User-Agent": "mavenagi/1.0.9",
+                "X-Fern-SDK-Version": "1.0.10",
+                "User-Agent": "mavenagi/1.0.10",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...requestOptions?.headers,
@@ -183,8 +183,8 @@ export class Knowledge {
                 "X-Agent-Id": await core.Supplier.get(this._options.agentId),
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "mavenagi",
-                "X-Fern-SDK-Version": "1.0.9",
-                "User-Agent": "mavenagi/1.0.9",
+                "X-Fern-SDK-Version": "1.0.10",
+                "User-Agent": "mavenagi/1.0.10",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...requestOptions?.headers,
@@ -259,7 +259,9 @@ export class Knowledge {
     }
 
     /**
-     * Create a new knowledge base version. Only supported on API knowledge bases. Will throw an exception if there is an existing version in progress.
+     * Create a new knowledge base version.
+     *
+     * If an existing version is in progress, then that version will be finalized in an error state.
      *
      * @param {string} knowledgeBaseReferenceId - The reference ID of the knowledge base to create a version for. All other entity ID fields are inferred from the request.
      * @param {MavenAGI.KnowledgeBaseVersion} request
@@ -293,8 +295,8 @@ export class Knowledge {
                 "X-Agent-Id": await core.Supplier.get(this._options.agentId),
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "mavenagi",
-                "X-Fern-SDK-Version": "1.0.9",
-                "User-Agent": "mavenagi/1.0.9",
+                "X-Fern-SDK-Version": "1.0.10",
+                "User-Agent": "mavenagi/1.0.10",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...requestOptions?.headers,
@@ -400,8 +402,8 @@ export class Knowledge {
                 "X-Agent-Id": await core.Supplier.get(this._options.agentId),
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "mavenagi",
-                "X-Fern-SDK-Version": "1.0.9",
-                "User-Agent": "mavenagi/1.0.9",
+                "X-Fern-SDK-Version": "1.0.10",
+                "User-Agent": "mavenagi/1.0.10",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...requestOptions?.headers,
@@ -510,8 +512,8 @@ export class Knowledge {
                 "X-Agent-Id": await core.Supplier.get(this._options.agentId),
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "mavenagi",
-                "X-Fern-SDK-Version": "1.0.9",
-                "User-Agent": "mavenagi/1.0.9",
+                "X-Fern-SDK-Version": "1.0.10",
+                "User-Agent": "mavenagi/1.0.10",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...requestOptions?.headers,
@@ -626,8 +628,8 @@ export class Knowledge {
                 "X-Agent-Id": await core.Supplier.get(this._options.agentId),
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "mavenagi",
-                "X-Fern-SDK-Version": "1.0.9",
-                "User-Agent": "mavenagi/1.0.9",
+                "X-Fern-SDK-Version": "1.0.10",
+                "User-Agent": "mavenagi/1.0.10",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...requestOptions?.headers,
@@ -735,8 +737,8 @@ export class Knowledge {
                 "X-Agent-Id": await core.Supplier.get(this._options.agentId),
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "mavenagi",
-                "X-Fern-SDK-Version": "1.0.9",
-                "User-Agent": "mavenagi/1.0.9",
+                "X-Fern-SDK-Version": "1.0.10",
+                "User-Agent": "mavenagi/1.0.10",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...requestOptions?.headers,

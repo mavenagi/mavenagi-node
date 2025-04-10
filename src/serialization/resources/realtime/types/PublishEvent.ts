@@ -6,11 +6,13 @@ import * as serializers from "../../../index";
 import * as MavenAGI from "../../../../api/index";
 import * as core from "../../../../core";
 import { AudioPublishEvent } from "./AudioPublishEvent";
+import { HangUpPublishEvent } from "./HangUpPublishEvent";
 
 export const PublishEvent: core.serialization.Schema<serializers.PublishEvent.Raw, MavenAGI.PublishEvent> =
     core.serialization
         .union("messageType", {
             audio: AudioPublishEvent,
+            hangUp: HangUpPublishEvent,
         })
         .transform<MavenAGI.PublishEvent>({
             transform: (value) => value,
@@ -18,9 +20,13 @@ export const PublishEvent: core.serialization.Schema<serializers.PublishEvent.Ra
         });
 
 export declare namespace PublishEvent {
-    export type Raw = PublishEvent.Audio;
+    export type Raw = PublishEvent.Audio | PublishEvent.HangUp;
 
     export interface Audio extends AudioPublishEvent.Raw {
         messageType: "audio";
+    }
+
+    export interface HangUp extends HangUpPublishEvent.Raw {
+        messageType: "hangUp";
     }
 }

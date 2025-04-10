@@ -69,8 +69,8 @@ export class AppSettings {
                 "X-Agent-Id": await core.Supplier.get(this._options.agentId),
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "mavenagi",
-                "X-Fern-SDK-Version": "1.0.9",
-                "User-Agent": "mavenagi/1.0.9",
+                "X-Fern-SDK-Version": "1.0.10",
+                "User-Agent": "mavenagi/1.0.10",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...requestOptions?.headers,
@@ -135,6 +135,121 @@ export class AppSettings {
                 });
             case "timeout":
                 throw new errors.MavenAGITimeoutError("Timeout exceeded when calling GET /v1/app-settings.");
+            case "unknown":
+                throw new errors.MavenAGIError({
+                    message: _response.error.errorMessage,
+                });
+        }
+    }
+
+    /**
+     * Update app settings. Performs a merge of the provided settings with the existing app settings.
+     *
+     * - If a new key is provided, it will be added to the app settings.
+     * - If an existing key is provided, it will be updated.
+     * - No keys will be removed.
+     *
+     * Note that if an array value is provided it will fully replace an existing value as arrays cannot be merged.
+     *
+     * @param {Record<string, unknown>} request
+     * @param {AppSettings.RequestOptions} requestOptions - Request-specific configuration.
+     *
+     * @throws {@link MavenAGI.NotFoundError}
+     * @throws {@link MavenAGI.BadRequestError}
+     * @throws {@link MavenAGI.ServerError}
+     *
+     * @example
+     *     await client.appSettings.update({
+     *         "string": {
+     *             "key": "value"
+     *         }
+     *     })
+     */
+    public async update(
+        request: Record<string, unknown>,
+        requestOptions?: AppSettings.RequestOptions,
+    ): Promise<Record<string, unknown>> {
+        const _response = await (this._options.fetcher ?? core.fetcher)({
+            url: urlJoin(
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)) ??
+                    environments.MavenAGIEnvironment.Production,
+                "v1/app-settings",
+            ),
+            method: "PATCH",
+            headers: {
+                Authorization: await this._getAuthorizationHeader(),
+                "X-Organization-Id": await core.Supplier.get(this._options.organizationId),
+                "X-Agent-Id": await core.Supplier.get(this._options.agentId),
+                "X-Fern-Language": "JavaScript",
+                "X-Fern-SDK-Name": "mavenagi",
+                "X-Fern-SDK-Version": "1.0.10",
+                "User-Agent": "mavenagi/1.0.10",
+                "X-Fern-Runtime": core.RUNTIME.type,
+                "X-Fern-Runtime-Version": core.RUNTIME.version,
+                ...requestOptions?.headers,
+            },
+            contentType: "application/json",
+            requestType: "json",
+            body: serializers.appSettings.update.Request.jsonOrThrow(request, { unrecognizedObjectKeys: "strip" }),
+            timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
+            maxRetries: requestOptions?.maxRetries,
+            abortSignal: requestOptions?.abortSignal,
+        });
+        if (_response.ok) {
+            return serializers.appSettings.update.Response.parseOrThrow(_response.body, {
+                unrecognizedObjectKeys: "passthrough",
+                allowUnrecognizedUnionMembers: true,
+                allowUnrecognizedEnumValues: true,
+                breadcrumbsPrefix: ["response"],
+            });
+        }
+
+        if (_response.error.reason === "status-code") {
+            switch (_response.error.statusCode) {
+                case 404:
+                    throw new MavenAGI.NotFoundError(
+                        serializers.ErrorMessage.parseOrThrow(_response.error.body, {
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
+                            breadcrumbsPrefix: ["response"],
+                        }),
+                    );
+                case 400:
+                    throw new MavenAGI.BadRequestError(
+                        serializers.ErrorMessage.parseOrThrow(_response.error.body, {
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
+                            breadcrumbsPrefix: ["response"],
+                        }),
+                    );
+                case 500:
+                    throw new MavenAGI.ServerError(
+                        serializers.ErrorMessage.parseOrThrow(_response.error.body, {
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
+                            breadcrumbsPrefix: ["response"],
+                        }),
+                    );
+                default:
+                    throw new errors.MavenAGIError({
+                        statusCode: _response.error.statusCode,
+                        body: _response.error.body,
+                    });
+            }
+        }
+
+        switch (_response.error.reason) {
+            case "non-json":
+                throw new errors.MavenAGIError({
+                    statusCode: _response.error.statusCode,
+                    body: _response.error.rawBody,
+                });
+            case "timeout":
+                throw new errors.MavenAGITimeoutError("Timeout exceeded when calling PATCH /v1/app-settings.");
             case "unknown":
                 throw new errors.MavenAGIError({
                     message: _response.error.errorMessage,

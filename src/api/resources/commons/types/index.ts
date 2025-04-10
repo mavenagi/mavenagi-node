@@ -22,6 +22,8 @@ export * from "./BasePaginatedRequest";
 export * from "./ActionParameterType";
 export * from "./ActionEnumOption";
 export * from "./Sentiment";
+export * from "./Quality";
+export * from "./QualityReason";
 export * from "./ConversationSummary";
 export * from "./ConversationAnalysis";
 export * from "./ConversationInformation";

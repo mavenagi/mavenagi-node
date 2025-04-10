@@ -6,6 +6,7 @@ import * as serializers from "../../../index";
 import * as MavenAGI from "../../../../api/index";
 import * as core from "../../../../core";
 import { EntityId } from "../../commons/types/EntityId";
+import { KnowledgeBaseType } from "./KnowledgeBaseType";
 import { KnowledgeBaseProperties } from "./KnowledgeBaseProperties";
 
 export const KnowledgeBaseResponse: core.serialization.ObjectSchema<
@@ -14,11 +15,13 @@ export const KnowledgeBaseResponse: core.serialization.ObjectSchema<
 > = core.serialization
     .object({
         knowledgeBaseId: EntityId,
+        type: KnowledgeBaseType,
     })
     .extend(KnowledgeBaseProperties);
 
 export declare namespace KnowledgeBaseResponse {
     export interface Raw extends KnowledgeBaseProperties.Raw {
         knowledgeBaseId: EntityId.Raw;
+        type: KnowledgeBaseType.Raw;
     }
 }

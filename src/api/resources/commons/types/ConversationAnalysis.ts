@@ -15,6 +15,12 @@ export interface ConversationAnalysis {
     category?: string;
     /** Generated sentiment of the conversation */
     sentiment?: MavenAGI.Sentiment;
+    /** Generated quality of the conversation */
+    quality?: MavenAGI.Quality;
+    /** If the quality of the conversation is `UNKNOWN` or `NEEDS_IMPROVEMENT` then a reason for the quality will be provided when possible. */
+    qualityReason?: MavenAGI.QualityReason;
     /** Whether the conversation was resolved by Maven */
     resolvedByMaven?: boolean;
+    /** Primary language of the conversation in ISO 639-1 code format */
+    primaryLanguage?: string;
 }

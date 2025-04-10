@@ -14,10 +14,13 @@ import * as MavenAGI from "../../../index";
  *             agentId: "support",
  *             type: MavenAGI.EntityType.KnowledgeBase
  *         },
- *         name: "Help center"
+ *         name: "Help center",
+ *         type: MavenAGI.KnowledgeBaseType.Api
  *     }
  */
 export interface KnowledgeBaseResponse extends MavenAGI.KnowledgeBaseProperties {
     /** ID that uniquely identifies this knowledge base */
     knowledgeBaseId: MavenAGI.EntityId;
+    /** The type of the knowledge base. Can not be changed once created. */
+    type: MavenAGI.KnowledgeBaseType;
 }

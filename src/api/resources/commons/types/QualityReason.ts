@@ -8,7 +8,6 @@ export type QualityReason =
     | "MISSING_ACTION"
     | "NEEDS_USER_CLARIFICATION"
     | "UNSUPPORTED_FORMAT"
-    | "GREAT_ANSWER"
     | "INTERRUPTED"
     | "UNSUPPORTED_USER_BEHAVIOR"
     | "UNKNOWN";
@@ -18,7 +17,6 @@ export const QualityReason = {
     MissingAction: "MISSING_ACTION",
     NeedsUserClarification: "NEEDS_USER_CLARIFICATION",
     UnsupportedFormat: "UNSUPPORTED_FORMAT",
-    GreatAnswer: "GREAT_ANSWER",
     Interrupted: "INTERRUPTED",
     UnsupportedUserBehavior: "UNSUPPORTED_USER_BEHAVIOR",
     Unknown: "UNKNOWN",

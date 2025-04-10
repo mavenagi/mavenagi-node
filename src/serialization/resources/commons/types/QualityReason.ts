@@ -13,7 +13,6 @@ export const QualityReason: core.serialization.Schema<serializers.QualityReason.
         "MISSING_ACTION",
         "NEEDS_USER_CLARIFICATION",
         "UNSUPPORTED_FORMAT",
-        "GREAT_ANSWER",
         "INTERRUPTED",
         "UNSUPPORTED_USER_BEHAVIOR",
         "UNKNOWN",
@@ -26,7 +25,6 @@ export declare namespace QualityReason {
         | "MISSING_ACTION"
         | "NEEDS_USER_CLARIFICATION"
         | "UNSUPPORTED_FORMAT"
-        | "GREAT_ANSWER"
         | "INTERRUPTED"
         | "UNSUPPORTED_USER_BEHAVIOR"
         | "UNKNOWN";
