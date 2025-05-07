@@ -9,4 +9,31 @@ export interface ConversationSummary {
     actionIds: MavenAGI.EntityIdWithoutAgent[];
     /** The IDs of the actions that were taken by Maven but not completed in the conversation. Occurs when the user is shown an action form but does not submit it. */
     incompleteActionIds: MavenAGI.EntityIdWithoutAgent[];
+    /** The number of insert events on messages in the conversation. */
+    insertCount: number;
+    /** The number of thumbs up events on messages in the conversation. */
+    thumbsUpCount: number;
+    /** The number of thumbs down events on messages in the conversation. */
+    thumbsDownCount: number;
+    /** The number of messages of type `USER` in the conversation. */
+    userMessageCount: number;
+    /**
+     * The total time in milliseconds that the user spent interacting with the conversation.
+     * Calculated by taking the timestamp of the last message in the conversation minus the timestamp of the first message.
+     */
+    handleTime?: number;
+    /**
+     * The time in milliseconds that elapsed before a human agent responded to the conversation.
+     * Calculated by taking the timestamp of the first message of type `HUMAN_AGENT`
+     * minus the timestamp of the first message in the conversation.
+     *
+     * Will not be provided if the conversation does not have a message of type `HUMAN_AGENT`.
+     */
+    humanAgentResponseDelay?: number;
+    /** The names of all users that have a message of type `HUMAN_AGENT` on the conversation. */
+    humanAgents: string[];
+    /** The names of all users that have an associated insert event on the conversation. */
+    humanAgentsWithInserts: string[];
+    /** The names of all users that have a message of type `USER` on the conversation. */
+    users: string[];
 }

@@ -43,6 +43,109 @@ export class Triggers {
     constructor(protected readonly _options: Triggers.Options) {}
 
     /**
+     * @param {MavenAGI.EventTriggersSearchRequest} request
+     * @param {Triggers.RequestOptions} requestOptions - Request-specific configuration.
+     *
+     * @throws {@link MavenAGI.NotFoundError}
+     * @throws {@link MavenAGI.BadRequestError}
+     * @throws {@link MavenAGI.ServerError}
+     *
+     * @example
+     *     await client.triggers.search({})
+     */
+    public async search(
+        request: MavenAGI.EventTriggersSearchRequest,
+        requestOptions?: Triggers.RequestOptions,
+    ): Promise<MavenAGI.EventTriggersSearchResponse> {
+        const _response = await (this._options.fetcher ?? core.fetcher)({
+            url: urlJoin(
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)) ??
+                    environments.MavenAGIEnvironment.Production,
+                "/v1/triggers",
+            ),
+            method: "POST",
+            headers: {
+                Authorization: await this._getAuthorizationHeader(),
+                "X-Organization-Id": await core.Supplier.get(this._options.organizationId),
+                "X-Agent-Id": await core.Supplier.get(this._options.agentId),
+                "X-Fern-Language": "JavaScript",
+                "X-Fern-SDK-Name": "mavenagi",
+                "X-Fern-SDK-Version": "1.0.11",
+                "User-Agent": "mavenagi/1.0.11",
+                "X-Fern-Runtime": core.RUNTIME.type,
+                "X-Fern-Runtime-Version": core.RUNTIME.version,
+                ...requestOptions?.headers,
+            },
+            contentType: "application/json",
+            requestType: "json",
+            body: serializers.EventTriggersSearchRequest.jsonOrThrow(request, { unrecognizedObjectKeys: "strip" }),
+            timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
+            maxRetries: requestOptions?.maxRetries,
+            abortSignal: requestOptions?.abortSignal,
+        });
+        if (_response.ok) {
+            return serializers.EventTriggersSearchResponse.parseOrThrow(_response.body, {
+                unrecognizedObjectKeys: "passthrough",
+                allowUnrecognizedUnionMembers: true,
+                allowUnrecognizedEnumValues: true,
+                breadcrumbsPrefix: ["response"],
+            });
+        }
+
+        if (_response.error.reason === "status-code") {
+            switch (_response.error.statusCode) {
+                case 404:
+                    throw new MavenAGI.NotFoundError(
+                        serializers.ErrorMessage.parseOrThrow(_response.error.body, {
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
+                            breadcrumbsPrefix: ["response"],
+                        }),
+                    );
+                case 400:
+                    throw new MavenAGI.BadRequestError(
+                        serializers.ErrorMessage.parseOrThrow(_response.error.body, {
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
+                            breadcrumbsPrefix: ["response"],
+                        }),
+                    );
+                case 500:
+                    throw new MavenAGI.ServerError(
+                        serializers.ErrorMessage.parseOrThrow(_response.error.body, {
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
+                            breadcrumbsPrefix: ["response"],
+                        }),
+                    );
+                default:
+                    throw new errors.MavenAGIError({
+                        statusCode: _response.error.statusCode,
+                        body: _response.error.body,
+                    });
+            }
+        }
+
+        switch (_response.error.reason) {
+            case "non-json":
+                throw new errors.MavenAGIError({
+                    statusCode: _response.error.statusCode,
+                    body: _response.error.rawBody,
+                });
+            case "timeout":
+                throw new errors.MavenAGITimeoutError("Timeout exceeded when calling POST /v1/triggers.");
+            case "unknown":
+                throw new errors.MavenAGIError({
+                    message: _response.error.errorMessage,
+                });
+        }
+    }
+
+    /**
      * Update an event trigger or create it if it doesn't exist.
      *
      * @param {MavenAGI.EventTriggerRequest} request
@@ -79,8 +182,8 @@ export class Triggers {
                 "X-Agent-Id": await core.Supplier.get(this._options.agentId),
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "mavenagi",
-                "X-Fern-SDK-Version": "1.0.10",
-                "User-Agent": "mavenagi/1.0.10",
+                "X-Fern-SDK-Version": "1.0.11",
+                "User-Agent": "mavenagi/1.0.11",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...requestOptions?.headers,
@@ -184,8 +287,8 @@ export class Triggers {
                 "X-Agent-Id": await core.Supplier.get(this._options.agentId),
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "mavenagi",
-                "X-Fern-SDK-Version": "1.0.10",
-                "User-Agent": "mavenagi/1.0.10",
+                "X-Fern-SDK-Version": "1.0.11",
+                "User-Agent": "mavenagi/1.0.11",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...requestOptions?.headers,
@@ -287,8 +390,8 @@ export class Triggers {
                 "X-Agent-Id": await core.Supplier.get(this._options.agentId),
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "mavenagi",
-                "X-Fern-SDK-Version": "1.0.10",
-                "User-Agent": "mavenagi/1.0.10",
+                "X-Fern-SDK-Version": "1.0.11",
+                "User-Agent": "mavenagi/1.0.11",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...requestOptions?.headers,
@@ -349,6 +452,124 @@ export class Triggers {
             case "timeout":
                 throw new errors.MavenAGITimeoutError(
                     "Timeout exceeded when calling DELETE /v1/triggers/{triggerReferenceId}.",
+                );
+            case "unknown":
+                throw new errors.MavenAGIError({
+                    message: _response.error.errorMessage,
+                });
+        }
+    }
+
+    /**
+     * Updates an event trigger. Only the enabled field is editable.
+     *
+     * @param {string} triggerReferenceId - The reference ID of the event trigger to update. All other entity ID fields are inferred from the request.
+     * @param {MavenAGI.PartialUpdateRequest} request
+     * @param {Triggers.RequestOptions} requestOptions - Request-specific configuration.
+     *
+     * @throws {@link MavenAGI.NotFoundError}
+     * @throws {@link MavenAGI.BadRequestError}
+     * @throws {@link MavenAGI.ServerError}
+     *
+     * @example
+     *     await client.triggers.partialUpdate("triggerReferenceId", {
+     *         body: {}
+     *     })
+     */
+    public async partialUpdate(
+        triggerReferenceId: string,
+        request: MavenAGI.PartialUpdateRequest,
+        requestOptions?: Triggers.RequestOptions,
+    ): Promise<MavenAGI.EventTriggerResponse> {
+        const { appId, body: _body } = request;
+        const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
+        if (appId != null) {
+            _queryParams["appId"] = appId;
+        }
+
+        const _response = await (this._options.fetcher ?? core.fetcher)({
+            url: urlJoin(
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)) ??
+                    environments.MavenAGIEnvironment.Production,
+                `/v1/triggers/${encodeURIComponent(triggerReferenceId)}`,
+            ),
+            method: "PATCH",
+            headers: {
+                Authorization: await this._getAuthorizationHeader(),
+                "X-Organization-Id": await core.Supplier.get(this._options.organizationId),
+                "X-Agent-Id": await core.Supplier.get(this._options.agentId),
+                "X-Fern-Language": "JavaScript",
+                "X-Fern-SDK-Name": "mavenagi",
+                "X-Fern-SDK-Version": "1.0.11",
+                "User-Agent": "mavenagi/1.0.11",
+                "X-Fern-Runtime": core.RUNTIME.type,
+                "X-Fern-Runtime-Version": core.RUNTIME.version,
+                ...requestOptions?.headers,
+            },
+            contentType: "application/json",
+            queryParameters: _queryParams,
+            requestType: "json",
+            body: serializers.TriggerPartialUpdate.jsonOrThrow(_body, { unrecognizedObjectKeys: "strip" }),
+            timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
+            maxRetries: requestOptions?.maxRetries,
+            abortSignal: requestOptions?.abortSignal,
+        });
+        if (_response.ok) {
+            return serializers.EventTriggerResponse.parseOrThrow(_response.body, {
+                unrecognizedObjectKeys: "passthrough",
+                allowUnrecognizedUnionMembers: true,
+                allowUnrecognizedEnumValues: true,
+                breadcrumbsPrefix: ["response"],
+            });
+        }
+
+        if (_response.error.reason === "status-code") {
+            switch (_response.error.statusCode) {
+                case 404:
+                    throw new MavenAGI.NotFoundError(
+                        serializers.ErrorMessage.parseOrThrow(_response.error.body, {
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
+                            breadcrumbsPrefix: ["response"],
+                        }),
+                    );
+                case 400:
+                    throw new MavenAGI.BadRequestError(
+                        serializers.ErrorMessage.parseOrThrow(_response.error.body, {
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
+                            breadcrumbsPrefix: ["response"],
+                        }),
+                    );
+                case 500:
+                    throw new MavenAGI.ServerError(
+                        serializers.ErrorMessage.parseOrThrow(_response.error.body, {
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
+                            breadcrumbsPrefix: ["response"],
+                        }),
+                    );
+                default:
+                    throw new errors.MavenAGIError({
+                        statusCode: _response.error.statusCode,
+                        body: _response.error.body,
+                    });
+            }
+        }
+
+        switch (_response.error.reason) {
+            case "non-json":
+                throw new errors.MavenAGIError({
+                    statusCode: _response.error.statusCode,
+                    body: _response.error.rawBody,
+                });
+            case "timeout":
+                throw new errors.MavenAGITimeoutError(
+                    "Timeout exceeded when calling PATCH /v1/triggers/{triggerReferenceId}.",
                 );
             case "unknown":
                 throw new errors.MavenAGIError({

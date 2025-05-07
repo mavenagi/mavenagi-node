@@ -110,7 +110,7 @@ following namespace:
 ```typescript
 import { MavenAGI } from "mavenagi";
 
-const request: MavenAGI.ConversationGetRequest = {
+const request: MavenAGI.SearchAppSettingsRequest = {
     ...
 };
 ```

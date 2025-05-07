@@ -23,4 +23,6 @@ export interface ConversationAnalysis {
     resolvedByMaven?: boolean;
     /** Primary language of the conversation in ISO 639-1 code format */
     primaryLanguage?: string;
+    /** The predicted NPS of the conversation. */
+    predictedNps?: number;
 }

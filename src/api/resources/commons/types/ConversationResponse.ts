@@ -22,7 +22,14 @@ import * as MavenAGI from "../../../index";
  *         },
  *         summary: {
  *             actionIds: [],
- *             incompleteActionIds: []
+ *             incompleteActionIds: [],
+ *             insertCount: 0,
+ *             thumbsUpCount: 0,
+ *             thumbsDownCount: 0,
+ *             userMessageCount: 1,
+ *             humanAgents: [],
+ *             humanAgentsWithInserts: [],
+ *             users: []
  *         },
  *         metadata: {},
  *         allMetadata: {},

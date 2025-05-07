@@ -14,11 +14,13 @@ export const KnowledgeBaseRequest: core.serialization.ObjectSchema<
 > = core.serialization
     .object({
         knowledgeBaseId: EntityIdBase,
+        metadata: core.serialization.record(core.serialization.string(), core.serialization.string()).optional(),
     })
     .extend(KnowledgeBaseProperties);
 
 export declare namespace KnowledgeBaseRequest {
     export interface Raw extends KnowledgeBaseProperties.Raw {
         knowledgeBaseId: EntityIdBase.Raw;
+        metadata?: Record<string, string> | null;
     }
 }

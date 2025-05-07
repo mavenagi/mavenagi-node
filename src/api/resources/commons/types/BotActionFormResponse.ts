@@ -5,11 +5,17 @@
 import * as MavenAGI from "../../../index";
 
 /**
- * This response should be rendered as a form which users can submit. Upon submission call the submit action form API.
+ * This response should be rendered as a form which users can submit. Upon submission call the `submitActionForm` API.
  */
 export interface BotActionFormResponse {
+    /** The ID to use when submitting the form via the `submitActionForm` API. */
     id: string;
+    /** The ID of the action that will be executed when the form is submitted. */
+    actionId: MavenAGI.EntityIdWithoutAgent;
+    /** Text which should be displayed to the user at the top of the form. Provided in the user's language. */
     formLabel: string;
+    /** The fields that should be displayed within the form. */
     fields: MavenAGI.ActionFormField[];
+    /** Text that should be displayed to the user on the submit button. Provided in the user's language. */
     submitLabel: string;
 }

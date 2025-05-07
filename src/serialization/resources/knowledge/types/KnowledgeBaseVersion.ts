@@ -5,17 +5,25 @@
 import * as serializers from "../../../index";
 import * as MavenAGI from "../../../../api/index";
 import * as core from "../../../../core";
+import { EntityId } from "../../commons/types/EntityId";
 import { KnowledgeBaseVersionType } from "./KnowledgeBaseVersionType";
+import { KnowledgeBaseVersionStatus } from "./KnowledgeBaseVersionStatus";
 
 export const KnowledgeBaseVersion: core.serialization.ObjectSchema<
     serializers.KnowledgeBaseVersion.Raw,
     MavenAGI.KnowledgeBaseVersion
 > = core.serialization.object({
+    versionId: EntityId,
     type: KnowledgeBaseVersionType,
+    status: KnowledgeBaseVersionStatus,
+    errorMessage: core.serialization.string().optional(),
 });
 
 export declare namespace KnowledgeBaseVersion {
     export interface Raw {
+        versionId: EntityId.Raw;
         type: KnowledgeBaseVersionType.Raw;
+        status: KnowledgeBaseVersionStatus.Raw;
+        errorMessage?: string | null;
     }
 }

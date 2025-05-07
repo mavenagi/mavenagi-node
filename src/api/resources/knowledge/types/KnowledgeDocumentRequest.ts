@@ -10,15 +10,27 @@ import * as MavenAGI from "../../../index";
  *         knowledgeDocumentId: {
  *             referenceId: "getting-started"
  *         },
+ *         versionId: {
+ *             type: MavenAGI.EntityType.KnowledgeBaseVersion,
+ *             referenceId: "versionId",
+ *             appId: "maven"
+ *         },
  *         contentType: MavenAGI.KnowledgeDocumentContentType.Markdown,
  *         content: "## Getting started\\nThis is a getting started guide for the help center.",
- *         title: "Getting started"
+ *         title: "Getting started",
+ *         metadata: {
+ *             "category": "getting-started"
+ *         }
  *     }
  */
 export interface KnowledgeDocumentRequest extends MavenAGI.BaseKnowledgeDocument {
     /** ID that uniquely identifies this knowledge document within its knowledge base */
     knowledgeDocumentId: MavenAGI.EntityIdBase;
+    /** ID that uniquely identifies which knowledge base version to create the document in. If not provided will use the most recent version of the knowledge base. */
+    versionId?: MavenAGI.EntityIdWithoutAgent;
     contentType: MavenAGI.KnowledgeDocumentContentType;
     /** The content of the document. Not shown directly to users. May be provided in HTML or markdown. HTML will be converted to markdown automatically. Images are not currently supported and will be ignored. */
     content: string;
+    /** Metadata for the knowledge document. */
+    metadata?: Record<string, string>;
 }

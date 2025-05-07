@@ -468,6 +468,75 @@ await client.analytics.getFeedbackTable({
 
 ## AppSettings
 
+<details><summary><code>client.appSettings.<a href="/src/api/resources/appSettings/client/Client.ts">search</a>({ ...params }) -> MavenAGI.SearchAppSettingsResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Search for app settings which have the `$index` key set to the provided value.
+
+You can set the `$index` key using the Update app settings API.
+
+<Warning>This API currently requires an organization ID and agent ID for any agent which is installed on the app. This requirement will be removed in a future update.</Warning>
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.appSettings.search({
+    index: "index",
+});
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `MavenAGI.SearchAppSettingsRequest`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `AppSettings.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
 <details><summary><code>client.appSettings.<a href="/src/api/resources/appSettings/client/Client.ts">get</a>() -> Record<string, unknown></code></summary>
 <dl>
 <dd>
@@ -991,6 +1060,7 @@ await client.conversation.ask("conversation-0", {
         userToken: "abcdef123",
         queryApiKey: "foobar456",
     },
+    timezone: "America/New_York",
 });
 ```
 
@@ -1093,6 +1163,7 @@ const response = await client.conversation.askStream("conversation-0", {
         userToken: "abcdef123",
         queryApiKey: "foobar456",
     },
+    timezone: "America/New_York",
 });
 for await (const item of response) {
     console.log(item);
@@ -2179,7 +2250,15 @@ If an existing version is in progress, then that version will be finalized in an
 
 ```typescript
 await client.knowledge.createKnowledgeBaseVersion("help-center", {
+    versionId: {
+        type: "KNOWLEDGE_BASE_VERSION",
+        referenceId: "versionId",
+        appId: "maven",
+        organizationId: "acme",
+        agentId: "support",
+    },
     type: "FULL",
+    status: "IN_PROGRESS",
 });
 ```
 
@@ -2223,7 +2302,7 @@ await client.knowledge.createKnowledgeBaseVersion("help-center", {
 </dl>
 </details>
 
-<details><summary><code>client.knowledge.<a href="/src/api/resources/knowledge/client/Client.ts">finalizeKnowledgeBaseVersion</a>(knowledgeBaseReferenceId) -> void</code></summary>
+<details><summary><code>client.knowledge.<a href="/src/api/resources/knowledge/client/Client.ts">finalizeKnowledgeBaseVersion</a>(knowledgeBaseReferenceId, { ...params }) -> MavenAGI.KnowledgeBaseVersion</code></summary>
 <dl>
 <dd>
 
@@ -2251,7 +2330,14 @@ Finalize the latest knowledge base version. Required to indicate the version is 
 <dd>
 
 ```typescript
-await client.knowledge.finalizeKnowledgeBaseVersion("help-center");
+await client.knowledge.finalizeKnowledgeBaseVersion("help-center", {
+    versionId: {
+        type: "KNOWLEDGE_BASE_VERSION",
+        referenceId: "versionId",
+        appId: "maven",
+    },
+    status: "SUCCEEDED",
+});
 ```
 
 </dd>
@@ -2268,6 +2354,14 @@ await client.knowledge.finalizeKnowledgeBaseVersion("help-center");
 <dd>
 
 **knowledgeBaseReferenceId:** `string` — The reference ID of the knowledge base to finalize a version for. All other entity ID fields are inferred from the request.
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `MavenAGI.FinalizeKnowledgeBaseVersionRequest`
 
 </dd>
 </dl>
@@ -2300,6 +2394,10 @@ await client.knowledge.finalizeKnowledgeBaseVersion("help-center");
 
 Create knowledge document. Requires an existing knowledge base with an in progress version. Will throw an exception if the latest version is not in progress.
 
+<Tip>
+This API maintains document version history. If for the same reference ID neither the `title` nor `text` fields 
+have changed, a new document version will not be created. The existing version will be reused.
+</Tip>
 </dd>
 </dl>
 </dd>
@@ -2318,9 +2416,17 @@ await client.knowledge.createKnowledgeDocument("help-center", {
     knowledgeDocumentId: {
         referenceId: "getting-started",
     },
+    versionId: {
+        type: "KNOWLEDGE_BASE_VERSION",
+        referenceId: "versionId",
+        appId: "maven",
+    },
     contentType: "MARKDOWN",
     content: "## Getting started\\nThis is a getting started guide for the help center.",
     title: "Getting started",
+    metadata: {
+        category: "getting-started",
+    },
 });
 ```
 
@@ -2396,9 +2502,17 @@ await client.knowledge.updateKnowledgeDocument("help-center", {
     knowledgeDocumentId: {
         referenceId: "getting-started",
     },
+    versionId: {
+        type: "KNOWLEDGE_BASE_VERSION",
+        referenceId: "versionId",
+        appId: "maven",
+    },
     contentType: "MARKDOWN",
     content: "## Getting started\\nThis is a getting started guide for the help center.",
     title: "Getting started",
+    metadata: {
+        category: "getting-started",
+    },
 });
 ```
 
@@ -2513,6 +2627,186 @@ await client.knowledge.deleteKnowledgeDocument("help-center", "getting-started")
 </dl>
 </details>
 
+## Organizations
+
+<details><summary><code>client.organizations.<a href="/src/api/resources/organizations/client/Client.ts">getConversationTable</a>({ ...params }) -> MavenAGI.ConversationTableResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Retrieves structured conversation data across all organizations, formatted as a table,
+allowing users to group, filter, and define specific metrics to display as columns.
+
+<Tip>
+This endpoint requires additional permissions. Contact support to request access.
+</Tip>
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.organizations.getConversationTable({
+    conversationFilter: {
+        languages: ["en", "es"],
+    },
+    timeGrouping: "DAY",
+    fieldGroupings: [
+        {
+            field: "Category",
+        },
+    ],
+    columnDefinitions: [
+        {
+            header: "count",
+            metric: {
+                type: "count",
+            },
+        },
+        {
+            header: "avg_first_response_time",
+            metric: {
+                type: "average",
+                targetField: "FirstResponseTime",
+            },
+        },
+        {
+            header: "percentile_handle_time",
+            metric: {
+                type: "percentile",
+                targetField: "HandleTime",
+                percentile: 25,
+            },
+        },
+    ],
+});
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `MavenAGI.ConversationTableRequest`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Organizations.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.organizations.<a href="/src/api/resources/organizations/client/Client.ts">getConversationChart</a>({ ...params }) -> MavenAGI.ChartResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Fetches conversation data across all organizations, visualized in a chart format.
+Supported chart types include pie chart, date histogram, and stacked bar charts.
+
+<Tip>
+This endpoint requires additional permissions. Contact support to request access.
+</Tip>
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.organizations.getConversationChart({
+    type: "pieChart",
+    conversationFilter: {
+        languages: ["en", "es"],
+    },
+    groupBy: {
+        field: "Category",
+    },
+    metric: {
+        type: "count",
+    },
+});
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `MavenAGI.ConversationChartRequest`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Organizations.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
 ## Translations
 
 <details><summary><code>client.translations.<a href="/src/api/resources/translations/client/Client.ts">translate</a>({ ...params }) -> MavenAGI.TranslationResponse</code></summary>
@@ -2582,6 +2876,54 @@ await client.translations.translate({
 </details>
 
 ## Triggers
+
+<details><summary><code>client.triggers.<a href="/src/api/resources/triggers/client/Client.ts">search</a>({ ...params }) -> MavenAGI.EventTriggersSearchResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.triggers.search({});
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `MavenAGI.EventTriggersSearchRequest`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Triggers.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
 
 <details><summary><code>client.triggers.<a href="/src/api/resources/triggers/client/Client.ts">createOrUpdate</a>({ ...params }) -> MavenAGI.EventTriggerResponse</code></summary>
 <dl>
@@ -2760,6 +3102,79 @@ await client.triggers.delete("store-in-snowflake");
 <dd>
 
 **triggerReferenceId:** `string` — The reference ID of the event trigger to delete. All other entity ID fields are inferred from the request.
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Triggers.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.triggers.<a href="/src/api/resources/triggers/client/Client.ts">partialUpdate</a>(triggerReferenceId, { ...params }) -> MavenAGI.EventTriggerResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Updates an event trigger. Only the enabled field is editable.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.triggers.partialUpdate("triggerReferenceId", {
+    body: {},
+});
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**triggerReferenceId:** `string` — The reference ID of the event trigger to update. All other entity ID fields are inferred from the request.
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `MavenAGI.PartialUpdateRequest`
 
 </dd>
 </dl>

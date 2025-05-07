@@ -5,11 +5,11 @@
 import * as MavenAGI from "../../../index";
 
 export interface ActionFormField {
-    /** The ID field should be used as the key in the submitActionForm API call. */
+    /** The ID field should be used as the key in the `submitActionForm` API. */
     id: string;
-    /** The title of the field to show on the form. */
+    /** The title of the field to show on the form. Provided in the user's language. */
     label: string;
-    /** A longer description of the field which should be shown in smaller text near the label. */
+    /** A longer description of the field which should be shown in smaller text near the label. Provided in the user's language. */
     description: string;
     /** Whether the field is required for the action. Client side validation is recommended for an improved user experience. */
     required: boolean;

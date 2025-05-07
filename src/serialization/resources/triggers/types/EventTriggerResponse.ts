@@ -5,7 +5,7 @@
 import * as serializers from "../../../index";
 import * as MavenAGI from "../../../../api/index";
 import * as core from "../../../../core";
-import { EntityId } from "./EntityId";
+import { EntityId } from "../../commons/types/EntityId";
 import { EventTriggerBase } from "./EventTriggerBase";
 
 export const EventTriggerResponse: core.serialization.ObjectSchema<
@@ -14,11 +14,13 @@ export const EventTriggerResponse: core.serialization.ObjectSchema<
 > = core.serialization
     .object({
         triggerId: EntityId,
+        enabled: core.serialization.boolean(),
     })
     .extend(EventTriggerBase);
 
 export declare namespace EventTriggerResponse {
     export interface Raw extends EventTriggerBase.Raw {
         triggerId: EntityId.Raw;
+        enabled: boolean;
     }
 }

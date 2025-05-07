@@ -78,8 +78,8 @@ export class Knowledge {
                 "X-Agent-Id": await core.Supplier.get(this._options.agentId),
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "mavenagi",
-                "X-Fern-SDK-Version": "1.0.10",
-                "User-Agent": "mavenagi/1.0.10",
+                "X-Fern-SDK-Version": "1.0.11",
+                "User-Agent": "mavenagi/1.0.11",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...requestOptions?.headers,
@@ -183,8 +183,8 @@ export class Knowledge {
                 "X-Agent-Id": await core.Supplier.get(this._options.agentId),
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "mavenagi",
-                "X-Fern-SDK-Version": "1.0.10",
-                "User-Agent": "mavenagi/1.0.10",
+                "X-Fern-SDK-Version": "1.0.11",
+                "User-Agent": "mavenagi/1.0.11",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...requestOptions?.headers,
@@ -273,7 +273,15 @@ export class Knowledge {
      *
      * @example
      *     await client.knowledge.createKnowledgeBaseVersion("help-center", {
-     *         type: "FULL"
+     *         versionId: {
+     *             type: "KNOWLEDGE_BASE_VERSION",
+     *             referenceId: "versionId",
+     *             appId: "maven",
+     *             organizationId: "acme",
+     *             agentId: "support"
+     *         },
+     *         type: "FULL",
+     *         status: "IN_PROGRESS"
      *     })
      */
     public async createKnowledgeBaseVersion(
@@ -295,8 +303,8 @@ export class Knowledge {
                 "X-Agent-Id": await core.Supplier.get(this._options.agentId),
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "mavenagi",
-                "X-Fern-SDK-Version": "1.0.10",
-                "User-Agent": "mavenagi/1.0.10",
+                "X-Fern-SDK-Version": "1.0.11",
+                "User-Agent": "mavenagi/1.0.11",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...requestOptions?.headers,
@@ -375,6 +383,7 @@ export class Knowledge {
      * Finalize the latest knowledge base version. Required to indicate the version is complete. Will throw an exception if the latest version is not in progress.
      *
      * @param {string} knowledgeBaseReferenceId - The reference ID of the knowledge base to finalize a version for. All other entity ID fields are inferred from the request.
+     * @param {MavenAGI.FinalizeKnowledgeBaseVersionRequest} request
      * @param {Knowledge.RequestOptions} requestOptions - Request-specific configuration.
      *
      * @throws {@link MavenAGI.NotFoundError}
@@ -382,12 +391,20 @@ export class Knowledge {
      * @throws {@link MavenAGI.ServerError}
      *
      * @example
-     *     await client.knowledge.finalizeKnowledgeBaseVersion("help-center")
+     *     await client.knowledge.finalizeKnowledgeBaseVersion("help-center", {
+     *         versionId: {
+     *             type: "KNOWLEDGE_BASE_VERSION",
+     *             referenceId: "versionId",
+     *             appId: "maven"
+     *         },
+     *         status: "SUCCEEDED"
+     *     })
      */
     public async finalizeKnowledgeBaseVersion(
         knowledgeBaseReferenceId: string,
+        request: MavenAGI.FinalizeKnowledgeBaseVersionRequest,
         requestOptions?: Knowledge.RequestOptions,
-    ): Promise<void> {
+    ): Promise<MavenAGI.KnowledgeBaseVersion> {
         const _response = await (this._options.fetcher ?? core.fetcher)({
             url: urlJoin(
                 (await core.Supplier.get(this._options.baseUrl)) ??
@@ -402,20 +419,28 @@ export class Knowledge {
                 "X-Agent-Id": await core.Supplier.get(this._options.agentId),
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "mavenagi",
-                "X-Fern-SDK-Version": "1.0.10",
-                "User-Agent": "mavenagi/1.0.10",
+                "X-Fern-SDK-Version": "1.0.11",
+                "User-Agent": "mavenagi/1.0.11",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...requestOptions?.headers,
             },
             contentType: "application/json",
             requestType: "json",
+            body: serializers.FinalizeKnowledgeBaseVersionRequest.jsonOrThrow(request, {
+                unrecognizedObjectKeys: "strip",
+            }),
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
             maxRetries: requestOptions?.maxRetries,
             abortSignal: requestOptions?.abortSignal,
         });
         if (_response.ok) {
-            return;
+            return serializers.KnowledgeBaseVersion.parseOrThrow(_response.body, {
+                unrecognizedObjectKeys: "passthrough",
+                allowUnrecognizedUnionMembers: true,
+                allowUnrecognizedEnumValues: true,
+                breadcrumbsPrefix: ["response"],
+            });
         }
 
         if (_response.error.reason === "status-code") {
@@ -475,6 +500,11 @@ export class Knowledge {
     /**
      * Create knowledge document. Requires an existing knowledge base with an in progress version. Will throw an exception if the latest version is not in progress.
      *
+     * <Tip>
+     * This API maintains document version history. If for the same reference ID neither the `title` nor `text` fields
+     * have changed, a new document version will not be created. The existing version will be reused.
+     * </Tip>
+     *
      * @param {string} knowledgeBaseReferenceId - The reference ID of the knowledge base to create a document for. All other entity ID fields are inferred from the request.
      * @param {MavenAGI.KnowledgeDocumentRequest} request
      * @param {Knowledge.RequestOptions} requestOptions - Request-specific configuration.
@@ -488,9 +518,17 @@ export class Knowledge {
      *         knowledgeDocumentId: {
      *             referenceId: "getting-started"
      *         },
+     *         versionId: {
+     *             type: "KNOWLEDGE_BASE_VERSION",
+     *             referenceId: "versionId",
+     *             appId: "maven"
+     *         },
      *         contentType: "MARKDOWN",
      *         content: "## Getting started\\nThis is a getting started guide for the help center.",
-     *         title: "Getting started"
+     *         title: "Getting started",
+     *         metadata: {
+     *             "category": "getting-started"
+     *         }
      *     })
      */
     public async createKnowledgeDocument(
@@ -512,8 +550,8 @@ export class Knowledge {
                 "X-Agent-Id": await core.Supplier.get(this._options.agentId),
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "mavenagi",
-                "X-Fern-SDK-Version": "1.0.10",
-                "User-Agent": "mavenagi/1.0.10",
+                "X-Fern-SDK-Version": "1.0.11",
+                "User-Agent": "mavenagi/1.0.11",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...requestOptions?.headers,
@@ -604,9 +642,17 @@ export class Knowledge {
      *         knowledgeDocumentId: {
      *             referenceId: "getting-started"
      *         },
+     *         versionId: {
+     *             type: "KNOWLEDGE_BASE_VERSION",
+     *             referenceId: "versionId",
+     *             appId: "maven"
+     *         },
      *         contentType: "MARKDOWN",
      *         content: "## Getting started\\nThis is a getting started guide for the help center.",
-     *         title: "Getting started"
+     *         title: "Getting started",
+     *         metadata: {
+     *             "category": "getting-started"
+     *         }
      *     })
      */
     public async updateKnowledgeDocument(
@@ -628,8 +674,8 @@ export class Knowledge {
                 "X-Agent-Id": await core.Supplier.get(this._options.agentId),
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "mavenagi",
-                "X-Fern-SDK-Version": "1.0.10",
-                "User-Agent": "mavenagi/1.0.10",
+                "X-Fern-SDK-Version": "1.0.11",
+                "User-Agent": "mavenagi/1.0.11",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...requestOptions?.headers,
@@ -737,8 +783,8 @@ export class Knowledge {
                 "X-Agent-Id": await core.Supplier.get(this._options.agentId),
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "mavenagi",
-                "X-Fern-SDK-Version": "1.0.10",
-                "User-Agent": "mavenagi/1.0.10",
+                "X-Fern-SDK-Version": "1.0.11",
+                "User-Agent": "mavenagi/1.0.11",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...requestOptions?.headers,

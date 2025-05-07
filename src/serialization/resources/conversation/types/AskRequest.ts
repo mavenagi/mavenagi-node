@@ -15,6 +15,7 @@ export const AskRequest: core.serialization.ObjectSchema<serializers.AskRequest.
         text: core.serialization.string(),
         attachments: core.serialization.list(Attachment).optional(),
         transientData: core.serialization.record(core.serialization.string(), core.serialization.string()).optional(),
+        timezone: core.serialization.string().optional(),
     });
 
 export declare namespace AskRequest {
@@ -24,5 +25,6 @@ export declare namespace AskRequest {
         text: string;
         attachments?: Attachment.Raw[] | null;
         transientData?: Record<string, string> | null;
+        timezone?: string | null;
     }
 }

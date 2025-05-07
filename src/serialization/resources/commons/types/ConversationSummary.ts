@@ -13,11 +13,29 @@ export const ConversationSummary: core.serialization.ObjectSchema<
 > = core.serialization.object({
     actionIds: core.serialization.list(EntityIdWithoutAgent),
     incompleteActionIds: core.serialization.list(EntityIdWithoutAgent),
+    insertCount: core.serialization.number(),
+    thumbsUpCount: core.serialization.number(),
+    thumbsDownCount: core.serialization.number(),
+    userMessageCount: core.serialization.number(),
+    handleTime: core.serialization.number().optional(),
+    humanAgentResponseDelay: core.serialization.number().optional(),
+    humanAgents: core.serialization.list(core.serialization.string()),
+    humanAgentsWithInserts: core.serialization.list(core.serialization.string()),
+    users: core.serialization.list(core.serialization.string()),
 });
 
 export declare namespace ConversationSummary {
     export interface Raw {
         actionIds: EntityIdWithoutAgent.Raw[];
         incompleteActionIds: EntityIdWithoutAgent.Raw[];
+        insertCount: number;
+        thumbsUpCount: number;
+        thumbsDownCount: number;
+        userMessageCount: number;
+        handleTime?: number | null;
+        humanAgentResponseDelay?: number | null;
+        humanAgents: string[];
+        humanAgentsWithInserts: string[];
+        users: string[];
     }
 }

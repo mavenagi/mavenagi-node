@@ -15,6 +15,7 @@ export const UserMessage: core.serialization.ObjectSchema<serializers.UserMessag
             conversationMessageId: EntityId,
             language: core.serialization.string().optional(),
             attachments: core.serialization.list(UserMessageAttachment),
+            userDisplayName: core.serialization.string().optional(),
         })
         .extend(UserMessageBase);
 
@@ -23,5 +24,6 @@ export declare namespace UserMessage {
         conversationMessageId: EntityId.Raw;
         language?: string | null;
         attachments: UserMessageAttachment.Raw[];
+        userDisplayName?: string | null;
     }
 }

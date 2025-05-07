@@ -15,10 +15,13 @@ import * as MavenAGI from "../../../index";
  *             type: MavenAGI.EntityType.EventTrigger
  *         },
  *         description: "Stores conversation data in Snowflake",
- *         type: MavenAGI.EventTriggerType.ConversationCreated
+ *         type: MavenAGI.EventTriggerType.ConversationCreated,
+ *         enabled: true
  *     }
  */
 export interface EventTriggerResponse extends MavenAGI.EventTriggerBase {
     /** ID that uniquely identifies this event trigger */
     triggerId: MavenAGI.EntityId;
+    /** Whether this trigger will be called by Maven. */
+    enabled: boolean;
 }

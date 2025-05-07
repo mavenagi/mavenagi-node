@@ -10,6 +10,7 @@ import { AppSettings } from "./api/resources/appSettings/client/Client";
 import { Conversation } from "./api/resources/conversation/client/Client";
 import { Inbox } from "./api/resources/inbox/client/Client";
 import { Knowledge } from "./api/resources/knowledge/client/Client";
+import { Organizations } from "./api/resources/organizations/client/Client";
 import { Realtime } from "./api/resources/realtime/client/Client";
 import { Translations } from "./api/resources/translations/client/Client";
 import { Triggers } from "./api/resources/triggers/client/Client";
@@ -52,6 +53,7 @@ export class MavenAGIClient {
     protected _conversation: Conversation | undefined;
     protected _inbox: Inbox | undefined;
     protected _knowledge: Knowledge | undefined;
+    protected _organizations: Organizations | undefined;
     protected _realtime: Realtime | undefined;
     protected _translations: Translations | undefined;
     protected _triggers: Triggers | undefined;
@@ -81,6 +83,10 @@ export class MavenAGIClient {
 
     public get knowledge(): Knowledge {
         return (this._knowledge ??= new Knowledge(this._options));
+    }
+
+    public get organizations(): Organizations {
+        return (this._organizations ??= new Organizations(this._options));
     }
 
     public get realtime(): Realtime {

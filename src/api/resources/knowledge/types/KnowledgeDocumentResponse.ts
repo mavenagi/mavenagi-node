@@ -15,7 +15,10 @@ import * as MavenAGI from "../../../index";
  *             type: MavenAGI.EntityType.KnowledgeDocument
  *         },
  *         content: "## Getting started This is a getting started guide for the help center.",
- *         title: "Getting started"
+ *         title: "Getting started",
+ *         metadata: {
+ *             "category": "getting-started"
+ *         }
  *     }
  */
 export interface KnowledgeDocumentResponse extends MavenAGI.BaseKnowledgeDocument {
@@ -23,4 +26,6 @@ export interface KnowledgeDocumentResponse extends MavenAGI.BaseKnowledgeDocumen
     knowledgeDocumentId: MavenAGI.EntityId;
     /** The content of the document in markdown format. Not shown directly to users. */
     content: string;
+    /** Metadata for the knowledge document. */
+    metadata: Record<string, string>;
 }

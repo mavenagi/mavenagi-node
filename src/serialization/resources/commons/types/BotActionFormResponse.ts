@@ -5,6 +5,7 @@
 import * as serializers from "../../../index";
 import * as MavenAGI from "../../../../api/index";
 import * as core from "../../../../core";
+import { EntityIdWithoutAgent } from "./EntityIdWithoutAgent";
 import { ActionFormField } from "./ActionFormField";
 
 export const BotActionFormResponse: core.serialization.ObjectSchema<
@@ -12,6 +13,7 @@ export const BotActionFormResponse: core.serialization.ObjectSchema<
     MavenAGI.BotActionFormResponse
 > = core.serialization.object({
     id: core.serialization.string(),
+    actionId: EntityIdWithoutAgent,
     formLabel: core.serialization.string(),
     fields: core.serialization.list(ActionFormField),
     submitLabel: core.serialization.string(),
@@ -20,6 +22,7 @@ export const BotActionFormResponse: core.serialization.ObjectSchema<
 export declare namespace BotActionFormResponse {
     export interface Raw {
         id: string;
+        actionId: EntityIdWithoutAgent.Raw;
         formLabel: string;
         fields: ActionFormField.Raw[];
         submitLabel: string;

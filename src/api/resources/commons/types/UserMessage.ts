@@ -11,4 +11,6 @@ export interface UserMessage extends MavenAGI.UserMessageBase {
     language?: string;
     /** The attachments associated with the message */
     attachments: MavenAGI.UserMessageAttachment[];
+    /** The display name of the user who created this message. Only available for users who have saved name information. */
+    userDisplayName?: string;
 }

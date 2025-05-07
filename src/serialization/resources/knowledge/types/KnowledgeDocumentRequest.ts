@@ -6,6 +6,7 @@ import * as serializers from "../../../index";
 import * as MavenAGI from "../../../../api/index";
 import * as core from "../../../../core";
 import { EntityIdBase } from "../../commons/types/EntityIdBase";
+import { EntityIdWithoutAgent } from "../../commons/types/EntityIdWithoutAgent";
 import { KnowledgeDocumentContentType } from "./KnowledgeDocumentContentType";
 import { BaseKnowledgeDocument } from "./BaseKnowledgeDocument";
 
@@ -15,15 +16,19 @@ export const KnowledgeDocumentRequest: core.serialization.ObjectSchema<
 > = core.serialization
     .object({
         knowledgeDocumentId: EntityIdBase,
+        versionId: EntityIdWithoutAgent.optional(),
         contentType: KnowledgeDocumentContentType,
         content: core.serialization.string(),
+        metadata: core.serialization.record(core.serialization.string(), core.serialization.string()).optional(),
     })
     .extend(BaseKnowledgeDocument);
 
 export declare namespace KnowledgeDocumentRequest {
     export interface Raw extends BaseKnowledgeDocument.Raw {
         knowledgeDocumentId: EntityIdBase.Raw;
+        versionId?: EntityIdWithoutAgent.Raw | null;
         contentType: KnowledgeDocumentContentType.Raw;
         content: string;
+        metadata?: Record<string, string> | null;
     }
 }

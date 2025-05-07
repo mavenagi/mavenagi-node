@@ -22,6 +22,7 @@ export const ConversationAnalysis: core.serialization.ObjectSchema<
     qualityReason: QualityReason.optional(),
     resolvedByMaven: core.serialization.boolean().optional(),
     primaryLanguage: core.serialization.string().optional(),
+    predictedNps: core.serialization.number().optional(),
 });
 
 export declare namespace ConversationAnalysis {
@@ -35,5 +36,6 @@ export declare namespace ConversationAnalysis {
         qualityReason?: QualityReason.Raw | null;
         resolvedByMaven?: boolean | null;
         primaryLanguage?: string | null;
+        predictedNps?: number | null;
     }
 }

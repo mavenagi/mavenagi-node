@@ -16,6 +16,7 @@ export const InboxItemDuplicateDocuments: core.serialization.ObjectSchema<
     .object({
         recommendedFixes: core.serialization.list(InboxItemFixDeactivateDocument),
         otherFixes: core.serialization.list(InboxItemFixDeactivateDocument),
+        sourceDocument: DocumentInformation.optional(),
         documents: core.serialization.list(DocumentInformation),
     })
     .extend(InboxItemBase);
@@ -24,6 +25,7 @@ export declare namespace InboxItemDuplicateDocuments {
     export interface Raw extends InboxItemBase.Raw {
         recommendedFixes: InboxItemFixDeactivateDocument.Raw[];
         otherFixes: InboxItemFixDeactivateDocument.Raw[];
+        sourceDocument?: DocumentInformation.Raw | null;
         documents: DocumentInformation.Raw[];
     }
 }

@@ -8,7 +8,8 @@ export type ConversationPrecondition =
     | MavenAGI.ConversationPrecondition.Tags
     | MavenAGI.ConversationPrecondition.Metadata
     | MavenAGI.ConversationPrecondition.ActionExecuted
-    | MavenAGI.ConversationPrecondition.ResponseConfig;
+    | MavenAGI.ConversationPrecondition.ResponseConfig
+    | MavenAGI.ConversationPrecondition.App;
 
 export namespace ConversationPrecondition {
     export interface Tags extends MavenAGI.TagsPrecondition {
@@ -25,5 +26,9 @@ export namespace ConversationPrecondition {
 
     export interface ResponseConfig extends MavenAGI.ResponseConfigPrecondition {
         conversationPreconditionType: "responseConfig";
+    }
+
+    export interface App extends MavenAGI.AppPrecondition {
+        conversationPreconditionType: "app";
     }
 }

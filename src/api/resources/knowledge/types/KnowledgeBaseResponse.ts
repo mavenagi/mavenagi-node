@@ -15,7 +15,10 @@ import * as MavenAGI from "../../../index";
  *             type: MavenAGI.EntityType.KnowledgeBase
  *         },
  *         name: "Help center",
- *         type: MavenAGI.KnowledgeBaseType.Api
+ *         type: MavenAGI.KnowledgeBaseType.Api,
+ *         metadata: {
+ *             "key": "value"
+ *         }
  *     }
  */
 export interface KnowledgeBaseResponse extends MavenAGI.KnowledgeBaseProperties {
@@ -23,4 +26,6 @@ export interface KnowledgeBaseResponse extends MavenAGI.KnowledgeBaseProperties 
     knowledgeBaseId: MavenAGI.EntityId;
     /** The type of the knowledge base. Can not be changed once created. */
     type: MavenAGI.KnowledgeBaseType;
+    /** Metadata for the knowledge base. */
+    metadata: Record<string, string>;
 }

@@ -6,6 +6,7 @@ export type EntityType =
     | "CONVERSATION"
     | "CONVERSATION_MESSAGE"
     | "KNOWLEDGE_BASE"
+    | "KNOWLEDGE_BASE_VERSION"
     | "KNOWLEDGE_DOCUMENT"
     | "ACTION"
     | "USER"
@@ -19,6 +20,7 @@ export const EntityType = {
     Conversation: "CONVERSATION",
     ConversationMessage: "CONVERSATION_MESSAGE",
     KnowledgeBase: "KNOWLEDGE_BASE",
+    KnowledgeBaseVersion: "KNOWLEDGE_BASE_VERSION",
     KnowledgeDocument: "KNOWLEDGE_DOCUMENT",
     Action: "ACTION",
     User: "USER",

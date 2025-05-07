@@ -16,4 +16,6 @@ import * as MavenAGI from "../../../index";
 export interface KnowledgeBaseRequest extends MavenAGI.KnowledgeBaseProperties {
     /** ID that uniquely identifies this knowledge base */
     knowledgeBaseId: MavenAGI.EntityIdBase;
+    /** Metadata for the knowledge base. */
+    metadata?: Record<string, string>;
 }

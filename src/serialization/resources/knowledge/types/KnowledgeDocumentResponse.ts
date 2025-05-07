@@ -15,6 +15,7 @@ export const KnowledgeDocumentResponse: core.serialization.ObjectSchema<
     .object({
         knowledgeDocumentId: EntityId,
         content: core.serialization.string(),
+        metadata: core.serialization.record(core.serialization.string(), core.serialization.string()),
     })
     .extend(BaseKnowledgeDocument);
 
@@ -22,5 +23,6 @@ export declare namespace KnowledgeDocumentResponse {
     export interface Raw extends BaseKnowledgeDocument.Raw {
         knowledgeDocumentId: EntityId.Raw;
         content: string;
+        metadata: Record<string, string>;
     }
 }

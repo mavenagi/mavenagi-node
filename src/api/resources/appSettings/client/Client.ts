@@ -43,6 +43,120 @@ export class AppSettings {
     constructor(protected readonly _options: AppSettings.Options) {}
 
     /**
+     * Search for app settings which have the `$index` key set to the provided value.
+     *
+     * You can set the `$index` key using the Update app settings API.
+     *
+     * <Warning>This API currently requires an organization ID and agent ID for any agent which is installed on the app. This requirement will be removed in a future update.</Warning>
+     *
+     * @param {MavenAGI.SearchAppSettingsRequest} request
+     * @param {AppSettings.RequestOptions} requestOptions - Request-specific configuration.
+     *
+     * @throws {@link MavenAGI.NotFoundError}
+     * @throws {@link MavenAGI.BadRequestError}
+     * @throws {@link MavenAGI.ServerError}
+     *
+     * @example
+     *     await client.appSettings.search({
+     *         index: "index"
+     *     })
+     */
+    public async search(
+        request: MavenAGI.SearchAppSettingsRequest,
+        requestOptions?: AppSettings.RequestOptions,
+    ): Promise<MavenAGI.SearchAppSettingsResponse> {
+        const { index } = request;
+        const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
+        _queryParams["index"] = index;
+        const _response = await (this._options.fetcher ?? core.fetcher)({
+            url: urlJoin(
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)) ??
+                    environments.MavenAGIEnvironment.Production,
+                "v1/app-settings/search",
+            ),
+            method: "GET",
+            headers: {
+                Authorization: await this._getAuthorizationHeader(),
+                "X-Organization-Id": await core.Supplier.get(this._options.organizationId),
+                "X-Agent-Id": await core.Supplier.get(this._options.agentId),
+                "X-Fern-Language": "JavaScript",
+                "X-Fern-SDK-Name": "mavenagi",
+                "X-Fern-SDK-Version": "1.0.11",
+                "User-Agent": "mavenagi/1.0.11",
+                "X-Fern-Runtime": core.RUNTIME.type,
+                "X-Fern-Runtime-Version": core.RUNTIME.version,
+                ...requestOptions?.headers,
+            },
+            contentType: "application/json",
+            queryParameters: _queryParams,
+            requestType: "json",
+            timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
+            maxRetries: requestOptions?.maxRetries,
+            abortSignal: requestOptions?.abortSignal,
+        });
+        if (_response.ok) {
+            return serializers.SearchAppSettingsResponse.parseOrThrow(_response.body, {
+                unrecognizedObjectKeys: "passthrough",
+                allowUnrecognizedUnionMembers: true,
+                allowUnrecognizedEnumValues: true,
+                breadcrumbsPrefix: ["response"],
+            });
+        }
+
+        if (_response.error.reason === "status-code") {
+            switch (_response.error.statusCode) {
+                case 404:
+                    throw new MavenAGI.NotFoundError(
+                        serializers.ErrorMessage.parseOrThrow(_response.error.body, {
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
+                            breadcrumbsPrefix: ["response"],
+                        }),
+                    );
+                case 400:
+                    throw new MavenAGI.BadRequestError(
+                        serializers.ErrorMessage.parseOrThrow(_response.error.body, {
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
+                            breadcrumbsPrefix: ["response"],
+                        }),
+                    );
+                case 500:
+                    throw new MavenAGI.ServerError(
+                        serializers.ErrorMessage.parseOrThrow(_response.error.body, {
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
+                            breadcrumbsPrefix: ["response"],
+                        }),
+                    );
+                default:
+                    throw new errors.MavenAGIError({
+                        statusCode: _response.error.statusCode,
+                        body: _response.error.body,
+                    });
+            }
+        }
+
+        switch (_response.error.reason) {
+            case "non-json":
+                throw new errors.MavenAGIError({
+                    statusCode: _response.error.statusCode,
+                    body: _response.error.rawBody,
+                });
+            case "timeout":
+                throw new errors.MavenAGITimeoutError("Timeout exceeded when calling GET /v1/app-settings/search.");
+            case "unknown":
+                throw new errors.MavenAGIError({
+                    message: _response.error.errorMessage,
+                });
+        }
+    }
+
+    /**
      * Get app settings set during installation
      *
      * @param {AppSettings.RequestOptions} requestOptions - Request-specific configuration.
@@ -69,8 +183,8 @@ export class AppSettings {
                 "X-Agent-Id": await core.Supplier.get(this._options.agentId),
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "mavenagi",
-                "X-Fern-SDK-Version": "1.0.10",
-                "User-Agent": "mavenagi/1.0.10",
+                "X-Fern-SDK-Version": "1.0.11",
+                "User-Agent": "mavenagi/1.0.11",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...requestOptions?.headers,
@@ -183,8 +297,8 @@ export class AppSettings {
                 "X-Agent-Id": await core.Supplier.get(this._options.agentId),
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "mavenagi",
-                "X-Fern-SDK-Version": "1.0.10",
-                "User-Agent": "mavenagi/1.0.10",
+                "X-Fern-SDK-Version": "1.0.11",
+                "User-Agent": "mavenagi/1.0.11",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...requestOptions?.headers,

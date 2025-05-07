@@ -16,6 +16,7 @@ export const KnowledgeBaseResponse: core.serialization.ObjectSchema<
     .object({
         knowledgeBaseId: EntityId,
         type: KnowledgeBaseType,
+        metadata: core.serialization.record(core.serialization.string(), core.serialization.string()),
     })
     .extend(KnowledgeBaseProperties);
 
@@ -23,5 +24,6 @@ export declare namespace KnowledgeBaseResponse {
     export interface Raw extends KnowledgeBaseProperties.Raw {
         knowledgeBaseId: EntityId.Raw;
         type: KnowledgeBaseType.Raw;
+        metadata: Record<string, string>;
     }
 }

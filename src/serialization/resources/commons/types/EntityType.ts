@@ -11,6 +11,7 @@ export const EntityType: core.serialization.Schema<serializers.EntityType.Raw, M
         "CONVERSATION",
         "CONVERSATION_MESSAGE",
         "KNOWLEDGE_BASE",
+        "KNOWLEDGE_BASE_VERSION",
         "KNOWLEDGE_DOCUMENT",
         "ACTION",
         "USER",
@@ -27,6 +28,7 @@ export declare namespace EntityType {
         | "CONVERSATION"
         | "CONVERSATION_MESSAGE"
         | "KNOWLEDGE_BASE"
+        | "KNOWLEDGE_BASE_VERSION"
         | "KNOWLEDGE_DOCUMENT"
         | "ACTION"
         | "USER"
