@@ -20,7 +20,7 @@ A full reference for this library is available [here](./reference.md).
 Instantiate and use the client with the following:
 
 ```typescript
-import { MavenAGIClient } from "mavenagi";
+import { MavenAGIClient, MavenAGI } from "mavenagi";
 
 const client = new MavenAGIClient({
     appId: "YOUR_APP_ID",
@@ -28,40 +28,7 @@ const client = new MavenAGIClient({
     organizationId: "YOUR_ORGANIZATION_ID",
     agentId: "YOUR_AGENT_ID",
 });
-await client.analytics.getConversationTable({
-    conversationFilter: {
-        languages: ["en", "es"],
-    },
-    timeGrouping: "DAY",
-    fieldGroupings: [
-        {
-            field: "Category",
-        },
-    ],
-    columnDefinitions: [
-        {
-            header: "count",
-            metric: {
-                type: "count",
-            },
-        },
-        {
-            header: "avg_first_response_time",
-            metric: {
-                type: "average",
-                targetField: "FirstResponseTime",
-            },
-        },
-        {
-            header: "percentile_handle_time",
-            metric: {
-                type: "percentile",
-                targetField: "HandleTime",
-                percentile: 25,
-            },
-        },
-    ],
-});
+await client.agents.search({});
 ```
 
 ## Aborting Requests
@@ -124,7 +91,7 @@ will be thrown.
 import { MavenAGIError } from "mavenagi";
 
 try {
-    await client.analytics.getConversationTable(...);
+    await client.agents.search(...);
 } catch (err) {
     if (err instanceof MavenAGIError) {
         console.log(err.statusCode);
@@ -141,7 +108,7 @@ try {
 If you would like to send additional headers as part of the request, use the `headers` request option.
 
 ```typescript
-const response = await client.analytics.getConversationTable(..., {
+const response = await client.agents.search(..., {
     headers: {
         'X-Custom-Header': 'custom value'
     }
@@ -163,7 +130,7 @@ A request is deemed retryable when any of the following HTTP status codes is ret
 Use the `maxRetries` request option to configure this behavior.
 
 ```typescript
-const response = await client.analytics.getConversationTable(..., {
+const response = await client.agents.search(..., {
     maxRetries: 0 // override maxRetries at the request level
 });
 ```
@@ -173,7 +140,7 @@ const response = await client.analytics.getConversationTable(..., {
 The SDK defaults to a 60 second timeout. Use the `timeoutInSeconds` option to configure this behavior.
 
 ```typescript
-const response = await client.analytics.getConversationTable(..., {
+const response = await client.agents.search(..., {
     timeoutInSeconds: 30 // override timeout to 30s
 });
 ```
@@ -184,7 +151,7 @@ The SDK allows users to abort requests at any point by passing in an abort signa
 
 ```typescript
 const controller = new AbortController();
-const response = await client.analytics.getConversationTable(..., {
+const response = await client.agents.search(..., {
     abortSignal: controller.signal
 });
 controller.abort(); // aborts the request

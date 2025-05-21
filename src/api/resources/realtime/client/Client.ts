@@ -4,6 +4,7 @@
 
 import * as environments from "../../../../environments";
 import * as core from "../../../../core";
+import * as MavenAGI from "../../../index";
 import * as qs from "qs";
 import { RealtimeSocket } from "./Socket";
 
@@ -24,6 +25,7 @@ export declare namespace Realtime {
     export interface ConnectArgs {
         convId?: string;
         userId?: string;
+        audioFormat?: MavenAGI.AudioFormat | undefined;
         /** Enable debug mode on the websocket. Defaults to false. */
         debug?: boolean;
         /** Number of reconnect attempts. Defaults to 30. */
@@ -42,6 +44,10 @@ export class Realtime {
 
         if (args.userId != null) {
             queryParams["userId"] = args.userId;
+        }
+
+        if (args.audioFormat != null) {
+            queryParams["audioFormat"] = args.audioFormat;
         }
 
         let headers: Record<string, unknown> = {};

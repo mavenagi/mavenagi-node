@@ -18,6 +18,7 @@ export const ActionParameter: core.serialization.ObjectSchema<
     required: core.serialization.boolean(),
     type: ActionParameterType.optional(),
     enumOptions: core.serialization.list(ActionEnumOption).optional(),
+    schema: core.serialization.string().optional(),
 });
 
 export declare namespace ActionParameter {
@@ -28,5 +29,6 @@ export declare namespace ActionParameter {
         required: boolean;
         type?: ActionParameterType.Raw | null;
         enumOptions?: ActionEnumOption.Raw[] | null;
+        schema?: string | null;
     }
 }

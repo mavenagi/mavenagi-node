@@ -9,8 +9,8 @@ import * as core from "../../../../core";
 export const ActionParameterType: core.serialization.Schema<
     serializers.ActionParameterType.Raw,
     MavenAGI.ActionParameterType
-> = core.serialization.enum_(["STRING", "BOOLEAN", "NUMBER"]);
+> = core.serialization.enum_(["STRING", "BOOLEAN", "NUMBER", "SCHEMA"]);
 
 export declare namespace ActionParameterType {
-    export type Raw = "STRING" | "BOOLEAN" | "NUMBER";
+    export type Raw = "STRING" | "BOOLEAN" | "NUMBER" | "SCHEMA";
 }

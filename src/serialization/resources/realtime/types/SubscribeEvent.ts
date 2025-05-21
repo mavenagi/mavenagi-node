@@ -15,6 +15,7 @@ export const SubscribeEvent: core.serialization.Schema<serializers.SubscribeEven
             controlSessionStart: ControlEvent,
             controlSessionStop: ControlEvent,
             controlAudioDone: ControlEvent,
+            controlSessionUpdated: ControlEvent,
         })
         .transform<MavenAGI.SubscribeEvent>({
             transform: (value) => value,
@@ -26,7 +27,8 @@ export declare namespace SubscribeEvent {
         | SubscribeEvent.Audio
         | SubscribeEvent.ControlSessionStart
         | SubscribeEvent.ControlSessionStop
-        | SubscribeEvent.ControlAudioDone;
+        | SubscribeEvent.ControlAudioDone
+        | SubscribeEvent.ControlSessionUpdated;
 
     export interface Audio extends AudioSubscribeEvent.Raw {
         messageType: "audio";
@@ -42,5 +44,9 @@ export declare namespace SubscribeEvent {
 
     export interface ControlAudioDone extends ControlEvent.Raw {
         messageType: "controlAudioDone";
+    }
+
+    export interface ControlSessionUpdated extends ControlEvent.Raw {
+        messageType: "controlSessionUpdated";
     }
 }

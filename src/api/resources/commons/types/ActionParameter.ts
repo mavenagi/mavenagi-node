@@ -17,4 +17,6 @@ export interface ActionParameter {
     type?: MavenAGI.ActionParameterType;
     /** Restricts the action parameter to only the options in this list. Valid for type `STRING`, `BOOLEAN`, and `NUMBER`. */
     enumOptions?: MavenAGI.ActionEnumOption[];
+    /** JSON schema for validating the parameter value. Only valid when type is `SCHEMA`. */
+    schema?: string;
 }

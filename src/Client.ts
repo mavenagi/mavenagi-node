@@ -5,9 +5,11 @@
 import * as environments from "./environments";
 import * as core from "./core";
 import { Actions } from "./api/resources/actions/client/Client";
+import { Agents } from "./api/resources/agents/client/Client";
 import { Analytics } from "./api/resources/analytics/client/Client";
 import { AppSettings } from "./api/resources/appSettings/client/Client";
 import { Conversation } from "./api/resources/conversation/client/Client";
+import { Events } from "./api/resources/events/client/Client";
 import { Inbox } from "./api/resources/inbox/client/Client";
 import { Knowledge } from "./api/resources/knowledge/client/Client";
 import { Organizations } from "./api/resources/organizations/client/Client";
@@ -48,9 +50,11 @@ export declare namespace MavenAGIClient {
 
 export class MavenAGIClient {
     protected _actions: Actions | undefined;
+    protected _agents: Agents | undefined;
     protected _analytics: Analytics | undefined;
     protected _appSettings: AppSettings | undefined;
     protected _conversation: Conversation | undefined;
+    protected _events: Events | undefined;
     protected _inbox: Inbox | undefined;
     protected _knowledge: Knowledge | undefined;
     protected _organizations: Organizations | undefined;
@@ -65,6 +69,10 @@ export class MavenAGIClient {
         return (this._actions ??= new Actions(this._options));
     }
 
+    public get agents(): Agents {
+        return (this._agents ??= new Agents(this._options));
+    }
+
     public get analytics(): Analytics {
         return (this._analytics ??= new Analytics(this._options));
     }
@@ -75,6 +83,10 @@ export class MavenAGIClient {
 
     public get conversation(): Conversation {
         return (this._conversation ??= new Conversation(this._options));
+    }
+
+    public get events(): Events {
+        return (this._events ??= new Events(this._options));
     }
 
     public get inbox(): Inbox {

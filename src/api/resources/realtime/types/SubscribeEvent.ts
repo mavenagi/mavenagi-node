@@ -11,7 +11,8 @@ export type SubscribeEvent =
     | MavenAGI.SubscribeEvent.Audio
     | MavenAGI.SubscribeEvent.ControlSessionStart
     | MavenAGI.SubscribeEvent.ControlSessionStop
-    | MavenAGI.SubscribeEvent.ControlAudioDone;
+    | MavenAGI.SubscribeEvent.ControlAudioDone
+    | MavenAGI.SubscribeEvent.ControlSessionUpdated;
 
 export namespace SubscribeEvent {
     export interface Audio extends MavenAGI.AudioSubscribeEvent {
@@ -28,5 +29,9 @@ export namespace SubscribeEvent {
 
     export interface ControlAudioDone extends MavenAGI.ControlEvent {
         messageType: "controlAudioDone";
+    }
+
+    export interface ControlSessionUpdated extends MavenAGI.ControlEvent {
+        messageType: "controlSessionUpdated";
     }
 }

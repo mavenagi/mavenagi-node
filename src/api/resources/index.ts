@@ -1,5 +1,7 @@
 export * as actions from "./actions";
 export * from "./actions/types";
+export * as agents from "./agents";
+export * from "./agents/types";
 export * as analytics from "./analytics";
 export * from "./analytics/types";
 export * as appSettings from "./appSettings";
@@ -8,6 +10,8 @@ export * as commons from "./commons";
 export * from "./commons/types";
 export * as conversation from "./conversation";
 export * from "./conversation/types";
+export * as events from "./events";
+export * from "./events/types";
 export * as inbox from "./inbox";
 export * from "./inbox/types";
 export * as knowledge from "./knowledge";

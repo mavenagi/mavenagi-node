@@ -3,6 +3,7 @@
  */
 
 export type EntityType =
+    | "AGENT"
     | "CONVERSATION"
     | "CONVERSATION_MESSAGE"
     | "KNOWLEDGE_BASE"
@@ -17,6 +18,7 @@ export type EntityType =
     | "INBOX_ITEM"
     | "INBOX_ITEM_FIX";
 export const EntityType = {
+    Agent: "AGENT",
     Conversation: "CONVERSATION",
     ConversationMessage: "CONVERSATION_MESSAGE",
     KnowledgeBase: "KNOWLEDGE_BASE",

@@ -5,14 +5,20 @@
 import * as serializers from "../../../index";
 import * as MavenAGI from "../../../../api/index";
 import * as core from "../../../../core";
+import { AudioFormat } from "./AudioFormat";
+import { MessageBase } from "./MessageBase";
 
 export const ControlEvent: core.serialization.ObjectSchema<serializers.ControlEvent.Raw, MavenAGI.ControlEvent> =
-    core.serialization.object({
-        reason: core.serialization.string().optional(),
-    });
+    core.serialization
+        .object({
+            reason: core.serialization.string().optional(),
+            unused: AudioFormat.optional(),
+        })
+        .extend(MessageBase);
 
 export declare namespace ControlEvent {
-    export interface Raw {
+    export interface Raw extends MessageBase.Raw {
         reason?: string | null;
+        unused?: AudioFormat.Raw | null;
     }
 }

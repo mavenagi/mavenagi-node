@@ -8,6 +8,7 @@ import * as core from "../../../../core";
 
 export const EntityType: core.serialization.Schema<serializers.EntityType.Raw, MavenAGI.EntityType> =
     core.serialization.enum_([
+        "AGENT",
         "CONVERSATION",
         "CONVERSATION_MESSAGE",
         "KNOWLEDGE_BASE",
@@ -25,6 +26,7 @@ export const EntityType: core.serialization.Schema<serializers.EntityType.Raw, M
 
 export declare namespace EntityType {
     export type Raw =
+        | "AGENT"
         | "CONVERSATION"
         | "CONVERSATION_MESSAGE"
         | "KNOWLEDGE_BASE"
