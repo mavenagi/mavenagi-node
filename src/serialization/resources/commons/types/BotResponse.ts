@@ -8,6 +8,7 @@ import * as core from "../../../../core";
 import { BotTextResponse } from "./BotTextResponse";
 import { BotActionFormResponse } from "./BotActionFormResponse";
 import { BotChartResponse } from "./BotChartResponse";
+import { BotObjectResponse } from "./BotObjectResponse";
 
 export const BotResponse: core.serialization.Schema<serializers.BotResponse.Raw, MavenAGI.BotResponse> =
     core.serialization
@@ -15,6 +16,7 @@ export const BotResponse: core.serialization.Schema<serializers.BotResponse.Raw,
             text: BotTextResponse,
             actionForm: BotActionFormResponse,
             chart: BotChartResponse,
+            object: BotObjectResponse,
         })
         .transform<MavenAGI.BotResponse>({
             transform: (value) => value,
@@ -22,7 +24,7 @@ export const BotResponse: core.serialization.Schema<serializers.BotResponse.Raw,
         });
 
 export declare namespace BotResponse {
-    export type Raw = BotResponse.Text | BotResponse.ActionForm | BotResponse.Chart;
+    export type Raw = BotResponse.Text | BotResponse.ActionForm | BotResponse.Chart | BotResponse.Object;
 
     export interface Text extends BotTextResponse.Raw {
         type: "text";
@@ -34,5 +36,9 @@ export declare namespace BotResponse {
 
     export interface Chart extends BotChartResponse.Raw {
         type: "chart";
+    }
+
+    export interface Object extends BotObjectResponse.Raw {
+        type: "object";
     }
 }

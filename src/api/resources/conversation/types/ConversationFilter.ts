@@ -5,21 +5,42 @@
 import * as MavenAGI from "../../../index";
 
 export interface ConversationFilter {
+    /** Full-text search query for matching conversations by content. When you search with this parameter, you're performing a full-text search across all textual content in the conversations, including both the user's messages and the AI's responses. */
     search?: string;
+    /** Filter conversations created on or after this timestamp */
     createdAfter?: Date;
+    /** Filter conversations created on or before this timestamp */
     createdBefore?: Date;
+    /** Filter by app IDs */
     apps?: string[];
+    /** Filter by conversation categories */
     categories?: string[];
+    /** Filter by actions that were executed in the conversation */
     actions?: MavenAGI.EntityIdFilter[];
+    /** Filter by actions that were suggested but not completed by the AI agent */
     incompleteActions?: MavenAGI.EntityIdFilter[];
+    /** Filter by user feedback types received in the conversation */
     feedback?: MavenAGI.FeedbackType[];
+    /** Filter by human agents who participated in the conversation */
     humanAgents?: string[];
+    /** Filter by human agents who inserted a maven AI generated suggestion in the conversation */
+    humanAgentsWithInserts?: string[];
+    /** Filter by conversation languages */
     languages?: string[];
+    /** Filter by AI assessed conversation quality classification */
     quality?: MavenAGI.Quality[];
+    /** Filter by AI assessed quality reason classification */
     qualityReason?: MavenAGI.QualityReason[];
+    /** Filter by AI response length classification */
     responseLength?: MavenAGI.ResponseLength[];
+    /** Filter by AI assessed sentiment analysis */
     sentiment?: MavenAGI.Sentiment[];
+    /** Filter by tags applied to the conversation */
     tags?: string[];
+    /** Filter by conversation resolution status which is determined by AI based on the conversation content. */
     resolutionStatus?: MavenAGI.ResolutionStatus[];
+    /** Filter conversations based on whether they were resolved by Maven AI */
     resolvedByMaven?: boolean;
+    /** Filter by the number of messages sent by the user in the conversation */
+    userMessageCount?: MavenAGI.NumberRange;
 }

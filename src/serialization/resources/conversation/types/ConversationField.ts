@@ -14,6 +14,7 @@ export const ConversationField: core.serialization.Schema<
     "FirstResponseTime",
     "HandleTime",
     "HumanAgents",
+    "HumanAgentsWithInserts",
     "App",
     "Sentiment",
     "QualityReason",
@@ -39,6 +40,7 @@ export declare namespace ConversationField {
         | "FirstResponseTime"
         | "HandleTime"
         | "HumanAgents"
+        | "HumanAgentsWithInserts"
         | "App"
         | "Sentiment"
         | "QualityReason"

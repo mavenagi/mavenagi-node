@@ -7,6 +7,7 @@ export type ConversationField =
     | "FirstResponseTime"
     | "HandleTime"
     | "HumanAgents"
+    | "HumanAgentsWithInserts"
     | "App"
     | "Sentiment"
     | "QualityReason"
@@ -29,6 +30,7 @@ export const ConversationField = {
     FirstResponseTime: "FirstResponseTime",
     HandleTime: "HandleTime",
     HumanAgents: "HumanAgents",
+    HumanAgentsWithInserts: "HumanAgentsWithInserts",
     App: "App",
     Sentiment: "Sentiment",
     QualityReason: "QualityReason",

@@ -8,5 +8,7 @@ export interface FeedbackFilter {
     search?: string;
     createdAfter?: Date;
     createdBefore?: Date;
+    users?: string[];
+    apps?: string[];
     types?: MavenAGI.FeedbackType[];
 }

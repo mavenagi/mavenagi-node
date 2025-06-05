@@ -12,6 +12,7 @@ import { QualityReason } from "../../commons/types/QualityReason";
 import { ResponseLength } from "../../commons/types/ResponseLength";
 import { Sentiment } from "../../commons/types/Sentiment";
 import { ResolutionStatus } from "./ResolutionStatus";
+import { NumberRange } from "../../commons/types/NumberRange";
 
 export const ConversationFilter: core.serialization.ObjectSchema<
     serializers.ConversationFilter.Raw,
@@ -26,6 +27,7 @@ export const ConversationFilter: core.serialization.ObjectSchema<
     incompleteActions: core.serialization.list(EntityIdFilter).optional(),
     feedback: core.serialization.list(FeedbackType).optional(),
     humanAgents: core.serialization.list(core.serialization.string()).optional(),
+    humanAgentsWithInserts: core.serialization.list(core.serialization.string()).optional(),
     languages: core.serialization.list(core.serialization.string()).optional(),
     quality: core.serialization.list(Quality).optional(),
     qualityReason: core.serialization.list(QualityReason).optional(),
@@ -34,6 +36,7 @@ export const ConversationFilter: core.serialization.ObjectSchema<
     tags: core.serialization.list(core.serialization.string()).optional(),
     resolutionStatus: core.serialization.list(ResolutionStatus).optional(),
     resolvedByMaven: core.serialization.boolean().optional(),
+    userMessageCount: NumberRange.optional(),
 });
 
 export declare namespace ConversationFilter {
@@ -47,6 +50,7 @@ export declare namespace ConversationFilter {
         incompleteActions?: EntityIdFilter.Raw[] | null;
         feedback?: FeedbackType.Raw[] | null;
         humanAgents?: string[] | null;
+        humanAgentsWithInserts?: string[] | null;
         languages?: string[] | null;
         quality?: Quality.Raw[] | null;
         qualityReason?: QualityReason.Raw[] | null;
@@ -55,5 +59,6 @@ export declare namespace ConversationFilter {
         tags?: string[] | null;
         resolutionStatus?: ResolutionStatus.Raw[] | null;
         resolvedByMaven?: boolean | null;
+        userMessageCount?: NumberRange.Raw | null;
     }
 }

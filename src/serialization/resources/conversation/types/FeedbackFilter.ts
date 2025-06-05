@@ -12,6 +12,8 @@ export const FeedbackFilter: core.serialization.ObjectSchema<serializers.Feedbac
         search: core.serialization.string().optional(),
         createdAfter: core.serialization.date().optional(),
         createdBefore: core.serialization.date().optional(),
+        users: core.serialization.list(core.serialization.string()).optional(),
+        apps: core.serialization.list(core.serialization.string()).optional(),
         types: core.serialization.list(FeedbackType).optional(),
     });
 
@@ -20,6 +22,8 @@ export declare namespace FeedbackFilter {
         search?: string | null;
         createdAfter?: string | null;
         createdBefore?: string | null;
+        users?: string[] | null;
+        apps?: string[] | null;
         types?: FeedbackType.Raw[] | null;
     }
 }

@@ -15,7 +15,7 @@ export interface ActionParameter {
     required: boolean;
     /** The parameter type. Values provided to `executeAction` will conform to this type. Defaults to `STRING`. */
     type?: MavenAGI.ActionParameterType;
-    /** Restricts the action parameter to only the options in this list. Valid for type `STRING`, `BOOLEAN`, and `NUMBER`. */
+    /** Restricts the action parameter to only the options in this list. Valid for type `STRING`, `BOOLEAN`, and `NUMBER`. Should not be used when type is `SCHEMA`. */
     enumOptions?: MavenAGI.ActionEnumOption[];
     /** JSON schema for validating the parameter value. Only valid when type is `SCHEMA`. */
     schema?: string;

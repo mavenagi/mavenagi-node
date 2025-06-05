@@ -5,6 +5,7 @@ export * from "./ConversationRequest";
 export * from "./ConversationMessageRequest";
 export * from "./SubmitActionFormRequest";
 export * from "./FeedbackRequest";
+export * from "./GenerateObjectRequest";
 export * from "./StreamResponse";
 export * from "./AskStreamTextEvent";
 export * from "./AskStreamActionEvent";

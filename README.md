@@ -13,7 +13,7 @@ npm i -s mavenagi
 
 ## Reference
 
-A full reference for this library is available [here](./reference.md).
+A full reference for this library is available [here](https://github.com/mavenagi/mavenagi-node/blob/HEAD/./reference.md).
 
 ## Usage
 
