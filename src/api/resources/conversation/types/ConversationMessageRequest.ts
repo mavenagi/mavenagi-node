@@ -7,4 +7,6 @@ import * as MavenAGI from "../../../index";
 export interface ConversationMessageRequest extends MavenAGI.UserMessageBase {
     /** The ID that uniquely identifies this message within the conversation */
     conversationMessageId: MavenAGI.EntityIdBase;
+    /** The attachments to the message. */
+    attachments?: MavenAGI.Attachment[];
 }

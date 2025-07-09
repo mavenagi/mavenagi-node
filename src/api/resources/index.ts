@@ -16,8 +16,6 @@ export * as inbox from "./inbox";
 export * from "./inbox/types";
 export * as knowledge from "./knowledge";
 export * from "./knowledge/types";
-export * as realtime from "./realtime";
-export * from "./realtime/types";
 export * as translations from "./translations";
 export * from "./translations/types";
 export * as triggers from "./triggers";

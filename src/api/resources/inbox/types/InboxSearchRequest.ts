@@ -13,4 +13,8 @@ export interface InboxSearchRequest extends MavenAGI.BaseInboxSearchRequest {
     createdAfter?: Date;
     /** Filter for items created before this timestamp. */
     createdBefore?: Date;
+    /** The field to sort by, defaults to created timestamp. */
+    sortId?: string;
+    /** Whether to sort descending, defaults to true. */
+    sortDesc?: boolean;
 }

@@ -1492,92 +1492,6 @@ await client.conversation.generateMavenSuggestions("conversationId", {
 </dl>
 </details>
 
-<details><summary><code>client.conversation.<a href="/src/api/resources/conversation/client/Client.ts">generateObject</a>(conversationId, { ...params }) -> MavenAGI.BotObjectResponse</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Generate a structured object response based on a provided schema and user prompt.
-
-If the user question and object response already exist, they will be reused and not updated.
-
-Known Limitations:
-
-- Schema enforcement is best-effort and may not guarantee exact conformity.
-- This endpoint does not stream results. Use `askDataStream` (coming soon) for progressive rendering.
-  </dd>
-  </dl>
-  </dd>
-  </dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.conversation.generateObject("conversationId", {
-    conversationMessageId: {
-        referenceId: "referenceId",
-    },
-    userId: {
-        referenceId: "referenceId",
-    },
-    text: "text",
-    schema: "schema",
-});
-```
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**conversationId:** `string` — The ID of a new or existing conversation to use as context for the object generation request
-
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**request:** `MavenAGI.GenerateObjectRequest`
-
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `Conversation.RequestOptions`
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-</dd>
-</dl>
-</details>
-
 <details><summary><code>client.conversation.<a href="/src/api/resources/conversation/client/Client.ts">categorize</a>(conversationId) -> MavenAGI.CategorizationResponse</code></summary>
 <dl>
 <dd>
@@ -2177,6 +2091,7 @@ Retrieve details of a specific inbox item by its ID.
 ```typescript
 await client.inbox.get("inboxItemId", {
     appId: "appId",
+    itemType: "DUPLICATE_DOCUMENT",
 });
 ```
 
@@ -2250,6 +2165,7 @@ Retrieve a suggested fix. Includes document information if the fix is a Missing 
 ```typescript
 await client.inbox.getFix("inboxItemFixId", {
     appId: "appId",
+    fixType: "REMOVE_DOCUMENT",
 });
 ```
 
@@ -2323,6 +2239,7 @@ Apply a fix to an inbox item with a specific document.
 ```typescript
 await client.inbox.applyFix("inboxItemFixId", {
     appId: "appId",
+    fixType: "REMOVE_DOCUMENT",
 });
 ```
 
@@ -2396,6 +2313,7 @@ Ignore a specific inbox item by its ID.
 ```typescript
 await client.inbox.ignore("inboxItemId", {
     appId: "appId",
+    itemType: "DUPLICATE_DOCUMENT",
 });
 ```
 

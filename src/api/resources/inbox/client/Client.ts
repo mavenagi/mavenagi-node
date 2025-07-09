@@ -73,8 +73,8 @@ export class Inbox {
                 "X-Agent-Id": await core.Supplier.get(this._options.agentId),
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "mavenagi",
-                "X-Fern-SDK-Version": "1.0.15",
-                "User-Agent": "mavenagi/1.0.15",
+                "X-Fern-SDK-Version": "1.0.16",
+                "User-Agent": "mavenagi/1.0.16",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...requestOptions?.headers,
@@ -160,7 +160,8 @@ export class Inbox {
      *
      * @example
      *     await client.inbox.get("inboxItemId", {
-     *         appId: "appId"
+     *         appId: "appId",
+     *         itemType: "DUPLICATE_DOCUMENT"
      *     })
      */
     public async get(
@@ -168,9 +169,10 @@ export class Inbox {
         request: MavenAGI.InboxItemRequest,
         requestOptions?: Inbox.RequestOptions,
     ): Promise<MavenAGI.InboxItem> {
-        const { appId } = request;
+        const { appId, itemType } = request;
         const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
         _queryParams["appId"] = appId;
+        _queryParams["itemType"] = serializers.InboxItemType.jsonOrThrow(itemType, { unrecognizedObjectKeys: "strip" });
         const _response = await (this._options.fetcher ?? core.fetcher)({
             url: urlJoin(
                 (await core.Supplier.get(this._options.baseUrl)) ??
@@ -185,8 +187,8 @@ export class Inbox {
                 "X-Agent-Id": await core.Supplier.get(this._options.agentId),
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "mavenagi",
-                "X-Fern-SDK-Version": "1.0.15",
-                "User-Agent": "mavenagi/1.0.15",
+                "X-Fern-SDK-Version": "1.0.16",
+                "User-Agent": "mavenagi/1.0.16",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...requestOptions?.headers,
@@ -272,7 +274,8 @@ export class Inbox {
      *
      * @example
      *     await client.inbox.getFix("inboxItemFixId", {
-     *         appId: "appId"
+     *         appId: "appId",
+     *         fixType: "REMOVE_DOCUMENT"
      *     })
      */
     public async getFix(
@@ -280,9 +283,12 @@ export class Inbox {
         request: MavenAGI.InboxItemFixRequest,
         requestOptions?: Inbox.RequestOptions,
     ): Promise<MavenAGI.InboxItemFix> {
-        const { appId } = request;
+        const { appId, fixType } = request;
         const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
         _queryParams["appId"] = appId;
+        _queryParams["fixType"] = serializers.InboxItemFixType.jsonOrThrow(fixType, {
+            unrecognizedObjectKeys: "strip",
+        });
         const _response = await (this._options.fetcher ?? core.fetcher)({
             url: urlJoin(
                 (await core.Supplier.get(this._options.baseUrl)) ??
@@ -297,8 +303,8 @@ export class Inbox {
                 "X-Agent-Id": await core.Supplier.get(this._options.agentId),
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "mavenagi",
-                "X-Fern-SDK-Version": "1.0.15",
-                "User-Agent": "mavenagi/1.0.15",
+                "X-Fern-SDK-Version": "1.0.16",
+                "User-Agent": "mavenagi/1.0.16",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...requestOptions?.headers,
@@ -386,7 +392,8 @@ export class Inbox {
      *
      * @example
      *     await client.inbox.applyFix("inboxItemFixId", {
-     *         appId: "appId"
+     *         appId: "appId",
+     *         fixType: "REMOVE_DOCUMENT"
      *     })
      */
     public async applyFix(
@@ -408,8 +415,8 @@ export class Inbox {
                 "X-Agent-Id": await core.Supplier.get(this._options.agentId),
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "mavenagi",
-                "X-Fern-SDK-Version": "1.0.15",
-                "User-Agent": "mavenagi/1.0.15",
+                "X-Fern-SDK-Version": "1.0.16",
+                "User-Agent": "mavenagi/1.0.16",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...requestOptions?.headers,
@@ -492,7 +499,8 @@ export class Inbox {
      *
      * @example
      *     await client.inbox.ignore("inboxItemId", {
-     *         appId: "appId"
+     *         appId: "appId",
+     *         itemType: "DUPLICATE_DOCUMENT"
      *     })
      */
     public async ignore(
@@ -500,9 +508,10 @@ export class Inbox {
         request: MavenAGI.InboxItemIgnoreRequest,
         requestOptions?: Inbox.RequestOptions,
     ): Promise<void> {
-        const { appId } = request;
+        const { appId, itemType } = request;
         const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
         _queryParams["appId"] = appId;
+        _queryParams["itemType"] = serializers.InboxItemType.jsonOrThrow(itemType, { unrecognizedObjectKeys: "strip" });
         const _response = await (this._options.fetcher ?? core.fetcher)({
             url: urlJoin(
                 (await core.Supplier.get(this._options.baseUrl)) ??
@@ -517,8 +526,8 @@ export class Inbox {
                 "X-Agent-Id": await core.Supplier.get(this._options.agentId),
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "mavenagi",
-                "X-Fern-SDK-Version": "1.0.15",
-                "User-Agent": "mavenagi/1.0.15",
+                "X-Fern-SDK-Version": "1.0.16",
+                "User-Agent": "mavenagi/1.0.16",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...requestOptions?.headers,

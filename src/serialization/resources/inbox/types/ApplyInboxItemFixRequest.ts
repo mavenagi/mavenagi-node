@@ -5,6 +5,7 @@
 import * as serializers from "../../../index";
 import * as MavenAGI from "../../../../api/index";
 import * as core from "../../../../core";
+import { InboxItemFixType } from "../../commons/types/InboxItemFixType";
 import { AddDocumentFixRequest } from "./AddDocumentFixRequest";
 
 export const ApplyInboxItemFixRequest: core.serialization.ObjectSchema<
@@ -12,12 +13,14 @@ export const ApplyInboxItemFixRequest: core.serialization.ObjectSchema<
     MavenAGI.ApplyInboxItemFixRequest
 > = core.serialization.object({
     appId: core.serialization.string(),
+    fixType: InboxItemFixType,
     addDocumentRequest: AddDocumentFixRequest.optional(),
 });
 
 export declare namespace ApplyInboxItemFixRequest {
     export interface Raw {
         appId: string;
+        fixType: InboxItemFixType.Raw;
         addDocumentRequest?: AddDocumentFixRequest.Raw | null;
     }
 }

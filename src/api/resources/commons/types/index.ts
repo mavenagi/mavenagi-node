@@ -66,6 +66,7 @@ export * from "./KnowledgeBaseInformation";
 export * from "./DocumentInformation";
 export * from "./InboxItemStatus";
 export * from "./InboxItemType";
+export * from "./InboxItemFixType";
 export * from "./InboxItem";
 export * from "./InboxItemBase";
 export * from "./InboxItemKnowledgeBaseAlert";

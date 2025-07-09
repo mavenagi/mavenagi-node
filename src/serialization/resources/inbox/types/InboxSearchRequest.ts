@@ -18,6 +18,8 @@ export const InboxSearchRequest: core.serialization.ObjectSchema<
         type: core.serialization.list(InboxItemType).optional(),
         createdAfter: core.serialization.date().optional(),
         createdBefore: core.serialization.date().optional(),
+        sortId: core.serialization.string().optional(),
+        sortDesc: core.serialization.boolean().optional(),
     })
     .extend(BaseInboxSearchRequest);
 
@@ -27,5 +29,7 @@ export declare namespace InboxSearchRequest {
         type?: InboxItemType.Raw[] | null;
         createdAfter?: string | null;
         createdBefore?: string | null;
+        sortId?: string | null;
+        sortDesc?: boolean | null;
     }
 }

@@ -6,6 +6,8 @@ import * as MavenAGI from "../../../index";
 
 export interface ApplyInboxItemFixRequest {
     appId: string;
+    /** The type of the inbox item fix to retrieve */
+    fixType: MavenAGI.InboxItemFixType;
     /** Content for Add Document fixes */
     addDocumentRequest?: MavenAGI.AddDocumentFixRequest;
 }
