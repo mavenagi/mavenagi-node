@@ -48,7 +48,8 @@ import * as MavenAGI from "../../../index";
  *                 },
  *                 text: "How do I reset my password?",
  *                 attachments: [{
- *                         url: "https://example.com/attachment-0"
+ *                         url: "https://example.com/attachment-0",
+ *                         type: "image/png"
  *                     }]
  *             }, {
  *                 type: "bot",

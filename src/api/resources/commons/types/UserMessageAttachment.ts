@@ -3,6 +3,22 @@
  */
 
 export interface UserMessageAttachment {
+    /**
+     * The mime-type of the attachment. Supported types are:
+     * - image/jpeg
+     * - image/jpg
+     * - image/png
+     * - image/gif
+     * - image/webp
+     * - application/pdf
+     * - audio/aac
+     * - audio/mpeg
+     * - audio/mp4
+     * - video/mp4
+     */
+    type: string;
     /** The URL to access the attachment, The URL will be valid for 20 minutes. */
     url: string;
+    /** An optional name for the attachment. */
+    name?: string;
 }

@@ -10,11 +10,15 @@ export const UserMessageAttachment: core.serialization.ObjectSchema<
     serializers.UserMessageAttachment.Raw,
     MavenAGI.UserMessageAttachment
 > = core.serialization.object({
+    type: core.serialization.string(),
     url: core.serialization.string(),
+    name: core.serialization.string().optional(),
 });
 
 export declare namespace UserMessageAttachment {
     export interface Raw {
+        type: string;
         url: string;
+        name?: string | null;
     }
 }

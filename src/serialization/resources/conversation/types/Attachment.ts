@@ -10,11 +10,13 @@ export const Attachment: core.serialization.ObjectSchema<serializers.Attachment.
     core.serialization.object({
         type: core.serialization.string(),
         content: core.serialization.string(),
+        name: core.serialization.string().optional(),
     });
 
 export declare namespace Attachment {
     export interface Raw {
         type: string;
         content: string;
+        name?: string | null;
     }
 }

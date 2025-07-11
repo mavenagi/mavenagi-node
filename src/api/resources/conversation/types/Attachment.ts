@@ -3,8 +3,25 @@
  */
 
 export interface Attachment {
-    /** The mime-type of the attachment. Supported types are {image/jpeg, image/jpg, image/png, image/gif, image/webp}. */
+    /**
+     * The mime-type of the attachment. Supported types are:
+     * - image/jpeg
+     * - image/jpg
+     * - image/png
+     * - image/gif
+     * - image/webp
+     * - application/pdf
+     * - audio/aac
+     * - audio/mpeg
+     * - audio/mp4
+     * - video/mp4
+     *
+     * Image attachments will be sent to the LLM as additional data.
+     * Non-image attachments can be stored and downloaded from the API but will not be sent to the LLM.
+     */
     type: string;
     /** The attachment data, up to 5MB. */
     content: string;
+    /** The name of the attachment, if one was provided. */
+    name?: string;
 }
