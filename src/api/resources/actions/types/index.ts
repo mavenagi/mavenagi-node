@@ -1,1 +1,1 @@
-export * from "./ActionRequest";
+export * from "./ActionRequest.js";

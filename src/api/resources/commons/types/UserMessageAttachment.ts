@@ -19,6 +19,4 @@ export interface UserMessageAttachment {
     type: string;
     /** The URL to access the attachment, The URL will be valid for 20 minutes. */
     url: string;
-    /** An optional name for the attachment. */
-    name?: string;
 }

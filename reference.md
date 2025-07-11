@@ -910,24 +910,24 @@ await client.conversation.initialize({
     },
     messages: [
         {
+            conversationMessageId: {
+                referenceId: "referenceId",
+            },
             userId: {
                 referenceId: "referenceId",
             },
             text: "text",
             userMessageType: "USER",
-            conversationMessageId: {
-                referenceId: "referenceId",
-            },
         },
         {
+            conversationMessageId: {
+                referenceId: "referenceId",
+            },
             userId: {
                 referenceId: "referenceId",
             },
             text: "text",
             userMessageType: "USER",
-            conversationMessageId: {
-                referenceId: "referenceId",
-            },
         },
     ],
 });
@@ -1145,24 +1145,24 @@ Append messages to an existing conversation. The conversation must be initialize
 ```typescript
 await client.conversation.appendNewMessages("conversationId", [
     {
+        conversationMessageId: {
+            referenceId: "referenceId",
+        },
         userId: {
             referenceId: "referenceId",
         },
         text: "text",
         userMessageType: "USER",
-        conversationMessageId: {
-            referenceId: "referenceId",
-        },
     },
     {
+        conversationMessageId: {
+            referenceId: "referenceId",
+        },
         userId: {
             referenceId: "referenceId",
         },
         text: "text",
         userMessageType: "USER",
-        conversationMessageId: {
-            referenceId: "referenceId",
-        },
     },
 ]);
 ```
@@ -3498,12 +3498,12 @@ await client.users.createOrUpdate({
     userId: {
         referenceId: "user-0",
     },
-    identifiers: new Set([
+    identifiers: [
         {
             value: "joe@myapp.com",
             type: "EMAIL",
         },
-    ]),
+    ],
     data: {
         name: {
             value: "Joe",

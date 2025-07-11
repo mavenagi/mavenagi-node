@@ -1,2 +1,2 @@
-export * from "./SearchAppSettingsResponse";
-export * from "./AppSettings";
+export * from "./SearchAppSettingsResponse.js";
+export * from "./AppSettings.js";

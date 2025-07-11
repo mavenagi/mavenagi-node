@@ -1,2 +1,2 @@
-export * from "./TranslationRequest";
-export * from "./TranslationResponse";
+export * from "./TranslationRequest.js";
+export * from "./TranslationResponse.js";
