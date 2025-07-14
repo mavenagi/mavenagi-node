@@ -4,7 +4,7 @@
 
 export interface ConversationMessageBase {
     /** The date and time the conversation was created */
-    createdAt?: string;
+    createdAt?: Date;
     /** The date and time the conversation was last updated */
-    updatedAt?: string;
+    updatedAt?: Date;
 }

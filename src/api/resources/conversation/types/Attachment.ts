@@ -22,4 +22,6 @@ export interface Attachment {
     type: string;
     /** The attachment data, up to 5MB. */
     content: string;
+    /** The name of the attachment, if one was provided. */
+    name?: string;
 }

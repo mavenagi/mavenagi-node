@@ -4,7 +4,7 @@
 
 export interface SessionInfo {
     id: string;
-    start?: string;
-    end?: string;
+    start?: Date;
+    end?: Date;
     duration?: number;
 }

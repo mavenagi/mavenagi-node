@@ -1,1 +1,1 @@
-export { type PartialUpdateRequest } from "./PartialUpdateRequest.js";
+export { type PartialUpdateRequest } from "./PartialUpdateRequest";

@@ -1,1 +1,1 @@
-export { type SearchAppSettingsRequest } from "./SearchAppSettingsRequest.js";
+export { type SearchAppSettingsRequest } from "./SearchAppSettingsRequest";
