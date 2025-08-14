@@ -9,7 +9,8 @@ import { EntityId } from "./EntityId";
 import { BotConversationMessageType } from "./BotConversationMessageType";
 import { BotResponse } from "./BotResponse";
 import { BotResponseMetadata } from "./BotResponseMetadata";
-import { BotMessageStatus } from "./BotMessageStatus";
+import { MessageStatus } from "./MessageStatus";
+import { BotLogic } from "./BotLogic";
 import { ConversationMessageBase } from "./ConversationMessageBase";
 
 export const BotMessage: core.serialization.ObjectSchema<serializers.BotMessage.Raw, MavenAGI.BotMessage> =
@@ -19,7 +20,8 @@ export const BotMessage: core.serialization.ObjectSchema<serializers.BotMessage.
             botMessageType: BotConversationMessageType,
             responses: core.serialization.list(BotResponse),
             metadata: BotResponseMetadata,
-            status: BotMessageStatus,
+            status: MessageStatus,
+            logic: BotLogic.optional(),
         })
         .extend(ConversationMessageBase);
 
@@ -29,6 +31,7 @@ export declare namespace BotMessage {
         botMessageType: BotConversationMessageType.Raw;
         responses: BotResponse.Raw[];
         metadata: BotResponseMetadata.Raw;
-        status: BotMessageStatus.Raw;
+        status: MessageStatus.Raw;
+        logic?: BotLogic.Raw | null;
     }
 }

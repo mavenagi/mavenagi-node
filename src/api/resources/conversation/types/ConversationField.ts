@@ -12,6 +12,7 @@ export type ConversationField =
     | "Sentiment"
     | "QualityReason"
     | "ResolutionStatus"
+    | "ResolvedByMaven"
     | "Quality"
     | "Users"
     | "ResponseLength"
@@ -24,7 +25,10 @@ export type ConversationField =
     | "Actions"
     | "IncompleteActions"
     | "Sources"
-    | "CreatedAt";
+    | "CreatedAt"
+    | "PredictedNPS"
+    | "OrganizationId"
+    | "AgentId";
 export const ConversationField = {
     Category: "Category",
     FirstResponseTime: "FirstResponseTime",
@@ -35,6 +39,7 @@ export const ConversationField = {
     Sentiment: "Sentiment",
     QualityReason: "QualityReason",
     ResolutionStatus: "ResolutionStatus",
+    ResolvedByMaven: "ResolvedByMaven",
     Quality: "Quality",
     Users: "Users",
     ResponseLength: "ResponseLength",
@@ -48,4 +53,7 @@ export const ConversationField = {
     IncompleteActions: "IncompleteActions",
     Sources: "Sources",
     CreatedAt: "CreatedAt",
+    PredictedNps: "PredictedNPS",
+    OrganizationId: "OrganizationId",
+    AgentId: "AgentId",
 } as const;

@@ -49,6 +49,124 @@ export class Knowledge {
     }
 
     /**
+     * Search knowledge bases
+     *
+     * @param {MavenAGI.KnowledgeBaseSearchRequest} request
+     * @param {Knowledge.RequestOptions} requestOptions - Request-specific configuration.
+     *
+     * @throws {@link MavenAGI.NotFoundError}
+     * @throws {@link MavenAGI.BadRequestError}
+     * @throws {@link MavenAGI.ServerError}
+     *
+     * @example
+     *     await client.knowledge.searchKnowledgeBases({})
+     */
+    public searchKnowledgeBases(
+        request: MavenAGI.KnowledgeBaseSearchRequest,
+        requestOptions?: Knowledge.RequestOptions,
+    ): core.HttpResponsePromise<MavenAGI.KnowledgeBasesResponse> {
+        return core.HttpResponsePromise.fromPromise(this.__searchKnowledgeBases(request, requestOptions));
+    }
+
+    private async __searchKnowledgeBases(
+        request: MavenAGI.KnowledgeBaseSearchRequest,
+        requestOptions?: Knowledge.RequestOptions,
+    ): Promise<core.WithRawResponse<MavenAGI.KnowledgeBasesResponse>> {
+        const _response = await (this._options.fetcher ?? core.fetcher)({
+            url: core.url.join(
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)) ??
+                    environments.MavenAGIEnvironment.Production,
+                "/v1/knowledge/search",
+            ),
+            method: "POST",
+            headers: mergeHeaders(
+                this._options?.headers,
+                mergeOnlyDefinedHeaders({
+                    Authorization: await this._getAuthorizationHeader(),
+                    "X-Organization-Id": requestOptions?.organizationId,
+                    "X-Agent-Id": requestOptions?.agentId,
+                }),
+                requestOptions?.headers,
+            ),
+            contentType: "application/json",
+            requestType: "json",
+            body: serializers.KnowledgeBaseSearchRequest.jsonOrThrow(request, { unrecognizedObjectKeys: "strip" }),
+            timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
+            maxRetries: requestOptions?.maxRetries,
+            abortSignal: requestOptions?.abortSignal,
+        });
+        if (_response.ok) {
+            return {
+                data: serializers.KnowledgeBasesResponse.parseOrThrow(_response.body, {
+                    unrecognizedObjectKeys: "passthrough",
+                    allowUnrecognizedUnionMembers: true,
+                    allowUnrecognizedEnumValues: true,
+                    breadcrumbsPrefix: ["response"],
+                }),
+                rawResponse: _response.rawResponse,
+            };
+        }
+
+        if (_response.error.reason === "status-code") {
+            switch (_response.error.statusCode) {
+                case 404:
+                    throw new MavenAGI.NotFoundError(
+                        serializers.ErrorMessage.parseOrThrow(_response.error.body, {
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
+                            breadcrumbsPrefix: ["response"],
+                        }),
+                        _response.rawResponse,
+                    );
+                case 400:
+                    throw new MavenAGI.BadRequestError(
+                        serializers.ErrorMessage.parseOrThrow(_response.error.body, {
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
+                            breadcrumbsPrefix: ["response"],
+                        }),
+                        _response.rawResponse,
+                    );
+                case 500:
+                    throw new MavenAGI.ServerError(
+                        serializers.ErrorMessage.parseOrThrow(_response.error.body, {
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
+                            breadcrumbsPrefix: ["response"],
+                        }),
+                        _response.rawResponse,
+                    );
+                default:
+                    throw new errors.MavenAGIError({
+                        statusCode: _response.error.statusCode,
+                        body: _response.error.body,
+                        rawResponse: _response.rawResponse,
+                    });
+            }
+        }
+
+        switch (_response.error.reason) {
+            case "non-json":
+                throw new errors.MavenAGIError({
+                    statusCode: _response.error.statusCode,
+                    body: _response.error.rawBody,
+                    rawResponse: _response.rawResponse,
+                });
+            case "timeout":
+                throw new errors.MavenAGITimeoutError("Timeout exceeded when calling POST /v1/knowledge/search.");
+            case "unknown":
+                throw new errors.MavenAGIError({
+                    message: _response.error.errorMessage,
+                    rawResponse: _response.rawResponse,
+                });
+        }
+    }
+
+    /**
      * Update a knowledge base or create it if it doesn't exist.
      *
      * @param {MavenAGI.KnowledgeBaseRequest} request
@@ -175,6 +293,7 @@ export class Knowledge {
      * Get an existing knowledge base by its supplied ID
      *
      * @param {string} knowledgeBaseReferenceId - The reference ID of the knowledge base to get. All other entity ID fields are inferred from the request.
+     * @param {MavenAGI.KnowledgeBaseGetRequest} request
      * @param {Knowledge.RequestOptions} requestOptions - Request-specific configuration.
      *
      * @throws {@link MavenAGI.NotFoundError}
@@ -186,15 +305,25 @@ export class Knowledge {
      */
     public getKnowledgeBase(
         knowledgeBaseReferenceId: string,
+        request: MavenAGI.KnowledgeBaseGetRequest = {},
         requestOptions?: Knowledge.RequestOptions,
     ): core.HttpResponsePromise<MavenAGI.KnowledgeBaseResponse> {
-        return core.HttpResponsePromise.fromPromise(this.__getKnowledgeBase(knowledgeBaseReferenceId, requestOptions));
+        return core.HttpResponsePromise.fromPromise(
+            this.__getKnowledgeBase(knowledgeBaseReferenceId, request, requestOptions),
+        );
     }
 
     private async __getKnowledgeBase(
         knowledgeBaseReferenceId: string,
+        request: MavenAGI.KnowledgeBaseGetRequest = {},
         requestOptions?: Knowledge.RequestOptions,
     ): Promise<core.WithRawResponse<MavenAGI.KnowledgeBaseResponse>> {
+        const { appId } = request;
+        const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
+        if (appId != null) {
+            _queryParams["appId"] = appId;
+        }
+
         const _response = await (this._options.fetcher ?? core.fetcher)({
             url: core.url.join(
                 (await core.Supplier.get(this._options.baseUrl)) ??
@@ -212,6 +341,7 @@ export class Knowledge {
                 }),
                 requestOptions?.headers,
             ),
+            queryParameters: _queryParams,
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
             maxRetries: requestOptions?.maxRetries,
             abortSignal: requestOptions?.abortSignal,
@@ -279,6 +409,134 @@ export class Knowledge {
             case "timeout":
                 throw new errors.MavenAGITimeoutError(
                     "Timeout exceeded when calling GET /v1/knowledge/{knowledgeBaseReferenceId}.",
+                );
+            case "unknown":
+                throw new errors.MavenAGIError({
+                    message: _response.error.errorMessage,
+                    rawResponse: _response.rawResponse,
+                });
+        }
+    }
+
+    /**
+     * Update mutable knowledge base fields
+     *
+     * The `appId` field can be provided to update a knowledge base owned by a different app.
+     * All other fields will overwrite the existing value on the knowledge base only if provided.
+     *
+     * @param {string} knowledgeBaseReferenceId - The reference ID of the knowledge base to patch.
+     * @param {MavenAGI.KnowledgeBasePatchRequest} request
+     * @param {Knowledge.RequestOptions} requestOptions - Request-specific configuration.
+     *
+     * @throws {@link MavenAGI.NotFoundError}
+     * @throws {@link MavenAGI.BadRequestError}
+     * @throws {@link MavenAGI.ServerError}
+     *
+     * @example
+     *     await client.knowledge.patchKnowledgeBase("knowledgeBaseReferenceId", {})
+     */
+    public patchKnowledgeBase(
+        knowledgeBaseReferenceId: string,
+        request: MavenAGI.KnowledgeBasePatchRequest,
+        requestOptions?: Knowledge.RequestOptions,
+    ): core.HttpResponsePromise<MavenAGI.KnowledgeBaseResponse> {
+        return core.HttpResponsePromise.fromPromise(
+            this.__patchKnowledgeBase(knowledgeBaseReferenceId, request, requestOptions),
+        );
+    }
+
+    private async __patchKnowledgeBase(
+        knowledgeBaseReferenceId: string,
+        request: MavenAGI.KnowledgeBasePatchRequest,
+        requestOptions?: Knowledge.RequestOptions,
+    ): Promise<core.WithRawResponse<MavenAGI.KnowledgeBaseResponse>> {
+        const _response = await (this._options.fetcher ?? core.fetcher)({
+            url: core.url.join(
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)) ??
+                    environments.MavenAGIEnvironment.Production,
+                `/v1/knowledge/${encodeURIComponent(knowledgeBaseReferenceId)}`,
+            ),
+            method: "PATCH",
+            headers: mergeHeaders(
+                this._options?.headers,
+                mergeOnlyDefinedHeaders({
+                    Authorization: await this._getAuthorizationHeader(),
+                    "X-Organization-Id": requestOptions?.organizationId,
+                    "X-Agent-Id": requestOptions?.agentId,
+                }),
+                requestOptions?.headers,
+            ),
+            contentType: "application/json",
+            requestType: "json",
+            body: serializers.KnowledgeBasePatchRequest.jsonOrThrow(request, { unrecognizedObjectKeys: "strip" }),
+            timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
+            maxRetries: requestOptions?.maxRetries,
+            abortSignal: requestOptions?.abortSignal,
+        });
+        if (_response.ok) {
+            return {
+                data: serializers.KnowledgeBaseResponse.parseOrThrow(_response.body, {
+                    unrecognizedObjectKeys: "passthrough",
+                    allowUnrecognizedUnionMembers: true,
+                    allowUnrecognizedEnumValues: true,
+                    breadcrumbsPrefix: ["response"],
+                }),
+                rawResponse: _response.rawResponse,
+            };
+        }
+
+        if (_response.error.reason === "status-code") {
+            switch (_response.error.statusCode) {
+                case 404:
+                    throw new MavenAGI.NotFoundError(
+                        serializers.ErrorMessage.parseOrThrow(_response.error.body, {
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
+                            breadcrumbsPrefix: ["response"],
+                        }),
+                        _response.rawResponse,
+                    );
+                case 400:
+                    throw new MavenAGI.BadRequestError(
+                        serializers.ErrorMessage.parseOrThrow(_response.error.body, {
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
+                            breadcrumbsPrefix: ["response"],
+                        }),
+                        _response.rawResponse,
+                    );
+                case 500:
+                    throw new MavenAGI.ServerError(
+                        serializers.ErrorMessage.parseOrThrow(_response.error.body, {
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
+                            breadcrumbsPrefix: ["response"],
+                        }),
+                        _response.rawResponse,
+                    );
+                default:
+                    throw new errors.MavenAGIError({
+                        statusCode: _response.error.statusCode,
+                        body: _response.error.body,
+                        rawResponse: _response.rawResponse,
+                    });
+            }
+        }
+
+        switch (_response.error.reason) {
+            case "non-json":
+                throw new errors.MavenAGIError({
+                    statusCode: _response.error.statusCode,
+                    body: _response.error.rawBody,
+                    rawResponse: _response.rawResponse,
+                });
+            case "timeout":
+                throw new errors.MavenAGITimeoutError(
+                    "Timeout exceeded when calling PATCH /v1/knowledge/{knowledgeBaseReferenceId}.",
                 );
             case "unknown":
                 throw new errors.MavenAGIError({
@@ -550,6 +808,126 @@ export class Knowledge {
             case "timeout":
                 throw new errors.MavenAGITimeoutError(
                     "Timeout exceeded when calling POST /v1/knowledge/{knowledgeBaseReferenceId}/version/finalize.",
+                );
+            case "unknown":
+                throw new errors.MavenAGIError({
+                    message: _response.error.errorMessage,
+                    rawResponse: _response.rawResponse,
+                });
+        }
+    }
+
+    /**
+     * Search knowledge documents
+     *
+     * @param {MavenAGI.KnowledgeDocumentSearchRequest} request
+     * @param {Knowledge.RequestOptions} requestOptions - Request-specific configuration.
+     *
+     * @throws {@link MavenAGI.NotFoundError}
+     * @throws {@link MavenAGI.BadRequestError}
+     * @throws {@link MavenAGI.ServerError}
+     *
+     * @example
+     *     await client.knowledge.searchKnowledgeDocuments({})
+     */
+    public searchKnowledgeDocuments(
+        request: MavenAGI.KnowledgeDocumentSearchRequest,
+        requestOptions?: Knowledge.RequestOptions,
+    ): core.HttpResponsePromise<MavenAGI.KnowledgeDocumentsResponse> {
+        return core.HttpResponsePromise.fromPromise(this.__searchKnowledgeDocuments(request, requestOptions));
+    }
+
+    private async __searchKnowledgeDocuments(
+        request: MavenAGI.KnowledgeDocumentSearchRequest,
+        requestOptions?: Knowledge.RequestOptions,
+    ): Promise<core.WithRawResponse<MavenAGI.KnowledgeDocumentsResponse>> {
+        const _response = await (this._options.fetcher ?? core.fetcher)({
+            url: core.url.join(
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)) ??
+                    environments.MavenAGIEnvironment.Production,
+                "/v1/knowledge/documents/search",
+            ),
+            method: "POST",
+            headers: mergeHeaders(
+                this._options?.headers,
+                mergeOnlyDefinedHeaders({
+                    Authorization: await this._getAuthorizationHeader(),
+                    "X-Organization-Id": requestOptions?.organizationId,
+                    "X-Agent-Id": requestOptions?.agentId,
+                }),
+                requestOptions?.headers,
+            ),
+            contentType: "application/json",
+            requestType: "json",
+            body: serializers.KnowledgeDocumentSearchRequest.jsonOrThrow(request, { unrecognizedObjectKeys: "strip" }),
+            timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
+            maxRetries: requestOptions?.maxRetries,
+            abortSignal: requestOptions?.abortSignal,
+        });
+        if (_response.ok) {
+            return {
+                data: serializers.KnowledgeDocumentsResponse.parseOrThrow(_response.body, {
+                    unrecognizedObjectKeys: "passthrough",
+                    allowUnrecognizedUnionMembers: true,
+                    allowUnrecognizedEnumValues: true,
+                    breadcrumbsPrefix: ["response"],
+                }),
+                rawResponse: _response.rawResponse,
+            };
+        }
+
+        if (_response.error.reason === "status-code") {
+            switch (_response.error.statusCode) {
+                case 404:
+                    throw new MavenAGI.NotFoundError(
+                        serializers.ErrorMessage.parseOrThrow(_response.error.body, {
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
+                            breadcrumbsPrefix: ["response"],
+                        }),
+                        _response.rawResponse,
+                    );
+                case 400:
+                    throw new MavenAGI.BadRequestError(
+                        serializers.ErrorMessage.parseOrThrow(_response.error.body, {
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
+                            breadcrumbsPrefix: ["response"],
+                        }),
+                        _response.rawResponse,
+                    );
+                case 500:
+                    throw new MavenAGI.ServerError(
+                        serializers.ErrorMessage.parseOrThrow(_response.error.body, {
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
+                            breadcrumbsPrefix: ["response"],
+                        }),
+                        _response.rawResponse,
+                    );
+                default:
+                    throw new errors.MavenAGIError({
+                        statusCode: _response.error.statusCode,
+                        body: _response.error.body,
+                        rawResponse: _response.rawResponse,
+                    });
+            }
+        }
+
+        switch (_response.error.reason) {
+            case "non-json":
+                throw new errors.MavenAGIError({
+                    statusCode: _response.error.statusCode,
+                    body: _response.error.rawBody,
+                    rawResponse: _response.rawResponse,
+                });
+            case "timeout":
+                throw new errors.MavenAGITimeoutError(
+                    "Timeout exceeded when calling POST /v1/knowledge/documents/search.",
                 );
             case "unknown":
                 throw new errors.MavenAGIError({

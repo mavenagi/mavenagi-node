@@ -10,7 +10,27 @@ export interface UserMessage extends MavenAGI.UserMessageBase {
     /** The language of the message in ISO 639-1 code format */
     language?: string;
     /** The attachments associated with the message */
-    attachments: MavenAGI.UserMessageAttachment[];
+    attachments: MavenAGI.AttachmentResponse[];
+    /** The ID of the agent user that created this message. More detail can be fetched via the agent user APIs. Will be empty only for legacy conversations. */
+    agentUserId?: string;
     /** The display name of the user who created this message. Only available for users who have saved name information. */
     userDisplayName?: string;
+    /**
+     * The delivery status of the message. Only applicable to messages sent via the deliverMessage API.
+     * All other messages have an `UNKNOWN` status.
+     *
+     * * `SENT`: The message has been sent to the user.
+     * * `FAILED`: The message sending encountered an error.
+     * * `UNKNOWN`: The message status is unknown.
+     */
+    status: MavenAGI.MessageStatus;
+    /**
+     * Only present on newer messaged where `userMessageType` is `USER`.
+     * Indicates the state of the answer to the user message.
+     *
+     * - `NOT_ASKED`: An answer was not requested for this user message.
+     * - `LLM_ENABLED`: An answer was requested for this user message and the LLM was enabled.
+     * - `LLM_DISABLED`: An answer was requested for this user message and the LLM was disabled.
+     */
+    responseState?: MavenAGI.UserMessageResponseState;
 }

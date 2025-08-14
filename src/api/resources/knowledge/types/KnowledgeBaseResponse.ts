@@ -18,7 +18,9 @@ import * as MavenAGI from "../../../index";
  *         type: MavenAGI.KnowledgeBaseType.Api,
  *         metadata: {
  *             "key": "value"
- *         }
+ *         },
+ *         tags: new Set(["tag1", "tag2"]),
+ *         refreshFrequency: MavenAGI.KnowledgeBaseRefreshFrequency.Daily
  *     }
  */
 export interface KnowledgeBaseResponse extends MavenAGI.KnowledgeBaseProperties {
@@ -28,4 +30,16 @@ export interface KnowledgeBaseResponse extends MavenAGI.KnowledgeBaseProperties 
     type: MavenAGI.KnowledgeBaseType;
     /** Metadata for the knowledge base. */
     metadata: Record<string, string>;
+    /** The tags of the knowledge base. */
+    tags: Set<string>;
+    /** Determines whether documents in the knowledge base are sent to the LLM as part of a conversation. */
+    llmInclusionStatus?: MavenAGI.LlmInclusionStatus;
+    /** How often the knowledge base should be refreshed. */
+    refreshFrequency: MavenAGI.KnowledgeBaseRefreshFrequency;
+    /**
+     * The IDs of the segment that must be matched for the knowledge base to be relevant to a conversation.
+     * Segments are replacing inline preconditions - a Knowledge Base may not have both an inline precondition and a segment.
+     * Inline precondition support will be removed in a future release.
+     */
+    segmentId?: MavenAGI.EntityId;
 }

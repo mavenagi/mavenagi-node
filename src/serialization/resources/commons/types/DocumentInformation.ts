@@ -11,6 +11,7 @@ export const DocumentInformation: core.serialization.ObjectSchema<
     serializers.DocumentInformation.Raw,
     MavenAGI.DocumentInformation
 > = core.serialization.object({
+    knowledgeBaseId: EntityIdWithoutAgent,
     documentId: EntityIdWithoutAgent,
     title: core.serialization.string().optional(),
     snippet: core.serialization.string().optional(),
@@ -18,6 +19,7 @@ export const DocumentInformation: core.serialization.ObjectSchema<
 
 export declare namespace DocumentInformation {
     export interface Raw {
+        knowledgeBaseId: EntityIdWithoutAgent.Raw;
         documentId: EntityIdWithoutAgent.Raw;
         title?: string | null;
         snippet?: string | null;

@@ -6,7 +6,7 @@ import * as serializers from "../../../index";
 import * as MavenAGI from "../../../../api/index";
 import * as core from "../../../../core";
 import { EntityIdBase } from "../../commons/types/EntityIdBase";
-import { Attachment } from "./Attachment";
+import { AttachmentRequest } from "../../commons/types/AttachmentRequest";
 import { UserMessageBase } from "../../commons/types/UserMessageBase";
 
 export const ConversationMessageRequest: core.serialization.ObjectSchema<
@@ -15,13 +15,13 @@ export const ConversationMessageRequest: core.serialization.ObjectSchema<
 > = core.serialization
     .object({
         conversationMessageId: EntityIdBase,
-        attachments: core.serialization.list(Attachment).optional(),
+        attachments: core.serialization.list(AttachmentRequest).optional(),
     })
     .extend(UserMessageBase);
 
 export declare namespace ConversationMessageRequest {
     export interface Raw extends UserMessageBase.Raw {
         conversationMessageId: EntityIdBase.Raw;
-        attachments?: Attachment.Raw[] | null;
+        attachments?: AttachmentRequest.Raw[] | null;
     }
 }

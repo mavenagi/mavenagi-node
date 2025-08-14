@@ -5,31 +5,20 @@
 import * as serializers from "../../../index";
 import * as MavenAGI from "../../../../api/index";
 import * as core from "../../../../core";
-import { InboxItemStatus } from "../../commons/types/InboxItemStatus";
-import { InboxItemType } from "../../commons/types/InboxItemType";
-import { BaseInboxSearchRequest } from "./BaseInboxSearchRequest";
+import { InboxFilter } from "./InboxFilter";
+import { BasePaginatedRequest } from "../../commons/types/BasePaginatedRequest";
 
 export const InboxSearchRequest: core.serialization.ObjectSchema<
     serializers.InboxSearchRequest.Raw,
     MavenAGI.InboxSearchRequest
 > = core.serialization
     .object({
-        statuses: core.serialization.list(InboxItemStatus).optional(),
-        type: core.serialization.list(InboxItemType).optional(),
-        createdAfter: core.serialization.date().optional(),
-        createdBefore: core.serialization.date().optional(),
-        sortId: core.serialization.string().optional(),
-        sortDesc: core.serialization.boolean().optional(),
+        filter: InboxFilter.optional(),
     })
-    .extend(BaseInboxSearchRequest);
+    .extend(BasePaginatedRequest);
 
 export declare namespace InboxSearchRequest {
-    export interface Raw extends BaseInboxSearchRequest.Raw {
-        statuses?: InboxItemStatus.Raw[] | null;
-        type?: InboxItemType.Raw[] | null;
-        createdAfter?: string | null;
-        createdBefore?: string | null;
-        sortId?: string | null;
-        sortDesc?: boolean | null;
+    export interface Raw extends BasePaginatedRequest.Raw {
+        filter?: InboxFilter.Raw | null;
     }
 }

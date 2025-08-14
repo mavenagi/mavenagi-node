@@ -7,17 +7,8 @@ import * as MavenAGI from "../../../../api/index";
 import * as core from "../../../../core";
 
 export const InboxItemType: core.serialization.Schema<serializers.InboxItemType.Raw, MavenAGI.InboxItemType> =
-    core.serialization.enum_([
-        "DUPLICATE_DOCUMENT",
-        "DUPLICATE_KNOWLEDGE_BASE",
-        "MISSING_KNOWLEDGE",
-        "LOW_QUALITY_KNOWLEDGE_BASE",
-    ]);
+    core.serialization.enum_(["DUPLICATE_DOCUMENT", "MISSING_KNOWLEDGE"]);
 
 export declare namespace InboxItemType {
-    export type Raw =
-        | "DUPLICATE_DOCUMENT"
-        | "DUPLICATE_KNOWLEDGE_BASE"
-        | "MISSING_KNOWLEDGE"
-        | "LOW_QUALITY_KNOWLEDGE_BASE";
+    export type Raw = "DUPLICATE_DOCUMENT" | "MISSING_KNOWLEDGE";
 }

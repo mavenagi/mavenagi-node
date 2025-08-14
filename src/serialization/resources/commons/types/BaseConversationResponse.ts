@@ -29,6 +29,8 @@ export const BaseConversationResponse: core.serialization.ObjectSchema<
     analysis: ConversationAnalysis,
     summary: ConversationSummary,
     deleted: core.serialization.boolean(),
+    open: core.serialization.boolean(),
+    llmEnabled: core.serialization.boolean(),
 });
 
 export declare namespace BaseConversationResponse {
@@ -45,5 +47,7 @@ export declare namespace BaseConversationResponse {
         analysis: ConversationAnalysis.Raw;
         summary: ConversationSummary.Raw;
         deleted: boolean;
+        open: boolean;
+        llmEnabled: boolean;
     }
 }

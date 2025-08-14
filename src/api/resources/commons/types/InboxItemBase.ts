@@ -13,4 +13,6 @@ export interface InboxItemBase {
     updatedAt: Date;
     /** Status of the inbox item. */
     status: MavenAGI.InboxItemStatus;
+    /** Severity of the inbox item. */
+    severity: MavenAGI.InboxItemSeverity;
 }

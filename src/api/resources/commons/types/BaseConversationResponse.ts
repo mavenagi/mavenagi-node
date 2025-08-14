@@ -29,4 +29,15 @@ export interface BaseConversationResponse {
     summary: MavenAGI.ConversationSummary;
     /** Whether the conversation user-specific data has been deleted. See `deleteConversation` for details. */
     deleted: boolean;
+    /**
+     * Whether the conversation is able to receive asynchronous messages.
+     * Only applicable if a conversation is initialized with the `ASYNC` capability. Defaults to true. Can be closed using the `PATCH` API.
+     */
+    open: boolean;
+    /**
+     * Whether the LLM is enabled for this conversation.
+     * If true, `USER` messages sent via the ask API will be sent to the LLM and a `BOT_RESPONSE` or `BOT_SUGGESTION` message will be generated.
+     * If false, `USER` messages will not be sent to the LLM.
+     */
+    llmEnabled: boolean;
 }

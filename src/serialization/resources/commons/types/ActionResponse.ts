@@ -6,17 +6,28 @@ import * as serializers from "../../../index";
 import * as MavenAGI from "../../../../api/index";
 import * as core from "../../../../core";
 import { EntityId } from "./EntityId";
+import { LlmInclusionStatus } from "./LlmInclusionStatus";
 import { ActionBase } from "./ActionBase";
 
 export const ActionResponse: core.serialization.ObjectSchema<serializers.ActionResponse.Raw, MavenAGI.ActionResponse> =
     core.serialization
         .object({
             actionId: EntityId,
+            instructions: core.serialization.string().optional(),
+            llmInclusionStatus: LlmInclusionStatus,
+            segmentId: EntityId.optional(),
+            preconditionExplanation: core.serialization.string().optional(),
+            deleted: core.serialization.boolean(),
         })
         .extend(ActionBase);
 
 export declare namespace ActionResponse {
     export interface Raw extends ActionBase.Raw {
         actionId: EntityId.Raw;
+        instructions?: string | null;
+        llmInclusionStatus: LlmInclusionStatus.Raw;
+        segmentId?: EntityId.Raw | null;
+        preconditionExplanation?: string | null;
+        deleted: boolean;
     }
 }

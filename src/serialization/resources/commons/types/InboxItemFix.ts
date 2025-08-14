@@ -7,14 +7,12 @@ import * as MavenAGI from "../../../../api/index";
 import * as core from "../../../../core";
 import { InboxItemFixAddDocument } from "./InboxItemFixAddDocument";
 import { InboxItemFixDeactivateDocument } from "./InboxItemFixDeactivateDocument";
-import { InboxItemFixDeactivateKnowledgeBase } from "./InboxItemFixDeactivateKnowledgeBase";
 
 export const InboxItemFix: core.serialization.Schema<serializers.InboxItemFix.Raw, MavenAGI.InboxItemFix> =
     core.serialization
         .union("type", {
             addDocument: InboxItemFixAddDocument,
             deactivateDocument: InboxItemFixDeactivateDocument,
-            deactivateKnowledgeBase: InboxItemFixDeactivateKnowledgeBase,
         })
         .transform<MavenAGI.InboxItemFix>({
             transform: (value) => value,
@@ -22,7 +20,7 @@ export const InboxItemFix: core.serialization.Schema<serializers.InboxItemFix.Ra
         });
 
 export declare namespace InboxItemFix {
-    export type Raw = InboxItemFix.AddDocument | InboxItemFix.DeactivateDocument | InboxItemFix.DeactivateKnowledgeBase;
+    export type Raw = InboxItemFix.AddDocument | InboxItemFix.DeactivateDocument;
 
     export interface AddDocument extends InboxItemFixAddDocument.Raw {
         type: "addDocument";
@@ -30,9 +28,5 @@ export declare namespace InboxItemFix {
 
     export interface DeactivateDocument extends InboxItemFixDeactivateDocument.Raw {
         type: "deactivateDocument";
-    }
-
-    export interface DeactivateKnowledgeBase extends InboxItemFixDeactivateKnowledgeBase.Raw {
-        type: "deactivateKnowledgeBase";
     }
 }

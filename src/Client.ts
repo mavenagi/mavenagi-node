@@ -9,11 +9,13 @@ import { Actions } from "./api/resources/actions/client/Client";
 import { Agents } from "./api/resources/agents/client/Client";
 import { Analytics } from "./api/resources/analytics/client/Client";
 import { AppSettings } from "./api/resources/appSettings/client/Client";
+import { Assets } from "./api/resources/assets/client/Client";
 import { Conversation } from "./api/resources/conversation/client/Client";
 import { Events } from "./api/resources/events/client/Client";
 import { Inbox } from "./api/resources/inbox/client/Client";
 import { Knowledge } from "./api/resources/knowledge/client/Client";
 import { Organizations } from "./api/resources/organizations/client/Client";
+import { Segments } from "./api/resources/segments/client/Client";
 import { Translations } from "./api/resources/translations/client/Client";
 import { Triggers } from "./api/resources/triggers/client/Client";
 import { Users } from "./api/resources/users/client/Client";
@@ -56,11 +58,13 @@ export class MavenAGIClient {
     protected _agents: Agents | undefined;
     protected _analytics: Analytics | undefined;
     protected _appSettings: AppSettings | undefined;
+    protected _assets: Assets | undefined;
     protected _conversation: Conversation | undefined;
     protected _events: Events | undefined;
     protected _inbox: Inbox | undefined;
     protected _knowledge: Knowledge | undefined;
     protected _organizations: Organizations | undefined;
+    protected _segments: Segments | undefined;
     protected _translations: Translations | undefined;
     protected _triggers: Triggers | undefined;
     protected _users: Users | undefined;
@@ -74,8 +78,8 @@ export class MavenAGIClient {
                     "X-Agent-Id": _options?.agentId,
                     "X-Fern-Language": "JavaScript",
                     "X-Fern-SDK-Name": "mavenagi",
-                    "X-Fern-SDK-Version": "1.1.0",
-                    "User-Agent": "mavenagi/1.1.0",
+                    "X-Fern-SDK-Version": "1.2.0",
+                    "User-Agent": "mavenagi/1.2.0",
                     "X-Fern-Runtime": core.RUNTIME.type,
                     "X-Fern-Runtime-Version": core.RUNTIME.version,
                 },
@@ -100,6 +104,10 @@ export class MavenAGIClient {
         return (this._appSettings ??= new AppSettings(this._options));
     }
 
+    public get assets(): Assets {
+        return (this._assets ??= new Assets(this._options));
+    }
+
     public get conversation(): Conversation {
         return (this._conversation ??= new Conversation(this._options));
     }
@@ -118,6 +126,10 @@ export class MavenAGIClient {
 
     public get organizations(): Organizations {
         return (this._organizations ??= new Organizations(this._options));
+    }
+
+    public get segments(): Segments {
+        return (this._segments ??= new Segments(this._options));
     }
 
     public get translations(): Translations {

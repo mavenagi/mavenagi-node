@@ -19,6 +19,7 @@ export const ConversationField: core.serialization.Schema<
     "Sentiment",
     "QualityReason",
     "ResolutionStatus",
+    "ResolvedByMaven",
     "Quality",
     "Users",
     "ResponseLength",
@@ -32,6 +33,9 @@ export const ConversationField: core.serialization.Schema<
     "IncompleteActions",
     "Sources",
     "CreatedAt",
+    "PredictedNPS",
+    "OrganizationId",
+    "AgentId",
 ]);
 
 export declare namespace ConversationField {
@@ -45,6 +49,7 @@ export declare namespace ConversationField {
         | "Sentiment"
         | "QualityReason"
         | "ResolutionStatus"
+        | "ResolvedByMaven"
         | "Quality"
         | "Users"
         | "ResponseLength"
@@ -57,5 +62,8 @@ export declare namespace ConversationField {
         | "Actions"
         | "IncompleteActions"
         | "Sources"
-        | "CreatedAt";
+        | "CreatedAt"
+        | "PredictedNPS"
+        | "OrganizationId"
+        | "AgentId";
 }

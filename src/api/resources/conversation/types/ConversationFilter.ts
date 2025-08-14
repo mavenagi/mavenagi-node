@@ -5,7 +5,27 @@
 import * as MavenAGI from "../../../index";
 
 export interface ConversationFilter {
-    /** Full-text search query for matching conversations by content. When you search with this parameter, you're performing a full-text search across all textual content in the conversations, including both the user's messages and the AI's responses. */
+    /**
+     * Full-text search query for matching conversations by content.
+     * When you search with this parameter, you're performing a full-text search across all textual content
+     * in the conversations, including both the user's messages and the AI's responses.
+     *
+     * This field also supports a syntax for advanced filtering the `metadata` and `tags` fields.
+     *
+     * Metadata examples:
+     * - `metadata:myvalue` - matches conversations with any metadata field set to `myvalue`
+     * - `metadata.mykey:myvalue` - matches conversations with a metadata field `mykey` set to `myvalue`
+     * - `metadata.mykey:myvalue OR anothervalue` - matches conversations with a metadata field `mykey` set to `myvalue` or `anothervalue`
+     * - `metadata.mykey:*` - matches conversations with a metadata field `mykey`
+     * - `-metadata:myvalue` - matches conversations that do not have any metadata field set to `myvalue`
+     * - `_exists_:metadata` - matches conversations that have any metadata field set
+     *
+     * Tags examples:
+     * - `tags:myvalue` - matches conversations with a tag of `myvalue`
+     * - `tags:myvalue OR anothervalue` - matches conversations with a tag of `myvalue` or `anothervalue`
+     * - `-tags:myvalue` - matches conversations that do not have the tag `myvalue`
+     * - `_exists_:tags` - matches conversations that have any tags field set
+     */
     search?: string;
     /** Filter conversations created on or after this timestamp */
     createdAfter?: Date;
@@ -43,4 +63,6 @@ export interface ConversationFilter {
     resolvedByMaven?: boolean;
     /** Filter by the number of messages sent by the user in the conversation */
     userMessageCount?: MavenAGI.NumberRange;
+    /** Filter by whether any message in the conversation has an attachment */
+    hasAttachment?: boolean;
 }

@@ -5,16 +5,12 @@
 import * as serializers from "../../../index";
 import * as MavenAGI from "../../../../api/index";
 import * as core from "../../../../core";
-import { InboxItemDuplicateKnowledgeBase } from "./InboxItemDuplicateKnowledgeBase";
 import { InboxItemDuplicateDocuments } from "./InboxItemDuplicateDocuments";
-import { InboxItemKnowledgeBaseAlert } from "./InboxItemKnowledgeBaseAlert";
 import { InboxItemMissingKnowledge } from "./InboxItemMissingKnowledge";
 
 export const InboxItem: core.serialization.Schema<serializers.InboxItem.Raw, MavenAGI.InboxItem> = core.serialization
     .union("type", {
-        duplicateKnowledgeBase: InboxItemDuplicateKnowledgeBase,
         duplicateDocuments: InboxItemDuplicateDocuments,
-        knowledgeBaseAlert: InboxItemKnowledgeBaseAlert,
         missingKnowledge: InboxItemMissingKnowledge,
     })
     .transform<MavenAGI.InboxItem>({
@@ -23,22 +19,10 @@ export const InboxItem: core.serialization.Schema<serializers.InboxItem.Raw, Mav
     });
 
 export declare namespace InboxItem {
-    export type Raw =
-        | InboxItem.DuplicateKnowledgeBase
-        | InboxItem.DuplicateDocuments
-        | InboxItem.KnowledgeBaseAlert
-        | InboxItem.MissingKnowledge;
-
-    export interface DuplicateKnowledgeBase extends InboxItemDuplicateKnowledgeBase.Raw {
-        type: "duplicateKnowledgeBase";
-    }
+    export type Raw = InboxItem.DuplicateDocuments | InboxItem.MissingKnowledge;
 
     export interface DuplicateDocuments extends InboxItemDuplicateDocuments.Raw {
         type: "duplicateDocuments";
-    }
-
-    export interface KnowledgeBaseAlert extends InboxItemKnowledgeBaseAlert.Raw {
-        type: "knowledgeBaseAlert";
     }
 
     export interface MissingKnowledge extends InboxItemMissingKnowledge.Raw {

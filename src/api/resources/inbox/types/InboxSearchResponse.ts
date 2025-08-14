@@ -6,5 +6,5 @@ import * as MavenAGI from "../../../index";
 
 export interface InboxSearchResponse extends MavenAGI.Page {
     /** The list of inbox items returned in the search response. */
-    content: MavenAGI.InboxItem[];
+    items: MavenAGI.InboxItem[];
 }

@@ -7,17 +7,9 @@ export type InboxItemType =
      * The inbox item is a duplicate document. */
     | "DUPLICATE_DOCUMENT"
     /**
-     * The inbox item is a duplicate knowledge base. */
-    | "DUPLICATE_KNOWLEDGE_BASE"
-    /**
      * The inbox item is missing knowledge. */
-    | "MISSING_KNOWLEDGE"
-    /**
-     * The inbox item is related to a low quality knowledge base. */
-    | "LOW_QUALITY_KNOWLEDGE_BASE";
+    | "MISSING_KNOWLEDGE";
 export const InboxItemType = {
     DuplicateDocument: "DUPLICATE_DOCUMENT",
-    DuplicateKnowledgeBase: "DUPLICATE_KNOWLEDGE_BASE",
     MissingKnowledge: "MISSING_KNOWLEDGE",
-    LowQualityKnowledgeBase: "LOW_QUALITY_KNOWLEDGE_BASE",
 } as const;

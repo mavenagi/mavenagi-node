@@ -4,23 +4,11 @@
 
 import * as MavenAGI from "../../../index";
 
-export type InboxItem =
-    | MavenAGI.InboxItem.DuplicateKnowledgeBase
-    | MavenAGI.InboxItem.DuplicateDocuments
-    | MavenAGI.InboxItem.KnowledgeBaseAlert
-    | MavenAGI.InboxItem.MissingKnowledge;
+export type InboxItem = MavenAGI.InboxItem.DuplicateDocuments | MavenAGI.InboxItem.MissingKnowledge;
 
 export namespace InboxItem {
-    export interface DuplicateKnowledgeBase extends MavenAGI.InboxItemDuplicateKnowledgeBase {
-        type: "duplicateKnowledgeBase";
-    }
-
     export interface DuplicateDocuments extends MavenAGI.InboxItemDuplicateDocuments {
         type: "duplicateDocuments";
-    }
-
-    export interface KnowledgeBaseAlert extends MavenAGI.InboxItemKnowledgeBaseAlert {
-        type: "knowledgeBaseAlert";
     }
 
     export interface MissingKnowledge extends MavenAGI.InboxItemMissingKnowledge {

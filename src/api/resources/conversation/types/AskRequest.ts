@@ -32,8 +32,11 @@ export interface AskRequest {
     userId: MavenAGI.EntityIdBase;
     /** The text of the message */
     text: string;
-    /** The attachments to the message. */
-    attachments?: MavenAGI.Attachment[];
+    /**
+     * The attachments to the message. Image attachments will be sent to the LLM as additional data.
+     * Non-image attachments can be stored and downloaded from the API but will not be sent to the LLM.
+     */
+    attachments?: MavenAGI.AttachmentRequest[];
     /** Transient data which the Maven platform will not persist. This data will only be forwarded to actions taken by this ask request. For example, one may put in user tokens as transient data. */
     transientData?: Record<string, string>;
     /** IANA timezone identifier (e.g. "America/New_York", "Europe/London") to be used for time-based operations in the conversation. */

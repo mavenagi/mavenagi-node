@@ -7,6 +7,7 @@ import * as MavenAGI from "../../../../api/index";
 import * as core from "../../../../core";
 import { EntityId } from "./EntityId";
 import { InboxItemStatus } from "./InboxItemStatus";
+import { InboxItemSeverity } from "./InboxItemSeverity";
 
 export const InboxItemBase: core.serialization.ObjectSchema<serializers.InboxItemBase.Raw, MavenAGI.InboxItemBase> =
     core.serialization.object({
@@ -14,6 +15,7 @@ export const InboxItemBase: core.serialization.ObjectSchema<serializers.InboxIte
         createdAt: core.serialization.date(),
         updatedAt: core.serialization.date(),
         status: InboxItemStatus,
+        severity: InboxItemSeverity,
     });
 
 export declare namespace InboxItemBase {
@@ -22,5 +24,6 @@ export declare namespace InboxItemBase {
         createdAt: string;
         updatedAt: string;
         status: InboxItemStatus.Raw;
+        severity: InboxItemSeverity.Raw;
     }
 }

@@ -6,7 +6,9 @@ import * as serializers from "../../../index";
 import * as MavenAGI from "../../../../api/index";
 import * as core from "../../../../core";
 import { EntityId } from "./EntityId";
-import { UserMessageAttachment } from "./UserMessageAttachment";
+import { AttachmentResponse } from "./AttachmentResponse";
+import { MessageStatus } from "./MessageStatus";
+import { UserMessageResponseState } from "./UserMessageResponseState";
 import { UserMessageBase } from "./UserMessageBase";
 
 export const UserMessage: core.serialization.ObjectSchema<serializers.UserMessage.Raw, MavenAGI.UserMessage> =
@@ -14,8 +16,11 @@ export const UserMessage: core.serialization.ObjectSchema<serializers.UserMessag
         .object({
             conversationMessageId: EntityId,
             language: core.serialization.string().optional(),
-            attachments: core.serialization.list(UserMessageAttachment),
+            attachments: core.serialization.list(AttachmentResponse),
+            agentUserId: core.serialization.string().optional(),
             userDisplayName: core.serialization.string().optional(),
+            status: MessageStatus,
+            responseState: UserMessageResponseState.optional(),
         })
         .extend(UserMessageBase);
 
@@ -23,7 +28,10 @@ export declare namespace UserMessage {
     export interface Raw extends UserMessageBase.Raw {
         conversationMessageId: EntityId.Raw;
         language?: string | null;
-        attachments: UserMessageAttachment.Raw[];
+        attachments: AttachmentResponse.Raw[];
+        agentUserId?: string | null;
         userDisplayName?: string | null;
+        status: MessageStatus.Raw;
+        responseState?: UserMessageResponseState.Raw | null;
     }
 }

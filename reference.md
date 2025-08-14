@@ -2,6 +2,54 @@
 
 ## Actions
 
+<details><summary><code>client.actions.<a href="/src/api/resources/actions/client/Client.ts">search</a>({ ...params }) -> MavenAGI.ActionsResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.actions.search({});
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `MavenAGI.ActionsSearchRequest`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Actions.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
 <details><summary><code>client.actions.<a href="/src/api/resources/actions/client/Client.ts">createOrUpdate</a>({ ...params }) -> MavenAGI.ActionResponse</code></summary>
 <dl>
 <dd>
@@ -88,7 +136,7 @@ await client.actions.createOrUpdate({
 </dl>
 </details>
 
-<details><summary><code>client.actions.<a href="/src/api/resources/actions/client/Client.ts">get</a>(actionReferenceId) -> MavenAGI.ActionResponse</code></summary>
+<details><summary><code>client.actions.<a href="/src/api/resources/actions/client/Client.ts">get</a>(actionReferenceId, { ...params }) -> MavenAGI.ActionResponse</code></summary>
 <dl>
 <dd>
 
@@ -133,6 +181,88 @@ await client.actions.get("get-balance");
 <dd>
 
 **actionReferenceId:** `string` — The reference ID of the action to get. All other entity ID fields are inferred from the request.
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `MavenAGI.ActionGetRequest`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Actions.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.actions.<a href="/src/api/resources/actions/client/Client.ts">patch</a>(actionReferenceId, { ...params }) -> MavenAGI.ActionResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Update mutable action fields
+
+The `appId` field can be provided to update an action owned by a different app.
+All other fields will overwrite the existing value on the action only if provided.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.actions.patch("actionReferenceId", {});
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**actionReferenceId:** `string` — The reference ID of the action to patch.
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `MavenAGI.ActionPatchRequest`
 
 </dd>
 </dl>
@@ -345,6 +475,91 @@ await client.agents.list("organizationReferenceId");
 </dl>
 </details>
 
+<details><summary><code>client.agents.<a href="/src/api/resources/agents/client/Client.ts">create</a>(organizationReferenceId, agentReferenceId, { ...params }) -> MavenAGI.Agent</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Create a new agent
+
+<Tip>
+This endpoint requires additional permissions. Contact support to request access.
+</Tip>
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.agents.create("organizationReferenceId", "agentReferenceId", {
+    name: "name",
+    environment: "DEMO",
+});
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**organizationReferenceId:** `string` — The ID of the organization.
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**agentReferenceId:** `string` — The ID of the agent.
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `MavenAGI.CreateAgentRequest`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Agents.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
 <details><summary><code>client.agents.<a href="/src/api/resources/agents/client/Client.ts">get</a>(organizationReferenceId, agentReferenceId) -> MavenAGI.Agent</code></summary>
 <dl>
 <dd>
@@ -374,6 +589,163 @@ Get an agent
 
 ```typescript
 await client.agents.get("organizationReferenceId", "agentReferenceId");
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**organizationReferenceId:** `string` — The ID of the organization.
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**agentReferenceId:** `string` — The ID of the agent.
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Agents.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.agents.<a href="/src/api/resources/agents/client/Client.ts">patch</a>(organizationReferenceId, agentReferenceId, { ...params }) -> MavenAGI.Agent</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Update mutable agent fields
+All fields will overwrite the existing value on the agent only if provided.
+
+<Tip>
+This endpoint requires additional permissions. Contact support to request access.
+</Tip>
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.agents.patch("organizationReferenceId", "agentReferenceId", {});
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**organizationReferenceId:** `string` — The ID of the organization.
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**agentReferenceId:** `string` — The ID of the agent.
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `MavenAGI.AgentPatchRequest`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Agents.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.agents.<a href="/src/api/resources/agents/client/Client.ts">delete</a>(organizationReferenceId, agentReferenceId) -> void</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Delete an agent.
+
+<Tip>
+This endpoint requires additional permissions. Contact support to request access.
+</Tip>
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.agents.delete("organizationReferenceId", "agentReferenceId");
 ```
 
 </dd>
@@ -867,6 +1239,146 @@ await client.appSettings.update({
 </dl>
 </details>
 
+## Assets
+
+<details><summary><code>client.assets.<a href="/src/api/resources/assets/client/Client.ts">initiateUpload</a>({ ...params }) -> MavenAGI.InitiateAssetUploadResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Initiate an upload.
+Returns a pre-signed URL for direct file upload and an asset ID for subsequent operations.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.assets.initiateUpload({
+    type: "type",
+});
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `MavenAGI.InitiateAssetUploadRequest`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Assets.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.assets.<a href="/src/api/resources/assets/client/Client.ts">commitUpload</a>(assetReferenceId, { ...params }) -> void</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Commit an upload after successful file transfer.
+Updates the asset status and makes it available for use.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.assets.commitUpload("assetReferenceId", {});
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**assetReferenceId:** `string` — The reference ID of the asset to commit (provided by the initiate call). All other entity ID fields are inferred from the API request.
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `MavenAGI.CommitAssetUploadRequest`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Assets.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
 ## Conversation
 
 <details><summary><code>client.conversation.<a href="/src/api/resources/conversation/client/Client.ts">initialize</a>({ ...params }) -> MavenAGI.ConversationResponse</code></summary>
@@ -947,6 +1459,82 @@ await client.conversation.initialize({
 <dd>
 
 **request:** `MavenAGI.ConversationRequest`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Conversation.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.conversation.<a href="/src/api/resources/conversation/client/Client.ts">patch</a>(conversationId, { ...params }) -> MavenAGI.ConversationResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Update mutable conversation fields.
+
+The `appId` field can be provided to update a conversation owned by a different app.
+All other fields will overwrite the existing value on the conversation only if provided.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.conversation.patch("conversation-0", {
+    llmEnabled: true,
+});
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**conversationId:** `string` — The ID of the conversation to patch
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `MavenAGI.ConversationPatchRequest`
 
 </dd>
 </dl>
@@ -1492,6 +2080,102 @@ await client.conversation.generateMavenSuggestions("conversationId", {
 </dl>
 </details>
 
+<details><summary><code>client.conversation.<a href="/src/api/resources/conversation/client/Client.ts">askObjectStream</a>(conversationId, { ...params }) -> core.Stream<MavenAGI.ObjectStreamResponse></code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Generate a structured object response based on a provided schema and user prompt with a streaming response.
+The response will be sent as a stream of events containing text, start, and end events.
+The text portions of stream responses should be concatenated to form the full response text.
+
+If the user question and object response already exist, they will be reused and not updated.
+
+Concurrency Behavior:
+
+- If another API call is made for the same user question while a response is mid-stream, partial answers may be returned.
+- The second caller will receive a truncated or partial response depending on where the first stream is in its processing. The first caller's stream will remain unaffected and continue delivering the full response.
+
+Known Limitations:
+
+- Schema enforcement is best-effort and may not guarantee exact conformity.
+- The API does not currently expose metadata indicating whether a response or message is incomplete. This will be addressed in a future update.
+  </dd>
+  </dl>
+  </dd>
+  </dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+const response = await client.conversation.askObjectStream("conversationId", {
+    schema: "schema",
+    conversationMessageId: {
+        referenceId: "referenceId",
+    },
+    userId: {
+        referenceId: "referenceId",
+    },
+    text: "text",
+});
+for await (const item of response) {
+    console.log(item);
+}
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**conversationId:** `string` — The ID of a new or existing conversation to use as context for the object generation request
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `MavenAGI.AskObjectRequest`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Conversation.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
 <details><summary><code>client.conversation.<a href="/src/api/resources/conversation/client/Client.ts">categorize</a>(conversationId) -> MavenAGI.CategorizationResponse</code></summary>
 <dl>
 <dd>
@@ -1931,6 +2615,90 @@ await client.conversation.search({});
 </dl>
 </details>
 
+<details><summary><code>client.conversation.<a href="/src/api/resources/conversation/client/Client.ts">deliverMessage</a>({ ...params }) -> MavenAGI.DeliverMessageResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Deliver a message to a user or conversation.
+
+<Warning>
+Currently, messages can only be successfully delivered to conversations with the `ASYNC` capability that are `open`. 
+User message delivery is not yet supported.
+</Warning>
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.conversation.deliverMessage({
+    type: "user",
+    userId: {
+        type: "AGENT",
+        appId: "appId",
+        referenceId: "referenceId",
+    },
+    message: {
+        conversationMessageId: {
+            referenceId: "referenceId",
+        },
+        userId: {
+            referenceId: "referenceId",
+        },
+        text: "text",
+        userMessageType: "USER",
+    },
+});
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `MavenAGI.DeliverMessageRequest`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Conversation.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
 ## Events
 
 <details><summary><code>client.events.<a href="/src/api/resources/events/client/Client.ts">search</a>({ ...params }) -> MavenAGI.EventsSearchResponse</code></summary>
@@ -2091,7 +2859,6 @@ Retrieve details of a specific inbox item by its ID.
 ```typescript
 await client.inbox.get("inboxItemId", {
     appId: "appId",
-    itemType: "DUPLICATE_DOCUMENT",
 });
 ```
 
@@ -2165,7 +2932,6 @@ Retrieve a suggested fix. Includes document information if the fix is a Missing 
 ```typescript
 await client.inbox.getFix("inboxItemFixId", {
     appId: "appId",
-    fixType: "REMOVE_DOCUMENT",
 });
 ```
 
@@ -2209,7 +2975,7 @@ await client.inbox.getFix("inboxItemFixId", {
 </dl>
 </details>
 
-<details><summary><code>client.inbox.<a href="/src/api/resources/inbox/client/Client.ts">applyFix</a>(inboxItemFixId, { ...params }) -> void</code></summary>
+<details><summary><code>client.inbox.<a href="/src/api/resources/inbox/client/Client.ts">applyFixes</a>(inboxItemId, { ...params }) -> void</code></summary>
 <dl>
 <dd>
 
@@ -2221,7 +2987,7 @@ await client.inbox.getFix("inboxItemFixId", {
 <dl>
 <dd>
 
-Apply a fix to an inbox item with a specific document.
+Apply a list of fixes belonging to an inbox item.
 
 </dd>
 </dl>
@@ -2237,9 +3003,9 @@ Apply a fix to an inbox item with a specific document.
 <dd>
 
 ```typescript
-await client.inbox.applyFix("inboxItemFixId", {
+await client.inbox.applyFixes("inboxItemId", {
     appId: "appId",
-    fixType: "REMOVE_DOCUMENT",
+    fixReferenceIds: ["fixReferenceIds", "fixReferenceIds"],
 });
 ```
 
@@ -2256,7 +3022,7 @@ await client.inbox.applyFix("inboxItemFixId", {
 <dl>
 <dd>
 
-**inboxItemFixId:** `string` — Unique identifier for the inbox fix.
+**inboxItemId:** `string` — Unique identifier for the inbox item.
 
 </dd>
 </dl>
@@ -2264,7 +3030,7 @@ await client.inbox.applyFix("inboxItemFixId", {
 <dl>
 <dd>
 
-**request:** `MavenAGI.ApplyInboxItemFixRequest`
+**request:** `MavenAGI.ApplyFixesRequest`
 
 </dd>
 </dl>
@@ -2313,7 +3079,6 @@ Ignore a specific inbox item by its ID.
 ```typescript
 await client.inbox.ignore("inboxItemId", {
     appId: "appId",
-    itemType: "DUPLICATE_DOCUMENT",
 });
 ```
 
@@ -2358,6 +3123,69 @@ await client.inbox.ignore("inboxItemId", {
 </details>
 
 ## Knowledge
+
+<details><summary><code>client.knowledge.<a href="/src/api/resources/knowledge/client/Client.ts">searchKnowledgeBases</a>({ ...params }) -> MavenAGI.KnowledgeBasesResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Search knowledge bases
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.knowledge.searchKnowledgeBases({});
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `MavenAGI.KnowledgeBaseSearchRequest`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Knowledge.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
 
 <details><summary><code>client.knowledge.<a href="/src/api/resources/knowledge/client/Client.ts">createOrUpdateKnowledgeBase</a>({ ...params }) -> MavenAGI.KnowledgeBaseResponse</code></summary>
 <dl>
@@ -2427,7 +3255,7 @@ await client.knowledge.createOrUpdateKnowledgeBase({
 </dl>
 </details>
 
-<details><summary><code>client.knowledge.<a href="/src/api/resources/knowledge/client/Client.ts">getKnowledgeBase</a>(knowledgeBaseReferenceId) -> MavenAGI.KnowledgeBaseResponse</code></summary>
+<details><summary><code>client.knowledge.<a href="/src/api/resources/knowledge/client/Client.ts">getKnowledgeBase</a>(knowledgeBaseReferenceId, { ...params }) -> MavenAGI.KnowledgeBaseResponse</code></summary>
 <dl>
 <dd>
 
@@ -2472,6 +3300,88 @@ await client.knowledge.getKnowledgeBase("help-center");
 <dd>
 
 **knowledgeBaseReferenceId:** `string` — The reference ID of the knowledge base to get. All other entity ID fields are inferred from the request.
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `MavenAGI.KnowledgeBaseGetRequest`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Knowledge.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.knowledge.<a href="/src/api/resources/knowledge/client/Client.ts">patchKnowledgeBase</a>(knowledgeBaseReferenceId, { ...params }) -> MavenAGI.KnowledgeBaseResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Update mutable knowledge base fields
+
+The `appId` field can be provided to update a knowledge base owned by a different app.
+All other fields will overwrite the existing value on the knowledge base only if provided.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.knowledge.patchKnowledgeBase("knowledgeBaseReferenceId", {});
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**knowledgeBaseReferenceId:** `string` — The reference ID of the knowledge base to patch.
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `MavenAGI.KnowledgeBasePatchRequest`
 
 </dd>
 </dl>
@@ -2633,6 +3543,69 @@ await client.knowledge.finalizeKnowledgeBaseVersion("help-center", {
 <dd>
 
 **request:** `MavenAGI.FinalizeKnowledgeBaseVersionRequest`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Knowledge.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.knowledge.<a href="/src/api/resources/knowledge/client/Client.ts">searchKnowledgeDocuments</a>({ ...params }) -> MavenAGI.KnowledgeDocumentsResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Search knowledge documents
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.knowledge.searchKnowledgeDocuments({});
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `MavenAGI.KnowledgeDocumentSearchRequest`
 
 </dd>
 </dl>
@@ -3078,6 +4051,283 @@ await client.organizations.getConversationChart({
 </dl>
 </details>
 
+## Segments
+
+<details><summary><code>client.segments.<a href="/src/api/resources/segments/client/Client.ts">search</a>({ ...params }) -> MavenAGI.SegmentsSearchResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.segments.search({});
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `MavenAGI.SegmentsSearchRequest`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Segments.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.segments.<a href="/src/api/resources/segments/client/Client.ts">createOrUpdate</a>({ ...params }) -> MavenAGI.SegmentResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Update a segment or create it if it doesn't exist.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.segments.createOrUpdate({
+    segmentId: {
+        referenceId: "admin-users",
+    },
+    name: "Admin users",
+    precondition: {
+        preconditionType: "group",
+        operator: "AND",
+        preconditions: [
+            {
+                preconditionType: "user",
+                key: "userKey",
+            },
+            {
+                preconditionType: "user",
+                key: "userKey2",
+            },
+        ],
+    },
+});
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `MavenAGI.SegmentRequest`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Segments.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.segments.<a href="/src/api/resources/segments/client/Client.ts">get</a>(segmentReferenceId, { ...params }) -> MavenAGI.SegmentResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Get a segment by its supplied ID
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.segments.get("admin-users");
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**segmentReferenceId:** `string` — The reference ID of the segment to get. All other entity ID fields are inferred from the request.
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `MavenAGI.SegmentGetRequest`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Segments.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.segments.<a href="/src/api/resources/segments/client/Client.ts">patch</a>(segmentReferenceId, { ...params }) -> MavenAGI.SegmentResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Update mutable segment fields
+
+The `appId` field can be provided to update a segment owned by a different app.
+All other fields will overwrite the existing value on the segment only if provided.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.segments.patch("segmentReferenceId", {});
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**segmentReferenceId:** `string` — The reference ID of the segment to update. All other entity ID fields are inferred from the request.
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `MavenAGI.SegmentPatchRequest`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Segments.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
 ## Translations
 
 <details><summary><code>client.translations.<a href="/src/api/resources/translations/client/Client.ts">translate</a>({ ...params }) -> MavenAGI.TranslationResponse</code></summary>
@@ -3466,6 +4716,136 @@ await client.triggers.partialUpdate("triggerReferenceId", {
 
 ## Users
 
+<details><summary><code>client.users.<a href="/src/api/resources/users/client/Client.ts">search</a>({ ...params }) -> MavenAGI.AgentUserSearchResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Search across all agent users on an agent.
+
+Agent users are a merged view of the users created by individual apps.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.users.search({});
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `MavenAGI.AgentUserSearchRequest`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Users.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.users.<a href="/src/api/resources/users/client/Client.ts">getAgentUser</a>(userId) -> MavenAGI.AgentUser</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Get an agent user by its supplied ID.
+
+Agent users are a merged view of the users created by individual apps.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.users.getAgentUser("userId");
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**userId:** `string` — The ID of the agent user to get.
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Users.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
 <details><summary><code>client.users.<a href="/src/api/resources/users/client/Client.ts">createOrUpdate</a>({ ...params }) -> MavenAGI.AppUserResponse</code></summary>
 <dl>
 <dd>
@@ -3478,7 +4858,7 @@ await client.triggers.partialUpdate("triggerReferenceId", {
 <dl>
 <dd>
 
-Update a user or create it if it doesn't exist.
+Update an app user or create it if it doesn't exist.
 
 </dd>
 </dl>
@@ -3557,7 +4937,7 @@ await client.users.createOrUpdate({
 <dl>
 <dd>
 
-Get a user by its supplied ID
+Get an app user by its supplied ID
 
 </dd>
 </dl>
@@ -3589,7 +4969,7 @@ await client.users.get("user-0");
 <dl>
 <dd>
 
-**userId:** `string` — The reference ID of the user to get. All other entity ID fields are inferred from the request.
+**userId:** `string` — The reference ID of the app user to get. All other entity ID fields are inferred from the request.
 
 </dd>
 </dl>
@@ -3665,7 +5045,7 @@ await client.users.delete("user-0");
 <dl>
 <dd>
 
-**userId:** `string` — The reference ID of the user to delete. All other entity ID fields are inferred from the request.
+**userId:** `string` — The reference ID of the app user to delete. All other entity ID fields are inferred from the request.
 
 </dd>
 </dl>

@@ -5,6 +5,8 @@
 import * as MavenAGI from "../../../index";
 
 export interface DocumentInformation {
+    /** Unique identifier for the knowledge base. */
+    knowledgeBaseId: MavenAGI.EntityIdWithoutAgent;
     /** Unique identifier for the document. */
     documentId: MavenAGI.EntityIdWithoutAgent;
     /** Title of the document. */

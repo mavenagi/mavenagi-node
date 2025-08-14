@@ -16,6 +16,8 @@ import * as MavenAGI from "../../../index";
  *         },
  *         name: "Get the user's balance",
  *         description: "This action calls an API to get the user's current balance.",
+ *         instructions: "This action calls an API to get the user's current balance.",
+ *         llmInclusionStatus: MavenAGI.LlmInclusionStatus.WhenRelevant,
  *         userInteractionRequired: false,
  *         userFormParameters: [],
  *         precondition: {
@@ -29,10 +31,34 @@ import * as MavenAGI from "../../../index";
  *                     key: "userKey2"
  *                 }]
  *         },
- *         language: "en"
+ *         language: "en",
+ *         deleted: false
  *     }
  */
 export interface ActionResponse extends MavenAGI.ActionBase {
     /** ID that uniquely identifies this action */
     actionId: MavenAGI.EntityId;
+    /**
+     * The instructions given to the LLM when determining whether to execute the action.
+     * This field defaults to the `description` field if not provided. Use the `patch` API to update.
+     */
+    instructions?: string;
+    /**
+     * Determines whether the action is sent to the LLM as part of a conversation.
+     *
+     * - `ALWAYS`: The action is always available for use in conversations, textual relevance is not considered.
+     * - `WHEN_RELEVANT`: The action is available only in conversations where the action is determined to be relevant to the user's question.
+     * - `NEVER`: The action is not available for use in conversations.
+     */
+    llmInclusionStatus: MavenAGI.LlmInclusionStatus;
+    /**
+     * The IDs of the segment that must be matched for the action to be relevant to a conversation.
+     * Segments are replacing inline preconditions - an Action may not have both an inline precondition and a segment.
+     * Inline precondition support will be removed in a future release.
+     */
+    segmentId?: MavenAGI.EntityId;
+    /** A human-readable explanation of the precondition associated with this action, if present. */
+    preconditionExplanation?: string;
+    /** Whether the action has been deleted. Deleted actions will not sent to the LLM nor returned in search results. */
+    deleted: boolean;
 }

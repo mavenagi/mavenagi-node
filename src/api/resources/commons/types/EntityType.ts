@@ -16,7 +16,8 @@ export type EntityType =
     | "USER_PROFILE"
     | "FEEDBACK"
     | "INBOX_ITEM"
-    | "INBOX_ITEM_FIX";
+    | "INBOX_ITEM_FIX"
+    | "SEGMENT";
 export const EntityType = {
     Agent: "AGENT",
     Conversation: "CONVERSATION",
@@ -32,4 +33,5 @@ export const EntityType = {
     Feedback: "FEEDBACK",
     InboxItem: "INBOX_ITEM",
     InboxItemFix: "INBOX_ITEM_FIX",
+    Segment: "SEGMENT",
 } as const;

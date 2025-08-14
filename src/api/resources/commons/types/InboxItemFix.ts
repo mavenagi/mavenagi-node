@@ -4,10 +4,7 @@
 
 import * as MavenAGI from "../../../index";
 
-export type InboxItemFix =
-    | MavenAGI.InboxItemFix.AddDocument
-    | MavenAGI.InboxItemFix.DeactivateDocument
-    | MavenAGI.InboxItemFix.DeactivateKnowledgeBase;
+export type InboxItemFix = MavenAGI.InboxItemFix.AddDocument | MavenAGI.InboxItemFix.DeactivateDocument;
 
 export namespace InboxItemFix {
     export interface AddDocument extends MavenAGI.InboxItemFixAddDocument {
@@ -16,9 +13,5 @@ export namespace InboxItemFix {
 
     export interface DeactivateDocument extends MavenAGI.InboxItemFixDeactivateDocument {
         type: "deactivateDocument";
-    }
-
-    export interface DeactivateKnowledgeBase extends MavenAGI.InboxItemFixDeactivateKnowledgeBase {
-        type: "deactivateKnowledgeBase";
     }
 }

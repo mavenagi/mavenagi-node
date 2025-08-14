@@ -7,12 +7,14 @@ import * as MavenAGI from "../../../../api/index";
 import * as core from "../../../../core";
 import { EntityId } from "../../commons/types/EntityId";
 import { AgentEnvironment } from "./AgentEnvironment";
+import { PiiCategory } from "./PiiCategory";
 
 export const Agent: core.serialization.ObjectSchema<serializers.Agent.Raw, MavenAGI.Agent> = core.serialization.object({
     agentId: EntityId,
     name: core.serialization.string(),
     createdAt: core.serialization.date(),
     environment: AgentEnvironment,
+    enabledPiiCategories: core.serialization.set(PiiCategory),
 });
 
 export declare namespace Agent {
@@ -21,5 +23,6 @@ export declare namespace Agent {
         name: string;
         createdAt: string;
         environment: AgentEnvironment.Raw;
+        enabledPiiCategories: PiiCategory.Raw[];
     }
 }

@@ -13,4 +13,14 @@ export interface Agent {
     createdAt: Date;
     /** The environment of the agent. Default is `DEMO`. */
     environment: MavenAGI.AgentEnvironment;
+    /**
+     * The PII categories that are enabled for the agent.
+     * PII will be automatically redacted from all conversation message text.
+     * Attachments and form submissions are not affected.
+     *
+     * Defaults to `AbaRoutingNumber`, `CreditCardNumber`, `IpAddress`, `PhoneNumber`, `SwiftCode`,
+     * `UsBankAccountNumber`, `UsDriversLicenseNumber`, `UsIndividualTaxpayerIdentification`,
+     * `UsUkPassportNumber`, `UsSocialSecurityNumber`.
+     */
+    enabledPiiCategories: Set<MavenAGI.PiiCategory>;
 }

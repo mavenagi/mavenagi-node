@@ -7,6 +7,8 @@ import * as MavenAGI from "../../../../api/index";
 import * as core from "../../../../core";
 import { EntityId } from "../../commons/types/EntityId";
 import { KnowledgeBaseType } from "./KnowledgeBaseType";
+import { LlmInclusionStatus } from "../../commons/types/LlmInclusionStatus";
+import { KnowledgeBaseRefreshFrequency } from "./KnowledgeBaseRefreshFrequency";
 import { KnowledgeBaseProperties } from "./KnowledgeBaseProperties";
 
 export const KnowledgeBaseResponse: core.serialization.ObjectSchema<
@@ -17,6 +19,10 @@ export const KnowledgeBaseResponse: core.serialization.ObjectSchema<
         knowledgeBaseId: EntityId,
         type: KnowledgeBaseType,
         metadata: core.serialization.record(core.serialization.string(), core.serialization.string()),
+        tags: core.serialization.set(core.serialization.string()),
+        llmInclusionStatus: LlmInclusionStatus.optional(),
+        refreshFrequency: KnowledgeBaseRefreshFrequency,
+        segmentId: EntityId.optional(),
     })
     .extend(KnowledgeBaseProperties);
 
@@ -25,5 +31,9 @@ export declare namespace KnowledgeBaseResponse {
         knowledgeBaseId: EntityId.Raw;
         type: KnowledgeBaseType.Raw;
         metadata: Record<string, string>;
+        tags: string[];
+        llmInclusionStatus?: LlmInclusionStatus.Raw | null;
+        refreshFrequency: KnowledgeBaseRefreshFrequency.Raw;
+        segmentId?: EntityId.Raw | null;
     }
 }

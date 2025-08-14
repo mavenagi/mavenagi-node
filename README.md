@@ -28,7 +28,7 @@ const client = new MavenAGIClient({
     organizationId: "YOUR_ORGANIZATION_ID",
     agentId: "YOUR_AGENT_ID",
 });
-await client.agents.search({});
+await client.actions.search({});
 ```
 
 ## Aborting Requests
@@ -77,7 +77,7 @@ following namespace:
 ```typescript
 import { MavenAGI } from "mavenagi";
 
-const request: MavenAGI.SearchAppSettingsRequest = {
+const request: MavenAGI.ActionGetRequest = {
     ...
 };
 ```
@@ -91,7 +91,7 @@ will be thrown.
 import { MavenAGIError } from "mavenagi";
 
 try {
-    await client.agents.search(...);
+    await client.actions.search(...);
 } catch (err) {
     if (err instanceof MavenAGIError) {
         console.log(err.statusCode);
@@ -109,7 +109,7 @@ try {
 If you would like to send additional headers as part of the request, use the `headers` request option.
 
 ```typescript
-const response = await client.agents.search(..., {
+const response = await client.actions.search(..., {
     headers: {
         'X-Custom-Header': 'custom value'
     }
@@ -131,7 +131,7 @@ A request is deemed retryable when any of the following HTTP status codes is ret
 Use the `maxRetries` request option to configure this behavior.
 
 ```typescript
-const response = await client.agents.search(..., {
+const response = await client.actions.search(..., {
     maxRetries: 0 // override maxRetries at the request level
 });
 ```
@@ -141,7 +141,7 @@ const response = await client.agents.search(..., {
 The SDK defaults to a 60 second timeout. Use the `timeoutInSeconds` option to configure this behavior.
 
 ```typescript
-const response = await client.agents.search(..., {
+const response = await client.actions.search(..., {
     timeoutInSeconds: 30 // override timeout to 30s
 });
 ```
@@ -152,7 +152,7 @@ The SDK allows users to abort requests at any point by passing in an abort signa
 
 ```typescript
 const controller = new AbortController();
-const response = await client.agents.search(..., {
+const response = await client.actions.search(..., {
     abortSignal: controller.signal
 });
 controller.abort(); // aborts the request
@@ -164,7 +164,7 @@ The SDK provides access to raw response data, including headers, through the `.w
 The `.withRawResponse()` method returns a promise that results to an object with a `data` and a `rawResponse` property.
 
 ```typescript
-const { data, rawResponse } = await client.agents.search(...).withRawResponse();
+const { data, rawResponse } = await client.actions.search(...).withRawResponse();
 
 console.log(data);
 console.log(rawResponse.headers['X-My-Header']);

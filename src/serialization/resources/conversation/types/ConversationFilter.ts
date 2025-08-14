@@ -37,6 +37,7 @@ export const ConversationFilter: core.serialization.ObjectSchema<
     resolutionStatus: core.serialization.list(ResolutionStatus).optional(),
     resolvedByMaven: core.serialization.boolean().optional(),
     userMessageCount: NumberRange.optional(),
+    hasAttachment: core.serialization.boolean().optional(),
 });
 
 export declare namespace ConversationFilter {
@@ -60,5 +61,6 @@ export declare namespace ConversationFilter {
         resolutionStatus?: ResolutionStatus.Raw[] | null;
         resolvedByMaven?: boolean | null;
         userMessageCount?: NumberRange.Raw | null;
+        hasAttachment?: boolean | null;
     }
 }

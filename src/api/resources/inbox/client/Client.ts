@@ -179,8 +179,7 @@ export class Inbox {
      *
      * @example
      *     await client.inbox.get("inboxItemId", {
-     *         appId: "appId",
-     *         itemType: "DUPLICATE_DOCUMENT"
+     *         appId: "appId"
      *     })
      */
     public get(
@@ -196,10 +195,9 @@ export class Inbox {
         request: MavenAGI.InboxItemRequest,
         requestOptions?: Inbox.RequestOptions,
     ): Promise<core.WithRawResponse<MavenAGI.InboxItem>> {
-        const { appId, itemType } = request;
+        const { appId } = request;
         const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
         _queryParams["appId"] = appId;
-        _queryParams["itemType"] = serializers.InboxItemType.jsonOrThrow(itemType, { unrecognizedObjectKeys: "strip" });
         const _response = await (this._options.fetcher ?? core.fetcher)({
             url: core.url.join(
                 (await core.Supplier.get(this._options.baseUrl)) ??
@@ -305,8 +303,7 @@ export class Inbox {
      *
      * @example
      *     await client.inbox.getFix("inboxItemFixId", {
-     *         appId: "appId",
-     *         fixType: "REMOVE_DOCUMENT"
+     *         appId: "appId"
      *     })
      */
     public getFix(
@@ -322,12 +319,9 @@ export class Inbox {
         request: MavenAGI.InboxItemFixRequest,
         requestOptions?: Inbox.RequestOptions,
     ): Promise<core.WithRawResponse<MavenAGI.InboxItemFix>> {
-        const { appId, fixType } = request;
+        const { appId } = request;
         const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
         _queryParams["appId"] = appId;
-        _queryParams["fixType"] = serializers.InboxItemFixType.jsonOrThrow(fixType, {
-            unrecognizedObjectKeys: "strip",
-        });
         const _response = await (this._options.fetcher ?? core.fetcher)({
             url: core.url.join(
                 (await core.Supplier.get(this._options.baseUrl)) ??
@@ -423,10 +417,10 @@ export class Inbox {
     }
 
     /**
-     * Apply a fix to an inbox item with a specific document.
+     * Apply a list of fixes belonging to an inbox item.
      *
-     * @param {string} inboxItemFixId - Unique identifier for the inbox fix.
-     * @param {MavenAGI.ApplyInboxItemFixRequest} request
+     * @param {string} inboxItemId - Unique identifier for the inbox item.
+     * @param {MavenAGI.ApplyFixesRequest} request
      * @param {Inbox.RequestOptions} requestOptions - Request-specific configuration.
      *
      * @throws {@link MavenAGI.NotFoundError}
@@ -434,22 +428,22 @@ export class Inbox {
      * @throws {@link MavenAGI.ServerError}
      *
      * @example
-     *     await client.inbox.applyFix("inboxItemFixId", {
+     *     await client.inbox.applyFixes("inboxItemId", {
      *         appId: "appId",
-     *         fixType: "REMOVE_DOCUMENT"
+     *         fixReferenceIds: ["fixReferenceIds", "fixReferenceIds"]
      *     })
      */
-    public applyFix(
-        inboxItemFixId: string,
-        request: MavenAGI.ApplyInboxItemFixRequest,
+    public applyFixes(
+        inboxItemId: string,
+        request: MavenAGI.ApplyFixesRequest,
         requestOptions?: Inbox.RequestOptions,
     ): core.HttpResponsePromise<void> {
-        return core.HttpResponsePromise.fromPromise(this.__applyFix(inboxItemFixId, request, requestOptions));
+        return core.HttpResponsePromise.fromPromise(this.__applyFixes(inboxItemId, request, requestOptions));
     }
 
-    private async __applyFix(
-        inboxItemFixId: string,
-        request: MavenAGI.ApplyInboxItemFixRequest,
+    private async __applyFixes(
+        inboxItemId: string,
+        request: MavenAGI.ApplyFixesRequest,
         requestOptions?: Inbox.RequestOptions,
     ): Promise<core.WithRawResponse<void>> {
         const _response = await (this._options.fetcher ?? core.fetcher)({
@@ -457,7 +451,7 @@ export class Inbox {
                 (await core.Supplier.get(this._options.baseUrl)) ??
                     (await core.Supplier.get(this._options.environment)) ??
                     environments.MavenAGIEnvironment.Production,
-                `/v1/inbox/fix/${encodeURIComponent(inboxItemFixId)}/apply`,
+                `/v1/inbox/${encodeURIComponent(inboxItemId)}/applyfixes`,
             ),
             method: "POST",
             headers: mergeHeaders(
@@ -471,7 +465,7 @@ export class Inbox {
             ),
             contentType: "application/json",
             requestType: "json",
-            body: serializers.ApplyInboxItemFixRequest.jsonOrThrow(request, { unrecognizedObjectKeys: "strip" }),
+            body: serializers.ApplyFixesRequest.jsonOrThrow(request, { unrecognizedObjectKeys: "strip" }),
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
             maxRetries: requestOptions?.maxRetries,
             abortSignal: requestOptions?.abortSignal,
@@ -530,7 +524,7 @@ export class Inbox {
                 });
             case "timeout":
                 throw new errors.MavenAGITimeoutError(
-                    "Timeout exceeded when calling POST /v1/inbox/fix/{inboxItemFixId}/apply.",
+                    "Timeout exceeded when calling POST /v1/inbox/{inboxItemId}/applyfixes.",
                 );
             case "unknown":
                 throw new errors.MavenAGIError({
@@ -553,8 +547,7 @@ export class Inbox {
      *
      * @example
      *     await client.inbox.ignore("inboxItemId", {
-     *         appId: "appId",
-     *         itemType: "DUPLICATE_DOCUMENT"
+     *         appId: "appId"
      *     })
      */
     public ignore(
@@ -570,10 +563,9 @@ export class Inbox {
         request: MavenAGI.InboxItemIgnoreRequest,
         requestOptions?: Inbox.RequestOptions,
     ): Promise<core.WithRawResponse<void>> {
-        const { appId, itemType } = request;
+        const { appId } = request;
         const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
         _queryParams["appId"] = appId;
-        _queryParams["itemType"] = serializers.InboxItemType.jsonOrThrow(itemType, { unrecognizedObjectKeys: "strip" });
         const _response = await (this._options.fetcher ?? core.fetcher)({
             url: core.url.join(
                 (await core.Supplier.get(this._options.baseUrl)) ??

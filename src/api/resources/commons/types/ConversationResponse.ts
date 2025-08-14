@@ -15,6 +15,8 @@ import * as MavenAGI from "../../../index";
  *             type: MavenAGI.EntityType.Conversation
  *         },
  *         deleted: false,
+ *         open: false,
+ *         llmEnabled: true,
  *         analysis: {
  *             resolutionStatus: "Resolved",
  *             sentiment: MavenAGI.Sentiment.Positive,
@@ -33,6 +35,7 @@ import * as MavenAGI from "../../../index";
  *         },
  *         metadata: {},
  *         allMetadata: {},
+ *         attachments: [],
  *         messages: [{
  *                 type: "user",
  *                 userMessageType: MavenAGI.UserConversationMessageType.User,
@@ -43,13 +46,16 @@ import * as MavenAGI from "../../../index";
  *                     agentId: "support",
  *                     type: MavenAGI.EntityType.ConversationMessage
  *                 },
+ *                 status: MavenAGI.MessageStatus.Unknown,
  *                 userId: {
  *                     referenceId: "user-0"
  *                 },
  *                 text: "How do I reset my password?",
  *                 attachments: [{
  *                         url: "https://example.com/attachment-0",
- *                         type: "image/png"
+ *                         type: "image/png",
+ *                         status: MavenAGI.AttachmentStatus.Accepted,
+ *                         sizeBytes: 1234
  *                     }]
  *             }, {
  *                 type: "bot",
@@ -61,7 +67,7 @@ import * as MavenAGI from "../../../index";
  *                     agentId: "support",
  *                     type: MavenAGI.EntityType.ConversationMessage
  *                 },
- *                 status: MavenAGI.BotMessageStatus.Sent,
+ *                 status: MavenAGI.MessageStatus.Sent,
  *                 responses: [{
  *                         type: "text",
  *                         text: "Hi! Go to acme.com/reset-password"
@@ -76,4 +82,10 @@ import * as MavenAGI from "../../../index";
 export interface ConversationResponse extends MavenAGI.BaseConversationResponse {
     /** The messages in the conversation */
     messages: MavenAGI.ConversationMessageResponse[];
+    /**
+     * The attachments associated with this conversation. Additional attachments may be associated to individual messages.
+     *
+     * Message attachments are included in LLM context, conversation attachments are not.
+     */
+    attachments: MavenAGI.AttachmentResponse[];
 }

@@ -4,17 +4,6 @@
 
 import * as MavenAGI from "../../../index";
 
-export interface InboxSearchRequest extends MavenAGI.BaseInboxSearchRequest {
-    /** List of inbox item statuses to filter by. */
-    statuses?: MavenAGI.InboxItemStatus[];
-    /** List of inbox item types to filter by. */
-    type?: MavenAGI.InboxItemType[];
-    /** Filter for items created after this timestamp. */
-    createdAfter?: Date;
-    /** Filter for items created before this timestamp. */
-    createdBefore?: Date;
-    /** The field to sort by, defaults to created timestamp. */
-    sortId?: string;
-    /** Whether to sort descending, defaults to true. */
-    sortDesc?: boolean;
+export interface InboxSearchRequest extends MavenAGI.BasePaginatedRequest {
+    filter?: MavenAGI.InboxFilter;
 }

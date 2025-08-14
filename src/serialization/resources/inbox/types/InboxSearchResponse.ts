@@ -13,12 +13,12 @@ export const InboxSearchResponse: core.serialization.ObjectSchema<
     MavenAGI.InboxSearchResponse
 > = core.serialization
     .object({
-        content: core.serialization.list(InboxItem),
+        items: core.serialization.list(InboxItem),
     })
     .extend(Page);
 
 export declare namespace InboxSearchResponse {
     export interface Raw extends Page.Raw {
-        content: InboxItem.Raw[];
+        items: InboxItem.Raw[];
     }
 }
