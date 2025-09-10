@@ -7,6 +7,9 @@ import * as MavenAGI from "../../../index";
 export interface KnowledgeDocumentSearchResponse extends MavenAGI.BaseKnowledgeDocument {
     /** ID that uniquely identifies this knowledge document within its knowledge base */
     knowledgeDocumentId: MavenAGI.EntityId;
-    /** Metadata for the knowledge document. */
-    metadata: Record<string, string>;
+    /**
+     * ID that uniquely identifies the knowledge base version that contains this document.
+     * This may be missing on legacy documents.
+     */
+    knowledgeBaseVersionId?: MavenAGI.EntityId;
 }

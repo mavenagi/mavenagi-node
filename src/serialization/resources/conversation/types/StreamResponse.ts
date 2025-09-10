@@ -7,6 +7,7 @@ import * as MavenAGI from "../../../../api/index";
 import * as core from "../../../../core";
 import { AskStreamTextEvent } from "./AskStreamTextEvent";
 import { AskStreamActionEvent } from "./AskStreamActionEvent";
+import { AskStreamOAuthButtonEvent } from "./AskStreamOAuthButtonEvent";
 import { AskStreamChartEvent } from "./AskStreamChartEvent";
 import { AskStreamMetadataEvent } from "./AskStreamMetadataEvent";
 import { AskStreamStartEvent } from "./AskStreamStartEvent";
@@ -17,6 +18,7 @@ export const StreamResponse: core.serialization.Schema<serializers.StreamRespons
         .union("eventType", {
             text: AskStreamTextEvent,
             action: AskStreamActionEvent,
+            oauthButton: AskStreamOAuthButtonEvent,
             chart: AskStreamChartEvent,
             metadata: AskStreamMetadataEvent,
             start: AskStreamStartEvent,
@@ -31,6 +33,7 @@ export declare namespace StreamResponse {
     export type Raw =
         | StreamResponse.Text
         | StreamResponse.Action
+        | StreamResponse.OauthButton
         | StreamResponse.Chart
         | StreamResponse.Metadata
         | StreamResponse.Start
@@ -42,6 +45,10 @@ export declare namespace StreamResponse {
 
     export interface Action extends AskStreamActionEvent.Raw {
         eventType: "action";
+    }
+
+    export interface OauthButton extends AskStreamOAuthButtonEvent.Raw {
+        eventType: "oauthButton";
     }
 
     export interface Chart extends AskStreamChartEvent.Raw {

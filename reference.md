@@ -238,7 +238,7 @@ All other fields will overwrite the existing value on the action only if provide
 <dd>
 
 ```typescript
-await client.actions.patch("actionReferenceId", {});
+await client.actions.patch("actionReferenceId");
 ```
 
 </dd>
@@ -334,6 +334,191 @@ await client.actions.delete("get-balance");
 <dd>
 
 **requestOptions:** `Actions.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+## AgentCapabilities
+
+<details><summary><code>client.agentCapabilities.<a href="/src/api/resources/agentCapabilities/client/Client.ts">list</a>({ ...params }) -> MavenAGI.ListAgentCapabilitiesResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+List all capabilities for an agent.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.agentCapabilities.list({});
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `MavenAGI.AgentCapabilityListRequest`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `AgentCapabilities.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.agentCapabilities.<a href="/src/api/resources/agentCapabilities/client/Client.ts">get</a>(integrationId, capabilityId) -> MavenAGI.AgentCapability</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.agentCapabilities.get("integrationId", "capabilityId");
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**integrationId:** `string`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**capabilityId:** `string`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `AgentCapabilities.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.agentCapabilities.<a href="/src/api/resources/agentCapabilities/client/Client.ts">patch</a>(integrationId, capabilityId, { ...params }) -> MavenAGI.AgentCapability</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.agentCapabilities.patch("integrationId", "capabilityId", {});
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**integrationId:** `string`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**capabilityId:** `string`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `MavenAGI.PatchAgentCapabilityRequest`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `AgentCapabilities.RequestOptions`
 
 </dd>
 </dl>
@@ -2701,6 +2886,80 @@ await client.conversation.deliverMessage({
 
 ## Events
 
+<details><summary><code>client.events.<a href="/src/api/resources/events/client/Client.ts">create</a>({ ...params }) -> MavenAGI.EventResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Create a new event
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.events.create({
+    eventType: "userEvent",
+    id: {
+        referenceId: "referenceId",
+    },
+    eventName: "BUTTON_CLICKED",
+    userInfo: {
+        id: {
+            referenceId: "referenceId",
+        },
+    },
+});
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `MavenAGI.EventRequest`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Events.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
 <details><summary><code>client.events.<a href="/src/api/resources/events/client/Client.ts">search</a>({ ...params }) -> MavenAGI.EventsSearchResponse</code></summary>
 <dl>
 <dd>
@@ -3357,7 +3616,7 @@ All other fields will overwrite the existing value on the knowledge base only if
 <dd>
 
 ```typescript
-await client.knowledge.patchKnowledgeBase("knowledgeBaseReferenceId", {});
+await client.knowledge.patchKnowledgeBase("knowledgeBaseReferenceId");
 ```
 
 </dd>
@@ -3431,15 +3690,7 @@ If an existing version is in progress, then that version will be finalized in an
 
 ```typescript
 await client.knowledge.createKnowledgeBaseVersion("help-center", {
-    versionId: {
-        type: "KNOWLEDGE_BASE_VERSION",
-        referenceId: "versionId",
-        appId: "maven",
-        organizationId: "acme",
-        agentId: "support",
-    },
     type: "FULL",
-    status: "IN_PROGRESS",
 });
 ```
 
@@ -3464,7 +3715,7 @@ await client.knowledge.createKnowledgeBaseVersion("help-center", {
 <dl>
 <dd>
 
-**request:** `MavenAGI.KnowledgeBaseVersion`
+**request:** `MavenAGI.KnowledgeBaseVersionRequest`
 
 </dd>
 </dl>
@@ -3561,6 +3812,77 @@ await client.knowledge.finalizeKnowledgeBaseVersion("help-center", {
 </dl>
 </details>
 
+<details><summary><code>client.knowledge.<a href="/src/api/resources/knowledge/client/Client.ts">listKnowledgeBaseVersions</a>(knowledgeBaseReferenceId, { ...params }) -> MavenAGI.KnowledgeBaseVersionsListResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+List all active versions for a knowledge base. Returns the most recent versions first.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.knowledge.listKnowledgeBaseVersions("knowledgeBaseReferenceId");
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**knowledgeBaseReferenceId:** `string` — The reference ID of the knowledge base to list versions for. All other entity ID fields are inferred from the request.
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `MavenAGI.KnowledgeBaseVersionsListRequest`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Knowledge.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
 <details><summary><code>client.knowledge.<a href="/src/api/resources/knowledge/client/Client.ts">searchKnowledgeDocuments</a>({ ...params }) -> MavenAGI.KnowledgeDocumentsResponse</code></summary>
 <dl>
 <dd>
@@ -3636,10 +3958,11 @@ await client.knowledge.searchKnowledgeDocuments({});
 <dl>
 <dd>
 
-Create knowledge document. Requires an existing knowledge base with an in progress version. Will throw an exception if the latest version is not in progress.
+Create or update a knowledge document. Requires an existing knowledge base with an in progress version.
+Will throw an exception if the latest version is not in progress.
 
 <Tip>
-This API maintains document version history. If for the same reference ID neither the `title` nor `text` fields 
+This API maintains document version history. If for the same reference ID none of the `title`, `text`, `sourceUrl`, `metadata` fields 
 have changed, a new document version will not be created. The existing version will be reused.
 </Tip>
 </dd>
@@ -3714,7 +4037,7 @@ await client.knowledge.createKnowledgeDocument("help-center", {
 </dl>
 </details>
 
-<details><summary><code>client.knowledge.<a href="/src/api/resources/knowledge/client/Client.ts">updateKnowledgeDocument</a>(knowledgeBaseReferenceId, { ...params }) -> MavenAGI.KnowledgeDocumentResponse</code></summary>
+<details><summary><code>client.knowledge.<a href="/src/api/resources/knowledge/client/Client.ts">deleteKnowledgeDocument</a>(knowledgeBaseReferenceId, knowledgeDocumentReferenceId, { ...params }) -> void</code></summary>
 <dl>
 <dd>
 
@@ -3726,7 +4049,8 @@ await client.knowledge.createKnowledgeDocument("help-center", {
 <dl>
 <dd>
 
-Not yet implemented. Update knowledge document. Requires an existing knowledge base with an in progress version of type PARTIAL. Will throw an exception if the latest version is not in progress.
+Delete knowledge document from a specific version.
+Requires an existing knowledge base with an in progress version of type PARTIAL. Will throw an exception if the version is not in progress.
 
 </dd>
 </dl>
@@ -3742,93 +4066,13 @@ Not yet implemented. Update knowledge document. Requires an existing knowledge b
 <dd>
 
 ```typescript
-await client.knowledge.updateKnowledgeDocument("help-center", {
-    knowledgeDocumentId: {
-        referenceId: "getting-started",
-    },
+await client.knowledge.deleteKnowledgeDocument("help-center", "getting-started", {
     versionId: {
         type: "KNOWLEDGE_BASE_VERSION",
-        referenceId: "versionId",
         appId: "maven",
-    },
-    contentType: "MARKDOWN",
-    content: "## Getting started\\nThis is a getting started guide for the help center.",
-    title: "Getting started",
-    metadata: {
-        category: "getting-started",
+        referenceId: "versionId",
     },
 });
-```
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**knowledgeBaseReferenceId:** `string` — The reference ID of the knowledge base that contains the document to update. All other entity ID fields are inferred from the request.
-
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**request:** `MavenAGI.KnowledgeDocumentRequest`
-
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `Knowledge.RequestOptions`
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.knowledge.<a href="/src/api/resources/knowledge/client/Client.ts">deleteKnowledgeDocument</a>(knowledgeBaseReferenceId, knowledgeDocumentReferenceId) -> void</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Not yet implemented. Delete knowledge document. Requires an existing knowledge base with an in progress version of type PARTIAL. Will throw an exception if the latest version is not in progress.
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.knowledge.deleteKnowledgeDocument("help-center", "getting-started");
 ```
 
 </dd>
@@ -3860,6 +4104,95 @@ await client.knowledge.deleteKnowledgeDocument("help-center", "getting-started")
 <dl>
 <dd>
 
+**request:** `MavenAGI.KnowledgeDeleteRequest`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Knowledge.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.knowledge.<a href="/src/api/resources/knowledge/client/Client.ts">getKnowledgeDocument</a>(knowledgeBaseVersionReferenceId, knowledgeDocumentReferenceId, { ...params }) -> MavenAGI.KnowledgeDocumentResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Get a knowledge document by its supplied version and document IDs. Response includes document content in markdown format.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.knowledge.getKnowledgeDocument("knowledgeBaseVersionReferenceId", "knowledgeDocumentReferenceId", {
+    knowledgeBaseVersionAppId: "knowledgeBaseVersionAppId",
+});
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**knowledgeBaseVersionReferenceId:** `string` — The reference ID of the knowledge base version that contains the document. All other entity ID fields are inferred from the request.
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**knowledgeDocumentReferenceId:** `string` — The reference ID of the knowledge document to get. All other entity ID fields are inferred from the request.
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `MavenAGI.KnowledgeDocumentGetRequest`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
 **requestOptions:** `Knowledge.RequestOptions`
 
 </dd>
@@ -3872,6 +4205,287 @@ await client.knowledge.deleteKnowledgeDocument("help-center", "getting-started")
 </details>
 
 ## Organizations
+
+<details><summary><code>client.organizations.<a href="/src/api/resources/organizations/client/Client.ts">create</a>(organizationReferenceId, { ...params }) -> MavenAGI.Organization</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Create a new organization.
+
+<Tip>
+This endpoint requires additional permissions. Contact support to request access.
+</Tip>
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.organizations.create("organizationReferenceId", {
+    name: "name",
+    defaultLanguage: "defaultLanguage",
+});
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**organizationReferenceId:** `string` — The reference ID of the organization.
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `MavenAGI.CreateOrganizationRequest`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Organizations.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.organizations.<a href="/src/api/resources/organizations/client/Client.ts">get</a>(organizationReferenceId) -> MavenAGI.Organization</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Get an organization by ID
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.organizations.get("organizationReferenceId");
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**organizationReferenceId:** `string` — The reference ID of the organization.
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Organizations.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.organizations.<a href="/src/api/resources/organizations/client/Client.ts">patch</a>(organizationReferenceId, { ...params }) -> MavenAGI.Organization</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Update mutable organization fields.
+All fields will overwrite the existing value on the organization only if provided.
+
+<Tip>
+This endpoint requires additional permissions. Contact support to request access.
+</Tip>
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.organizations.patch("organizationReferenceId", {});
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**organizationReferenceId:** `string` — The reference ID of the organization.
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `MavenAGI.OrganizationPatchRequest`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Organizations.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.organizations.<a href="/src/api/resources/organizations/client/Client.ts">delete</a>(organizationReferenceId) -> void</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Delete an organization.
+
+<Tip>
+This endpoint requires additional permissions. Contact support to request access.
+</Tip>
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.organizations.delete("organizationReferenceId");
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**organizationReferenceId:** `string` — The reference ID of the organization.
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Organizations.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
 
 <details><summary><code>client.organizations.<a href="/src/api/resources/organizations/client/Client.ts">getConversationTable</a>({ ...params }) -> MavenAGI.ConversationTableResponse</code></summary>
 <dl>

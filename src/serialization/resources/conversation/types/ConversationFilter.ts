@@ -34,10 +34,12 @@ export const ConversationFilter: core.serialization.ObjectSchema<
     responseLength: core.serialization.list(ResponseLength).optional(),
     sentiment: core.serialization.list(Sentiment).optional(),
     tags: core.serialization.list(core.serialization.string()).optional(),
+    agentUserIds: core.serialization.list(core.serialization.string()).optional(),
     resolutionStatus: core.serialization.list(ResolutionStatus).optional(),
     resolvedByMaven: core.serialization.boolean().optional(),
     userMessageCount: NumberRange.optional(),
     hasAttachment: core.serialization.boolean().optional(),
+    matchedSegmentIds: core.serialization.list(EntityIdFilter).optional(),
 });
 
 export declare namespace ConversationFilter {
@@ -58,9 +60,11 @@ export declare namespace ConversationFilter {
         responseLength?: ResponseLength.Raw[] | null;
         sentiment?: Sentiment.Raw[] | null;
         tags?: string[] | null;
+        agentUserIds?: string[] | null;
         resolutionStatus?: ResolutionStatus.Raw[] | null;
         resolvedByMaven?: boolean | null;
         userMessageCount?: NumberRange.Raw | null;
         hasAttachment?: boolean | null;
+        matchedSegmentIds?: EntityIdFilter.Raw[] | null;
     }
 }

@@ -13,10 +13,14 @@ export interface ActionParameter {
     description: string;
     /** Whether the field is required for action execution. */
     required: boolean;
+    /** When user interaction is required, whether this parameter should be excluded from forms. Hidden parameters are not displayed to users but their values are still populated by the LLM and sent to actions. Defaults to false. */
+    hidden?: boolean;
     /** The parameter type. Values provided to `executeAction` will conform to this type. Defaults to `STRING`. */
     type?: MavenAGI.ActionParameterType;
     /** Restricts the action parameter to only the options in this list. Valid for type `STRING`, `BOOLEAN`, and `NUMBER`. Should not be used when type is `SCHEMA`. */
     enumOptions?: MavenAGI.ActionEnumOption[];
     /** JSON schema for validating the parameter value. Only valid when type is `SCHEMA`. */
     schema?: string;
+    /** OAuth configuration required to start an OAuth authorization flow when this parameter's type is `OAUTH`. */
+    oauthConfiguration?: MavenAGI.ActionOAuthConfiguration;
 }

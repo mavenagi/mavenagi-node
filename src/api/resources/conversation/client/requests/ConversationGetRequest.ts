@@ -11,4 +11,8 @@ export interface ConversationGetRequest {
      * The App ID of the conversation to get. If not provided the ID of the calling app will be used.
      */
     appId?: string;
+    /**
+     * The language to translate the conversation analysis into
+     */
+    translationLanguage?: string;
 }

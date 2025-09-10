@@ -13,6 +13,8 @@ export interface Agent {
     createdAt: Date;
     /** The environment of the agent. Default is `DEMO`. */
     environment: MavenAGI.AgentEnvironment;
+    /** The agent's default timezone. This is used when a timezone is not set on a conversation. */
+    defaultTimezone: string;
     /**
      * The PII categories that are enabled for the agent.
      * PII will be automatically redacted from all conversation message text.

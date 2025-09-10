@@ -12,6 +12,7 @@ export type PiiCategory =
     | "UsSocialSecurityNumber"
     | "UsUkPassportNumber"
     | "UsDriversLicenseNumber"
+    | "UsIndividualTaxpayerIdentification"
     | "Date"
     | "IpAddress"
     | "Url"
@@ -58,8 +59,7 @@ export type PiiCategory =
     | "UkElectoralRollNumber"
     | "UkNationalHealthNumber"
     | "UkNationalInsuranceNumber"
-    | "UkUniqueTaxpayerNumber"
-    | "UsIndividualTaxpayerIdentification";
+    | "UkUniqueTaxpayerNumber";
 export const PiiCategory = {
     Name: "Name",
     Email: "Email",
@@ -70,6 +70,7 @@ export const PiiCategory = {
     UsSocialSecurityNumber: "UsSocialSecurityNumber",
     UsUkPassportNumber: "UsUkPassportNumber",
     UsDriversLicenseNumber: "UsDriversLicenseNumber",
+    UsIndividualTaxpayerIdentification: "UsIndividualTaxpayerIdentification",
     Date: "Date",
     IpAddress: "IpAddress",
     Url: "Url",
@@ -117,5 +118,4 @@ export const PiiCategory = {
     UkNationalHealthNumber: "UkNationalHealthNumber",
     UkNationalInsuranceNumber: "UkNationalInsuranceNumber",
     UkUniqueTaxpayerNumber: "UkUniqueTaxpayerNumber",
-    UsIndividualTaxpayerIdentification: "UsIndividualTaxpayerIdentification",
 } as const;

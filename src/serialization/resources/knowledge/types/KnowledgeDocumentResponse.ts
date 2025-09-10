@@ -5,23 +5,20 @@
 import * as serializers from "../../../index";
 import * as MavenAGI from "../../../../api/index";
 import * as core from "../../../../core";
-import { EntityId } from "../../commons/types/EntityId";
-import { BaseKnowledgeDocument } from "./BaseKnowledgeDocument";
+import { KnowledgeDocumentSearchResponse } from "./KnowledgeDocumentSearchResponse";
 
 export const KnowledgeDocumentResponse: core.serialization.ObjectSchema<
     serializers.KnowledgeDocumentResponse.Raw,
     MavenAGI.KnowledgeDocumentResponse
 > = core.serialization
     .object({
-        knowledgeDocumentId: EntityId,
         content: core.serialization.string(),
         metadata: core.serialization.record(core.serialization.string(), core.serialization.string()),
     })
-    .extend(BaseKnowledgeDocument);
+    .extend(KnowledgeDocumentSearchResponse);
 
 export declare namespace KnowledgeDocumentResponse {
-    export interface Raw extends BaseKnowledgeDocument.Raw {
-        knowledgeDocumentId: EntityId.Raw;
+    export interface Raw extends KnowledgeDocumentSearchResponse.Raw {
         content: string;
         metadata: Record<string, string>;
     }

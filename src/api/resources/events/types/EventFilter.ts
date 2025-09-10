@@ -8,7 +8,7 @@ export interface EventFilter {
     search?: string;
     createdAfter?: Date;
     createdBefore?: Date;
-    references?: MavenAGI.EntityId[];
+    references?: MavenAGI.ScopedEntity[];
     eventTypes?: MavenAGI.EventType[];
     userEventNames?: MavenAGI.UserEventName[];
     systemEventNames?: MavenAGI.SystemEventName[];

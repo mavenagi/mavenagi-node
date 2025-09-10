@@ -14,10 +14,18 @@ export type ActionParameterType =
     | "NUMBER"
     /**
      * Schema parameter type for complex structured data that adheres to a JSON schema definition. When this type is used this should be the only action parameter (all other parameters should be omitted), the `schema` field must be set and `enumOptions` should not be used. */
-    | "SCHEMA";
+    | "SCHEMA"
+    /**
+     * File parameter type for file uploads. */
+    | "FILE"
+    /**
+     * OAuth authorization parameter type used to pass an access token at execution time. When this type is used it should be the only action parameter. This parameter is not sent to the LLM or shown on forms. */
+    | "OAUTH";
 export const ActionParameterType = {
     String: "STRING",
     Boolean: "BOOLEAN",
     Number: "NUMBER",
     Schema: "SCHEMA",
+    File: "FILE",
+    Oauth: "OAUTH",
 } as const;

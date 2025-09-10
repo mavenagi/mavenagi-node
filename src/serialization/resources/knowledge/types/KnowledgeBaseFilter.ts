@@ -14,6 +14,7 @@ export const KnowledgeBaseFilter: core.serialization.ObjectSchema<
     title: core.serialization.string().optional(),
     createdAfter: core.serialization.date().optional(),
     createdBefore: core.serialization.date().optional(),
+    appIds: core.serialization.list(core.serialization.string()).optional(),
 });
 
 export declare namespace KnowledgeBaseFilter {
@@ -22,5 +23,6 @@ export declare namespace KnowledgeBaseFilter {
         title?: string | null;
         createdAfter?: string | null;
         createdBefore?: string | null;
+        appIds?: string[] | null;
     }
 }

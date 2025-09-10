@@ -6,23 +6,23 @@ import * as serializers from "../../../index";
 import * as MavenAGI from "../../../../api/index";
 import * as core from "../../../../core";
 import { EntityId } from "../../commons/types/EntityId";
-import { KnowledgeBaseVersionType } from "./KnowledgeBaseVersionType";
 import { KnowledgeBaseVersionStatus } from "./KnowledgeBaseVersionStatus";
+import { KnowledgeBaseVersionRequest } from "./KnowledgeBaseVersionRequest";
 
 export const KnowledgeBaseVersion: core.serialization.ObjectSchema<
     serializers.KnowledgeBaseVersion.Raw,
     MavenAGI.KnowledgeBaseVersion
-> = core.serialization.object({
-    versionId: EntityId,
-    type: KnowledgeBaseVersionType,
-    status: KnowledgeBaseVersionStatus,
-    errorMessage: core.serialization.string().optional(),
-});
+> = core.serialization
+    .object({
+        versionId: EntityId,
+        status: KnowledgeBaseVersionStatus,
+        errorMessage: core.serialization.string().optional(),
+    })
+    .extend(KnowledgeBaseVersionRequest);
 
 export declare namespace KnowledgeBaseVersion {
-    export interface Raw {
+    export interface Raw extends KnowledgeBaseVersionRequest.Raw {
         versionId: EntityId.Raw;
-        type: KnowledgeBaseVersionType.Raw;
         status: KnowledgeBaseVersionStatus.Raw;
         errorMessage?: string | null;
     }

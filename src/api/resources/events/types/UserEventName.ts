@@ -14,10 +14,14 @@ export type UserEventName =
     | "CHAT_OPENED"
     /**
      * The chat window was closed */
-    | "CHAT_CLOSED";
+    | "CHAT_CLOSED"
+    /**
+     * A text was inserted into a field */
+    | "TEXT_INSERTED";
 export const UserEventName = {
     ButtonClicked: "BUTTON_CLICKED",
     LinkClicked: "LINK_CLICKED",
     ChatOpened: "CHAT_OPENED",
     ChatClosed: "CHAT_CLOSED",
+    TextInserted: "TEXT_INSERTED",
 } as const;

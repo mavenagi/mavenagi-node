@@ -17,6 +17,7 @@ export const PiiCategory: core.serialization.Schema<serializers.PiiCategory.Raw,
         "UsSocialSecurityNumber",
         "UsUkPassportNumber",
         "UsDriversLicenseNumber",
+        "UsIndividualTaxpayerIdentification",
         "Date",
         "IpAddress",
         "Url",
@@ -64,7 +65,6 @@ export const PiiCategory: core.serialization.Schema<serializers.PiiCategory.Raw,
         "UkNationalHealthNumber",
         "UkNationalInsuranceNumber",
         "UkUniqueTaxpayerNumber",
-        "UsIndividualTaxpayerIdentification",
     ]);
 
 export declare namespace PiiCategory {
@@ -78,6 +78,7 @@ export declare namespace PiiCategory {
         | "UsSocialSecurityNumber"
         | "UsUkPassportNumber"
         | "UsDriversLicenseNumber"
+        | "UsIndividualTaxpayerIdentification"
         | "Date"
         | "IpAddress"
         | "Url"
@@ -124,6 +125,5 @@ export declare namespace PiiCategory {
         | "UkElectoralRollNumber"
         | "UkNationalHealthNumber"
         | "UkNationalInsuranceNumber"
-        | "UkUniqueTaxpayerNumber"
-        | "UsIndividualTaxpayerIdentification";
+        | "UkUniqueTaxpayerNumber";
 }

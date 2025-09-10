@@ -351,10 +351,14 @@ export class Conversation {
         request: MavenAGI.ConversationGetRequest = {},
         requestOptions?: Conversation.RequestOptions,
     ): Promise<core.WithRawResponse<MavenAGI.ConversationResponse>> {
-        const { appId } = request;
+        const { appId, translationLanguage } = request;
         const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
         if (appId != null) {
             _queryParams["appId"] = appId;
+        }
+
+        if (translationLanguage != null) {
+            _queryParams["translationLanguage"] = translationLanguage;
         }
 
         const _response = await (this._options.fetcher ?? core.fetcher)({

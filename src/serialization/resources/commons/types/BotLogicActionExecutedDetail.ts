@@ -5,6 +5,7 @@
 import * as serializers from "../../../index";
 import * as MavenAGI from "../../../../api/index";
 import * as core from "../../../../core";
+import { ActionExecutionParamValue } from "./ActionExecutionParamValue";
 import { BotLogicActionReviewedDetail } from "./BotLogicActionReviewedDetail";
 
 export const BotLogicActionExecutedDetail: core.serialization.ObjectSchema<
@@ -12,7 +13,7 @@ export const BotLogicActionExecutedDetail: core.serialization.ObjectSchema<
     MavenAGI.BotLogicActionExecutedDetail
 > = core.serialization
     .object({
-        actionParameters: core.serialization.record(core.serialization.string(), core.serialization.unknown()),
+        actionParameters: core.serialization.record(core.serialization.string(), ActionExecutionParamValue),
         executionResult: core.serialization.string().optional(),
         executionError: core.serialization.string().optional(),
     })
@@ -20,7 +21,7 @@ export const BotLogicActionExecutedDetail: core.serialization.ObjectSchema<
 
 export declare namespace BotLogicActionExecutedDetail {
     export interface Raw extends BotLogicActionReviewedDetail.Raw {
-        actionParameters: Record<string, unknown>;
+        actionParameters: Record<string, ActionExecutionParamValue.Raw>;
         executionResult?: string | null;
         executionError?: string | null;
     }

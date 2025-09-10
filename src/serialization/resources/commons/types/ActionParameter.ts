@@ -7,6 +7,7 @@ import * as MavenAGI from "../../../../api/index";
 import * as core from "../../../../core";
 import { ActionParameterType } from "./ActionParameterType";
 import { ActionEnumOption } from "./ActionEnumOption";
+import { ActionOAuthConfiguration } from "./ActionOAuthConfiguration";
 
 export const ActionParameter: core.serialization.ObjectSchema<
     serializers.ActionParameter.Raw,
@@ -16,9 +17,11 @@ export const ActionParameter: core.serialization.ObjectSchema<
     label: core.serialization.string(),
     description: core.serialization.string(),
     required: core.serialization.boolean(),
+    hidden: core.serialization.boolean().optional(),
     type: ActionParameterType.optional(),
     enumOptions: core.serialization.list(ActionEnumOption).optional(),
     schema: core.serialization.string().optional(),
+    oauthConfiguration: ActionOAuthConfiguration.optional(),
 });
 
 export declare namespace ActionParameter {
@@ -27,8 +30,10 @@ export declare namespace ActionParameter {
         label: string;
         description: string;
         required: boolean;
+        hidden?: boolean | null;
         type?: ActionParameterType.Raw | null;
         enumOptions?: ActionEnumOption.Raw[] | null;
         schema?: string | null;
+        oauthConfiguration?: ActionOAuthConfiguration.Raw | null;
     }
 }

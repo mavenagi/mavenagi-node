@@ -5,7 +5,7 @@
 import * as serializers from "../../../index";
 import * as MavenAGI from "../../../../api/index";
 import * as core from "../../../../core";
-import { EntityId } from "../../commons/types/EntityId";
+import { ScopedEntity } from "./ScopedEntity";
 import { EventType } from "./EventType";
 import { UserEventName } from "./UserEventName";
 import { SystemEventName } from "./SystemEventName";
@@ -15,7 +15,7 @@ export const EventFilter: core.serialization.ObjectSchema<serializers.EventFilte
         search: core.serialization.string().optional(),
         createdAfter: core.serialization.date().optional(),
         createdBefore: core.serialization.date().optional(),
-        references: core.serialization.list(EntityId).optional(),
+        references: core.serialization.list(ScopedEntity).optional(),
         eventTypes: core.serialization.list(EventType).optional(),
         userEventNames: core.serialization.list(UserEventName).optional(),
         systemEventNames: core.serialization.list(SystemEventName).optional(),
@@ -26,7 +26,7 @@ export declare namespace EventFilter {
         search?: string | null;
         createdAfter?: string | null;
         createdBefore?: string | null;
-        references?: EntityId.Raw[] | null;
+        references?: ScopedEntity.Raw[] | null;
         eventTypes?: EventType.Raw[] | null;
         userEventNames?: UserEventName.Raw[] | null;
         systemEventNames?: SystemEventName.Raw[] | null;

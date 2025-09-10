@@ -7,6 +7,7 @@ import * as MavenAGI from "../../../../api/index";
 import * as core from "../../../../core";
 import { BotTextResponse } from "./BotTextResponse";
 import { BotActionFormResponse } from "./BotActionFormResponse";
+import { BotOAuthButtonResponse } from "./BotOAuthButtonResponse";
 import { BotChartResponse } from "./BotChartResponse";
 import { BotObjectResponse } from "./BotObjectResponse";
 
@@ -15,6 +16,7 @@ export const BotResponse: core.serialization.Schema<serializers.BotResponse.Raw,
         .union("type", {
             text: BotTextResponse,
             actionForm: BotActionFormResponse,
+            oauthButton: BotOAuthButtonResponse,
             chart: BotChartResponse,
             object: BotObjectResponse,
         })
@@ -24,7 +26,12 @@ export const BotResponse: core.serialization.Schema<serializers.BotResponse.Raw,
         });
 
 export declare namespace BotResponse {
-    export type Raw = BotResponse.Text | BotResponse.ActionForm | BotResponse.Chart | BotResponse.Object;
+    export type Raw =
+        | BotResponse.Text
+        | BotResponse.ActionForm
+        | BotResponse.OauthButton
+        | BotResponse.Chart
+        | BotResponse.Object;
 
     export interface Text extends BotTextResponse.Raw {
         type: "text";
@@ -32,6 +39,10 @@ export declare namespace BotResponse {
 
     export interface ActionForm extends BotActionFormResponse.Raw {
         type: "actionForm";
+    }
+
+    export interface OauthButton extends BotOAuthButtonResponse.Raw {
+        type: "oauthButton";
     }
 
     export interface Chart extends BotChartResponse.Raw {

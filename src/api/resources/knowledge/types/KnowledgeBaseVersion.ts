@@ -18,11 +18,9 @@ import * as MavenAGI from "../../../index";
  *         status: MavenAGI.KnowledgeBaseVersionStatus.InProgress
  *     }
  */
-export interface KnowledgeBaseVersion {
+export interface KnowledgeBaseVersion extends MavenAGI.KnowledgeBaseVersionRequest {
     /** The unique ID of the knowledge base version. */
     versionId: MavenAGI.EntityId;
-    /** Indicates whether the completed version constitutes a full or partial refresh of the knowledge base. Deleting and updating documents is only supported for partial refreshes. */
-    type: MavenAGI.KnowledgeBaseVersionType;
     /** The status of the knowledge base version */
     status: MavenAGI.KnowledgeBaseVersionStatus;
     /** A user-facing error message that provides more details about a version failure. */

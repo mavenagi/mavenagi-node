@@ -24,4 +24,6 @@ export interface KnowledgeBaseFilter {
     createdAfter?: Date;
     /** Filter knowledge bases created on or before this timestamp */
     createdBefore?: Date;
+    /** Filter by app IDs */
+    appIds?: string[];
 }

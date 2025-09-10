@@ -7,4 +7,10 @@ import * as MavenAGI from "../../../index";
 export interface ConversationAnalyticsRequest {
     /** Optional filter applied to refine the conversation data before processing. */
     conversationFilter?: MavenAGI.ConversationFilter;
+    /**
+     * IANA timezone identifier (e.g., "America/Los_Angeles").
+     * When provided, time-based groupings (e.g., DAY) and date filters are evaluated in this timezone;
+     * otherwise UTC is used.
+     */
+    timezone?: string;
 }

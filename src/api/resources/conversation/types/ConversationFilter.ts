@@ -57,6 +57,8 @@ export interface ConversationFilter {
     sentiment?: MavenAGI.Sentiment[];
     /** Filter by tags applied to the conversation */
     tags?: string[];
+    /** Filter by agent user IDs associated with the conversation */
+    agentUserIds?: string[];
     /** Filter by conversation resolution status which is determined by AI based on the conversation content. */
     resolutionStatus?: MavenAGI.ResolutionStatus[];
     /** Filter conversations based on whether they were resolved by Maven AI */
@@ -65,4 +67,6 @@ export interface ConversationFilter {
     userMessageCount?: MavenAGI.NumberRange;
     /** Filter by whether any message in the conversation has an attachment */
     hasAttachment?: boolean;
+    /** Filter by the segments that any message on a conversation matched. */
+    matchedSegmentIds?: MavenAGI.EntityIdFilter[];
 }

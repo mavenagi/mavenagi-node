@@ -6,7 +6,7 @@ import * as MavenAGI from "../../../index";
 
 export interface EventBaseNoId {
     timestamp?: Date;
-    references?: MavenAGI.EntityId[];
+    references?: MavenAGI.ScopedEntity[];
     sourceInfo?: MavenAGI.SourceInfo;
     sessionInfo?: MavenAGI.SessionInfo;
     contextInfo?: MavenAGI.ContextInfo;

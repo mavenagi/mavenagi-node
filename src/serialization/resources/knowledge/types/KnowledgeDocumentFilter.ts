@@ -5,6 +5,7 @@
 import * as serializers from "../../../index";
 import * as MavenAGI from "../../../../api/index";
 import * as core from "../../../../core";
+import { EntityIdWithoutAgent } from "../../commons/types/EntityIdWithoutAgent";
 
 export const KnowledgeDocumentFilter: core.serialization.ObjectSchema<
     serializers.KnowledgeDocumentFilter.Raw,
@@ -14,6 +15,8 @@ export const KnowledgeDocumentFilter: core.serialization.ObjectSchema<
     title: core.serialization.string().optional(),
     createdAfter: core.serialization.date().optional(),
     createdBefore: core.serialization.date().optional(),
+    appIds: core.serialization.list(core.serialization.string()).optional(),
+    knowledgeBaseVersionId: EntityIdWithoutAgent.optional(),
 });
 
 export declare namespace KnowledgeDocumentFilter {
@@ -22,5 +25,7 @@ export declare namespace KnowledgeDocumentFilter {
         title?: string | null;
         createdAfter?: string | null;
         createdBefore?: string | null;
+        appIds?: string[] | null;
+        knowledgeBaseVersionId?: EntityIdWithoutAgent.Raw | null;
     }
 }

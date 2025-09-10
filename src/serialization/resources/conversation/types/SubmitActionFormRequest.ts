@@ -5,20 +5,21 @@
 import * as serializers from "../../../index";
 import * as MavenAGI from "../../../../api/index";
 import * as core from "../../../../core";
+import { ActionFormRequestParamValue } from "./ActionFormRequestParamValue";
 
 export const SubmitActionFormRequest: core.serialization.ObjectSchema<
     serializers.SubmitActionFormRequest.Raw,
     MavenAGI.SubmitActionFormRequest
 > = core.serialization.object({
     actionFormId: core.serialization.string(),
-    parameters: core.serialization.record(core.serialization.string(), core.serialization.unknown()),
+    parameters: core.serialization.record(core.serialization.string(), ActionFormRequestParamValue),
     transientData: core.serialization.record(core.serialization.string(), core.serialization.string()).optional(),
 });
 
 export declare namespace SubmitActionFormRequest {
     export interface Raw {
         actionFormId: string;
-        parameters: Record<string, unknown>;
+        parameters: Record<string, ActionFormRequestParamValue.Raw>;
         transientData?: Record<string, string> | null;
     }
 }

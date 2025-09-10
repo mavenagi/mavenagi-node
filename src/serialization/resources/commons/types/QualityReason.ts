@@ -16,6 +16,7 @@ export const QualityReason: core.serialization.Schema<serializers.QualityReason.
         "INTERRUPTED",
         "UNSUPPORTED_USER_BEHAVIOR",
         "UNKNOWN",
+        "NO_BOT_REPLIES",
     ]);
 
 export declare namespace QualityReason {
@@ -27,5 +28,6 @@ export declare namespace QualityReason {
         | "UNSUPPORTED_FORMAT"
         | "INTERRUPTED"
         | "UNSUPPORTED_USER_BEHAVIOR"
-        | "UNKNOWN";
+        | "UNKNOWN"
+        | "NO_BOT_REPLIES";
 }

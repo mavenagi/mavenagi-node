@@ -5,7 +5,7 @@
 import * as serializers from "../../../index";
 import * as MavenAGI from "../../../../api/index";
 import * as core from "../../../../core";
-import { EntityId } from "../../commons/types/EntityId";
+import { ScopedEntity } from "./ScopedEntity";
 import { SourceInfo } from "./SourceInfo";
 import { SessionInfo } from "./SessionInfo";
 import { ContextInfo } from "./ContextInfo";
@@ -13,7 +13,7 @@ import { ContextInfo } from "./ContextInfo";
 export const EventBaseNoId: core.serialization.ObjectSchema<serializers.EventBaseNoId.Raw, MavenAGI.EventBaseNoId> =
     core.serialization.object({
         timestamp: core.serialization.date().optional(),
-        references: core.serialization.list(EntityId).optional(),
+        references: core.serialization.list(ScopedEntity).optional(),
         sourceInfo: SourceInfo.optional(),
         sessionInfo: SessionInfo.optional(),
         contextInfo: ContextInfo.optional(),
@@ -22,7 +22,7 @@ export const EventBaseNoId: core.serialization.ObjectSchema<serializers.EventBas
 export declare namespace EventBaseNoId {
     export interface Raw {
         timestamp?: string | null;
-        references?: EntityId.Raw[] | null;
+        references?: ScopedEntity.Raw[] | null;
         sourceInfo?: SourceInfo.Raw | null;
         sessionInfo?: SessionInfo.Raw | null;
         contextInfo?: ContextInfo.Raw | null;

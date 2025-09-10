@@ -10,7 +10,8 @@ export type QualityReason =
     | "UNSUPPORTED_FORMAT"
     | "INTERRUPTED"
     | "UNSUPPORTED_USER_BEHAVIOR"
-    | "UNKNOWN";
+    | "UNKNOWN"
+    | "NO_BOT_REPLIES";
 export const QualityReason = {
     MissingKnowledge: "MISSING_KNOWLEDGE",
     MissingUserInformation: "MISSING_USER_INFORMATION",
@@ -20,4 +21,5 @@ export const QualityReason = {
     Interrupted: "INTERRUPTED",
     UnsupportedUserBehavior: "UNSUPPORTED_USER_BEHAVIOR",
     Unknown: "UNKNOWN",
+    NoBotReplies: "NO_BOT_REPLIES",
 } as const;

@@ -14,6 +14,7 @@ export const AgentPatchRequest: core.serialization.ObjectSchema<
 > = core.serialization.object({
     name: core.serialization.string().optional(),
     environment: AgentEnvironment.optional(),
+    defaultTimezone: core.serialization.string().optional(),
     enabledPiiCategories: core.serialization.set(PiiCategory).optional(),
 });
 
@@ -21,6 +22,7 @@ export declare namespace AgentPatchRequest {
     export interface Raw {
         name?: string | null;
         environment?: AgentEnvironment.Raw | null;
+        defaultTimezone?: string | null;
         enabledPiiCategories?: PiiCategory.Raw[] | null;
     }
 }

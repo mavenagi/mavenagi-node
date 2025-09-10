@@ -14,13 +14,13 @@ export const KnowledgeDocumentSearchResponse: core.serialization.ObjectSchema<
 > = core.serialization
     .object({
         knowledgeDocumentId: EntityId,
-        metadata: core.serialization.record(core.serialization.string(), core.serialization.string()),
+        knowledgeBaseVersionId: EntityId.optional(),
     })
     .extend(BaseKnowledgeDocument);
 
 export declare namespace KnowledgeDocumentSearchResponse {
     export interface Raw extends BaseKnowledgeDocument.Raw {
         knowledgeDocumentId: EntityId.Raw;
-        metadata: Record<string, string>;
+        knowledgeBaseVersionId?: EntityId.Raw | null;
     }
 }

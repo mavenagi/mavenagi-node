@@ -444,11 +444,11 @@ export class Actions {
      * @throws {@link MavenAGI.ServerError}
      *
      * @example
-     *     await client.actions.patch("actionReferenceId", {})
+     *     await client.actions.patch("actionReferenceId")
      */
     public patch(
         actionReferenceId: string,
-        request: MavenAGI.ActionPatchRequest,
+        request: MavenAGI.ActionPatchRequest = {},
         requestOptions?: Actions.RequestOptions,
     ): core.HttpResponsePromise<MavenAGI.ActionResponse> {
         return core.HttpResponsePromise.fromPromise(this.__patch(actionReferenceId, request, requestOptions));
@@ -456,7 +456,7 @@ export class Actions {
 
     private async __patch(
         actionReferenceId: string,
-        request: MavenAGI.ActionPatchRequest,
+        request: MavenAGI.ActionPatchRequest = {},
         requestOptions?: Actions.RequestOptions,
     ): Promise<core.WithRawResponse<MavenAGI.ActionResponse>> {
         const _response = await (this._options.fetcher ?? core.fetcher)({
@@ -476,7 +476,7 @@ export class Actions {
                 }),
                 requestOptions?.headers,
             ),
-            contentType: "application/json",
+            contentType: "application/merge-patch+json",
             requestType: "json",
             body: serializers.ActionPatchRequest.jsonOrThrow(request, { unrecognizedObjectKeys: "strip" }),
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,

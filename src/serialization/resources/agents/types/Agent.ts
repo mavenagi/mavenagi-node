@@ -14,6 +14,7 @@ export const Agent: core.serialization.ObjectSchema<serializers.Agent.Raw, Maven
     name: core.serialization.string(),
     createdAt: core.serialization.date(),
     environment: AgentEnvironment,
+    defaultTimezone: core.serialization.string(),
     enabledPiiCategories: core.serialization.set(PiiCategory),
 });
 
@@ -23,6 +24,7 @@ export declare namespace Agent {
         name: string;
         createdAt: string;
         environment: AgentEnvironment.Raw;
+        defaultTimezone: string;
         enabledPiiCategories: PiiCategory.Raw[];
     }
 }

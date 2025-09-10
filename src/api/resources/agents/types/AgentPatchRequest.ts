@@ -9,6 +9,8 @@ export interface AgentPatchRequest {
     name?: string;
     /** The environment of the agent. */
     environment?: MavenAGI.AgentEnvironment;
+    /** The agent's default timezone. This is used when a timezone is not set on a conversation. */
+    defaultTimezone?: string;
     /** The PII categories that are enabled for the agent. */
     enabledPiiCategories?: Set<MavenAGI.PiiCategory>;
 }

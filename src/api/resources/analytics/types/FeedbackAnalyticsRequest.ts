@@ -7,4 +7,10 @@ import * as MavenAGI from "../../../index";
 export interface FeedbackAnalyticsRequest {
     /** Optional filter applied to refine the feedback data before processing. */
     feedbackFilter?: MavenAGI.FeedbackFilter;
+    /**
+     * IANA timezone identifier (e.g., "America/Los_Angeles").
+     * When provided, time-based groupings (e.g., DAY) and date filters are evaluated in this timezone;
+     * otherwise UTC is used.
+     */
+    timezone?: string;
 }

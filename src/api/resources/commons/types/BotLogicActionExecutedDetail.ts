@@ -5,7 +5,7 @@
 import * as MavenAGI from "../../../index";
 
 export interface BotLogicActionExecutedDetail extends MavenAGI.BotLogicActionReviewedDetail {
-    actionParameters: Record<string, unknown>;
+    actionParameters: Record<string, MavenAGI.ActionExecutionParamValue>;
     executionResult?: string;
     executionError?: string;
 }

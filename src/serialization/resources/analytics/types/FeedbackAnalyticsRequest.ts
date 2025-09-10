@@ -12,10 +12,12 @@ export const FeedbackAnalyticsRequest: core.serialization.ObjectSchema<
     MavenAGI.FeedbackAnalyticsRequest
 > = core.serialization.object({
     feedbackFilter: FeedbackFilter.optional(),
+    timezone: core.serialization.string().optional(),
 });
 
 export declare namespace FeedbackAnalyticsRequest {
     export interface Raw {
         feedbackFilter?: FeedbackFilter.Raw | null;
+        timezone?: string | null;
     }
 }

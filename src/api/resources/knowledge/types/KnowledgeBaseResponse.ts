@@ -26,6 +26,8 @@ import * as MavenAGI from "../../../index";
 export interface KnowledgeBaseResponse extends MavenAGI.KnowledgeBaseProperties {
     /** ID that uniquely identifies this knowledge base */
     knowledgeBaseId: MavenAGI.EntityId;
+    /** ID of the knowledge base version that is currently active. Documents can be fetched using this version ID. */
+    activeVersionId?: MavenAGI.EntityId;
     /** The type of the knowledge base. Can not be changed once created. */
     type: MavenAGI.KnowledgeBaseType;
     /** Metadata for the knowledge base. */

@@ -12,10 +12,12 @@ export const ConversationAnalyticsRequest: core.serialization.ObjectSchema<
     MavenAGI.ConversationAnalyticsRequest
 > = core.serialization.object({
     conversationFilter: ConversationFilter.optional(),
+    timezone: core.serialization.string().optional(),
 });
 
 export declare namespace ConversationAnalyticsRequest {
     export interface Raw {
         conversationFilter?: ConversationFilter.Raw | null;
+        timezone?: string | null;
     }
 }

@@ -6,6 +6,7 @@ import * as environments from "./environments";
 import * as core from "./core";
 import { mergeHeaders } from "./core/headers";
 import { Actions } from "./api/resources/actions/client/Client";
+import { AgentCapabilities } from "./api/resources/agentCapabilities/client/Client";
 import { Agents } from "./api/resources/agents/client/Client";
 import { Analytics } from "./api/resources/analytics/client/Client";
 import { AppSettings } from "./api/resources/appSettings/client/Client";
@@ -55,6 +56,7 @@ export declare namespace MavenAGIClient {
 export class MavenAGIClient {
     protected readonly _options: MavenAGIClient.Options;
     protected _actions: Actions | undefined;
+    protected _agentCapabilities: AgentCapabilities | undefined;
     protected _agents: Agents | undefined;
     protected _analytics: Analytics | undefined;
     protected _appSettings: AppSettings | undefined;
@@ -78,8 +80,8 @@ export class MavenAGIClient {
                     "X-Agent-Id": _options?.agentId,
                     "X-Fern-Language": "JavaScript",
                     "X-Fern-SDK-Name": "mavenagi",
-                    "X-Fern-SDK-Version": "1.2.0",
-                    "User-Agent": "mavenagi/1.2.0",
+                    "X-Fern-SDK-Version": "1.2.1",
+                    "User-Agent": "mavenagi/1.2.1",
                     "X-Fern-Runtime": core.RUNTIME.type,
                     "X-Fern-Runtime-Version": core.RUNTIME.version,
                 },
@@ -90,6 +92,10 @@ export class MavenAGIClient {
 
     public get actions(): Actions {
         return (this._actions ??= new Actions(this._options));
+    }
+
+    public get agentCapabilities(): AgentCapabilities {
+        return (this._agentCapabilities ??= new AgentCapabilities(this._options));
     }
 
     public get agents(): Agents {

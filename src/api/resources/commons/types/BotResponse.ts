@@ -7,6 +7,7 @@ import * as MavenAGI from "../../../index";
 export type BotResponse =
     | MavenAGI.BotResponse.Text
     | MavenAGI.BotResponse.ActionForm
+    | MavenAGI.BotResponse.OauthButton
     | MavenAGI.BotResponse.Chart
     | MavenAGI.BotResponse.Object_;
 
@@ -17,6 +18,10 @@ export namespace BotResponse {
 
     export interface ActionForm extends MavenAGI.BotActionFormResponse {
         type: "actionForm";
+    }
+
+    export interface OauthButton extends MavenAGI.BotOAuthButtonResponse {
+        type: "oauthButton";
     }
 
     export interface Chart extends MavenAGI.BotChartResponse {
