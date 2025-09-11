@@ -43,7 +43,7 @@ export namespace FieldValue {
         value: boolean;
     }
 
-    export interface EntityId extends MavenAGI.EntityIdFilter {
+    export interface EntityId extends MavenAGI.EntityResult {
         type: "entityId";
     }
 }

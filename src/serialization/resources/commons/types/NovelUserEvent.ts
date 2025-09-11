@@ -5,9 +5,9 @@
 import * as serializers from "../../../index";
 import * as MavenAGI from "../../../../api/index";
 import * as core from "../../../../core";
-import { EntityIdBase } from "../../commons/types/EntityIdBase";
+import { EntityIdBase } from "./EntityIdBase";
 import { UserEventName } from "./UserEventName";
-import { UserInfoBase } from "./UserInfoBase";
+import { EventUserInfoBase } from "./EventUserInfoBase";
 import { FeedbackInfo } from "./FeedbackInfo";
 import { PageInfo } from "./PageInfo";
 import { EventBaseNoId } from "./EventBaseNoId";
@@ -17,7 +17,7 @@ export const NovelUserEvent: core.serialization.ObjectSchema<serializers.NovelUs
         .object({
             id: EntityIdBase,
             eventName: UserEventName,
-            userInfo: UserInfoBase,
+            userInfo: EventUserInfoBase,
             feedbackInfo: core.serialization.list(FeedbackInfo).optional(),
             pageInfo: PageInfo.optional(),
         })
@@ -27,7 +27,7 @@ export declare namespace NovelUserEvent {
     export interface Raw extends EventBaseNoId.Raw {
         id: EntityIdBase.Raw;
         eventName: UserEventName.Raw;
-        userInfo: UserInfoBase.Raw;
+        userInfo: EventUserInfoBase.Raw;
         feedbackInfo?: FeedbackInfo.Raw[] | null;
         pageInfo?: PageInfo.Raw | null;
     }

@@ -19,7 +19,22 @@ export interface ActionParameter {
     type?: MavenAGI.ActionParameterType;
     /** Restricts the action parameter to only the options in this list. Valid for type `STRING`, `BOOLEAN`, and `NUMBER`. Should not be used when type is `SCHEMA`. */
     enumOptions?: MavenAGI.ActionEnumOption[];
-    /** JSON schema for validating the parameter value. Only valid when type is `SCHEMA`. */
+    /**
+     * JSON schema for validating the parameter value. Only valid when type is `SCHEMA`.
+     *
+     * **Schema Requirements:**
+     * - Root type must be "object" - The top-level schema must define an object type
+     * - Supported types: string, number, boolean, integer, object, array, enum, anyOf
+     * - Unsupported features: oneOf, allOf, const, not, if/then/else, pattern, maxLength, minLength
+     * - Required fields: All fields must be required (no optional properties)
+     * - Additional properties: Must be set to false
+     *
+     * **Limits:**
+     * - Maximum nesting depth: 5 levels
+     * - Maximum total properties: 100
+     * - Maximum total string length: 15,000 characters
+     * - Maximum total enum values: 500
+     */
     schema?: string;
     /** OAuth configuration required to start an OAuth authorization flow when this parameter's type is `OAUTH`. */
     oauthConfiguration?: MavenAGI.ActionOAuthConfiguration;

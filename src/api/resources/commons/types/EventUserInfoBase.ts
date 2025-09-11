@@ -4,6 +4,6 @@
 
 import * as MavenAGI from "../../../index";
 
-export interface UserInfoBase {
+export interface EventUserInfoBase {
     id: MavenAGI.EntityIdBase;
 }

@@ -12,4 +12,5 @@ export interface EventFilter {
     eventTypes?: MavenAGI.EventType[];
     userEventNames?: MavenAGI.UserEventName[];
     systemEventNames?: MavenAGI.SystemEventName[];
+    agentUserIds?: string[];
 }

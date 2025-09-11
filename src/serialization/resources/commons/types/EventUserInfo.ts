@@ -5,15 +5,15 @@
 import * as serializers from "../../../index";
 import * as MavenAGI from "../../../../api/index";
 import * as core from "../../../../core";
-import { EntityIdBase } from "../../commons/types/EntityIdBase";
+import { EntityId } from "./EntityId";
 
-export const UserInfoBase: core.serialization.ObjectSchema<serializers.UserInfoBase.Raw, MavenAGI.UserInfoBase> =
+export const EventUserInfo: core.serialization.ObjectSchema<serializers.EventUserInfo.Raw, MavenAGI.EventUserInfo> =
     core.serialization.object({
-        id: EntityIdBase,
+        id: EntityId.optional(),
     });
 
-export declare namespace UserInfoBase {
+export declare namespace EventUserInfo {
     export interface Raw {
-        id: EntityIdBase.Raw;
+        id?: EntityId.Raw | null;
     }
 }

@@ -14,8 +14,6 @@ export * as commons from "./commons";
 export * from "./commons/types";
 export * as conversation from "./conversation";
 export * from "./conversation/types";
-export * as events from "./events";
-export * from "./events/types";
 export * as inbox from "./inbox";
 export * from "./inbox/types";
 export * as knowledge from "./knowledge";

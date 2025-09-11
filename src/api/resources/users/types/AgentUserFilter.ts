@@ -10,4 +10,9 @@ export interface AgentUserFilter {
     search?: string;
     /** Filter by identifiers */
     identifiers?: string[];
+    /**
+     * Filter by anonymous users. When true, only anonymous users are returned.
+     * When false, only non-anonymous users are returned. An anonymous user is one without any identifiers or name data.
+     */
+    isAnonymous?: boolean;
 }

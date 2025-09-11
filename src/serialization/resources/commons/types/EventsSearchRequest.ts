@@ -7,7 +7,7 @@ import * as MavenAGI from "../../../../api/index";
 import * as core from "../../../../core";
 import { EventField } from "./EventField";
 import { EventFilter } from "./EventFilter";
-import { BasePaginatedRequest } from "../../commons/types/BasePaginatedRequest";
+import { BasePaginatedRequest } from "./BasePaginatedRequest";
 
 export const EventsSearchRequest: core.serialization.ObjectSchema<
     serializers.EventsSearchRequest.Raw,

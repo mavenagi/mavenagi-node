@@ -5,7 +5,7 @@
 import * as serializers from "../../../index";
 import * as MavenAGI from "../../../../api/index";
 import * as core from "../../../../core";
-import { EntityIdBase } from "../../commons/types/EntityIdBase";
+import { EntityIdBase } from "./EntityIdBase";
 import { NovelSystemEventNoId } from "./NovelSystemEventNoId";
 
 export const NovelSystemEvent: core.serialization.ObjectSchema<

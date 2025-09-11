@@ -4,6 +4,6 @@
 
 import * as MavenAGI from "../../../index";
 
-export interface UserInfo {
+export interface EventUserInfo {
     id?: MavenAGI.EntityId;
 }

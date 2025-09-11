@@ -6,7 +6,7 @@ import * as serializers from "../../../index";
 import * as MavenAGI from "../../../../api/index";
 import * as core from "../../../../core";
 import { EventResponse } from "./EventResponse";
-import { Page } from "../../commons/types/Page";
+import { Page } from "./Page";
 
 export const EventsSearchResponse: core.serialization.ObjectSchema<
     serializers.EventsSearchResponse.Raw,

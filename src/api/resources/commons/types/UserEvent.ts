@@ -4,13 +4,13 @@
 
 import * as MavenAGI from "../../../index";
 
-export interface NovelUserEvent extends MavenAGI.EventBaseNoId {
+export interface UserEvent extends MavenAGI.EventBaseNoId {
     /** The unique ID of the event */
-    id: MavenAGI.EntityIdBase;
+    id: MavenAGI.EntityId;
     /** The name of the event */
     eventName: MavenAGI.UserEventName;
     /** Information about the user who triggered the event */
-    userInfo: MavenAGI.UserInfoBase;
+    userInfo: MavenAGI.EventUserInfo;
     /** Information about any feedback associated with the event */
     feedbackInfo?: MavenAGI.FeedbackInfo[];
     /** Information about the page on which the event occurred */

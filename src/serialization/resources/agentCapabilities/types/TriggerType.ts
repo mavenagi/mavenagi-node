@@ -7,8 +7,8 @@ import * as MavenAGI from "../../../../api/index";
 import * as core from "../../../../core";
 
 export const TriggerType: core.serialization.Schema<serializers.TriggerType.Raw, MavenAGI.TriggerType> =
-    core.serialization.enum_(["CONVERSATION_CREATED", "FEEDBACK_CREATED", "INBOX_ITEM_CREATED"]);
+    core.serialization.enum_(["CONVERSATION_CREATED", "FEEDBACK_CREATED", "INBOX_ITEM_CREATED", "EVENT_CREATED"]);
 
 export declare namespace TriggerType {
-    export type Raw = "CONVERSATION_CREATED" | "FEEDBACK_CREATED" | "INBOX_ITEM_CREATED";
+    export type Raw = "CONVERSATION_CREATED" | "FEEDBACK_CREATED" | "INBOX_ITEM_CREATED" | "EVENT_CREATED";
 }

@@ -5,9 +5,9 @@
 import * as serializers from "../../../index";
 import * as MavenAGI from "../../../../api/index";
 import * as core from "../../../../core";
-import { EntityId } from "../../commons/types/EntityId";
+import { EntityId } from "./EntityId";
 import { UserEventName } from "./UserEventName";
-import { UserInfo } from "./UserInfo";
+import { EventUserInfo } from "./EventUserInfo";
 import { FeedbackInfo } from "./FeedbackInfo";
 import { PageInfo } from "./PageInfo";
 import { EventBaseNoId } from "./EventBaseNoId";
@@ -17,7 +17,7 @@ export const UserEvent: core.serialization.ObjectSchema<serializers.UserEvent.Ra
         .object({
             id: EntityId,
             eventName: UserEventName,
-            userInfo: UserInfo,
+            userInfo: EventUserInfo,
             feedbackInfo: core.serialization.list(FeedbackInfo).optional(),
             pageInfo: PageInfo.optional(),
         })
@@ -27,7 +27,7 @@ export declare namespace UserEvent {
     export interface Raw extends EventBaseNoId.Raw {
         id: EntityId.Raw;
         eventName: UserEventName.Raw;
-        userInfo: UserInfo.Raw;
+        userInfo: EventUserInfo.Raw;
         feedbackInfo?: FeedbackInfo.Raw[] | null;
         pageInfo?: PageInfo.Raw | null;
     }

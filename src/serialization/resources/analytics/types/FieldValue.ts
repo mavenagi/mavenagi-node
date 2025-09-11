@@ -6,7 +6,7 @@ import * as serializers from "../../../index";
 import * as MavenAGI from "../../../../api/index";
 import * as core from "../../../../core";
 import { Range } from "./Range";
-import { EntityIdFilter } from "../../commons/types/EntityIdFilter";
+import { EntityResult } from "../../commons/types/EntityResult";
 
 export const FieldValue: core.serialization.Schema<serializers.FieldValue.Raw, MavenAGI.FieldValue> = core.serialization
     .union("type", {
@@ -26,7 +26,7 @@ export const FieldValue: core.serialization.Schema<serializers.FieldValue.Raw, M
         boolean: core.serialization.object({
             value: core.serialization.boolean(),
         }),
-        entityId: EntityIdFilter,
+        entityId: EntityResult,
     })
     .transform<MavenAGI.FieldValue>({
         transform: (value) => value,
@@ -72,7 +72,7 @@ export declare namespace FieldValue {
         value: boolean;
     }
 
-    export interface EntityId extends EntityIdFilter.Raw {
+    export interface EntityId extends EntityResult.Raw {
         type: "entityId";
     }
 }

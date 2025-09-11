@@ -12,11 +12,13 @@ export const AgentUserFilter: core.serialization.ObjectSchema<
 > = core.serialization.object({
     search: core.serialization.string().optional(),
     identifiers: core.serialization.list(core.serialization.string()).optional(),
+    isAnonymous: core.serialization.boolean().optional(),
 });
 
 export declare namespace AgentUserFilter {
     export interface Raw {
         search?: string | null;
         identifiers?: string[] | null;
+        isAnonymous?: boolean | null;
     }
 }

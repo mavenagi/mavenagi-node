@@ -19,6 +19,7 @@ export const EventFilter: core.serialization.ObjectSchema<serializers.EventFilte
         eventTypes: core.serialization.list(EventType).optional(),
         userEventNames: core.serialization.list(UserEventName).optional(),
         systemEventNames: core.serialization.list(SystemEventName).optional(),
+        agentUserIds: core.serialization.list(core.serialization.string()).optional(),
     });
 
 export declare namespace EventFilter {
@@ -30,5 +31,6 @@ export declare namespace EventFilter {
         eventTypes?: EventType.Raw[] | null;
         userEventNames?: UserEventName.Raw[] | null;
         systemEventNames?: SystemEventName.Raw[] | null;
+        agentUserIds?: string[] | null;
     }
 }
