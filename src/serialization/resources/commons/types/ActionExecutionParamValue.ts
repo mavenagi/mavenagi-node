@@ -12,7 +12,7 @@ export const ActionExecutionParamValue: core.serialization.Schema<
     MavenAGI.ActionExecutionParamValue
 > = core.serialization
     .union("valueType", {
-        raw: core.serialization.object({
+        primitive: core.serialization.object({
             value: core.serialization.unknown(),
         }),
         attachment: AttachmentResponse,
@@ -23,10 +23,10 @@ export const ActionExecutionParamValue: core.serialization.Schema<
     });
 
 export declare namespace ActionExecutionParamValue {
-    export type Raw = ActionExecutionParamValue.Raw | ActionExecutionParamValue.Attachment;
+    export type Raw = ActionExecutionParamValue.Primitive | ActionExecutionParamValue.Attachment;
 
-    export interface Raw {
-        valueType: "raw";
+    export interface Primitive {
+        valueType: "primitive";
         value?: unknown;
     }
 

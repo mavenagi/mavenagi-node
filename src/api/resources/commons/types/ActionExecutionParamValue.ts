@@ -5,12 +5,12 @@
 import * as MavenAGI from "../../../index";
 
 export type ActionExecutionParamValue =
-    | MavenAGI.ActionExecutionParamValue.Raw
+    | MavenAGI.ActionExecutionParamValue.Primitive
     | MavenAGI.ActionExecutionParamValue.Attachment;
 
 export namespace ActionExecutionParamValue {
-    export interface Raw {
-        valueType: "raw";
+    export interface Primitive {
+        valueType: "primitive";
         value?: unknown;
     }
 

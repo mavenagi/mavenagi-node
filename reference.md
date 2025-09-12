@@ -1225,6 +1225,81 @@ await client.analytics.getFeedbackTable({
 </dl>
 </details>
 
+<details><summary><code>client.analytics.<a href="/src/api/resources/analytics/client/Client.ts">getAgentUserTable</a>({ ...params }) -> MavenAGI.AgentUserTableResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Retrieves structured agent user data formatted as a table, allowing users to group, filter, and define specific metrics to display as columns.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.analytics.getAgentUserTable({
+    agentUserFilter: {
+        search: "john",
+    },
+    columnDefinitions: [
+        {
+            header: "user_count",
+            metric: {
+                type: "count",
+            },
+        },
+    ],
+});
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `MavenAGI.AgentUserTableRequest`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Analytics.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
 ## AppSettings
 
 <details><summary><code>client.appSettings.<a href="/src/api/resources/appSettings/client/Client.ts">search</a>({ ...params }) -> MavenAGI.SearchAppSettingsResponse</code></summary>
