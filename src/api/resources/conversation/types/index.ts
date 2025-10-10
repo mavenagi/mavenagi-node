@@ -1,5 +1,4 @@
 export * from "./AskRequest";
-export * from "./GenerateMavenSuggestionsRequest";
 export * from "./ConversationRequest";
 export * from "./ConversationMessageRequest";
 export * from "./SubmitActionFormRequest";
@@ -23,6 +22,7 @@ export * from "./ResolutionStatus";
 export * from "./ConversationsSearchRequest";
 export * from "./ConversationsResponse";
 export * from "./ConversationFilter";
+export * from "./SimulationFilter";
 export * from "./FeedbackField";
 export * from "./FeedbackFilter";
 export * from "./ConversationMetadata";

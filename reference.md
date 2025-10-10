@@ -529,6 +529,85 @@ await client.agentCapabilities.patch("integrationId", "capabilityId", {});
 </dl>
 </details>
 
+<details><summary><code>client.agentCapabilities.<a href="/src/api/resources/agentCapabilities/client/Client.ts">execute</a>(integrationId, capabilityId, { ...params }) -> MavenAGI.ExecuteCapabilityResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Execute an action capability.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.agentCapabilities.execute("integrationId", "capabilityId", {});
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**integrationId:** `string`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**capabilityId:** `string`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `MavenAGI.ExecuteCapabilityRequest`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `AgentCapabilities.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
 ## Agents
 
 <details><summary><code>client.agents.<a href="/src/api/resources/agents/client/Client.ts">search</a>({ ...params }) -> MavenAGI.AgentsSearchResponse</code></summary>
@@ -1900,6 +1979,9 @@ Wipes a conversation of all user data.
 The conversation ID will still exist and non-user specific data will still be retained.
 Attempts to modify or add messages to the conversation will throw an error.
 
+Simulation conversations will no longer be visible in search results nor metrics.
+Non-simulation conversations will remain visible - they can not be fully removed from the system.
+
 <Warning>This is a destructive operation and cannot be undone. <br/><br/>
 The exact fields cleared include: the conversation subject, userRequest, agentResponse.
 As well as the text response, followup questions, and backend LLM prompt of all messages.</Warning>
@@ -2242,86 +2324,6 @@ for await (const item of response) {
 <dd>
 
 **request:** `MavenAGI.AskRequest`
-
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `Conversation.RequestOptions`
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.conversation.<a href="/src/api/resources/conversation/client/Client.ts">generateMavenSuggestions</a>(conversationId, { ...params }) -> MavenAGI.ConversationResponse</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-This method is deprecated and will be removed in a future release. Use either `ask` or `askStream` instead.
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.conversation.generateMavenSuggestions("conversationId", {
-    conversationMessageIds: [
-        {
-            referenceId: "referenceId",
-        },
-        {
-            referenceId: "referenceId",
-        },
-    ],
-});
-```
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**conversationId:** `string` — The ID of a conversation the messages belong to
-
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**request:** `MavenAGI.GenerateMavenSuggestionsRequest`
 
 </dd>
 </dl>
@@ -3080,6 +3082,79 @@ await client.events.search({});
 <dd>
 
 **request:** `MavenAGI.EventsSearchRequest`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Events.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.events.<a href="/src/api/resources/events/client/Client.ts">get</a>(eventId, { ...params }) -> MavenAGI.EventResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Retrieve details of a specific Event item by its ID.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.events.get("eventId", {
+    appId: "appId",
+});
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**eventId:** `string` — The ID of the Event to get.
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `MavenAGI.EventGetRequest`
 
 </dd>
 </dl>
@@ -5470,7 +5545,7 @@ await client.users.search({});
 </dl>
 </details>
 
-<details><summary><code>client.users.<a href="/src/api/resources/users/client/Client.ts">getAgentUser</a>(userId) -> MavenAGI.AgentUser</code></summary>
+<details><summary><code>client.users.<a href="/src/api/resources/users/client/Client.ts">getAgentUser</a>(agentUserId) -> MavenAGI.AgentUser</code></summary>
 <dl>
 <dd>
 
@@ -5500,7 +5575,7 @@ Agent users are a merged view of the users created by individual apps.
 <dd>
 
 ```typescript
-await client.users.getAgentUser("userId");
+await client.users.getAgentUser("aus_1234567890");
 ```
 
 </dd>
@@ -5516,7 +5591,7 @@ await client.users.getAgentUser("userId");
 <dl>
 <dd>
 
-**userId:** `string` — The ID of the agent user to get.
+**agentUserId:** `string` — The ID of the agent user to get.
 
 </dd>
 </dl>

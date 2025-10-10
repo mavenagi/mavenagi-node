@@ -33,6 +33,7 @@ export * as events from "./events";
 export * from "./actions/client/requests";
 export * from "./appSettings/client/requests";
 export * from "./conversation/client/requests";
+export * from "./events/client/requests";
 export * from "./inbox/client/requests";
 export * from "./knowledge/client/requests";
 export * from "./segments/client/requests";

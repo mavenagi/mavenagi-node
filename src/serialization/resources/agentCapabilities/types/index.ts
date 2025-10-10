@@ -5,6 +5,8 @@ export * from "./TriggerCapability";
 export * from "./ListAgentCapabilitiesResponse";
 export * from "./AgentCapabilityListRequest";
 export * from "./PatchAgentCapabilityRequest";
+export * from "./ExecuteCapabilityRequest";
+export * from "./ExecuteCapabilityResponse";
 export * from "./TriggerType";
 export * from "./AgentCapabilityType";
 export * from "./AgentCapabilityField";
