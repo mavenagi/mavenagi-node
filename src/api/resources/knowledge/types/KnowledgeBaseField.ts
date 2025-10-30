@@ -2,6 +2,7 @@
 
 export const KnowledgeBaseField = {
     Title: "Title",
+    CreatedAt: "CreatedAt",
     UpdatedAt: "UpdatedAt",
 } as const;
 export type KnowledgeBaseField = (typeof KnowledgeBaseField)[keyof typeof KnowledgeBaseField];

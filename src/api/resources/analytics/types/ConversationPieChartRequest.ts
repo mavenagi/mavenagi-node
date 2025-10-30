@@ -3,7 +3,19 @@
 import * as MavenAGI from "../../../index";
 
 export interface ConversationPieChartRequest extends MavenAGI.ConversationAnalyticsRequest {
-    /** Field used to group data into slices for the pie chart. */
+    /**
+     * Field used to group data into slices for the pie chart.
+     *
+     * **Series Name Formats by Field:**
+     * - `Sources`: Document title (e.g., "Product Documentation")
+     * - `Actions`: "Action Name - App Name" (e.g., "Create Ticket - Freshdesk")
+     * - `IncompleteActions`: "Action Name - App Name" (e.g., "Search Documents - Zendesk")
+     * - `Users`: User identifier value (e.g., "user@example.com")
+     * - `InboxItems`: Inbox item title
+     * - `HumanAgents`: Human agent display name
+     * - `HumanAgentsWithInserts`: Human agent display name (for agents who made inserts)
+     * - Other fields: Field value as stored (e.g., "GOOD", "NEEDS_IMPROVEMENT" for Quality)
+     */
     groupBy: MavenAGI.ConversationGroupBy;
     /** Metric defining the value for each pie slice, stored in the y-axis value. */
     metric: MavenAGI.ConversationMetric;

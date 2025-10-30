@@ -23,4 +23,12 @@ export interface Agent {
      * `UsUkPassportNumber`, `UsSocialSecurityNumber`.
      */
     enabledPiiCategories: Set<MavenAGI.PiiCategory>;
+    /**
+     * Text shown to end users when the system encounters an error while generating a bot response message.
+     *
+     * This text is also used when a content safety violation is detected, unless `contentSafetyViolationPromptText` is set.
+     */
+    systemFallbackMessage?: string;
+    /** Agent prompting settings. */
+    prompting: MavenAGI.AgentPrompting;
 }

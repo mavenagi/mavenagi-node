@@ -449,7 +449,17 @@ export class Actions {
      * @throws {@link MavenAGI.ServerError}
      *
      * @example
-     *     await client.actions.patch("actionReferenceId")
+     *     await client.actions.patch("get-balance", {
+     *         instructions: "Use this action when the user asks about their account balance or remaining credits.",
+     *         llmInclusionStatus: "WHEN_RELEVANT",
+     *         segmentId: {
+     *             referenceId: "premium-users",
+     *             appId: "my-billing-system",
+     *             organizationId: "acme",
+     *             agentId: "support",
+     *             type: "SEGMENT"
+     *         }
+     *     })
      */
     public patch(
         actionReferenceId: string,

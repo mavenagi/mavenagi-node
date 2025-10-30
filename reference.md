@@ -238,7 +238,17 @@ All other fields will overwrite the existing value on the action only if provide
 <dd>
 
 ```typescript
-await client.actions.patch("actionReferenceId");
+await client.actions.patch("get-balance", {
+    instructions: "Use this action when the user asks about their account balance or remaining credits.",
+    llmInclusionStatus: "WHEN_RELEVANT",
+    segmentId: {
+        referenceId: "premium-users",
+        appId: "my-billing-system",
+        organizationId: "acme",
+        agentId: "support",
+        type: "SEGMENT",
+    },
+});
 ```
 
 </dd>
@@ -927,7 +937,7 @@ This endpoint requires additional permissions. Contact support to request access
 <dd>
 
 ```typescript
-await client.agents.patch("organizationReferenceId", "agentReferenceId", {});
+await client.agents.patch("organizationReferenceId", "agentReferenceId");
 ```
 
 </dd>
@@ -2591,7 +2601,11 @@ await client.conversation.createFeedback({
 <dl>
 <dd>
 
-Submit a filled out action form
+Submit a filled out action form.
+Action forms can not be submitted more than once, attempting to do so will result in an error.
+
+Additionally, form submission is only allowed when the form is the last message in the conversation.
+Forms should be disabled in surface UI if a conversation continues and they remain unsubmitted.
 
 </dd>
 </dl>
@@ -2843,6 +2857,74 @@ Search conversations
 
 ```typescript
 await client.conversation.search({});
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `MavenAGI.ConversationsSearchRequest`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Conversation.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.conversation.<a href="/src/api/resources/conversation/client/Client.ts">export</a>({ ...params }) -> core.BinaryResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Export conversations to a CSV file.
+
+This will output a summary of each conversation that matches the supplied filter. A maximum of 10,000 conversations can be exported at a time.
+
+For most use cases it is recommended to use the `search` API instead and convert the JSON response to your desired format.
+The CSV format may change over time and should not be relied upon by code consumers.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.conversation.export({});
 ```
 
 </dd>
@@ -3155,6 +3237,71 @@ await client.events.get("eventId", {
 <dd>
 
 **request:** `MavenAGI.EventGetRequest`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Events.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.events.<a href="/src/api/resources/events/client/Client.ts">export</a>({ ...params }) -> core.BinaryResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Export events to a CSV file.
+
+This will output a summary of each event that matches the supplied filter. A maximum of 10,000 events can be exported at a time. For most use cases it is recommended to use the search API instead and convert the JSON response to your desired format. The CSV format may change over time and should not be relied upon by code consumers.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.events.export({});
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `MavenAGI.EventsSearchRequest`
 
 </dd>
 </dl>
@@ -3735,6 +3882,82 @@ await client.knowledge.getKnowledgeBase("help-center");
 </dl>
 </details>
 
+<details><summary><code>client.knowledge.<a href="/src/api/resources/knowledge/client/Client.ts">refreshKnowledgeBase</a>(knowledgeBaseReferenceId, { ...params }) -> void</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Request that a knowledge base refresh itself.
+
+Knowledge bases refresh on a schedule determined by the `refreshFrequency` field.
+They can also be refreshed on demand by calling this endpoint.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.knowledge.refreshKnowledgeBase("help-center", {
+    appId: "readme",
+});
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**knowledgeBaseReferenceId:** `string` — The reference ID of the knowledge base to refresh. All other entity ID fields are inferred from the request.
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `MavenAGI.KnowledgeBaseRefreshRequest`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Knowledge.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
 <details><summary><code>client.knowledge.<a href="/src/api/resources/knowledge/client/Client.ts">patchKnowledgeBase</a>(knowledgeBaseReferenceId, { ...params }) -> MavenAGI.KnowledgeBaseResponse</code></summary>
 <dl>
 <dd>
@@ -3766,7 +3989,17 @@ All other fields will overwrite the existing value on the knowledge base only if
 <dd>
 
 ```typescript
-await client.knowledge.patchKnowledgeBase("knowledgeBaseReferenceId");
+await client.knowledge.patchKnowledgeBase("help-center", {
+    name: "Updated Help Center",
+    tags: new Set(["tag1", "tag2", "tag3"]),
+    segmentId: {
+        referenceId: "premium-users",
+        appId: "readme",
+        organizationId: "acme",
+        agentId: "support",
+        type: "SEGMENT",
+    },
+});
 ```
 
 </dd>

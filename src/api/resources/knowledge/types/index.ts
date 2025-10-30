@@ -24,3 +24,4 @@ export * from "./KnowledgeDocumentSearchRequest";
 export * from "./KnowledgeDocumentSearchResponse";
 export * from "./KnowledgeDocumentsResponse";
 export * from "./KnowledgeBaseVersionsListResponse";
+export * from "./KnowledgeBaseRefreshRequest";

@@ -3,6 +3,12 @@
 import * as MavenAGI from "../../../index";
 
 export interface SimulationContext {
+    /**
+     * If provided, overrides the agent's default additional prompt text during the simulation.
+     * Note that this field is provided for backwards compatibility and will be removed in a future release.
+     * Instead please use the `availableKnowledgeBases` field to include a knowledge base with a document `llmInclusionStatus` set to `ALWAYS`.
+     */
+    additionalPromptText?: string;
     /** The persona to use during the simulation. If not provided, the agent's default persona will be used. */
     persona?: MavenAGI.LlmPersona;
     /** If provided, knowledge search will be restricted to the provided list of knowledge bases. Otherwise, all active knowledge bases will be used. An empty list means no knowledge bases will be used. */

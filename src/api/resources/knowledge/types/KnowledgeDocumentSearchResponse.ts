@@ -10,4 +10,6 @@ export interface KnowledgeDocumentSearchResponse extends MavenAGI.BaseKnowledgeD
      * This may be missing on legacy documents.
      */
     knowledgeBaseVersionId?: MavenAGI.EntityId;
+    /** The title of the document. Will be shown as part of answers. May be missing on legacy documents. */
+    title?: string;
 }

@@ -8,7 +8,6 @@ export const BaseKnowledgeDocument: core.serialization.ObjectSchema<
     serializers.BaseKnowledgeDocument.Raw,
     MavenAGI.BaseKnowledgeDocument
 > = core.serialization.object({
-    title: core.serialization.string(),
     url: core.serialization.string().optional(),
     language: core.serialization.string().optional(),
     createdAt: core.serialization.date().optional(),
@@ -18,7 +17,6 @@ export const BaseKnowledgeDocument: core.serialization.ObjectSchema<
 
 export declare namespace BaseKnowledgeDocument {
     export interface Raw {
-        title: string;
         url?: string | null;
         language?: string | null;
         createdAt?: string | null;

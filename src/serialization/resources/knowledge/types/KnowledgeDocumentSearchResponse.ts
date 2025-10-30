@@ -13,6 +13,7 @@ export const KnowledgeDocumentSearchResponse: core.serialization.ObjectSchema<
     .object({
         knowledgeDocumentId: EntityId,
         knowledgeBaseVersionId: EntityId.optional(),
+        title: core.serialization.string().optional(),
     })
     .extend(BaseKnowledgeDocument);
 
@@ -20,5 +21,6 @@ export declare namespace KnowledgeDocumentSearchResponse {
     export interface Raw extends BaseKnowledgeDocument.Raw {
         knowledgeDocumentId: EntityId.Raw;
         knowledgeBaseVersionId?: EntityId.Raw | null;
+        title?: string | null;
     }
 }

@@ -1416,7 +1416,11 @@ export class Conversation {
     }
 
     /**
-     * Submit a filled out action form
+     * Submit a filled out action form.
+     * Action forms can not be submitted more than once, attempting to do so will result in an error.
+     *
+     * Additionally, form submission is only allowed when the form is the last message in the conversation.
+     * Forms should be disabled in surface UI if a conversation continues and they remain unsubmitted.
      *
      * @param {string} conversationId - The ID of a conversation the form being submitted belongs to
      * @param {MavenAGI.SubmitActionFormRequest} request
@@ -1930,6 +1934,117 @@ export class Conversation {
                 });
             case "timeout":
                 throw new errors.MavenAGITimeoutError("Timeout exceeded when calling POST /v1/conversations/search.");
+            case "unknown":
+                throw new errors.MavenAGIError({
+                    message: _response.error.errorMessage,
+                    rawResponse: _response.rawResponse,
+                });
+        }
+    }
+
+    /**
+     * Export conversations to a CSV file.
+     *
+     * This will output a summary of each conversation that matches the supplied filter. A maximum of 10,000 conversations can be exported at a time.
+     *
+     * For most use cases it is recommended to use the `search` API instead and convert the JSON response to your desired format.
+     * The CSV format may change over time and should not be relied upon by code consumers.
+     * @throws {@link MavenAGI.NotFoundError}
+     * @throws {@link MavenAGI.BadRequestError}
+     * @throws {@link MavenAGI.ServerError}
+     */
+    public export(
+        request: MavenAGI.ConversationsSearchRequest,
+        requestOptions?: Conversation.RequestOptions,
+    ): core.HttpResponsePromise<core.BinaryResponse> {
+        return core.HttpResponsePromise.fromPromise(this.__export(request, requestOptions));
+    }
+
+    private async __export(
+        request: MavenAGI.ConversationsSearchRequest,
+        requestOptions?: Conversation.RequestOptions,
+    ): Promise<core.WithRawResponse<core.BinaryResponse>> {
+        let _headers: core.Fetcher.Args["headers"] = mergeHeaders(
+            this._options?.headers,
+            mergeOnlyDefinedHeaders({
+                Authorization: await this._getAuthorizationHeader(),
+                "X-Organization-Id": requestOptions?.organizationId ?? this._options?.organizationId,
+                "X-Agent-Id": requestOptions?.agentId ?? this._options?.agentId,
+            }),
+            requestOptions?.headers,
+        );
+        const _response = await (this._options.fetcher ?? core.fetcher)<core.BinaryResponse>({
+            url: core.url.join(
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)) ??
+                    environments.MavenAGIEnvironment.Production,
+                "/v1/conversations/export",
+            ),
+            method: "POST",
+            headers: _headers,
+            contentType: "application/json",
+            queryParameters: requestOptions?.queryParams,
+            requestType: "json",
+            body: serializers.ConversationsSearchRequest.jsonOrThrow(request, { unrecognizedObjectKeys: "strip" }),
+            responseType: "binary-response",
+            timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
+            maxRetries: requestOptions?.maxRetries,
+            abortSignal: requestOptions?.abortSignal,
+        });
+        if (_response.ok) {
+            return { data: _response.body, rawResponse: _response.rawResponse };
+        }
+
+        if (_response.error.reason === "status-code") {
+            switch (_response.error.statusCode) {
+                case 404:
+                    throw new MavenAGI.NotFoundError(
+                        serializers.ErrorMessage.parseOrThrow(_response.error.body, {
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
+                            breadcrumbsPrefix: ["response"],
+                        }),
+                        _response.rawResponse,
+                    );
+                case 400:
+                    throw new MavenAGI.BadRequestError(
+                        serializers.ErrorMessage.parseOrThrow(_response.error.body, {
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
+                            breadcrumbsPrefix: ["response"],
+                        }),
+                        _response.rawResponse,
+                    );
+                case 500:
+                    throw new MavenAGI.ServerError(
+                        serializers.ErrorMessage.parseOrThrow(_response.error.body, {
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
+                            breadcrumbsPrefix: ["response"],
+                        }),
+                        _response.rawResponse,
+                    );
+                default:
+                    throw new errors.MavenAGIError({
+                        statusCode: _response.error.statusCode,
+                        body: _response.error.body,
+                        rawResponse: _response.rawResponse,
+                    });
+            }
+        }
+
+        switch (_response.error.reason) {
+            case "non-json":
+                throw new errors.MavenAGIError({
+                    statusCode: _response.error.statusCode,
+                    body: _response.error.rawBody,
+                    rawResponse: _response.rawResponse,
+                });
+            case "timeout":
+                throw new errors.MavenAGITimeoutError("Timeout exceeded when calling POST /v1/conversations/export.");
             case "unknown":
                 throw new errors.MavenAGIError({
                     message: _response.error.errorMessage,

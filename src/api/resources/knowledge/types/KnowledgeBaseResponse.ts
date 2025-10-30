@@ -5,6 +5,8 @@ import * as MavenAGI from "../../../index";
 /**
  * @example
  *     {
+ *         createdAt: new Date("2025-01-01T00:00:00.000Z"),
+ *         updatedAt: new Date("2025-02-02T00:00:00.000Z"),
  *         knowledgeBaseId: {
  *             referenceId: "help-center",
  *             appId: "readme",
@@ -12,20 +14,46 @@ import * as MavenAGI from "../../../index";
  *             agentId: "support",
  *             type: MavenAGI.EntityType.KnowledgeBase
  *         },
+ *         activeVersionId: {
+ *             referenceId: "version-1",
+ *             appId: "readme",
+ *             organizationId: "acme",
+ *             agentId: "support",
+ *             type: MavenAGI.EntityType.KnowledgeBaseVersion
+ *         },
+ *         mostRecentVersionStatus: MavenAGI.KnowledgeBaseVersionStatus.Succeeded,
+ *         llmInclusionStatus: MavenAGI.LlmInclusionStatus.WhenRelevant,
  *         name: "Help center",
  *         type: MavenAGI.KnowledgeBaseType.Api,
  *         metadata: {
  *             "key": "value"
  *         },
  *         tags: new Set(["tag1", "tag2"]),
- *         refreshFrequency: MavenAGI.KnowledgeBaseRefreshFrequency.Daily
+ *         refreshFrequency: MavenAGI.KnowledgeBaseRefreshFrequency.Daily,
+ *         segmentId: {
+ *             referenceId: "premium-users",
+ *             appId: "readme",
+ *             organizationId: "acme",
+ *             agentId: "support",
+ *             type: MavenAGI.EntityType.Segment
+ *         }
  *     }
  */
 export interface KnowledgeBaseResponse extends MavenAGI.KnowledgeBaseProperties {
+    /** The date and time when the knowledge base was created. */
+    createdAt: Date;
+    /** The date and time when the knowledge base was last updated. */
+    updatedAt: Date;
     /** ID that uniquely identifies this knowledge base */
     knowledgeBaseId: MavenAGI.EntityId;
     /** ID of the knowledge base version that is currently active. Documents can be fetched using this version ID. */
     activeVersionId?: MavenAGI.EntityId;
+    /**
+     * The status of the most recent version of the knowledge base.
+     * The `activeVersionId` will only be populated if this status is `SUCCEEDED`.
+     * Use the `listKnowledgeBaseVersions` endpoint to get the full list of versions.
+     */
+    mostRecentVersionStatus: MavenAGI.KnowledgeBaseVersionStatus;
     /** The type of the knowledge base. Can not be changed once created. */
     type: MavenAGI.KnowledgeBaseType;
     /** Metadata for the knowledge base. */

@@ -10,12 +10,14 @@ export const SimulationContext: core.serialization.ObjectSchema<
     serializers.SimulationContext.Raw,
     MavenAGI.SimulationContext
 > = core.serialization.object({
+    additionalPromptText: core.serialization.string().optional(),
     persona: LlmPersona.optional(),
     availableKnowledgeBases: core.serialization.list(EntityId).optional(),
 });
 
 export declare namespace SimulationContext {
     export interface Raw {
+        additionalPromptText?: string | null;
         persona?: LlmPersona.Raw | null;
         availableKnowledgeBases?: EntityId.Raw[] | null;
     }

@@ -6,6 +6,7 @@ import * as core from "../../../../core";
 import { EntityId } from "../../commons/types/EntityId";
 import { AgentEnvironment } from "./AgentEnvironment";
 import { PiiCategory } from "./PiiCategory";
+import { AgentPrompting } from "./AgentPrompting";
 
 export const Agent: core.serialization.ObjectSchema<serializers.Agent.Raw, MavenAGI.Agent> = core.serialization.object({
     agentId: EntityId,
@@ -14,6 +15,8 @@ export const Agent: core.serialization.ObjectSchema<serializers.Agent.Raw, Maven
     environment: AgentEnvironment,
     defaultTimezone: core.serialization.string(),
     enabledPiiCategories: core.serialization.set(PiiCategory),
+    systemFallbackMessage: core.serialization.string().optional(),
+    prompting: AgentPrompting,
 });
 
 export declare namespace Agent {
@@ -24,5 +27,7 @@ export declare namespace Agent {
         environment: AgentEnvironment.Raw;
         defaultTimezone: string;
         enabledPiiCategories: PiiCategory.Raw[];
+        systemFallbackMessage?: string | null;
+        prompting: AgentPrompting.Raw;
     }
 }

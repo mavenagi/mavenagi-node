@@ -29,4 +29,5 @@ export * from "./triggers/types";
 export * as users from "./users";
 export * from "./users/types";
 export * from "./actions/client/requests";
+export * from "./agents/client/requests";
 export * from "./knowledge/client/requests";

@@ -570,12 +570,12 @@ export class Agents {
      * @throws {@link MavenAGI.ServerError}
      *
      * @example
-     *     await client.agents.patch("organizationReferenceId", "agentReferenceId", {})
+     *     await client.agents.patch("organizationReferenceId", "agentReferenceId")
      */
     public patch(
         organizationReferenceId: string,
         agentReferenceId: string,
-        request: MavenAGI.AgentPatchRequest,
+        request: MavenAGI.AgentPatchRequest = {},
         requestOptions?: Agents.RequestOptions,
     ): core.HttpResponsePromise<MavenAGI.Agent> {
         return core.HttpResponsePromise.fromPromise(
@@ -586,7 +586,7 @@ export class Agents {
     private async __patch(
         organizationReferenceId: string,
         agentReferenceId: string,
-        request: MavenAGI.AgentPatchRequest,
+        request: MavenAGI.AgentPatchRequest = {},
         requestOptions?: Agents.RequestOptions,
     ): Promise<core.WithRawResponse<MavenAGI.Agent>> {
         let _headers: core.Fetcher.Args["headers"] = mergeHeaders(
@@ -607,7 +607,7 @@ export class Agents {
             ),
             method: "PATCH",
             headers: _headers,
-            contentType: "application/json",
+            contentType: "application/merge-patch+json",
             queryParameters: requestOptions?.queryParams,
             requestType: "json",
             body: serializers.AgentPatchRequest.jsonOrThrow(request, { unrecognizedObjectKeys: "strip" }),

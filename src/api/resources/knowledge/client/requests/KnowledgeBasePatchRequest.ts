@@ -4,7 +4,17 @@ import * as MavenAGI from "../../../../index";
 
 /**
  * @example
- *     {}
+ *     {
+ *         name: "Updated Help Center",
+ *         tags: new Set(["tag1", "tag2", "tag3"]),
+ *         segmentId: {
+ *             referenceId: "premium-users",
+ *             appId: "readme",
+ *             organizationId: "acme",
+ *             agentId: "support",
+ *             type: "SEGMENT"
+ *         }
+ *     }
  */
 export interface KnowledgeBasePatchRequest {
     /** The App ID of the knowledge base to patch. If not provided the ID of the calling app will be used. */

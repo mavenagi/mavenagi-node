@@ -7,8 +7,8 @@ import * as core from "../../../../core";
 export const KnowledgeBaseType: core.serialization.Schema<
     serializers.KnowledgeBaseType.Raw,
     MavenAGI.KnowledgeBaseType
-> = core.serialization.enum_(["API"]);
+> = core.serialization.enum_(["API", "URL", "MANUAL", "RSS", "LEGACY"]);
 
 export declare namespace KnowledgeBaseType {
-    export type Raw = "API";
+    export type Raw = "API" | "URL" | "MANUAL" | "RSS" | "LEGACY";
 }

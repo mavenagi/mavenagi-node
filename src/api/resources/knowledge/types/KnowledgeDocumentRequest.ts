@@ -27,6 +27,8 @@ export interface KnowledgeDocumentRequest extends MavenAGI.BaseKnowledgeDocument
     /** ID that uniquely identifies which knowledge base version to create the document in. If not provided will use the most recent version of the knowledge base. */
     versionId?: MavenAGI.EntityIdWithoutAgent;
     contentType: MavenAGI.KnowledgeDocumentContentType;
+    /** The title of the document. Will be shown as part of answers. */
+    title: string;
     /** The content of the document. Not shown directly to users. May be provided in HTML or markdown. HTML will be converted to markdown automatically. Images are not currently supported and will be ignored. */
     content: string;
     /** Metadata for the knowledge document. */

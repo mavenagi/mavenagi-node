@@ -4,7 +4,17 @@ import * as MavenAGI from "../../../../index";
 
 /**
  * @example
- *     {}
+ *     {
+ *         instructions: "Use this action when the user asks about their account balance or remaining credits.",
+ *         llmInclusionStatus: "WHEN_RELEVANT",
+ *         segmentId: {
+ *             referenceId: "premium-users",
+ *             appId: "my-billing-system",
+ *             organizationId: "acme",
+ *             agentId: "support",
+ *             type: "SEGMENT"
+ *         }
+ *     }
  */
 export interface ActionPatchRequest {
     /** The App ID of the action to patch. If not provided the ID of the calling app will be used. */

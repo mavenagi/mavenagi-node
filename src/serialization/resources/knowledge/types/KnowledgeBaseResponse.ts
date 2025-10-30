@@ -4,6 +4,7 @@ import * as serializers from "../../../index";
 import * as MavenAGI from "../../../../api/index";
 import * as core from "../../../../core";
 import { EntityId } from "../../commons/types/EntityId";
+import { KnowledgeBaseVersionStatus } from "./KnowledgeBaseVersionStatus";
 import { KnowledgeBaseType } from "./KnowledgeBaseType";
 import { LlmInclusionStatus } from "../../commons/types/LlmInclusionStatus";
 import { KnowledgeBaseRefreshFrequency } from "./KnowledgeBaseRefreshFrequency";
@@ -14,8 +15,11 @@ export const KnowledgeBaseResponse: core.serialization.ObjectSchema<
     MavenAGI.KnowledgeBaseResponse
 > = core.serialization
     .object({
+        createdAt: core.serialization.date(),
+        updatedAt: core.serialization.date(),
         knowledgeBaseId: EntityId,
         activeVersionId: EntityId.optional(),
+        mostRecentVersionStatus: KnowledgeBaseVersionStatus,
         type: KnowledgeBaseType,
         metadata: core.serialization.record(core.serialization.string(), core.serialization.string()),
         tags: core.serialization.set(core.serialization.string()),
@@ -27,8 +31,11 @@ export const KnowledgeBaseResponse: core.serialization.ObjectSchema<
 
 export declare namespace KnowledgeBaseResponse {
     export interface Raw extends KnowledgeBaseProperties.Raw {
+        createdAt: string;
+        updatedAt: string;
         knowledgeBaseId: EntityId.Raw;
         activeVersionId?: EntityId.Raw | null;
+        mostRecentVersionStatus: KnowledgeBaseVersionStatus.Raw;
         type: KnowledgeBaseType.Raw;
         metadata: Record<string, string>;
         tags: string[];

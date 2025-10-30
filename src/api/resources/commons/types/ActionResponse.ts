@@ -29,6 +29,13 @@ import * as MavenAGI from "../../../index";
  *                     key: "userKey2"
  *                 }]
  *         },
+ *         segmentId: {
+ *             referenceId: "premium-users",
+ *             appId: "my-billing-system",
+ *             organizationId: "acme",
+ *             agentId: "support",
+ *             type: MavenAGI.EntityType.Segment
+ *         },
  *         language: "en",
  *         deleted: false
  *     }

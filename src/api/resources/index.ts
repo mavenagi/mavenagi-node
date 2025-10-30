@@ -31,6 +31,7 @@ export * from "./users/types";
 export * from "./commons/errors";
 export * as events from "./events";
 export * from "./actions/client/requests";
+export * from "./agents/client/requests";
 export * from "./appSettings/client/requests";
 export * from "./conversation/client/requests";
 export * from "./events/client/requests";

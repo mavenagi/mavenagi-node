@@ -7,8 +7,8 @@ import * as core from "../../../../core";
 export const KnowledgeBaseField: core.serialization.Schema<
     serializers.KnowledgeBaseField.Raw,
     MavenAGI.KnowledgeBaseField
-> = core.serialization.enum_(["Title", "UpdatedAt"]);
+> = core.serialization.enum_(["Title", "CreatedAt", "UpdatedAt"]);
 
 export declare namespace KnowledgeBaseField {
-    export type Raw = "Title" | "UpdatedAt";
+    export type Raw = "Title" | "CreatedAt" | "UpdatedAt";
 }
