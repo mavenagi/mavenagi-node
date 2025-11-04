@@ -21,6 +21,8 @@ export const ConversationSummary: core.serialization.ObjectSchema<
     humanAgents: core.serialization.list(core.serialization.string()),
     humanAgentsWithInserts: core.serialization.list(core.serialization.string()),
     users: core.serialization.list(core.serialization.string()),
+    lastUserMessage: core.serialization.string().optional(),
+    lastBotMessage: core.serialization.string().optional(),
 });
 
 export declare namespace ConversationSummary {
@@ -37,5 +39,7 @@ export declare namespace ConversationSummary {
         humanAgents: string[];
         humanAgentsWithInserts: string[];
         users: string[];
+        lastUserMessage?: string | null;
+        lastBotMessage?: string | null;
     }
 }

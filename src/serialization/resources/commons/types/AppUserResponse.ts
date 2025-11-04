@@ -4,6 +4,7 @@ import * as serializers from "../../../index";
 import * as MavenAGI from "../../../../api/index";
 import * as core from "../../../../core";
 import { EntityId } from "./EntityId";
+import { UserDataWithReference } from "./UserDataWithReference";
 import { AppUser } from "./AppUser";
 
 export const AppUserResponse: core.serialization.ObjectSchema<
@@ -18,6 +19,10 @@ export const AppUserResponse: core.serialization.ObjectSchema<
             core.serialization.record(core.serialization.string(), core.serialization.string()),
         ),
         defaultUserData: core.serialization.record(core.serialization.string(), core.serialization.string()),
+        agentUserData: core.serialization.record(
+            core.serialization.string(),
+            core.serialization.list(UserDataWithReference),
+        ),
     })
     .extend(AppUser);
 
@@ -27,5 +32,6 @@ export declare namespace AppUserResponse {
         agentUserId: string;
         allUserData: Record<string, Record<string, string>>;
         defaultUserData: Record<string, string>;
+        agentUserData: Record<string, UserDataWithReference.Raw[]>;
     }
 }

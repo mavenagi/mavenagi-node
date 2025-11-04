@@ -12,7 +12,7 @@ export const ActionCapability: core.serialization.ObjectSchema<
 > = core.serialization
     .object({
         userInteractionRequired: core.serialization.boolean(),
-        buttonName: core.serialization.string().nullable(),
+        buttonName: core.serialization.string().optional(),
         userFormParameters: core.serialization.list(ActionParameter),
         precondition: core.serialization.lazy(() => serializers.Precondition).optional(),
         descriptionOverride: core.serialization.string().optional(),

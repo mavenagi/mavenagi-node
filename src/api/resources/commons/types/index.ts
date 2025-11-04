@@ -46,6 +46,7 @@ export * from "./AppUserIdentifier";
 export * from "./AppUserIdentifyingPropertyType";
 export * from "./AppUser";
 export * from "./UserData";
+export * from "./UserDataWithReference";
 export * from "./VisibilityType";
 export * from "./AppUserRequest";
 export * from "./AppUserResponse";

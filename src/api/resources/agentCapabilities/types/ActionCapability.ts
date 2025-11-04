@@ -5,7 +5,7 @@ import * as MavenAGI from "../../../index";
 export interface ActionCapability extends MavenAGI.AgentCapabilityBase {
     userInteractionRequired: boolean;
     /** When user interaction is required, the name of the button that is shown to the end user to confirm execution of the action. Defaults to "Submit" if not supplied. */
-    buttonName: string | null;
+    buttonName?: string;
     /** The parameters that the action uses as input. An action will only be executed when all of the required parameters are provided. Parameter values may be inferred from the user's conversation by the LLM. */
     userFormParameters: MavenAGI.ActionParameter[];
     precondition?: MavenAGI.Precondition;

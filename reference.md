@@ -1234,6 +1234,94 @@ await client.analytics.getConversationChart({
 </dl>
 </details>
 
+<details><summary><code>client.analytics.<a href="/src/api/resources/analytics/client/Client.ts">exportConversationTable</a>({ ...params }) -> core.BinaryResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Export the conversation analytics table to a CSV file.
+
+This outputs the current table view defined by the request. For most programmatic use cases, prefer `getConversationTable` and format client-side. The CSV format may change and should not be relied upon by code consumers. A maximum of 10,000 rows can be exported at a time.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.analytics.exportConversationTable({
+    fieldGroupings: [
+        {
+            field: "Category",
+        },
+        {
+            field: "Category",
+        },
+    ],
+    columnDefinitions: [
+        {
+            metric: {
+                type: "count",
+            },
+            header: "header",
+        },
+        {
+            metric: {
+                type: "count",
+            },
+            header: "header",
+        },
+    ],
+});
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `MavenAGI.ConversationTableRequest`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Analytics.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
 <details><summary><code>client.analytics.<a href="/src/api/resources/analytics/client/Client.ts">getFeedbackTable</a>({ ...params }) -> MavenAGI.FeedbackTableResponse</code></summary>
 <dl>
 <dd>

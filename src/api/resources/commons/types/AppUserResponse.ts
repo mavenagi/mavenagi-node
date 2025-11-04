@@ -30,6 +30,16 @@ import * as MavenAGI from "../../../index";
  *         },
  *         defaultUserData: {
  *             "name": "Joe"
+ *         },
+ *         agentUserData: {
+ *             "name": [{
+ *                     value: "Joe",
+ *                     visibility: MavenAGI.VisibilityType.Visible,
+ *                     userId: {
+ *                         appId: "myapp",
+ *                         referenceId: "user0"
+ *                     }
+ *                 }]
  *         }
  *     }
  */
@@ -42,4 +52,6 @@ export interface AppUserResponse extends MavenAGI.AppUser {
     allUserData: Record<string, Record<string, string>>;
     /** Default data for this user */
     defaultUserData: Record<string, string>;
+    /** All user data for this user, including reverse indexable user data */
+    agentUserData: Record<string, MavenAGI.UserDataWithReference[]>;
 }

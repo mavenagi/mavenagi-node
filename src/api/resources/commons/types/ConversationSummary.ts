@@ -36,4 +36,8 @@ export interface ConversationSummary {
     humanAgentsWithInserts: string[];
     /** The names of all users that have a message of type `USER` on the conversation. */
     users: string[];
+    /** The text of the last user message in the conversation. */
+    lastUserMessage?: string;
+    /** The text of the last bot message in the conversation. */
+    lastBotMessage?: string;
 }
