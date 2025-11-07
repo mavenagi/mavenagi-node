@@ -33,4 +33,8 @@ export interface KnowledgeDocumentRequest extends MavenAGI.BaseKnowledgeDocument
     content: string;
     /** Metadata for the knowledge document. */
     metadata?: Record<string, string>;
+    /** The time at which this document was created. */
+    createdAt?: Date;
+    /** The time at which this document was last modified. */
+    updatedAt?: Date;
 }

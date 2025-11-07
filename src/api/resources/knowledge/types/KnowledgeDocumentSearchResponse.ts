@@ -2,6 +2,30 @@
 
 import * as MavenAGI from "../../../index";
 
+/**
+ * @example
+ *     {
+ *         knowledgeDocumentId: {
+ *             referenceId: "how-it-works",
+ *             appId: "help-center",
+ *             organizationId: "acme",
+ *             agentId: "support",
+ *             type: MavenAGI.EntityType.KnowledgeDocument
+ *         },
+ *         knowledgeBaseVersionId: {
+ *             referenceId: "version-1",
+ *             appId: "help-center",
+ *             organizationId: "acme",
+ *             agentId: "support",
+ *             type: MavenAGI.EntityType.KnowledgeBaseVersion
+ *         },
+ *         title: "How it works",
+ *         llmInclusionStatus: MavenAGI.LlmInclusionStatus.WhenRelevant,
+ *         url: "https://help-center.acme.com/how-it-works",
+ *         createdAt: new Date("2024-01-01T00:00:00.000Z"),
+ *         updatedAt: new Date("2024-02-02T00:00:00.000Z")
+ *     }
+ */
 export interface KnowledgeDocumentSearchResponse extends MavenAGI.BaseKnowledgeDocument {
     /** ID that uniquely identifies this knowledge document within its knowledge base */
     knowledgeDocumentId: MavenAGI.EntityId;
@@ -12,4 +36,10 @@ export interface KnowledgeDocumentSearchResponse extends MavenAGI.BaseKnowledgeD
     knowledgeBaseVersionId?: MavenAGI.EntityId;
     /** The title of the document. Will be shown as part of answers. May be missing on legacy documents. */
     title?: string;
+    /** Whether the document is included in the agent's knowledge. */
+    llmInclusionStatus: MavenAGI.LlmInclusionStatus;
+    /** The time at which this document was created. */
+    createdAt: Date;
+    /** The time at which this document was last modified. */
+    updatedAt: Date;
 }

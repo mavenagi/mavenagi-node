@@ -61,7 +61,7 @@ export interface KnowledgeBaseResponse extends MavenAGI.KnowledgeBaseProperties 
     /** The tags of the knowledge base. */
     tags: Set<string>;
     /** Determines whether documents in the knowledge base are sent to the LLM as part of a conversation. */
-    llmInclusionStatus?: MavenAGI.LlmInclusionStatus;
+    llmInclusionStatus: MavenAGI.LlmInclusionStatus;
     /** How often the knowledge base should be refreshed. */
     refreshFrequency: MavenAGI.KnowledgeBaseRefreshFrequency;
     /**

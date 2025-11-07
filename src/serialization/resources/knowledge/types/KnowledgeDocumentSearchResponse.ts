@@ -4,6 +4,7 @@ import * as serializers from "../../../index";
 import * as MavenAGI from "../../../../api/index";
 import * as core from "../../../../core";
 import { EntityId } from "../../commons/types/EntityId";
+import { LlmInclusionStatus } from "../../commons/types/LlmInclusionStatus";
 import { BaseKnowledgeDocument } from "./BaseKnowledgeDocument";
 
 export const KnowledgeDocumentSearchResponse: core.serialization.ObjectSchema<
@@ -14,6 +15,9 @@ export const KnowledgeDocumentSearchResponse: core.serialization.ObjectSchema<
         knowledgeDocumentId: EntityId,
         knowledgeBaseVersionId: EntityId.optional(),
         title: core.serialization.string().optional(),
+        llmInclusionStatus: LlmInclusionStatus,
+        createdAt: core.serialization.date(),
+        updatedAt: core.serialization.date(),
     })
     .extend(BaseKnowledgeDocument);
 
@@ -22,5 +26,8 @@ export declare namespace KnowledgeDocumentSearchResponse {
         knowledgeDocumentId: EntityId.Raw;
         knowledgeBaseVersionId?: EntityId.Raw | null;
         title?: string | null;
+        llmInclusionStatus: LlmInclusionStatus.Raw;
+        createdAt: string;
+        updatedAt: string;
     }
 }

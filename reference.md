@@ -354,270 +354,6 @@ await client.actions.delete("get-balance");
 </dl>
 </details>
 
-## AgentCapabilities
-
-<details><summary><code>client.agentCapabilities.<a href="/src/api/resources/agentCapabilities/client/Client.ts">list</a>({ ...params }) -> MavenAGI.ListAgentCapabilitiesResponse</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-List all capabilities for an agent.
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.agentCapabilities.list({});
-```
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `MavenAGI.AgentCapabilityListRequest`
-
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `AgentCapabilities.RequestOptions`
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.agentCapabilities.<a href="/src/api/resources/agentCapabilities/client/Client.ts">get</a>(integrationId, capabilityId) -> MavenAGI.AgentCapability</code></summary>
-<dl>
-<dd>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.agentCapabilities.get("integrationId", "capabilityId");
-```
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**integrationId:** `string`
-
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**capabilityId:** `string`
-
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `AgentCapabilities.RequestOptions`
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.agentCapabilities.<a href="/src/api/resources/agentCapabilities/client/Client.ts">patch</a>(integrationId, capabilityId, { ...params }) -> MavenAGI.AgentCapability</code></summary>
-<dl>
-<dd>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.agentCapabilities.patch("integrationId", "capabilityId", {});
-```
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**integrationId:** `string`
-
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**capabilityId:** `string`
-
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**request:** `MavenAGI.PatchAgentCapabilityRequest`
-
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `AgentCapabilities.RequestOptions`
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.agentCapabilities.<a href="/src/api/resources/agentCapabilities/client/Client.ts">execute</a>(integrationId, capabilityId, { ...params }) -> MavenAGI.ExecuteCapabilityResponse</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Execute an action capability.
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.agentCapabilities.execute("integrationId", "capabilityId", {});
-```
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**integrationId:** `string`
-
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**capabilityId:** `string`
-
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**request:** `MavenAGI.ExecuteCapabilityRequest`
-
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `AgentCapabilities.RequestOptions`
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-</dd>
-</dl>
-</details>
-
 ## Agents
 
 <details><summary><code>client.agents.<a href="/src/api/resources/agents/client/Client.ts">search</a>({ ...params }) -> MavenAGI.AgentsSearchResponse</code></summary>
@@ -4657,6 +4393,92 @@ await client.knowledge.getKnowledgeDocument("knowledgeBaseVersionReferenceId", "
 <dd>
 
 **request:** `MavenAGI.KnowledgeDocumentGetRequest`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Knowledge.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.knowledge.<a href="/src/api/resources/knowledge/client/Client.ts">patchKnowledgeDocument</a>(knowledgeBaseReferenceId, knowledgeDocumentReferenceId, { ...params }) -> MavenAGI.KnowledgeDocumentResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Update mutable knowledge document fields that can be set independently of a knowledge base version.
+
+For any changes in document content see the `createKnowledgeBaseVersion` and `createKnowledgeDocument` endpoints.
+
+The `knowledgeBaseAppId` field can be provided to update a knowledge document in a knowledge base owned by a different app.
+All other fields will overwrite the existing value on the knowledge document only if provided.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.knowledge.patchKnowledgeDocument("help-center", "how-it-works", {
+    llmInclusionStatus: "ALWAYS",
+});
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**knowledgeBaseReferenceId:** `string` — The reference ID of the knowledge base to patch.
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**knowledgeDocumentReferenceId:** `string` — The reference ID of the knowledge document to patch.
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `MavenAGI.KnowledgeDocumentPatchRequest`
 
 </dd>
 </dl>

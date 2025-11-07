@@ -30,7 +30,8 @@ import * as MavenAGI from "../../../index";
  *             userMessageCount: 1,
  *             humanAgents: [],
  *             humanAgentsWithInserts: [],
- *             users: []
+ *             users: [],
+ *             userIdentifiers: []
  *         },
  *         metadata: {},
  *         allMetadata: {},

@@ -20,6 +20,8 @@ export interface KnowledgeDocumentFilter {
     search?: string;
     /** Filter by title */
     title?: string;
+    /** Filter by url */
+    url?: string;
     /** Filter knowledge documents created on or after this timestamp */
     createdAfter?: Date;
     /** Filter knowledge documents created on or before this timestamp */
@@ -31,4 +33,6 @@ export interface KnowledgeDocumentFilter {
      * If not provided all active knowledge base versions within the agent will be searched.
      */
     knowledgeBaseVersionId?: MavenAGI.EntityIdWithoutAgent;
+    /** Filter by the LLM inclusion status */
+    llmInclusionStatus?: MavenAGI.LlmInclusionStatus[];
 }

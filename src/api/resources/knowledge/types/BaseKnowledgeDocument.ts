@@ -5,10 +5,6 @@ export interface BaseKnowledgeDocument {
     url?: string;
     /** The document language. Must be a valid ISO 639-1 language code. */
     language?: string;
-    /** The time at which this document was created. */
-    createdAt?: Date;
-    /** The time at which this document was last modified. */
-    updatedAt?: Date;
     /** The name of the author who created this document. */
     author?: string;
 }

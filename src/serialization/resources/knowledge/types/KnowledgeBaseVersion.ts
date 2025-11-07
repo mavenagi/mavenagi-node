@@ -15,6 +15,8 @@ export const KnowledgeBaseVersion: core.serialization.ObjectSchema<
         versionId: EntityId,
         status: KnowledgeBaseVersionStatus,
         errorMessage: core.serialization.string().optional(),
+        createdAt: core.serialization.date(),
+        updatedAt: core.serialization.date(),
     })
     .extend(KnowledgeBaseVersionRequest);
 
@@ -23,5 +25,7 @@ export declare namespace KnowledgeBaseVersion {
         versionId: EntityId.Raw;
         status: KnowledgeBaseVersionStatus.Raw;
         errorMessage?: string | null;
+        createdAt: string;
+        updatedAt: string;
     }
 }

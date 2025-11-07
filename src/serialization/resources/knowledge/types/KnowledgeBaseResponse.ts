@@ -23,7 +23,7 @@ export const KnowledgeBaseResponse: core.serialization.ObjectSchema<
         type: KnowledgeBaseType,
         metadata: core.serialization.record(core.serialization.string(), core.serialization.string()),
         tags: core.serialization.set(core.serialization.string()),
-        llmInclusionStatus: LlmInclusionStatus.optional(),
+        llmInclusionStatus: LlmInclusionStatus,
         refreshFrequency: KnowledgeBaseRefreshFrequency,
         segmentId: EntityId.optional(),
     })
@@ -39,7 +39,7 @@ export declare namespace KnowledgeBaseResponse {
         type: KnowledgeBaseType.Raw;
         metadata: Record<string, string>;
         tags: string[];
-        llmInclusionStatus?: LlmInclusionStatus.Raw | null;
+        llmInclusionStatus: LlmInclusionStatus.Raw;
         refreshFrequency: KnowledgeBaseRefreshFrequency.Raw;
         segmentId?: EntityId.Raw | null;
     }

@@ -1625,6 +1625,148 @@ export class Knowledge {
         }
     }
 
+    /**
+     * Update mutable knowledge document fields that can be set independently of a knowledge base version.
+     *
+     * For any changes in document content see the `createKnowledgeBaseVersion` and `createKnowledgeDocument` endpoints.
+     *
+     * The `knowledgeBaseAppId` field can be provided to update a knowledge document in a knowledge base owned by a different app.
+     * All other fields will overwrite the existing value on the knowledge document only if provided.
+     *
+     * @param {string} knowledgeBaseReferenceId - The reference ID of the knowledge base to patch.
+     * @param {string} knowledgeDocumentReferenceId - The reference ID of the knowledge document to patch.
+     * @param {MavenAGI.KnowledgeDocumentPatchRequest} request
+     * @param {Knowledge.RequestOptions} requestOptions - Request-specific configuration.
+     *
+     * @throws {@link MavenAGI.NotFoundError}
+     * @throws {@link MavenAGI.BadRequestError}
+     * @throws {@link MavenAGI.ServerError}
+     *
+     * @example
+     *     await client.knowledge.patchKnowledgeDocument("help-center", "how-it-works", {
+     *         llmInclusionStatus: "ALWAYS"
+     *     })
+     */
+    public patchKnowledgeDocument(
+        knowledgeBaseReferenceId: string,
+        knowledgeDocumentReferenceId: string,
+        request: MavenAGI.KnowledgeDocumentPatchRequest = {},
+        requestOptions?: Knowledge.RequestOptions,
+    ): core.HttpResponsePromise<MavenAGI.KnowledgeDocumentResponse> {
+        return core.HttpResponsePromise.fromPromise(
+            this.__patchKnowledgeDocument(
+                knowledgeBaseReferenceId,
+                knowledgeDocumentReferenceId,
+                request,
+                requestOptions,
+            ),
+        );
+    }
+
+    private async __patchKnowledgeDocument(
+        knowledgeBaseReferenceId: string,
+        knowledgeDocumentReferenceId: string,
+        request: MavenAGI.KnowledgeDocumentPatchRequest = {},
+        requestOptions?: Knowledge.RequestOptions,
+    ): Promise<core.WithRawResponse<MavenAGI.KnowledgeDocumentResponse>> {
+        let _headers: core.Fetcher.Args["headers"] = mergeHeaders(
+            this._options?.headers,
+            mergeOnlyDefinedHeaders({
+                Authorization: await this._getAuthorizationHeader(),
+                "X-Organization-Id": requestOptions?.organizationId ?? this._options?.organizationId,
+                "X-Agent-Id": requestOptions?.agentId ?? this._options?.agentId,
+            }),
+            requestOptions?.headers,
+        );
+        const _response = await (this._options.fetcher ?? core.fetcher)({
+            url: core.url.join(
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)) ??
+                    environments.MavenAGIEnvironment.Production,
+                `/v1/knowledge/${encodeURIComponent(knowledgeBaseReferenceId)}/${encodeURIComponent(knowledgeDocumentReferenceId)}/document`,
+            ),
+            method: "PATCH",
+            headers: _headers,
+            contentType: "application/merge-patch+json",
+            queryParameters: requestOptions?.queryParams,
+            requestType: "json",
+            body: serializers.KnowledgeDocumentPatchRequest.jsonOrThrow(request, { unrecognizedObjectKeys: "strip" }),
+            timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
+            maxRetries: requestOptions?.maxRetries,
+            abortSignal: requestOptions?.abortSignal,
+        });
+        if (_response.ok) {
+            return {
+                data: serializers.KnowledgeDocumentResponse.parseOrThrow(_response.body, {
+                    unrecognizedObjectKeys: "passthrough",
+                    allowUnrecognizedUnionMembers: true,
+                    allowUnrecognizedEnumValues: true,
+                    breadcrumbsPrefix: ["response"],
+                }),
+                rawResponse: _response.rawResponse,
+            };
+        }
+
+        if (_response.error.reason === "status-code") {
+            switch (_response.error.statusCode) {
+                case 404:
+                    throw new MavenAGI.NotFoundError(
+                        serializers.ErrorMessage.parseOrThrow(_response.error.body, {
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
+                            breadcrumbsPrefix: ["response"],
+                        }),
+                        _response.rawResponse,
+                    );
+                case 400:
+                    throw new MavenAGI.BadRequestError(
+                        serializers.ErrorMessage.parseOrThrow(_response.error.body, {
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
+                            breadcrumbsPrefix: ["response"],
+                        }),
+                        _response.rawResponse,
+                    );
+                case 500:
+                    throw new MavenAGI.ServerError(
+                        serializers.ErrorMessage.parseOrThrow(_response.error.body, {
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
+                            breadcrumbsPrefix: ["response"],
+                        }),
+                        _response.rawResponse,
+                    );
+                default:
+                    throw new errors.MavenAGIError({
+                        statusCode: _response.error.statusCode,
+                        body: _response.error.body,
+                        rawResponse: _response.rawResponse,
+                    });
+            }
+        }
+
+        switch (_response.error.reason) {
+            case "non-json":
+                throw new errors.MavenAGIError({
+                    statusCode: _response.error.statusCode,
+                    body: _response.error.rawBody,
+                    rawResponse: _response.rawResponse,
+                });
+            case "timeout":
+                throw new errors.MavenAGITimeoutError(
+                    "Timeout exceeded when calling PATCH /v1/knowledge/{knowledgeBaseReferenceId}/{knowledgeDocumentReferenceId}/document.",
+                );
+            case "unknown":
+                throw new errors.MavenAGIError({
+                    message: _response.error.errorMessage,
+                    rawResponse: _response.rawResponse,
+                });
+        }
+    }
+
     protected async _getAuthorizationHeader(): Promise<string | undefined> {
         const appId = (await core.Supplier.get(this._options.appId)) ?? process?.env["MAVENAGI_APP_ID"];
         const appSecret = (await core.Supplier.get(this._options.appSecret)) ?? process?.env["MAVENAGI_APP_SECRET"];

@@ -1,7 +1,5 @@
 export * as actions from "./actions";
 export * from "./actions/types";
-export * as agentCapabilities from "./agentCapabilities";
-export * from "./agentCapabilities/types";
 export * as agents from "./agents";
 export * from "./agents/types";
 export * as analytics from "./analytics";

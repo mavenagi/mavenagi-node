@@ -19,6 +19,8 @@ export const KnowledgeDocumentRequest: core.serialization.ObjectSchema<
         title: core.serialization.string(),
         content: core.serialization.string(),
         metadata: core.serialization.record(core.serialization.string(), core.serialization.string()).optional(),
+        createdAt: core.serialization.date().optional(),
+        updatedAt: core.serialization.date().optional(),
     })
     .extend(BaseKnowledgeDocument);
 
@@ -30,5 +32,7 @@ export declare namespace KnowledgeDocumentRequest {
         title: string;
         content: string;
         metadata?: Record<string, string> | null;
+        createdAt?: string | null;
+        updatedAt?: string | null;
     }
 }

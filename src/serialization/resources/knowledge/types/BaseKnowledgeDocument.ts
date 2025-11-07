@@ -10,8 +10,6 @@ export const BaseKnowledgeDocument: core.serialization.ObjectSchema<
 > = core.serialization.object({
     url: core.serialization.string().optional(),
     language: core.serialization.string().optional(),
-    createdAt: core.serialization.date().optional(),
-    updatedAt: core.serialization.date().optional(),
     author: core.serialization.string().optional(),
 });
 
@@ -19,8 +17,6 @@ export declare namespace BaseKnowledgeDocument {
     export interface Raw {
         url?: string | null;
         language?: string | null;
-        createdAt?: string | null;
-        updatedAt?: string | null;
         author?: string | null;
     }
 }

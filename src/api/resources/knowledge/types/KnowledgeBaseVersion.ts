@@ -13,7 +13,9 @@ import * as MavenAGI from "../../../index";
  *             agentId: "support"
  *         },
  *         type: MavenAGI.KnowledgeBaseVersionType.Full,
- *         status: MavenAGI.KnowledgeBaseVersionStatus.InProgress
+ *         status: MavenAGI.KnowledgeBaseVersionStatus.InProgress,
+ *         createdAt: new Date("2024-01-01T00:00:00.000Z"),
+ *         updatedAt: new Date("2024-02-02T00:00:00.000Z")
  *     }
  */
 export interface KnowledgeBaseVersion extends MavenAGI.KnowledgeBaseVersionRequest {
@@ -23,4 +25,8 @@ export interface KnowledgeBaseVersion extends MavenAGI.KnowledgeBaseVersionReque
     status: MavenAGI.KnowledgeBaseVersionStatus;
     /** A user-facing error message that provides more details about a version failure. */
     errorMessage?: string;
+    /** The date and time the knowledge base version was created. */
+    createdAt: Date;
+    /** The date and time the knowledge base version was last updated. */
+    updatedAt: Date;
 }
