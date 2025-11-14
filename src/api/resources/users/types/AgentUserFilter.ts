@@ -9,6 +9,11 @@ export interface AgentUserFilter {
     /** Filter by identifiers */
     identifiers?: string[];
     /**
+     * Full-text search query for matching agent users by display name.
+     * When you search with this parameter, you're performing a full-text search across the user display names.
+     */
+    displayName?: string;
+    /**
      * Filter by anonymous users. When true, only anonymous users are returned.
      * When false, only non-anonymous users are returned. An anonymous user is one without any identifiers or name data.
      */

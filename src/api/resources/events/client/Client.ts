@@ -62,12 +62,12 @@ export class Events {
      *     await client.events.create({
      *         eventType: "userEvent",
      *         id: {
-     *             referenceId: "referenceId"
+     *             referenceId: "x"
      *         },
      *         eventName: "BUTTON_CLICKED",
      *         userInfo: {
      *             id: {
-     *                 referenceId: "referenceId"
+     *                 referenceId: "x"
      *             }
      *         }
      *     })

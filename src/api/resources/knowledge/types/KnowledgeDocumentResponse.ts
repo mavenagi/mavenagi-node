@@ -30,8 +30,12 @@ import * as MavenAGI from "../../../index";
  *     }
  */
 export interface KnowledgeDocumentResponse extends MavenAGI.KnowledgeDocumentSearchResponse {
+    /** The current processing status of the knowledge document */
+    processingStatus?: MavenAGI.KnowledgeDocumentStatus;
     /** The content of the document in markdown format. Not shown directly to users. */
     content: string;
+    /** If the document is associated with an asset, this will contain the asset metadata */
+    asset?: MavenAGI.AttachmentResponse;
     /** Metadata for the knowledge document. */
     metadata: Record<string, string>;
 }

@@ -17,7 +17,8 @@ export const KnowledgeDocumentRequest: core.serialization.ObjectSchema<
         versionId: EntityIdWithoutAgent.optional(),
         contentType: KnowledgeDocumentContentType,
         title: core.serialization.string(),
-        content: core.serialization.string(),
+        assetId: EntityIdBase.optional(),
+        content: core.serialization.string().optional(),
         metadata: core.serialization.record(core.serialization.string(), core.serialization.string()).optional(),
         createdAt: core.serialization.date().optional(),
         updatedAt: core.serialization.date().optional(),
@@ -30,7 +31,8 @@ export declare namespace KnowledgeDocumentRequest {
         versionId?: EntityIdWithoutAgent.Raw | null;
         contentType: KnowledgeDocumentContentType.Raw;
         title: string;
-        content: string;
+        assetId?: EntityIdBase.Raw | null;
+        content?: string | null;
         metadata?: Record<string, string> | null;
         createdAt?: string | null;
         updatedAt?: string | null;

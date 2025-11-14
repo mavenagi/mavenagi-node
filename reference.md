@@ -1591,25 +1591,25 @@ After initialization,
 ```typescript
 await client.conversation.initialize({
     conversationId: {
-        referenceId: "referenceId",
+        referenceId: "x",
     },
     messages: [
         {
             conversationMessageId: {
-                referenceId: "referenceId",
+                referenceId: "x",
             },
             userId: {
-                referenceId: "referenceId",
+                referenceId: "x",
             },
             text: "text",
             userMessageType: "USER",
         },
         {
             conversationMessageId: {
-                referenceId: "referenceId",
+                referenceId: "x",
             },
             userId: {
-                referenceId: "referenceId",
+                referenceId: "x",
             },
             text: "text",
             userMessageType: "USER",
@@ -1910,20 +1910,20 @@ Append messages to an existing conversation. The conversation must be initialize
 await client.conversation.appendNewMessages("conversationId", [
     {
         conversationMessageId: {
-            referenceId: "referenceId",
+            referenceId: "x",
         },
         userId: {
-            referenceId: "referenceId",
+            referenceId: "x",
         },
         text: "text",
         userMessageType: "USER",
     },
     {
         conversationMessageId: {
-            referenceId: "referenceId",
+            referenceId: "x",
         },
         userId: {
-            referenceId: "referenceId",
+            referenceId: "x",
         },
         text: "text",
         userMessageType: "USER",
@@ -2220,10 +2220,10 @@ Known Limitations:
 const response = await client.conversation.askObjectStream("conversationId", {
     schema: "schema",
     conversationMessageId: {
-        referenceId: "referenceId",
+        referenceId: "x",
     },
     userId: {
-        referenceId: "referenceId",
+        referenceId: "x",
     },
     text: "text",
 });
@@ -2820,14 +2820,14 @@ await client.conversation.deliverMessage({
     userId: {
         type: "AGENT",
         appId: "appId",
-        referenceId: "referenceId",
+        referenceId: "x",
     },
     message: {
         conversationMessageId: {
-            referenceId: "referenceId",
+            referenceId: "x",
         },
         userId: {
-            referenceId: "referenceId",
+            referenceId: "x",
         },
         text: "text",
         userMessageType: "USER",
@@ -2900,12 +2900,12 @@ Create a new event
 await client.events.create({
     eventType: "userEvent",
     id: {
-        referenceId: "referenceId",
+        referenceId: "x",
     },
     eventName: "BUTTON_CLICKED",
     userInfo: {
         id: {
-            referenceId: "referenceId",
+            referenceId: "x",
         },
     },
 });

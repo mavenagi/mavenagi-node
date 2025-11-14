@@ -2,7 +2,30 @@
 
 import * as MavenAGI from "../../../index";
 
-export type InboxItem = MavenAGI.InboxItem.DuplicateDocuments | MavenAGI.InboxItem.MissingKnowledge;
+/**
+ * @example
+ *     {
+ *         type: "custom",
+ *         id: {
+ *             referenceId: "todo-item-1",
+ *             appId: "myapp",
+ *             organizationId: "acme",
+ *             agentId: "support",
+ *             type: MavenAGI.EntityType.InboxItem
+ *         },
+ *         status: MavenAGI.InboxItemStatus.Open,
+ *         severity: MavenAGI.InboxItemSeverity.High,
+ *         createdAt: new Date("2025-01-01T00:00:00.000Z"),
+ *         updatedAt: new Date("2025-02-01T00:00:00.000Z"),
+ *         metadata: {
+ *             "key": "value"
+ *         }
+ *     }
+ */
+export type InboxItem =
+    | MavenAGI.InboxItem.DuplicateDocuments
+    | MavenAGI.InboxItem.MissingKnowledge
+    | MavenAGI.InboxItem.Custom;
 
 export namespace InboxItem {
     export interface DuplicateDocuments extends MavenAGI.InboxItemDuplicateDocuments {
@@ -11,5 +34,9 @@ export namespace InboxItem {
 
     export interface MissingKnowledge extends MavenAGI.InboxItemMissingKnowledge {
         type: "missingKnowledge";
+    }
+
+    export interface Custom extends MavenAGI.InboxItemCustom {
+        type: "custom";
     }
 }

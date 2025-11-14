@@ -125,6 +125,7 @@ export * from "./InboxItemType";
 export * from "./InboxItemSeverity";
 export * from "./InboxItem";
 export * from "./InboxItemBase";
+export * from "./InboxItemCustom";
 export * from "./InboxItemDuplicateDocuments";
 export * from "./InboxItemMissingKnowledge";
 export * from "./InboxItemFix";

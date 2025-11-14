@@ -5,11 +5,13 @@ import * as MavenAGI from "../../../../api/index";
 import * as core from "../../../../core";
 import { InboxItemDuplicateDocuments } from "./InboxItemDuplicateDocuments";
 import { InboxItemMissingKnowledge } from "./InboxItemMissingKnowledge";
+import { InboxItemCustom } from "./InboxItemCustom";
 
 export const InboxItem: core.serialization.Schema<serializers.InboxItem.Raw, MavenAGI.InboxItem> = core.serialization
     .union("type", {
         duplicateDocuments: InboxItemDuplicateDocuments,
         missingKnowledge: InboxItemMissingKnowledge,
+        custom: InboxItemCustom,
     })
     .transform<MavenAGI.InboxItem>({
         transform: (value) => value,
@@ -17,7 +19,7 @@ export const InboxItem: core.serialization.Schema<serializers.InboxItem.Raw, Mav
     });
 
 export declare namespace InboxItem {
-    export type Raw = InboxItem.DuplicateDocuments | InboxItem.MissingKnowledge;
+    export type Raw = InboxItem.DuplicateDocuments | InboxItem.MissingKnowledge | InboxItem.Custom;
 
     export interface DuplicateDocuments extends InboxItemDuplicateDocuments.Raw {
         type: "duplicateDocuments";
@@ -25,5 +27,9 @@ export declare namespace InboxItem {
 
     export interface MissingKnowledge extends InboxItemMissingKnowledge.Raw {
         type: "missingKnowledge";
+    }
+
+    export interface Custom extends InboxItemCustom.Raw {
+        type: "custom";
     }
 }

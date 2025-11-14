@@ -4,6 +4,17 @@
  * All other entityId fields are inferred from the API request.
  */
 export interface EntityIdBase {
-    /** Externally supplied ID to uniquely identify this object. Is globally unique when combined with all other entityId fields (type, appId, organizationId, agentId) */
+    /**
+     * Externally supplied ID to uniquely identify this object. Is globally unique when combined with all other entityId fields (type, appId, organizationId, agentId).
+     *
+     * Must be less than 192 characters and contain only:
+     * - alphanumeric characters (`a-z`, `A-Z`, `0-9`)
+     * - hyphens (`-`)
+     * - underscores (`_`)
+     * - plus signs (`+`)
+     * - periods (`.`)
+     * - at symbol (`@`)
+     * - pipe symbol (`|`)
+     */
     referenceId: string;
 }

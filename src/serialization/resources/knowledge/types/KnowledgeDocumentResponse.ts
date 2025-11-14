@@ -3,6 +3,8 @@
 import * as serializers from "../../../index";
 import * as MavenAGI from "../../../../api/index";
 import * as core from "../../../../core";
+import { KnowledgeDocumentStatus } from "./KnowledgeDocumentStatus";
+import { AttachmentResponse } from "../../commons/types/AttachmentResponse";
 import { KnowledgeDocumentSearchResponse } from "./KnowledgeDocumentSearchResponse";
 
 export const KnowledgeDocumentResponse: core.serialization.ObjectSchema<
@@ -10,14 +12,18 @@ export const KnowledgeDocumentResponse: core.serialization.ObjectSchema<
     MavenAGI.KnowledgeDocumentResponse
 > = core.serialization
     .object({
+        processingStatus: KnowledgeDocumentStatus.optional(),
         content: core.serialization.string(),
+        asset: AttachmentResponse.optional(),
         metadata: core.serialization.record(core.serialization.string(), core.serialization.string()),
     })
     .extend(KnowledgeDocumentSearchResponse);
 
 export declare namespace KnowledgeDocumentResponse {
     export interface Raw extends KnowledgeDocumentSearchResponse.Raw {
+        processingStatus?: KnowledgeDocumentStatus.Raw | null;
         content: string;
+        asset?: AttachmentResponse.Raw | null;
         metadata: Record<string, string>;
     }
 }

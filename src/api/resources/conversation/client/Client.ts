@@ -69,23 +69,23 @@ export class Conversation {
      * @example
      *     await client.conversation.initialize({
      *         conversationId: {
-     *             referenceId: "referenceId"
+     *             referenceId: "x"
      *         },
      *         messages: [{
      *                 conversationMessageId: {
-     *                     referenceId: "referenceId"
+     *                     referenceId: "x"
      *                 },
      *                 userId: {
-     *                     referenceId: "referenceId"
+     *                     referenceId: "x"
      *                 },
      *                 text: "text",
      *                 userMessageType: "USER"
      *             }, {
      *                 conversationMessageId: {
-     *                     referenceId: "referenceId"
+     *                     referenceId: "x"
      *                 },
      *                 userId: {
-     *                     referenceId: "referenceId"
+     *                     referenceId: "x"
      *                 },
      *                 text: "text",
      *                 userMessageType: "USER"
@@ -607,19 +607,19 @@ export class Conversation {
      * @example
      *     await client.conversation.appendNewMessages("conversationId", [{
      *             conversationMessageId: {
-     *                 referenceId: "referenceId"
+     *                 referenceId: "x"
      *             },
      *             userId: {
-     *                 referenceId: "referenceId"
+     *                 referenceId: "x"
      *             },
      *             text: "text",
      *             userMessageType: "USER"
      *         }, {
      *             conversationMessageId: {
-     *                 referenceId: "referenceId"
+     *                 referenceId: "x"
      *             },
      *             userId: {
-     *                 referenceId: "referenceId"
+     *                 referenceId: "x"
      *             },
      *             text: "text",
      *             userMessageType: "USER"
@@ -2208,14 +2208,14 @@ export class Conversation {
      *         userId: {
      *             type: "AGENT",
      *             appId: "appId",
-     *             referenceId: "referenceId"
+     *             referenceId: "x"
      *         },
      *         message: {
      *             conversationMessageId: {
-     *                 referenceId: "referenceId"
+     *                 referenceId: "x"
      *             },
      *             userId: {
-     *                 referenceId: "referenceId"
+     *                 referenceId: "x"
      *             },
      *             text: "text",
      *             userMessageType: "USER"
