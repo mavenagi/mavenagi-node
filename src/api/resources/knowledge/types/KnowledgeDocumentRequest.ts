@@ -30,7 +30,7 @@ export interface KnowledgeDocumentRequest extends MavenAGI.BaseKnowledgeDocument
     contentType: MavenAGI.KnowledgeDocumentContentType;
     /** The title of the document. Will be shown as part of answers. */
     title: string;
-    /** ID of the asset associated with this document. Either this or content is required, but not both */
+    /** ID of the asset associated with this document. This asset will be transformed into text and set as the content of the document. The following types are supported: `application/pdf`, `text/plain`.  Either this or content is required, but not both */
     assetId?: MavenAGI.EntityIdBase;
     /** The content of the document. Not shown directly to users. May be provided in HTML or markdown. HTML will be converted to markdown automatically. Images are not currently supported and will be ignored. Either this or assetId is required, but not both */
     content?: string;

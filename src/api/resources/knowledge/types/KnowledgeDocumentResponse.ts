@@ -19,6 +19,13 @@ import * as MavenAGI from "../../../index";
  *             agentId: "support",
  *             type: MavenAGI.EntityType.KnowledgeBaseVersion
  *         },
+ *         knowledgeBaseId: {
+ *             referenceId: "help-docs",
+ *             appId: "help-center",
+ *             organizationId: "acme",
+ *             agentId: "support",
+ *             type: MavenAGI.EntityType.KnowledgeBase
+ *         },
  *         content: "## Getting started This is a getting started guide for the help center.",
  *         title: "Getting started",
  *         metadata: {
@@ -26,7 +33,8 @@ import * as MavenAGI from "../../../index";
  *         },
  *         createdAt: new Date("2024-01-01T00:00:00.000Z"),
  *         updatedAt: new Date("2024-02-02T00:00:00.000Z"),
- *         llmInclusionStatus: MavenAGI.LlmInclusionStatus.WhenRelevant
+ *         llmInclusionStatus: MavenAGI.LlmInclusionStatus.WhenRelevant,
+ *         knowledgeBaseLlmInclusionStatus: MavenAGI.LlmInclusionStatus.WhenRelevant
  *     }
  */
 export interface KnowledgeDocumentResponse extends MavenAGI.KnowledgeDocumentSearchResponse {

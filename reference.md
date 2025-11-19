@@ -4169,7 +4169,7 @@ Create or update a knowledge document. Requires an existing knowledge base with 
 Will throw an exception if the latest version is not in progress.
 
 <Tip>
-This API maintains document version history. If for the same reference ID none of the `title`, `text`, `sourceUrl`, `metadata` fields 
+This API maintains document version history. If for the same reference ID none of the `title`, `text`, `sourceUrl`, `metadata` fields
 have changed, a new document version will not be created. The existing version will be reused.
 </Tip>
 </dd>
