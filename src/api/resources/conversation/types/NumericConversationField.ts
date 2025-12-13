@@ -5,6 +5,7 @@ export const NumericConversationField = {
     ThumbsDownCount: "ThumbsDownCount",
     InsertCount: "InsertCount",
     UserMessageCount: "UserMessageCount",
+    BotMessageCount: "BotMessageCount",
     HandleTime: "HandleTime",
     FirstResponseTime: "FirstResponseTime",
     PredictedNps: "PredictedNPS",

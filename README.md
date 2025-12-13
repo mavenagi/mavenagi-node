@@ -14,15 +14,16 @@ The Mavenagi TypeScript library provides convenient access to the Mavenagi APIs 
 - [Runtime Compatibility](#runtime-compatibility)
 - [Request and Response Types](#request-and-response-types)
 - [Exception Handling](#exception-handling)
+- [Streaming Response](#streaming-response)
 - [Binary Response](#binary-response)
 - [Advanced](#advanced)
-    - [Additional Headers](#additional-headers)
-    - [Additional Query String Parameters](#additional-query-string-parameters)
-    - [Retries](#retries)
-    - [Timeouts](#timeouts)
-    - [Aborting Requests](#aborting-requests)
-    - [Access Raw Response Data](#access-raw-response-data)
-    - [Runtime Compatibility](#runtime-compatibility)
+  - [Additional Headers](#additional-headers)
+  - [Additional Query String Parameters](#additional-query-string-parameters)
+  - [Retries](#retries)
+  - [Timeouts](#timeouts)
+  - [Aborting Requests](#aborting-requests)
+  - [Access Raw Response Data](#access-raw-response-data)
+  - [Runtime Compatibility](#runtime-compatibility)
 - [Contributing](#contributing)
 
 ## Installation
@@ -42,12 +43,7 @@ Instantiate and use the client with the following:
 ```typescript
 import { MavenAGIClient, MavenAGI } from "mavenagi";
 
-const client = new MavenAGIClient({
-    appId: "YOUR_APP_ID",
-    appSecret: "YOUR_APP_SECRET",
-    organizationId: "YOUR_ORGANIZATION_ID",
-    agentId: "YOUR_AGENT_ID",
-});
+const client = new MavenAGIClient({ appId: "YOUR_APP_ID", appSecret: "YOUR_APP_SECRET", organizationId: "YOUR_ORGANIZATION_ID", agentId: "YOUR_AGENT_ID" });
 await client.actions.search({});
 ```
 
@@ -122,6 +118,38 @@ try {
 }
 ```
 
+## Streaming Response
+
+Some endpoints return streaming responses instead of returning the full response at once.
+The SDK uses async iterators, so you can consume the responses using a `for await...of` loop.
+
+```typescript
+import { MavenAGIClient } from "mavenagi";
+
+const client = new MavenAGIClient({ appId: "YOUR_APP_ID", appSecret: "YOUR_APP_SECRET", organizationId: "YOUR_ORGANIZATION_ID", agentId: "YOUR_AGENT_ID" });
+const response = await client.conversation.askStream("conversation-0", {
+    conversationMessageId: {
+        referenceId: "message-0"
+    },
+    userId: {
+        referenceId: "user-0"
+    },
+    text: "How do I reset my password?",
+    attachments: [{
+            type: "image/png",
+            content: "iVBORw0KGgo..."
+        }],
+    transientData: {
+        "userToken": "abcdef123",
+        "queryApiKey": "foobar456"
+    },
+    timezone: "America/New_York"
+});
+for await (const item of response) {
+    console.log(item);
+}
+```
+
 ## Binary Response
 
 You can consume binary data from endpoints using the `BinaryResponse` type which lets you choose how to consume the data:
@@ -136,7 +164,6 @@ const stream: ReadableStream<Uint8Array> = response.stream();
 // If you want to check if the response body has been used, you can use the following property.
 const bodyUsed = response.bodyUsed;
 ```
-
 <details>
 <summary>Save binary response to a file</summary>
 
@@ -594,7 +621,10 @@ console.log(rawResponse.headers['X-My-Header']);
 
 ### Runtime Compatibility
 
+
 The SDK works in the following runtimes:
+
+
 
 - Node.js 18+
 - Vercel

@@ -7,5 +7,8 @@ export const InboxItemType = {
     /**
      * The inbox item is missing knowledge. */
     MissingKnowledge: "MISSING_KNOWLEDGE",
+    /**
+     * The inbox item is a custom api-provided inbox item. */
+    Custom: "CUSTOM",
 } as const;
 export type InboxItemType = (typeof InboxItemType)[keyof typeof InboxItemType];

@@ -1,1 +1,1 @@
-export { type PartialUpdateRequest } from "./PartialUpdateRequest";
+export type { PartialUpdateRequest } from "./PartialUpdateRequest";

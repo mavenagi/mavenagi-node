@@ -1,1 +1,1 @@
-export { type SegmentGetRequest } from "./SegmentGetRequest";
+export type { SegmentGetRequest } from "./SegmentGetRequest";

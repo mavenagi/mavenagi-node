@@ -1,4 +1,4 @@
 export * from "./BaseOrganization";
-export * from "./Organization";
 export * from "./CreateOrganizationRequest";
+export * from "./Organization";
 export * from "./OrganizationPatchRequest";

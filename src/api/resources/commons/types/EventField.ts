@@ -2,5 +2,20 @@
 
 export const EventField = {
     CreatedAt: "CREATED_AT",
+    EventName: "EVENT_NAME",
+    EventType: "EVENT_TYPE",
+    App: "APP",
+    SessionId: "SESSION_ID",
+    SourceType: "SOURCE_TYPE",
+    SourceLanguageCode: "SOURCE_LANGUAGE_CODE",
+    SourceDeviceType: "SOURCE_DEVICE_TYPE",
+    SourceDeviceName: "SOURCE_DEVICE_NAME",
+    SourceBrowserType: "SOURCE_BROWSER_TYPE",
+    SourceBrowserName: "SOURCE_BROWSER_NAME",
+    SourceGeoCity: "SOURCE_GEO_CITY",
+    SourceGeoState: "SOURCE_GEO_STATE",
+    SourceGeoCountry: "SOURCE_GEO_COUNTRY",
+    UserReferenceId: "USER_REFERENCE_ID",
+    AgentUserId: "AGENT_USER_ID",
 } as const;
 export type EventField = (typeof EventField)[keyof typeof EventField];

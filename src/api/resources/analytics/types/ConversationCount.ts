@@ -3,4 +3,4 @@
 /**
  * Returns the total count of records in a group.
  */
-export interface ConversationCount {}
+export type ConversationCount = {};

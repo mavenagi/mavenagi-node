@@ -1,1 +1,1 @@
-export { type SearchAppSettingsRequest } from "./SearchAppSettingsRequest";
+export type { SearchAppSettingsRequest } from "./SearchAppSettingsRequest";

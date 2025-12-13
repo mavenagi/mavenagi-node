@@ -19,6 +19,7 @@ export const ConversationField = {
     InsertCount: "InsertCount",
     Tags: "Tags",
     UserMessageCount: "UserMessageCount",
+    BotMessageCount: "BotMessageCount",
     Languages: "Languages",
     Actions: "Actions",
     IncompleteActions: "IncompleteActions",
@@ -28,5 +29,6 @@ export const ConversationField = {
     OrganizationId: "OrganizationId",
     AgentId: "AgentId",
     InboxItems: "InboxItems",
+    InvolvedApps: "InvolvedApps",
 } as const;
 export type ConversationField = (typeof ConversationField)[keyof typeof ConversationField];

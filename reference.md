@@ -1,7 +1,5 @@
 # Reference
-
 ## Actions
-
 <details><summary><code>client.actions.<a href="/src/api/resources/actions/client/Client.ts">search</a>({ ...params }) -> MavenAGI.ActionsResponse</code></summary>
 <dl>
 <dd>
@@ -16,8 +14,8 @@
 
 ```typescript
 await client.actions.search({});
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -31,20 +29,21 @@ await client.actions.search({});
 <dl>
 <dd>
 
-**request:** `MavenAGI.ActionsSearchRequest`
-
+**request:** `MavenAGI.ActionsSearchRequest` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Actions.RequestOptions`
+**requestOptions:** `Actions.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -63,7 +62,6 @@ await client.actions.search({});
 <dd>
 
 Update an action or create it if it doesn't exist
-
 </dd>
 </dl>
 </dd>
@@ -80,7 +78,7 @@ Update an action or create it if it doesn't exist
 ```typescript
 await client.actions.createOrUpdate({
     actionId: {
-        referenceId: "get-balance",
+        referenceId: "get-balance"
     },
     name: "Get the user's balance",
     description: "This action calls an API to get the user's current balance.",
@@ -89,21 +87,18 @@ await client.actions.createOrUpdate({
     precondition: {
         preconditionType: "group",
         operator: "AND",
-        preconditions: [
-            {
-                preconditionType: "user",
-                key: "userKey",
-            },
-            {
-                preconditionType: "user",
-                key: "userKey2",
-            },
-        ],
+        preconditions: [{
+                "preconditionType": "user",
+                "key": "userKey"
+            }, {
+                "preconditionType": "user",
+                "key": "userKey2"
+            }]
     },
-    language: "en",
+    language: "en"
 });
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -117,20 +112,21 @@ await client.actions.createOrUpdate({
 <dl>
 <dd>
 
-**request:** `MavenAGI.ActionRequest`
-
+**request:** `MavenAGI.ActionRequest` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Actions.RequestOptions`
+**requestOptions:** `Actions.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -149,7 +145,6 @@ await client.actions.createOrUpdate({
 <dd>
 
 Get an action by its supplied ID
-
 </dd>
 </dl>
 </dd>
@@ -165,8 +160,8 @@ Get an action by its supplied ID
 
 ```typescript
 await client.actions.get("get-balance");
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -181,27 +176,28 @@ await client.actions.get("get-balance");
 <dd>
 
 **actionReferenceId:** `string` — The reference ID of the action to get. All other entity ID fields are inferred from the request.
-
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**request:** `MavenAGI.ActionGetRequest`
-
+**request:** `MavenAGI.ActionGetRequest` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Actions.RequestOptions`
+**requestOptions:** `Actions.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -221,9 +217,8 @@ await client.actions.get("get-balance");
 
 Update mutable action fields
 
-The `appId` field can be provided to update an action owned by a different app.
+The `appId` field can be provided to update an action owned by a different app. 
 All other fields will overwrite the existing value on the action only if provided.
-
 </dd>
 </dl>
 </dd>
@@ -246,11 +241,11 @@ await client.actions.patch("get-balance", {
         appId: "my-billing-system",
         organizationId: "acme",
         agentId: "support",
-        type: "SEGMENT",
-    },
+        type: "SEGMENT"
+    }
 });
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -265,27 +260,28 @@ await client.actions.patch("get-balance", {
 <dd>
 
 **actionReferenceId:** `string` — The reference ID of the action to patch.
-
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**request:** `MavenAGI.ActionPatchRequest`
-
+**request:** `MavenAGI.ActionPatchRequest` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Actions.RequestOptions`
+**requestOptions:** `Actions.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -304,7 +300,6 @@ await client.actions.patch("get-balance", {
 <dd>
 
 Delete an action
-
 </dd>
 </dl>
 </dd>
@@ -320,8 +315,8 @@ Delete an action
 
 ```typescript
 await client.actions.delete("get-balance");
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -336,26 +331,26 @@ await client.actions.delete("get-balance");
 <dd>
 
 **actionReferenceId:** `string` — The reference ID of the action to unregister. All other entity ID fields are inferred from the request.
-
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Actions.RequestOptions`
+**requestOptions:** `Actions.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
 </details>
 
 ## Agents
-
 <details><summary><code>client.agents.<a href="/src/api/resources/agents/client/Client.ts">search</a>({ ...params }) -> MavenAGI.AgentsSearchResponse</code></summary>
 <dl>
 <dd>
@@ -388,8 +383,8 @@ This endpoint requires additional permissions. Contact support to request access
 
 ```typescript
 await client.agents.search({});
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -403,20 +398,21 @@ await client.agents.search({});
 <dl>
 <dd>
 
-**request:** `MavenAGI.AgentsSearchRequest`
-
+**request:** `MavenAGI.AgentsSearchRequest` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Agents.RequestOptions`
+**requestOptions:** `Agents.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -435,7 +431,6 @@ await client.agents.search({});
 <dd>
 
 Lists all agents for an organization
-
 </dd>
 </dl>
 </dd>
@@ -451,8 +446,8 @@ Lists all agents for an organization
 
 ```typescript
 await client.agents.list("organizationReferenceId");
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -467,19 +462,20 @@ await client.agents.list("organizationReferenceId");
 <dd>
 
 **organizationReferenceId:** `string` — The ID of the organization.
-
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Agents.RequestOptions`
+**requestOptions:** `Agents.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -518,10 +514,10 @@ This endpoint requires additional permissions. Contact support to request access
 ```typescript
 await client.agents.create("organizationReferenceId", "agentReferenceId", {
     name: "name",
-    environment: "DEMO",
+    environment: "DEMO"
 });
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -536,7 +532,7 @@ await client.agents.create("organizationReferenceId", "agentReferenceId", {
 <dd>
 
 **organizationReferenceId:** `string` — The ID of the organization.
-
+    
 </dd>
 </dl>
 
@@ -544,27 +540,28 @@ await client.agents.create("organizationReferenceId", "agentReferenceId", {
 <dd>
 
 **agentReferenceId:** `string` — The ID of the agent.
-
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**request:** `MavenAGI.CreateAgentRequest`
-
+**request:** `MavenAGI.CreateAgentRequest` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Agents.RequestOptions`
+**requestOptions:** `Agents.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -583,7 +580,6 @@ await client.agents.create("organizationReferenceId", "agentReferenceId", {
 <dd>
 
 Get an agent
-
 </dd>
 </dl>
 </dd>
@@ -599,8 +595,8 @@ Get an agent
 
 ```typescript
 await client.agents.get("organizationReferenceId", "agentReferenceId");
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -615,7 +611,7 @@ await client.agents.get("organizationReferenceId", "agentReferenceId");
 <dd>
 
 **organizationReferenceId:** `string` — The ID of the organization.
-
+    
 </dd>
 </dl>
 
@@ -623,19 +619,20 @@ await client.agents.get("organizationReferenceId", "agentReferenceId");
 <dd>
 
 **agentReferenceId:** `string` — The ID of the agent.
-
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Agents.RequestOptions`
+**requestOptions:** `Agents.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -653,7 +650,7 @@ await client.agents.get("organizationReferenceId", "agentReferenceId");
 <dl>
 <dd>
 
-Update mutable agent fields
+Update mutable agent fields 
 All fields will overwrite the existing value on the agent only if provided.
 
 <Tip>
@@ -674,8 +671,8 @@ This endpoint requires additional permissions. Contact support to request access
 
 ```typescript
 await client.agents.patch("organizationReferenceId", "agentReferenceId");
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -690,7 +687,7 @@ await client.agents.patch("organizationReferenceId", "agentReferenceId");
 <dd>
 
 **organizationReferenceId:** `string` — The ID of the organization.
-
+    
 </dd>
 </dl>
 
@@ -698,27 +695,28 @@ await client.agents.patch("organizationReferenceId", "agentReferenceId");
 <dd>
 
 **agentReferenceId:** `string` — The ID of the agent.
-
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**request:** `MavenAGI.AgentPatchRequest`
-
+**request:** `MavenAGI.AgentPatchRequest` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Agents.RequestOptions`
+**requestOptions:** `Agents.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -756,8 +754,8 @@ This endpoint requires additional permissions. Contact support to request access
 
 ```typescript
 await client.agents.delete("organizationReferenceId", "agentReferenceId");
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -772,7 +770,7 @@ await client.agents.delete("organizationReferenceId", "agentReferenceId");
 <dd>
 
 **organizationReferenceId:** `string` — The ID of the organization.
-
+    
 </dd>
 </dl>
 
@@ -780,26 +778,26 @@ await client.agents.delete("organizationReferenceId", "agentReferenceId");
 <dd>
 
 **agentReferenceId:** `string` — The ID of the agent.
-
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Agents.RequestOptions`
+**requestOptions:** `Agents.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
 </details>
 
 ## Analytics
-
 <details><summary><code>client.analytics.<a href="/src/api/resources/analytics/client/Client.ts">getConversationTable</a>({ ...params }) -> MavenAGI.ConversationTableResponse</code></summary>
 <dl>
 <dd>
@@ -813,7 +811,6 @@ await client.agents.delete("organizationReferenceId", "agentReferenceId");
 <dd>
 
 Retrieves structured conversation data formatted as a table, allowing users to group, filter, and define specific metrics to display as columns.
-
 </dd>
 </dl>
 </dd>
@@ -830,40 +827,34 @@ Retrieves structured conversation data formatted as a table, allowing users to g
 ```typescript
 await client.analytics.getConversationTable({
     conversationFilter: {
-        languages: ["en", "es"],
+        languages: ["en", "es"]
     },
     timeGrouping: "DAY",
-    fieldGroupings: [
-        {
-            field: "Category",
-        },
-    ],
-    columnDefinitions: [
-        {
+    fieldGroupings: [{
+            field: "Category"
+        }],
+    columnDefinitions: [{
             header: "count",
             metric: {
-                type: "count",
-            },
-        },
-        {
+                type: "count"
+            }
+        }, {
             header: "avg_first_response_time",
             metric: {
                 type: "average",
-                targetField: "FirstResponseTime",
-            },
-        },
-        {
+                targetField: "FirstResponseTime"
+            }
+        }, {
             header: "percentile_handle_time",
             metric: {
                 type: "percentile",
                 targetField: "HandleTime",
-                percentile: 25,
-            },
-        },
-    ],
+                percentile: 25
+            }
+        }]
 });
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -877,20 +868,21 @@ await client.analytics.getConversationTable({
 <dl>
 <dd>
 
-**request:** `MavenAGI.ConversationTableRequest`
-
+**request:** `MavenAGI.ConversationTableRequest` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Analytics.RequestOptions`
+**requestOptions:** `Analytics.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -909,7 +901,6 @@ await client.analytics.getConversationTable({
 <dd>
 
 Fetches conversation data visualized in a chart format. Supported chart types include pie chart, date histogram, and stacked bar charts.
-
 </dd>
 </dl>
 </dd>
@@ -927,17 +918,17 @@ Fetches conversation data visualized in a chart format. Supported chart types in
 await client.analytics.getConversationChart({
     type: "pieChart",
     conversationFilter: {
-        languages: ["en", "es"],
+        languages: ["en", "es"]
     },
     groupBy: {
-        field: "Category",
+        field: "Category"
     },
     metric: {
-        type: "count",
-    },
+        type: "count"
+    }
 });
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -951,20 +942,21 @@ await client.analytics.getConversationChart({
 <dl>
 <dd>
 
-**request:** `MavenAGI.ConversationChartRequest`
-
+**request:** `MavenAGI.ConversationChartRequest` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Analytics.RequestOptions`
+**requestOptions:** `Analytics.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -985,7 +977,6 @@ await client.analytics.getConversationChart({
 Export the conversation analytics table to a CSV file.
 
 This outputs the current table view defined by the request. For most programmatic use cases, prefer `getConversationTable` and format client-side. The CSV format may change and should not be relied upon by code consumers. A maximum of 10,000 rows can be exported at a time.
-
 </dd>
 </dl>
 </dd>
@@ -1001,31 +992,25 @@ This outputs the current table view defined by the request. For most programmati
 
 ```typescript
 await client.analytics.exportConversationTable({
-    fieldGroupings: [
-        {
-            field: "Category",
-        },
-        {
-            field: "Category",
-        },
-    ],
-    columnDefinitions: [
-        {
+    fieldGroupings: [{
+            field: "Category"
+        }, {
+            field: "Category"
+        }],
+    columnDefinitions: [{
             metric: {
-                type: "count",
+                type: "count"
             },
-            header: "header",
-        },
-        {
+            header: "header"
+        }, {
             metric: {
-                type: "count",
+                type: "count"
             },
-            header: "header",
-        },
-    ],
+            header: "header"
+        }]
 });
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -1039,20 +1024,21 @@ await client.analytics.exportConversationTable({
 <dl>
 <dd>
 
-**request:** `MavenAGI.ConversationTableRequest`
-
+**request:** `MavenAGI.ConversationTableRequest` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Analytics.RequestOptions`
+**requestOptions:** `Analytics.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -1070,8 +1056,7 @@ await client.analytics.exportConversationTable({
 <dl>
 <dd>
 
-Retrieves structured feedback data formatted as a table, allowing users to group, filter, and define specific metrics to display as columns.
-
+Retrieves structured feedback data formatted as a table, allowing users to group, filter,  and define specific metrics to display as columns.
 </dd>
 </dl>
 </dd>
@@ -1088,24 +1073,20 @@ Retrieves structured feedback data formatted as a table, allowing users to group
 ```typescript
 await client.analytics.getFeedbackTable({
     feedbackFilter: {
-        types: ["THUMBS_UP", "INSERT"],
+        types: ["THUMBS_UP", "INSERT"]
     },
-    fieldGroupings: [
-        {
-            field: "CreatedBy",
-        },
-    ],
-    columnDefinitions: [
-        {
+    fieldGroupings: [{
+            field: "CreatedBy"
+        }],
+    columnDefinitions: [{
             header: "feedback_count",
             metric: {
-                type: "count",
-            },
-        },
-    ],
+                type: "count"
+            }
+        }]
 });
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -1119,20 +1100,21 @@ await client.analytics.getFeedbackTable({
 <dl>
 <dd>
 
-**request:** `MavenAGI.FeedbackTableRequest`
-
+**request:** `MavenAGI.FeedbackTableRequest` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Analytics.RequestOptions`
+**requestOptions:** `Analytics.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -1150,8 +1132,7 @@ await client.analytics.getFeedbackTable({
 <dl>
 <dd>
 
-Retrieves structured agent user data formatted as a table, allowing users to group, filter, and define specific metrics to display as columns.
-
+Retrieves structured agent user data formatted as a table, allowing users to group, filter,  and define specific metrics to display as columns.
 </dd>
 </dl>
 </dd>
@@ -1168,19 +1149,17 @@ Retrieves structured agent user data formatted as a table, allowing users to gro
 ```typescript
 await client.analytics.getAgentUserTable({
     agentUserFilter: {
-        search: "john",
+        search: "john"
     },
-    columnDefinitions: [
-        {
+    columnDefinitions: [{
             header: "user_count",
             metric: {
-                type: "count",
-            },
-        },
-    ],
+                type: "count"
+            }
+        }]
 });
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -1194,27 +1173,177 @@ await client.analytics.getAgentUserTable({
 <dl>
 <dd>
 
-**request:** `MavenAGI.AgentUserTableRequest`
-
+**request:** `MavenAGI.AgentUserTableRequest` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Analytics.RequestOptions`
+**requestOptions:** `Analytics.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
 
 </dd>
 </dl>
+</details>
+
+<details><summary><code>client.analytics.<a href="/src/api/resources/analytics/client/Client.ts">getEventTable</a>({ ...params }) -> MavenAGI.EventTableResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Retrieves structured event data formatted as a table, allowing users to group, filter,  and define specific metrics to display as columns.
 </dd>
 </dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.analytics.getEventTable({
+    eventFilter: {
+        eventTypes: ["USER"]
+    },
+    fieldGroupings: [{
+            field: "EVENT_NAME"
+        }],
+    columnDefinitions: [{
+            header: "event_count",
+            metric: {
+                type: "count"
+            }
+        }]
+});
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `MavenAGI.EventTableRequest` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Analytics.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.analytics.<a href="/src/api/resources/analytics/client/Client.ts">getEventChart</a>({ ...params }) -> MavenAGI.ChartResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Fetches event data visualized in a chart format. Supported chart types include pie chart, date histogram, and stacked bar charts.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.analytics.getEventChart({
+    type: "pieChart",
+    eventFilter: {
+        eventTypes: ["USER"]
+    },
+    groupBy: {
+        field: "EVENT_NAME"
+    },
+    metric: {
+        type: "count"
+    }
+});
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `MavenAGI.EventChartRequest` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Analytics.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
 
 </dd>
 </dl>
 </details>
 
 ## AppSettings
-
 <details><summary><code>client.appSettings.<a href="/src/api/resources/appSettings/client/Client.ts">search</a>({ ...params }) -> MavenAGI.SearchAppSettingsResponse</code></summary>
 <dl>
 <dd>
@@ -1232,7 +1361,6 @@ Search for app settings which have the `$index` key set to the provided value.
 You can set the `$index` key using the Update app settings API.
 
 <Warning>This API currently requires an organization ID and agent ID for any agent which is installed on the app. This requirement will be removed in a future update.</Warning>
-
 </dd>
 </dl>
 </dd>
@@ -1248,10 +1376,10 @@ You can set the `$index` key using the Update app settings API.
 
 ```typescript
 await client.appSettings.search({
-    index: "index",
+    index: "index"
 });
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -1265,20 +1393,21 @@ await client.appSettings.search({
 <dl>
 <dd>
 
-**request:** `MavenAGI.SearchAppSettingsRequest`
-
+**request:** `MavenAGI.SearchAppSettingsRequest` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `AppSettings.RequestOptions`
+**requestOptions:** `AppSettings.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -1297,7 +1426,6 @@ await client.appSettings.search({
 <dd>
 
 Get app settings set during installation
-
 </dd>
 </dl>
 </dd>
@@ -1313,8 +1441,8 @@ Get app settings set during installation
 
 ```typescript
 await client.appSettings.get();
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -1328,12 +1456,13 @@ await client.appSettings.get();
 <dl>
 <dd>
 
-**requestOptions:** `AppSettings.RequestOptions`
+**requestOptions:** `AppSettings.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -1358,7 +1487,6 @@ Update app settings. Performs a merge of the provided settings with the existing
 - No keys will be removed.
 
 Note that if an array value is provided it will fully replace an existing value as arrays cannot be merged.
-
 </dd>
 </dl>
 </dd>
@@ -1374,12 +1502,12 @@ Note that if an array value is provided it will fully replace an existing value 
 
 ```typescript
 await client.appSettings.update({
-    string: {
-        key: "value",
-    },
+    "string": {
+        "key": "value"
+    }
 });
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -1393,27 +1521,27 @@ await client.appSettings.update({
 <dl>
 <dd>
 
-**request:** `Record<string, unknown>`
-
+**request:** `Record<string, unknown>` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `AppSettings.RequestOptions`
+**requestOptions:** `AppSettings.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
 </details>
 
 ## Assets
-
 <details><summary><code>client.assets.<a href="/src/api/resources/assets/client/Client.ts">initiateUpload</a>({ ...params }) -> MavenAGI.InitiateAssetUploadResponse</code></summary>
 <dl>
 <dd>
@@ -1426,9 +1554,8 @@ await client.appSettings.update({
 <dl>
 <dd>
 
-Initiate an upload.
+Initiate an upload. 
 Returns a pre-signed URL for direct file upload and an asset ID for subsequent operations.
-
 </dd>
 </dl>
 </dd>
@@ -1444,10 +1571,10 @@ Returns a pre-signed URL for direct file upload and an asset ID for subsequent o
 
 ```typescript
 await client.assets.initiateUpload({
-    type: "type",
+    type: "type"
 });
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -1461,20 +1588,21 @@ await client.assets.initiateUpload({
 <dl>
 <dd>
 
-**request:** `MavenAGI.InitiateAssetUploadRequest`
-
+**request:** `MavenAGI.InitiateAssetUploadRequest` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Assets.RequestOptions`
+**requestOptions:** `Assets.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -1494,7 +1622,6 @@ await client.assets.initiateUpload({
 
 Commit an upload after successful file transfer.
 Updates the asset status and makes it available for use.
-
 </dd>
 </dl>
 </dd>
@@ -1510,8 +1637,8 @@ Updates the asset status and makes it available for use.
 
 ```typescript
 await client.assets.commitUpload("assetReferenceId", {});
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -1526,34 +1653,34 @@ await client.assets.commitUpload("assetReferenceId", {});
 <dd>
 
 **assetReferenceId:** `string` — The reference ID of the asset to commit (provided by the initiate call). All other entity ID fields are inferred from the API request.
-
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**request:** `MavenAGI.CommitAssetUploadRequest`
-
+**request:** `MavenAGI.CommitAssetUploadRequest` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Assets.RequestOptions`
+**requestOptions:** `Assets.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
 </details>
 
 ## Conversation
-
 <details><summary><code>client.conversation.<a href="/src/api/resources/conversation/client/Client.ts">initialize</a>({ ...params }) -> MavenAGI.ConversationResponse</code></summary>
 <dl>
 <dd>
@@ -1566,19 +1693,18 @@ await client.assets.commitUpload("assetReferenceId", {});
 <dl>
 <dd>
 
-Initialize a new conversation.
+Initialize a new conversation. 
 Only required if the ask request wishes to supply conversation level data or when syncing to external systems.
 
 Conversations can not be modified using this API. If the conversation already exists then the existing conversation will be returned.
 
 After initialization,
-
 - metadata can be changed using the `updateConversationMetadata` API.
 - messages can be added to the conversation with the `appendNewMessages` or `ask` APIs.
-  </dd>
-  </dl>
-  </dd>
-  </dl>
+</dd>
+</dl>
+</dd>
+</dl>
 
 #### 🔌 Usage
 
@@ -1591,33 +1717,30 @@ After initialization,
 ```typescript
 await client.conversation.initialize({
     conversationId: {
-        referenceId: "x",
+        referenceId: "x"
     },
-    messages: [
-        {
+    messages: [{
             conversationMessageId: {
-                referenceId: "x",
+                referenceId: "x"
             },
             userId: {
-                referenceId: "x",
+                referenceId: "x"
             },
             text: "text",
-            userMessageType: "USER",
-        },
-        {
+            userMessageType: "USER"
+        }, {
             conversationMessageId: {
-                referenceId: "x",
+                referenceId: "x"
             },
             userId: {
-                referenceId: "x",
+                referenceId: "x"
             },
             text: "text",
-            userMessageType: "USER",
-        },
-    ],
+            userMessageType: "USER"
+        }]
 });
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -1631,20 +1754,21 @@ await client.conversation.initialize({
 <dl>
 <dd>
 
-**request:** `MavenAGI.ConversationRequest`
-
+**request:** `MavenAGI.ConversationRequest` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Conversation.RequestOptions`
+**requestOptions:** `Conversation.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -1662,11 +1786,10 @@ await client.conversation.initialize({
 <dl>
 <dd>
 
-Update mutable conversation fields.
+Update mutable conversation fields. 
 
-The `appId` field can be provided to update a conversation owned by a different app.
+The `appId` field can be provided to update a conversation owned by a different app. 
 All other fields will overwrite the existing value on the conversation only if provided.
-
 </dd>
 </dl>
 </dd>
@@ -1682,10 +1805,10 @@ All other fields will overwrite the existing value on the conversation only if p
 
 ```typescript
 await client.conversation.patch("conversation-0", {
-    llmEnabled: true,
+    llmEnabled: true
 });
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -1700,27 +1823,28 @@ await client.conversation.patch("conversation-0", {
 <dd>
 
 **conversationId:** `string` — The ID of the conversation to patch
-
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**request:** `MavenAGI.ConversationPatchRequest`
-
+**request:** `MavenAGI.ConversationPatchRequest` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Conversation.RequestOptions`
+**requestOptions:** `Conversation.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -1739,7 +1863,6 @@ await client.conversation.patch("conversation-0", {
 <dd>
 
 Get a conversation
-
 </dd>
 </dl>
 </dd>
@@ -1755,8 +1878,8 @@ Get a conversation
 
 ```typescript
 await client.conversation.get("conversationId");
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -1771,27 +1894,28 @@ await client.conversation.get("conversationId");
 <dd>
 
 **conversationId:** `string` — The ID of the conversation to get
-
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**request:** `MavenAGI.ConversationGetRequest`
-
+**request:** `MavenAGI.ConversationGetRequest` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Conversation.RequestOptions`
+**requestOptions:** `Conversation.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -1809,17 +1933,16 @@ await client.conversation.get("conversationId");
 <dl>
 <dd>
 
-Wipes a conversation of all user data.
-The conversation ID will still exist and non-user specific data will still be retained.
-Attempts to modify or add messages to the conversation will throw an error.
+Wipes a conversation of all user data. 
+The conversation ID will still exist and non-user specific data will still be retained. 
+Attempts to modify or add messages to the conversation will throw an error. 
 
-Simulation conversations will no longer be visible in search results nor metrics.
+Simulation conversations will no longer be visible in search results nor metrics. 
 Non-simulation conversations will remain visible - they can not be fully removed from the system.
 
 <Warning>This is a destructive operation and cannot be undone. <br/><br/>
-The exact fields cleared include: the conversation subject, userRequest, agentResponse.
+The exact fields cleared include: the conversation subject, userRequest, agentResponse. 
 As well as the text response, followup questions, and backend LLM prompt of all messages.</Warning>
-
 </dd>
 </dl>
 </dd>
@@ -1835,10 +1958,10 @@ As well as the text response, followup questions, and backend LLM prompt of all 
 
 ```typescript
 await client.conversation.delete("conversation-0", {
-    reason: "GDPR deletion request 1234.",
+    reason: "GDPR deletion request 1234."
 });
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -1853,27 +1976,28 @@ await client.conversation.delete("conversation-0", {
 <dd>
 
 **conversationId:** `string` — The ID of the conversation to delete
-
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**request:** `MavenAGI.ConversationDeleteRequest`
-
+**request:** `MavenAGI.ConversationDeleteRequest` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Conversation.RequestOptions`
+**requestOptions:** `Conversation.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -1892,7 +2016,6 @@ await client.conversation.delete("conversation-0", {
 <dd>
 
 Append messages to an existing conversation. The conversation must be initialized first. If a message with the same ID already exists, it will be ignored. Messages do not allow modification.
-
 </dd>
 </dl>
 </dd>
@@ -1907,30 +2030,27 @@ Append messages to an existing conversation. The conversation must be initialize
 <dd>
 
 ```typescript
-await client.conversation.appendNewMessages("conversationId", [
-    {
+await client.conversation.appendNewMessages("conversationId", [{
         conversationMessageId: {
-            referenceId: "x",
+            referenceId: "x"
         },
         userId: {
-            referenceId: "x",
+            referenceId: "x"
         },
         text: "text",
-        userMessageType: "USER",
-    },
-    {
+        userMessageType: "USER"
+    }, {
         conversationMessageId: {
-            referenceId: "x",
+            referenceId: "x"
         },
         userId: {
-            referenceId: "x",
+            referenceId: "x"
         },
         text: "text",
-        userMessageType: "USER",
-    },
-]);
-```
+        userMessageType: "USER"
+    }]);
 
+```
 </dd>
 </dl>
 </dd>
@@ -1945,27 +2065,28 @@ await client.conversation.appendNewMessages("conversationId", [
 <dd>
 
 **conversationId:** `string` — The ID of the conversation to append messages to
-
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**request:** `MavenAGI.ConversationMessageRequest[]`
-
+**request:** `MavenAGI.ConversationMessageRequest[]` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Conversation.RequestOptions`
+**requestOptions:** `Conversation.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -1983,21 +2104,19 @@ await client.conversation.appendNewMessages("conversationId", [
 <dl>
 <dd>
 
-Get an answer from Maven for a given user question. If the user question or its answer already exists,
-they will be reused and will not be updated. Messages do not allow modification once generated.
+Get an answer from Maven for a given user question. If the user question or its answer already exists, 
+they will be reused and will not be updated. Messages do not allow modification once generated. 
 
 Concurrency Behavior:
-
 - If another API call is made for the same user question while a response is mid-stream, partial answers may be returned.
 - The second caller will receive a truncated or partial response depending on where the first stream is in its processing. The first caller's stream will remain unaffected and continue delivering the full response.
 
 Known Limitation:
-
 - The API does not currently expose metadata indicating whether a response or message is incomplete. This will be addressed in a future update.
-  </dd>
-  </dl>
-  </dd>
-  </dl>
+</dd>
+</dl>
+</dd>
+</dl>
 
 #### 🔌 Usage
 
@@ -2010,26 +2129,24 @@ Known Limitation:
 ```typescript
 await client.conversation.ask("conversation-0", {
     conversationMessageId: {
-        referenceId: "message-0",
+        referenceId: "message-0"
     },
     userId: {
-        referenceId: "user-0",
+        referenceId: "user-0"
     },
     text: "How do I reset my password?",
-    attachments: [
-        {
+    attachments: [{
             type: "image/png",
-            content: "iVBORw0KGgo...",
-        },
-    ],
+            content: "iVBORw0KGgo..."
+        }],
     transientData: {
-        userToken: "abcdef123",
-        queryApiKey: "foobar456",
+        "userToken": "abcdef123",
+        "queryApiKey": "foobar456"
     },
-    timezone: "America/New_York",
+    timezone: "America/New_York"
 });
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -2044,27 +2161,28 @@ await client.conversation.ask("conversation-0", {
 <dd>
 
 **conversationId:** `string` — The ID of a new or existing conversation to use as context for the question
-
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**request:** `MavenAGI.AskRequest`
-
+**request:** `MavenAGI.AskRequest` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Conversation.RequestOptions`
+**requestOptions:** `Conversation.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -2082,25 +2200,23 @@ await client.conversation.ask("conversation-0", {
 <dl>
 <dd>
 
-Get an answer from Maven for a given user question with a streaming response. The response will be sent as a stream of events.
-The text portions of stream responses should be concatenated to form the full response text.
+Get an answer from Maven for a given user question with a streaming response. The response will be sent as a stream of events. 
+The text portions of stream responses should be concatenated to form the full response text. 
 Action and metadata events should overwrite past data and do not need concatenation.
 
-If the user question or its answer already exists, they will be reused and will not be updated.
+If the user question or its answer already exists, they will be reused and will not be updated. 
 Messages do not allow modification once generated.
-
+        
 Concurrency Behavior:
-
 - If another API call is made for the same user question while a response is mid-stream, partial answers may be returned.
 - The second caller will receive a truncated or partial response depending on where the first stream is in its processing. The first caller's stream will remain unaffected and continue delivering the full response.
 
 Known Limitation:
-
 - The API does not currently expose metadata indicating whether a response or message is incomplete. This will be addressed in a future update.
-  </dd>
-  </dl>
-  </dd>
-  </dl>
+</dd>
+</dl>
+</dd>
+</dl>
 
 #### 🔌 Usage
 
@@ -2113,29 +2229,27 @@ Known Limitation:
 ```typescript
 const response = await client.conversation.askStream("conversation-0", {
     conversationMessageId: {
-        referenceId: "message-0",
+        referenceId: "message-0"
     },
     userId: {
-        referenceId: "user-0",
+        referenceId: "user-0"
     },
     text: "How do I reset my password?",
-    attachments: [
-        {
+    attachments: [{
             type: "image/png",
-            content: "iVBORw0KGgo...",
-        },
-    ],
+            content: "iVBORw0KGgo..."
+        }],
     transientData: {
-        userToken: "abcdef123",
-        queryApiKey: "foobar456",
+        "userToken": "abcdef123",
+        "queryApiKey": "foobar456"
     },
-    timezone: "America/New_York",
+    timezone: "America/New_York"
 });
 for await (const item of response) {
     console.log(item);
 }
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -2150,27 +2264,28 @@ for await (const item of response) {
 <dd>
 
 **conversationId:** `string` — The ID of a new or existing conversation to use as context for the question
-
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**request:** `MavenAGI.AskRequest`
-
+**request:** `MavenAGI.AskRequest` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Conversation.RequestOptions`
+**requestOptions:** `Conversation.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -2188,25 +2303,23 @@ for await (const item of response) {
 <dl>
 <dd>
 
-Generate a structured object response based on a provided schema and user prompt with a streaming response.
+Generate a structured object response based on a provided schema and user prompt with a streaming response. 
 The response will be sent as a stream of events containing text, start, and end events.
 The text portions of stream responses should be concatenated to form the full response text.
 
 If the user question and object response already exist, they will be reused and not updated.
 
 Concurrency Behavior:
-
 - If another API call is made for the same user question while a response is mid-stream, partial answers may be returned.
 - The second caller will receive a truncated or partial response depending on where the first stream is in its processing. The first caller's stream will remain unaffected and continue delivering the full response.
 
 Known Limitations:
-
 - Schema enforcement is best-effort and may not guarantee exact conformity.
 - The API does not currently expose metadata indicating whether a response or message is incomplete. This will be addressed in a future update.
-  </dd>
-  </dl>
-  </dd>
-  </dl>
+</dd>
+</dl>
+</dd>
+</dl>
 
 #### 🔌 Usage
 
@@ -2220,18 +2333,18 @@ Known Limitations:
 const response = await client.conversation.askObjectStream("conversationId", {
     schema: "schema",
     conversationMessageId: {
-        referenceId: "x",
+        referenceId: "x"
     },
     userId: {
-        referenceId: "x",
+        referenceId: "x"
     },
-    text: "text",
+    text: "text"
 });
 for await (const item of response) {
     console.log(item);
 }
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -2246,27 +2359,28 @@ for await (const item of response) {
 <dd>
 
 **conversationId:** `string` — The ID of a new or existing conversation to use as context for the object generation request
-
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**request:** `MavenAGI.AskObjectRequest`
-
+**request:** `MavenAGI.AskObjectRequest` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Conversation.RequestOptions`
+**requestOptions:** `Conversation.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -2285,7 +2399,6 @@ for await (const item of response) {
 <dd>
 
 Uses an LLM flow to categorize the conversation. Experimental.
-
 </dd>
 </dl>
 </dd>
@@ -2301,8 +2414,8 @@ Uses an LLM flow to categorize the conversation. Experimental.
 
 ```typescript
 await client.conversation.categorize("conversationId");
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -2317,19 +2430,20 @@ await client.conversation.categorize("conversationId");
 <dd>
 
 **conversationId:** `string` — The ID of the conversation to categorize
-
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Conversation.RequestOptions`
+**requestOptions:** `Conversation.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -2348,7 +2462,6 @@ await client.conversation.categorize("conversationId");
 <dd>
 
 Update feedback or create it if it doesn't exist
-
 </dd>
 </dl>
 </dd>
@@ -2365,22 +2478,22 @@ Update feedback or create it if it doesn't exist
 ```typescript
 await client.conversation.createFeedback({
     feedbackId: {
-        referenceId: "feedback-0",
+        referenceId: "feedback-0"
     },
     userId: {
-        referenceId: "user-0",
+        referenceId: "user-0"
     },
     conversationId: {
-        referenceId: "conversation-0",
+        referenceId: "conversation-0"
     },
     conversationMessageId: {
-        referenceId: "message-1",
+        referenceId: "message-1"
     },
     type: "THUMBS_UP",
-    text: "Great answer!",
+    text: "Great answer!"
 });
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -2394,20 +2507,21 @@ await client.conversation.createFeedback({
 <dl>
 <dd>
 
-**request:** `MavenAGI.FeedbackRequest`
-
+**request:** `MavenAGI.FeedbackRequest` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Conversation.RequestOptions`
+**requestOptions:** `Conversation.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -2425,12 +2539,11 @@ await client.conversation.createFeedback({
 <dl>
 <dd>
 
-Submit a filled out action form.
+Submit a filled out action form. 
 Action forms can not be submitted more than once, attempting to do so will result in an error.
 
-Additionally, form submission is only allowed when the form is the last message in the conversation.
+Additionally, form submission is only allowed when the form is the last message in the conversation. 
 Forms should be disabled in surface UI if a conversation continues and they remain unsubmitted.
-
 </dd>
 </dl>
 </dd>
@@ -2448,13 +2561,13 @@ Forms should be disabled in surface UI if a conversation continues and they rema
 await client.conversation.submitActionForm("conversationId", {
     actionFormId: "actionFormId",
     parameters: {
-        parameters: {
-            key: "value",
-        },
-    },
+        "parameters": {
+            "key": "value"
+        }
+    }
 });
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -2469,27 +2582,28 @@ await client.conversation.submitActionForm("conversationId", {
 <dd>
 
 **conversationId:** `string` — The ID of a conversation the form being submitted belongs to
-
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**request:** `MavenAGI.SubmitActionFormRequest`
-
+**request:** `MavenAGI.SubmitActionFormRequest` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Conversation.RequestOptions`
+**requestOptions:** `Conversation.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -2507,10 +2621,9 @@ await client.conversation.submitActionForm("conversationId", {
 <dl>
 <dd>
 
-Replaced by `updateConversationMetadata`.
+Replaced by `updateConversationMetadata`. 
 
 Adds metadata to an existing conversation. If a metadata field already exists, it will be overwritten.
-
 </dd>
 </dl>
 </dd>
@@ -2526,10 +2639,10 @@ Adds metadata to an existing conversation. If a metadata field already exists, i
 
 ```typescript
 await client.conversation.addConversationMetadata("conversationId", {
-    string: "string",
+    "string": "string"
 });
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -2544,27 +2657,28 @@ await client.conversation.addConversationMetadata("conversationId", {
 <dd>
 
 **conversationId:** `string` — The ID of a conversation the metadata being added belongs to
-
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**request:** `Record<string, string>`
-
+**request:** `Record<string, string>` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Conversation.RequestOptions`
+**requestOptions:** `Conversation.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -2582,14 +2696,13 @@ await client.conversation.addConversationMetadata("conversationId", {
 <dl>
 <dd>
 
-Update metadata supplied by the calling application for an existing conversation.
+Update metadata supplied by the calling application for an existing conversation. 
 Does not modify metadata saved by other apps.
 
-If a metadata field already exists for the calling app, it will be overwritten.
+If a metadata field already exists for the calling app, it will be overwritten. 
 If it does not exist, it will be added. Will not remove metadata fields.
 
 Returns all metadata saved by any app on the conversation.
-
 </dd>
 </dl>
 </dd>
@@ -2607,11 +2720,11 @@ Returns all metadata saved by any app on the conversation.
 await client.conversation.updateConversationMetadata("conversation-0", {
     appId: "conversation-owning-app",
     values: {
-        key: "newValue",
-    },
+        "key": "newValue"
+    }
 });
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -2626,27 +2739,28 @@ await client.conversation.updateConversationMetadata("conversation-0", {
 <dd>
 
 **conversationId:** `string` — The ID of the conversation to modify metadata for
-
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**request:** `MavenAGI.UpdateMetadataRequest`
-
+**request:** `MavenAGI.UpdateMetadataRequest` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Conversation.RequestOptions`
+**requestOptions:** `Conversation.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -2665,7 +2779,6 @@ await client.conversation.updateConversationMetadata("conversation-0", {
 <dd>
 
 Search conversations
-
 </dd>
 </dl>
 </dd>
@@ -2681,8 +2794,8 @@ Search conversations
 
 ```typescript
 await client.conversation.search({});
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -2696,20 +2809,21 @@ await client.conversation.search({});
 <dl>
 <dd>
 
-**request:** `MavenAGI.ConversationsSearchRequest`
-
+**request:** `MavenAGI.ConversationsSearchRequest` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Conversation.RequestOptions`
+**requestOptions:** `Conversation.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -2727,13 +2841,12 @@ await client.conversation.search({});
 <dl>
 <dd>
 
-Export conversations to a CSV file.
+Export conversations to a CSV file. 
 
 This will output a summary of each conversation that matches the supplied filter. A maximum of 10,000 conversations can be exported at a time.
 
-For most use cases it is recommended to use the `search` API instead and convert the JSON response to your desired format.
+For most use cases it is recommended to use the `search` API instead and convert the JSON response to your desired format. 
 The CSV format may change over time and should not be relied upon by code consumers.
-
 </dd>
 </dl>
 </dd>
@@ -2749,8 +2862,8 @@ The CSV format may change over time and should not be relied upon by code consum
 
 ```typescript
 await client.conversation.export({});
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -2764,20 +2877,21 @@ await client.conversation.export({});
 <dl>
 <dd>
 
-**request:** `MavenAGI.ConversationsSearchRequest`
-
+**request:** `MavenAGI.ConversationsSearchRequest` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Conversation.RequestOptions`
+**requestOptions:** `Conversation.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -2820,21 +2934,21 @@ await client.conversation.deliverMessage({
     userId: {
         type: "AGENT",
         appId: "appId",
-        referenceId: "x",
+        referenceId: "x"
     },
     message: {
         conversationMessageId: {
-            referenceId: "x",
+            referenceId: "x"
         },
         userId: {
-            referenceId: "x",
+            referenceId: "x"
         },
         text: "text",
-        userMessageType: "USER",
-    },
+        userMessageType: "USER"
+    }
 });
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -2848,27 +2962,290 @@ await client.conversation.deliverMessage({
 <dl>
 <dd>
 
-**request:** `MavenAGI.DeliverMessageRequest`
-
+**request:** `MavenAGI.DeliverMessageRequest` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Conversation.RequestOptions`
+**requestOptions:** `Conversation.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
 
 </dd>
 </dl>
+</details>
+
+## Customers
+<details><summary><code>client.customers.<a href="/src/api/resources/customers/client/Client.ts">search</a>({ ...params }) -> MavenAGI.CustomersSearchResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.customers.search({});
+
+```
 </dd>
 </dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `MavenAGI.CustomersSearchRequest` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Customers.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.customers.<a href="/src/api/resources/customers/client/Client.ts">createOrUpdate</a>({ ...params }) -> MavenAGI.CustomerResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Update a customer of an agent or create it if it doesn't exist. In case of an update, fields not provided (e.g., description, status) will be preserved.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.customers.createOrUpdate({
+    customerId: {
+        referenceId: "acme"
+    },
+    name: "Acme Corporation"
+});
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `MavenAGI.CustomerRequest` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Customers.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.customers.<a href="/src/api/resources/customers/client/Client.ts">get</a>(customerReferenceId, { ...params }) -> MavenAGI.CustomerResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Get a customer by its supplied ID
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.customers.get("acme");
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**customerReferenceId:** `string` — The reference ID of the customer to get. All other entity ID fields are inferred from the request.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `MavenAGI.CustomerGetRequest` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Customers.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.customers.<a href="/src/api/resources/customers/client/Client.ts">patch</a>(customerReferenceId, { ...params }) -> MavenAGI.CustomerResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Update mutable customer fields
+
+The `appId` field can be provided to update a customer owned by a different app.
+All other fields will overwrite the existing value on the customer only if provided.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.customers.patch("customerReferenceId", {});
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**customerReferenceId:** `string` — The reference ID of the customer to update. All other entity ID fields are inferred from the request.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `MavenAGI.CustomerPatchRequest` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Customers.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
 
 </dd>
 </dl>
 </details>
 
 ## Events
-
 <details><summary><code>client.events.<a href="/src/api/resources/events/client/Client.ts">create</a>({ ...params }) -> MavenAGI.EventResponse</code></summary>
 <dl>
 <dd>
@@ -2882,7 +3259,6 @@ await client.conversation.deliverMessage({
 <dd>
 
 Create a new event
-
 </dd>
 </dl>
 </dd>
@@ -2900,17 +3276,17 @@ Create a new event
 await client.events.create({
     eventType: "userEvent",
     id: {
-        referenceId: "x",
+        referenceId: "x"
     },
     eventName: "BUTTON_CLICKED",
     userInfo: {
         id: {
-            referenceId: "x",
-        },
-    },
+            referenceId: "x"
+        }
+    }
 });
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -2924,20 +3300,21 @@ await client.events.create({
 <dl>
 <dd>
 
-**request:** `MavenAGI.EventRequest`
-
+**request:** `MavenAGI.EventRequest` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Events.RequestOptions`
+**requestOptions:** `Events.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -2956,7 +3333,6 @@ await client.events.create({
 <dd>
 
 Search events
-
 </dd>
 </dl>
 </dd>
@@ -2972,8 +3348,8 @@ Search events
 
 ```typescript
 await client.events.search({});
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -2987,20 +3363,21 @@ await client.events.search({});
 <dl>
 <dd>
 
-**request:** `MavenAGI.EventsSearchRequest`
-
+**request:** `MavenAGI.EventsSearchRequest` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Events.RequestOptions`
+**requestOptions:** `Events.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -3019,7 +3396,6 @@ await client.events.search({});
 <dd>
 
 Retrieve details of a specific Event item by its ID.
-
 </dd>
 </dl>
 </dd>
@@ -3035,10 +3411,10 @@ Retrieve details of a specific Event item by its ID.
 
 ```typescript
 await client.events.get("eventId", {
-    appId: "appId",
+    appId: "appId"
 });
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -3053,27 +3429,28 @@ await client.events.get("eventId", {
 <dd>
 
 **eventId:** `string` — The ID of the Event to get.
-
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**request:** `MavenAGI.EventGetRequest`
-
+**request:** `MavenAGI.EventGetRequest` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Events.RequestOptions`
+**requestOptions:** `Events.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -3094,7 +3471,6 @@ await client.events.get("eventId", {
 Export events to a CSV file.
 
 This will output a summary of each event that matches the supplied filter. A maximum of 10,000 events can be exported at a time. For most use cases it is recommended to use the search API instead and convert the JSON response to your desired format. The CSV format may change over time and should not be relied upon by code consumers.
-
 </dd>
 </dl>
 </dd>
@@ -3110,8 +3486,8 @@ This will output a summary of each event that matches the supplied filter. A max
 
 ```typescript
 await client.events.export({});
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -3125,27 +3501,27 @@ await client.events.export({});
 <dl>
 <dd>
 
-**request:** `MavenAGI.EventsSearchRequest`
-
+**request:** `MavenAGI.EventsSearchRequest` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Events.RequestOptions`
+**requestOptions:** `Events.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
 </details>
 
 ## Inbox
-
 <details><summary><code>client.inbox.<a href="/src/api/resources/inbox/client/Client.ts">search</a>({ ...params }) -> MavenAGI.InboxSearchResponse</code></summary>
 <dl>
 <dd>
@@ -3159,7 +3535,6 @@ await client.events.export({});
 <dd>
 
 Retrieve a paginated list of inbox items for an agent.
-
 </dd>
 </dl>
 </dd>
@@ -3175,8 +3550,8 @@ Retrieve a paginated list of inbox items for an agent.
 
 ```typescript
 await client.inbox.search({});
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -3190,20 +3565,21 @@ await client.inbox.search({});
 <dl>
 <dd>
 
-**request:** `MavenAGI.InboxSearchRequest`
-
+**request:** `MavenAGI.InboxSearchRequest` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Inbox.RequestOptions`
+**requestOptions:** `Inbox.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -3222,7 +3598,6 @@ await client.inbox.search({});
 <dd>
 
 Retrieve details of a specific inbox item by its ID.
-
 </dd>
 </dl>
 </dd>
@@ -3238,10 +3613,10 @@ Retrieve details of a specific inbox item by its ID.
 
 ```typescript
 await client.inbox.get("inboxItemId", {
-    appId: "appId",
+    appId: "appId"
 });
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -3256,27 +3631,28 @@ await client.inbox.get("inboxItemId", {
 <dd>
 
 **inboxItemId:** `string` — The ID of the inbox item to get. All other entity ID fields are inferred from the request.
-
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**request:** `MavenAGI.InboxItemRequest`
-
+**request:** `MavenAGI.InboxItemRequest` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Inbox.RequestOptions`
+**requestOptions:** `Inbox.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -3295,7 +3671,6 @@ await client.inbox.get("inboxItemId", {
 <dd>
 
 Retrieve a suggested fix. Includes document information if the fix is a Missing Knowledge suggestion.
-
 </dd>
 </dl>
 </dd>
@@ -3311,10 +3686,10 @@ Retrieve a suggested fix. Includes document information if the fix is a Missing 
 
 ```typescript
 await client.inbox.getFix("inboxItemFixId", {
-    appId: "appId",
+    appId: "appId"
 });
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -3329,27 +3704,28 @@ await client.inbox.getFix("inboxItemFixId", {
 <dd>
 
 **inboxItemFixId:** `string` — Unique identifier for the inbox fix.
-
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**request:** `MavenAGI.InboxItemFixRequest`
-
+**request:** `MavenAGI.InboxItemFixRequest` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Inbox.RequestOptions`
+**requestOptions:** `Inbox.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -3368,7 +3744,6 @@ await client.inbox.getFix("inboxItemFixId", {
 <dd>
 
 Apply a list of fixes belonging to an inbox item.
-
 </dd>
 </dl>
 </dd>
@@ -3385,10 +3760,10 @@ Apply a list of fixes belonging to an inbox item.
 ```typescript
 await client.inbox.applyFixes("inboxItemId", {
     appId: "appId",
-    fixReferenceIds: ["fixReferenceIds", "fixReferenceIds"],
+    fixReferenceIds: ["fixReferenceIds", "fixReferenceIds"]
 });
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -3403,27 +3778,28 @@ await client.inbox.applyFixes("inboxItemId", {
 <dd>
 
 **inboxItemId:** `string` — Unique identifier for the inbox item.
-
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**request:** `MavenAGI.ApplyFixesRequest`
-
+**request:** `MavenAGI.ApplyFixesRequest` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Inbox.RequestOptions`
+**requestOptions:** `Inbox.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -3442,7 +3818,6 @@ await client.inbox.applyFixes("inboxItemId", {
 <dd>
 
 Ignore a specific inbox item by its ID.
-
 </dd>
 </dl>
 </dd>
@@ -3458,10 +3833,10 @@ Ignore a specific inbox item by its ID.
 
 ```typescript
 await client.inbox.ignore("inboxItemId", {
-    appId: "appId",
+    appId: "appId"
 });
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -3476,34 +3851,34 @@ await client.inbox.ignore("inboxItemId", {
 <dd>
 
 **inboxItemId:** `string` — Unique identifier for the inbox item.
-
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**request:** `MavenAGI.InboxItemIgnoreRequest`
-
+**request:** `MavenAGI.InboxItemIgnoreRequest` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Inbox.RequestOptions`
+**requestOptions:** `Inbox.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
 </details>
 
 ## Knowledge
-
 <details><summary><code>client.knowledge.<a href="/src/api/resources/knowledge/client/Client.ts">searchKnowledgeBases</a>({ ...params }) -> MavenAGI.KnowledgeBasesResponse</code></summary>
 <dl>
 <dd>
@@ -3517,7 +3892,6 @@ await client.inbox.ignore("inboxItemId", {
 <dd>
 
 Search knowledge bases
-
 </dd>
 </dl>
 </dd>
@@ -3533,8 +3907,8 @@ Search knowledge bases
 
 ```typescript
 await client.knowledge.searchKnowledgeBases({});
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -3548,20 +3922,21 @@ await client.knowledge.searchKnowledgeBases({});
 <dl>
 <dd>
 
-**request:** `MavenAGI.KnowledgeBaseSearchRequest`
-
+**request:** `MavenAGI.KnowledgeBaseSearchRequest` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Knowledge.RequestOptions`
+**requestOptions:** `Knowledge.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -3580,7 +3955,6 @@ await client.knowledge.searchKnowledgeBases({});
 <dd>
 
 Update a knowledge base or create it if it doesn't exist.
-
 </dd>
 </dl>
 </dd>
@@ -3597,12 +3971,12 @@ Update a knowledge base or create it if it doesn't exist.
 ```typescript
 await client.knowledge.createOrUpdateKnowledgeBase({
     knowledgeBaseId: {
-        referenceId: "help-center",
+        referenceId: "help-center"
     },
-    name: "Help center",
+    name: "Help center"
 });
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -3616,20 +3990,21 @@ await client.knowledge.createOrUpdateKnowledgeBase({
 <dl>
 <dd>
 
-**request:** `MavenAGI.KnowledgeBaseRequest`
-
+**request:** `MavenAGI.KnowledgeBaseRequest` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Knowledge.RequestOptions`
+**requestOptions:** `Knowledge.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -3648,7 +4023,6 @@ await client.knowledge.createOrUpdateKnowledgeBase({
 <dd>
 
 Get an existing knowledge base by its supplied ID
-
 </dd>
 </dl>
 </dd>
@@ -3664,8 +4038,8 @@ Get an existing knowledge base by its supplied ID
 
 ```typescript
 await client.knowledge.getKnowledgeBase("help-center");
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -3680,27 +4054,28 @@ await client.knowledge.getKnowledgeBase("help-center");
 <dd>
 
 **knowledgeBaseReferenceId:** `string` — The reference ID of the knowledge base to get. All other entity ID fields are inferred from the request.
-
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**request:** `MavenAGI.KnowledgeBaseGetRequest`
-
+**request:** `MavenAGI.KnowledgeBaseGetRequest` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Knowledge.RequestOptions`
+**requestOptions:** `Knowledge.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -3722,7 +4097,6 @@ Request that a knowledge base refresh itself.
 
 Knowledge bases refresh on a schedule determined by the `refreshFrequency` field.
 They can also be refreshed on demand by calling this endpoint.
-
 </dd>
 </dl>
 </dd>
@@ -3738,10 +4112,10 @@ They can also be refreshed on demand by calling this endpoint.
 
 ```typescript
 await client.knowledge.refreshKnowledgeBase("help-center", {
-    appId: "readme",
+    appId: "readme"
 });
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -3756,27 +4130,28 @@ await client.knowledge.refreshKnowledgeBase("help-center", {
 <dd>
 
 **knowledgeBaseReferenceId:** `string` — The reference ID of the knowledge base to refresh. All other entity ID fields are inferred from the request.
-
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**request:** `MavenAGI.KnowledgeBaseRefreshRequest`
-
+**request:** `MavenAGI.KnowledgeBaseRefreshRequest` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Knowledge.RequestOptions`
+**requestOptions:** `Knowledge.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -3798,7 +4173,6 @@ Update mutable knowledge base fields
 
 The `appId` field can be provided to update a knowledge base owned by a different app.
 All other fields will overwrite the existing value on the knowledge base only if provided.
-
 </dd>
 </dl>
 </dd>
@@ -3821,11 +4195,11 @@ await client.knowledge.patchKnowledgeBase("help-center", {
         appId: "readme",
         organizationId: "acme",
         agentId: "support",
-        type: "SEGMENT",
-    },
+        type: "SEGMENT"
+    }
 });
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -3840,27 +4214,28 @@ await client.knowledge.patchKnowledgeBase("help-center", {
 <dd>
 
 **knowledgeBaseReferenceId:** `string` — The reference ID of the knowledge base to patch.
-
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**request:** `MavenAGI.KnowledgeBasePatchRequest`
-
+**request:** `MavenAGI.KnowledgeBasePatchRequest` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Knowledge.RequestOptions`
+**requestOptions:** `Knowledge.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -3881,7 +4256,6 @@ await client.knowledge.patchKnowledgeBase("help-center", {
 Create a new knowledge base version.
 
 If an existing version is in progress, then that version will be finalized in an error state.
-
 </dd>
 </dl>
 </dd>
@@ -3897,10 +4271,10 @@ If an existing version is in progress, then that version will be finalized in an
 
 ```typescript
 await client.knowledge.createKnowledgeBaseVersion("help-center", {
-    type: "FULL",
+    type: "FULL"
 });
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -3915,27 +4289,28 @@ await client.knowledge.createKnowledgeBaseVersion("help-center", {
 <dd>
 
 **knowledgeBaseReferenceId:** `string` — The reference ID of the knowledge base to create a version for. All other entity ID fields are inferred from the request.
-
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**request:** `MavenAGI.KnowledgeBaseVersionRequest`
-
+**request:** `MavenAGI.KnowledgeBaseVersionRequest` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Knowledge.RequestOptions`
+**requestOptions:** `Knowledge.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -3954,7 +4329,6 @@ await client.knowledge.createKnowledgeBaseVersion("help-center", {
 <dd>
 
 Finalize the latest knowledge base version. Required to indicate the version is complete. Will throw an exception if the latest version is not in progress.
-
 </dd>
 </dl>
 </dd>
@@ -3973,12 +4347,12 @@ await client.knowledge.finalizeKnowledgeBaseVersion("help-center", {
     versionId: {
         type: "KNOWLEDGE_BASE_VERSION",
         referenceId: "versionId",
-        appId: "maven",
+        appId: "maven"
     },
-    status: "SUCCEEDED",
+    status: "SUCCEEDED"
 });
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -3993,27 +4367,28 @@ await client.knowledge.finalizeKnowledgeBaseVersion("help-center", {
 <dd>
 
 **knowledgeBaseReferenceId:** `string` — The reference ID of the knowledge base to finalize a version for. All other entity ID fields are inferred from the request.
-
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**request:** `MavenAGI.FinalizeKnowledgeBaseVersionRequest`
-
+**request:** `MavenAGI.FinalizeKnowledgeBaseVersionRequest` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Knowledge.RequestOptions`
+**requestOptions:** `Knowledge.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -4032,7 +4407,6 @@ await client.knowledge.finalizeKnowledgeBaseVersion("help-center", {
 <dd>
 
 List all active versions for a knowledge base. Returns the most recent versions first.
-
 </dd>
 </dl>
 </dd>
@@ -4048,8 +4422,8 @@ List all active versions for a knowledge base. Returns the most recent versions 
 
 ```typescript
 await client.knowledge.listKnowledgeBaseVersions("knowledgeBaseReferenceId");
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -4064,27 +4438,28 @@ await client.knowledge.listKnowledgeBaseVersions("knowledgeBaseReferenceId");
 <dd>
 
 **knowledgeBaseReferenceId:** `string` — The reference ID of the knowledge base to list versions for. All other entity ID fields are inferred from the request.
-
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**request:** `MavenAGI.KnowledgeBaseVersionsListRequest`
-
+**request:** `MavenAGI.KnowledgeBaseVersionsListRequest` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Knowledge.RequestOptions`
+**requestOptions:** `Knowledge.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -4103,7 +4478,6 @@ await client.knowledge.listKnowledgeBaseVersions("knowledgeBaseReferenceId");
 <dd>
 
 Search knowledge documents
-
 </dd>
 </dl>
 </dd>
@@ -4119,8 +4493,8 @@ Search knowledge documents
 
 ```typescript
 await client.knowledge.searchKnowledgeDocuments({});
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -4134,20 +4508,21 @@ await client.knowledge.searchKnowledgeDocuments({});
 <dl>
 <dd>
 
-**request:** `MavenAGI.KnowledgeDocumentSearchRequest`
-
+**request:** `MavenAGI.KnowledgeDocumentSearchRequest` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Knowledge.RequestOptions`
+**requestOptions:** `Knowledge.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -4188,22 +4563,22 @@ have changed, a new document version will not be created. The existing version w
 ```typescript
 await client.knowledge.createKnowledgeDocument("help-center", {
     knowledgeDocumentId: {
-        referenceId: "getting-started",
+        referenceId: "getting-started"
     },
     versionId: {
         type: "KNOWLEDGE_BASE_VERSION",
         referenceId: "versionId",
-        appId: "maven",
+        appId: "maven"
     },
     contentType: "MARKDOWN",
     content: "## Getting started\\nThis is a getting started guide for the help center.",
     title: "Getting started",
     metadata: {
-        category: "getting-started",
-    },
+        "category": "getting-started"
+    }
 });
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -4218,27 +4593,28 @@ await client.knowledge.createKnowledgeDocument("help-center", {
 <dd>
 
 **knowledgeBaseReferenceId:** `string` — The reference ID of the knowledge base to create a document for. All other entity ID fields are inferred from the request.
-
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**request:** `MavenAGI.KnowledgeDocumentRequest`
-
+**request:** `MavenAGI.KnowledgeDocumentRequest` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Knowledge.RequestOptions`
+**requestOptions:** `Knowledge.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -4258,7 +4634,6 @@ await client.knowledge.createKnowledgeDocument("help-center", {
 
 Delete knowledge document from a specific version.
 Requires an existing knowledge base with an in progress version of type PARTIAL. Will throw an exception if the version is not in progress.
-
 </dd>
 </dl>
 </dd>
@@ -4277,11 +4652,11 @@ await client.knowledge.deleteKnowledgeDocument("help-center", "getting-started",
     versionId: {
         type: "KNOWLEDGE_BASE_VERSION",
         appId: "maven",
-        referenceId: "versionId",
-    },
+        referenceId: "versionId"
+    }
 });
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -4296,7 +4671,7 @@ await client.knowledge.deleteKnowledgeDocument("help-center", "getting-started",
 <dd>
 
 **knowledgeBaseReferenceId:** `string` — The reference ID of the knowledge base that contains the document to delete. All other entity ID fields are inferred from the request
-
+    
 </dd>
 </dl>
 
@@ -4304,27 +4679,28 @@ await client.knowledge.deleteKnowledgeDocument("help-center", "getting-started",
 <dd>
 
 **knowledgeDocumentReferenceId:** `string` — The reference ID of the knowledge document to delete. All other entity ID fields are inferred from the request.
-
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**request:** `MavenAGI.KnowledgeDeleteRequest`
-
+**request:** `MavenAGI.KnowledgeDeleteRequest` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Knowledge.RequestOptions`
+**requestOptions:** `Knowledge.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -4343,7 +4719,6 @@ await client.knowledge.deleteKnowledgeDocument("help-center", "getting-started",
 <dd>
 
 Get a knowledge document by its supplied version and document IDs. Response includes document content in markdown format.
-
 </dd>
 </dl>
 </dd>
@@ -4359,10 +4734,10 @@ Get a knowledge document by its supplied version and document IDs. Response incl
 
 ```typescript
 await client.knowledge.getKnowledgeDocument("knowledgeBaseVersionReferenceId", "knowledgeDocumentReferenceId", {
-    knowledgeBaseVersionAppId: "knowledgeBaseVersionAppId",
+    knowledgeBaseVersionAppId: "knowledgeBaseVersionAppId"
 });
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -4377,7 +4752,7 @@ await client.knowledge.getKnowledgeDocument("knowledgeBaseVersionReferenceId", "
 <dd>
 
 **knowledgeBaseVersionReferenceId:** `string` — The reference ID of the knowledge base version that contains the document. All other entity ID fields are inferred from the request.
-
+    
 </dd>
 </dl>
 
@@ -4385,27 +4760,28 @@ await client.knowledge.getKnowledgeDocument("knowledgeBaseVersionReferenceId", "
 <dd>
 
 **knowledgeDocumentReferenceId:** `string` — The reference ID of the knowledge document to get. All other entity ID fields are inferred from the request.
-
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**request:** `MavenAGI.KnowledgeDocumentGetRequest`
-
+**request:** `MavenAGI.KnowledgeDocumentGetRequest` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Knowledge.RequestOptions`
+**requestOptions:** `Knowledge.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -4429,7 +4805,6 @@ For any changes in document content see the `createKnowledgeBaseVersion` and `cr
 
 The `knowledgeBaseAppId` field can be provided to update a knowledge document in a knowledge base owned by a different app.
 All other fields will overwrite the existing value on the knowledge document only if provided.
-
 </dd>
 </dl>
 </dd>
@@ -4445,10 +4820,10 @@ All other fields will overwrite the existing value on the knowledge document onl
 
 ```typescript
 await client.knowledge.patchKnowledgeDocument("help-center", "how-it-works", {
-    llmInclusionStatus: "ALWAYS",
+    llmInclusionStatus: "ALWAYS"
 });
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -4463,7 +4838,7 @@ await client.knowledge.patchKnowledgeDocument("help-center", "how-it-works", {
 <dd>
 
 **knowledgeBaseReferenceId:** `string` — The reference ID of the knowledge base to patch.
-
+    
 </dd>
 </dl>
 
@@ -4471,34 +4846,34 @@ await client.knowledge.patchKnowledgeDocument("help-center", "how-it-works", {
 <dd>
 
 **knowledgeDocumentReferenceId:** `string` — The reference ID of the knowledge document to patch.
-
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**request:** `MavenAGI.KnowledgeDocumentPatchRequest`
-
+**request:** `MavenAGI.KnowledgeDocumentPatchRequest` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Knowledge.RequestOptions`
+**requestOptions:** `Knowledge.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
 </details>
 
 ## Organizations
-
 <details><summary><code>client.organizations.<a href="/src/api/resources/organizations/client/Client.ts">create</a>(organizationReferenceId, { ...params }) -> MavenAGI.Organization</code></summary>
 <dl>
 <dd>
@@ -4532,10 +4907,10 @@ This endpoint requires additional permissions. Contact support to request access
 ```typescript
 await client.organizations.create("organizationReferenceId", {
     name: "name",
-    defaultLanguage: "defaultLanguage",
+    defaultLanguage: "defaultLanguage"
 });
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -4550,27 +4925,28 @@ await client.organizations.create("organizationReferenceId", {
 <dd>
 
 **organizationReferenceId:** `string` — The reference ID of the organization.
-
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**request:** `MavenAGI.CreateOrganizationRequest`
-
+**request:** `MavenAGI.CreateOrganizationRequest` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Organizations.RequestOptions`
+**requestOptions:** `Organizations.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -4589,7 +4965,6 @@ await client.organizations.create("organizationReferenceId", {
 <dd>
 
 Get an organization by ID
-
 </dd>
 </dl>
 </dd>
@@ -4605,8 +4980,8 @@ Get an organization by ID
 
 ```typescript
 await client.organizations.get("organizationReferenceId");
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -4621,19 +4996,20 @@ await client.organizations.get("organizationReferenceId");
 <dd>
 
 **organizationReferenceId:** `string` — The reference ID of the organization.
-
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Organizations.RequestOptions`
+**requestOptions:** `Organizations.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -4672,8 +5048,8 @@ This endpoint requires additional permissions. Contact support to request access
 
 ```typescript
 await client.organizations.patch("organizationReferenceId", {});
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -4688,27 +5064,28 @@ await client.organizations.patch("organizationReferenceId", {});
 <dd>
 
 **organizationReferenceId:** `string` — The reference ID of the organization.
-
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**request:** `MavenAGI.OrganizationPatchRequest`
-
+**request:** `MavenAGI.OrganizationPatchRequest` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Organizations.RequestOptions`
+**requestOptions:** `Organizations.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -4746,8 +5123,8 @@ This endpoint requires additional permissions. Contact support to request access
 
 ```typescript
 await client.organizations.delete("organizationReferenceId");
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -4762,19 +5139,20 @@ await client.organizations.delete("organizationReferenceId");
 <dd>
 
 **organizationReferenceId:** `string` — The reference ID of the organization.
-
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Organizations.RequestOptions`
+**requestOptions:** `Organizations.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -4792,7 +5170,7 @@ await client.organizations.delete("organizationReferenceId");
 <dl>
 <dd>
 
-Retrieves structured conversation data across all organizations, formatted as a table,
+Retrieves structured conversation data across all organizations, formatted as a table, 
 allowing users to group, filter, and define specific metrics to display as columns.
 
 <Tip>
@@ -4814,40 +5192,34 @@ This endpoint requires additional permissions. Contact support to request access
 ```typescript
 await client.organizations.getConversationTable({
     conversationFilter: {
-        languages: ["en", "es"],
+        languages: ["en", "es"]
     },
     timeGrouping: "DAY",
-    fieldGroupings: [
-        {
-            field: "Category",
-        },
-    ],
-    columnDefinitions: [
-        {
+    fieldGroupings: [{
+            field: "Category"
+        }],
+    columnDefinitions: [{
             header: "count",
             metric: {
-                type: "count",
-            },
-        },
-        {
+                type: "count"
+            }
+        }, {
             header: "avg_first_response_time",
             metric: {
                 type: "average",
-                targetField: "FirstResponseTime",
-            },
-        },
-        {
+                targetField: "FirstResponseTime"
+            }
+        }, {
             header: "percentile_handle_time",
             metric: {
                 type: "percentile",
                 targetField: "HandleTime",
-                percentile: 25,
-            },
-        },
-    ],
+                percentile: 25
+            }
+        }]
 });
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -4861,20 +5233,21 @@ await client.organizations.getConversationTable({
 <dl>
 <dd>
 
-**request:** `MavenAGI.ConversationTableRequest`
-
+**request:** `MavenAGI.ConversationTableRequest` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Organizations.RequestOptions`
+**requestOptions:** `Organizations.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -4892,7 +5265,7 @@ await client.organizations.getConversationTable({
 <dl>
 <dd>
 
-Fetches conversation data across all organizations, visualized in a chart format.
+Fetches conversation data across all organizations, visualized in a chart format. 
 Supported chart types include pie chart, date histogram, and stacked bar charts.
 
 <Tip>
@@ -4915,17 +5288,17 @@ This endpoint requires additional permissions. Contact support to request access
 await client.organizations.getConversationChart({
     type: "pieChart",
     conversationFilter: {
-        languages: ["en", "es"],
+        languages: ["en", "es"]
     },
     groupBy: {
-        field: "Category",
+        field: "Category"
     },
     metric: {
-        type: "count",
-    },
+        type: "count"
+    }
 });
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -4939,27 +5312,27 @@ await client.organizations.getConversationChart({
 <dl>
 <dd>
 
-**request:** `MavenAGI.ConversationChartRequest`
-
+**request:** `MavenAGI.ConversationChartRequest` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Organizations.RequestOptions`
+**requestOptions:** `Organizations.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
 </details>
 
 ## Segments
-
 <details><summary><code>client.segments.<a href="/src/api/resources/segments/client/Client.ts">search</a>({ ...params }) -> MavenAGI.SegmentsSearchResponse</code></summary>
 <dl>
 <dd>
@@ -4974,8 +5347,8 @@ await client.organizations.getConversationChart({
 
 ```typescript
 await client.segments.search({});
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -4989,20 +5362,21 @@ await client.segments.search({});
 <dl>
 <dd>
 
-**request:** `MavenAGI.SegmentsSearchRequest`
-
+**request:** `MavenAGI.SegmentsSearchRequest` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Segments.RequestOptions`
+**requestOptions:** `Segments.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -5021,7 +5395,6 @@ await client.segments.search({});
 <dd>
 
 Update a segment or create it if it doesn't exist.
-
 </dd>
 </dl>
 </dd>
@@ -5038,26 +5411,23 @@ Update a segment or create it if it doesn't exist.
 ```typescript
 await client.segments.createOrUpdate({
     segmentId: {
-        referenceId: "admin-users",
+        referenceId: "admin-users"
     },
     name: "Admin users",
     precondition: {
         preconditionType: "group",
         operator: "AND",
-        preconditions: [
-            {
-                preconditionType: "user",
-                key: "userKey",
-            },
-            {
-                preconditionType: "user",
-                key: "userKey2",
-            },
-        ],
-    },
+        preconditions: [{
+                "preconditionType": "user",
+                "key": "userKey"
+            }, {
+                "preconditionType": "user",
+                "key": "userKey2"
+            }]
+    }
 });
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -5071,20 +5441,21 @@ await client.segments.createOrUpdate({
 <dl>
 <dd>
 
-**request:** `MavenAGI.SegmentRequest`
-
+**request:** `MavenAGI.SegmentRequest` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Segments.RequestOptions`
+**requestOptions:** `Segments.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -5103,7 +5474,6 @@ await client.segments.createOrUpdate({
 <dd>
 
 Get a segment by its supplied ID
-
 </dd>
 </dl>
 </dd>
@@ -5119,8 +5489,8 @@ Get a segment by its supplied ID
 
 ```typescript
 await client.segments.get("admin-users");
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -5135,27 +5505,28 @@ await client.segments.get("admin-users");
 <dd>
 
 **segmentReferenceId:** `string` — The reference ID of the segment to get. All other entity ID fields are inferred from the request.
-
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**request:** `MavenAGI.SegmentGetRequest`
-
+**request:** `MavenAGI.SegmentGetRequest` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Segments.RequestOptions`
+**requestOptions:** `Segments.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -5175,9 +5546,8 @@ await client.segments.get("admin-users");
 
 Update mutable segment fields
 
-The `appId` field can be provided to update a segment owned by a different app.
+The `appId` field can be provided to update a segment owned by a different app. 
 All other fields will overwrite the existing value on the segment only if provided.
-
 </dd>
 </dl>
 </dd>
@@ -5193,8 +5563,8 @@ All other fields will overwrite the existing value on the segment only if provid
 
 ```typescript
 await client.segments.patch("segmentReferenceId", {});
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -5209,34 +5579,34 @@ await client.segments.patch("segmentReferenceId", {});
 <dd>
 
 **segmentReferenceId:** `string` — The reference ID of the segment to update. All other entity ID fields are inferred from the request.
-
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**request:** `MavenAGI.SegmentPatchRequest`
-
+**request:** `MavenAGI.SegmentPatchRequest` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Segments.RequestOptions`
+**requestOptions:** `Segments.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
 </details>
 
 ## Translations
-
 <details><summary><code>client.translations.<a href="/src/api/resources/translations/client/Client.ts">translate</a>({ ...params }) -> MavenAGI.TranslationResponse</code></summary>
 <dl>
 <dd>
@@ -5250,7 +5620,6 @@ await client.segments.patch("segmentReferenceId", {});
 <dd>
 
 Translate text from one language to another
-
 </dd>
 </dl>
 </dd>
@@ -5267,10 +5636,10 @@ Translate text from one language to another
 ```typescript
 await client.translations.translate({
     text: "Hello world",
-    targetLanguage: "es",
+    targetLanguage: "es"
 });
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -5284,27 +5653,27 @@ await client.translations.translate({
 <dl>
 <dd>
 
-**request:** `MavenAGI.TranslationRequest`
-
+**request:** `MavenAGI.TranslationRequest` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Translations.RequestOptions`
+**requestOptions:** `Translations.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
 </details>
 
 ## Triggers
-
 <details><summary><code>client.triggers.<a href="/src/api/resources/triggers/client/Client.ts">search</a>({ ...params }) -> MavenAGI.EventTriggersSearchResponse</code></summary>
 <dl>
 <dd>
@@ -5319,8 +5688,8 @@ await client.translations.translate({
 
 ```typescript
 await client.triggers.search({});
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -5334,20 +5703,21 @@ await client.triggers.search({});
 <dl>
 <dd>
 
-**request:** `MavenAGI.EventTriggersSearchRequest`
-
+**request:** `MavenAGI.EventTriggersSearchRequest` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Triggers.RequestOptions`
+**requestOptions:** `Triggers.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -5366,7 +5736,6 @@ await client.triggers.search({});
 <dd>
 
 Update an event trigger or create it if it doesn't exist.
-
 </dd>
 </dl>
 </dd>
@@ -5383,13 +5752,13 @@ Update an event trigger or create it if it doesn't exist.
 ```typescript
 await client.triggers.createOrUpdate({
     triggerId: {
-        referenceId: "store-in-snowflake",
+        referenceId: "store-in-snowflake"
     },
     description: "Stores conversation data in Snowflake",
-    type: "CONVERSATION_CREATED",
+    type: "CONVERSATION_CREATED"
 });
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -5403,20 +5772,21 @@ await client.triggers.createOrUpdate({
 <dl>
 <dd>
 
-**request:** `MavenAGI.EventTriggerRequest`
-
+**request:** `MavenAGI.EventTriggerRequest` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Triggers.RequestOptions`
+**requestOptions:** `Triggers.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -5435,7 +5805,6 @@ await client.triggers.createOrUpdate({
 <dd>
 
 Get an event trigger by its supplied ID
-
 </dd>
 </dl>
 </dd>
@@ -5451,8 +5820,8 @@ Get an event trigger by its supplied ID
 
 ```typescript
 await client.triggers.get("store-in-snowflake");
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -5467,19 +5836,20 @@ await client.triggers.get("store-in-snowflake");
 <dd>
 
 **triggerReferenceId:** `string` — The reference ID of the event trigger to get. All other entity ID fields are inferred from the request.
-
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Triggers.RequestOptions`
+**requestOptions:** `Triggers.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -5498,7 +5868,6 @@ await client.triggers.get("store-in-snowflake");
 <dd>
 
 Delete an event trigger
-
 </dd>
 </dl>
 </dd>
@@ -5514,8 +5883,8 @@ Delete an event trigger
 
 ```typescript
 await client.triggers.delete("store-in-snowflake");
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -5530,19 +5899,20 @@ await client.triggers.delete("store-in-snowflake");
 <dd>
 
 **triggerReferenceId:** `string` — The reference ID of the event trigger to delete. All other entity ID fields are inferred from the request.
-
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Triggers.RequestOptions`
+**requestOptions:** `Triggers.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -5561,7 +5931,6 @@ await client.triggers.delete("store-in-snowflake");
 <dd>
 
 Updates an event trigger. Only the enabled field is editable.
-
 </dd>
 </dl>
 </dd>
@@ -5577,10 +5946,10 @@ Updates an event trigger. Only the enabled field is editable.
 
 ```typescript
 await client.triggers.partialUpdate("triggerReferenceId", {
-    body: {},
+    body: {}
 });
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -5595,34 +5964,34 @@ await client.triggers.partialUpdate("triggerReferenceId", {
 <dd>
 
 **triggerReferenceId:** `string` — The reference ID of the event trigger to update. All other entity ID fields are inferred from the request.
-
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**request:** `MavenAGI.PartialUpdateRequest`
-
+**request:** `MavenAGI.PartialUpdateRequest` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Triggers.RequestOptions`
+**requestOptions:** `Triggers.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
 </details>
 
 ## Users
-
 <details><summary><code>client.users.<a href="/src/api/resources/users/client/Client.ts">search</a>({ ...params }) -> MavenAGI.AgentUserSearchResponse</code></summary>
 <dl>
 <dd>
@@ -5638,7 +6007,6 @@ await client.triggers.partialUpdate("triggerReferenceId", {
 Search across all agent users on an agent.
 
 Agent users are a merged view of the users created by individual apps.
-
 </dd>
 </dl>
 </dd>
@@ -5654,8 +6022,8 @@ Agent users are a merged view of the users created by individual apps.
 
 ```typescript
 await client.users.search({});
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -5669,20 +6037,21 @@ await client.users.search({});
 <dl>
 <dd>
 
-**request:** `MavenAGI.AgentUserSearchRequest`
-
+**request:** `MavenAGI.AgentUserSearchRequest` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Users.RequestOptions`
+**requestOptions:** `Users.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -5703,7 +6072,6 @@ await client.users.search({});
 Get an agent user by its supplied ID.
 
 Agent users are a merged view of the users created by individual apps.
-
 </dd>
 </dl>
 </dd>
@@ -5719,8 +6087,8 @@ Agent users are a merged view of the users created by individual apps.
 
 ```typescript
 await client.users.getAgentUser("aus_1234567890");
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -5735,19 +6103,20 @@ await client.users.getAgentUser("aus_1234567890");
 <dd>
 
 **agentUserId:** `string` — The ID of the agent user to get.
-
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Users.RequestOptions`
+**requestOptions:** `Users.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -5766,7 +6135,6 @@ await client.users.getAgentUser("aus_1234567890");
 <dd>
 
 Update an app user or create it if it doesn't exist.
-
 </dd>
 </dl>
 </dd>
@@ -5783,23 +6151,21 @@ Update an app user or create it if it doesn't exist.
 ```typescript
 await client.users.createOrUpdate({
     userId: {
-        referenceId: "user-0",
+        referenceId: "user-0"
     },
-    identifiers: [
-        {
+    identifiers: [{
             value: "joe@myapp.com",
-            type: "EMAIL",
-        },
-    ],
+            type: "EMAIL"
+        }],
     data: {
-        name: {
+        "name": {
             value: "Joe",
-            visibility: "VISIBLE",
-        },
-    },
+            visibility: "VISIBLE"
+        }
+    }
 });
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -5813,20 +6179,21 @@ await client.users.createOrUpdate({
 <dl>
 <dd>
 
-**request:** `MavenAGI.AppUserRequest`
-
+**request:** `MavenAGI.AppUserRequest` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Users.RequestOptions`
+**requestOptions:** `Users.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -5845,7 +6212,6 @@ await client.users.createOrUpdate({
 <dd>
 
 Get an app user by its supplied ID
-
 </dd>
 </dl>
 </dd>
@@ -5861,8 +6227,8 @@ Get an app user by its supplied ID
 
 ```typescript
 await client.users.get("user-0");
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -5877,27 +6243,28 @@ await client.users.get("user-0");
 <dd>
 
 **userId:** `string` — The reference ID of the app user to get. All other entity ID fields are inferred from the request.
-
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**request:** `MavenAGI.UserGetRequest`
-
+**request:** `MavenAGI.UserGetRequest` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Users.RequestOptions`
+**requestOptions:** `Users.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -5921,7 +6288,6 @@ Does not modify data or identifiers saved by other apps.
 If this user is linked to a user from another app, it will not be unlinked. Unlinking of users is not yet supported.
 
 <Warning>This is a destructive operation and cannot be undone.</Warning>
-
 </dd>
 </dl>
 </dd>
@@ -5937,8 +6303,8 @@ If this user is linked to a user from another app, it will not be unlinked. Unli
 
 ```typescript
 await client.users.delete("user-0");
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -5953,27 +6319,28 @@ await client.users.delete("user-0");
 <dd>
 
 **userId:** `string` — The reference ID of the app user to delete. All other entity ID fields are inferred from the request.
-
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**request:** `MavenAGI.UserDeleteRequest`
-
+**request:** `MavenAGI.UserDeleteRequest` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Users.RequestOptions`
+**requestOptions:** `Users.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>

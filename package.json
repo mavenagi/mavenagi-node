@@ -1,12 +1,17 @@
 {
     "name": "mavenagi",
-    "version": "1.2.9",
+    "version": "1.2.10",
     "private": false,
     "repository": "github:mavenagi/mavenagi-node",
     "main": "./index.js",
     "types": "./index.d.ts",
     "scripts": {
-        "format": "prettier . --write --ignore-unknown",
+        "format": "biome format --write --skip-parse-errors --no-errors-on-unmatched --max-diagnostics=none",
+        "format:check": "biome format --skip-parse-errors --no-errors-on-unmatched --max-diagnostics=none",
+        "lint": "biome lint --skip-parse-errors --no-errors-on-unmatched --max-diagnostics=none",
+        "lint:fix": "biome lint --fix --unsafe --skip-parse-errors --no-errors-on-unmatched --max-diagnostics=none",
+        "check": "biome check --skip-parse-errors --no-errors-on-unmatched --max-diagnostics=none",
+        "check:fix": "biome check --fix --unsafe --skip-parse-errors --no-errors-on-unmatched --max-diagnostics=none",
         "build": "tsc",
         "prepack": "cp -rv dist/. .",
         "test": "vitest",
@@ -17,8 +22,8 @@
         "ts-loader": "^9.5.1",
         "vitest": "^3.2.4",
         "@types/node": "^18.19.70",
-        "prettier": "^3.4.2",
-        "typescript": "~5.7.2"
+        "typescript": "~5.7.2",
+        "@biomejs/biome": "2.3.1"
     },
     "browser": {
         "fs": false,

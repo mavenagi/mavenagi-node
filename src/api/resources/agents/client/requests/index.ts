@@ -1,1 +1,1 @@
-export { type AgentPatchRequest } from "./AgentPatchRequest";
+export type { AgentPatchRequest } from "./AgentPatchRequest";
