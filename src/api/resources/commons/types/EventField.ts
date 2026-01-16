@@ -17,5 +17,6 @@ export const EventField = {
     SourceGeoCountry: "SOURCE_GEO_COUNTRY",
     UserReferenceId: "USER_REFERENCE_ID",
     AgentUserId: "AGENT_USER_ID",
+    Timestamp: "TIMESTAMP",
 } as const;
 export type EventField = (typeof EventField)[keyof typeof EventField];

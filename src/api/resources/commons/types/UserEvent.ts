@@ -5,6 +5,8 @@ import type * as MavenAGI from "../../../index";
 export interface UserEvent extends MavenAGI.EventBaseNoId {
     /** The unique ID of the event */
     id: MavenAGI.EntityId;
+    /** The date and time the event was created */
+    createdAt?: Date;
     /** The name of the event */
     eventName: MavenAGI.UserEventName;
     /** Information about the user who triggered the event */

@@ -22,6 +22,7 @@ export const EventField: core.serialization.Schema<serializers.EventField.Raw, M
         "SOURCE_GEO_COUNTRY",
         "USER_REFERENCE_ID",
         "AGENT_USER_ID",
+        "TIMESTAMP",
     ]);
 
 export declare namespace EventField {
@@ -41,5 +42,6 @@ export declare namespace EventField {
         | "SOURCE_GEO_STATE"
         | "SOURCE_GEO_COUNTRY"
         | "USER_REFERENCE_ID"
-        | "AGENT_USER_ID";
+        | "AGENT_USER_ID"
+        | "TIMESTAMP";
 }

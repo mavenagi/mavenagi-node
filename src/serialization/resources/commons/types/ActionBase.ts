@@ -2,28 +2,20 @@
 
 import type * as MavenAGI from "../../../../api/index";
 import * as core from "../../../../core";
-import * as serializers from "../../../index";
-import { ActionParameter } from "./ActionParameter";
+import type * as serializers from "../../../index";
+import { ActionProperties } from "./ActionProperties";
 
 export const ActionBase: core.serialization.ObjectSchema<serializers.ActionBase.Raw, MavenAGI.ActionBase> =
-    core.serialization.object({
-        name: core.serialization.string(),
-        description: core.serialization.string(),
-        userInteractionRequired: core.serialization.boolean(),
-        buttonName: core.serialization.string().optional(),
-        precondition: core.serialization.lazy(() => serializers.Precondition).optional(),
-        userFormParameters: core.serialization.list(ActionParameter),
-        language: core.serialization.string().optional(),
-    });
+    core.serialization
+        .object({
+            name: core.serialization.string(),
+            description: core.serialization.string(),
+        })
+        .extend(ActionProperties);
 
 export declare namespace ActionBase {
-    export interface Raw {
+    export interface Raw extends ActionProperties.Raw {
         name: string;
         description: string;
-        userInteractionRequired: boolean;
-        buttonName?: string | null;
-        precondition?: serializers.Precondition.Raw | null;
-        userFormParameters: ActionParameter.Raw[];
-        language?: string | null;
     }
 }

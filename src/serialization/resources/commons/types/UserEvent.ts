@@ -14,6 +14,7 @@ export const UserEvent: core.serialization.ObjectSchema<serializers.UserEvent.Ra
     core.serialization
         .object({
             id: EntityId,
+            createdAt: core.serialization.date().optional(),
             eventName: UserEventName,
             userInfo: EventUserInfo,
             feedbackInfo: core.serialization.list(FeedbackInfo).optional(),
@@ -24,6 +25,7 @@ export const UserEvent: core.serialization.ObjectSchema<serializers.UserEvent.Ra
 export declare namespace UserEvent {
     export interface Raw extends EventBaseNoId.Raw {
         id: EntityId.Raw;
+        createdAt?: string | null;
         eventName: UserEventName.Raw;
         userInfo: EventUserInfo.Raw;
         feedbackInfo?: FeedbackInfo.Raw[] | null;

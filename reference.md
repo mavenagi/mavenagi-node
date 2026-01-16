@@ -1413,7 +1413,7 @@ await client.appSettings.search({
 </dl>
 </details>
 
-<details><summary><code>client.appSettings.<a href="/src/api/resources/appSettings/client/Client.ts">get</a>() -> Record<string, unknown></code></summary>
+<details><summary><code>client.appSettings.<a href="/src/api/resources/appSettings/client/Client.ts">get</a>() -> Record&lt;string, unknown&gt;</code></summary>
 <dl>
 <dd>
 
@@ -1468,7 +1468,7 @@ await client.appSettings.get();
 </dl>
 </details>
 
-<details><summary><code>client.appSettings.<a href="/src/api/resources/appSettings/client/Client.ts">update</a>({ ...params }) -> Record<string, unknown></code></summary>
+<details><summary><code>client.appSettings.<a href="/src/api/resources/appSettings/client/Client.ts">update</a>({ ...params }) -> Record&lt;string, unknown&gt;</code></summary>
 <dl>
 <dd>
 
@@ -2188,7 +2188,7 @@ await client.conversation.ask("conversation-0", {
 </dl>
 </details>
 
-<details><summary><code>client.conversation.<a href="/src/api/resources/conversation/client/Client.ts">askStream</a>(conversationId, { ...params }) -> core.Stream<MavenAGI.StreamResponse></code></summary>
+<details><summary><code>client.conversation.<a href="/src/api/resources/conversation/client/Client.ts">askStream</a>(conversationId, { ...params }) -> core.Stream&lt;MavenAGI.StreamResponse&gt;</code></summary>
 <dl>
 <dd>
 
@@ -2291,7 +2291,7 @@ for await (const item of response) {
 </dl>
 </details>
 
-<details><summary><code>client.conversation.<a href="/src/api/resources/conversation/client/Client.ts">askObjectStream</a>(conversationId, { ...params }) -> core.Stream<MavenAGI.ObjectStreamResponse></code></summary>
+<details><summary><code>client.conversation.<a href="/src/api/resources/conversation/client/Client.ts">askObjectStream</a>(conversationId, { ...params }) -> core.Stream&lt;MavenAGI.ObjectStreamResponse&gt;</code></summary>
 <dl>
 <dd>
 
@@ -2609,7 +2609,7 @@ await client.conversation.submitActionForm("conversationId", {
 </dl>
 </details>
 
-<details><summary><code>client.conversation.<a href="/src/api/resources/conversation/client/Client.ts">addConversationMetadata</a>(conversationId, { ...params }) -> Record<string, string></code></summary>
+<details><summary><code>client.conversation.<a href="/src/api/resources/conversation/client/Client.ts">addConversationMetadata</a>(conversationId, { ...params }) -> Record&lt;string, string&gt;</code></summary>
 <dl>
 <dd>
 

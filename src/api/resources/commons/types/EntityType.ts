@@ -17,5 +17,6 @@ export const EntityType = {
     InboxItemFix: "INBOX_ITEM_FIX",
     Segment: "SEGMENT",
     Customer: "CUSTOMER",
+    IntelligentField: "INTELLIGENT_FIELD",
 } as const;
 export type EntityType = (typeof EntityType)[keyof typeof EntityType];
