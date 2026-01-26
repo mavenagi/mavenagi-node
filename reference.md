@@ -1680,6 +1680,74 @@ await client.assets.commitUpload("assetReferenceId", {});
 </dl>
 </details>
 
+## Auth
+<details><summary><code>client.auth.<a href="/src/api/resources/auth/client/Client.ts">sessionToken</a>({ ...params }) -> MavenAGI.SessionTokenResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Creates a short-lived session token that can be used to authenticate 
+WebSocket connections. Session tokens are useful for client-side applications where 
+you don’t want to expose your API key.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.auth.sessionToken({
+    ttlSeconds: 3600
+});
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `MavenAGI.SessionTokenRequest` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Auth.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
 ## Conversation
 <details><summary><code>client.conversation.<a href="/src/api/resources/conversation/client/Client.ts">initialize</a>({ ...params }) -> MavenAGI.ConversationResponse</code></summary>
 <dl>

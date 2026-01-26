@@ -1,6 +1,6 @@
 {
     "name": "mavenagi",
-    "version": "1.2.10",
+    "version": "1.2.11",
     "private": false,
     "repository": "github:mavenagi/mavenagi-node",
     "main": "./index.js",
@@ -17,9 +17,13 @@
         "test": "vitest",
         "test:unit": "vitest --project unit"
     },
+    "dependencies": {
+        "ws": "^8.16.0"
+    },
     "devDependencies": {
         "webpack": "^5.97.1",
         "ts-loader": "^9.5.1",
+        "@types/ws": "^8.5.10",
         "vitest": "^3.2.4",
         "@types/node": "^18.19.70",
         "typescript": "~5.7.2",

@@ -16,6 +16,7 @@ export const ActionParameterType: core.serialization.Schema<
     "DATE",
     "TIME",
     "EMAIL",
+    "PHONE",
     "SCHEMA",
     "FILE",
     "OAUTH",
@@ -31,6 +32,7 @@ export declare namespace ActionParameterType {
         | "DATE"
         | "TIME"
         | "EMAIL"
+        | "PHONE"
         | "SCHEMA"
         | "FILE"
         | "OAUTH";
