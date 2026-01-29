@@ -26,6 +26,7 @@ export const KnowledgeBaseResponse: core.serialization.ObjectSchema<
         llmInclusionStatus: LlmInclusionStatus,
         refreshFrequency: KnowledgeBaseRefreshFrequency,
         segmentId: EntityId.optional(),
+        url: core.serialization.string().optional(),
     })
     .extend(KnowledgeBaseProperties);
 
@@ -42,5 +43,6 @@ export declare namespace KnowledgeBaseResponse {
         llmInclusionStatus: LlmInclusionStatus.Raw;
         refreshFrequency: KnowledgeBaseRefreshFrequency.Raw;
         segmentId?: EntityId.Raw | null;
+        url?: string | null;
     }
 }

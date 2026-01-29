@@ -70,4 +70,6 @@ export interface KnowledgeBaseResponse extends MavenAGI.KnowledgeBaseProperties 
      * Inline precondition support will be removed in a future release.
      */
     segmentId?: MavenAGI.EntityId;
+    /** The source URL of URL and RSS knowledge bases that was used for crawl. */
+    url?: string;
 }

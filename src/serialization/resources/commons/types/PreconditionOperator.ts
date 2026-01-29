@@ -7,8 +7,23 @@ import type * as serializers from "../../../index";
 export const PreconditionOperator: core.serialization.Schema<
     serializers.PreconditionOperator.Raw,
     MavenAGI.PreconditionOperator
-> = core.serialization.enum_(["NOT"]);
+> = core.serialization.enum_([
+    "NOT",
+    "CONTAINS",
+    "NOT_CONTAINS",
+    "CONTAINS_ANY",
+    "NOT_CONTAINS_ANY",
+    "CONTAINS_ALL",
+    "NOT_CONTAINS_ALL",
+]);
 
 export declare namespace PreconditionOperator {
-    export type Raw = "NOT";
+    export type Raw =
+        | "NOT"
+        | "CONTAINS"
+        | "NOT_CONTAINS"
+        | "CONTAINS_ANY"
+        | "NOT_CONTAINS_ANY"
+        | "CONTAINS_ALL"
+        | "NOT_CONTAINS_ALL";
 }

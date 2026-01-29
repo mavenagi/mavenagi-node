@@ -12,6 +12,7 @@ export const MetadataPrecondition: core.serialization.ObjectSchema<
     .object({
         key: core.serialization.string(),
         value: core.serialization.string().optional(),
+        values: core.serialization.list(core.serialization.string()).optional(),
     })
     .extend(PreconditionBase);
 
@@ -19,5 +20,6 @@ export declare namespace MetadataPrecondition {
     export interface Raw extends PreconditionBase.Raw {
         key: string;
         value?: string | null;
+        values?: string[] | null;
     }
 }

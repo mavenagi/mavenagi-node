@@ -13,6 +13,8 @@ import type * as MavenAGI from "../../../index";
  *             type: MavenAGI.EntityType.Segment
  *         },
  *         name: "Admin users",
+ *         createdAt: new Date("2025-01-01T00:00:00.000Z"),
+ *         updatedAt: new Date("2025-01-15T12:30:00.000Z"),
  *         status: MavenAGI.SegmentStatus.Active,
  *         precondition: {
  *             preconditionType: "group",
@@ -30,6 +32,10 @@ import type * as MavenAGI from "../../../index";
 export interface SegmentResponse extends MavenAGI.SegmentBase {
     /** ID that uniquely identifies this segment */
     segmentId: MavenAGI.EntityId;
+    /** The date and time when the segment was created. */
+    createdAt: Date;
+    /** The date and time when the segment was last updated. */
+    updatedAt: Date;
     /**
      * Whether or not the segment is in active use. To preserve historical data, segments can not be deleted.
      *

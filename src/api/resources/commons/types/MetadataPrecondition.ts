@@ -5,6 +5,8 @@ import type * as MavenAGI from "../../../index";
 export interface MetadataPrecondition extends MavenAGI.PreconditionBase {
     /** The key that must be present in the metadata for a precondition to be met */
     key: string;
-    /** If set, the value must match the metadata value for the given key */
+    /** Single value for CONTAINS operator or exact match */
     value?: string;
+    /** Multiple values for CONTAINS_ANY and CONTAINS_ALL operators */
+    values?: string[];
 }

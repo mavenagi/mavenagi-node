@@ -13,6 +13,8 @@ export const SegmentResponse: core.serialization.ObjectSchema<
 > = core.serialization
     .object({
         segmentId: EntityId,
+        createdAt: core.serialization.date(),
+        updatedAt: core.serialization.date(),
         status: SegmentStatus,
     })
     .extend(SegmentBase);
@@ -20,6 +22,8 @@ export const SegmentResponse: core.serialization.ObjectSchema<
 export declare namespace SegmentResponse {
     export interface Raw extends SegmentBase.Raw {
         segmentId: EntityId.Raw;
+        createdAt: string;
+        updatedAt: string;
         status: SegmentStatus.Raw;
     }
 }
