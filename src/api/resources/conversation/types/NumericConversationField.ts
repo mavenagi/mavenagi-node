@@ -9,5 +9,6 @@ export const NumericConversationField = {
     HandleTime: "HandleTime",
     FirstResponseTime: "FirstResponseTime",
     PredictedNps: "PredictedNPS",
+    Csat: "Csat",
 } as const;
 export type NumericConversationField = (typeof NumericConversationField)[keyof typeof NumericConversationField];

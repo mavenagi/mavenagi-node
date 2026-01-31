@@ -9,6 +9,8 @@ export interface NovelUserEvent extends MavenAGI.EventBaseNoId {
     eventName: MavenAGI.UserEventName;
     /** Information about the user who triggered the event */
     userInfo: MavenAGI.EventUserInfoBase;
+    /** Information about any CSAT associated with the event */
+    csatInfo?: MavenAGI.CsatInfo;
     /** Information about any feedback associated with the event */
     feedbackInfo?: MavenAGI.FeedbackInfo[];
     /** Information about the page on which the event occurred */

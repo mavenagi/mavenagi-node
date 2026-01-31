@@ -55,6 +55,7 @@ export * from "./ConversationPrecondition";
 export * from "./ConversationPreview";
 export * from "./ConversationResponse";
 export * from "./ConversationSummary";
+export * from "./CsatInfo";
 export * from "./DeviceInfo";
 export * from "./DeviceType";
 export * from "./DocumentInformation";

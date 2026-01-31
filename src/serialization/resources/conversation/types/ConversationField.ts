@@ -33,6 +33,7 @@ export const ConversationField: core.serialization.Schema<
     "Sources",
     "CreatedAt",
     "PredictedNPS",
+    "Csat",
     "OrganizationId",
     "AgentId",
     "InboxItems",
@@ -66,6 +67,7 @@ export declare namespace ConversationField {
         | "Sources"
         | "CreatedAt"
         | "PredictedNPS"
+        | "Csat"
         | "OrganizationId"
         | "AgentId"
         | "InboxItems"

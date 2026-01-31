@@ -26,6 +26,7 @@ export const ConversationField = {
     Sources: "Sources",
     CreatedAt: "CreatedAt",
     PredictedNps: "PredictedNPS",
+    Csat: "Csat",
     OrganizationId: "OrganizationId",
     AgentId: "AgentId",
     InboxItems: "InboxItems",

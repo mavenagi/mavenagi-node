@@ -3,6 +3,7 @@
 import type * as MavenAGI from "../../../../api/index";
 import * as core from "../../../../core";
 import type * as serializers from "../../../index";
+import { CsatInfo } from "./CsatInfo";
 import { EntityIdBase } from "./EntityIdBase";
 import { EventBaseNoId } from "./EventBaseNoId";
 import { EventUserInfoBase } from "./EventUserInfoBase";
@@ -16,6 +17,7 @@ export const NovelUserEvent: core.serialization.ObjectSchema<serializers.NovelUs
             id: EntityIdBase,
             eventName: UserEventName,
             userInfo: EventUserInfoBase,
+            csatInfo: CsatInfo.optional(),
             feedbackInfo: core.serialization.list(FeedbackInfo).optional(),
             pageInfo: PageInfo.optional(),
         })
@@ -26,6 +28,7 @@ export declare namespace NovelUserEvent {
         id: EntityIdBase.Raw;
         eventName: UserEventName.Raw;
         userInfo: EventUserInfoBase.Raw;
+        csatInfo?: CsatInfo.Raw | null;
         feedbackInfo?: FeedbackInfo.Raw[] | null;
         pageInfo?: PageInfo.Raw | null;
     }
