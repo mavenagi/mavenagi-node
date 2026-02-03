@@ -7,10 +7,12 @@ import type * as serializers from "../../../index";
 export const CsatInfo: core.serialization.ObjectSchema<serializers.CsatInfo.Raw, MavenAGI.CsatInfo> =
     core.serialization.object({
         rating: core.serialization.number().optional(),
+        maxRating: core.serialization.number().optional(),
     });
 
 export declare namespace CsatInfo {
     export interface Raw {
         rating?: number | null;
+        maxRating?: number | null;
     }
 }

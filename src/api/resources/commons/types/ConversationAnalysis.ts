@@ -23,4 +23,6 @@ export interface ConversationAnalysis {
     primaryLanguage?: string;
     /** The predicted NPS of the conversation. */
     predictedNps?: number;
+    /** The CSAT of the conversation. */
+    csat?: number;
 }

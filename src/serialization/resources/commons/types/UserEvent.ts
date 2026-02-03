@@ -3,6 +3,7 @@
 import type * as MavenAGI from "../../../../api/index";
 import * as core from "../../../../core";
 import type * as serializers from "../../../index";
+import { CsatInfo } from "./CsatInfo";
 import { EntityId } from "./EntityId";
 import { EventBaseNoId } from "./EventBaseNoId";
 import { EventUserInfo } from "./EventUserInfo";
@@ -18,6 +19,7 @@ export const UserEvent: core.serialization.ObjectSchema<serializers.UserEvent.Ra
             eventName: UserEventName,
             userInfo: EventUserInfo,
             feedbackInfo: core.serialization.list(FeedbackInfo).optional(),
+            csatInfo: CsatInfo.optional(),
             pageInfo: PageInfo.optional(),
         })
         .extend(EventBaseNoId);
@@ -29,6 +31,7 @@ export declare namespace UserEvent {
         eventName: UserEventName.Raw;
         userInfo: EventUserInfo.Raw;
         feedbackInfo?: FeedbackInfo.Raw[] | null;
+        csatInfo?: CsatInfo.Raw | null;
         pageInfo?: PageInfo.Raw | null;
     }
 }

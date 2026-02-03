@@ -10,6 +10,7 @@ import { Conversation } from "./api/resources/conversation/client/Client";
 import { Customers } from "./api/resources/customers/client/Client";
 import { Events } from "./api/resources/events/client/Client";
 import { Inbox } from "./api/resources/inbox/client/Client";
+import { Integrations } from "./api/resources/integrations/client/Client";
 import { Knowledge } from "./api/resources/knowledge/client/Client";
 import { Organizations } from "./api/resources/organizations/client/Client";
 import { Segments } from "./api/resources/segments/client/Client";
@@ -39,6 +40,7 @@ export class MavenAGIClient {
     protected _customers: Customers | undefined;
     protected _events: Events | undefined;
     protected _inbox: Inbox | undefined;
+    protected _integrations: Integrations | undefined;
     protected _knowledge: Knowledge | undefined;
     protected _organizations: Organizations | undefined;
     protected _segments: Segments | undefined;
@@ -104,6 +106,10 @@ export class MavenAGIClient {
 
     public get inbox(): Inbox {
         return (this._inbox ??= new Inbox(this._options));
+    }
+
+    public get integrations(): Integrations {
+        return (this._integrations ??= new Integrations(this._options));
     }
 
     public get knowledge(): Knowledge {

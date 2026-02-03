@@ -3946,6 +3946,86 @@ await client.inbox.ignore("inboxItemId", {
 </dl>
 </details>
 
+## Integrations
+<details><summary><code>client.integrations.<a href="/src/api/resources/integrations/client/Client.ts">update</a>(organizationId, integrationId, { ...params }) -> void</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Update an integration.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.integrations.update("organizationId", "integrationId", {});
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**organizationId:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**integrationId:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `MavenAGI.UpdateIntegrationRequest` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Integrations.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
 ## Knowledge
 <details><summary><code>client.knowledge.<a href="/src/api/resources/knowledge/client/Client.ts">searchKnowledgeBases</a>({ ...params }) -> MavenAGI.KnowledgeBasesResponse</code></summary>
 <dl>

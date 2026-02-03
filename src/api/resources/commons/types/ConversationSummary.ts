@@ -19,6 +19,8 @@ export interface ConversationSummary {
     userMessageCount: number;
     /** The number of bot answer messages in the conversation. */
     botMessageCount: number;
+    /** The CSAT score for the conversation */
+    csat?: number;
     /**
      * The total time in milliseconds that the user spent interacting with the conversation.
      * Calculated by taking the timestamp of the last message in the conversation minus the timestamp of the first message.

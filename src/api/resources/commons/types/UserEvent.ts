@@ -13,6 +13,8 @@ export interface UserEvent extends MavenAGI.EventBaseNoId {
     userInfo: MavenAGI.EventUserInfo;
     /** Information about any feedback associated with the event */
     feedbackInfo?: MavenAGI.FeedbackInfo[];
+    /** Information about any CSAT survey associated with the event */
+    csatInfo?: MavenAGI.CsatInfo;
     /** Information about the page on which the event occurred */
     pageInfo?: MavenAGI.PageInfo;
 }

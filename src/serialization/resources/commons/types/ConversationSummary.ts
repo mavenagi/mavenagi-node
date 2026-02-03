@@ -17,6 +17,7 @@ export const ConversationSummary: core.serialization.ObjectSchema<
     handoffCount: core.serialization.number(),
     userMessageCount: core.serialization.number(),
     botMessageCount: core.serialization.number(),
+    csat: core.serialization.number().optional(),
     handleTime: core.serialization.number().optional(),
     humanAgentResponseDelay: core.serialization.number().optional(),
     humanAgents: core.serialization.list(core.serialization.string()),
@@ -38,6 +39,7 @@ export declare namespace ConversationSummary {
         handoffCount: number;
         userMessageCount: number;
         botMessageCount: number;
+        csat?: number | null;
         handleTime?: number | null;
         humanAgentResponseDelay?: number | null;
         humanAgents: string[];

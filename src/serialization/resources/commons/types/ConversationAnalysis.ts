@@ -21,6 +21,7 @@ export const ConversationAnalysis: core.serialization.ObjectSchema<
     resolvedByMaven: core.serialization.boolean().optional(),
     primaryLanguage: core.serialization.string().optional(),
     predictedNps: core.serialization.number().optional(),
+    csat: core.serialization.number().optional(),
 });
 
 export declare namespace ConversationAnalysis {
@@ -35,5 +36,6 @@ export declare namespace ConversationAnalysis {
         resolvedByMaven?: boolean | null;
         primaryLanguage?: string | null;
         predictedNps?: number | null;
+        csat?: number | null;
     }
 }
