@@ -5694,7 +5694,7 @@ await client.segments.get("admin-users");
 
 Update mutable segment fields
 
-The `appId` field can be provided to update a segment owned by a different app. 
+The `appId` field can be provided to update a segment owned by a different app.
 All other fields will overwrite the existing value on the segment only if provided.
 </dd>
 </dl>
@@ -5735,6 +5735,81 @@ await client.segments.patch("segmentReferenceId", {});
 <dd>
 
 **request:** `MavenAGI.SegmentPatchRequest` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Segments.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.segments.<a href="/src/api/resources/segments/client/Client.ts">delete</a>(segmentReferenceId, { ...params }) -> MavenAGI.SegmentResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Soft delete a segment. Only INACTIVE segments can be deleted.
+
+Deleted segments are excluded from search results but can still be retrieved by ID for archival purposes. Creating a new segment with the same referenceId as a deleted segment will overwrite the deleted segment and restore it to ACTIVE status.
+
+Deleted segments cannot be modified.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.segments.delete("segmentReferenceId");
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**segmentReferenceId:** `string` — The reference ID of the segment to delete. All other entity ID fields are inferred from the request.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `MavenAGI.SegmentDeleteRequest` 
     
 </dd>
 </dl>

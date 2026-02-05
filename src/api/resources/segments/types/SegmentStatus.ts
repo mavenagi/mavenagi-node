@@ -3,5 +3,6 @@
 export const SegmentStatus = {
     Active: "ACTIVE",
     Inactive: "INACTIVE",
+    Deleted: "DELETED",
 } as const;
 export type SegmentStatus = (typeof SegmentStatus)[keyof typeof SegmentStatus];
