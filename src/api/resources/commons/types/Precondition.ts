@@ -15,6 +15,22 @@ import type * as MavenAGI from "../../../index";
  *                 key: "userKey2"
  *             }]
  *     }
+ *
+ * @example
+ *     {
+ *         preconditionType: "conversation",
+ *         value: {
+ *             conversationPreconditionType: "intelligentField"
+ *         }
+ *     }
+ *
+ * @example
+ *     {
+ *         preconditionType: "conversation",
+ *         value: {
+ *             conversationPreconditionType: "intelligentField"
+ *         }
+ *     }
  */
 export type Precondition =
     | MavenAGI.Precondition.User

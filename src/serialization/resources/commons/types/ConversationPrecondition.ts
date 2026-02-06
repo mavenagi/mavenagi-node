@@ -5,6 +5,7 @@ import * as core from "../../../../core";
 import type * as serializers from "../../../index";
 import { AppPrecondition } from "./AppPrecondition";
 import { ConversationExecutedActionPrecondition } from "./ConversationExecutedActionPrecondition";
+import { IntelligentFieldPrecondition } from "./IntelligentFieldPrecondition";
 import { MetadataPrecondition } from "./MetadataPrecondition";
 import { ResponseConfigPrecondition } from "./ResponseConfigPrecondition";
 import { TagsPrecondition } from "./TagsPrecondition";
@@ -19,6 +20,7 @@ export const ConversationPrecondition: core.serialization.Schema<
         actionExecuted: ConversationExecutedActionPrecondition,
         responseConfig: ResponseConfigPrecondition,
         app: AppPrecondition,
+        intelligentField: IntelligentFieldPrecondition,
     })
     .transform<MavenAGI.ConversationPrecondition>({
         transform: (value) => value,
@@ -31,7 +33,8 @@ export declare namespace ConversationPrecondition {
         | ConversationPrecondition.Metadata
         | ConversationPrecondition.ActionExecuted
         | ConversationPrecondition.ResponseConfig
-        | ConversationPrecondition.App;
+        | ConversationPrecondition.App
+        | ConversationPrecondition.IntelligentField;
 
     export interface Tags extends TagsPrecondition.Raw {
         conversationPreconditionType: "tags";
@@ -51,5 +54,9 @@ export declare namespace ConversationPrecondition {
 
     export interface App extends AppPrecondition.Raw {
         conversationPreconditionType: "app";
+    }
+
+    export interface IntelligentField extends IntelligentFieldPrecondition.Raw {
+        conversationPreconditionType: "intelligentField";
     }
 }
