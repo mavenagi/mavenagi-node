@@ -3,6 +3,7 @@
 import type * as MavenAGI from "../../../../api/index";
 import * as core from "../../../../core";
 import type * as serializers from "../../../index";
+import { IntelligentFieldValueResponse } from "./IntelligentFieldValueResponse";
 import { Quality } from "./Quality";
 import { QualityReason } from "./QualityReason";
 import { Sentiment } from "./Sentiment";
@@ -22,6 +23,7 @@ export const ConversationAnalysis: core.serialization.ObjectSchema<
     primaryLanguage: core.serialization.string().optional(),
     predictedNps: core.serialization.number().optional(),
     csat: core.serialization.number().optional(),
+    intelligentFieldValues: core.serialization.list(IntelligentFieldValueResponse).optional(),
 });
 
 export declare namespace ConversationAnalysis {
@@ -37,5 +39,6 @@ export declare namespace ConversationAnalysis {
         primaryLanguage?: string | null;
         predictedNps?: number | null;
         csat?: number | null;
+        intelligentFieldValues?: IntelligentFieldValueResponse.Raw[] | null;
     }
 }

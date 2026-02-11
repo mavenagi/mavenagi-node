@@ -28,13 +28,21 @@ export interface KnowledgeBasePatchRequest {
     /** The preconditions that must be met for a knowledge base to be relevant to a conversation. Can be used to restrict knowledge bases to certain types of users. A null value will remove the precondition from the knowledge base, it will be available on all conversations. */
     precondition?: MavenAGI.Precondition | null;
     /**
-     * The ID of the segment that must be matched for the knowledge base to be relevant to a conversation.
+     * The ID of a segment that must be matched for the knowledge base to be relevant to a conversation.
      * A null value will remove the segment from the knowledge base, it will be available on all conversations.
      *
      * Segments are replacing inline preconditions - a knowledge base may not have both an inline precondition and a segment.
      * Inline precondition support will be removed in a future release.
      */
     segmentId?: MavenAGI.EntityId | null;
+    /**
+     * The IDs of segment that should be matched (under an OR clause) for the knowledge base to be relevant to a
+     * conversation. An empty list will remove segments from the knowledge base, it will be available on all
+     * conversations.
+     * Segments are replacing inline preconditions - a knowledge base may not have both an inline precondition and a segment.
+     * Inline precondition support will be removed in a future release.
+     */
+    segmentIds?: MavenAGI.EntityId[];
     /** How often the knowledge base should be refreshed. */
     refreshFrequency?: MavenAGI.KnowledgeBaseRefreshFrequency;
 }

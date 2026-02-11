@@ -5,15 +5,18 @@ import type * as MavenAGI from "../../../index";
 /**
  * A precondition based on the computed value of an intelligent field on the conversation.
  *
+ * The structure of this precondition follows `LHS OP RHS`, where the LHS is
+ * the ID of the intelligent field (<referenceId, appId>).  Available
+ * operators and the corresponding types of the RHS depends on the
+ * validationType of the intelligent field.
+ *
  * Note: in early beta, only opt-in apps and organizations/agents can
  * specify intelligent field preconditions.  Otherwise, the request will be
  * rejected.
  */
 export interface IntelligentFieldPrecondition {
-    /** The referenceId of the intelligent field. */
-    fieldReferenceId: string;
-    /** The appId of the intelligent field. If not provided, the calling appId will be used. */
-    fieldAppId?: string;
+    /** The ID of the intelligent field. */
+    fieldIdWithoutAgent: MavenAGI.EntityIdWithoutAgent;
     /** The condition to evaluate against the field's value. */
     fieldCondition: MavenAGI.IntelligentFieldCondition;
 }

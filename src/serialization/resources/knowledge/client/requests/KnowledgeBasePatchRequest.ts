@@ -17,6 +17,7 @@ export const KnowledgeBasePatchRequest: core.serialization.Schema<
     llmInclusionStatus: LlmInclusionStatus.optional(),
     precondition: core.serialization.lazy(() => serializers.Precondition).optionalNullable(),
     segmentId: EntityId.optionalNullable(),
+    segmentIds: core.serialization.list(EntityId).optional(),
     refreshFrequency: KnowledgeBaseRefreshFrequency.optional(),
 });
 
@@ -28,6 +29,7 @@ export declare namespace KnowledgeBasePatchRequest {
         llmInclusionStatus?: LlmInclusionStatus.Raw | null;
         precondition?: (serializers.Precondition.Raw | null | undefined) | null;
         segmentId?: (EntityId.Raw | null | undefined) | null;
+        segmentIds?: EntityId.Raw[] | null;
         refreshFrequency?: KnowledgeBaseRefreshFrequency.Raw | null;
     }
 }

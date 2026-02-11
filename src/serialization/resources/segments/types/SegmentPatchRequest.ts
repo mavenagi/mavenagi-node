@@ -11,6 +11,7 @@ export const SegmentPatchRequest: core.serialization.ObjectSchema<
 > = core.serialization.object({
     appId: core.serialization.string().optional(),
     name: core.serialization.string().optional(),
+    description: core.serialization.string().optional(),
     precondition: core.serialization.lazy(() => serializers.Precondition).optional(),
     status: SegmentStatus.optional(),
 });
@@ -19,6 +20,7 @@ export declare namespace SegmentPatchRequest {
     export interface Raw {
         appId?: string | null;
         name?: string | null;
+        description?: string | null;
         precondition?: serializers.Precondition.Raw | null;
         status?: SegmentStatus.Raw | null;
     }

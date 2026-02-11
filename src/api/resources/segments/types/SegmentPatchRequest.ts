@@ -7,6 +7,8 @@ export interface SegmentPatchRequest {
     appId?: string;
     /** The name of the segment. */
     name?: string;
+    /** A plain text description of the segment. */
+    description?: string;
     /** The precondition that must be met for a conversation message to be included in the segment. */
     precondition?: MavenAGI.Precondition;
     /** The status of the segment. Segments can only be deactivated if they are not set on any actions or active knowledge bases. */

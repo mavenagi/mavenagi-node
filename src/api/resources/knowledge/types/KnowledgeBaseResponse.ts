@@ -30,13 +30,19 @@ import type * as MavenAGI from "../../../index";
  *         },
  *         tags: new Set(["tag1", "tag2"]),
  *         refreshFrequency: MavenAGI.KnowledgeBaseRefreshFrequency.Daily,
- *         segmentId: {
- *             referenceId: "premium-users",
- *             appId: "readme",
- *             organizationId: "acme",
- *             agentId: "support",
- *             type: MavenAGI.EntityType.Segment
- *         }
+ *         segmentIds: [{
+ *                 referenceId: "premium-users1",
+ *                 appId: "readme",
+ *                 organizationId: "acme",
+ *                 agentId: "support",
+ *                 type: MavenAGI.EntityType.Segment
+ *             }, {
+ *                 referenceId: "premium-users2",
+ *                 appId: "readme",
+ *                 organizationId: "acme",
+ *                 agentId: "support",
+ *                 type: MavenAGI.EntityType.Segment
+ *             }]
  *     }
  */
 export interface KnowledgeBaseResponse extends MavenAGI.KnowledgeBaseProperties {
@@ -70,6 +76,12 @@ export interface KnowledgeBaseResponse extends MavenAGI.KnowledgeBaseProperties 
      * Inline precondition support will be removed in a future release.
      */
     segmentId?: MavenAGI.EntityId;
+    /**
+     * The IDs of the segments that should be matched for the knowledge base to be relevant to a conversation.
+     * Segments are replacing inline preconditions - a Knowledge Base may not have both an inline precondition and a segment.
+     * Inline precondition support will be removed in a future release.
+     */
+    segmentIds: MavenAGI.EntityId[];
     /** The source URL of URL and RSS knowledge bases that was used for crawl. */
     url?: string;
 }

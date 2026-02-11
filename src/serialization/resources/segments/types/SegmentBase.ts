@@ -7,12 +7,14 @@ import * as serializers from "../../../index";
 export const SegmentBase: core.serialization.ObjectSchema<serializers.SegmentBase.Raw, MavenAGI.SegmentBase> =
     core.serialization.object({
         name: core.serialization.string(),
+        description: core.serialization.string().optional(),
         precondition: core.serialization.lazy(() => serializers.Precondition),
     });
 
 export declare namespace SegmentBase {
     export interface Raw {
         name: string;
+        description?: string | null;
         precondition: serializers.Precondition.Raw;
     }
 }

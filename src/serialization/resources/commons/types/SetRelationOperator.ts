@@ -11,7 +11,7 @@ export const SetRelationOperator: core.serialization.Schema<
     "EQ",
     "NEQ",
     "CONTAINS_ANY",
-    "NOT_CONTAINS_ANY",
+    "CONTAINS_NONE",
     "CONTAINS_ALL",
     "NOT_CONTAINS_ALL",
     "SUBSET_OF",
@@ -23,7 +23,7 @@ export declare namespace SetRelationOperator {
         | "EQ"
         | "NEQ"
         | "CONTAINS_ANY"
-        | "NOT_CONTAINS_ANY"
+        | "CONTAINS_NONE"
         | "CONTAINS_ALL"
         | "NOT_CONTAINS_ALL"
         | "SUBSET_OF"

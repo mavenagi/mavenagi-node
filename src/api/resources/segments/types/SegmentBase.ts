@@ -5,6 +5,8 @@ import type * as MavenAGI from "../../../index";
 export interface SegmentBase {
     /** The name of the segment. */
     name: string;
+    /** A plain text description of the segment. */
+    description?: string;
     /** The precondition that must be met for a conversation message to be included in the segment. */
     precondition: MavenAGI.Precondition;
 }

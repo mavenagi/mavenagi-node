@@ -17,6 +17,7 @@ export const KnowledgeBaseFilter: core.serialization.ObjectSchema<
     appIds: core.serialization.list(core.serialization.string()).optional(),
     mostRecentVersionStatus: core.serialization.list(KnowledgeBaseVersionStatus).optional(),
     llmInclusionStatus: LlmInclusionStatus.optional(),
+    segmentId: core.serialization.string().optional(),
 });
 
 export declare namespace KnowledgeBaseFilter {
@@ -28,5 +29,6 @@ export declare namespace KnowledgeBaseFilter {
         appIds?: string[] | null;
         mostRecentVersionStatus?: KnowledgeBaseVersionStatus.Raw[] | null;
         llmInclusionStatus?: LlmInclusionStatus.Raw | null;
+        segmentId?: string | null;
     }
 }

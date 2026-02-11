@@ -15,6 +15,8 @@ export const SegmentResponse: core.serialization.ObjectSchema<
         segmentId: EntityId,
         createdAt: core.serialization.date(),
         updatedAt: core.serialization.date(),
+        referencedKnowledgeBaseCount: core.serialization.number().optional(),
+        referencedDocumentCount: core.serialization.number().optional(),
         status: SegmentStatus,
     })
     .extend(SegmentBase);
@@ -24,6 +26,8 @@ export declare namespace SegmentResponse {
         segmentId: EntityId.Raw;
         createdAt: string;
         updatedAt: string;
+        referencedKnowledgeBaseCount?: number | null;
+        referencedDocumentCount?: number | null;
         status: SegmentStatus.Raw;
     }
 }

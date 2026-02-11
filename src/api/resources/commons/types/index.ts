@@ -104,6 +104,7 @@ export * from "./InboxItemStatus";
 export * from "./InboxItemType";
 export * from "./IntelligentFieldCondition";
 export * from "./IntelligentFieldPrecondition";
+export * from "./IntelligentFieldValueResponse";
 export * from "./IpInfo";
 export * from "./KnowledgeContextByEntities";
 export * from "./KnowledgeContextByEntityTypes";

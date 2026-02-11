@@ -25,4 +25,6 @@ export interface ConversationAnalysis {
     predictedNps?: number;
     /** The CSAT of the conversation. */
     csat?: number;
+    /** Latest successful intelligent field values */
+    intelligentFieldValues?: MavenAGI.IntelligentFieldValueResponse[];
 }

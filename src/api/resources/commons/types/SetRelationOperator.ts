@@ -12,8 +12,8 @@ export const SetRelationOperator = {
      * Set contains any of the values (A ∩ B ≠ ∅) */
     ContainsAny: "CONTAINS_ANY",
     /**
-     * Set contains none of the values (A ∩ B = ∅) */
-    NotContainsAny: "NOT_CONTAINS_ANY",
+     * Set contains none of the values (A ∩ B = ∅), i.e., negation of CONTAINS_ANY */
+    ContainsNone: "CONTAINS_NONE",
     /**
      * Set contains all of the values (A ⊇ B) */
     ContainsAll: "CONTAINS_ALL",

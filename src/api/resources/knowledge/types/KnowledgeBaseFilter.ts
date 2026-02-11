@@ -30,4 +30,6 @@ export interface KnowledgeBaseFilter {
     mostRecentVersionStatus?: MavenAGI.KnowledgeBaseVersionStatus[];
     /** Filter knowledge bases by the LLM inclusion status */
     llmInclusionStatus?: MavenAGI.LlmInclusionStatus;
+    /** Filter knowledge bases by the segment they are assigned to. */
+    segmentId?: string;
 }

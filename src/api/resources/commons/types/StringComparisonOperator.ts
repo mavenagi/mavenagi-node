@@ -8,5 +8,23 @@ export const StringComparisonOperator = {
     /**
      * Not equals (!=) */
     Neq: "NEQ",
+    /**
+     * String contains as substring */
+    ContainsSubstring: "CONTAINS_SUBSTRING",
+    /**
+     * String does not contain as substring, i.e., negation of CONTAINS_SUBSTRING */
+    NotContainsSubstring: "NOT_CONTAINS_SUBSTRING",
+    /**
+     * String starts with the specified prefix */
+    StartsWith: "STARTS_WITH",
+    /**
+     * String does not start with the specified prefix */
+    NotStartsWith: "NOT_STARTS_WITH",
+    /**
+     * String ends with the specified suffix */
+    EndsWith: "ENDS_WITH",
+    /**
+     * String does not end with the specified suffix */
+    NotEndsWith: "NOT_ENDS_WITH",
 } as const;
 export type StringComparisonOperator = (typeof StringComparisonOperator)[keyof typeof StringComparisonOperator];

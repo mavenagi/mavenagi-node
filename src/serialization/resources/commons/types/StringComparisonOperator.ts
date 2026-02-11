@@ -7,8 +7,25 @@ import type * as serializers from "../../../index";
 export const StringComparisonOperator: core.serialization.Schema<
     serializers.StringComparisonOperator.Raw,
     MavenAGI.StringComparisonOperator
-> = core.serialization.enum_(["EQ", "NEQ"]);
+> = core.serialization.enum_([
+    "EQ",
+    "NEQ",
+    "CONTAINS_SUBSTRING",
+    "NOT_CONTAINS_SUBSTRING",
+    "STARTS_WITH",
+    "NOT_STARTS_WITH",
+    "ENDS_WITH",
+    "NOT_ENDS_WITH",
+]);
 
 export declare namespace StringComparisonOperator {
-    export type Raw = "EQ" | "NEQ";
+    export type Raw =
+        | "EQ"
+        | "NEQ"
+        | "CONTAINS_SUBSTRING"
+        | "NOT_CONTAINS_SUBSTRING"
+        | "STARTS_WITH"
+        | "NOT_STARTS_WITH"
+        | "ENDS_WITH"
+        | "NOT_ENDS_WITH";
 }
