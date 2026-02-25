@@ -142,6 +142,133 @@ export class Inbox {
     }
 
     /**
+     * Update inbox item tag fields. All tags provided will overwrite the existing tags on the inbox item.
+     *
+     * @param {string} inboxItemId - The ID of the inbox item to add tags to.
+     * @param {MavenAGI.InboxItemApplyTagsRequest} request
+     * @param {Inbox.RequestOptions} requestOptions - Request-specific configuration.
+     *
+     * @throws {@link MavenAGI.NotFoundError}
+     * @throws {@link MavenAGI.BadRequestError}
+     * @throws {@link MavenAGI.ServerError}
+     *
+     * @example
+     *     await client.inbox.applyTags("custom-item-1", {
+     *         tags: new Set(["tag1", "tag2"])
+     *     })
+     */
+    public applyTags(
+        inboxItemId: string,
+        request: MavenAGI.InboxItemApplyTagsRequest,
+        requestOptions?: Inbox.RequestOptions,
+    ): core.HttpResponsePromise<MavenAGI.InboxItem> {
+        return core.HttpResponsePromise.fromPromise(this.__applyTags(inboxItemId, request, requestOptions));
+    }
+
+    private async __applyTags(
+        inboxItemId: string,
+        request: MavenAGI.InboxItemApplyTagsRequest,
+        requestOptions?: Inbox.RequestOptions,
+    ): Promise<core.WithRawResponse<MavenAGI.InboxItem>> {
+        const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
+            this._options?.headers,
+            mergeOnlyDefinedHeaders({
+                Authorization: await this._getAuthorizationHeader(),
+                "X-Organization-Id": requestOptions?.organizationId ?? this._options?.organizationId,
+                "X-Agent-Id": requestOptions?.agentId ?? this._options?.agentId,
+            }),
+            requestOptions?.headers,
+        );
+        const _response = await (this._options.fetcher ?? core.fetcher)({
+            url: core.url.join(
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)) ??
+                    environments.MavenAGIEnvironment.Production,
+                `/v1/inbox/${core.url.encodePathParam(inboxItemId)}/tags`,
+            ),
+            method: "PATCH",
+            headers: _headers,
+            contentType: "application/json",
+            queryParameters: requestOptions?.queryParams,
+            requestType: "json",
+            body: serializers.InboxItemApplyTagsRequest.jsonOrThrow(request, { unrecognizedObjectKeys: "strip" }),
+            timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
+            maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
+            abortSignal: requestOptions?.abortSignal,
+        });
+        if (_response.ok) {
+            return {
+                data: serializers.InboxItem.parseOrThrow(_response.body, {
+                    unrecognizedObjectKeys: "passthrough",
+                    allowUnrecognizedUnionMembers: true,
+                    allowUnrecognizedEnumValues: true,
+                    breadcrumbsPrefix: ["response"],
+                }),
+                rawResponse: _response.rawResponse,
+            };
+        }
+
+        if (_response.error.reason === "status-code") {
+            switch (_response.error.statusCode) {
+                case 404:
+                    throw new MavenAGI.NotFoundError(
+                        serializers.ErrorMessage.parseOrThrow(_response.error.body, {
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
+                            breadcrumbsPrefix: ["response"],
+                        }),
+                        _response.rawResponse,
+                    );
+                case 400:
+                    throw new MavenAGI.BadRequestError(
+                        serializers.ErrorMessage.parseOrThrow(_response.error.body, {
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
+                            breadcrumbsPrefix: ["response"],
+                        }),
+                        _response.rawResponse,
+                    );
+                case 500:
+                    throw new MavenAGI.ServerError(
+                        serializers.ErrorMessage.parseOrThrow(_response.error.body, {
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
+                            breadcrumbsPrefix: ["response"],
+                        }),
+                        _response.rawResponse,
+                    );
+                default:
+                    throw new errors.MavenAGIError({
+                        statusCode: _response.error.statusCode,
+                        body: _response.error.body,
+                        rawResponse: _response.rawResponse,
+                    });
+            }
+        }
+
+        switch (_response.error.reason) {
+            case "non-json":
+                throw new errors.MavenAGIError({
+                    statusCode: _response.error.statusCode,
+                    body: _response.error.rawBody,
+                    rawResponse: _response.rawResponse,
+                });
+            case "timeout":
+                throw new errors.MavenAGITimeoutError(
+                    "Timeout exceeded when calling PATCH /v1/inbox/{inboxItemId}/tags.",
+                );
+            case "unknown":
+                throw new errors.MavenAGIError({
+                    message: _response.error.errorMessage,
+                    rawResponse: _response.rawResponse,
+                });
+        }
+    }
+
+    /**
      * Retrieve details of a specific inbox item by its ID.
      *
      * @param {string} inboxItemId - The ID of the inbox item to get. All other entity ID fields are inferred from the request.

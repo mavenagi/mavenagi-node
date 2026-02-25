@@ -7,6 +7,8 @@ export interface InboxFilter {
     statuses?: MavenAGI.InboxItemStatus[];
     /** List of inbox item types to filter by. */
     type?: MavenAGI.InboxItemType[];
+    /** Filter for items that have at least one of these tags. */
+    tags?: Set<string>;
     /** Filter for items created after this timestamp. */
     createdAfter?: Date;
     /** Filter for items created before this timestamp. */

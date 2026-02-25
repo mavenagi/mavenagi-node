@@ -5,6 +5,7 @@ import * as core from "../../../../core";
 import type * as serializers from "../../../index";
 import { BasePaginatedRequest } from "../../commons/types/BasePaginatedRequest";
 import { SegmentField } from "./SegmentField";
+import { SegmentFilter } from "./SegmentFilter";
 
 export const SegmentsSearchRequest: core.serialization.ObjectSchema<
     serializers.SegmentsSearchRequest.Raw,
@@ -12,11 +13,13 @@ export const SegmentsSearchRequest: core.serialization.ObjectSchema<
 > = core.serialization
     .object({
         sort: SegmentField.optional(),
+        filter: SegmentFilter.optional(),
     })
     .extend(BasePaginatedRequest);
 
 export declare namespace SegmentsSearchRequest {
     export interface Raw extends BasePaginatedRequest.Raw {
         sort?: SegmentField.Raw | null;
+        filter?: SegmentFilter.Raw | null;
     }
 }

@@ -17,6 +17,7 @@ import type * as MavenAGI from "../../../index";
  *         updatedAt: new Date("2025-01-15T12:30:00.000Z"),
  *         referencedKnowledgeBaseCount: 5,
  *         referencedDocumentCount: 34,
+ *         referencedActionCount: 3,
  *         status: MavenAGI.SegmentStatus.Active,
  *         precondition: {
  *             preconditionType: "group",
@@ -42,6 +43,8 @@ export interface SegmentResponse extends MavenAGI.SegmentBase {
     referencedKnowledgeBaseCount?: number;
     /** The number of active documents that reference this segment. */
     referencedDocumentCount?: number;
+    /** The number of active actions that reference this segment. */
+    referencedActionCount?: number;
     /**
      * The status of the segment.
      *

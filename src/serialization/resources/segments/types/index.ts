@@ -1,5 +1,6 @@
 export * from "./SegmentBase";
 export * from "./SegmentField";
+export * from "./SegmentFilter";
 export * from "./SegmentPatchRequest";
 export * from "./SegmentRequest";
 export * from "./SegmentResponse";

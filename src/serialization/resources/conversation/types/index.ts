@@ -1,6 +1,5 @@
 export * from "./ActionFormAttachment";
 export * from "./ActionFormRequestParamValue";
-export * from "./AskObjectRequest";
 export * from "./AskRequest";
 export * from "./AskStreamActionEvent";
 export * from "./AskStreamChartEvent";
@@ -27,7 +26,6 @@ export * from "./FeedbackField";
 export * from "./FeedbackFilter";
 export * from "./FeedbackRequest";
 export * from "./NumericConversationField";
-export * from "./ObjectStreamResponse";
 export * from "./ResolutionStatus";
 export * from "./SimulationFilter";
 export * from "./StreamResponse";

@@ -17,6 +17,7 @@ export const SegmentResponse: core.serialization.ObjectSchema<
         updatedAt: core.serialization.date(),
         referencedKnowledgeBaseCount: core.serialization.number().optional(),
         referencedDocumentCount: core.serialization.number().optional(),
+        referencedActionCount: core.serialization.number().optional(),
         status: SegmentStatus,
     })
     .extend(SegmentBase);
@@ -28,6 +29,7 @@ export declare namespace SegmentResponse {
         updatedAt: string;
         referencedKnowledgeBaseCount?: number | null;
         referencedDocumentCount?: number | null;
+        referencedActionCount?: number | null;
         status: SegmentStatus.Raw;
     }
 }

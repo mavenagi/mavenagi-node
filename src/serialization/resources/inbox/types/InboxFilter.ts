@@ -10,6 +10,7 @@ export const InboxFilter: core.serialization.ObjectSchema<serializers.InboxFilte
     core.serialization.object({
         statuses: core.serialization.list(InboxItemStatus).optional(),
         type: core.serialization.list(InboxItemType).optional(),
+        tags: core.serialization.set(core.serialization.string()).optional(),
         createdAfter: core.serialization.date().optional(),
         createdBefore: core.serialization.date().optional(),
     });
@@ -18,6 +19,7 @@ export declare namespace InboxFilter {
     export interface Raw {
         statuses?: InboxItemStatus.Raw[] | null;
         type?: InboxItemType.Raw[] | null;
+        tags?: string[] | null;
         createdAfter?: string | null;
         createdBefore?: string | null;
     }

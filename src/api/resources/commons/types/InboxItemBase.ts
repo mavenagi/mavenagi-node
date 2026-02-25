@@ -13,4 +13,6 @@ export interface InboxItemBase {
     status: MavenAGI.InboxItemStatus;
     /** Severity of the inbox item. */
     severity: MavenAGI.InboxItemSeverity;
+    /** A set of tags associated with the inbox item that are used for filtering. */
+    tags?: Set<string>;
 }

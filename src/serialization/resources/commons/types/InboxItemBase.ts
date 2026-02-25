@@ -14,6 +14,7 @@ export const InboxItemBase: core.serialization.ObjectSchema<serializers.InboxIte
         updatedAt: core.serialization.date(),
         status: InboxItemStatus,
         severity: InboxItemSeverity,
+        tags: core.serialization.set(core.serialization.string()).optional(),
     });
 
 export declare namespace InboxItemBase {
@@ -23,5 +24,6 @@ export declare namespace InboxItemBase {
         updatedAt: string;
         status: InboxItemStatus.Raw;
         severity: InboxItemSeverity.Raw;
+        tags?: string[] | null;
     }
 }
