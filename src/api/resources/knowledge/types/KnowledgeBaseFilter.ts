@@ -32,4 +32,6 @@ export interface KnowledgeBaseFilter {
     llmInclusionStatus?: MavenAGI.LlmInclusionStatus;
     /** Filter knowledge bases by the segment they are assigned to. */
     segmentId?: string;
+    /** Filter knowledge bases by the segments they are assigned to. Uses OR semantics — returns knowledge bases assigned to any of the provided segments. */
+    segmentIds?: MavenAGI.EntityId[];
 }

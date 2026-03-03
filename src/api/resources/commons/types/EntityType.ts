@@ -18,5 +18,6 @@ export const EntityType = {
     Segment: "SEGMENT",
     Customer: "CUSTOMER",
     IntelligentField: "INTELLIGENT_FIELD",
+    Charter: "CHARTER",
 } as const;
 export type EntityType = (typeof EntityType)[keyof typeof EntityType];

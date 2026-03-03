@@ -3,6 +3,7 @@
 import type * as MavenAGI from "../../../../api/index";
 import * as core from "../../../../core";
 import type * as serializers from "../../../index";
+import { EntityId } from "../../commons/types/EntityId";
 import { LlmInclusionStatus } from "../../commons/types/LlmInclusionStatus";
 import { KnowledgeBaseVersionStatus } from "./KnowledgeBaseVersionStatus";
 
@@ -18,6 +19,7 @@ export const KnowledgeBaseFilter: core.serialization.ObjectSchema<
     mostRecentVersionStatus: core.serialization.list(KnowledgeBaseVersionStatus).optional(),
     llmInclusionStatus: LlmInclusionStatus.optional(),
     segmentId: core.serialization.string().optional(),
+    segmentIds: core.serialization.list(EntityId).optional(),
 });
 
 export declare namespace KnowledgeBaseFilter {
@@ -30,5 +32,6 @@ export declare namespace KnowledgeBaseFilter {
         mostRecentVersionStatus?: KnowledgeBaseVersionStatus.Raw[] | null;
         llmInclusionStatus?: LlmInclusionStatus.Raw | null;
         segmentId?: string | null;
+        segmentIds?: EntityId.Raw[] | null;
     }
 }
