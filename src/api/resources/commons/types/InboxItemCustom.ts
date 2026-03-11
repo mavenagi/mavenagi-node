@@ -5,4 +5,18 @@ import type * as MavenAGI from "../../../index";
 export interface InboxItemCustom extends MavenAGI.InboxItemBase {
     /** Additional metadata associated with the inbox item. */
     metadata: Record<string, string>;
+    /** Title of the inbox item. */
+    title?: string;
+    /** Description of the inbox item. */
+    description?: string;
+    /** An optional URL that can be associated with the inbox item. */
+    externalUrl?: string;
+    /** An optional deadline for the inbox item. */
+    deadline?: Date;
+    /** An optional timestamp until which the inbox item is snoozed. */
+    snoozedUntil?: Date;
+    /** An optional assignee for the inbox item. */
+    assignee?: string;
+    /** An optional list of references to other entities that are related to this inbox item. */
+    references?: MavenAGI.ScopedEntity[];
 }

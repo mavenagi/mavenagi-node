@@ -16,5 +16,8 @@ export const UserEventName = {
     /**
      * A text was inserted into a field */
     TextInserted: "TEXT_INSERTED",
+    /**
+     * A CSAT rating was submitted */
+    CsatSubmitted: "CSAT_SUBMITTED",
 } as const;
 export type UserEventName = (typeof UserEventName)[keyof typeof UserEventName];

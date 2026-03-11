@@ -4,6 +4,7 @@ import type * as MavenAGI from "../../../../api/index";
 import * as core from "../../../../core";
 import type * as serializers from "../../../index";
 import { InboxItemBase } from "./InboxItemBase";
+import { ScopedEntity } from "./ScopedEntity";
 
 export const InboxItemCustom: core.serialization.ObjectSchema<
     serializers.InboxItemCustom.Raw,
@@ -11,11 +12,25 @@ export const InboxItemCustom: core.serialization.ObjectSchema<
 > = core.serialization
     .object({
         metadata: core.serialization.record(core.serialization.string(), core.serialization.string()),
+        title: core.serialization.string().optional(),
+        description: core.serialization.string().optional(),
+        externalUrl: core.serialization.string().optional(),
+        deadline: core.serialization.date().optional(),
+        snoozedUntil: core.serialization.date().optional(),
+        assignee: core.serialization.string().optional(),
+        references: core.serialization.list(ScopedEntity).optional(),
     })
     .extend(InboxItemBase);
 
 export declare namespace InboxItemCustom {
     export interface Raw extends InboxItemBase.Raw {
         metadata: Record<string, string>;
+        title?: string | null;
+        description?: string | null;
+        externalUrl?: string | null;
+        deadline?: string | null;
+        snoozedUntil?: string | null;
+        assignee?: string | null;
+        references?: ScopedEntity.Raw[] | null;
     }
 }

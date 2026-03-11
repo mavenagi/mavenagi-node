@@ -3490,6 +3490,99 @@ await client.inbox.search({});
 </dl>
 </details>
 
+<details><summary><code>client.inbox.<a href="/src/api/resources/inbox/client/Client.ts">createOrUpdate</a>({ ...params }) -> MavenAGI.InboxItem</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Update an inbox item or create it if it doesn't exist.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.inbox.createOrUpdate({
+    inboxItemId: {
+        referenceId: "todo-item-1"
+    },
+    status: "OPEN",
+    severity: "HIGH",
+    title: "Todo Item",
+    description: "This is the first todo item.",
+    metadata: {
+        "key": "value"
+    },
+    externalUrl: "todo.com",
+    deadline: new Date("2026-12-31T23:59:59.000Z"),
+    snoozedUntil: new Date("2026-12-25T23:59:59.000Z"),
+    references: [{
+            entityId: {
+                type: "CONVERSATION_MESSAGE",
+                appId: "app1",
+                referenceId: "msgRef1201",
+                organizationId: "acme",
+                agentId: "support"
+            },
+            scopeEntityId: {
+                type: "CONVERSATION",
+                appId: "app1",
+                referenceId: "ref1200",
+                organizationId: "acme",
+                agentId: "support"
+            }
+        }]
+});
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `MavenAGI.InboxItemCreateRequest` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Inbox.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
 <details><summary><code>client.inbox.<a href="/src/api/resources/inbox/client/Client.ts">applyTags</a>(inboxItemId, { ...params }) -> MavenAGI.InboxItem</code></summary>
 <dl>
 <dd>
@@ -6496,7 +6589,7 @@ Creates a short-lived session token for authenticating voice connections.
 
 Supports two token types:
 - **webrtc**: A Twilio-compatible access token for browser-based WebRTC calls
-- **websocket**: An RS256 JWT for direct WebSocket connections to /v1/voice/conversations
+- **websocket**: An ES256 JWT for direct WebSocket connections to /v1/voice/conversations
 
 Session tokens are required before establishing any voice connection.
 </dd>
@@ -6514,7 +6607,7 @@ Session tokens are required before establishing any voice connection.
 
 ```typescript
 await client.voice.sessionToken({
-    appUserId: "appUserId",
+    appUserId: "x",
     type: "webrtc"
 });
 

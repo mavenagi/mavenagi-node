@@ -5,8 +5,21 @@ import * as core from "../../../../core";
 import type * as serializers from "../../../index";
 
 export const UserEventName: core.serialization.Schema<serializers.UserEventName.Raw, MavenAGI.UserEventName> =
-    core.serialization.enum_(["BUTTON_CLICKED", "LINK_CLICKED", "CHAT_OPENED", "CHAT_CLOSED", "TEXT_INSERTED"]);
+    core.serialization.enum_([
+        "BUTTON_CLICKED",
+        "LINK_CLICKED",
+        "CHAT_OPENED",
+        "CHAT_CLOSED",
+        "TEXT_INSERTED",
+        "CSAT_SUBMITTED",
+    ]);
 
 export declare namespace UserEventName {
-    export type Raw = "BUTTON_CLICKED" | "LINK_CLICKED" | "CHAT_OPENED" | "CHAT_CLOSED" | "TEXT_INSERTED";
+    export type Raw =
+        | "BUTTON_CLICKED"
+        | "LINK_CLICKED"
+        | "CHAT_OPENED"
+        | "CHAT_CLOSED"
+        | "TEXT_INSERTED"
+        | "CSAT_SUBMITTED";
 }
