@@ -1,4 +1,5 @@
 export * from "./BaseKnowledgeDocument";
+export * from "./CancelKnowledgeBaseVersionRequest";
 export * from "./FinalizeKnowledgeBaseVersionRequest";
 export * from "./KnowledgeBaseField";
 export * from "./KnowledgeBaseFilter";

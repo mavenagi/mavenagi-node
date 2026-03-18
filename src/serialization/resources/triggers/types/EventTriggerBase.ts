@@ -9,12 +9,14 @@ export const EventTriggerBase: core.serialization.ObjectSchema<
     serializers.EventTriggerBase.Raw,
     MavenAGI.EventTriggerBase
 > = core.serialization.object({
+    name: core.serialization.string().optional(),
     description: core.serialization.string(),
     type: EventTriggerType,
 });
 
 export declare namespace EventTriggerBase {
     export interface Raw {
+        name?: string | null;
         description: string;
         type: EventTriggerType.Raw;
     }

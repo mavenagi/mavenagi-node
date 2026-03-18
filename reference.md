@@ -4308,6 +4308,80 @@ await client.knowledge.refreshKnowledgeBase("help-center", {
 </dl>
 </details>
 
+<details><summary><code>client.knowledge.<a href="/src/api/resources/knowledge/client/Client.ts">cancelKnowledgeBaseVersion</a>(knowledgeBaseReferenceId, { ...params }) -> void</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+in-progress knowledge base version.
+
+If the knowledge base has a version that is currently being ingested,
+this will cancel the ingestion workflow and set the version status to FAILED.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.knowledge.cancelKnowledgeBaseVersion("knowledgeBaseReferenceId", {});
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**knowledgeBaseReferenceId:** `string` — The reference ID of the knowledge base to cancel ingestion for. All other entity ID fields are inferred from the request.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `MavenAGI.CancelKnowledgeBaseVersionRequest` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Knowledge.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
 <details><summary><code>client.knowledge.<a href="/src/api/resources/knowledge/client/Client.ts">patchKnowledgeBase</a>(knowledgeBaseReferenceId, { ...params }) -> MavenAGI.KnowledgeBaseResponse</code></summary>
 <dl>
 <dd>
