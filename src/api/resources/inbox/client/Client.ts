@@ -164,8 +164,6 @@ export class Inbox {
      *             "key": "value"
      *         },
      *         externalUrl: "todo.com",
-     *         deadline: new Date("2026-12-31T23:59:59.000Z"),
-     *         snoozedUntil: new Date("2026-12-25T23:59:59.000Z"),
      *         references: [{
      *                 entityId: {
      *                     type: "CONVERSATION_MESSAGE",
@@ -283,6 +281,137 @@ export class Inbox {
                 });
             case "timeout":
                 throw new errors.MavenAGITimeoutError("Timeout exceeded when calling PUT /v1/inbox.");
+            case "unknown":
+                throw new errors.MavenAGIError({
+                    message: _response.error.errorMessage,
+                    rawResponse: _response.rawResponse,
+                });
+        }
+    }
+
+    /**
+     * Update mutable inbox item fields. Only supported for custom inbox items.
+     *
+     * The `appId` field can be provided to update a inbox item owned by a different app.
+     * All other fields will overwrite the existing value on the inbox item only if provided.
+     *
+     * @param {string} inboxItemId - The ID of the inbox item to patch
+     * @param {MavenAGI.InboxItemPatchRequest} request
+     * @param {Inbox.RequestOptions} requestOptions - Request-specific configuration.
+     *
+     * @throws {@link MavenAGI.NotFoundError}
+     * @throws {@link MavenAGI.BadRequestError}
+     * @throws {@link MavenAGI.ServerError}
+     *
+     * @example
+     *     await client.inbox.patch("custom-item-1", {
+     *         status: "OPEN",
+     *         metadata: {
+     *             "key": "value"
+     *         }
+     *     })
+     */
+    public patch(
+        inboxItemId: string,
+        request: MavenAGI.InboxItemPatchRequest = {},
+        requestOptions?: Inbox.RequestOptions,
+    ): core.HttpResponsePromise<MavenAGI.InboxItem> {
+        return core.HttpResponsePromise.fromPromise(this.__patch(inboxItemId, request, requestOptions));
+    }
+
+    private async __patch(
+        inboxItemId: string,
+        request: MavenAGI.InboxItemPatchRequest = {},
+        requestOptions?: Inbox.RequestOptions,
+    ): Promise<core.WithRawResponse<MavenAGI.InboxItem>> {
+        const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
+            this._options?.headers,
+            mergeOnlyDefinedHeaders({
+                Authorization: await this._getAuthorizationHeader(),
+                "X-Organization-Id": requestOptions?.organizationId ?? this._options?.organizationId,
+                "X-Agent-Id": requestOptions?.agentId ?? this._options?.agentId,
+            }),
+            requestOptions?.headers,
+        );
+        const _response = await (this._options.fetcher ?? core.fetcher)({
+            url: core.url.join(
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)) ??
+                    environments.MavenAGIEnvironment.Production,
+                `/v1/inbox/${core.url.encodePathParam(inboxItemId)}`,
+            ),
+            method: "PATCH",
+            headers: _headers,
+            contentType: "application/json",
+            queryParameters: requestOptions?.queryParams,
+            requestType: "json",
+            body: serializers.InboxItemPatchRequest.jsonOrThrow(request, { unrecognizedObjectKeys: "strip" }),
+            timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
+            maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
+            abortSignal: requestOptions?.abortSignal,
+        });
+        if (_response.ok) {
+            return {
+                data: serializers.InboxItem.parseOrThrow(_response.body, {
+                    unrecognizedObjectKeys: "passthrough",
+                    allowUnrecognizedUnionMembers: true,
+                    allowUnrecognizedEnumValues: true,
+                    breadcrumbsPrefix: ["response"],
+                }),
+                rawResponse: _response.rawResponse,
+            };
+        }
+
+        if (_response.error.reason === "status-code") {
+            switch (_response.error.statusCode) {
+                case 404:
+                    throw new MavenAGI.NotFoundError(
+                        serializers.ErrorMessage.parseOrThrow(_response.error.body, {
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
+                            breadcrumbsPrefix: ["response"],
+                        }),
+                        _response.rawResponse,
+                    );
+                case 400:
+                    throw new MavenAGI.BadRequestError(
+                        serializers.ErrorMessage.parseOrThrow(_response.error.body, {
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
+                            breadcrumbsPrefix: ["response"],
+                        }),
+                        _response.rawResponse,
+                    );
+                case 500:
+                    throw new MavenAGI.ServerError(
+                        serializers.ErrorMessage.parseOrThrow(_response.error.body, {
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
+                            breadcrumbsPrefix: ["response"],
+                        }),
+                        _response.rawResponse,
+                    );
+                default:
+                    throw new errors.MavenAGIError({
+                        statusCode: _response.error.statusCode,
+                        body: _response.error.body,
+                        rawResponse: _response.rawResponse,
+                    });
+            }
+        }
+
+        switch (_response.error.reason) {
+            case "non-json":
+                throw new errors.MavenAGIError({
+                    statusCode: _response.error.statusCode,
+                    body: _response.error.rawBody,
+                    rawResponse: _response.rawResponse,
+                });
+            case "timeout":
+                throw new errors.MavenAGITimeoutError("Timeout exceeded when calling PATCH /v1/inbox/{inboxItemId}.");
             case "unknown":
                 throw new errors.MavenAGIError({
                     message: _response.error.errorMessage,

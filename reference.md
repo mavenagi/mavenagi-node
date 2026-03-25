@@ -3529,8 +3529,6 @@ await client.inbox.createOrUpdate({
         "key": "value"
     },
     externalUrl: "todo.com",
-    deadline: new Date("2026-12-31T23:59:59.000Z"),
-    snoozedUntil: new Date("2026-12-25T23:59:59.000Z"),
     references: [{
             entityId: {
                 type: "CONVERSATION_MESSAGE",
@@ -3564,6 +3562,85 @@ await client.inbox.createOrUpdate({
 <dd>
 
 **request:** `MavenAGI.InboxItemCreateRequest` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Inbox.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.inbox.<a href="/src/api/resources/inbox/client/Client.ts">patch</a>(inboxItemId, { ...params }) -> MavenAGI.InboxItem</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Update mutable inbox item fields. Only supported for custom inbox items.
+
+The `appId` field can be provided to update a inbox item owned by a different app.
+All other fields will overwrite the existing value on the inbox item only if provided.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.inbox.patch("custom-item-1", {
+    status: "OPEN",
+    metadata: {
+        "key": "value"
+    }
+});
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**inboxItemId:** `string` — The ID of the inbox item to patch
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `MavenAGI.InboxItemPatchRequest` 
     
 </dd>
 </dl>

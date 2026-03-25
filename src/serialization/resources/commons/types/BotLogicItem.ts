@@ -4,7 +4,9 @@ import type * as MavenAGI from "../../../../api/index";
 import * as core from "../../../../core";
 import type * as serializers from "../../../index";
 import { BotLogicActionItem } from "./BotLogicActionItem";
+import { BotLogicChartersItem } from "./BotLogicChartersItem";
 import { BotLogicFormSubmissionItem } from "./BotLogicFormSubmissionItem";
+import { BotLogicIntelligentFieldsItem } from "./BotLogicIntelligentFieldsItem";
 import { BotLogicKnowledgeItem } from "./BotLogicKnowledgeItem";
 import { BotLogicSafetyItem } from "./BotLogicSafetyItem";
 import { BotLogicSegmentsItem } from "./BotLogicSegmentsItem";
@@ -19,6 +21,8 @@ export const BotLogicItem: core.serialization.Schema<serializers.BotLogicItem.Ra
             safety: BotLogicSafetyItem,
             user: BotLogicUserItem,
             segments: BotLogicSegmentsItem,
+            intelligentFields: BotLogicIntelligentFieldsItem,
+            charters: BotLogicChartersItem,
         })
         .transform<MavenAGI.BotLogicItem>({
             transform: (value) => value,
@@ -32,7 +36,9 @@ export declare namespace BotLogicItem {
         | BotLogicItem.Form
         | BotLogicItem.Safety
         | BotLogicItem.User
-        | BotLogicItem.Segments;
+        | BotLogicItem.Segments
+        | BotLogicItem.IntelligentFields
+        | BotLogicItem.Charters;
 
     export interface Knowledge extends BotLogicKnowledgeItem.Raw {
         type: "knowledge";
@@ -56,5 +62,13 @@ export declare namespace BotLogicItem {
 
     export interface Segments extends BotLogicSegmentsItem.Raw {
         type: "segments";
+    }
+
+    export interface IntelligentFields extends BotLogicIntelligentFieldsItem.Raw {
+        type: "intelligentFields";
+    }
+
+    export interface Charters extends BotLogicChartersItem.Raw {
+        type: "charters";
     }
 }

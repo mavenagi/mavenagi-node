@@ -16,8 +16,6 @@ import type * as MavenAGI from "../../../index";
  *             "key": "value"
  *         },
  *         externalUrl: "todo.com",
- *         deadline: new Date("2026-12-31T23:59:59.000Z"),
- *         snoozedUntil: new Date("2026-12-25T23:59:59.000Z"),
  *         references: [{
  *                 entityId: {
  *                     type: MavenAGI.EntityType.ConversationMessage,
@@ -46,17 +44,13 @@ export interface InboxItemCreateRequest {
     /** Additional metadata associated with the inbox item. */
     metadata: Record<string, string>;
     /** Title of the inbox item. */
-    title?: string;
+    title: string;
     /** Description of the inbox item. */
     description?: string;
     /** An optional URL that can be associated with the inbox item. */
     externalUrl?: string;
-    /** An optional deadline for the inbox item. */
-    deadline?: Date;
-    /** An optional timestamp until which the inbox item is snoozed. */
-    snoozedUntil?: Date;
     /** An optional assignee for the inbox item. */
-    assignee?: string;
+    assignee?: MavenAGI.ScopedEntity;
     /** An optional list of references to other entities that are related to this inbox item. */
     references?: MavenAGI.ScopedEntity[];
 }

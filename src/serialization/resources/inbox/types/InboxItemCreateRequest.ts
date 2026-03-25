@@ -16,12 +16,10 @@ export const InboxItemCreateRequest: core.serialization.ObjectSchema<
     status: InboxItemStatus,
     severity: InboxItemSeverity,
     metadata: core.serialization.record(core.serialization.string(), core.serialization.string()),
-    title: core.serialization.string().optional(),
+    title: core.serialization.string(),
     description: core.serialization.string().optional(),
     externalUrl: core.serialization.string().optional(),
-    deadline: core.serialization.date().optional(),
-    snoozedUntil: core.serialization.date().optional(),
-    assignee: core.serialization.string().optional(),
+    assignee: ScopedEntity.optional(),
     references: core.serialization.list(ScopedEntity).optional(),
 });
 
@@ -31,12 +29,10 @@ export declare namespace InboxItemCreateRequest {
         status: InboxItemStatus.Raw;
         severity: InboxItemSeverity.Raw;
         metadata: Record<string, string>;
-        title?: string | null;
+        title: string;
         description?: string | null;
         externalUrl?: string | null;
-        deadline?: string | null;
-        snoozedUntil?: string | null;
-        assignee?: string | null;
+        assignee?: ScopedEntity.Raw | null;
         references?: ScopedEntity.Raw[] | null;
     }
 }

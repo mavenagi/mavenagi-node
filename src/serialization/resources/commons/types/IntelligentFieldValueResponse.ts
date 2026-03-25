@@ -10,6 +10,7 @@ export const IntelligentFieldValueResponse: core.serialization.ObjectSchema<
     MavenAGI.IntelligentFieldValueResponse
 > = core.serialization.object({
     fieldId: EntityId,
+    name: core.serialization.string(),
     entityId: EntityId,
     value: core.serialization.unknown().optional(),
     confidence: core.serialization.number().optional(),
@@ -20,6 +21,7 @@ export const IntelligentFieldValueResponse: core.serialization.ObjectSchema<
 export declare namespace IntelligentFieldValueResponse {
     export interface Raw {
         fieldId: EntityId.Raw;
+        name: string;
         entityId: EntityId.Raw;
         value?: unknown | null;
         confidence?: number | null;

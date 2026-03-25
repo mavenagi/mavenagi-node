@@ -8,7 +8,9 @@ export type BotLogicItem =
     | MavenAGI.BotLogicItem.Form
     | MavenAGI.BotLogicItem.Safety
     | MavenAGI.BotLogicItem.User
-    | MavenAGI.BotLogicItem.Segments;
+    | MavenAGI.BotLogicItem.Segments
+    | MavenAGI.BotLogicItem.IntelligentFields
+    | MavenAGI.BotLogicItem.Charters;
 
 export namespace BotLogicItem {
     export interface Knowledge extends MavenAGI.BotLogicKnowledgeItem {
@@ -33,5 +35,13 @@ export namespace BotLogicItem {
 
     export interface Segments extends MavenAGI.BotLogicSegmentsItem {
         type: "segments";
+    }
+
+    export interface IntelligentFields extends MavenAGI.BotLogicIntelligentFieldsItem {
+        type: "intelligentFields";
+    }
+
+    export interface Charters extends MavenAGI.BotLogicChartersItem {
+        type: "charters";
     }
 }

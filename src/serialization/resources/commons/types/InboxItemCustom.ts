@@ -15,9 +15,7 @@ export const InboxItemCustom: core.serialization.ObjectSchema<
         title: core.serialization.string().optional(),
         description: core.serialization.string().optional(),
         externalUrl: core.serialization.string().optional(),
-        deadline: core.serialization.date().optional(),
-        snoozedUntil: core.serialization.date().optional(),
-        assignee: core.serialization.string().optional(),
+        assignee: ScopedEntity.optional(),
         references: core.serialization.list(ScopedEntity).optional(),
     })
     .extend(InboxItemBase);
@@ -28,9 +26,7 @@ export declare namespace InboxItemCustom {
         title?: string | null;
         description?: string | null;
         externalUrl?: string | null;
-        deadline?: string | null;
-        snoozedUntil?: string | null;
-        assignee?: string | null;
+        assignee?: ScopedEntity.Raw | null;
         references?: ScopedEntity.Raw[] | null;
     }
 }

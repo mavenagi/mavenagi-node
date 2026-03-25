@@ -14,6 +14,7 @@ import type * as MavenAGI from "../../../index";
  *             agentId: "support",
  *             type: MavenAGI.EntityType.Conversation
  *         },
+ *         name: "Ticket Priority",
  *         entityId: {
  *             referenceId: "ticket-123",
  *             appId: "zendesk",
@@ -30,6 +31,8 @@ import type * as MavenAGI from "../../../index";
 export interface IntelligentFieldValueResponse {
     /** The intelligent field that this value belongs to */
     fieldId: MavenAGI.EntityId;
+    /** Display name of the intelligent field */
+    name: string;
     /** The entity this value is for */
     entityId: MavenAGI.EntityId;
     /** The computed value (typed according to validationType) */
