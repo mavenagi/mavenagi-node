@@ -14,7 +14,7 @@ export const KnowledgeDocumentResponse: core.serialization.ObjectSchema<
 > = core.serialization
     .object({
         processingStatus: KnowledgeDocumentStatus.optional(),
-        content: core.serialization.string(),
+        content: core.serialization.string().optional(),
         asset: AttachmentResponse.optional(),
         metadata: core.serialization.record(core.serialization.string(), core.serialization.string()),
         relevantEntities: core.serialization.list(ScopedEntity),
@@ -24,7 +24,7 @@ export const KnowledgeDocumentResponse: core.serialization.ObjectSchema<
 export declare namespace KnowledgeDocumentResponse {
     export interface Raw extends KnowledgeDocumentSearchResponse.Raw {
         processingStatus?: KnowledgeDocumentStatus.Raw | null;
-        content: string;
+        content?: string | null;
         asset?: AttachmentResponse.Raw | null;
         metadata: Record<string, string>;
         relevantEntities: ScopedEntity.Raw[];
