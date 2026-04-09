@@ -29,6 +29,7 @@ export class Analytics {
      *
      * @throws {@link MavenAGI.NotFoundError}
      * @throws {@link MavenAGI.BadRequestError}
+     * @throws {@link MavenAGI.PayloadTooLargeError}
      * @throws {@link MavenAGI.ServerError}
      *
      * @example
@@ -132,6 +133,16 @@ export class Analytics {
                         }),
                         _response.rawResponse,
                     );
+                case 413:
+                    throw new MavenAGI.PayloadTooLargeError(
+                        serializers.ErrorMessage.parseOrThrow(_response.error.body, {
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
+                            breadcrumbsPrefix: ["response"],
+                        }),
+                        _response.rawResponse,
+                    );
                 case 500:
                     throw new MavenAGI.ServerError(
                         serializers.ErrorMessage.parseOrThrow(_response.error.body, {
@@ -176,6 +187,7 @@ export class Analytics {
      *
      * @throws {@link MavenAGI.NotFoundError}
      * @throws {@link MavenAGI.BadRequestError}
+     * @throws {@link MavenAGI.PayloadTooLargeError}
      * @throws {@link MavenAGI.ServerError}
      *
      * @example
@@ -295,6 +307,16 @@ export class Analytics {
                         }),
                         _response.rawResponse,
                     );
+                case 413:
+                    throw new MavenAGI.PayloadTooLargeError(
+                        serializers.ErrorMessage.parseOrThrow(_response.error.body, {
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
+                            breadcrumbsPrefix: ["response"],
+                        }),
+                        _response.rawResponse,
+                    );
                 case 500:
                     throw new MavenAGI.ServerError(
                         serializers.ErrorMessage.parseOrThrow(_response.error.body, {
@@ -337,6 +359,7 @@ export class Analytics {
      * This outputs the current table view defined by the request. For most programmatic use cases, prefer `getConversationTable` and format client-side. The CSV format may change and should not be relied upon by code consumers. A maximum of 10,000 rows can be exported at a time.
      * @throws {@link MavenAGI.NotFoundError}
      * @throws {@link MavenAGI.BadRequestError}
+     * @throws {@link MavenAGI.PayloadTooLargeError}
      * @throws {@link MavenAGI.ServerError}
      */
     public exportConversationTable(
@@ -403,6 +426,16 @@ export class Analytics {
                         }),
                         _response.rawResponse,
                     );
+                case 413:
+                    throw new MavenAGI.PayloadTooLargeError(
+                        serializers.ErrorMessage.parseOrThrow(_response.error.body, {
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
+                            breadcrumbsPrefix: ["response"],
+                        }),
+                        _response.rawResponse,
+                    );
                 case 500:
                     throw new MavenAGI.ServerError(
                         serializers.ErrorMessage.parseOrThrow(_response.error.body, {
@@ -449,6 +482,7 @@ export class Analytics {
      *
      * @throws {@link MavenAGI.NotFoundError}
      * @throws {@link MavenAGI.BadRequestError}
+     * @throws {@link MavenAGI.PayloadTooLargeError}
      * @throws {@link MavenAGI.ServerError}
      *
      * @example
@@ -538,6 +572,16 @@ export class Analytics {
                         }),
                         _response.rawResponse,
                     );
+                case 413:
+                    throw new MavenAGI.PayloadTooLargeError(
+                        serializers.ErrorMessage.parseOrThrow(_response.error.body, {
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
+                            breadcrumbsPrefix: ["response"],
+                        }),
+                        _response.rawResponse,
+                    );
                 case 500:
                     throw new MavenAGI.ServerError(
                         serializers.ErrorMessage.parseOrThrow(_response.error.body, {
@@ -582,6 +626,7 @@ export class Analytics {
      *
      * @throws {@link MavenAGI.NotFoundError}
      * @throws {@link MavenAGI.BadRequestError}
+     * @throws {@link MavenAGI.PayloadTooLargeError}
      * @throws {@link MavenAGI.ServerError}
      *
      * @example
@@ -668,6 +713,16 @@ export class Analytics {
                         }),
                         _response.rawResponse,
                     );
+                case 413:
+                    throw new MavenAGI.PayloadTooLargeError(
+                        serializers.ErrorMessage.parseOrThrow(_response.error.body, {
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
+                            breadcrumbsPrefix: ["response"],
+                        }),
+                        _response.rawResponse,
+                    );
                 case 500:
                     throw new MavenAGI.ServerError(
                         serializers.ErrorMessage.parseOrThrow(_response.error.body, {
@@ -712,6 +767,7 @@ export class Analytics {
      *
      * @throws {@link MavenAGI.NotFoundError}
      * @throws {@link MavenAGI.BadRequestError}
+     * @throws {@link MavenAGI.PayloadTooLargeError}
      * @throws {@link MavenAGI.ServerError}
      *
      * @example
@@ -801,6 +857,16 @@ export class Analytics {
                         }),
                         _response.rawResponse,
                     );
+                case 413:
+                    throw new MavenAGI.PayloadTooLargeError(
+                        serializers.ErrorMessage.parseOrThrow(_response.error.body, {
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
+                            breadcrumbsPrefix: ["response"],
+                        }),
+                        _response.rawResponse,
+                    );
                 case 500:
                     throw new MavenAGI.ServerError(
                         serializers.ErrorMessage.parseOrThrow(_response.error.body, {
@@ -845,6 +911,7 @@ export class Analytics {
      *
      * @throws {@link MavenAGI.NotFoundError}
      * @throws {@link MavenAGI.BadRequestError}
+     * @throws {@link MavenAGI.PayloadTooLargeError}
      * @throws {@link MavenAGI.ServerError}
      *
      * @example
@@ -956,6 +1023,16 @@ export class Analytics {
                     );
                 case 400:
                     throw new MavenAGI.BadRequestError(
+                        serializers.ErrorMessage.parseOrThrow(_response.error.body, {
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
+                            breadcrumbsPrefix: ["response"],
+                        }),
+                        _response.rawResponse,
+                    );
+                case 413:
+                    throw new MavenAGI.PayloadTooLargeError(
                         serializers.ErrorMessage.parseOrThrow(_response.error.body, {
                             unrecognizedObjectKeys: "passthrough",
                             allowUnrecognizedUnionMembers: true,

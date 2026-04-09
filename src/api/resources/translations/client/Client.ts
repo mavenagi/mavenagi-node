@@ -29,6 +29,7 @@ export class Translations {
      *
      * @throws {@link MavenAGI.NotFoundError}
      * @throws {@link MavenAGI.BadRequestError}
+     * @throws {@link MavenAGI.PayloadTooLargeError}
      * @throws {@link MavenAGI.ServerError}
      *
      * @example
@@ -100,6 +101,16 @@ export class Translations {
                     );
                 case 400:
                     throw new MavenAGI.BadRequestError(
+                        serializers.ErrorMessage.parseOrThrow(_response.error.body, {
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
+                            breadcrumbsPrefix: ["response"],
+                        }),
+                        _response.rawResponse,
+                    );
+                case 413:
+                    throw new MavenAGI.PayloadTooLargeError(
                         serializers.ErrorMessage.parseOrThrow(_response.error.body, {
                             unrecognizedObjectKeys: "passthrough",
                             allowUnrecognizedUnionMembers: true,

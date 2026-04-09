@@ -37,6 +37,7 @@ export class Conversation {
      *
      * @throws {@link MavenAGI.NotFoundError}
      * @throws {@link MavenAGI.BadRequestError}
+     * @throws {@link MavenAGI.PayloadTooLargeError}
      * @throws {@link MavenAGI.ServerError}
      *
      * @example
@@ -136,6 +137,16 @@ export class Conversation {
                         }),
                         _response.rawResponse,
                     );
+                case 413:
+                    throw new MavenAGI.PayloadTooLargeError(
+                        serializers.ErrorMessage.parseOrThrow(_response.error.body, {
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
+                            breadcrumbsPrefix: ["response"],
+                        }),
+                        _response.rawResponse,
+                    );
                 case 500:
                     throw new MavenAGI.ServerError(
                         serializers.ErrorMessage.parseOrThrow(_response.error.body, {
@@ -184,6 +195,7 @@ export class Conversation {
      *
      * @throws {@link MavenAGI.NotFoundError}
      * @throws {@link MavenAGI.BadRequestError}
+     * @throws {@link MavenAGI.PayloadTooLargeError}
      * @throws {@link MavenAGI.ServerError}
      *
      * @example
@@ -264,6 +276,16 @@ export class Conversation {
                         }),
                         _response.rawResponse,
                     );
+                case 413:
+                    throw new MavenAGI.PayloadTooLargeError(
+                        serializers.ErrorMessage.parseOrThrow(_response.error.body, {
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
+                            breadcrumbsPrefix: ["response"],
+                        }),
+                        _response.rawResponse,
+                    );
                 case 500:
                     throw new MavenAGI.ServerError(
                         serializers.ErrorMessage.parseOrThrow(_response.error.body, {
@@ -311,6 +333,7 @@ export class Conversation {
      *
      * @throws {@link MavenAGI.NotFoundError}
      * @throws {@link MavenAGI.BadRequestError}
+     * @throws {@link MavenAGI.PayloadTooLargeError}
      * @throws {@link MavenAGI.ServerError}
      *
      * @example
@@ -396,6 +419,16 @@ export class Conversation {
                         }),
                         _response.rawResponse,
                     );
+                case 413:
+                    throw new MavenAGI.PayloadTooLargeError(
+                        serializers.ErrorMessage.parseOrThrow(_response.error.body, {
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
+                            breadcrumbsPrefix: ["response"],
+                        }),
+                        _response.rawResponse,
+                    );
                 case 500:
                     throw new MavenAGI.ServerError(
                         serializers.ErrorMessage.parseOrThrow(_response.error.body, {
@@ -452,6 +485,7 @@ export class Conversation {
      *
      * @throws {@link MavenAGI.NotFoundError}
      * @throws {@link MavenAGI.BadRequestError}
+     * @throws {@link MavenAGI.PayloadTooLargeError}
      * @throws {@link MavenAGI.ServerError}
      *
      * @example
@@ -528,6 +562,16 @@ export class Conversation {
                         }),
                         _response.rawResponse,
                     );
+                case 413:
+                    throw new MavenAGI.PayloadTooLargeError(
+                        serializers.ErrorMessage.parseOrThrow(_response.error.body, {
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
+                            breadcrumbsPrefix: ["response"],
+                        }),
+                        _response.rawResponse,
+                    );
                 case 500:
                     throw new MavenAGI.ServerError(
                         serializers.ErrorMessage.parseOrThrow(_response.error.body, {
@@ -575,6 +619,7 @@ export class Conversation {
      *
      * @throws {@link MavenAGI.NotFoundError}
      * @throws {@link MavenAGI.BadRequestError}
+     * @throws {@link MavenAGI.PayloadTooLargeError}
      * @throws {@link MavenAGI.ServerError}
      *
      * @example
@@ -673,6 +718,16 @@ export class Conversation {
                         }),
                         _response.rawResponse,
                     );
+                case 413:
+                    throw new MavenAGI.PayloadTooLargeError(
+                        serializers.ErrorMessage.parseOrThrow(_response.error.body, {
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
+                            breadcrumbsPrefix: ["response"],
+                        }),
+                        _response.rawResponse,
+                    );
                 case 500:
                     throw new MavenAGI.ServerError(
                         serializers.ErrorMessage.parseOrThrow(_response.error.body, {
@@ -728,6 +783,7 @@ export class Conversation {
      *
      * @throws {@link MavenAGI.NotFoundError}
      * @throws {@link MavenAGI.BadRequestError}
+     * @throws {@link MavenAGI.PayloadTooLargeError}
      * @throws {@link MavenAGI.ServerError}
      *
      * @example
@@ -815,6 +871,16 @@ export class Conversation {
                     );
                 case 400:
                     throw new MavenAGI.BadRequestError(
+                        serializers.ErrorMessage.parseOrThrow(_response.error.body, {
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
+                            breadcrumbsPrefix: ["response"],
+                        }),
+                        _response.rawResponse,
+                    );
+                case 413:
+                    throw new MavenAGI.PayloadTooLargeError(
                         serializers.ErrorMessage.parseOrThrow(_response.error.body, {
                             unrecognizedObjectKeys: "passthrough",
                             allowUnrecognizedUnionMembers: true,
@@ -960,6 +1026,16 @@ export class Conversation {
                         }),
                         _response.rawResponse,
                     );
+                case 413:
+                    throw new MavenAGI.PayloadTooLargeError(
+                        serializers.ErrorMessage.parseOrThrow(_response.error.body, {
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
+                            breadcrumbsPrefix: ["response"],
+                        }),
+                        _response.rawResponse,
+                    );
                 case 500:
                     throw new MavenAGI.ServerError(
                         serializers.ErrorMessage.parseOrThrow(_response.error.body, {
@@ -1006,6 +1082,7 @@ export class Conversation {
      *
      * @throws {@link MavenAGI.NotFoundError}
      * @throws {@link MavenAGI.BadRequestError}
+     * @throws {@link MavenAGI.PayloadTooLargeError}
      * @throws {@link MavenAGI.ServerError}
      *
      * @example
@@ -1079,6 +1156,16 @@ export class Conversation {
                         }),
                         _response.rawResponse,
                     );
+                case 413:
+                    throw new MavenAGI.PayloadTooLargeError(
+                        serializers.ErrorMessage.parseOrThrow(_response.error.body, {
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
+                            breadcrumbsPrefix: ["response"],
+                        }),
+                        _response.rawResponse,
+                    );
                 case 500:
                     throw new MavenAGI.ServerError(
                         serializers.ErrorMessage.parseOrThrow(_response.error.body, {
@@ -1125,6 +1212,7 @@ export class Conversation {
      *
      * @throws {@link MavenAGI.NotFoundError}
      * @throws {@link MavenAGI.BadRequestError}
+     * @throws {@link MavenAGI.PayloadTooLargeError}
      * @throws {@link MavenAGI.ServerError}
      *
      * @example
@@ -1216,6 +1304,16 @@ export class Conversation {
                         }),
                         _response.rawResponse,
                     );
+                case 413:
+                    throw new MavenAGI.PayloadTooLargeError(
+                        serializers.ErrorMessage.parseOrThrow(_response.error.body, {
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
+                            breadcrumbsPrefix: ["response"],
+                        }),
+                        _response.rawResponse,
+                    );
                 case 500:
                     throw new MavenAGI.ServerError(
                         serializers.ErrorMessage.parseOrThrow(_response.error.body, {
@@ -1265,6 +1363,7 @@ export class Conversation {
      *
      * @throws {@link MavenAGI.NotFoundError}
      * @throws {@link MavenAGI.BadRequestError}
+     * @throws {@link MavenAGI.PayloadTooLargeError}
      * @throws {@link MavenAGI.ServerError}
      *
      * @example
@@ -1350,6 +1449,16 @@ export class Conversation {
                         }),
                         _response.rawResponse,
                     );
+                case 413:
+                    throw new MavenAGI.PayloadTooLargeError(
+                        serializers.ErrorMessage.parseOrThrow(_response.error.body, {
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
+                            breadcrumbsPrefix: ["response"],
+                        }),
+                        _response.rawResponse,
+                    );
                 case 500:
                     throw new MavenAGI.ServerError(
                         serializers.ErrorMessage.parseOrThrow(_response.error.body, {
@@ -1399,6 +1508,7 @@ export class Conversation {
      *
      * @throws {@link MavenAGI.NotFoundError}
      * @throws {@link MavenAGI.BadRequestError}
+     * @throws {@link MavenAGI.PayloadTooLargeError}
      * @throws {@link MavenAGI.ServerError}
      *
      * @example
@@ -1483,6 +1593,16 @@ export class Conversation {
                         }),
                         _response.rawResponse,
                     );
+                case 413:
+                    throw new MavenAGI.PayloadTooLargeError(
+                        serializers.ErrorMessage.parseOrThrow(_response.error.body, {
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
+                            breadcrumbsPrefix: ["response"],
+                        }),
+                        _response.rawResponse,
+                    );
                 case 500:
                     throw new MavenAGI.ServerError(
                         serializers.ErrorMessage.parseOrThrow(_response.error.body, {
@@ -1536,6 +1656,7 @@ export class Conversation {
      *
      * @throws {@link MavenAGI.NotFoundError}
      * @throws {@link MavenAGI.BadRequestError}
+     * @throws {@link MavenAGI.PayloadTooLargeError}
      * @throws {@link MavenAGI.ServerError}
      *
      * @example
@@ -1621,6 +1742,16 @@ export class Conversation {
                         }),
                         _response.rawResponse,
                     );
+                case 413:
+                    throw new MavenAGI.PayloadTooLargeError(
+                        serializers.ErrorMessage.parseOrThrow(_response.error.body, {
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
+                            breadcrumbsPrefix: ["response"],
+                        }),
+                        _response.rawResponse,
+                    );
                 case 500:
                     throw new MavenAGI.ServerError(
                         serializers.ErrorMessage.parseOrThrow(_response.error.body, {
@@ -1667,6 +1798,7 @@ export class Conversation {
      *
      * @throws {@link MavenAGI.NotFoundError}
      * @throws {@link MavenAGI.BadRequestError}
+     * @throws {@link MavenAGI.PayloadTooLargeError}
      * @throws {@link MavenAGI.ServerError}
      *
      * @example
@@ -1743,6 +1875,16 @@ export class Conversation {
                         }),
                         _response.rawResponse,
                     );
+                case 413:
+                    throw new MavenAGI.PayloadTooLargeError(
+                        serializers.ErrorMessage.parseOrThrow(_response.error.body, {
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
+                            breadcrumbsPrefix: ["response"],
+                        }),
+                        _response.rawResponse,
+                    );
                 case 500:
                     throw new MavenAGI.ServerError(
                         serializers.ErrorMessage.parseOrThrow(_response.error.body, {
@@ -1788,6 +1930,7 @@ export class Conversation {
      * The CSV format may change over time and should not be relied upon by code consumers.
      * @throws {@link MavenAGI.NotFoundError}
      * @throws {@link MavenAGI.BadRequestError}
+     * @throws {@link MavenAGI.PayloadTooLargeError}
      * @throws {@link MavenAGI.ServerError}
      */
     public export(
@@ -1854,6 +1997,16 @@ export class Conversation {
                         }),
                         _response.rawResponse,
                     );
+                case 413:
+                    throw new MavenAGI.PayloadTooLargeError(
+                        serializers.ErrorMessage.parseOrThrow(_response.error.body, {
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
+                            breadcrumbsPrefix: ["response"],
+                        }),
+                        _response.rawResponse,
+                    );
                 case 500:
                     throw new MavenAGI.ServerError(
                         serializers.ErrorMessage.parseOrThrow(_response.error.body, {
@@ -1905,6 +2058,7 @@ export class Conversation {
      *
      * @throws {@link MavenAGI.NotFoundError}
      * @throws {@link MavenAGI.BadRequestError}
+     * @throws {@link MavenAGI.PayloadTooLargeError}
      * @throws {@link MavenAGI.ServerError}
      */
     public importSimulations(
@@ -1985,6 +2139,16 @@ export class Conversation {
                         }),
                         _response.rawResponse,
                     );
+                case 413:
+                    throw new MavenAGI.PayloadTooLargeError(
+                        serializers.ErrorMessage.parseOrThrow(_response.error.body, {
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
+                            breadcrumbsPrefix: ["response"],
+                        }),
+                        _response.rawResponse,
+                    );
                 case 500:
                     throw new MavenAGI.ServerError(
                         serializers.ErrorMessage.parseOrThrow(_response.error.body, {
@@ -2036,6 +2200,7 @@ export class Conversation {
      *
      * @throws {@link MavenAGI.NotFoundError}
      * @throws {@link MavenAGI.BadRequestError}
+     * @throws {@link MavenAGI.PayloadTooLargeError}
      * @throws {@link MavenAGI.ServerError}
      *
      * @example
@@ -2121,6 +2286,16 @@ export class Conversation {
                     );
                 case 400:
                     throw new MavenAGI.BadRequestError(
+                        serializers.ErrorMessage.parseOrThrow(_response.error.body, {
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
+                            breadcrumbsPrefix: ["response"],
+                        }),
+                        _response.rawResponse,
+                    );
+                case 413:
+                    throw new MavenAGI.PayloadTooLargeError(
                         serializers.ErrorMessage.parseOrThrow(_response.error.body, {
                             unrecognizedObjectKeys: "passthrough",
                             allowUnrecognizedUnionMembers: true,

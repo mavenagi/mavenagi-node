@@ -29,6 +29,7 @@ export class Events {
      *
      * @throws {@link MavenAGI.NotFoundError}
      * @throws {@link MavenAGI.BadRequestError}
+     * @throws {@link MavenAGI.PayloadTooLargeError}
      * @throws {@link MavenAGI.ServerError}
      *
      * @example
@@ -116,6 +117,16 @@ export class Events {
                         }),
                         _response.rawResponse,
                     );
+                case 413:
+                    throw new MavenAGI.PayloadTooLargeError(
+                        serializers.ErrorMessage.parseOrThrow(_response.error.body, {
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
+                            breadcrumbsPrefix: ["response"],
+                        }),
+                        _response.rawResponse,
+                    );
                 case 500:
                     throw new MavenAGI.ServerError(
                         serializers.ErrorMessage.parseOrThrow(_response.error.body, {
@@ -160,6 +171,7 @@ export class Events {
      *
      * @throws {@link MavenAGI.NotFoundError}
      * @throws {@link MavenAGI.BadRequestError}
+     * @throws {@link MavenAGI.PayloadTooLargeError}
      * @throws {@link MavenAGI.ServerError}
      *
      * @example
@@ -236,6 +248,16 @@ export class Events {
                         }),
                         _response.rawResponse,
                     );
+                case 413:
+                    throw new MavenAGI.PayloadTooLargeError(
+                        serializers.ErrorMessage.parseOrThrow(_response.error.body, {
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
+                            breadcrumbsPrefix: ["response"],
+                        }),
+                        _response.rawResponse,
+                    );
                 case 500:
                     throw new MavenAGI.ServerError(
                         serializers.ErrorMessage.parseOrThrow(_response.error.body, {
@@ -281,6 +303,7 @@ export class Events {
      *
      * @throws {@link MavenAGI.NotFoundError}
      * @throws {@link MavenAGI.BadRequestError}
+     * @throws {@link MavenAGI.PayloadTooLargeError}
      * @throws {@link MavenAGI.ServerError}
      *
      * @example
@@ -361,6 +384,16 @@ export class Events {
                         }),
                         _response.rawResponse,
                     );
+                case 413:
+                    throw new MavenAGI.PayloadTooLargeError(
+                        serializers.ErrorMessage.parseOrThrow(_response.error.body, {
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
+                            breadcrumbsPrefix: ["response"],
+                        }),
+                        _response.rawResponse,
+                    );
                 case 500:
                     throw new MavenAGI.ServerError(
                         serializers.ErrorMessage.parseOrThrow(_response.error.body, {
@@ -403,6 +436,7 @@ export class Events {
      * This will output a summary of each event that matches the supplied filter. A maximum of 10,000 events can be exported at a time. For most use cases it is recommended to use the search API instead and convert the JSON response to your desired format. The CSV format may change over time and should not be relied upon by code consumers.
      * @throws {@link MavenAGI.NotFoundError}
      * @throws {@link MavenAGI.BadRequestError}
+     * @throws {@link MavenAGI.PayloadTooLargeError}
      * @throws {@link MavenAGI.ServerError}
      */
     public export(
@@ -461,6 +495,16 @@ export class Events {
                     );
                 case 400:
                     throw new MavenAGI.BadRequestError(
+                        serializers.ErrorMessage.parseOrThrow(_response.error.body, {
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
+                            breadcrumbsPrefix: ["response"],
+                        }),
+                        _response.rawResponse,
+                    );
+                case 413:
+                    throw new MavenAGI.PayloadTooLargeError(
                         serializers.ErrorMessage.parseOrThrow(_response.error.body, {
                             unrecognizedObjectKeys: "passthrough",
                             allowUnrecognizedUnionMembers: true,
