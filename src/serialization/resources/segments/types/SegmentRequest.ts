@@ -2,7 +2,7 @@
 
 import type * as MavenAGI from "../../../../api/index";
 import * as core from "../../../../core";
-import type * as serializers from "../../../index";
+import * as serializers from "../../../index";
 import { EntityIdBase } from "../../commons/types/EntityIdBase";
 import { SegmentBase } from "./SegmentBase";
 import { SegmentStatus } from "./SegmentStatus";
@@ -11,6 +11,7 @@ export const SegmentRequest: core.serialization.ObjectSchema<serializers.Segment
     core.serialization
         .object({
             segmentId: EntityIdBase,
+            precondition: core.serialization.lazy(() => serializers.Precondition),
             status: SegmentStatus.optional(),
         })
         .extend(SegmentBase);
@@ -18,6 +19,7 @@ export const SegmentRequest: core.serialization.ObjectSchema<serializers.Segment
 export declare namespace SegmentRequest {
     export interface Raw extends SegmentBase.Raw {
         segmentId: EntityIdBase.Raw;
+        precondition: serializers.Precondition.Raw;
         status?: SegmentStatus.Raw | null;
     }
 }

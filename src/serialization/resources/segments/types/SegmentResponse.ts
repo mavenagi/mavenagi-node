@@ -2,7 +2,7 @@
 
 import type * as MavenAGI from "../../../../api/index";
 import * as core from "../../../../core";
-import type * as serializers from "../../../index";
+import * as serializers from "../../../index";
 import { EntityId } from "../../commons/types/EntityId";
 import { SegmentBase } from "./SegmentBase";
 import { SegmentStatus } from "./SegmentStatus";
@@ -13,6 +13,7 @@ export const SegmentResponse: core.serialization.ObjectSchema<
 > = core.serialization
     .object({
         segmentId: EntityId,
+        precondition: core.serialization.lazy(() => serializers.PreconditionResponse),
         createdAt: core.serialization.date(),
         updatedAt: core.serialization.date(),
         referencedKnowledgeBaseCount: core.serialization.number().optional(),
@@ -25,6 +26,7 @@ export const SegmentResponse: core.serialization.ObjectSchema<
 export declare namespace SegmentResponse {
     export interface Raw extends SegmentBase.Raw {
         segmentId: EntityId.Raw;
+        precondition: serializers.PreconditionResponse.Raw;
         createdAt: string;
         updatedAt: string;
         referencedKnowledgeBaseCount?: number | null;

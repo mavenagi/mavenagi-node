@@ -25,6 +25,8 @@ import type * as MavenAGI from "../../../index";
 export interface SegmentRequest extends MavenAGI.SegmentBase {
     /** ID that uniquely identifies this segment */
     segmentId: MavenAGI.EntityIdBase;
+    /** The precondition that must be met for a conversation message to be included in the segment. */
+    precondition: MavenAGI.Precondition;
     /** Desired status for the segment. If omitted, defaults to ACTIVE. In the future this will become required, so specify ACTIVE or INACTIVE if possible. */
     status?: MavenAGI.SegmentStatus;
 }

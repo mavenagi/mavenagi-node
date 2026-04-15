@@ -12,7 +12,7 @@ import type * as MavenAGI from "../../../index";
  *             appId: "zendesk",
  *             organizationId: "acme",
  *             agentId: "support",
- *             type: MavenAGI.EntityType.Conversation
+ *             type: MavenAGI.EntityType.IntelligentField
  *         },
  *         name: "Ticket Priority",
  *         entityId: {

@@ -35,6 +35,8 @@ import type * as MavenAGI from "../../../index";
 export interface SegmentResponse extends MavenAGI.SegmentBase {
     /** ID that uniquely identifies this segment */
     segmentId: MavenAGI.EntityId;
+    /** The precondition that must be met for a conversation message to be included in the segment. */
+    precondition: MavenAGI.PreconditionResponse;
     /** The date and time when the segment was created. */
     createdAt: Date;
     /** The date and time when the segment was last updated. */
