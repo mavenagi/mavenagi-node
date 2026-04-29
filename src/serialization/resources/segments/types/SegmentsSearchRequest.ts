@@ -3,7 +3,7 @@
 import type * as MavenAGI from "../../../../api/index";
 import * as core from "../../../../core";
 import type * as serializers from "../../../index";
-import { BasePaginatedRequest } from "../../commons/types/BasePaginatedRequest";
+import { BaseCappedPaginatedRequest } from "../../commons/types/BaseCappedPaginatedRequest";
 import { SegmentField } from "./SegmentField";
 import { SegmentFilter } from "./SegmentFilter";
 
@@ -15,10 +15,10 @@ export const SegmentsSearchRequest: core.serialization.ObjectSchema<
         sort: SegmentField.optional(),
         filter: SegmentFilter.optional(),
     })
-    .extend(BasePaginatedRequest);
+    .extend(BaseCappedPaginatedRequest);
 
 export declare namespace SegmentsSearchRequest {
-    export interface Raw extends BasePaginatedRequest.Raw {
+    export interface Raw extends BaseCappedPaginatedRequest.Raw {
         sort?: SegmentField.Raw | null;
         filter?: SegmentFilter.Raw | null;
     }

@@ -19,6 +19,7 @@ export * from "./AttachmentRequest";
 export * from "./AttachmentResponse";
 export * from "./AttachmentStatus";
 export * from "./BaseAttachment";
+export * from "./BaseCappedPaginatedRequest";
 export * from "./BaseConversationResponse";
 export * from "./BasePaginatedRequest";
 export * from "./BaseSearchRequest";

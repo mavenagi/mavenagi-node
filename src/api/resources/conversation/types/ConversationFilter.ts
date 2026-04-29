@@ -75,4 +75,6 @@ export interface ConversationFilter {
     inboxItemIds?: MavenAGI.EntityIdFilter[];
     /** Whether to include simulation conversations in search results. Defaults to only non-simulation conversations. */
     simulationFilter?: MavenAGI.SimulationFilter;
+    /** Filter by intelligent field values. All conditions are ANDed together. */
+    intelligentFields?: MavenAGI.IntelligentFieldFilter;
 }

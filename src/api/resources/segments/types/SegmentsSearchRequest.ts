@@ -2,7 +2,7 @@
 
 import type * as MavenAGI from "../../../index";
 
-export interface SegmentsSearchRequest extends MavenAGI.BasePaginatedRequest {
+export interface SegmentsSearchRequest extends MavenAGI.BaseCappedPaginatedRequest {
     /** The field to sort by, defaults to created timestamp */
     sort?: MavenAGI.SegmentField;
     /** The filter to apply to the segments. */

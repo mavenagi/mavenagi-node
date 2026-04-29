@@ -10,6 +10,7 @@ import { Quality } from "../../commons/types/Quality";
 import { QualityReason } from "../../commons/types/QualityReason";
 import { ResponseLength } from "../../commons/types/ResponseLength";
 import { Sentiment } from "../../commons/types/Sentiment";
+import { IntelligentFieldFilter } from "./IntelligentFieldFilter";
 import { ResolutionStatus } from "./ResolutionStatus";
 import { SimulationFilter } from "./SimulationFilter";
 
@@ -41,6 +42,7 @@ export const ConversationFilter: core.serialization.ObjectSchema<
     matchedSegmentIds: core.serialization.list(EntityIdFilter).optional(),
     inboxItemIds: core.serialization.list(EntityIdFilter).optional(),
     simulationFilter: SimulationFilter.optional(),
+    intelligentFields: IntelligentFieldFilter.optional(),
 });
 
 export declare namespace ConversationFilter {
@@ -69,5 +71,6 @@ export declare namespace ConversationFilter {
         matchedSegmentIds?: EntityIdFilter.Raw[] | null;
         inboxItemIds?: EntityIdFilter.Raw[] | null;
         simulationFilter?: SimulationFilter.Raw | null;
+        intelligentFields?: IntelligentFieldFilter.Raw | null;
     }
 }
