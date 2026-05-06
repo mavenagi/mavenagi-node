@@ -17,5 +17,5 @@
         "useLegacyExports": true,
         "generateWireTests": false
     },
-    "sdkVersion": "1.2.40"
+    "sdkVersion": "1.2.41"
 }
