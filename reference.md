@@ -37,7 +37,7 @@ await client.actions.search({});
 <dl>
 <dd>
 
-**requestOptions:** `Actions.RequestOptions` 
+**requestOptions:** `ActionsClient.RequestOptions` 
     
 </dd>
 </dl>
@@ -120,7 +120,7 @@ await client.actions.createOrUpdate({
 <dl>
 <dd>
 
-**requestOptions:** `Actions.RequestOptions` 
+**requestOptions:** `ActionsClient.RequestOptions` 
     
 </dd>
 </dl>
@@ -191,7 +191,7 @@ await client.actions.get("get-balance");
 <dl>
 <dd>
 
-**requestOptions:** `Actions.RequestOptions` 
+**requestOptions:** `ActionsClient.RequestOptions` 
     
 </dd>
 </dl>
@@ -275,7 +275,7 @@ await client.actions.patch("get-balance", {
 <dl>
 <dd>
 
-**requestOptions:** `Actions.RequestOptions` 
+**requestOptions:** `ActionsClient.RequestOptions` 
     
 </dd>
 </dl>
@@ -338,7 +338,7 @@ await client.actions.delete("get-balance");
 <dl>
 <dd>
 
-**requestOptions:** `Actions.RequestOptions` 
+**requestOptions:** `ActionsClient.RequestOptions` 
     
 </dd>
 </dl>
@@ -406,7 +406,7 @@ await client.agents.search({});
 <dl>
 <dd>
 
-**requestOptions:** `Agents.RequestOptions` 
+**requestOptions:** `AgentsClient.RequestOptions` 
     
 </dd>
 </dl>
@@ -469,7 +469,7 @@ await client.agents.list("organizationReferenceId");
 <dl>
 <dd>
 
-**requestOptions:** `Agents.RequestOptions` 
+**requestOptions:** `AgentsClient.RequestOptions` 
     
 </dd>
 </dl>
@@ -555,7 +555,7 @@ await client.agents.create("organizationReferenceId", "agentReferenceId", {
 <dl>
 <dd>
 
-**requestOptions:** `Agents.RequestOptions` 
+**requestOptions:** `AgentsClient.RequestOptions` 
     
 </dd>
 </dl>
@@ -626,7 +626,7 @@ await client.agents.get("organizationReferenceId", "agentReferenceId");
 <dl>
 <dd>
 
-**requestOptions:** `Agents.RequestOptions` 
+**requestOptions:** `AgentsClient.RequestOptions` 
     
 </dd>
 </dl>
@@ -710,7 +710,7 @@ await client.agents.patch("organizationReferenceId", "agentReferenceId");
 <dl>
 <dd>
 
-**requestOptions:** `Agents.RequestOptions` 
+**requestOptions:** `AgentsClient.RequestOptions` 
     
 </dd>
 </dl>
@@ -785,7 +785,7 @@ await client.agents.delete("organizationReferenceId", "agentReferenceId");
 <dl>
 <dd>
 
-**requestOptions:** `Agents.RequestOptions` 
+**requestOptions:** `AgentsClient.RequestOptions` 
     
 </dd>
 </dl>
@@ -876,7 +876,7 @@ await client.analytics.getConversationTable({
 <dl>
 <dd>
 
-**requestOptions:** `Analytics.RequestOptions` 
+**requestOptions:** `AnalyticsClient.RequestOptions` 
     
 </dd>
 </dl>
@@ -950,7 +950,7 @@ await client.analytics.getConversationChart({
 <dl>
 <dd>
 
-**requestOptions:** `Analytics.RequestOptions` 
+**requestOptions:** `AnalyticsClient.RequestOptions` 
     
 </dd>
 </dl>
@@ -1032,7 +1032,7 @@ await client.analytics.exportConversationTable({
 <dl>
 <dd>
 
-**requestOptions:** `Analytics.RequestOptions` 
+**requestOptions:** `AnalyticsClient.RequestOptions` 
     
 </dd>
 </dl>
@@ -1108,7 +1108,7 @@ await client.analytics.getFeedbackTable({
 <dl>
 <dd>
 
-**requestOptions:** `Analytics.RequestOptions` 
+**requestOptions:** `AnalyticsClient.RequestOptions` 
     
 </dd>
 </dl>
@@ -1181,7 +1181,7 @@ await client.analytics.getAgentUserTable({
 <dl>
 <dd>
 
-**requestOptions:** `Analytics.RequestOptions` 
+**requestOptions:** `AnalyticsClient.RequestOptions` 
     
 </dd>
 </dl>
@@ -1257,7 +1257,7 @@ await client.analytics.getEventTable({
 <dl>
 <dd>
 
-**requestOptions:** `Analytics.RequestOptions` 
+**requestOptions:** `AnalyticsClient.RequestOptions` 
     
 </dd>
 </dl>
@@ -1331,7 +1331,7 @@ await client.analytics.getEventChart({
 <dl>
 <dd>
 
-**requestOptions:** `Analytics.RequestOptions` 
+**requestOptions:** `AnalyticsClient.RequestOptions` 
     
 </dd>
 </dl>
@@ -1401,7 +1401,7 @@ await client.appSettings.search({
 <dl>
 <dd>
 
-**requestOptions:** `AppSettings.RequestOptions` 
+**requestOptions:** `AppSettingsClient.RequestOptions` 
     
 </dd>
 </dl>
@@ -1456,7 +1456,7 @@ await client.appSettings.get();
 <dl>
 <dd>
 
-**requestOptions:** `AppSettings.RequestOptions` 
+**requestOptions:** `AppSettingsClient.RequestOptions` 
     
 </dd>
 </dl>
@@ -1529,7 +1529,7 @@ await client.appSettings.update({
 <dl>
 <dd>
 
-**requestOptions:** `AppSettings.RequestOptions` 
+**requestOptions:** `AppSettingsClient.RequestOptions` 
     
 </dd>
 </dl>
@@ -1596,7 +1596,7 @@ await client.assets.initiateUpload({
 <dl>
 <dd>
 
-**requestOptions:** `Assets.RequestOptions` 
+**requestOptions:** `AssetsClient.RequestOptions` 
     
 </dd>
 </dl>
@@ -1668,7 +1668,7 @@ await client.assets.commitUpload("assetReferenceId", {});
 <dl>
 <dd>
 
-**requestOptions:** `Assets.RequestOptions` 
+**requestOptions:** `AssetsClient.RequestOptions` 
     
 </dd>
 </dl>
@@ -1762,7 +1762,7 @@ await client.conversation.initialize({
 <dl>
 <dd>
 
-**requestOptions:** `Conversation.RequestOptions` 
+**requestOptions:** `ConversationClient.RequestOptions` 
     
 </dd>
 </dl>
@@ -1838,7 +1838,7 @@ await client.conversation.patch("conversation-0", {
 <dl>
 <dd>
 
-**requestOptions:** `Conversation.RequestOptions` 
+**requestOptions:** `ConversationClient.RequestOptions` 
     
 </dd>
 </dl>
@@ -1909,7 +1909,7 @@ await client.conversation.get("conversationId");
 <dl>
 <dd>
 
-**requestOptions:** `Conversation.RequestOptions` 
+**requestOptions:** `ConversationClient.RequestOptions` 
     
 </dd>
 </dl>
@@ -1991,7 +1991,7 @@ await client.conversation.delete("conversation-0", {
 <dl>
 <dd>
 
-**requestOptions:** `Conversation.RequestOptions` 
+**requestOptions:** `ConversationClient.RequestOptions` 
     
 </dd>
 </dl>
@@ -2080,7 +2080,7 @@ await client.conversation.appendNewMessages("conversationId", [{
 <dl>
 <dd>
 
-**requestOptions:** `Conversation.RequestOptions` 
+**requestOptions:** `ConversationClient.RequestOptions` 
     
 </dd>
 </dl>
@@ -2176,7 +2176,7 @@ await client.conversation.ask("conversation-0", {
 <dl>
 <dd>
 
-**requestOptions:** `Conversation.RequestOptions` 
+**requestOptions:** `ConversationClient.RequestOptions` 
     
 </dd>
 </dl>
@@ -2279,7 +2279,7 @@ for await (const item of response) {
 <dl>
 <dd>
 
-**requestOptions:** `Conversation.RequestOptions` 
+**requestOptions:** `ConversationClient.RequestOptions` 
     
 </dd>
 </dl>
@@ -2342,7 +2342,7 @@ await client.conversation.categorize("conversationId");
 <dl>
 <dd>
 
-**requestOptions:** `Conversation.RequestOptions` 
+**requestOptions:** `ConversationClient.RequestOptions` 
     
 </dd>
 </dl>
@@ -2420,7 +2420,7 @@ await client.conversation.createFeedback({
 <dl>
 <dd>
 
-**requestOptions:** `Conversation.RequestOptions` 
+**requestOptions:** `ConversationClient.RequestOptions` 
     
 </dd>
 </dl>
@@ -2502,7 +2502,7 @@ await client.conversation.submitActionForm("conversationId", {
 <dl>
 <dd>
 
-**requestOptions:** `Conversation.RequestOptions` 
+**requestOptions:** `ConversationClient.RequestOptions` 
     
 </dd>
 </dl>
@@ -2577,7 +2577,7 @@ await client.conversation.addConversationMetadata("conversationId", {
 <dl>
 <dd>
 
-**requestOptions:** `Conversation.RequestOptions` 
+**requestOptions:** `ConversationClient.RequestOptions` 
     
 </dd>
 </dl>
@@ -2659,7 +2659,7 @@ await client.conversation.updateConversationMetadata("conversation-0", {
 <dl>
 <dd>
 
-**requestOptions:** `Conversation.RequestOptions` 
+**requestOptions:** `ConversationClient.RequestOptions` 
     
 </dd>
 </dl>
@@ -2722,7 +2722,7 @@ await client.conversation.search({});
 <dl>
 <dd>
 
-**requestOptions:** `Conversation.RequestOptions` 
+**requestOptions:** `ConversationClient.RequestOptions` 
     
 </dd>
 </dl>
@@ -2790,7 +2790,7 @@ await client.conversation.export({});
 <dl>
 <dd>
 
-**requestOptions:** `Conversation.RequestOptions` 
+**requestOptions:** `ConversationClient.RequestOptions` 
     
 </dd>
 </dl>
@@ -2875,7 +2875,7 @@ await client.conversation.deliverMessage({
 <dl>
 <dd>
 
-**requestOptions:** `Conversation.RequestOptions` 
+**requestOptions:** `ConversationClient.RequestOptions` 
     
 </dd>
 </dl>
@@ -2925,7 +2925,7 @@ await client.customers.search({});
 <dl>
 <dd>
 
-**requestOptions:** `Customers.RequestOptions` 
+**requestOptions:** `CustomersClient.RequestOptions` 
     
 </dd>
 </dl>
@@ -2993,7 +2993,7 @@ await client.customers.createOrUpdate({
 <dl>
 <dd>
 
-**requestOptions:** `Customers.RequestOptions` 
+**requestOptions:** `CustomersClient.RequestOptions` 
     
 </dd>
 </dl>
@@ -3064,7 +3064,7 @@ await client.customers.get("acme");
 <dl>
 <dd>
 
-**requestOptions:** `Customers.RequestOptions` 
+**requestOptions:** `CustomersClient.RequestOptions` 
     
 </dd>
 </dl>
@@ -3138,7 +3138,7 @@ await client.customers.patch("customerReferenceId", {});
 <dl>
 <dd>
 
-**requestOptions:** `Customers.RequestOptions` 
+**requestOptions:** `CustomersClient.RequestOptions` 
     
 </dd>
 </dl>
@@ -3213,7 +3213,7 @@ await client.events.create({
 <dl>
 <dd>
 
-**requestOptions:** `Events.RequestOptions` 
+**requestOptions:** `EventsClient.RequestOptions` 
     
 </dd>
 </dl>
@@ -3276,7 +3276,7 @@ await client.events.search({});
 <dl>
 <dd>
 
-**requestOptions:** `Events.RequestOptions` 
+**requestOptions:** `EventsClient.RequestOptions` 
     
 </dd>
 </dl>
@@ -3349,7 +3349,7 @@ await client.events.get("eventId", {
 <dl>
 <dd>
 
-**requestOptions:** `Events.RequestOptions` 
+**requestOptions:** `EventsClient.RequestOptions` 
     
 </dd>
 </dl>
@@ -3414,7 +3414,7 @@ await client.events.export({});
 <dl>
 <dd>
 
-**requestOptions:** `Events.RequestOptions` 
+**requestOptions:** `EventsClient.RequestOptions` 
     
 </dd>
 </dl>
@@ -3478,7 +3478,7 @@ await client.inbox.search({});
 <dl>
 <dd>
 
-**requestOptions:** `Inbox.RequestOptions` 
+**requestOptions:** `InboxClient.RequestOptions` 
     
 </dd>
 </dl>
@@ -3569,7 +3569,7 @@ await client.inbox.createOrUpdate({
 <dl>
 <dd>
 
-**requestOptions:** `Inbox.RequestOptions` 
+**requestOptions:** `InboxClient.RequestOptions` 
     
 </dd>
 </dl>
@@ -3648,7 +3648,7 @@ await client.inbox.patch("custom-item-1", {
 <dl>
 <dd>
 
-**requestOptions:** `Inbox.RequestOptions` 
+**requestOptions:** `InboxClient.RequestOptions` 
     
 </dd>
 </dl>
@@ -3721,7 +3721,7 @@ await client.inbox.applyTags("custom-item-1", {
 <dl>
 <dd>
 
-**requestOptions:** `Inbox.RequestOptions` 
+**requestOptions:** `InboxClient.RequestOptions` 
     
 </dd>
 </dl>
@@ -3794,7 +3794,7 @@ await client.inbox.get("inboxItemId", {
 <dl>
 <dd>
 
-**requestOptions:** `Inbox.RequestOptions` 
+**requestOptions:** `InboxClient.RequestOptions` 
     
 </dd>
 </dl>
@@ -3867,7 +3867,7 @@ await client.inbox.getFix("inboxItemFixId", {
 <dl>
 <dd>
 
-**requestOptions:** `Inbox.RequestOptions` 
+**requestOptions:** `InboxClient.RequestOptions` 
     
 </dd>
 </dl>
@@ -3941,7 +3941,7 @@ await client.inbox.applyFixes("inboxItemId", {
 <dl>
 <dd>
 
-**requestOptions:** `Inbox.RequestOptions` 
+**requestOptions:** `InboxClient.RequestOptions` 
     
 </dd>
 </dl>
@@ -4014,7 +4014,7 @@ await client.inbox.ignore("inboxItemId", {
 <dl>
 <dd>
 
-**requestOptions:** `Inbox.RequestOptions` 
+**requestOptions:** `InboxClient.RequestOptions` 
     
 </dd>
 </dl>
@@ -4094,7 +4094,7 @@ await client.integrations.update("organizationId", "integrationId", {});
 <dl>
 <dd>
 
-**requestOptions:** `Integrations.RequestOptions` 
+**requestOptions:** `IntegrationsClient.RequestOptions` 
     
 </dd>
 </dl>
@@ -4158,7 +4158,7 @@ await client.knowledge.searchKnowledgeBases({});
 <dl>
 <dd>
 
-**requestOptions:** `Knowledge.RequestOptions` 
+**requestOptions:** `KnowledgeClient.RequestOptions` 
     
 </dd>
 </dl>
@@ -4226,7 +4226,7 @@ await client.knowledge.createOrUpdateKnowledgeBase({
 <dl>
 <dd>
 
-**requestOptions:** `Knowledge.RequestOptions` 
+**requestOptions:** `KnowledgeClient.RequestOptions` 
     
 </dd>
 </dl>
@@ -4297,7 +4297,7 @@ await client.knowledge.getKnowledgeBase("help-center");
 <dl>
 <dd>
 
-**requestOptions:** `Knowledge.RequestOptions` 
+**requestOptions:** `KnowledgeClient.RequestOptions` 
     
 </dd>
 </dl>
@@ -4373,7 +4373,7 @@ await client.knowledge.refreshKnowledgeBase("help-center", {
 <dl>
 <dd>
 
-**requestOptions:** `Knowledge.RequestOptions` 
+**requestOptions:** `KnowledgeClient.RequestOptions` 
     
 </dd>
 </dl>
@@ -4447,7 +4447,7 @@ await client.knowledge.cancelKnowledgeBaseVersion("knowledgeBaseReferenceId", {}
 <dl>
 <dd>
 
-**requestOptions:** `Knowledge.RequestOptions` 
+**requestOptions:** `KnowledgeClient.RequestOptions` 
     
 </dd>
 </dl>
@@ -4531,7 +4531,7 @@ await client.knowledge.patchKnowledgeBase("help-center", {
 <dl>
 <dd>
 
-**requestOptions:** `Knowledge.RequestOptions` 
+**requestOptions:** `KnowledgeClient.RequestOptions` 
     
 </dd>
 </dl>
@@ -4606,7 +4606,7 @@ await client.knowledge.createKnowledgeBaseVersion("help-center", {
 <dl>
 <dd>
 
-**requestOptions:** `Knowledge.RequestOptions` 
+**requestOptions:** `KnowledgeClient.RequestOptions` 
     
 </dd>
 </dl>
@@ -4684,7 +4684,7 @@ await client.knowledge.finalizeKnowledgeBaseVersion("help-center", {
 <dl>
 <dd>
 
-**requestOptions:** `Knowledge.RequestOptions` 
+**requestOptions:** `KnowledgeClient.RequestOptions` 
     
 </dd>
 </dl>
@@ -4755,7 +4755,7 @@ await client.knowledge.listKnowledgeBaseVersions("knowledgeBaseReferenceId");
 <dl>
 <dd>
 
-**requestOptions:** `Knowledge.RequestOptions` 
+**requestOptions:** `KnowledgeClient.RequestOptions` 
     
 </dd>
 </dl>
@@ -4818,7 +4818,7 @@ await client.knowledge.searchKnowledgeDocuments({});
 <dl>
 <dd>
 
-**requestOptions:** `Knowledge.RequestOptions` 
+**requestOptions:** `KnowledgeClient.RequestOptions` 
     
 </dd>
 </dl>
@@ -4910,7 +4910,7 @@ await client.knowledge.createKnowledgeDocument("help-center", {
 <dl>
 <dd>
 
-**requestOptions:** `Knowledge.RequestOptions` 
+**requestOptions:** `KnowledgeClient.RequestOptions` 
     
 </dd>
 </dl>
@@ -4996,7 +4996,7 @@ await client.knowledge.deleteKnowledgeDocument("help-center", "getting-started",
 <dl>
 <dd>
 
-**requestOptions:** `Knowledge.RequestOptions` 
+**requestOptions:** `KnowledgeClient.RequestOptions` 
     
 </dd>
 </dl>
@@ -5077,7 +5077,7 @@ await client.knowledge.getKnowledgeDocument("knowledgeBaseVersionReferenceId", "
 <dl>
 <dd>
 
-**requestOptions:** `Knowledge.RequestOptions` 
+**requestOptions:** `KnowledgeClient.RequestOptions` 
     
 </dd>
 </dl>
@@ -5163,7 +5163,7 @@ await client.knowledge.patchKnowledgeDocument("help-center", "how-it-works", {
 <dl>
 <dd>
 
-**requestOptions:** `Knowledge.RequestOptions` 
+**requestOptions:** `KnowledgeClient.RequestOptions` 
     
 </dd>
 </dl>
@@ -5242,7 +5242,7 @@ await client.organizations.create("organizationReferenceId", {
 <dl>
 <dd>
 
-**requestOptions:** `Organizations.RequestOptions` 
+**requestOptions:** `OrganizationsClient.RequestOptions` 
     
 </dd>
 </dl>
@@ -5305,7 +5305,7 @@ await client.organizations.get("organizationReferenceId");
 <dl>
 <dd>
 
-**requestOptions:** `Organizations.RequestOptions` 
+**requestOptions:** `OrganizationsClient.RequestOptions` 
     
 </dd>
 </dl>
@@ -5381,7 +5381,7 @@ await client.organizations.patch("organizationReferenceId", {});
 <dl>
 <dd>
 
-**requestOptions:** `Organizations.RequestOptions` 
+**requestOptions:** `OrganizationsClient.RequestOptions` 
     
 </dd>
 </dl>
@@ -5448,7 +5448,7 @@ await client.organizations.delete("organizationReferenceId");
 <dl>
 <dd>
 
-**requestOptions:** `Organizations.RequestOptions` 
+**requestOptions:** `OrganizationsClient.RequestOptions` 
     
 </dd>
 </dl>
@@ -5543,7 +5543,7 @@ await client.organizations.getConversationTable({
 <dl>
 <dd>
 
-**requestOptions:** `Organizations.RequestOptions` 
+**requestOptions:** `OrganizationsClient.RequestOptions` 
     
 </dd>
 </dl>
@@ -5622,7 +5622,7 @@ await client.organizations.getConversationChart({
 <dl>
 <dd>
 
-**requestOptions:** `Organizations.RequestOptions` 
+**requestOptions:** `OrganizationsClient.RequestOptions` 
     
 </dd>
 </dl>
@@ -5672,7 +5672,7 @@ await client.segments.search({});
 <dl>
 <dd>
 
-**requestOptions:** `Segments.RequestOptions` 
+**requestOptions:** `SegmentsClient.RequestOptions` 
     
 </dd>
 </dl>
@@ -5751,7 +5751,7 @@ await client.segments.createOrUpdate({
 <dl>
 <dd>
 
-**requestOptions:** `Segments.RequestOptions` 
+**requestOptions:** `SegmentsClient.RequestOptions` 
     
 </dd>
 </dl>
@@ -5822,7 +5822,7 @@ await client.segments.get("admin-users");
 <dl>
 <dd>
 
-**requestOptions:** `Segments.RequestOptions` 
+**requestOptions:** `SegmentsClient.RequestOptions` 
     
 </dd>
 </dl>
@@ -5896,7 +5896,7 @@ await client.segments.patch("segmentReferenceId", {});
 <dl>
 <dd>
 
-**requestOptions:** `Segments.RequestOptions` 
+**requestOptions:** `SegmentsClient.RequestOptions` 
     
 </dd>
 </dl>
@@ -5971,7 +5971,7 @@ await client.segments.delete("segmentReferenceId");
 <dl>
 <dd>
 
-**requestOptions:** `Segments.RequestOptions` 
+**requestOptions:** `SegmentsClient.RequestOptions` 
     
 </dd>
 </dl>
@@ -6038,7 +6038,7 @@ await client.translations.translate({
 <dl>
 <dd>
 
-**requestOptions:** `Translations.RequestOptions` 
+**requestOptions:** `TranslationsClient.RequestOptions` 
     
 </dd>
 </dl>
@@ -6088,7 +6088,7 @@ await client.triggers.search({});
 <dl>
 <dd>
 
-**requestOptions:** `Triggers.RequestOptions` 
+**requestOptions:** `TriggersClient.RequestOptions` 
     
 </dd>
 </dl>
@@ -6157,7 +6157,7 @@ await client.triggers.createOrUpdate({
 <dl>
 <dd>
 
-**requestOptions:** `Triggers.RequestOptions` 
+**requestOptions:** `TriggersClient.RequestOptions` 
     
 </dd>
 </dl>
@@ -6220,7 +6220,7 @@ await client.triggers.get("store-in-snowflake");
 <dl>
 <dd>
 
-**requestOptions:** `Triggers.RequestOptions` 
+**requestOptions:** `TriggersClient.RequestOptions` 
     
 </dd>
 </dl>
@@ -6283,7 +6283,7 @@ await client.triggers.delete("store-in-snowflake");
 <dl>
 <dd>
 
-**requestOptions:** `Triggers.RequestOptions` 
+**requestOptions:** `TriggersClient.RequestOptions` 
     
 </dd>
 </dl>
@@ -6356,7 +6356,7 @@ await client.triggers.partialUpdate("triggerReferenceId", {
 <dl>
 <dd>
 
-**requestOptions:** `Triggers.RequestOptions` 
+**requestOptions:** `TriggersClient.RequestOptions` 
     
 </dd>
 </dl>
@@ -6422,7 +6422,7 @@ await client.users.search({});
 <dl>
 <dd>
 
-**requestOptions:** `Users.RequestOptions` 
+**requestOptions:** `UsersClient.RequestOptions` 
     
 </dd>
 </dl>
@@ -6487,7 +6487,7 @@ await client.users.getAgentUser("aus_1234567890");
 <dl>
 <dd>
 
-**requestOptions:** `Users.RequestOptions` 
+**requestOptions:** `UsersClient.RequestOptions` 
     
 </dd>
 </dl>
@@ -6564,7 +6564,7 @@ await client.users.createOrUpdate({
 <dl>
 <dd>
 
-**requestOptions:** `Users.RequestOptions` 
+**requestOptions:** `UsersClient.RequestOptions` 
     
 </dd>
 </dl>
@@ -6635,7 +6635,7 @@ await client.users.get("user-0");
 <dl>
 <dd>
 
-**requestOptions:** `Users.RequestOptions` 
+**requestOptions:** `UsersClient.RequestOptions` 
     
 </dd>
 </dl>
@@ -6711,7 +6711,7 @@ await client.users.delete("user-0");
 <dl>
 <dd>
 
-**requestOptions:** `Users.RequestOptions` 
+**requestOptions:** `UsersClient.RequestOptions` 
     
 </dd>
 </dl>
@@ -6784,7 +6784,7 @@ await client.voice.sessionToken({
 <dl>
 <dd>
 
-**requestOptions:** `Voice.RequestOptions` 
+**requestOptions:** `VoiceClient.RequestOptions` 
     
 </dd>
 </dl>
@@ -6795,3 +6795,4 @@ await client.voice.sessionToken({
 </dd>
 </dl>
 </details>
+

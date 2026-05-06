@@ -12,7 +12,7 @@ export const ConversationRow: core.serialization.ObjectSchema<
     MavenAGI.ConversationRow
 > = core.serialization
     .object({
-        identifier: core.serialization.record(ConversationField, FieldValue.optional()),
+        identifier: core.serialization.partialRecord(ConversationField, FieldValue.optional()),
     })
     .extend(RowBase);
 

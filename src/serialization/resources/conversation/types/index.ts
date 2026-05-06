@@ -29,7 +29,6 @@ export * from "./IntelligentFieldFilter";
 export * from "./IntelligentFieldOperator";
 export * from "./IntelligentFieldSearchCondition";
 export * from "./NumericConversationField";
-export * from "./ResolutionStatus";
 export * from "./SimulationFilter";
 export * from "./StreamResponse";
 export * from "./SubmitActionFormRequest";

@@ -7,7 +7,7 @@ export type BotResponse =
     | MavenAGI.BotResponse.ActionForm
     | MavenAGI.BotResponse.OauthButton
     | MavenAGI.BotResponse.Chart
-    | MavenAGI.BotResponse.Object_;
+    | MavenAGI.BotResponse.Object;
 
 export namespace BotResponse {
     export interface Text extends MavenAGI.BotTextResponse {
@@ -26,7 +26,7 @@ export namespace BotResponse {
         type: "chart";
     }
 
-    export interface Object_ extends MavenAGI.BotObjectResponse {
+    export interface Object extends MavenAGI.BotObjectResponse {
         type: "object";
     }
 }

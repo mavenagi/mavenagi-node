@@ -23,14 +23,6 @@ import type * as MavenAGI from "../../../index";
  *             conversationPreconditionType: "intelligentField"
  *         }
  *     }
- *
- * @example
- *     {
- *         preconditionType: "conversation",
- *         value: {
- *             conversationPreconditionType: "intelligentField"
- *         }
- *     }
  */
 export type Precondition =
     | MavenAGI.Precondition.User

@@ -8,10 +8,10 @@ import { FeedbackType } from "../../commons/types/FeedbackType";
 import { NumberRange } from "../../commons/types/NumberRange";
 import { Quality } from "../../commons/types/Quality";
 import { QualityReason } from "../../commons/types/QualityReason";
+import { ResolutionStatus } from "../../commons/types/ResolutionStatus";
 import { ResponseLength } from "../../commons/types/ResponseLength";
 import { Sentiment } from "../../commons/types/Sentiment";
 import { IntelligentFieldFilter } from "./IntelligentFieldFilter";
-import { ResolutionStatus } from "./ResolutionStatus";
 import { SimulationFilter } from "./SimulationFilter";
 
 export const ConversationFilter: core.serialization.ObjectSchema<

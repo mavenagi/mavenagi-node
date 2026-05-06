@@ -16,7 +16,7 @@ import type * as MavenAGI from "../../../index";
  *         open: false,
  *         llmEnabled: true,
  *         analysis: {
- *             resolutionStatus: "Resolved",
+ *             resolutionStatus: MavenAGI.ResolutionStatus.Resolved,
  *             sentiment: MavenAGI.Sentiment.Positive,
  *             resolvedByMaven: true
  *         },

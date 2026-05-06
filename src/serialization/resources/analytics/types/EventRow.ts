@@ -9,7 +9,7 @@ import { RowBase } from "./RowBase";
 
 export const EventRow: core.serialization.ObjectSchema<serializers.EventRow.Raw, MavenAGI.EventRow> = core.serialization
     .object({
-        identifier: core.serialization.record(EventField, FieldValue.optional()),
+        identifier: core.serialization.partialRecord(EventField, FieldValue.optional()),
     })
     .extend(RowBase);
 

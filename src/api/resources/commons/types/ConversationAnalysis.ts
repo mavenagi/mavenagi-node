@@ -8,7 +8,7 @@ export interface ConversationAnalysis {
     /** Generated agent response summary of the conversation */
     agentResponse?: string;
     /** Generated resolution status of the conversation */
-    resolutionStatus?: string;
+    resolutionStatus?: MavenAGI.ResolutionStatus;
     /** Generated category of the conversation */
     category?: string;
     /** Generated sentiment of the conversation */

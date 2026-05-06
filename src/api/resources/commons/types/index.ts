@@ -149,6 +149,7 @@ export * from "./PreconditionOperator";
 export * from "./PreconditionResponse";
 export * from "./Quality";
 export * from "./QualityReason";
+export * from "./ResolutionStatus";
 export * from "./ResponseConfig";
 export * from "./ResponseConfigPrecondition";
 export * from "./ResponseLength";

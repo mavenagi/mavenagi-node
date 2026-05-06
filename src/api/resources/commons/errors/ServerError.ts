@@ -12,6 +12,11 @@ export class ServerError extends errors.MavenAGIError {
             body: body,
             rawResponse: rawResponse,
         });
-        Object.setPrototypeOf(this, ServerError.prototype);
+        Object.setPrototypeOf(this, new.target.prototype);
+        if (Error.captureStackTrace) {
+            Error.captureStackTrace(this, this.constructor);
+        }
+
+        this.name = this.constructor.name;
     }
 }

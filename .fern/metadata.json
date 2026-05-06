@@ -1,0 +1,21 @@
+{
+    "cliVersion": "3.11.0",
+    "generatorName": "fernapi/fern-typescript-node-sdk",
+    "generatorVersion": "3.69.0",
+    "generatorConfig": {
+        "namespaceExport": "MavenAGI",
+        "allowCustomFetcher": true,
+        "useBrandedStringAliases": true,
+        "shouldGenerateWebsocketClients": true,
+        "alwaysSendAuth": true,
+        "inlineFileProperties": false,
+        "inlinePathParameters": false,
+        "enableInlineTypes": false,
+        "noSerdeLayer": false,
+        "omitUndefined": false,
+        "skipResponseValidation": false,
+        "useLegacyExports": true,
+        "generateWireTests": false
+    },
+    "sdkVersion": "1.2.40"
+}

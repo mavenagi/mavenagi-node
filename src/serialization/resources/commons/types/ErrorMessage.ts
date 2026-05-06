@@ -6,11 +6,15 @@ import type * as serializers from "../../../index";
 
 export const ErrorMessage: core.serialization.ObjectSchema<serializers.ErrorMessage.Raw, MavenAGI.ErrorMessage> =
     core.serialization.object({
+        status: core.serialization.number().optional(),
+        error: core.serialization.string().optional(),
         message: core.serialization.string().optional(),
     });
 
 export declare namespace ErrorMessage {
     export interface Raw {
+        status?: number | null;
+        error?: string | null;
         message?: string | null;
     }
 }

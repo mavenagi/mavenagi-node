@@ -6,6 +6,7 @@ import type * as serializers from "../../../index";
 import { IntelligentFieldValueResponse } from "./IntelligentFieldValueResponse";
 import { Quality } from "./Quality";
 import { QualityReason } from "./QualityReason";
+import { ResolutionStatus } from "./ResolutionStatus";
 import { Sentiment } from "./Sentiment";
 
 export const ConversationAnalysis: core.serialization.ObjectSchema<
@@ -14,7 +15,7 @@ export const ConversationAnalysis: core.serialization.ObjectSchema<
 > = core.serialization.object({
     userRequest: core.serialization.string().optional(),
     agentResponse: core.serialization.string().optional(),
-    resolutionStatus: core.serialization.string().optional(),
+    resolutionStatus: ResolutionStatus.optional(),
     category: core.serialization.string().optional(),
     sentiment: Sentiment.optional(),
     quality: Quality.optional(),
@@ -30,7 +31,7 @@ export declare namespace ConversationAnalysis {
     export interface Raw {
         userRequest?: string | null;
         agentResponse?: string | null;
-        resolutionStatus?: string | null;
+        resolutionStatus?: ResolutionStatus.Raw | null;
         category?: string | null;
         sentiment?: Sentiment.Raw | null;
         quality?: Quality.Raw | null;

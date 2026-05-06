@@ -10,7 +10,7 @@ import { RowBase } from "./RowBase";
 export const AgentUserRow: core.serialization.ObjectSchema<serializers.AgentUserRow.Raw, MavenAGI.AgentUserRow> =
     core.serialization
         .object({
-            identifier: core.serialization.record(AgentUserField, FieldValue.optional()),
+            identifier: core.serialization.partialRecord(AgentUserField, FieldValue.optional()),
         })
         .extend(RowBase);
 

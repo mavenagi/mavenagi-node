@@ -10,7 +10,7 @@ import { RowBase } from "./RowBase";
 export const FeedbackRow: core.serialization.ObjectSchema<serializers.FeedbackRow.Raw, MavenAGI.FeedbackRow> =
     core.serialization
         .object({
-            identifier: core.serialization.record(FeedbackField, FieldValue.optional()),
+            identifier: core.serialization.partialRecord(FeedbackField, FieldValue.optional()),
         })
         .extend(RowBase);
 

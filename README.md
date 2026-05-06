@@ -12,17 +12,22 @@ The Mavenagi TypeScript library provides convenient access to the Mavenagi APIs 
 - [Usage](#usage)
 - [Aborting Requests](#aborting-requests)
 - [Runtime Compatibility](#runtime-compatibility)
+- [Environments](#environments)
 - [Request and Response Types](#request-and-response-types)
 - [Exception Handling](#exception-handling)
 - [Streaming Response](#streaming-response)
 - [Binary Response](#binary-response)
 - [Advanced](#advanced)
+  - [Subpackage Exports](#subpackage-exports)
   - [Additional Headers](#additional-headers)
   - [Additional Query String Parameters](#additional-query-string-parameters)
   - [Retries](#retries)
   - [Timeouts](#timeouts)
   - [Aborting Requests](#aborting-requests)
   - [Access Raw Response Data](#access-raw-response-data)
+  - [Logging](#logging)
+  - [Custom Fetch](#custom-fetch)
+  - [Custom Fetcher](#custom-fetcher)
   - [Runtime Compatibility](#runtime-compatibility)
 - [Contributing](#contributing)
 
@@ -41,7 +46,7 @@ A full reference for this library is available [here](https://github.com/mavenag
 Instantiate and use the client with the following:
 
 ```typescript
-import { MavenAGIClient, MavenAGI } from "mavenagi";
+import { MavenAGI, MavenAGIClient } from "mavenagi";
 
 const client = new MavenAGIClient({ appId: "YOUR_APP_ID", appSecret: "YOUR_APP_SECRET", organizationId: "YOUR_ORGANIZATION_ID", agentId: "YOUR_AGENT_ID" });
 await client.actions.search({});
@@ -82,6 +87,18 @@ import { MavenAGIClient } from "mavenagi";
 const client = new MavenAGIClient({
     ...
     fetcher: // provide your implementation here
+});
+```
+
+## Environments
+
+This SDK allows you to configure different environments for API requests.
+
+```typescript
+import { MavenAGIClient, MavenAGIEnvironment } from "mavenagi";
+
+const client = new MavenAGIClient({
+    environment: MavenAGIEnvironment.Production,
 });
 ```
 
@@ -541,11 +558,30 @@ const text = new TextDecoder().decode(bytes);
 
 ## Advanced
 
+### Subpackage Exports
+
+This SDK supports direct imports of subpackage clients, which allows JavaScript bundlers to tree-shake and include only the imported subpackage code. This results in much smaller bundle sizes.
+
+```typescript
+import { ActionsClient } from 'mavenagi/actions';
+
+const client = new ActionsClient({...});
+```
+
 ### Additional Headers
 
 If you would like to send additional headers as part of the request, use the `headers` request option.
 
 ```typescript
+import { MavenAGIClient } from "mavenagi";
+
+const client = new MavenAGIClient({
+    ...
+    headers: {
+        'X-Custom-Header': 'custom value'
+    }
+});
+
 const response = await client.actions.search(..., {
     headers: {
         'X-Custom-Header': 'custom value'
@@ -571,11 +607,19 @@ The SDK is instrumented with automatic retries with exponential backoff. A reque
 as the request is deemed retryable and the number of retry attempts has not grown larger than the configured
 retry limit (default: 2).
 
-A request is deemed retryable when any of the following HTTP status codes is returned:
+Which status codes are retried depends on the `retryStatusCodes` generator configuration:
 
+**`legacy`** (current default): retries on
 - [408](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/408) (Timeout)
 - [429](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/429) (Too Many Requests)
-- [5XX](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/500) (Internal Server Errors)
+- [5XX](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status#server_error_responses) (All server errors, including 500)
+
+**`recommended`**: retries on
+- [408](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/408) (Timeout)
+- [429](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/429) (Too Many Requests)
+- [502](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/502) (Bad Gateway)
+- [503](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/503) (Service Unavailable)
+- [504](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/504) (Gateway Timeout)
 
 Use the `maxRetries` request option to configure this behavior.
 
@@ -619,6 +663,103 @@ console.log(data);
 console.log(rawResponse.headers['X-My-Header']);
 ```
 
+### Logging
+
+The SDK supports logging. You can configure the logger by passing in a `logging` object to the client options.
+
+```typescript
+import { MavenAGIClient, logging } from "mavenagi";
+
+const client = new MavenAGIClient({
+    ...
+    logging: {
+        level: logging.LogLevel.Debug, // defaults to logging.LogLevel.Info
+        logger: new logging.ConsoleLogger(), // defaults to ConsoleLogger
+        silent: false, // defaults to true, set to false to enable logging
+    }
+});
+```
+The `logging` object can have the following properties:
+- `level`: The log level to use. Defaults to `logging.LogLevel.Info`.
+- `logger`: The logger to use. Defaults to a `logging.ConsoleLogger`.
+- `silent`: Whether to silence the logger. Defaults to `true`.
+
+The `level` property can be one of the following values:
+- `logging.LogLevel.Debug`
+- `logging.LogLevel.Info`
+- `logging.LogLevel.Warn`
+- `logging.LogLevel.Error`
+
+To provide a custom logger, you can pass in an object that implements the `logging.ILogger` interface.
+
+<details>
+<summary>Custom logger examples</summary>
+
+Here's an example using the popular `winston` logging library.
+```ts
+import winston from 'winston';
+
+const winstonLogger = winston.createLogger({...});
+
+const logger: logging.ILogger = {
+    debug: (msg, ...args) => winstonLogger.debug(msg, ...args),
+    info: (msg, ...args) => winstonLogger.info(msg, ...args),
+    warn: (msg, ...args) => winstonLogger.warn(msg, ...args),
+    error: (msg, ...args) => winstonLogger.error(msg, ...args),
+};
+```
+
+Here's an example using the popular `pino` logging library.
+
+```ts
+import pino from 'pino';
+
+const pinoLogger = pino({...});
+
+const logger: logging.ILogger = {
+  debug: (msg, ...args) => pinoLogger.debug(args, msg),
+  info: (msg, ...args) => pinoLogger.info(args, msg),
+  warn: (msg, ...args) => pinoLogger.warn(args, msg),
+  error: (msg, ...args) => pinoLogger.error(args, msg),
+};
+```
+</details>
+
+
+### Custom Fetch
+
+The SDK provides a low-level `fetch` method for making custom HTTP requests while still
+benefiting from SDK-level configuration like authentication, retries, timeouts, and logging.
+This is useful for calling API endpoints not yet supported in the SDK.
+
+```typescript
+const response = await client.fetch("/v1/custom/endpoint", {
+    method: "GET",
+}, {
+    timeoutInSeconds: 30,
+    maxRetries: 3,
+    headers: {
+        "X-Custom-Header": "custom-value",
+    },
+});
+
+const data = await response.json();
+```
+
+### Custom Fetcher
+
+The SDK provides a way for you to customize the underlying HTTP client / Fetch function. If you're running in an
+unsupported environment, this provides a way for you to break glass and ensure the SDK works.
+
+```typescript
+import { MavenAGIClient } from "mavenagi";
+
+const client = new MavenAGIClient({
+    ...
+    fetcher: // provide your implementation here
+});
+```
+
 ### Runtime Compatibility
 
 
@@ -633,19 +774,6 @@ The SDK works in the following runtimes:
 - Bun 1.0+
 - React Native
 
-### Customizing Fetch Client
-
-The SDK provides a way for you to customize the underlying HTTP client / Fetch function. If you're running in an
-unsupported environment, this provides a way for you to break glass and ensure the SDK works.
-
-```typescript
-import { MavenAGIClient } from "mavenagi";
-
-const client = new MavenAGIClient({
-    ...
-    fetcher: // provide your implementation here
-});
-```
 
 ## Contributing
 

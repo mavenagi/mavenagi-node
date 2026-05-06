@@ -5,8 +5,23 @@ import * as core from "../../../../core";
 import type * as serializers from "../../../index";
 
 export const ResolutionStatus: core.serialization.Schema<serializers.ResolutionStatus.Raw, MavenAGI.ResolutionStatus> =
-    core.serialization.enum_(["RESOLVED", "ESCALATED", "IN_PROGRESS"]);
+    core.serialization.enum_([
+        "UNKNOWN",
+        "ERROR",
+        "IN_PROGRESS",
+        "RESOLVED",
+        "ESCALATED",
+        "NEGATIVE_FEEDBACK",
+        "INELIGIBLE",
+    ]);
 
 export declare namespace ResolutionStatus {
-    export type Raw = "RESOLVED" | "ESCALATED" | "IN_PROGRESS";
+    export type Raw =
+        | "UNKNOWN"
+        | "ERROR"
+        | "IN_PROGRESS"
+        | "RESOLVED"
+        | "ESCALATED"
+        | "NEGATIVE_FEEDBACK"
+        | "INELIGIBLE";
 }

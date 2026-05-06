@@ -7,5 +7,5 @@ export interface FeedbackRow extends MavenAGI.RowBase {
      * A unique identifier for each row, consisting of field names mapped to their respective values.
      * This includes time groupings and any specified field groupings.
      */
-    identifier: Record<MavenAGI.FeedbackField, MavenAGI.FieldValue | undefined>;
+    identifier: Partial<Record<MavenAGI.FeedbackField, MavenAGI.FieldValue>>;
 }
