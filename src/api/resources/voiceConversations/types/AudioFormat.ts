@@ -6,4 +6,4 @@ export const AudioFormat = {
     Pcm8000: "PCM_8000",
     Mulaw8000: "MULAW_8000",
 } as const;
-export type AudioFormat = (typeof AudioFormat)[keyof typeof AudioFormat];
+export type AudioFormat = (typeof AudioFormat)[keyof typeof AudioFormat] | string;

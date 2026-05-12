@@ -7,7 +7,7 @@ import type * as serializers from "../../../index";
 export const AppUserIdentifyingPropertyType: core.serialization.Schema<
     serializers.AppUserIdentifyingPropertyType.Raw,
     MavenAGI.AppUserIdentifyingPropertyType
-> = core.serialization.enum_(["EMAIL", "PHONE_NUMBER"]);
+> = core.serialization.forwardCompatibleEnum_(["EMAIL", "PHONE_NUMBER"]);
 
 export declare namespace AppUserIdentifyingPropertyType {
     export type Raw = "EMAIL" | "PHONE_NUMBER";

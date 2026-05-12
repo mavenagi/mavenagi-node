@@ -9,4 +9,4 @@ export const LlmPersona = {
     PatientEducator: "PATIENT_EDUCATOR",
     Pirate: "PIRATE",
 } as const;
-export type LlmPersona = (typeof LlmPersona)[keyof typeof LlmPersona];
+export type LlmPersona = (typeof LlmPersona)[keyof typeof LlmPersona] | string;

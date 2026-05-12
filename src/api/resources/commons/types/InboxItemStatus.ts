@@ -17,4 +17,4 @@ export const InboxItemStatus = {
      * The inbox item was ignored. */
     Ignored: "IGNORED",
 } as const;
-export type InboxItemStatus = (typeof InboxItemStatus)[keyof typeof InboxItemStatus];
+export type InboxItemStatus = (typeof InboxItemStatus)[keyof typeof InboxItemStatus] | string;

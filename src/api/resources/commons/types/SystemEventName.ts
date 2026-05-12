@@ -11,4 +11,4 @@ export const SystemEventName = {
      * An app was updated */
     AppUpdated: "APP_UPDATED",
 } as const;
-export type SystemEventName = (typeof SystemEventName)[keyof typeof SystemEventName];
+export type SystemEventName = (typeof SystemEventName)[keyof typeof SystemEventName] | string;

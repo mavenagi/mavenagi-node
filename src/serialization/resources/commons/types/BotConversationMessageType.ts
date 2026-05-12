@@ -7,7 +7,7 @@ import type * as serializers from "../../../index";
 export const BotConversationMessageType: core.serialization.Schema<
     serializers.BotConversationMessageType.Raw,
     MavenAGI.BotConversationMessageType
-> = core.serialization.enum_(["BOT_RESPONSE", "BOT_SUGGESTION"]);
+> = core.serialization.forwardCompatibleEnum_(["BOT_RESPONSE", "BOT_SUGGESTION"]);
 
 export declare namespace BotConversationMessageType {
     export type Raw = "BOT_RESPONSE" | "BOT_SUGGESTION";

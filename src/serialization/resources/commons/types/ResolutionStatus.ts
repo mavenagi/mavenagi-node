@@ -5,13 +5,15 @@ import * as core from "../../../../core";
 import type * as serializers from "../../../index";
 
 export const ResolutionStatus: core.serialization.Schema<serializers.ResolutionStatus.Raw, MavenAGI.ResolutionStatus> =
-    core.serialization.enum_([
+    core.serialization.forwardCompatibleEnum_([
         "UNKNOWN",
         "ERROR",
         "IN_PROGRESS",
         "RESOLVED",
         "ESCALATED",
         "NEGATIVE_FEEDBACK",
+        "CONTENT_SAFETY_FLAGGED",
+        "PROMPT_ATTACK_FLAGGED",
         "INELIGIBLE",
     ]);
 
@@ -23,5 +25,7 @@ export declare namespace ResolutionStatus {
         | "RESOLVED"
         | "ESCALATED"
         | "NEGATIVE_FEEDBACK"
+        | "CONTENT_SAFETY_FLAGGED"
+        | "PROMPT_ATTACK_FLAGGED"
         | "INELIGIBLE";
 }

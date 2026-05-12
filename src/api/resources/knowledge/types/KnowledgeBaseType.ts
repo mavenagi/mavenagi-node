@@ -11,4 +11,4 @@ export const KnowledgeBaseType = {
     Rss: "RSS",
     Legacy: "LEGACY",
 } as const;
-export type KnowledgeBaseType = (typeof KnowledgeBaseType)[keyof typeof KnowledgeBaseType];
+export type KnowledgeBaseType = (typeof KnowledgeBaseType)[keyof typeof KnowledgeBaseType] | string;

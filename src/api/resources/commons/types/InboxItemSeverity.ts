@@ -5,4 +5,4 @@ export const InboxItemSeverity = {
     Medium: "MEDIUM",
     High: "HIGH",
 } as const;
-export type InboxItemSeverity = (typeof InboxItemSeverity)[keyof typeof InboxItemSeverity];
+export type InboxItemSeverity = (typeof InboxItemSeverity)[keyof typeof InboxItemSeverity] | string;

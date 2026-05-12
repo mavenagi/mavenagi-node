@@ -5,7 +5,7 @@ import * as core from "../../../../core";
 import type * as serializers from "../../../index";
 
 export const AppVisibility: core.serialization.Schema<serializers.AppVisibility.Raw, MavenAGI.AppVisibility> =
-    core.serialization.enum_(["IN_DEVELOPMENT", "PRIVATE", "PUBLIC"]);
+    core.serialization.forwardCompatibleEnum_(["IN_DEVELOPMENT", "PRIVATE", "PUBLIC"]);
 
 export declare namespace AppVisibility {
     export type Raw = "IN_DEVELOPMENT" | "PRIVATE" | "PUBLIC";

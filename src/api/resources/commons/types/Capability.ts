@@ -8,4 +8,4 @@ export const Capability = {
     Async: "ASYNC",
     OauthButtons: "OAUTH_BUTTONS",
 } as const;
-export type Capability = (typeof Capability)[keyof typeof Capability];
+export type Capability = (typeof Capability)[keyof typeof Capability] | string;

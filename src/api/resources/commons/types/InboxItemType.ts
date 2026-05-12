@@ -11,4 +11,4 @@ export const InboxItemType = {
      * The inbox item is a custom api-provided inbox item. */
     Custom: "CUSTOM",
 } as const;
-export type InboxItemType = (typeof InboxItemType)[keyof typeof InboxItemType];
+export type InboxItemType = (typeof InboxItemType)[keyof typeof InboxItemType] | string;

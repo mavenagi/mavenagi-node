@@ -7,4 +7,4 @@ export const ActionField = {
     UserInteractionRequired: "UserInteractionRequired",
     CreatedAt: "CreatedAt",
 } as const;
-export type ActionField = (typeof ActionField)[keyof typeof ActionField];
+export type ActionField = (typeof ActionField)[keyof typeof ActionField] | string;

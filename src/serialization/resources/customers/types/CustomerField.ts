@@ -5,7 +5,7 @@ import * as core from "../../../../core";
 import type * as serializers from "../../../index";
 
 export const CustomerField: core.serialization.Schema<serializers.CustomerField.Raw, MavenAGI.CustomerField> =
-    core.serialization.enum_(["CreatedAt", "Name"]);
+    core.serialization.forwardCompatibleEnum_(["CreatedAt", "Name"]);
 
 export declare namespace CustomerField {
     export type Raw = "CreatedAt" | "Name";

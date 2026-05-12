@@ -5,7 +5,7 @@ import * as core from "../../../../core";
 import type * as serializers from "../../../index";
 
 export const AudioFormat: core.serialization.Schema<serializers.AudioFormat.Raw, MavenAGI.AudioFormat> =
-    core.serialization.enum_(["PCM_44100", "PCM_16000", "PCM_8000", "MULAW_8000"]);
+    core.serialization.forwardCompatibleEnum_(["PCM_44100", "PCM_16000", "PCM_8000", "MULAW_8000"]);
 
 export declare namespace AudioFormat {
     export type Raw = "PCM_44100" | "PCM_16000" | "PCM_8000" | "MULAW_8000";

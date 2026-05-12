@@ -6,4 +6,5 @@ export const KnowledgeDocumentContentType = {
     Markdown: "MARKDOWN",
 } as const;
 export type KnowledgeDocumentContentType =
-    (typeof KnowledgeDocumentContentType)[keyof typeof KnowledgeDocumentContentType];
+    | (typeof KnowledgeDocumentContentType)[keyof typeof KnowledgeDocumentContentType]
+    | string;

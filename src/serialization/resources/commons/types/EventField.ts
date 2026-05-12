@@ -5,7 +5,7 @@ import * as core from "../../../../core";
 import type * as serializers from "../../../index";
 
 export const EventField: core.serialization.Schema<serializers.EventField.Raw, MavenAGI.EventField> =
-    core.serialization.enum_([
+    core.serialization.forwardCompatibleEnum_([
         "CREATED_AT",
         "EVENT_NAME",
         "EVENT_TYPE",

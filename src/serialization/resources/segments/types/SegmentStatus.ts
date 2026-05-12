@@ -5,7 +5,7 @@ import * as core from "../../../../core";
 import type * as serializers from "../../../index";
 
 export const SegmentStatus: core.serialization.Schema<serializers.SegmentStatus.Raw, MavenAGI.SegmentStatus> =
-    core.serialization.enum_(["ACTIVE", "INACTIVE", "DELETED"]);
+    core.serialization.forwardCompatibleEnum_(["ACTIVE", "INACTIVE", "DELETED"]);
 
 export declare namespace SegmentStatus {
     export type Raw = "ACTIVE" | "INACTIVE" | "DELETED";

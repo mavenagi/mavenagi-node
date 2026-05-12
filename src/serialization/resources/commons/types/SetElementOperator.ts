@@ -7,7 +7,7 @@ import type * as serializers from "../../../index";
 export const SetElementOperator: core.serialization.Schema<
     serializers.SetElementOperator.Raw,
     MavenAGI.SetElementOperator
-> = core.serialization.enum_(["CONTAINS", "NOT_CONTAINS"]);
+> = core.serialization.forwardCompatibleEnum_(["CONTAINS", "NOT_CONTAINS"]);
 
 export declare namespace SetElementOperator {
     export type Raw = "CONTAINS" | "NOT_CONTAINS";

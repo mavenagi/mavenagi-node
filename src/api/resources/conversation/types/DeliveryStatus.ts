@@ -5,4 +5,4 @@ export const DeliveryStatus = {
     Failed: "FAILED",
     Queued: "QUEUED",
 } as const;
-export type DeliveryStatus = (typeof DeliveryStatus)[keyof typeof DeliveryStatus];
+export type DeliveryStatus = (typeof DeliveryStatus)[keyof typeof DeliveryStatus] | string;

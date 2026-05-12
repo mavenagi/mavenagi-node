@@ -4,4 +4,6 @@ export const PreconditionGroupOperator = {
     And: "AND",
     Or: "OR",
 } as const;
-export type PreconditionGroupOperator = (typeof PreconditionGroupOperator)[keyof typeof PreconditionGroupOperator];
+export type PreconditionGroupOperator =
+    | (typeof PreconditionGroupOperator)[keyof typeof PreconditionGroupOperator]
+    | string;

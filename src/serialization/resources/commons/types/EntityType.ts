@@ -5,7 +5,7 @@ import * as core from "../../../../core";
 import type * as serializers from "../../../index";
 
 export const EntityType: core.serialization.Schema<serializers.EntityType.Raw, MavenAGI.EntityType> =
-    core.serialization.enum_([
+    core.serialization.forwardCompatibleEnum_([
         "AGENT",
         "CONVERSATION",
         "CONVERSATION_MESSAGE",

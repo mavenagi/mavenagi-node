@@ -5,7 +5,7 @@ import * as core from "../../../../core";
 import type * as serializers from "../../../index";
 
 export const QualityReason: core.serialization.Schema<serializers.QualityReason.Raw, MavenAGI.QualityReason> =
-    core.serialization.enum_([
+    core.serialization.forwardCompatibleEnum_([
         "MISSING_KNOWLEDGE",
         "MISSING_USER_INFORMATION",
         "MISSING_ACTION",

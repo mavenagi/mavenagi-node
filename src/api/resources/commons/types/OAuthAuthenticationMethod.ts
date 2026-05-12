@@ -9,4 +9,6 @@ export const OAuthAuthenticationMethod = {
      * Credentials in request body (default) */
     Post: "post",
 } as const;
-export type OAuthAuthenticationMethod = (typeof OAuthAuthenticationMethod)[keyof typeof OAuthAuthenticationMethod];
+export type OAuthAuthenticationMethod =
+    | (typeof OAuthAuthenticationMethod)[keyof typeof OAuthAuthenticationMethod]
+    | string;

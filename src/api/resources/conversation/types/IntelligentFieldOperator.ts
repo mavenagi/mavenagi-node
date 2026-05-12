@@ -12,4 +12,6 @@ export const IntelligentFieldOperator = {
     Exists: "EXISTS",
     NotExists: "NOT_EXISTS",
 } as const;
-export type IntelligentFieldOperator = (typeof IntelligentFieldOperator)[keyof typeof IntelligentFieldOperator];
+export type IntelligentFieldOperator =
+    | (typeof IntelligentFieldOperator)[keyof typeof IntelligentFieldOperator]
+    | string;

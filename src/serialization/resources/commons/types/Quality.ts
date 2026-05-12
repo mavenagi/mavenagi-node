@@ -4,11 +4,8 @@ import type * as MavenAGI from "../../../../api/index";
 import * as core from "../../../../core";
 import type * as serializers from "../../../index";
 
-export const Quality: core.serialization.Schema<serializers.Quality.Raw, MavenAGI.Quality> = core.serialization.enum_([
-    "GOOD",
-    "NEEDS_IMPROVEMENT",
-    "UNKNOWN",
-]);
+export const Quality: core.serialization.Schema<serializers.Quality.Raw, MavenAGI.Quality> =
+    core.serialization.forwardCompatibleEnum_(["GOOD", "NEEDS_IMPROVEMENT", "UNKNOWN"]);
 
 export declare namespace Quality {
     export type Raw = "GOOD" | "NEEDS_IMPROVEMENT" | "UNKNOWN";

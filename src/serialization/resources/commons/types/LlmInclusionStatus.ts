@@ -7,7 +7,7 @@ import type * as serializers from "../../../index";
 export const LlmInclusionStatus: core.serialization.Schema<
     serializers.LlmInclusionStatus.Raw,
     MavenAGI.LlmInclusionStatus
-> = core.serialization.enum_(["ALWAYS", "WHEN_RELEVANT", "NEVER"]);
+> = core.serialization.forwardCompatibleEnum_(["ALWAYS", "WHEN_RELEVANT", "NEVER"]);
 
 export declare namespace LlmInclusionStatus {
     export type Raw = "ALWAYS" | "WHEN_RELEVANT" | "NEVER";

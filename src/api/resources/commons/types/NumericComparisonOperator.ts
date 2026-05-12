@@ -21,4 +21,6 @@ export const NumericComparisonOperator = {
      * Greater than or equals (>=) */
     Ge: "GE",
 } as const;
-export type NumericComparisonOperator = (typeof NumericComparisonOperator)[keyof typeof NumericComparisonOperator];
+export type NumericComparisonOperator =
+    | (typeof NumericComparisonOperator)[keyof typeof NumericComparisonOperator]
+    | string;

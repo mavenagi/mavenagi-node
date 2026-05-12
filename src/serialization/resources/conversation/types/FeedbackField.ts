@@ -5,7 +5,7 @@ import * as core from "../../../../core";
 import type * as serializers from "../../../index";
 
 export const FeedbackField: core.serialization.Schema<serializers.FeedbackField.Raw, MavenAGI.FeedbackField> =
-    core.serialization.enum_(["Type", "CreatedBy", "CreatedAt", "App"]);
+    core.serialization.forwardCompatibleEnum_(["Type", "CreatedBy", "CreatedAt", "App"]);
 
 export declare namespace FeedbackField {
     export type Raw = "Type" | "CreatedBy" | "CreatedAt" | "App";

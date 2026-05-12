@@ -38,4 +38,4 @@ export const ActionParameterType = {
      * OAuth authorization parameter type used to pass an access token at execution time. When this type is used it should be the only action parameter. This parameter is not sent to the LLM or shown on forms. */
     Oauth: "OAUTH",
 } as const;
-export type ActionParameterType = (typeof ActionParameterType)[keyof typeof ActionParameterType];
+export type ActionParameterType = (typeof ActionParameterType)[keyof typeof ActionParameterType] | string;

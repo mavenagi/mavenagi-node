@@ -5,4 +5,6 @@ export const KnowledgeBaseVersionType = {
     Full: "FULL",
     Partial: "PARTIAL",
 } as const;
-export type KnowledgeBaseVersionType = (typeof KnowledgeBaseVersionType)[keyof typeof KnowledgeBaseVersionType];
+export type KnowledgeBaseVersionType =
+    | (typeof KnowledgeBaseVersionType)[keyof typeof KnowledgeBaseVersionType]
+    | string;

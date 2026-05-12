@@ -5,7 +5,7 @@ import * as core from "../../../../core";
 import type * as serializers from "../../../index";
 
 export const UserEventName: core.serialization.Schema<serializers.UserEventName.Raw, MavenAGI.UserEventName> =
-    core.serialization.enum_([
+    core.serialization.forwardCompatibleEnum_([
         "BUTTON_CLICKED",
         "LINK_CLICKED",
         "CHAT_OPENED",

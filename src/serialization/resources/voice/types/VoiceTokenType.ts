@@ -5,7 +5,7 @@ import * as core from "../../../../core";
 import type * as serializers from "../../../index";
 
 export const VoiceTokenType: core.serialization.Schema<serializers.VoiceTokenType.Raw, MavenAGI.VoiceTokenType> =
-    core.serialization.enum_(["webrtc", "websocket"]);
+    core.serialization.forwardCompatibleEnum_(["webrtc", "websocket"]);
 
 export declare namespace VoiceTokenType {
     export type Raw = "webrtc" | "websocket";

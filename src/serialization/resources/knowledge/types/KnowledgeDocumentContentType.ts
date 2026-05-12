@@ -7,7 +7,7 @@ import type * as serializers from "../../../index";
 export const KnowledgeDocumentContentType: core.serialization.Schema<
     serializers.KnowledgeDocumentContentType.Raw,
     MavenAGI.KnowledgeDocumentContentType
-> = core.serialization.enum_(["HTML", "MARKDOWN"]);
+> = core.serialization.forwardCompatibleEnum_(["HTML", "MARKDOWN"]);
 
 export declare namespace KnowledgeDocumentContentType {
     export type Raw = "HTML" | "MARKDOWN";

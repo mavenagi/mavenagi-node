@@ -59,4 +59,4 @@ export const PiiCategory = {
     UkNationalInsuranceNumber: "UkNationalInsuranceNumber",
     UkUniqueTaxpayerNumber: "UkUniqueTaxpayerNumber",
 } as const;
-export type PiiCategory = (typeof PiiCategory)[keyof typeof PiiCategory];
+export type PiiCategory = (typeof PiiCategory)[keyof typeof PiiCategory] | string;

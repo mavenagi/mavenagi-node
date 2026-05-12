@@ -5,7 +5,7 @@ import * as core from "../../../../core";
 import type * as serializers from "../../../index";
 
 export const SimulationFilter: core.serialization.Schema<serializers.SimulationFilter.Raw, MavenAGI.SimulationFilter> =
-    core.serialization.enum_(["NON_SIMULATIONS", "SIMULATIONS", "ALL"]);
+    core.serialization.forwardCompatibleEnum_(["NON_SIMULATIONS", "SIMULATIONS", "ALL"]);
 
 export declare namespace SimulationFilter {
     export type Raw = "NON_SIMULATIONS" | "SIMULATIONS" | "ALL";

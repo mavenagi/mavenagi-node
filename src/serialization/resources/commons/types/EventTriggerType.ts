@@ -5,7 +5,12 @@ import * as core from "../../../../core";
 import type * as serializers from "../../../index";
 
 export const EventTriggerType: core.serialization.Schema<serializers.EventTriggerType.Raw, MavenAGI.EventTriggerType> =
-    core.serialization.enum_(["CONVERSATION_CREATED", "FEEDBACK_CREATED", "INBOX_ITEM_CREATED", "EVENT_CREATED"]);
+    core.serialization.forwardCompatibleEnum_([
+        "CONVERSATION_CREATED",
+        "FEEDBACK_CREATED",
+        "INBOX_ITEM_CREATED",
+        "EVENT_CREATED",
+    ]);
 
 export declare namespace EventTriggerType {
     export type Raw = "CONVERSATION_CREATED" | "FEEDBACK_CREATED" | "INBOX_ITEM_CREATED" | "EVENT_CREATED";

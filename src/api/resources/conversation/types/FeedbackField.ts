@@ -6,4 +6,4 @@ export const FeedbackField = {
     CreatedAt: "CreatedAt",
     App: "App",
 } as const;
-export type FeedbackField = (typeof FeedbackField)[keyof typeof FeedbackField];
+export type FeedbackField = (typeof FeedbackField)[keyof typeof FeedbackField] | string;

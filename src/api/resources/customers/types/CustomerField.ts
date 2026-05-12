@@ -4,4 +4,4 @@ export const CustomerField = {
     CreatedAt: "CreatedAt",
     Name: "Name",
 } as const;
-export type CustomerField = (typeof CustomerField)[keyof typeof CustomerField];
+export type CustomerField = (typeof CustomerField)[keyof typeof CustomerField] | string;

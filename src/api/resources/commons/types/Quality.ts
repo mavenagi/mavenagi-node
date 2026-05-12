@@ -5,4 +5,4 @@ export const Quality = {
     NeedsImprovement: "NEEDS_IMPROVEMENT",
     Unknown: "UNKNOWN",
 } as const;
-export type Quality = (typeof Quality)[keyof typeof Quality];
+export type Quality = (typeof Quality)[keyof typeof Quality] | string;

@@ -4,4 +4,4 @@ export const TriggerField = {
     CreatedAt: "CreatedAt",
     Enabled: "Enabled",
 } as const;
-export type TriggerField = (typeof TriggerField)[keyof typeof TriggerField];
+export type TriggerField = (typeof TriggerField)[keyof typeof TriggerField] | string;

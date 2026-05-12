@@ -5,7 +5,7 @@ import * as core from "../../../../core";
 import type * as serializers from "../../../index";
 
 export const InboxItemType: core.serialization.Schema<serializers.InboxItemType.Raw, MavenAGI.InboxItemType> =
-    core.serialization.enum_(["DUPLICATE_DOCUMENT", "MISSING_KNOWLEDGE", "CUSTOM"]);
+    core.serialization.forwardCompatibleEnum_(["DUPLICATE_DOCUMENT", "MISSING_KNOWLEDGE", "CUSTOM"]);
 
 export declare namespace InboxItemType {
     export type Raw = "DUPLICATE_DOCUMENT" | "MISSING_KNOWLEDGE" | "CUSTOM";

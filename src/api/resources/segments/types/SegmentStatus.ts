@@ -5,4 +5,4 @@ export const SegmentStatus = {
     Inactive: "INACTIVE",
     Deleted: "DELETED",
 } as const;
-export type SegmentStatus = (typeof SegmentStatus)[keyof typeof SegmentStatus];
+export type SegmentStatus = (typeof SegmentStatus)[keyof typeof SegmentStatus] | string;

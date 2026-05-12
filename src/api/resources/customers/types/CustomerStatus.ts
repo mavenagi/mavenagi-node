@@ -4,4 +4,4 @@ export const CustomerStatus = {
     Active: "ACTIVE",
     Inactive: "INACTIVE",
 } as const;
-export type CustomerStatus = (typeof CustomerStatus)[keyof typeof CustomerStatus];
+export type CustomerStatus = (typeof CustomerStatus)[keyof typeof CustomerStatus] | string;

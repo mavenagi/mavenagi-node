@@ -7,6 +7,8 @@ export const ResolutionStatus = {
     Resolved: "RESOLVED",
     Escalated: "ESCALATED",
     NegativeFeedback: "NEGATIVE_FEEDBACK",
+    ContentSafetyFlagged: "CONTENT_SAFETY_FLAGGED",
+    PromptAttackFlagged: "PROMPT_ATTACK_FLAGGED",
     Ineligible: "INELIGIBLE",
 } as const;
-export type ResolutionStatus = (typeof ResolutionStatus)[keyof typeof ResolutionStatus];
+export type ResolutionStatus = (typeof ResolutionStatus)[keyof typeof ResolutionStatus] | string;

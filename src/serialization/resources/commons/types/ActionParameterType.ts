@@ -7,7 +7,7 @@ import type * as serializers from "../../../index";
 export const ActionParameterType: core.serialization.Schema<
     serializers.ActionParameterType.Raw,
     MavenAGI.ActionParameterType
-> = core.serialization.enum_([
+> = core.serialization.forwardCompatibleEnum_([
     "STRING",
     "MULTILINE",
     "BOOLEAN",

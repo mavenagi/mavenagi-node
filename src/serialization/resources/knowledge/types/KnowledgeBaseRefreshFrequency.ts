@@ -7,7 +7,7 @@ import type * as serializers from "../../../index";
 export const KnowledgeBaseRefreshFrequency: core.serialization.Schema<
     serializers.KnowledgeBaseRefreshFrequency.Raw,
     MavenAGI.KnowledgeBaseRefreshFrequency
-> = core.serialization.enum_(["NONE", "DAILY", "WEEKLY", "MONTHLY"]);
+> = core.serialization.forwardCompatibleEnum_(["NONE", "DAILY", "WEEKLY", "MONTHLY"]);
 
 export declare namespace KnowledgeBaseRefreshFrequency {
     export type Raw = "NONE" | "DAILY" | "WEEKLY" | "MONTHLY";

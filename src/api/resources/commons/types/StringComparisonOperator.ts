@@ -27,4 +27,6 @@ export const StringComparisonOperator = {
      * String does not end with the specified suffix */
     NotEndsWith: "NOT_ENDS_WITH",
 } as const;
-export type StringComparisonOperator = (typeof StringComparisonOperator)[keyof typeof StringComparisonOperator];
+export type StringComparisonOperator =
+    | (typeof StringComparisonOperator)[keyof typeof StringComparisonOperator]
+    | string;

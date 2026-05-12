@@ -5,7 +5,7 @@ import * as core from "../../../../core";
 import type * as serializers from "../../../index";
 
 export const DeviceType: core.serialization.Schema<serializers.DeviceType.Raw, MavenAGI.DeviceType> =
-    core.serialization.enum_(["DESKTOP", "MOBILE", "TABLET", "OTHER"]);
+    core.serialization.forwardCompatibleEnum_(["DESKTOP", "MOBILE", "TABLET", "OTHER"]);
 
 export declare namespace DeviceType {
     export type Raw = "DESKTOP" | "MOBILE" | "TABLET" | "OTHER";

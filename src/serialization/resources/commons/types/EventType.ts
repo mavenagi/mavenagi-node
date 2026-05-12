@@ -5,7 +5,7 @@ import * as core from "../../../../core";
 import type * as serializers from "../../../index";
 
 export const EventType: core.serialization.Schema<serializers.EventType.Raw, MavenAGI.EventType> =
-    core.serialization.enum_(["USER", "SYSTEM"]);
+    core.serialization.forwardCompatibleEnum_(["USER", "SYSTEM"]);
 
 export declare namespace EventType {
     export type Raw = "USER" | "SYSTEM";

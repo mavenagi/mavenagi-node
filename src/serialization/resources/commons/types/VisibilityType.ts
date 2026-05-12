@@ -5,7 +5,7 @@ import * as core from "../../../../core";
 import type * as serializers from "../../../index";
 
 export const VisibilityType: core.serialization.Schema<serializers.VisibilityType.Raw, MavenAGI.VisibilityType> =
-    core.serialization.enum_(["VISIBLE", "PARTIALLY_VISIBLE", "HIDDEN"]);
+    core.serialization.forwardCompatibleEnum_(["VISIBLE", "PARTIALLY_VISIBLE", "HIDDEN"]);
 
 export declare namespace VisibilityType {
     export type Raw = "VISIBLE" | "PARTIALLY_VISIBLE" | "HIDDEN";

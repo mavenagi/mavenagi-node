@@ -8,4 +8,4 @@ export const Sentiment = {
     Mixed: "MIXED",
     Unknown: "UNKNOWN",
 } as const;
-export type Sentiment = (typeof Sentiment)[keyof typeof Sentiment];
+export type Sentiment = (typeof Sentiment)[keyof typeof Sentiment] | string;

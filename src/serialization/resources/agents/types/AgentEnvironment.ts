@@ -5,7 +5,7 @@ import * as core from "../../../../core";
 import type * as serializers from "../../../index";
 
 export const AgentEnvironment: core.serialization.Schema<serializers.AgentEnvironment.Raw, MavenAGI.AgentEnvironment> =
-    core.serialization.enum_(["DEMO", "STAGING", "PRODUCTION"]);
+    core.serialization.forwardCompatibleEnum_(["DEMO", "STAGING", "PRODUCTION"]);
 
 export declare namespace AgentEnvironment {
     export type Raw = "DEMO" | "STAGING" | "PRODUCTION";

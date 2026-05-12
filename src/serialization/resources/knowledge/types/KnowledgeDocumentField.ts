@@ -7,7 +7,7 @@ import type * as serializers from "../../../index";
 export const KnowledgeDocumentField: core.serialization.Schema<
     serializers.KnowledgeDocumentField.Raw,
     MavenAGI.KnowledgeDocumentField
-> = core.serialization.enum_(["Title", "CreatedAt", "UpdatedAt", "Language"]);
+> = core.serialization.forwardCompatibleEnum_(["Title", "CreatedAt", "UpdatedAt", "Language"]);
 
 export declare namespace KnowledgeDocumentField {
     export type Raw = "Title" | "CreatedAt" | "UpdatedAt" | "Language";

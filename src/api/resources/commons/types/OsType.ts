@@ -8,4 +8,4 @@ export const OsType = {
     Ios: "IOS",
     Other: "OTHER",
 } as const;
-export type OsType = (typeof OsType)[keyof typeof OsType];
+export type OsType = (typeof OsType)[keyof typeof OsType] | string;

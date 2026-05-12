@@ -9,4 +9,6 @@ export const StringMembershipOperator = {
      * Value is not in the set (∉) */
     NotIn: "NOT_IN",
 } as const;
-export type StringMembershipOperator = (typeof StringMembershipOperator)[keyof typeof StringMembershipOperator];
+export type StringMembershipOperator =
+    | (typeof StringMembershipOperator)[keyof typeof StringMembershipOperator]
+    | string;

@@ -11,4 +11,6 @@ export const NumericConversationField = {
     PredictedNps: "PredictedNPS",
     Csat: "Csat",
 } as const;
-export type NumericConversationField = (typeof NumericConversationField)[keyof typeof NumericConversationField];
+export type NumericConversationField =
+    | (typeof NumericConversationField)[keyof typeof NumericConversationField]
+    | string;

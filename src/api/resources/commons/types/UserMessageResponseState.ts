@@ -5,4 +5,6 @@ export const UserMessageResponseState = {
     LlmEnabled: "LLM_ENABLED",
     LlmDisabled: "LLM_DISABLED",
 } as const;
-export type UserMessageResponseState = (typeof UserMessageResponseState)[keyof typeof UserMessageResponseState];
+export type UserMessageResponseState =
+    | (typeof UserMessageResponseState)[keyof typeof UserMessageResponseState]
+    | string;

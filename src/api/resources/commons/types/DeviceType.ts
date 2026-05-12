@@ -6,4 +6,4 @@ export const DeviceType = {
     Tablet: "TABLET",
     Other: "OTHER",
 } as const;
-export type DeviceType = (typeof DeviceType)[keyof typeof DeviceType];
+export type DeviceType = (typeof DeviceType)[keyof typeof DeviceType] | string;

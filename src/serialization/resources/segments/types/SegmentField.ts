@@ -5,7 +5,7 @@ import * as core from "../../../../core";
 import type * as serializers from "../../../index";
 
 export const SegmentField: core.serialization.Schema<serializers.SegmentField.Raw, MavenAGI.SegmentField> =
-    core.serialization.enum_(["CreatedAt", "Name"]);
+    core.serialization.forwardCompatibleEnum_(["CreatedAt", "Name"]);
 
 export declare namespace SegmentField {
     export type Raw = "CreatedAt" | "Name";

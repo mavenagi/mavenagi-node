@@ -6,4 +6,4 @@ export const KnowledgeDocumentField = {
     UpdatedAt: "UpdatedAt",
     Language: "Language",
 } as const;
-export type KnowledgeDocumentField = (typeof KnowledgeDocumentField)[keyof typeof KnowledgeDocumentField];
+export type KnowledgeDocumentField = (typeof KnowledgeDocumentField)[keyof typeof KnowledgeDocumentField] | string;

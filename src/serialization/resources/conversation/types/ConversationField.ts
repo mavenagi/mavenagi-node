@@ -7,7 +7,7 @@ import type * as serializers from "../../../index";
 export const ConversationField: core.serialization.Schema<
     serializers.ConversationField.Raw,
     MavenAGI.ConversationField
-> = core.serialization.enum_([
+> = core.serialization.forwardCompatibleEnum_([
     "Category",
     "FirstResponseTime",
     "HandleTime",

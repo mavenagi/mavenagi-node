@@ -5,7 +5,7 @@ import * as core from "../../../../core";
 import type * as serializers from "../../../index";
 
 export const DeliveryStatus: core.serialization.Schema<serializers.DeliveryStatus.Raw, MavenAGI.DeliveryStatus> =
-    core.serialization.enum_(["DELIVERED", "FAILED", "QUEUED"]);
+    core.serialization.forwardCompatibleEnum_(["DELIVERED", "FAILED", "QUEUED"]);
 
 export declare namespace DeliveryStatus {
     export type Raw = "DELIVERED" | "FAILED" | "QUEUED";

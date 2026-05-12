@@ -5,7 +5,14 @@ import * as core from "../../../../core";
 import type * as serializers from "../../../index";
 
 export const Capability: core.serialization.Schema<serializers.Capability.Raw, MavenAGI.Capability> =
-    core.serialization.enum_(["MARKDOWN", "FORMS", "IMAGES", "CHARTS_HIGHCHARTS_TS", "ASYNC", "OAUTH_BUTTONS"]);
+    core.serialization.forwardCompatibleEnum_([
+        "MARKDOWN",
+        "FORMS",
+        "IMAGES",
+        "CHARTS_HIGHCHARTS_TS",
+        "ASYNC",
+        "OAUTH_BUTTONS",
+    ]);
 
 export declare namespace Capability {
     export type Raw = "MARKDOWN" | "FORMS" | "IMAGES" | "CHARTS_HIGHCHARTS_TS" | "ASYNC" | "OAUTH_BUTTONS";

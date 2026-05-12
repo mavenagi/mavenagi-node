@@ -7,7 +7,7 @@ import type * as serializers from "../../../index";
 export const KnowledgeBaseVersionType: core.serialization.Schema<
     serializers.KnowledgeBaseVersionType.Raw,
     MavenAGI.KnowledgeBaseVersionType
-> = core.serialization.enum_(["FULL", "PARTIAL"]);
+> = core.serialization.forwardCompatibleEnum_(["FULL", "PARTIAL"]);
 
 export declare namespace KnowledgeBaseVersionType {
     export type Raw = "FULL" | "PARTIAL";

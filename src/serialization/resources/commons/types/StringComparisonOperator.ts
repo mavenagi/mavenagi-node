@@ -7,7 +7,7 @@ import type * as serializers from "../../../index";
 export const StringComparisonOperator: core.serialization.Schema<
     serializers.StringComparisonOperator.Raw,
     MavenAGI.StringComparisonOperator
-> = core.serialization.enum_([
+> = core.serialization.forwardCompatibleEnum_([
     "EQ",
     "NEQ",
     "CONTAINS_SUBSTRING",

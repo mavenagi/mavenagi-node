@@ -7,7 +7,7 @@ import type * as serializers from "../../../index";
 export const UserMessageResponseState: core.serialization.Schema<
     serializers.UserMessageResponseState.Raw,
     MavenAGI.UserMessageResponseState
-> = core.serialization.enum_(["NOT_ASKED", "LLM_ENABLED", "LLM_DISABLED"]);
+> = core.serialization.forwardCompatibleEnum_(["NOT_ASKED", "LLM_ENABLED", "LLM_DISABLED"]);
 
 export declare namespace UserMessageResponseState {
     export type Raw = "NOT_ASKED" | "LLM_ENABLED" | "LLM_DISABLED";

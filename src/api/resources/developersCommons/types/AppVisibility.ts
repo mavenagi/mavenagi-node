@@ -5,4 +5,4 @@ export const AppVisibility = {
     Private: "PRIVATE",
     Public: "PUBLIC",
 } as const;
-export type AppVisibility = (typeof AppVisibility)[keyof typeof AppVisibility];
+export type AppVisibility = (typeof AppVisibility)[keyof typeof AppVisibility] | string;

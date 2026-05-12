@@ -7,7 +7,7 @@ import type * as serializers from "../../../index";
 export const PreconditionOperator: core.serialization.Schema<
     serializers.PreconditionOperator.Raw,
     MavenAGI.PreconditionOperator
-> = core.serialization.enum_([
+> = core.serialization.forwardCompatibleEnum_([
     "NOT",
     "CONTAINS",
     "NOT_CONTAINS",

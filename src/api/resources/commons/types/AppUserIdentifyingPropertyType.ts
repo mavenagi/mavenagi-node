@@ -5,4 +5,5 @@ export const AppUserIdentifyingPropertyType = {
     PhoneNumber: "PHONE_NUMBER",
 } as const;
 export type AppUserIdentifyingPropertyType =
-    (typeof AppUserIdentifyingPropertyType)[keyof typeof AppUserIdentifyingPropertyType];
+    | (typeof AppUserIdentifyingPropertyType)[keyof typeof AppUserIdentifyingPropertyType]
+    | string;

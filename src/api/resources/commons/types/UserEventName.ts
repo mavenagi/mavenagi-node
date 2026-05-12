@@ -20,4 +20,4 @@ export const UserEventName = {
      * A CSAT rating was submitted */
     CsatSubmitted: "CSAT_SUBMITTED",
 } as const;
-export type UserEventName = (typeof UserEventName)[keyof typeof UserEventName];
+export type UserEventName = (typeof UserEventName)[keyof typeof UserEventName] | string;

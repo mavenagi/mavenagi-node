@@ -4,4 +4,4 @@ export const AgentUserField = {
     CreatedAt: "CreatedAt",
     UpdatedAt: "UpdatedAt",
 } as const;
-export type AgentUserField = (typeof AgentUserField)[keyof typeof AgentUserField];
+export type AgentUserField = (typeof AgentUserField)[keyof typeof AgentUserField] | string;

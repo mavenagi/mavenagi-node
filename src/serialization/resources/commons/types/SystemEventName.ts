@@ -5,7 +5,7 @@ import * as core from "../../../../core";
 import type * as serializers from "../../../index";
 
 export const SystemEventName: core.serialization.Schema<serializers.SystemEventName.Raw, MavenAGI.SystemEventName> =
-    core.serialization.enum_(["APP_INSTALLED", "APP_UNINSTALLED", "APP_UPDATED"]);
+    core.serialization.forwardCompatibleEnum_(["APP_INSTALLED", "APP_UNINSTALLED", "APP_UPDATED"]);
 
 export declare namespace SystemEventName {
     export type Raw = "APP_INSTALLED" | "APP_UNINSTALLED" | "APP_UPDATED";

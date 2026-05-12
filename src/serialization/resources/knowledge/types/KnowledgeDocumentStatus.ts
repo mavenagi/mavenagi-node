@@ -7,7 +7,7 @@ import type * as serializers from "../../../index";
 export const KnowledgeDocumentStatus: core.serialization.Schema<
     serializers.KnowledgeDocumentStatus.Raw,
     MavenAGI.KnowledgeDocumentStatus
-> = core.serialization.enum_(["SUCCEEDED", "IN_PROGRESS"]);
+> = core.serialization.forwardCompatibleEnum_(["SUCCEEDED", "IN_PROGRESS"]);
 
 export declare namespace KnowledgeDocumentStatus {
     export type Raw = "SUCCEEDED" | "IN_PROGRESS";

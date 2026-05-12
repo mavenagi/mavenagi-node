@@ -7,7 +7,7 @@ import type * as serializers from "../../../index";
 export const PreconditionGroupOperator: core.serialization.Schema<
     serializers.PreconditionGroupOperator.Raw,
     MavenAGI.PreconditionGroupOperator
-> = core.serialization.enum_(["AND", "OR"]);
+> = core.serialization.forwardCompatibleEnum_(["AND", "OR"]);
 
 export declare namespace PreconditionGroupOperator {
     export type Raw = "AND" | "OR";

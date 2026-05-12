@@ -5,4 +5,4 @@ export const SourceType = {
     Api: "API",
     System: "SYSTEM",
 } as const;
-export type SourceType = (typeof SourceType)[keyof typeof SourceType];
+export type SourceType = (typeof SourceType)[keyof typeof SourceType] | string;

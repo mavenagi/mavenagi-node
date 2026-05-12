@@ -4,4 +4,4 @@ export const AgentField = {
     CreatedAt: "CREATED_AT",
     Environment: "ENVIRONMENT",
 } as const;
-export type AgentField = (typeof AgentField)[keyof typeof AgentField];
+export type AgentField = (typeof AgentField)[keyof typeof AgentField] | string;

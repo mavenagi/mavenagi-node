@@ -5,7 +5,7 @@ import * as core from "../../../../core";
 import type * as serializers from "../../../index";
 
 export const AppCategory: core.serialization.Schema<serializers.AppCategory.Raw, MavenAGI.AppCategory> =
-    core.serialization.enum_([
+    core.serialization.forwardCompatibleEnum_([
         "COMMUNICATION",
         "CUSTOMER_SUPPORT",
         "DATA_STORAGE",

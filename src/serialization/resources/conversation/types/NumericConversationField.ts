@@ -7,7 +7,7 @@ import type * as serializers from "../../../index";
 export const NumericConversationField: core.serialization.Schema<
     serializers.NumericConversationField.Raw,
     MavenAGI.NumericConversationField
-> = core.serialization.enum_([
+> = core.serialization.forwardCompatibleEnum_([
     "ThumbsUpCount",
     "ThumbsDownCount",
     "InsertCount",

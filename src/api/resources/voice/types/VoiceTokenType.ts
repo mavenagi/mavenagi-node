@@ -4,4 +4,4 @@ export const VoiceTokenType = {
     Webrtc: "webrtc",
     Websocket: "websocket",
 } as const;
-export type VoiceTokenType = (typeof VoiceTokenType)[keyof typeof VoiceTokenType];
+export type VoiceTokenType = (typeof VoiceTokenType)[keyof typeof VoiceTokenType] | string;

@@ -5,7 +5,13 @@ import * as core from "../../../../core";
 import type * as serializers from "../../../index";
 
 export const ActionField: core.serialization.Schema<serializers.ActionField.Raw, MavenAGI.ActionField> =
-    core.serialization.enum_(["AppId", "Name", "LlmInclusionStatus", "UserInteractionRequired", "CreatedAt"]);
+    core.serialization.forwardCompatibleEnum_([
+        "AppId",
+        "Name",
+        "LlmInclusionStatus",
+        "UserInteractionRequired",
+        "CreatedAt",
+    ]);
 
 export declare namespace ActionField {
     export type Raw = "AppId" | "Name" | "LlmInclusionStatus" | "UserInteractionRequired" | "CreatedAt";

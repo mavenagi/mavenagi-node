@@ -6,4 +6,4 @@ export const AttachmentStatus = {
     Accepted: "ACCEPTED",
     Rejected: "REJECTED",
 } as const;
-export type AttachmentStatus = (typeof AttachmentStatus)[keyof typeof AttachmentStatus];
+export type AttachmentStatus = (typeof AttachmentStatus)[keyof typeof AttachmentStatus] | string;

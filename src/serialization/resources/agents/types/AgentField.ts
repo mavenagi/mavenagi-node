@@ -5,7 +5,7 @@ import * as core from "../../../../core";
 import type * as serializers from "../../../index";
 
 export const AgentField: core.serialization.Schema<serializers.AgentField.Raw, MavenAGI.AgentField> =
-    core.serialization.enum_(["CREATED_AT", "ENVIRONMENT"]);
+    core.serialization.forwardCompatibleEnum_(["CREATED_AT", "ENVIRONMENT"]);
 
 export declare namespace AgentField {
     export type Raw = "CREATED_AT" | "ENVIRONMENT";

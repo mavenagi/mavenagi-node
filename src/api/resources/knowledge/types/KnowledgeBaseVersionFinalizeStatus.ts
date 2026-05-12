@@ -6,4 +6,5 @@ export const KnowledgeBaseVersionFinalizeStatus = {
     Failed: "FAILED",
 } as const;
 export type KnowledgeBaseVersionFinalizeStatus =
-    (typeof KnowledgeBaseVersionFinalizeStatus)[keyof typeof KnowledgeBaseVersionFinalizeStatus];
+    | (typeof KnowledgeBaseVersionFinalizeStatus)[keyof typeof KnowledgeBaseVersionFinalizeStatus]
+    | string;

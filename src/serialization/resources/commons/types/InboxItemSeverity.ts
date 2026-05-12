@@ -7,7 +7,7 @@ import type * as serializers from "../../../index";
 export const InboxItemSeverity: core.serialization.Schema<
     serializers.InboxItemSeverity.Raw,
     MavenAGI.InboxItemSeverity
-> = core.serialization.enum_(["LOW", "MEDIUM", "HIGH"]);
+> = core.serialization.forwardCompatibleEnum_(["LOW", "MEDIUM", "HIGH"]);
 
 export declare namespace InboxItemSeverity {
     export type Raw = "LOW" | "MEDIUM" | "HIGH";

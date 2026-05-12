@@ -5,4 +5,4 @@ export const VisibilityType = {
     PartiallyVisible: "PARTIALLY_VISIBLE",
     Hidden: "HIDDEN",
 } as const;
-export type VisibilityType = (typeof VisibilityType)[keyof typeof VisibilityType];
+export type VisibilityType = (typeof VisibilityType)[keyof typeof VisibilityType] | string;

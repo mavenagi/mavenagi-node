@@ -5,7 +5,7 @@ import * as core from "../../../../core";
 import type * as serializers from "../../../index";
 
 export const BrowserType: core.serialization.Schema<serializers.BrowserType.Raw, MavenAGI.BrowserType> =
-    core.serialization.enum_(["CHROME", "FIREFOX", "SAFARI", "OPERA", "EDGE", "OTHER"]);
+    core.serialization.forwardCompatibleEnum_(["CHROME", "FIREFOX", "SAFARI", "OPERA", "EDGE", "OTHER"]);
 
 export declare namespace BrowserType {
     export type Raw = "CHROME" | "FIREFOX" | "SAFARI" | "OPERA" | "EDGE" | "OTHER";

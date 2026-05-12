@@ -5,7 +5,7 @@ import * as core from "../../../../core";
 import type * as serializers from "../../../index";
 
 export const TimeInterval: core.serialization.Schema<serializers.TimeInterval.Raw, MavenAGI.TimeInterval> =
-    core.serialization.enum_(["HOUR", "DAY", "WEEK", "MONTH", "YEAR"]);
+    core.serialization.forwardCompatibleEnum_(["HOUR", "DAY", "WEEK", "MONTH", "YEAR"]);
 
 export declare namespace TimeInterval {
     export type Raw = "HOUR" | "DAY" | "WEEK" | "MONTH" | "YEAR";

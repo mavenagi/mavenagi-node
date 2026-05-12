@@ -7,4 +7,5 @@ export const KnowledgeBaseRefreshFrequency = {
     Monthly: "MONTHLY",
 } as const;
 export type KnowledgeBaseRefreshFrequency =
-    (typeof KnowledgeBaseRefreshFrequency)[keyof typeof KnowledgeBaseRefreshFrequency];
+    | (typeof KnowledgeBaseRefreshFrequency)[keyof typeof KnowledgeBaseRefreshFrequency]
+    | string;

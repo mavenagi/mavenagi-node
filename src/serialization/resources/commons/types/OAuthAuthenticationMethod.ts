@@ -7,7 +7,7 @@ import type * as serializers from "../../../index";
 export const OAuthAuthenticationMethod: core.serialization.Schema<
     serializers.OAuthAuthenticationMethod.Raw,
     MavenAGI.OAuthAuthenticationMethod
-> = core.serialization.enum_(["basic", "post"]);
+> = core.serialization.forwardCompatibleEnum_(["basic", "post"]);
 
 export declare namespace OAuthAuthenticationMethod {
     export type Raw = "basic" | "post";

@@ -7,7 +7,17 @@ import type * as serializers from "../../../index";
 export const IntelligentFieldOperator: core.serialization.Schema<
     serializers.IntelligentFieldOperator.Raw,
     MavenAGI.IntelligentFieldOperator
-> = core.serialization.enum_(["EQ", "NEQ", "CONTAINS", "GT", "GTE", "LT", "LTE", "EXISTS", "NOT_EXISTS"]);
+> = core.serialization.forwardCompatibleEnum_([
+    "EQ",
+    "NEQ",
+    "CONTAINS",
+    "GT",
+    "GTE",
+    "LT",
+    "LTE",
+    "EXISTS",
+    "NOT_EXISTS",
+]);
 
 export declare namespace IntelligentFieldOperator {
     export type Raw = "EQ" | "NEQ" | "CONTAINS" | "GT" | "GTE" | "LT" | "LTE" | "EXISTS" | "NOT_EXISTS";

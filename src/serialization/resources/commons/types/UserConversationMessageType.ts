@@ -7,7 +7,7 @@ import type * as serializers from "../../../index";
 export const UserConversationMessageType: core.serialization.Schema<
     serializers.UserConversationMessageType.Raw,
     MavenAGI.UserConversationMessageType
-> = core.serialization.enum_(["USER", "HUMAN_AGENT", "EXTERNAL_SYSTEM"]);
+> = core.serialization.forwardCompatibleEnum_(["USER", "HUMAN_AGENT", "EXTERNAL_SYSTEM"]);
 
 export declare namespace UserConversationMessageType {
     export type Raw = "USER" | "HUMAN_AGENT" | "EXTERNAL_SYSTEM";

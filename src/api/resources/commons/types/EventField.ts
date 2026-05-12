@@ -19,4 +19,4 @@ export const EventField = {
     AgentUserId: "AGENT_USER_ID",
     Timestamp: "TIMESTAMP",
 } as const;
-export type EventField = (typeof EventField)[keyof typeof EventField];
+export type EventField = (typeof EventField)[keyof typeof EventField] | string;

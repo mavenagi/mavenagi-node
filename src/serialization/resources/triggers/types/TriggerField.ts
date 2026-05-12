@@ -5,7 +5,7 @@ import * as core from "../../../../core";
 import type * as serializers from "../../../index";
 
 export const TriggerField: core.serialization.Schema<serializers.TriggerField.Raw, MavenAGI.TriggerField> =
-    core.serialization.enum_(["CreatedAt", "Enabled"]);
+    core.serialization.forwardCompatibleEnum_(["CreatedAt", "Enabled"]);
 
 export declare namespace TriggerField {
     export type Raw = "CreatedAt" | "Enabled";

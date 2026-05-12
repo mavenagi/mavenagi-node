@@ -6,4 +6,4 @@ export const EventTriggerType = {
     InboxItemCreated: "INBOX_ITEM_CREATED",
     EventCreated: "EVENT_CREATED",
 } as const;
-export type EventTriggerType = (typeof EventTriggerType)[keyof typeof EventTriggerType];
+export type EventTriggerType = (typeof EventTriggerType)[keyof typeof EventTriggerType] | string;

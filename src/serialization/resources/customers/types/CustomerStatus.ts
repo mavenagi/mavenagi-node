@@ -5,7 +5,7 @@ import * as core from "../../../../core";
 import type * as serializers from "../../../index";
 
 export const CustomerStatus: core.serialization.Schema<serializers.CustomerStatus.Raw, MavenAGI.CustomerStatus> =
-    core.serialization.enum_(["ACTIVE", "INACTIVE"]);
+    core.serialization.forwardCompatibleEnum_(["ACTIVE", "INACTIVE"]);
 
 export declare namespace CustomerStatus {
     export type Raw = "ACTIVE" | "INACTIVE";

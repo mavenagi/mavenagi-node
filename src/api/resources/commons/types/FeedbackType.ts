@@ -7,4 +7,4 @@ export const FeedbackType = {
     Insert: "INSERT",
     Handoff: "HANDOFF",
 } as const;
-export type FeedbackType = (typeof FeedbackType)[keyof typeof FeedbackType];
+export type FeedbackType = (typeof FeedbackType)[keyof typeof FeedbackType] | string;

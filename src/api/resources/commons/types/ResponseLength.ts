@@ -5,4 +5,4 @@ export const ResponseLength = {
     Medium: "MEDIUM",
     Long: "LONG",
 } as const;
-export type ResponseLength = (typeof ResponseLength)[keyof typeof ResponseLength];
+export type ResponseLength = (typeof ResponseLength)[keyof typeof ResponseLength] | string;

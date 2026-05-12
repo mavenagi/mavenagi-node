@@ -11,4 +11,4 @@ export const QualityReason = {
     Unknown: "UNKNOWN",
     NoBotReplies: "NO_BOT_REPLIES",
 } as const;
-export type QualityReason = (typeof QualityReason)[keyof typeof QualityReason];
+export type QualityReason = (typeof QualityReason)[keyof typeof QualityReason] | string;

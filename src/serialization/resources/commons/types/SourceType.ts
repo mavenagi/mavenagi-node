@@ -5,7 +5,7 @@ import * as core from "../../../../core";
 import type * as serializers from "../../../index";
 
 export const SourceType: core.serialization.Schema<serializers.SourceType.Raw, MavenAGI.SourceType> =
-    core.serialization.enum_(["WEB", "API", "SYSTEM"]);
+    core.serialization.forwardCompatibleEnum_(["WEB", "API", "SYSTEM"]);
 
 export declare namespace SourceType {
     export type Raw = "WEB" | "API" | "SYSTEM";

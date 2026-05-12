@@ -4,4 +4,4 @@ export const EventType = {
     User: "USER",
     System: "SYSTEM",
 } as const;
-export type EventType = (typeof EventType)[keyof typeof EventType];
+export type EventType = (typeof EventType)[keyof typeof EventType] | string;

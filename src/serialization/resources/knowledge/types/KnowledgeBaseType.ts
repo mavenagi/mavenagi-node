@@ -7,7 +7,7 @@ import type * as serializers from "../../../index";
 export const KnowledgeBaseType: core.serialization.Schema<
     serializers.KnowledgeBaseType.Raw,
     MavenAGI.KnowledgeBaseType
-> = core.serialization.enum_(["API", "URL", "MANUAL", "RSS", "LEGACY"]);
+> = core.serialization.forwardCompatibleEnum_(["API", "URL", "MANUAL", "RSS", "LEGACY"]);
 
 export declare namespace KnowledgeBaseType {
     export type Raw = "API" | "URL" | "MANUAL" | "RSS" | "LEGACY";

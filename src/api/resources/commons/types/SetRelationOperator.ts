@@ -27,4 +27,4 @@ export const SetRelationOperator = {
      * Set is not a subset of the values (A ⊈ B) */
     NotSubsetOf: "NOT_SUBSET_OF",
 } as const;
-export type SetRelationOperator = (typeof SetRelationOperator)[keyof typeof SetRelationOperator];
+export type SetRelationOperator = (typeof SetRelationOperator)[keyof typeof SetRelationOperator] | string;

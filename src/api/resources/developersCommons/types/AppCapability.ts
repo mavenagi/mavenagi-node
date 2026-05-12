@@ -7,4 +7,4 @@ export const AppCapability = {
     Personalization: "PERSONALIZATION",
     Triggers: "TRIGGERS",
 } as const;
-export type AppCapability = (typeof AppCapability)[keyof typeof AppCapability];
+export type AppCapability = (typeof AppCapability)[keyof typeof AppCapability] | string;

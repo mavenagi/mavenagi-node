@@ -4,4 +4,6 @@ export const BotConversationMessageType = {
     BotResponse: "BOT_RESPONSE",
     BotSuggestion: "BOT_SUGGESTION",
 } as const;
-export type BotConversationMessageType = (typeof BotConversationMessageType)[keyof typeof BotConversationMessageType];
+export type BotConversationMessageType =
+    | (typeof BotConversationMessageType)[keyof typeof BotConversationMessageType]
+    | string;

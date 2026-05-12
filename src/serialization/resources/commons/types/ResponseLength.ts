@@ -5,7 +5,7 @@ import * as core from "../../../../core";
 import type * as serializers from "../../../index";
 
 export const ResponseLength: core.serialization.Schema<serializers.ResponseLength.Raw, MavenAGI.ResponseLength> =
-    core.serialization.enum_(["SHORT", "MEDIUM", "LONG"]);
+    core.serialization.forwardCompatibleEnum_(["SHORT", "MEDIUM", "LONG"]);
 
 export declare namespace ResponseLength {
     export type Raw = "SHORT" | "MEDIUM" | "LONG";

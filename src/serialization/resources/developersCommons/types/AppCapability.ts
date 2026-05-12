@@ -5,7 +5,7 @@ import * as core from "../../../../core";
 import type * as serializers from "../../../index";
 
 export const AppCapability: core.serialization.Schema<serializers.AppCapability.Raw, MavenAGI.AppCapability> =
-    core.serialization.enum_(["ACTIONS", "BAILOUT", "KNOWLEDGE_BASES", "PERSONALIZATION", "TRIGGERS"]);
+    core.serialization.forwardCompatibleEnum_(["ACTIONS", "BAILOUT", "KNOWLEDGE_BASES", "PERSONALIZATION", "TRIGGERS"]);
 
 export declare namespace AppCapability {
     export type Raw = "ACTIONS" | "BAILOUT" | "KNOWLEDGE_BASES" | "PERSONALIZATION" | "TRIGGERS";

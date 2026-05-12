@@ -7,7 +7,7 @@ import type * as serializers from "../../../index";
 export const StringMembershipOperator: core.serialization.Schema<
     serializers.StringMembershipOperator.Raw,
     MavenAGI.StringMembershipOperator
-> = core.serialization.enum_(["IN", "NOT_IN"]);
+> = core.serialization.forwardCompatibleEnum_(["IN", "NOT_IN"]);
 
 export declare namespace StringMembershipOperator {
     export type Raw = "IN" | "NOT_IN";

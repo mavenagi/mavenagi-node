@@ -7,7 +7,7 @@ import type * as serializers from "../../../index";
 export const NumericComparisonOperator: core.serialization.Schema<
     serializers.NumericComparisonOperator.Raw,
     MavenAGI.NumericComparisonOperator
-> = core.serialization.enum_(["EQ", "NEQ", "LT", "LE", "GT", "GE"]);
+> = core.serialization.forwardCompatibleEnum_(["EQ", "NEQ", "LT", "LE", "GT", "GE"]);
 
 export declare namespace NumericComparisonOperator {
     export type Raw = "EQ" | "NEQ" | "LT" | "LE" | "GT" | "GE";

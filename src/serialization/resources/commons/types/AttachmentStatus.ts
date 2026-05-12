@@ -5,7 +5,7 @@ import * as core from "../../../../core";
 import type * as serializers from "../../../index";
 
 export const AttachmentStatus: core.serialization.Schema<serializers.AttachmentStatus.Raw, MavenAGI.AttachmentStatus> =
-    core.serialization.enum_(["PENDING", "PROCESSING", "ACCEPTED", "REJECTED"]);
+    core.serialization.forwardCompatibleEnum_(["PENDING", "PROCESSING", "ACCEPTED", "REJECTED"]);
 
 export declare namespace AttachmentStatus {
     export type Raw = "PENDING" | "PROCESSING" | "ACCEPTED" | "REJECTED";

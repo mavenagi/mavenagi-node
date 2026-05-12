@@ -9,4 +9,4 @@ export const SetElementOperator = {
      * Set does not contain the value (∌) */
     NotContains: "NOT_CONTAINS",
 } as const;
-export type SetElementOperator = (typeof SetElementOperator)[keyof typeof SetElementOperator];
+export type SetElementOperator = (typeof SetElementOperator)[keyof typeof SetElementOperator] | string;

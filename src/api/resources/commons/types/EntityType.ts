@@ -20,4 +20,4 @@ export const EntityType = {
     IntelligentField: "INTELLIGENT_FIELD",
     Charter: "CHARTER",
 } as const;
-export type EntityType = (typeof EntityType)[keyof typeof EntityType];
+export type EntityType = (typeof EntityType)[keyof typeof EntityType] | string;

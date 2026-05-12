@@ -5,4 +5,4 @@ export const SimulationFilter = {
     Simulations: "SIMULATIONS",
     All: "ALL",
 } as const;
-export type SimulationFilter = (typeof SimulationFilter)[keyof typeof SimulationFilter];
+export type SimulationFilter = (typeof SimulationFilter)[keyof typeof SimulationFilter] | string;

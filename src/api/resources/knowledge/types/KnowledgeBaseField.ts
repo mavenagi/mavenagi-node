@@ -5,4 +5,4 @@ export const KnowledgeBaseField = {
     CreatedAt: "CreatedAt",
     UpdatedAt: "UpdatedAt",
 } as const;
-export type KnowledgeBaseField = (typeof KnowledgeBaseField)[keyof typeof KnowledgeBaseField];
+export type KnowledgeBaseField = (typeof KnowledgeBaseField)[keyof typeof KnowledgeBaseField] | string;

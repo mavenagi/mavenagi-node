@@ -18,4 +18,4 @@ export const MessageStatus = {
     Failed: "FAILED",
     Unknown: "UNKNOWN",
 } as const;
-export type MessageStatus = (typeof MessageStatus)[keyof typeof MessageStatus];
+export type MessageStatus = (typeof MessageStatus)[keyof typeof MessageStatus] | string;

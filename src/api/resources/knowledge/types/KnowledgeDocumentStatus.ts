@@ -5,4 +5,4 @@ export const KnowledgeDocumentStatus = {
     Succeeded: "SUCCEEDED",
     InProgress: "IN_PROGRESS",
 } as const;
-export type KnowledgeDocumentStatus = (typeof KnowledgeDocumentStatus)[keyof typeof KnowledgeDocumentStatus];
+export type KnowledgeDocumentStatus = (typeof KnowledgeDocumentStatus)[keyof typeof KnowledgeDocumentStatus] | string;

@@ -5,7 +5,7 @@ import * as core from "../../../../core";
 import type * as serializers from "../../../index";
 
 export const Sentiment: core.serialization.Schema<serializers.Sentiment.Raw, MavenAGI.Sentiment> =
-    core.serialization.enum_(["POSITIVE", "NEGATIVE", "NEUTRAL", "MIXED", "UNKNOWN"]);
+    core.serialization.forwardCompatibleEnum_(["POSITIVE", "NEGATIVE", "NEUTRAL", "MIXED", "UNKNOWN"]);
 
 export declare namespace Sentiment {
     export type Raw = "POSITIVE" | "NEGATIVE" | "NEUTRAL" | "MIXED" | "UNKNOWN";

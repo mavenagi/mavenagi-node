@@ -6,4 +6,6 @@ export const KnowledgeBaseVersionStatus = {
     Failed: "FAILED",
     InProgress: "IN_PROGRESS",
 } as const;
-export type KnowledgeBaseVersionStatus = (typeof KnowledgeBaseVersionStatus)[keyof typeof KnowledgeBaseVersionStatus];
+export type KnowledgeBaseVersionStatus =
+    | (typeof KnowledgeBaseVersionStatus)[keyof typeof KnowledgeBaseVersionStatus]
+    | string;

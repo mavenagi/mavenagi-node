@@ -5,7 +5,7 @@ import * as core from "../../../../core";
 import type * as serializers from "../../../index";
 
 export const LlmPersona: core.serialization.Schema<serializers.LlmPersona.Raw, MavenAGI.LlmPersona> =
-    core.serialization.enum_([
+    core.serialization.forwardCompatibleEnum_([
         "CASUAL_BUDDY",
         "EMPATHETIC_SUPPORTER",
         "FORMAL_PROFESSIONAL",

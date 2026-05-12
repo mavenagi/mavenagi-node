@@ -32,4 +32,4 @@ export const ConversationField = {
     InboxItems: "InboxItems",
     InvolvedApps: "InvolvedApps",
 } as const;
-export type ConversationField = (typeof ConversationField)[keyof typeof ConversationField];
+export type ConversationField = (typeof ConversationField)[keyof typeof ConversationField] | string;

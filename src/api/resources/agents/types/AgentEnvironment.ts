@@ -5,4 +5,4 @@ export const AgentEnvironment = {
     Staging: "STAGING",
     Production: "PRODUCTION",
 } as const;
-export type AgentEnvironment = (typeof AgentEnvironment)[keyof typeof AgentEnvironment];
+export type AgentEnvironment = (typeof AgentEnvironment)[keyof typeof AgentEnvironment] | string;

@@ -7,7 +7,7 @@ import type * as serializers from "../../../index";
 export const SetRelationOperator: core.serialization.Schema<
     serializers.SetRelationOperator.Raw,
     MavenAGI.SetRelationOperator
-> = core.serialization.enum_([
+> = core.serialization.forwardCompatibleEnum_([
     "EQ",
     "NEQ",
     "CONTAINS_ANY",

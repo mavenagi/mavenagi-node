@@ -5,7 +5,7 @@ import * as core from "../../../../core";
 import type * as serializers from "../../../index";
 
 export const InboxItemStatus: core.serialization.Schema<serializers.InboxItemStatus.Raw, MavenAGI.InboxItemStatus> =
-    core.serialization.enum_(["OPEN", "USER_RESOLVED", "SYSTEM_RESOLVED", "REGRESSED", "IGNORED"]);
+    core.serialization.forwardCompatibleEnum_(["OPEN", "USER_RESOLVED", "SYSTEM_RESOLVED", "REGRESSED", "IGNORED"]);
 
 export declare namespace InboxItemStatus {
     export type Raw = "OPEN" | "USER_RESOLVED" | "SYSTEM_RESOLVED" | "REGRESSED" | "IGNORED";

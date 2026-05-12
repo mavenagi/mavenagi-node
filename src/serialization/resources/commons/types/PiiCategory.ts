@@ -5,7 +5,7 @@ import * as core from "../../../../core";
 import type * as serializers from "../../../index";
 
 export const PiiCategory: core.serialization.Schema<serializers.PiiCategory.Raw, MavenAGI.PiiCategory> =
-    core.serialization.enum_([
+    core.serialization.forwardCompatibleEnum_([
         "Name",
         "Email",
         "PhoneNumber",

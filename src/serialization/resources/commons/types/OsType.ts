@@ -4,14 +4,8 @@ import type * as MavenAGI from "../../../../api/index";
 import * as core from "../../../../core";
 import type * as serializers from "../../../index";
 
-export const OsType: core.serialization.Schema<serializers.OsType.Raw, MavenAGI.OsType> = core.serialization.enum_([
-    "WINDOWS",
-    "MACOS",
-    "LINUX",
-    "ANDROID",
-    "IOS",
-    "OTHER",
-]);
+export const OsType: core.serialization.Schema<serializers.OsType.Raw, MavenAGI.OsType> =
+    core.serialization.forwardCompatibleEnum_(["WINDOWS", "MACOS", "LINUX", "ANDROID", "IOS", "OTHER"]);
 
 export declare namespace OsType {
     export type Raw = "WINDOWS" | "MACOS" | "LINUX" | "ANDROID" | "IOS" | "OTHER";

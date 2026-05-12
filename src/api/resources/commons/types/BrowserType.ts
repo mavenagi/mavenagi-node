@@ -8,4 +8,4 @@ export const BrowserType = {
     Edge: "EDGE",
     Other: "OTHER",
 } as const;
-export type BrowserType = (typeof BrowserType)[keyof typeof BrowserType];
+export type BrowserType = (typeof BrowserType)[keyof typeof BrowserType] | string;

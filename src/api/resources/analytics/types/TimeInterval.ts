@@ -7,4 +7,4 @@ export const TimeInterval = {
     Month: "MONTH",
     Year: "YEAR",
 } as const;
-export type TimeInterval = (typeof TimeInterval)[keyof typeof TimeInterval];
+export type TimeInterval = (typeof TimeInterval)[keyof typeof TimeInterval] | string;

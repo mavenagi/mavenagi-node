@@ -3,4 +3,4 @@
 export const ChartSpecSchema = {
     HighchartsTs: "HIGHCHARTS_TS",
 } as const;
-export type ChartSpecSchema = (typeof ChartSpecSchema)[keyof typeof ChartSpecSchema];
+export type ChartSpecSchema = (typeof ChartSpecSchema)[keyof typeof ChartSpecSchema] | string;

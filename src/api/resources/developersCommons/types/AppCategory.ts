@@ -9,4 +9,4 @@ export const AppCategory = {
     ProjectManagement: "PROJECT_MANAGEMENT",
     Voice: "VOICE",
 } as const;
-export type AppCategory = (typeof AppCategory)[keyof typeof AppCategory];
+export type AppCategory = (typeof AppCategory)[keyof typeof AppCategory] | string;

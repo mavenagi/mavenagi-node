@@ -5,7 +5,7 @@ import * as core from "../../../../core";
 import type * as serializers from "../../../index";
 
 export const ChartSpecSchema: core.serialization.Schema<serializers.ChartSpecSchema.Raw, MavenAGI.ChartSpecSchema> =
-    core.serialization.enum_(["HIGHCHARTS_TS"]);
+    core.serialization.forwardCompatibleEnum_(["HIGHCHARTS_TS"]);
 
 export declare namespace ChartSpecSchema {
     export type Raw = "HIGHCHARTS_TS";

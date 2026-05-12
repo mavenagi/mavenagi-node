@@ -5,4 +5,4 @@ export const LlmInclusionStatus = {
     WhenRelevant: "WHEN_RELEVANT",
     Never: "NEVER",
 } as const;
-export type LlmInclusionStatus = (typeof LlmInclusionStatus)[keyof typeof LlmInclusionStatus];
+export type LlmInclusionStatus = (typeof LlmInclusionStatus)[keyof typeof LlmInclusionStatus] | string;

@@ -7,4 +7,5 @@ export const UserConversationMessageType = {
     ExternalSystem: "EXTERNAL_SYSTEM",
 } as const;
 export type UserConversationMessageType =
-    (typeof UserConversationMessageType)[keyof typeof UserConversationMessageType];
+    | (typeof UserConversationMessageType)[keyof typeof UserConversationMessageType]
+    | string;

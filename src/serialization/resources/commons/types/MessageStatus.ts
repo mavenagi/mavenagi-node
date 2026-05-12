@@ -5,7 +5,7 @@ import * as core from "../../../../core";
 import type * as serializers from "../../../index";
 
 export const MessageStatus: core.serialization.Schema<serializers.MessageStatus.Raw, MavenAGI.MessageStatus> =
-    core.serialization.enum_(["SENDING", "SENT", "REJECTED", "CANCELED", "FAILED", "UNKNOWN"]);
+    core.serialization.forwardCompatibleEnum_(["SENDING", "SENT", "REJECTED", "CANCELED", "FAILED", "UNKNOWN"]);
 
 export declare namespace MessageStatus {
     export type Raw = "SENDING" | "SENT" | "REJECTED" | "CANCELED" | "FAILED" | "UNKNOWN";

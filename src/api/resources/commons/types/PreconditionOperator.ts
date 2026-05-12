@@ -23,4 +23,4 @@ export const PreconditionOperator = {
      * Multiple values - check if NOT ALL values are in JSON array ({x,y} ⊄ array) */
     NotContainsAll: "NOT_CONTAINS_ALL",
 } as const;
-export type PreconditionOperator = (typeof PreconditionOperator)[keyof typeof PreconditionOperator];
+export type PreconditionOperator = (typeof PreconditionOperator)[keyof typeof PreconditionOperator] | string;

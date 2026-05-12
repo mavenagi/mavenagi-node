@@ -4,4 +4,4 @@ export const SegmentField = {
     CreatedAt: "CreatedAt",
     Name: "Name",
 } as const;
-export type SegmentField = (typeof SegmentField)[keyof typeof SegmentField];
+export type SegmentField = (typeof SegmentField)[keyof typeof SegmentField] | string;
