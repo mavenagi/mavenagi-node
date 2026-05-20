@@ -68,8 +68,8 @@ export function normalizeClientOptions<T extends BaseClientOptions = BaseClientO
         {
             "X-Fern-Language": "JavaScript",
             "X-Fern-SDK-Name": "mavenagi",
-            "X-Fern-SDK-Version": "1.2.42",
-            "User-Agent": "mavenagi/1.2.42",
+            "X-Fern-SDK-Version": "1.2.43",
+            "User-Agent": "mavenagi/1.2.43",
             "X-Fern-Runtime": core.RUNTIME.type,
             "X-Fern-Runtime-Version": core.RUNTIME.version,
             "X-Organization-Id": options?.organizationId,

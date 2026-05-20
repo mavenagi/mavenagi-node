@@ -71,6 +71,17 @@ export interface ConversationFilter {
     hasAttachment?: boolean;
     /** Filter by the segments that any message on a conversation matched. */
     matchedSegmentIds?: MavenAGI.EntityIdFilter[];
+    /**
+     * Filter by the charters that any bot-response message on a conversation matched.
+     * References without a matching charter for the calling agent contribute nothing
+     * to the filter — they neither error nor warn, they simply produce no matches.
+     */
+    matchedCharterIds?: MavenAGI.EntityIdFilter[];
+    /**
+     * Filter by whether any bot-response message in the conversation ran in charter mode.
+     * Omit to match every conversation regardless of charter state.
+     */
+    anyMsgCharterMode?: boolean;
     /** Filter by inbox item IDs associated with the conversation */
     inboxItemIds?: MavenAGI.EntityIdFilter[];
     /** Whether to include simulation conversations in search results. Defaults to only non-simulation conversations. */

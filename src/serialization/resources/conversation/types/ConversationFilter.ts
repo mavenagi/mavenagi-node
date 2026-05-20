@@ -40,6 +40,8 @@ export const ConversationFilter: core.serialization.ObjectSchema<
     userMessageCount: NumberRange.optional(),
     hasAttachment: core.serialization.boolean().optional(),
     matchedSegmentIds: core.serialization.list(EntityIdFilter).optional(),
+    matchedCharterIds: core.serialization.list(EntityIdFilter).optional(),
+    anyMsgCharterMode: core.serialization.boolean().optional(),
     inboxItemIds: core.serialization.list(EntityIdFilter).optional(),
     simulationFilter: SimulationFilter.optional(),
     intelligentFields: IntelligentFieldFilter.optional(),
@@ -69,6 +71,8 @@ export declare namespace ConversationFilter {
         userMessageCount?: NumberRange.Raw | null;
         hasAttachment?: boolean | null;
         matchedSegmentIds?: EntityIdFilter.Raw[] | null;
+        matchedCharterIds?: EntityIdFilter.Raw[] | null;
+        anyMsgCharterMode?: boolean | null;
         inboxItemIds?: EntityIdFilter.Raw[] | null;
         simulationFilter?: SimulationFilter.Raw | null;
         intelligentFields?: IntelligentFieldFilter.Raw | null;
