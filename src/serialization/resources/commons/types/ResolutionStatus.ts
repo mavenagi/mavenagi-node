@@ -14,6 +14,7 @@ export const ResolutionStatus: core.serialization.Schema<serializers.ResolutionS
         "NEGATIVE_FEEDBACK",
         "CONTENT_SAFETY_FLAGGED",
         "PROMPT_ATTACK_FLAGGED",
+        "HANGUP",
         "INELIGIBLE",
     ]);
 
@@ -27,5 +28,6 @@ export declare namespace ResolutionStatus {
         | "NEGATIVE_FEEDBACK"
         | "CONTENT_SAFETY_FLAGGED"
         | "PROMPT_ATTACK_FLAGGED"
+        | "HANGUP"
         | "INELIGIBLE";
 }

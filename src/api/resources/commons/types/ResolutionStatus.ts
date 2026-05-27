@@ -9,6 +9,7 @@ export const ResolutionStatus = {
     NegativeFeedback: "NEGATIVE_FEEDBACK",
     ContentSafetyFlagged: "CONTENT_SAFETY_FLAGGED",
     PromptAttackFlagged: "PROMPT_ATTACK_FLAGGED",
+    Hangup: "HANGUP",
     Ineligible: "INELIGIBLE",
 } as const;
 export type ResolutionStatus = (typeof ResolutionStatus)[keyof typeof ResolutionStatus] | string;
