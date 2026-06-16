@@ -5,6 +5,7 @@ import * as core from "../../../../core";
 import type * as serializers from "../../../index";
 import { EntityId } from "../../commons/types/EntityId";
 import { LlmInclusionStatus } from "../../commons/types/LlmInclusionStatus";
+import { KnowledgeBaseIndexingProgressState } from "./KnowledgeBaseIndexingProgressState";
 import { KnowledgeBaseProperties } from "./KnowledgeBaseProperties";
 import { KnowledgeBaseRefreshFrequency } from "./KnowledgeBaseRefreshFrequency";
 import { KnowledgeBaseType } from "./KnowledgeBaseType";
@@ -28,6 +29,7 @@ export const KnowledgeBaseResponse: core.serialization.ObjectSchema<
         segmentId: EntityId.optional(),
         segmentIds: core.serialization.list(EntityId),
         url: core.serialization.string().optional(),
+        indexingState: KnowledgeBaseIndexingProgressState.optional(),
     })
     .extend(KnowledgeBaseProperties);
 
@@ -46,5 +48,6 @@ export declare namespace KnowledgeBaseResponse {
         segmentId?: EntityId.Raw | null;
         segmentIds: EntityId.Raw[];
         url?: string | null;
+        indexingState?: KnowledgeBaseIndexingProgressState.Raw | null;
     }
 }

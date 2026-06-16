@@ -29,4 +29,6 @@ export interface KnowledgeBaseVersion extends MavenAGI.KnowledgeBaseVersionReque
     createdAt: Date;
     /** The date and time the knowledge base version was last updated. */
     updatedAt: Date;
+    /** The indexing status of the knowledge base version. */
+    indexingState?: MavenAGI.KnowledgeBaseIndexingProgressState;
 }

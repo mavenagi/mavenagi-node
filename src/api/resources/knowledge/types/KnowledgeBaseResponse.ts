@@ -84,4 +84,6 @@ export interface KnowledgeBaseResponse extends MavenAGI.KnowledgeBaseProperties 
     segmentIds: MavenAGI.EntityId[];
     /** The source URL of URL and RSS knowledge bases that was used for crawl. */
     url?: string;
+    /** The indexing status of the latest version of the knowledge base. */
+    indexingState?: MavenAGI.KnowledgeBaseIndexingProgressState;
 }

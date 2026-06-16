@@ -3,6 +3,8 @@ export * from "./CancelKnowledgeBaseVersionRequest";
 export * from "./FinalizeKnowledgeBaseVersionRequest";
 export * from "./KnowledgeBaseField";
 export * from "./KnowledgeBaseFilter";
+export * from "./KnowledgeBaseIndexingProgressState";
+export * from "./KnowledgeBaseIndexingStatus";
 export * from "./KnowledgeBaseProperties";
 export * from "./KnowledgeBaseRefreshFrequency";
 export * from "./KnowledgeBaseRefreshRequest";
