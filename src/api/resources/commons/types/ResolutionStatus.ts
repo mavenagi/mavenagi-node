@@ -6,6 +6,7 @@ export const ResolutionStatus = {
     InProgress: "IN_PROGRESS",
     Resolved: "RESOLVED",
     Escalated: "ESCALATED",
+    Incomplete: "INCOMPLETE",
     NegativeFeedback: "NEGATIVE_FEEDBACK",
     ContentSafetyFlagged: "CONTENT_SAFETY_FLAGGED",
     PromptAttackFlagged: "PROMPT_ATTACK_FLAGGED",
