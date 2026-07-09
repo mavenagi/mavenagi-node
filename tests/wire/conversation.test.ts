@@ -33,6 +33,7 @@ describe("ConversationClient", () => {
             ],
         };
         const rawResponseBody = {
+            conversationKickoffResult: { status: "SUCCESS", message: "message" },
             messages: [
                 {
                     type: "user",
@@ -265,6 +266,10 @@ describe("ConversationClient", () => {
             ],
         });
         expect(response).toEqual({
+            conversationKickoffResult: {
+                status: "SUCCESS",
+                message: "message",
+            },
             messages: [
                 {
                     type: "user",

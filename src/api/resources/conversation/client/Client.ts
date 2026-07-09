@@ -72,14 +72,14 @@ export class ConversationClient {
     public initialize(
         request: MavenAGI.ConversationRequest,
         requestOptions?: ConversationClient.RequestOptions,
-    ): core.HttpResponsePromise<MavenAGI.ConversationResponse> {
+    ): core.HttpResponsePromise<MavenAGI.InitializeConversationResponse> {
         return core.HttpResponsePromise.fromPromise(this.__initialize(request, requestOptions));
     }
 
     private async __initialize(
         request: MavenAGI.ConversationRequest,
         requestOptions?: ConversationClient.RequestOptions,
-    ): Promise<core.WithRawResponse<MavenAGI.ConversationResponse>> {
+    ): Promise<core.WithRawResponse<MavenAGI.InitializeConversationResponse>> {
         const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
         const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
             _authRequest.headers,
@@ -111,7 +111,7 @@ export class ConversationClient {
         });
         if (_response.ok) {
             return {
-                data: serializers.ConversationResponse.parseOrThrow(_response.body, {
+                data: serializers.InitializeConversationResponse.parseOrThrow(_response.body, {
                     unrecognizedObjectKeys: "passthrough",
                     allowUnrecognizedUnionMembers: true,
                     allowUnrecognizedEnumValues: true,

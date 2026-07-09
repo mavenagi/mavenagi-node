@@ -24,6 +24,8 @@ export const EntityType: core.serialization.Schema<serializers.EntityType.Raw, M
         "CUSTOMER",
         "INTELLIGENT_FIELD",
         "CHARTER",
+        "CONVERSATION_KICKOFF",
+        "AGENT_VARIANT",
     ]);
 
 export declare namespace EntityType {
@@ -45,5 +47,7 @@ export declare namespace EntityType {
         | "SEGMENT"
         | "CUSTOMER"
         | "INTELLIGENT_FIELD"
-        | "CHARTER";
+        | "CHARTER"
+        | "CONVERSATION_KICKOFF"
+        | "AGENT_VARIANT";
 }

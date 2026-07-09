@@ -1681,7 +1681,7 @@ await client.assets.commitUpload("assetReferenceId", {});
 </details>
 
 ## Conversation
-<details><summary><code>client.conversation.<a href="/src/api/resources/conversation/client/Client.ts">initialize</a>({ ...params }) -> MavenAGI.ConversationResponse</code></summary>
+<details><summary><code>client.conversation.<a href="/src/api/resources/conversation/client/Client.ts">initialize</a>({ ...params }) -> MavenAGI.InitializeConversationResponse</code></summary>
 <dl>
 <dd>
 
