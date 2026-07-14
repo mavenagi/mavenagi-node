@@ -1262,6 +1262,158 @@ describe("KnowledgeClient", () => {
         }).rejects.toThrow(MavenAGI.ServerError);
     });
 
+    test("rollbackKnowledgeBaseVersion (1)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new MavenAGIClient({
+            maxRetries: 0,
+            appId: "test",
+            appSecret: "test",
+            organizationId: "test",
+            agentId: "test",
+            environment: server.baseUrl,
+        });
+
+        server
+            .mockEndpoint()
+            .post("/v1/knowledge/knowledgeBaseReferenceId/rollback")
+            .respondWith()
+            .statusCode(200)
+            .build();
+
+        const response = await client.knowledge.rollbackKnowledgeBaseVersion("knowledgeBaseReferenceId");
+        expect(response).toEqual(undefined);
+    });
+
+    test("rollbackKnowledgeBaseVersion (2)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new MavenAGIClient({
+            maxRetries: 0,
+            appId: "test",
+            appSecret: "test",
+            organizationId: "test",
+            agentId: "test",
+            environment: server.baseUrl,
+        });
+
+        const rawResponseBody = {};
+
+        server
+            .mockEndpoint()
+            .post("/v1/knowledge/knowledgeBaseReferenceId/rollback")
+            .respondWith()
+            .statusCode(404)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.knowledge.rollbackKnowledgeBaseVersion("knowledgeBaseReferenceId");
+        }).rejects.toThrow(MavenAGI.NotFoundError);
+    });
+
+    test("rollbackKnowledgeBaseVersion (3)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new MavenAGIClient({
+            maxRetries: 0,
+            appId: "test",
+            appSecret: "test",
+            organizationId: "test",
+            agentId: "test",
+            environment: server.baseUrl,
+        });
+
+        const rawResponseBody = {};
+
+        server
+            .mockEndpoint()
+            .post("/v1/knowledge/knowledgeBaseReferenceId/rollback")
+            .respondWith()
+            .statusCode(400)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.knowledge.rollbackKnowledgeBaseVersion("knowledgeBaseReferenceId");
+        }).rejects.toThrow(MavenAGI.BadRequestError);
+    });
+
+    test("rollbackKnowledgeBaseVersion (4)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new MavenAGIClient({
+            maxRetries: 0,
+            appId: "test",
+            appSecret: "test",
+            organizationId: "test",
+            agentId: "test",
+            environment: server.baseUrl,
+        });
+
+        const rawResponseBody = {};
+
+        server
+            .mockEndpoint()
+            .post("/v1/knowledge/knowledgeBaseReferenceId/rollback")
+            .respondWith()
+            .statusCode(413)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.knowledge.rollbackKnowledgeBaseVersion("knowledgeBaseReferenceId");
+        }).rejects.toThrow(MavenAGI.PayloadTooLargeError);
+    });
+
+    test("rollbackKnowledgeBaseVersion (5)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new MavenAGIClient({
+            maxRetries: 0,
+            appId: "test",
+            appSecret: "test",
+            organizationId: "test",
+            agentId: "test",
+            environment: server.baseUrl,
+        });
+
+        const rawResponseBody = {};
+
+        server
+            .mockEndpoint()
+            .post("/v1/knowledge/knowledgeBaseReferenceId/rollback")
+            .respondWith()
+            .statusCode(429)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.knowledge.rollbackKnowledgeBaseVersion("knowledgeBaseReferenceId");
+        }).rejects.toThrow(MavenAGI.TooManyRequestsError);
+    });
+
+    test("rollbackKnowledgeBaseVersion (6)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new MavenAGIClient({
+            maxRetries: 0,
+            appId: "test",
+            appSecret: "test",
+            organizationId: "test",
+            agentId: "test",
+            environment: server.baseUrl,
+        });
+
+        const rawResponseBody = {};
+
+        server
+            .mockEndpoint()
+            .post("/v1/knowledge/knowledgeBaseReferenceId/rollback")
+            .respondWith()
+            .statusCode(500)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.knowledge.rollbackKnowledgeBaseVersion("knowledgeBaseReferenceId");
+        }).rejects.toThrow(MavenAGI.ServerError);
+    });
+
     test("patchKnowledgeBase (1)", async () => {
         const server = mockServerPool.createServer();
         const client = new MavenAGIClient({

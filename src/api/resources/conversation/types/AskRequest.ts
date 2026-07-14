@@ -39,4 +39,13 @@ export interface AskRequest {
     transientData?: Record<string, string>;
     /** IANA timezone identifier (e.g. "America/New_York", "Europe/London") to be used for time-based operations in the conversation. */
     timezone?: string;
+    /**
+     * Key-value metadata to persist on the user message created by this request. Unlike
+     * `transientData` (which is never persisted) this is stored and returned when the message
+     * is read back via the API or dashboard, and unlike user data it is not sent to the LLM.
+     * Applied only when the message is first created — if `conversationMessageId` already
+     * exists the message is reused and its metadata is not updated. Keys and values are strings
+     * with a maximum length of 500 characters each.
+     */
+    appMetadata?: Record<string, string>;
 }

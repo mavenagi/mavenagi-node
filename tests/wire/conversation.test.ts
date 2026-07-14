@@ -58,6 +58,7 @@ describe("ConversationClient", () => {
                     userMessageType: "USER",
                     createdAt: "2024-01-15T09:30:00Z",
                     updatedAt: "2024-01-15T09:30:00Z",
+                    appMetadata: { appMetadata: "appMetadata" },
                 },
                 {
                     type: "user",
@@ -82,6 +83,7 @@ describe("ConversationClient", () => {
                     userMessageType: "USER",
                     createdAt: "2024-01-15T09:30:00Z",
                     updatedAt: "2024-01-15T09:30:00Z",
+                    appMetadata: { appMetadata: "appMetadata" },
                 },
             ],
             attachments: [
@@ -308,6 +310,9 @@ describe("ConversationClient", () => {
                     userMessageType: "USER",
                     createdAt: new Date("2024-01-15T09:30:00.000Z"),
                     updatedAt: new Date("2024-01-15T09:30:00.000Z"),
+                    appMetadata: {
+                        appMetadata: "appMetadata",
+                    },
                 },
                 {
                     type: "user",
@@ -346,6 +351,9 @@ describe("ConversationClient", () => {
                     userMessageType: "USER",
                     createdAt: new Date("2024-01-15T09:30:00.000Z"),
                     updatedAt: new Date("2024-01-15T09:30:00.000Z"),
+                    appMetadata: {
+                        appMetadata: "appMetadata",
+                    },
                 },
             ],
             attachments: [
@@ -1226,6 +1234,7 @@ describe("ConversationClient", () => {
                     userMessageType: "USER",
                     createdAt: "2024-01-15T09:30:00Z",
                     updatedAt: "2024-01-15T09:30:00Z",
+                    appMetadata: { appMetadata: "appMetadata" },
                 },
                 {
                     type: "user",
@@ -1250,6 +1259,7 @@ describe("ConversationClient", () => {
                     userMessageType: "USER",
                     createdAt: "2024-01-15T09:30:00Z",
                     updatedAt: "2024-01-15T09:30:00Z",
+                    appMetadata: { appMetadata: "appMetadata" },
                 },
             ],
             attachments: [
@@ -1445,6 +1455,9 @@ describe("ConversationClient", () => {
                     userMessageType: "USER",
                     createdAt: new Date("2024-01-15T09:30:00.000Z"),
                     updatedAt: new Date("2024-01-15T09:30:00.000Z"),
+                    appMetadata: {
+                        appMetadata: "appMetadata",
+                    },
                 },
                 {
                     type: "user",
@@ -1483,6 +1496,9 @@ describe("ConversationClient", () => {
                     userMessageType: "USER",
                     createdAt: new Date("2024-01-15T09:30:00.000Z"),
                     updatedAt: new Date("2024-01-15T09:30:00.000Z"),
+                    appMetadata: {
+                        appMetadata: "appMetadata",
+                    },
                 },
             ],
             attachments: [
@@ -2007,6 +2023,7 @@ describe("ConversationClient", () => {
                     userMessageType: "USER",
                     createdAt: "2024-01-15T09:30:00Z",
                     updatedAt: "2024-01-15T09:30:00Z",
+                    appMetadata: { appMetadata: "appMetadata" },
                 },
                 {
                     type: "user",
@@ -2031,6 +2048,7 @@ describe("ConversationClient", () => {
                     userMessageType: "USER",
                     createdAt: "2024-01-15T09:30:00Z",
                     updatedAt: "2024-01-15T09:30:00Z",
+                    appMetadata: { appMetadata: "appMetadata" },
                 },
             ],
             attachments: [
@@ -2248,6 +2266,9 @@ describe("ConversationClient", () => {
                     userMessageType: "USER",
                     createdAt: new Date("2024-01-15T09:30:00.000Z"),
                     updatedAt: new Date("2024-01-15T09:30:00.000Z"),
+                    appMetadata: {
+                        appMetadata: "appMetadata",
+                    },
                 },
                 {
                     type: "user",
@@ -2286,6 +2307,9 @@ describe("ConversationClient", () => {
                     userMessageType: "USER",
                     createdAt: new Date("2024-01-15T09:30:00.000Z"),
                     updatedAt: new Date("2024-01-15T09:30:00.000Z"),
+                    appMetadata: {
+                        appMetadata: "appMetadata",
+                    },
                 },
             ],
             attachments: [
@@ -3986,6 +4010,7 @@ describe("ConversationClient", () => {
                     userMessageType: "USER",
                     createdAt: "2024-01-15T09:30:00Z",
                     updatedAt: "2024-01-15T09:30:00Z",
+                    appMetadata: { appMetadata: "appMetadata" },
                 },
                 {
                     type: "user",
@@ -4010,6 +4035,7 @@ describe("ConversationClient", () => {
                     userMessageType: "USER",
                     createdAt: "2024-01-15T09:30:00Z",
                     updatedAt: "2024-01-15T09:30:00Z",
+                    appMetadata: { appMetadata: "appMetadata" },
                 },
             ],
             attachments: [
@@ -4213,6 +4239,9 @@ describe("ConversationClient", () => {
                     userMessageType: "USER",
                     createdAt: new Date("2024-01-15T09:30:00.000Z"),
                     updatedAt: new Date("2024-01-15T09:30:00.000Z"),
+                    appMetadata: {
+                        appMetadata: "appMetadata",
+                    },
                 },
                 {
                     type: "user",
@@ -4251,6 +4280,9 @@ describe("ConversationClient", () => {
                     userMessageType: "USER",
                     createdAt: new Date("2024-01-15T09:30:00.000Z"),
                     updatedAt: new Date("2024-01-15T09:30:00.000Z"),
+                    appMetadata: {
+                        appMetadata: "appMetadata",
+                    },
                 },
             ],
             attachments: [

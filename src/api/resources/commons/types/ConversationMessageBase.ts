@@ -5,4 +5,13 @@ export interface ConversationMessageBase {
     createdAt?: Date;
     /** The date and time the conversation was last updated */
     updatedAt?: Date;
+    /**
+     * Key-value metadata for this message, supplied by the app which created the message.
+     * Useful for storing additional structured information about the message and querying
+     * for it via API or the dashboard.
+     *
+     * Keys are strings with a maximum length of 500 characters. Values are strings with a
+     * maximum length of 500 characters.
+     */
+    appMetadata?: Record<string, string>;
 }

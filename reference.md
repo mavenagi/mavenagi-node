@@ -4459,6 +4459,69 @@ await client.knowledge.cancelKnowledgeBaseVersion("knowledgeBaseReferenceId", {}
 </dl>
 </details>
 
+<details><summary><code>client.knowledge.<a href="/src/api/resources/knowledge/client/Client.ts">rollbackKnowledgeBaseVersion</a>(knowledgeBaseReferenceId) -> void</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Rolls the knowledge base back to its previous published version.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.knowledge.rollbackKnowledgeBaseVersion("knowledgeBaseReferenceId");
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**knowledgeBaseReferenceId:** `string` — The reference ID of the knowledge base to roll back. All other entity ID fields are inferred from the request.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `KnowledgeClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
 <details><summary><code>client.knowledge.<a href="/src/api/resources/knowledge/client/Client.ts">patchKnowledgeBase</a>(knowledgeBaseReferenceId, { ...params }) -> MavenAGI.KnowledgeBaseResponse</code></summary>
 <dl>
 <dd>

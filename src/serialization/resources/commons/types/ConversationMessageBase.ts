@@ -10,11 +10,13 @@ export const ConversationMessageBase: core.serialization.ObjectSchema<
 > = core.serialization.object({
     createdAt: core.serialization.date().optional(),
     updatedAt: core.serialization.date().optional(),
+    appMetadata: core.serialization.record(core.serialization.string(), core.serialization.string()).optional(),
 });
 
 export declare namespace ConversationMessageBase {
     export interface Raw {
         createdAt?: string | null;
         updatedAt?: string | null;
+        appMetadata?: Record<string, string> | null;
     }
 }

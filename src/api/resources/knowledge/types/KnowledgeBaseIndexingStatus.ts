@@ -6,8 +6,10 @@ export const KnowledgeBaseIndexingStatus = {
     Indexing: "INDEXING",
     Indexed: "INDEXED",
     Published: "PUBLISHED",
+    RollingBack: "ROLLING_BACK",
     Failed: "FAILED",
     Superseded: "SUPERSEDED",
+    RolledBack: "ROLLED_BACK",
 } as const;
 export type KnowledgeBaseIndexingStatus =
     | (typeof KnowledgeBaseIndexingStatus)[keyof typeof KnowledgeBaseIndexingStatus]

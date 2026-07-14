@@ -7,8 +7,25 @@ import type * as serializers from "../../../index";
 export const KnowledgeBaseIndexingStatus: core.serialization.Schema<
     serializers.KnowledgeBaseIndexingStatus.Raw,
     MavenAGI.KnowledgeBaseIndexingStatus
-> = core.serialization.forwardCompatibleEnum_(["BUILDING", "INDEXING", "INDEXED", "PUBLISHED", "FAILED", "SUPERSEDED"]);
+> = core.serialization.forwardCompatibleEnum_([
+    "BUILDING",
+    "INDEXING",
+    "INDEXED",
+    "PUBLISHED",
+    "ROLLING_BACK",
+    "FAILED",
+    "SUPERSEDED",
+    "ROLLED_BACK",
+]);
 
 export declare namespace KnowledgeBaseIndexingStatus {
-    export type Raw = "BUILDING" | "INDEXING" | "INDEXED" | "PUBLISHED" | "FAILED" | "SUPERSEDED";
+    export type Raw =
+        | "BUILDING"
+        | "INDEXING"
+        | "INDEXED"
+        | "PUBLISHED"
+        | "ROLLING_BACK"
+        | "FAILED"
+        | "SUPERSEDED"
+        | "ROLLED_BACK";
 }
