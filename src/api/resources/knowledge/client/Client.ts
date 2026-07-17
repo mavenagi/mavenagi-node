@@ -999,7 +999,7 @@ export class KnowledgeClient {
      * If an existing version is in progress, then that version will be finalized in an error state.
      *
      * @param {string} knowledgeBaseReferenceId - The reference ID of the knowledge base to create a version for. All other entity ID fields are inferred from the request.
-     * @param {MavenAGI.KnowledgeBaseVersionRequest} request
+     * @param {MavenAGI.CreateKnowledgeBaseVersionRequest} request
      * @param {KnowledgeClient.RequestOptions} requestOptions - Request-specific configuration.
      *
      * @throws {@link MavenAGI.NotFoundError}
@@ -1015,7 +1015,7 @@ export class KnowledgeClient {
      */
     public createKnowledgeBaseVersion(
         knowledgeBaseReferenceId: string,
-        request: MavenAGI.KnowledgeBaseVersionRequest,
+        request: MavenAGI.CreateKnowledgeBaseVersionRequest,
         requestOptions?: KnowledgeClient.RequestOptions,
     ): core.HttpResponsePromise<MavenAGI.KnowledgeBaseVersion> {
         return core.HttpResponsePromise.fromPromise(
@@ -1025,7 +1025,7 @@ export class KnowledgeClient {
 
     private async __createKnowledgeBaseVersion(
         knowledgeBaseReferenceId: string,
-        request: MavenAGI.KnowledgeBaseVersionRequest,
+        request: MavenAGI.CreateKnowledgeBaseVersionRequest,
         requestOptions?: KnowledgeClient.RequestOptions,
     ): Promise<core.WithRawResponse<MavenAGI.KnowledgeBaseVersion>> {
         const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
@@ -1050,7 +1050,9 @@ export class KnowledgeClient {
             contentType: "application/json",
             queryString: core.url.queryBuilder().mergeAdditional(requestOptions?.queryParams).build(),
             requestType: "json",
-            body: serializers.KnowledgeBaseVersionRequest.jsonOrThrow(request, { unrecognizedObjectKeys: "strip" }),
+            body: serializers.CreateKnowledgeBaseVersionRequest.jsonOrThrow(request, {
+                unrecognizedObjectKeys: "strip",
+            }),
             timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
             maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
             abortSignal: requestOptions?.abortSignal,

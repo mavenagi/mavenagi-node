@@ -22,6 +22,8 @@ import type * as MavenAGI from "../../../index";
  *     }
  */
 export interface KnowledgeDocumentRequest extends MavenAGI.BaseKnowledgeDocument {
+    /** The App ID of the knowledge base to create the document in. If not provided the ID of the calling app will be used. */
+    knowledgeBaseAppId?: string;
     /** ID that uniquely identifies this knowledge document within its knowledge base */
     knowledgeDocumentId: MavenAGI.EntityIdBase;
     /** ID that uniquely identifies which knowledge base version to create the document in. If not provided will use the most recent version of the knowledge base. */

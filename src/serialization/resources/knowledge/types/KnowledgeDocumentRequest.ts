@@ -14,6 +14,7 @@ export const KnowledgeDocumentRequest: core.serialization.ObjectSchema<
     MavenAGI.KnowledgeDocumentRequest
 > = core.serialization
     .object({
+        knowledgeBaseAppId: core.serialization.string().optional(),
         knowledgeDocumentId: EntityIdBase,
         versionId: EntityIdWithoutAgent.optional(),
         contentType: KnowledgeDocumentContentType,
@@ -29,6 +30,7 @@ export const KnowledgeDocumentRequest: core.serialization.ObjectSchema<
 
 export declare namespace KnowledgeDocumentRequest {
     export interface Raw extends BaseKnowledgeDocument.Raw {
+        knowledgeBaseAppId?: string | null;
         knowledgeDocumentId: EntityIdBase.Raw;
         versionId?: EntityIdWithoutAgent.Raw | null;
         contentType: KnowledgeDocumentContentType.Raw;

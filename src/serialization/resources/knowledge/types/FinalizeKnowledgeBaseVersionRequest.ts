@@ -10,6 +10,7 @@ export const FinalizeKnowledgeBaseVersionRequest: core.serialization.ObjectSchem
     serializers.FinalizeKnowledgeBaseVersionRequest.Raw,
     MavenAGI.FinalizeKnowledgeBaseVersionRequest
 > = core.serialization.object({
+    appId: core.serialization.string().optional(),
     versionId: EntityIdWithoutAgent.optional(),
     status: KnowledgeBaseVersionFinalizeStatus.optional(),
     errorMessage: core.serialization.string().optional(),
@@ -17,6 +18,7 @@ export const FinalizeKnowledgeBaseVersionRequest: core.serialization.ObjectSchem
 
 export declare namespace FinalizeKnowledgeBaseVersionRequest {
     export interface Raw {
+        appId?: string | null;
         versionId?: EntityIdWithoutAgent.Raw | null;
         status?: KnowledgeBaseVersionFinalizeStatus.Raw | null;
         errorMessage?: string | null;

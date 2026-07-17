@@ -14,6 +14,8 @@ import type * as MavenAGI from "../../../index";
  *     }
  */
 export interface FinalizeKnowledgeBaseVersionRequest {
+    /** The App ID of the knowledge base to finalize a version for. If not provided the ID of the calling app will be used. */
+    appId?: string;
     /** ID that uniquely identifies which knowledge base version to finalize. If not provided will use the most recent version of the knowledge base. */
     versionId?: MavenAGI.EntityIdWithoutAgent;
     /** Whether the knowledge base version processing was successful or not. */

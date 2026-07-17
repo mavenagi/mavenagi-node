@@ -4661,7 +4661,7 @@ await client.knowledge.createKnowledgeBaseVersion("help-center", {
 <dl>
 <dd>
 
-**request:** `MavenAGI.KnowledgeBaseVersionRequest` 
+**request:** `MavenAGI.CreateKnowledgeBaseVersionRequest` 
     
 </dd>
 </dl>

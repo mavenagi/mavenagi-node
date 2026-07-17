@@ -21,5 +21,6 @@ export const EntityType = {
     Charter: "CHARTER",
     ConversationKickoff: "CONVERSATION_KICKOFF",
     AgentVariant: "AGENT_VARIANT",
+    ConfigSnapshot: "CONFIG_SNAPSHOT",
 } as const;
 export type EntityType = (typeof EntityType)[keyof typeof EntityType] | string;
