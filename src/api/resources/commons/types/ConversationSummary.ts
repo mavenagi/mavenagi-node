@@ -7,6 +7,12 @@ export interface ConversationSummary {
     actionIds: MavenAGI.EntityIdWithoutAgent[];
     /** The IDs of the actions that were taken by Maven but not completed in the conversation. Occurs when the user is shown an action form but does not submit it. */
     incompleteActionIds: MavenAGI.EntityIdWithoutAgent[];
+    /** The IDs of the charters that were matched anywhere in the conversation. */
+    matchedCharterIds: MavenAGI.EntityIdWithoutAgent[];
+    /** The names of the charters that were matched anywhere in the conversation. */
+    matchedCharterNames: string[];
+    /** The names of the matched charters that are gated by a segment (i.e. have a segment condition) anywhere in the conversation. */
+    matchedSegmentedCharterNames: string[];
     /** The number of insert events on messages in the conversation. */
     insertCount: number;
     /** The number of thumbs up events on messages in the conversation. */

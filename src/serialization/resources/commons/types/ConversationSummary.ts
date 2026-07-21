@@ -11,6 +11,9 @@ export const ConversationSummary: core.serialization.ObjectSchema<
 > = core.serialization.object({
     actionIds: core.serialization.list(EntityIdWithoutAgent),
     incompleteActionIds: core.serialization.list(EntityIdWithoutAgent),
+    matchedCharterIds: core.serialization.list(EntityIdWithoutAgent),
+    matchedCharterNames: core.serialization.list(core.serialization.string()),
+    matchedSegmentedCharterNames: core.serialization.list(core.serialization.string()),
     insertCount: core.serialization.number(),
     thumbsUpCount: core.serialization.number(),
     thumbsDownCount: core.serialization.number(),
@@ -33,6 +36,9 @@ export declare namespace ConversationSummary {
     export interface Raw {
         actionIds: EntityIdWithoutAgent.Raw[];
         incompleteActionIds: EntityIdWithoutAgent.Raw[];
+        matchedCharterIds: EntityIdWithoutAgent.Raw[];
+        matchedCharterNames: string[];
+        matchedSegmentedCharterNames: string[];
         insertCount: number;
         thumbsUpCount: number;
         thumbsDownCount: number;

@@ -23,6 +23,9 @@ import type * as MavenAGI from "../../../index";
  *         summary: {
  *             actionIds: [],
  *             incompleteActionIds: [],
+ *             matchedCharterIds: [],
+ *             matchedCharterNames: [],
+ *             matchedSegmentedCharterNames: [],
  *             insertCount: 0,
  *             thumbsUpCount: 0,
  *             thumbsDownCount: 0,
