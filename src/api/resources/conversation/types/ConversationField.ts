@@ -23,6 +23,7 @@ export const ConversationField = {
     Languages: "Languages",
     Actions: "Actions",
     IncompleteActions: "IncompleteActions",
+    Charters: "Charters",
     Sources: "Sources",
     CreatedAt: "CreatedAt",
     PredictedNps: "PredictedNPS",

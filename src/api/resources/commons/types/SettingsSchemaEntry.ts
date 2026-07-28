@@ -10,11 +10,13 @@ export type SettingsSchemaEntry =
     | MavenAGI.SettingsSchemaEntry.Color
     | MavenAGI.SettingsSchemaEntry.Image
     | MavenAGI.SettingsSchemaEntry.Checkbox
+    | MavenAGI.SettingsSchemaEntry.Switch
     | MavenAGI.SettingsSchemaEntry.Dropdown
     | MavenAGI.SettingsSchemaEntry.Section
     | MavenAGI.SettingsSchemaEntry.Oauth
     | MavenAGI.SettingsSchemaEntry.Number
-    | MavenAGI.SettingsSchemaEntry.OneOf;
+    | MavenAGI.SettingsSchemaEntry.OneOf
+    | MavenAGI.SettingsSchemaEntry.JsonSchema;
 
 export namespace SettingsSchemaEntry {
     export interface Text extends MavenAGI.TextSettingsSchemaEntry {
@@ -45,6 +47,10 @@ export namespace SettingsSchemaEntry {
         type: "checkbox";
     }
 
+    export interface Switch extends MavenAGI.SwitchSettingsSchemaEntry {
+        type: "switch";
+    }
+
     export interface Dropdown extends MavenAGI.DropdownSettingsSchemaEntry {
         type: "dropdown";
     }
@@ -63,5 +69,9 @@ export namespace SettingsSchemaEntry {
 
     export interface OneOf extends MavenAGI.OneOfSettingsSchemaEntry {
         type: "oneOf";
+    }
+
+    export interface JsonSchema extends MavenAGI.JsonSchemaSettingsSchemaEntry {
+        type: "jsonSchema";
     }
 }

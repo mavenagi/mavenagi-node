@@ -8,9 +8,11 @@ import { CheckboxSettingsSchemaEntry } from "./CheckboxSettingsSchemaEntry";
 import { ColorSettingsSchemaEntry } from "./ColorSettingsSchemaEntry";
 import { DropdownSettingsSchemaEntry } from "./DropdownSettingsSchemaEntry";
 import { ImageSettingsSchemaEntry } from "./ImageSettingsSchemaEntry";
+import { JsonSchemaSettingsSchemaEntry } from "./JsonSchemaSettingsSchemaEntry";
 import { MultilineSettingsSchemaEntry } from "./MultilineSettingsSchemaEntry";
 import { NumberSettingsSchemaEntry } from "./NumberSettingsSchemaEntry";
 import { OAuthSettingsSchemaEntry } from "./OAuthSettingsSchemaEntry";
+import { SwitchSettingsSchemaEntry } from "./SwitchSettingsSchemaEntry";
 import { TextSettingsSchemaEntry } from "./TextSettingsSchemaEntry";
 
 export const SettingsSchemaEntry: core.serialization.Schema<
@@ -25,11 +27,13 @@ export const SettingsSchemaEntry: core.serialization.Schema<
         color: ColorSettingsSchemaEntry,
         image: ImageSettingsSchemaEntry,
         checkbox: CheckboxSettingsSchemaEntry,
+        switch: SwitchSettingsSchemaEntry,
         dropdown: DropdownSettingsSchemaEntry,
         section: core.serialization.lazyObject(() => serializers.SectionSettingsSchemaEntry),
         oauth: OAuthSettingsSchemaEntry,
         number: NumberSettingsSchemaEntry,
         oneOf: core.serialization.lazyObject(() => serializers.OneOfSettingsSchemaEntry),
+        jsonSchema: JsonSchemaSettingsSchemaEntry,
     })
     .transform<MavenAGI.SettingsSchemaEntry>({
         transform: (value) => value,
@@ -45,11 +49,13 @@ export declare namespace SettingsSchemaEntry {
         | SettingsSchemaEntry.Color
         | SettingsSchemaEntry.Image
         | SettingsSchemaEntry.Checkbox
+        | SettingsSchemaEntry.Switch
         | SettingsSchemaEntry.Dropdown
         | SettingsSchemaEntry.Section
         | SettingsSchemaEntry.Oauth
         | SettingsSchemaEntry.Number
-        | SettingsSchemaEntry.OneOf;
+        | SettingsSchemaEntry.OneOf
+        | SettingsSchemaEntry.JsonSchema;
 
     export interface Text extends TextSettingsSchemaEntry.Raw {
         type: "text";
@@ -79,6 +85,10 @@ export declare namespace SettingsSchemaEntry {
         type: "checkbox";
     }
 
+    export interface Switch extends SwitchSettingsSchemaEntry.Raw {
+        type: "switch";
+    }
+
     export interface Dropdown extends DropdownSettingsSchemaEntry.Raw {
         type: "dropdown";
     }
@@ -97,5 +107,9 @@ export declare namespace SettingsSchemaEntry {
 
     export interface OneOf extends serializers.OneOfSettingsSchemaEntry.Raw {
         type: "oneOf";
+    }
+
+    export interface JsonSchema extends JsonSchemaSettingsSchemaEntry.Raw {
+        type: "jsonSchema";
     }
 }

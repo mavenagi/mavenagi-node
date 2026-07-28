@@ -20,7 +20,8 @@ export type IntelligentFieldCondition =
     | MavenAGI.IntelligentFieldCondition.String
     | MavenAGI.IntelligentFieldCondition.Numeric
     | MavenAGI.IntelligentFieldCondition.Boolean
-    | MavenAGI.IntelligentFieldCondition.Set;
+    | MavenAGI.IntelligentFieldCondition.Set
+    | MavenAGI.IntelligentFieldCondition.Universal;
 
 export namespace IntelligentFieldCondition {
     export interface String {
@@ -40,5 +41,10 @@ export namespace IntelligentFieldCondition {
     export interface Set {
         fieldValidationType: "set";
         value: MavenAGI.SetCondition;
+    }
+
+    export interface Universal {
+        fieldValidationType: "universal";
+        value: MavenAGI.UniversalCondition;
     }
 }

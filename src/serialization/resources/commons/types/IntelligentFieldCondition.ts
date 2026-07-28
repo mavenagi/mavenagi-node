@@ -7,6 +7,7 @@ import { BooleanCondition } from "./BooleanCondition";
 import { NumericCondition } from "./NumericCondition";
 import { SetCondition } from "./SetCondition";
 import { StringCondition } from "./StringCondition";
+import { UniversalCondition } from "./UniversalCondition";
 
 export const IntelligentFieldCondition: core.serialization.Schema<
     serializers.IntelligentFieldCondition.Raw,
@@ -23,6 +24,9 @@ export const IntelligentFieldCondition: core.serialization.Schema<
         set: core.serialization.object({
             value: SetCondition,
         }),
+        universal: core.serialization.object({
+            value: UniversalCondition,
+        }),
     })
     .transform<MavenAGI.IntelligentFieldCondition>({
         transform: (value) => value,
@@ -34,7 +38,8 @@ export declare namespace IntelligentFieldCondition {
         | IntelligentFieldCondition.String
         | IntelligentFieldCondition.Numeric
         | IntelligentFieldCondition.Boolean
-        | IntelligentFieldCondition.Set;
+        | IntelligentFieldCondition.Set
+        | IntelligentFieldCondition.Universal;
 
     export interface String {
         fieldValidationType: "string";
@@ -53,5 +58,10 @@ export declare namespace IntelligentFieldCondition {
     export interface Set {
         fieldValidationType: "set";
         value: SetCondition.Raw;
+    }
+
+    export interface Universal {
+        fieldValidationType: "universal";
+        value: UniversalCondition.Raw;
     }
 }
