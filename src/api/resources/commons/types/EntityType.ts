@@ -22,5 +22,6 @@ export const EntityType = {
     ConversationKickoff: "CONVERSATION_KICKOFF",
     AgentVariant: "AGENT_VARIANT",
     ConfigSnapshot: "CONFIG_SNAPSHOT",
+    Asset: "ASSET",
 } as const;
 export type EntityType = (typeof EntityType)[keyof typeof EntityType] | string;

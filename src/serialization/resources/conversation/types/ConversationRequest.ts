@@ -3,6 +3,7 @@
 import type * as MavenAGI from "../../../../api/index";
 import * as core from "../../../../core";
 import type * as serializers from "../../../index";
+import { EntityId } from "../../commons/types/EntityId";
 import { EntityIdBase } from "../../commons/types/EntityIdBase";
 import { ResponseConfig } from "../../commons/types/ResponseConfig";
 import { SimulationContext } from "../../commons/types/SimulationContext";
@@ -22,6 +23,7 @@ export const ConversationRequest: core.serialization.ObjectSchema<
     tags: core.serialization.set(core.serialization.string()).optional(),
     metadata: core.serialization.record(core.serialization.string(), core.serialization.string()).optional(),
     messages: core.serialization.list(ConversationMessageRequest),
+    spawnedFromConversationId: EntityId.optional(),
 });
 
 export declare namespace ConversationRequest {
@@ -36,5 +38,6 @@ export declare namespace ConversationRequest {
         tags?: string[] | null;
         metadata?: Record<string, string> | null;
         messages: ConversationMessageRequest.Raw[];
+        spawnedFromConversationId?: EntityId.Raw | null;
     }
 }

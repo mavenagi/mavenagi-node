@@ -43,4 +43,11 @@ export interface BaseConversationResponse {
      * Simulation conversations are excluded from normal search results unless explicitly included via the `simulationFilter` field.
      */
     simulationContext?: MavenAGI.SimulationContext;
+    /**
+     * Related entity ids grouped by relationship type.
+     *
+     * - `SPAWN_FROM`: the conversation this one was spawned from (set via `ConversationCreateRequest.spawnedFromConversationId`).
+     * - `SPAWN_TO`: the conversations that were spawned from this conversation.
+     */
+    relatedEntities?: Partial<Record<MavenAGI.RelationshipType, MavenAGI.EntityId[]>>;
 }

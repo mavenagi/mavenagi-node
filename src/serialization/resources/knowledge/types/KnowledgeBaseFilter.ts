@@ -5,6 +5,7 @@ import * as core from "../../../../core";
 import type * as serializers from "../../../index";
 import { EntityId } from "../../commons/types/EntityId";
 import { LlmInclusionStatus } from "../../commons/types/LlmInclusionStatus";
+import { KnowledgeBaseType } from "./KnowledgeBaseType";
 import { KnowledgeBaseVersionStatus } from "./KnowledgeBaseVersionStatus";
 
 export const KnowledgeBaseFilter: core.serialization.ObjectSchema<
@@ -16,6 +17,7 @@ export const KnowledgeBaseFilter: core.serialization.ObjectSchema<
     createdAfter: core.serialization.date().optional(),
     createdBefore: core.serialization.date().optional(),
     appIds: core.serialization.list(core.serialization.string()).optional(),
+    types: core.serialization.list(KnowledgeBaseType).optional(),
     mostRecentVersionStatus: core.serialization.list(KnowledgeBaseVersionStatus).optional(),
     llmInclusionStatus: LlmInclusionStatus.optional(),
     segmentId: core.serialization.string().optional(),
@@ -29,6 +31,7 @@ export declare namespace KnowledgeBaseFilter {
         createdAfter?: string | null;
         createdBefore?: string | null;
         appIds?: string[] | null;
+        types?: KnowledgeBaseType.Raw[] | null;
         mostRecentVersionStatus?: KnowledgeBaseVersionStatus.Raw[] | null;
         llmInclusionStatus?: LlmInclusionStatus.Raw | null;
         segmentId?: string | null;

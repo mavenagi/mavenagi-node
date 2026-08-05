@@ -9,9 +9,10 @@ import type * as MavenAGI from "../../../index";
  */
 export interface InitializeConversationResponse extends MavenAGI.ConversationResponse {
     /**
-     * Result of the Conversation Kickoff, when one ran during conversation initialization.
-     * Only present on this initialize response; other endpoints that return a conversation
-     * do not include it.
+     * Results of the Conversation Kickoffs that ran during conversation initialization, one
+     * entry per kickoff in the order they were recorded. Empty when no kickoff ran. Only
+     * present on this initialize response; other endpoints that return a conversation do not
+     * include it.
      */
-    conversationKickoffResult?: MavenAGI.ConversationKickoffResult;
+    conversationKickoffResults: MavenAGI.ConversationKickoffExecutionResponse[];
 }

@@ -7,4 +7,6 @@ export interface ConversationExecutedActionPrecondition extends MavenAGI.Precond
     actionId: string;
     /** App ID that the given actionId belongs to. If not provided, the calling appId will be used. */
     appId?: string;
+    /** Restricts which round the action must have executed in. Defaults to ANY when omitted, matching an action executed in any round. */
+    conversationRound?: MavenAGI.ConversationRound;
 }

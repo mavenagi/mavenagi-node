@@ -26,6 +26,8 @@ export interface KnowledgeBaseFilter {
     createdBefore?: Date;
     /** Filter by app IDs */
     appIds?: string[];
+    /** Filter by knowledge base type. */
+    types?: MavenAGI.KnowledgeBaseType[];
     /** Filter knowledge bases by the most recent version status */
     mostRecentVersionStatus?: MavenAGI.KnowledgeBaseVersionStatus[];
     /** Filter knowledge bases by the LLM inclusion status */

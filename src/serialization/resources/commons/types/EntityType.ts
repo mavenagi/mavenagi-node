@@ -27,6 +27,7 @@ export const EntityType: core.serialization.Schema<serializers.EntityType.Raw, M
         "CONVERSATION_KICKOFF",
         "AGENT_VARIANT",
         "CONFIG_SNAPSHOT",
+        "ASSET",
     ]);
 
 export declare namespace EntityType {
@@ -51,5 +52,6 @@ export declare namespace EntityType {
         | "CHARTER"
         | "CONVERSATION_KICKOFF"
         | "AGENT_VARIANT"
-        | "CONFIG_SNAPSHOT";
+        | "CONFIG_SNAPSHOT"
+        | "ASSET";
 }

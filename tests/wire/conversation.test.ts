@@ -33,7 +33,26 @@ describe("ConversationClient", () => {
             ],
         };
         const rawResponseBody = {
-            conversationKickoffResult: { status: "SUCCESS", message: "message" },
+            conversationKickoffResults: [
+                {
+                    referenceId: "referenceId",
+                    appId: "appId",
+                    status: "SUCCESS",
+                    message: "message",
+                    startedAt: "2024-01-15T09:30:00Z",
+                    completedAt: "2024-01-15T09:30:00Z",
+                    durationMs: 1000000,
+                },
+                {
+                    referenceId: "referenceId",
+                    appId: "appId",
+                    status: "SUCCESS",
+                    message: "message",
+                    startedAt: "2024-01-15T09:30:00Z",
+                    completedAt: "2024-01-15T09:30:00Z",
+                    durationMs: 1000000,
+                },
+            ],
             messages: [
                 {
                     type: "user",
@@ -235,6 +254,24 @@ describe("ConversationClient", () => {
                     },
                 ],
             },
+            relatedEntities: {
+                SPAWN_FROM: [
+                    {
+                        organizationId: "organizationId",
+                        agentId: "agentId",
+                        type: "AGENT",
+                        appId: "appId",
+                        referenceId: "x",
+                    },
+                    {
+                        organizationId: "organizationId",
+                        agentId: "agentId",
+                        type: "AGENT",
+                        appId: "appId",
+                        referenceId: "x",
+                    },
+                ],
+            },
         };
 
         server
@@ -274,10 +311,26 @@ describe("ConversationClient", () => {
             ],
         });
         expect(response).toEqual({
-            conversationKickoffResult: {
-                status: "SUCCESS",
-                message: "message",
-            },
+            conversationKickoffResults: [
+                {
+                    referenceId: "referenceId",
+                    appId: "appId",
+                    status: "SUCCESS",
+                    message: "message",
+                    startedAt: new Date("2024-01-15T09:30:00.000Z"),
+                    completedAt: new Date("2024-01-15T09:30:00.000Z"),
+                    durationMs: 1000000,
+                },
+                {
+                    referenceId: "referenceId",
+                    appId: "appId",
+                    status: "SUCCESS",
+                    message: "message",
+                    startedAt: new Date("2024-01-15T09:30:00.000Z"),
+                    completedAt: new Date("2024-01-15T09:30:00.000Z"),
+                    durationMs: 1000000,
+                },
+            ],
             messages: [
                 {
                     type: "user",
@@ -548,6 +601,24 @@ describe("ConversationClient", () => {
                 additionalPromptText: "additionalPromptText",
                 persona: "CASUAL_BUDDY",
                 availableKnowledgeBases: [
+                    {
+                        organizationId: "organizationId",
+                        agentId: "agentId",
+                        type: "AGENT",
+                        appId: "appId",
+                        referenceId: "x",
+                    },
+                ],
+            },
+            relatedEntities: {
+                SPAWN_FROM: [
+                    {
+                        organizationId: "organizationId",
+                        agentId: "agentId",
+                        type: "AGENT",
+                        appId: "appId",
+                        referenceId: "x",
+                    },
                     {
                         organizationId: "organizationId",
                         agentId: "agentId",
@@ -1437,6 +1508,24 @@ describe("ConversationClient", () => {
                     },
                 ],
             },
+            relatedEntities: {
+                SPAWN_FROM: [
+                    {
+                        organizationId: "organizationId",
+                        agentId: "agentId",
+                        type: "AGENT",
+                        appId: "appId",
+                        referenceId: "x",
+                    },
+                    {
+                        organizationId: "organizationId",
+                        agentId: "agentId",
+                        type: "AGENT",
+                        appId: "appId",
+                        referenceId: "x",
+                    },
+                ],
+            },
         };
 
         server
@@ -1719,6 +1808,24 @@ describe("ConversationClient", () => {
                 additionalPromptText: "additionalPromptText",
                 persona: "CASUAL_BUDDY",
                 availableKnowledgeBases: [
+                    {
+                        organizationId: "organizationId",
+                        agentId: "agentId",
+                        type: "AGENT",
+                        appId: "appId",
+                        referenceId: "x",
+                    },
+                ],
+            },
+            relatedEntities: {
+                SPAWN_FROM: [
+                    {
+                        organizationId: "organizationId",
+                        agentId: "agentId",
+                        type: "AGENT",
+                        appId: "appId",
+                        referenceId: "x",
+                    },
                     {
                         organizationId: "organizationId",
                         agentId: "agentId",
@@ -2246,6 +2353,24 @@ describe("ConversationClient", () => {
                     },
                 ],
             },
+            relatedEntities: {
+                SPAWN_FROM: [
+                    {
+                        organizationId: "organizationId",
+                        agentId: "agentId",
+                        type: "AGENT",
+                        appId: "appId",
+                        referenceId: "x",
+                    },
+                    {
+                        organizationId: "organizationId",
+                        agentId: "agentId",
+                        type: "AGENT",
+                        appId: "appId",
+                        referenceId: "x",
+                    },
+                ],
+            },
         };
 
         server
@@ -2550,6 +2675,24 @@ describe("ConversationClient", () => {
                 additionalPromptText: "additionalPromptText",
                 persona: "CASUAL_BUDDY",
                 availableKnowledgeBases: [
+                    {
+                        organizationId: "organizationId",
+                        agentId: "agentId",
+                        type: "AGENT",
+                        appId: "appId",
+                        referenceId: "x",
+                    },
+                ],
+            },
+            relatedEntities: {
+                SPAWN_FROM: [
+                    {
+                        organizationId: "organizationId",
+                        agentId: "agentId",
+                        type: "AGENT",
+                        appId: "appId",
+                        referenceId: "x",
+                    },
                     {
                         organizationId: "organizationId",
                         agentId: "agentId",
@@ -4259,6 +4402,24 @@ describe("ConversationClient", () => {
                     },
                 ],
             },
+            relatedEntities: {
+                SPAWN_FROM: [
+                    {
+                        organizationId: "organizationId",
+                        agentId: "agentId",
+                        type: "AGENT",
+                        appId: "appId",
+                        referenceId: "x",
+                    },
+                    {
+                        organizationId: "organizationId",
+                        agentId: "agentId",
+                        type: "AGENT",
+                        appId: "appId",
+                        referenceId: "x",
+                    },
+                ],
+            },
         };
 
         server
@@ -4549,6 +4710,24 @@ describe("ConversationClient", () => {
                 additionalPromptText: "additionalPromptText",
                 persona: "CASUAL_BUDDY",
                 availableKnowledgeBases: [
+                    {
+                        organizationId: "organizationId",
+                        agentId: "agentId",
+                        type: "AGENT",
+                        appId: "appId",
+                        referenceId: "x",
+                    },
+                ],
+            },
+            relatedEntities: {
+                SPAWN_FROM: [
+                    {
+                        organizationId: "organizationId",
+                        agentId: "agentId",
+                        type: "AGENT",
+                        appId: "appId",
+                        referenceId: "x",
+                    },
                     {
                         organizationId: "organizationId",
                         agentId: "agentId",
@@ -5255,6 +5434,24 @@ describe("ConversationClient", () => {
                             },
                         ],
                     },
+                    relatedEntities: {
+                        SPAWN_FROM: [
+                            {
+                                organizationId: "organizationId",
+                                agentId: "agentId",
+                                type: "AGENT",
+                                appId: "appId",
+                                referenceId: "x",
+                            },
+                            {
+                                organizationId: "organizationId",
+                                agentId: "agentId",
+                                type: "AGENT",
+                                appId: "appId",
+                                referenceId: "x",
+                            },
+                        ],
+                    },
                 },
                 {
                     responseConfig: {
@@ -5386,6 +5583,24 @@ describe("ConversationClient", () => {
                         additionalPromptText: "additionalPromptText",
                         persona: "CASUAL_BUDDY",
                         availableKnowledgeBases: [
+                            {
+                                organizationId: "organizationId",
+                                agentId: "agentId",
+                                type: "AGENT",
+                                appId: "appId",
+                                referenceId: "x",
+                            },
+                        ],
+                    },
+                    relatedEntities: {
+                        SPAWN_FROM: [
+                            {
+                                organizationId: "organizationId",
+                                agentId: "agentId",
+                                type: "AGENT",
+                                appId: "appId",
+                                referenceId: "x",
+                            },
                             {
                                 organizationId: "organizationId",
                                 agentId: "agentId",
@@ -5588,6 +5803,24 @@ describe("ConversationClient", () => {
                             },
                         ],
                     },
+                    relatedEntities: {
+                        SPAWN_FROM: [
+                            {
+                                organizationId: "organizationId",
+                                agentId: "agentId",
+                                type: "AGENT",
+                                appId: "appId",
+                                referenceId: "x",
+                            },
+                            {
+                                organizationId: "organizationId",
+                                agentId: "agentId",
+                                type: "AGENT",
+                                appId: "appId",
+                                referenceId: "x",
+                            },
+                        ],
+                    },
                 },
                 {
                     responseConfig: {
@@ -5753,6 +5986,24 @@ describe("ConversationClient", () => {
                         additionalPromptText: "additionalPromptText",
                         persona: "CASUAL_BUDDY",
                         availableKnowledgeBases: [
+                            {
+                                organizationId: "organizationId",
+                                agentId: "agentId",
+                                type: "AGENT",
+                                appId: "appId",
+                                referenceId: "x",
+                            },
+                        ],
+                    },
+                    relatedEntities: {
+                        SPAWN_FROM: [
+                            {
+                                organizationId: "organizationId",
+                                agentId: "agentId",
+                                type: "AGENT",
+                                appId: "appId",
+                                referenceId: "x",
+                            },
                             {
                                 organizationId: "organizationId",
                                 agentId: "agentId",

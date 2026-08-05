@@ -36,4 +36,6 @@ export interface ConversationRequest {
     metadata?: Record<string, string>;
     /** The messages in the conversation */
     messages: MavenAGI.ConversationMessageRequest[];
+    /** The unique identifier of the conversation this new conversation was spawned from, if applicable. */
+    spawnedFromConversationId?: MavenAGI.EntityId;
 }

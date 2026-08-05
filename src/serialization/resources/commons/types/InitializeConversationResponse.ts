@@ -3,7 +3,7 @@
 import type * as MavenAGI from "../../../../api/index";
 import * as core from "../../../../core";
 import type * as serializers from "../../../index";
-import { ConversationKickoffResult } from "./ConversationKickoffResult";
+import { ConversationKickoffExecutionResponse } from "./ConversationKickoffExecutionResponse";
 import { ConversationResponse } from "./ConversationResponse";
 
 export const InitializeConversationResponse: core.serialization.ObjectSchema<
@@ -11,12 +11,12 @@ export const InitializeConversationResponse: core.serialization.ObjectSchema<
     MavenAGI.InitializeConversationResponse
 > = core.serialization
     .object({
-        conversationKickoffResult: ConversationKickoffResult.optional(),
+        conversationKickoffResults: core.serialization.list(ConversationKickoffExecutionResponse),
     })
     .extend(ConversationResponse);
 
 export declare namespace InitializeConversationResponse {
     export interface Raw extends ConversationResponse.Raw {
-        conversationKickoffResult?: ConversationKickoffResult.Raw | null;
+        conversationKickoffResults: ConversationKickoffExecutionResponse.Raw[];
     }
 }

@@ -61,9 +61,21 @@ export interface ConversationFilter {
     tags?: string[];
     /** Filter by agent user IDs associated with the conversation */
     agentUserIds?: string[];
-    /** Filter by conversation resolution status which is determined by AI based on the conversation content. */
+    /**
+     * Filter by conversation resolution status which is determined by AI based on the conversation content.
+     *
+     * When `resolutionStatus`, `resolvedByMaven`, and `billable` are combined in a single filter,
+     * precedence is applied in the following order: `resolutionStatus`, `resolvedByMaven`,
+     * and then `billable`.
+     */
     resolutionStatus?: MavenAGI.ResolutionStatus[];
-    /** Filter conversations based on whether they were resolved by Maven AI */
+    /**
+     * Filter conversations based on whether they were resolved by Maven AI.
+     *
+     * When `resolutionStatus`, `resolvedByMaven`, and `billable` are combined in a single filter,
+     * precedence is applied in the following order: `resolutionStatus`, `resolvedByMaven`,
+     * and then `billable`.
+     */
     resolvedByMaven?: boolean;
     /** Filter by the number of messages sent by the user in the conversation */
     userMessageCount?: MavenAGI.NumberRange;
@@ -88,4 +100,16 @@ export interface ConversationFilter {
     simulationFilter?: MavenAGI.SimulationFilter;
     /** Filter by intelligent field values. All conditions are ANDed together. */
     intelligentFields?: MavenAGI.IntelligentFieldFilter;
+    /**
+     * Filter by whether the conversation is billable. Defaults to all eligible conversations,
+     * which means ELIGIBLE_AND_BILLABLE and ELIGIBLE_AND_NOT_BILLABLE.
+     *
+     * When `resolutionStatus`, `resolvedByMaven`, and `billable` are combined in a single filter,
+     * precedence is applied in the following order: `resolutionStatus`, `resolvedByMaven`,
+     * and then `billable`.
+     *
+     * If billable is `null` or `[]` then defaults to all eligible conversations,
+     * which means ELIGIBLE_AND_BILLABLE and ELIGIBLE_AND_NOT_BILLABLE.
+     */
+    billable?: MavenAGI.BillableFilterField[];
 }

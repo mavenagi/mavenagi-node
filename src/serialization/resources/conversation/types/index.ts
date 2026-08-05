@@ -8,6 +8,7 @@ export * from "./AskStreamMetadataEvent";
 export * from "./AskStreamOAuthButtonEvent";
 export * from "./AskStreamStartEvent";
 export * from "./AskStreamTextEvent";
+export * from "./BillableFilterField";
 export * from "./CategorizationResponse";
 export * from "./ConversationField";
 export * from "./ConversationFilter";

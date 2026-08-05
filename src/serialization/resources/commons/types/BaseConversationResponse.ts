@@ -6,6 +6,7 @@ import type * as serializers from "../../../index";
 import { ConversationAnalysis } from "./ConversationAnalysis";
 import { ConversationSummary } from "./ConversationSummary";
 import { EntityId } from "./EntityId";
+import { RelationshipType } from "./RelationshipType";
 import { ResponseConfig } from "./ResponseConfig";
 import { SimulationContext } from "./SimulationContext";
 
@@ -31,6 +32,9 @@ export const BaseConversationResponse: core.serialization.ObjectSchema<
     open: core.serialization.boolean(),
     llmEnabled: core.serialization.boolean(),
     simulationContext: SimulationContext.optional(),
+    relatedEntities: core.serialization
+        .partialRecord(RelationshipType, core.serialization.list(EntityId).optional())
+        .optional(),
 });
 
 export declare namespace BaseConversationResponse {
@@ -50,5 +54,6 @@ export declare namespace BaseConversationResponse {
         open: boolean;
         llmEnabled: boolean;
         simulationContext?: SimulationContext.Raw | null;
+        relatedEntities?: Record<RelationshipType.Raw, EntityId.Raw[] | null | undefined> | null;
     }
 }
