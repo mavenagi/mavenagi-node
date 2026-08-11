@@ -26,6 +26,7 @@ export const ConversationFilter: core.serialization.ObjectSchema<
     categories: core.serialization.list(core.serialization.string()).optional(),
     actions: core.serialization.list(EntityIdFilter).optional(),
     incompleteActions: core.serialization.list(EntityIdFilter).optional(),
+    erroredActions: core.serialization.list(EntityIdFilter).optional(),
     feedback: core.serialization.list(FeedbackType).optional(),
     humanAgents: core.serialization.list(core.serialization.string()).optional(),
     humanAgentsWithInserts: core.serialization.list(core.serialization.string()).optional(),
@@ -58,6 +59,7 @@ export declare namespace ConversationFilter {
         categories?: string[] | null;
         actions?: EntityIdFilter.Raw[] | null;
         incompleteActions?: EntityIdFilter.Raw[] | null;
+        erroredActions?: EntityIdFilter.Raw[] | null;
         feedback?: FeedbackType.Raw[] | null;
         humanAgents?: string[] | null;
         humanAgentsWithInserts?: string[] | null;

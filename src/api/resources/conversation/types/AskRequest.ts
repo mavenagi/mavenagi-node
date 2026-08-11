@@ -22,14 +22,49 @@ import type * as MavenAGI from "../../../index";
  *         },
  *         timezone: "America/New_York"
  *     }
+ *
+ * @example
+ *     {
+ *         conversationMessageId: {
+ *             referenceId: "message-0"
+ *         },
+ *         userId: {
+ *             referenceId: "user-0"
+ *         },
+ *         type: MavenAGI.AskType.Welcome
+ *     }
+ *
+ * @example
+ *     {
+ *         conversationMessageId: {
+ *             referenceId: "message-0"
+ *         },
+ *         userId: {
+ *             referenceId: "user-0"
+ *         },
+ *         type: MavenAGI.AskType.Proactive,
+ *         text: "Inform the user that they should restart their machine."
+ *     }
  */
 export interface AskRequest {
     /** Externally supplied ID to uniquely identify this message within the conversation. If a message with this ID already exists it will be reused and will not be updated. */
     conversationMessageId: MavenAGI.EntityIdBase;
     /** Externally supplied ID to uniquely identify the user that created this message */
     userId: MavenAGI.EntityIdBase;
-    /** The text of the message */
-    text: string;
+    /**
+     * What prompts this assistant turn. Omit (or send USER_MESSAGE) for a normal user
+     * question — this is the backwards-compatible default. Use WELCOME for an agent-authored
+     * opener, or PROACTIVE for a message the user did not prompt.
+     */
+    type?: MavenAGI.AskType;
+    /**
+     * For USER_MESSAGE (the default) this is the user's message, in the user's own words, and
+     * is required. For WELCOME and PROACTIVE it is optional and, when provided, steers the
+     * agent's response (a directive to the agent, not the user's own words). (Changed from
+     * required to optional to support the non-user turn types — existing USER_MESSAGE callers
+     * are unaffected.)
+     */
+    text?: string;
     /**
      * The attachments to the message. Image attachments will be sent to the LLM as additional data.
      * Non-image attachments can be stored and downloaded from the API but will not be sent to the LLM.

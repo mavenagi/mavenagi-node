@@ -37,6 +37,8 @@ export interface ConversationFilter {
     actions?: MavenAGI.EntityIdFilter[];
     /** Filter by actions that were suggested but not completed by the AI agent */
     incompleteActions?: MavenAGI.EntityIdFilter[];
+    /** Filter by actions that returned an error when executed in the conversation */
+    erroredActions?: MavenAGI.EntityIdFilter[];
     /**
      * Filter by feedback types received in the conversation.
      * This is a legacy field that maps to Events saved in the system for `ThumbsUp`, `ThumbsDown`, and `Insert`.

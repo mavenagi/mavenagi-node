@@ -10,6 +10,7 @@ import { BotLogicIntelligentFieldsItem } from "./BotLogicIntelligentFieldsItem";
 import { BotLogicKnowledgeItem } from "./BotLogicKnowledgeItem";
 import { BotLogicSafetyItem } from "./BotLogicSafetyItem";
 import { BotLogicSegmentsItem } from "./BotLogicSegmentsItem";
+import { BotLogicSteeringItem } from "./BotLogicSteeringItem";
 import { BotLogicUserItem } from "./BotLogicUserItem";
 
 export const BotLogicItem: core.serialization.Schema<serializers.BotLogicItem.Raw, MavenAGI.BotLogicItem> =
@@ -23,6 +24,7 @@ export const BotLogicItem: core.serialization.Schema<serializers.BotLogicItem.Ra
             segments: BotLogicSegmentsItem,
             intelligentFields: BotLogicIntelligentFieldsItem,
             charters: BotLogicChartersItem,
+            steering: BotLogicSteeringItem,
         })
         .transform<MavenAGI.BotLogicItem>({
             transform: (value) => value,
@@ -38,7 +40,8 @@ export declare namespace BotLogicItem {
         | BotLogicItem.User
         | BotLogicItem.Segments
         | BotLogicItem.IntelligentFields
-        | BotLogicItem.Charters;
+        | BotLogicItem.Charters
+        | BotLogicItem.Steering;
 
     export interface Knowledge extends BotLogicKnowledgeItem.Raw {
         type: "knowledge";
@@ -70,5 +73,9 @@ export declare namespace BotLogicItem {
 
     export interface Charters extends BotLogicChartersItem.Raw {
         type: "charters";
+    }
+
+    export interface Steering extends BotLogicSteeringItem.Raw {
+        type: "steering";
     }
 }

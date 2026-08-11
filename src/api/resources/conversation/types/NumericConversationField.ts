@@ -10,6 +10,8 @@ export const NumericConversationField = {
     FirstResponseTime: "FirstResponseTime",
     PredictedNps: "PredictedNPS",
     Csat: "Csat",
+    ActionExecutionCount: "ActionExecutionCount",
+    ActionErrorCount: "ActionErrorCount",
 } as const;
 export type NumericConversationField =
     | (typeof NumericConversationField)[keyof typeof NumericConversationField]

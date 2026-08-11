@@ -62,7 +62,7 @@ export interface ActionResponse extends MavenAGI.ActionBase {
      * Inline precondition support will be removed in a future release.
      */
     segmentId?: MavenAGI.EntityId;
-    /** A human-readable explanation of the precondition associated with this action, if present. */
+    /** No longer populated. This field is always absent and will be removed in a future release. */
     preconditionExplanation?: string;
     /** Whether the action has been deleted. Deleted actions will not sent to the LLM nor returned in search results. */
     deleted: boolean;

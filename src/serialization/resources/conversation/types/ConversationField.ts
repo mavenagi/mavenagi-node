@@ -30,6 +30,9 @@ export const ConversationField: core.serialization.Schema<
     "Languages",
     "Actions",
     "IncompleteActions",
+    "ErroredActions",
+    "ActionExecutionCount",
+    "ActionErrorCount",
     "Charters",
     "Sources",
     "CreatedAt",
@@ -65,6 +68,9 @@ export declare namespace ConversationField {
         | "Languages"
         | "Actions"
         | "IncompleteActions"
+        | "ErroredActions"
+        | "ActionExecutionCount"
+        | "ActionErrorCount"
         | "Charters"
         | "Sources"
         | "CreatedAt"

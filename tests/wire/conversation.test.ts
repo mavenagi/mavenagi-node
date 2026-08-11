@@ -3228,11 +3228,7 @@ describe("ConversationClient", () => {
             agentId: "test",
             environment: server.baseUrl,
         });
-        const rawRequestBody = {
-            conversationMessageId: { referenceId: "x" },
-            userId: { referenceId: "x" },
-            text: "text",
-        };
+        const rawRequestBody = { conversationMessageId: { referenceId: "x" }, userId: { referenceId: "x" } };
         const rawResponseBody = {};
 
         server
@@ -3252,7 +3248,6 @@ describe("ConversationClient", () => {
                 userId: {
                     referenceId: "x",
                 },
-                text: "text",
             });
         }).rejects.toThrow(MavenAGI.NotFoundError);
     });
@@ -3267,11 +3262,7 @@ describe("ConversationClient", () => {
             agentId: "test",
             environment: server.baseUrl,
         });
-        const rawRequestBody = {
-            conversationMessageId: { referenceId: "x" },
-            userId: { referenceId: "x" },
-            text: "text",
-        };
+        const rawRequestBody = { conversationMessageId: { referenceId: "x" }, userId: { referenceId: "x" } };
         const rawResponseBody = {};
 
         server
@@ -3291,7 +3282,6 @@ describe("ConversationClient", () => {
                 userId: {
                     referenceId: "x",
                 },
-                text: "text",
             });
         }).rejects.toThrow(MavenAGI.BadRequestError);
     });
@@ -3306,11 +3296,7 @@ describe("ConversationClient", () => {
             agentId: "test",
             environment: server.baseUrl,
         });
-        const rawRequestBody = {
-            conversationMessageId: { referenceId: "x" },
-            userId: { referenceId: "x" },
-            text: "text",
-        };
+        const rawRequestBody = { conversationMessageId: { referenceId: "x" }, userId: { referenceId: "x" } };
         const rawResponseBody = {};
 
         server
@@ -3330,7 +3316,6 @@ describe("ConversationClient", () => {
                 userId: {
                     referenceId: "x",
                 },
-                text: "text",
             });
         }).rejects.toThrow(MavenAGI.PayloadTooLargeError);
     });
@@ -3345,11 +3330,7 @@ describe("ConversationClient", () => {
             agentId: "test",
             environment: server.baseUrl,
         });
-        const rawRequestBody = {
-            conversationMessageId: { referenceId: "x" },
-            userId: { referenceId: "x" },
-            text: "text",
-        };
+        const rawRequestBody = { conversationMessageId: { referenceId: "x" }, userId: { referenceId: "x" } };
         const rawResponseBody = {};
 
         server
@@ -3369,7 +3350,6 @@ describe("ConversationClient", () => {
                 userId: {
                     referenceId: "x",
                 },
-                text: "text",
             });
         }).rejects.toThrow(MavenAGI.TooManyRequestsError);
     });
@@ -3384,11 +3364,7 @@ describe("ConversationClient", () => {
             agentId: "test",
             environment: server.baseUrl,
         });
-        const rawRequestBody = {
-            conversationMessageId: { referenceId: "x" },
-            userId: { referenceId: "x" },
-            text: "text",
-        };
+        const rawRequestBody = { conversationMessageId: { referenceId: "x" }, userId: { referenceId: "x" } };
         const rawResponseBody = {};
 
         server
@@ -3408,7 +3384,6 @@ describe("ConversationClient", () => {
                 userId: {
                     referenceId: "x",
                 },
-                text: "text",
             });
         }).rejects.toThrow(MavenAGI.ServerError);
     });
@@ -3528,11 +3503,7 @@ describe("ConversationClient", () => {
             agentId: "test",
             environment: server.baseUrl,
         });
-        const rawRequestBody = {
-            conversationMessageId: { referenceId: "x" },
-            userId: { referenceId: "x" },
-            text: "text",
-        };
+        const rawRequestBody = { conversationMessageId: { referenceId: "x" }, userId: { referenceId: "x" } };
         const rawResponseBody = {};
 
         server
@@ -3552,7 +3523,6 @@ describe("ConversationClient", () => {
                 userId: {
                     referenceId: "x",
                 },
-                text: "text",
             });
         }).rejects.toThrow(MavenAGI.NotFoundError);
     });
@@ -3567,11 +3537,7 @@ describe("ConversationClient", () => {
             agentId: "test",
             environment: server.baseUrl,
         });
-        const rawRequestBody = {
-            conversationMessageId: { referenceId: "x" },
-            userId: { referenceId: "x" },
-            text: "text",
-        };
+        const rawRequestBody = { conversationMessageId: { referenceId: "x" }, userId: { referenceId: "x" } };
         const rawResponseBody = {};
 
         server
@@ -3591,7 +3557,6 @@ describe("ConversationClient", () => {
                 userId: {
                     referenceId: "x",
                 },
-                text: "text",
             });
         }).rejects.toThrow(MavenAGI.BadRequestError);
     });
@@ -3606,11 +3571,7 @@ describe("ConversationClient", () => {
             agentId: "test",
             environment: server.baseUrl,
         });
-        const rawRequestBody = {
-            conversationMessageId: { referenceId: "x" },
-            userId: { referenceId: "x" },
-            text: "text",
-        };
+        const rawRequestBody = { conversationMessageId: { referenceId: "x" }, userId: { referenceId: "x" } };
         const rawResponseBody = {};
 
         server
@@ -3630,7 +3591,6 @@ describe("ConversationClient", () => {
                 userId: {
                     referenceId: "x",
                 },
-                text: "text",
             });
         }).rejects.toThrow(MavenAGI.PayloadTooLargeError);
     });
@@ -3645,11 +3605,7 @@ describe("ConversationClient", () => {
             agentId: "test",
             environment: server.baseUrl,
         });
-        const rawRequestBody = {
-            conversationMessageId: { referenceId: "x" },
-            userId: { referenceId: "x" },
-            text: "text",
-        };
+        const rawRequestBody = { conversationMessageId: { referenceId: "x" }, userId: { referenceId: "x" } };
         const rawResponseBody = {};
 
         server
@@ -3669,7 +3625,6 @@ describe("ConversationClient", () => {
                 userId: {
                     referenceId: "x",
                 },
-                text: "text",
             });
         }).rejects.toThrow(MavenAGI.TooManyRequestsError);
     });
@@ -3684,11 +3639,7 @@ describe("ConversationClient", () => {
             agentId: "test",
             environment: server.baseUrl,
         });
-        const rawRequestBody = {
-            conversationMessageId: { referenceId: "x" },
-            userId: { referenceId: "x" },
-            text: "text",
-        };
+        const rawRequestBody = { conversationMessageId: { referenceId: "x" }, userId: { referenceId: "x" } };
         const rawResponseBody = {};
 
         server
@@ -3708,7 +3659,6 @@ describe("ConversationClient", () => {
                 userId: {
                     referenceId: "x",
                 },
-                text: "text",
             });
         }).rejects.toThrow(MavenAGI.ServerError);
     });

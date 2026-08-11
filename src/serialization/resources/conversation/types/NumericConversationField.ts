@@ -17,6 +17,8 @@ export const NumericConversationField: core.serialization.Schema<
     "FirstResponseTime",
     "PredictedNPS",
     "Csat",
+    "ActionExecutionCount",
+    "ActionErrorCount",
 ]);
 
 export declare namespace NumericConversationField {
@@ -29,5 +31,7 @@ export declare namespace NumericConversationField {
         | "HandleTime"
         | "FirstResponseTime"
         | "PredictedNPS"
-        | "Csat";
+        | "Csat"
+        | "ActionExecutionCount"
+        | "ActionErrorCount";
 }
