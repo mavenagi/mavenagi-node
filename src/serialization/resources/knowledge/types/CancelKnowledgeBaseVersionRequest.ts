@@ -9,11 +9,13 @@ export const CancelKnowledgeBaseVersionRequest: core.serialization.ObjectSchema<
     serializers.CancelKnowledgeBaseVersionRequest.Raw,
     MavenAGI.CancelKnowledgeBaseVersionRequest
 > = core.serialization.object({
+    appId: core.serialization.string().optional(),
     versionId: EntityIdWithoutAgent.optional(),
 });
 
 export declare namespace CancelKnowledgeBaseVersionRequest {
     export interface Raw {
+        appId?: string | null;
         versionId?: EntityIdWithoutAgent.Raw | null;
     }
 }

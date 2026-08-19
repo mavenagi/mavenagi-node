@@ -5,6 +5,9 @@ export const KnowledgeBaseVersionStatus = {
     Succeeded: "SUCCEEDED",
     Failed: "FAILED",
     InProgress: "IN_PROGRESS",
+    /**
+     * Stopped before completing, by a cancel request rather than a failure. */
+    Canceled: "CANCELED",
 } as const;
 export type KnowledgeBaseVersionStatus =
     | (typeof KnowledgeBaseVersionStatus)[keyof typeof KnowledgeBaseVersionStatus]

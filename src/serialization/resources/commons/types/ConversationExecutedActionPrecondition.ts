@@ -4,6 +4,7 @@ import type * as MavenAGI from "../../../../api/index";
 import * as core from "../../../../core";
 import type * as serializers from "../../../index";
 import { ConversationRound } from "./ConversationRound";
+import { ObjectCondition } from "./ObjectCondition";
 import { PreconditionBase } from "./PreconditionBase";
 
 export const ConversationExecutedActionPrecondition: core.serialization.ObjectSchema<
@@ -14,6 +15,7 @@ export const ConversationExecutedActionPrecondition: core.serialization.ObjectSc
         actionId: core.serialization.string(),
         appId: core.serialization.string().optional(),
         conversationRound: ConversationRound.optional(),
+        dataCondition: ObjectCondition.optional(),
     })
     .extend(PreconditionBase);
 
@@ -22,5 +24,6 @@ export declare namespace ConversationExecutedActionPrecondition {
         actionId: string;
         appId?: string | null;
         conversationRound?: ConversationRound.Raw | null;
+        dataCondition?: ObjectCondition.Raw | null;
     }
 }

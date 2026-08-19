@@ -9,4 +9,17 @@ export interface ConversationExecutedActionPrecondition extends MavenAGI.Precond
     appId?: string;
     /** Restricts which round the action must have executed in. Defaults to ANY when omitted, matching an action executed in any round. */
     conversationRound?: MavenAGI.ConversationRound;
+    /**
+     * Restricts the match to executions whose returned data satisfies this condition.
+     * When omitted, any execution of the action matches regardless of what it returned.
+     *
+     * Actions may return `{response, data}`, where `data` is a JSON object persisted
+     * alongside the response. This gates the precondition on what the action returned
+     * rather than only on whether it ran.
+     *
+     * The precondition is met when *some* execution of the action in scope returned data
+     * satisfying this condition. An action that executed but returned no data never
+     * matches, except via `universal` `IS_UNDETERMINED`.
+     */
+    dataCondition?: MavenAGI.ObjectCondition;
 }

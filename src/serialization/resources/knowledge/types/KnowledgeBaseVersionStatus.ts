@@ -7,8 +7,8 @@ import type * as serializers from "../../../index";
 export const KnowledgeBaseVersionStatus: core.serialization.Schema<
     serializers.KnowledgeBaseVersionStatus.Raw,
     MavenAGI.KnowledgeBaseVersionStatus
-> = core.serialization.forwardCompatibleEnum_(["SUCCEEDED", "FAILED", "IN_PROGRESS"]);
+> = core.serialization.forwardCompatibleEnum_(["SUCCEEDED", "FAILED", "IN_PROGRESS", "CANCELED"]);
 
 export declare namespace KnowledgeBaseVersionStatus {
-    export type Raw = "SUCCEEDED" | "FAILED" | "IN_PROGRESS";
+    export type Raw = "SUCCEEDED" | "FAILED" | "IN_PROGRESS" | "CANCELED";
 }

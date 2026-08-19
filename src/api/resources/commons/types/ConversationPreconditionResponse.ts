@@ -9,6 +9,7 @@ export type ConversationPreconditionResponse =
     | MavenAGI.ConversationPreconditionResponse.ResponseConfig
     | MavenAGI.ConversationPreconditionResponse.App
     | MavenAGI.ConversationPreconditionResponse.ConversationState
+    | MavenAGI.ConversationPreconditionResponse.ConversationMode
     | MavenAGI.ConversationPreconditionResponse.IntelligentField;
 
 export namespace ConversationPreconditionResponse {
@@ -34,6 +35,10 @@ export namespace ConversationPreconditionResponse {
 
     export interface ConversationState extends MavenAGI.ConversationStatePrecondition {
         conversationPreconditionType: "conversationState";
+    }
+
+    export interface ConversationMode extends MavenAGI.ConversationModePrecondition {
+        conversationPreconditionType: "conversationMode";
     }
 
     export interface IntelligentField extends MavenAGI.IntelligentFieldPreconditionResponse {

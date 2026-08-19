@@ -3,6 +3,8 @@
 import type * as MavenAGI from "../../../index";
 
 export interface CancelKnowledgeBaseVersionRequest {
+    /** The App ID of the knowledge base to cancel. If not provided the ID of the calling app will be used. */
+    appId?: string;
     /** ID that uniquely identifies which knowledge base version to cancel. If not provided will use the most recent version of the knowledge base. */
     versionId?: MavenAGI.EntityIdWithoutAgent;
 }

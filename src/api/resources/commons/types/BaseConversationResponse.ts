@@ -50,4 +50,9 @@ export interface BaseConversationResponse {
      * - `SPAWN_TO`: the conversations that were spawned from this conversation.
      */
     relatedEntities?: Partial<Record<MavenAGI.RelationshipType, MavenAGI.EntityId[]>>;
+    /**
+     * Whether the conversation is spoken or written. Set by the platform and read-only —
+     * it cannot be supplied when creating or updating a conversation.
+     */
+    conversationMode?: MavenAGI.ConversationMode;
 }

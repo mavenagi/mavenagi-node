@@ -272,6 +272,7 @@ describe("ConversationClient", () => {
                     },
                 ],
             },
+            conversationMode: "VOICE",
         };
 
         server
@@ -628,6 +629,7 @@ describe("ConversationClient", () => {
                     },
                 ],
             },
+            conversationMode: "VOICE",
         });
     });
 
@@ -998,6 +1000,7 @@ describe("ConversationClient", () => {
             deleted: false,
             open: false,
             llmEnabled: true,
+            conversationMode: "TEXT",
             analysis: { resolutionStatus: "RESOLVED", sentiment: "POSITIVE", resolvedByMaven: true },
             summary: {
                 actionIds: [],
@@ -1083,6 +1086,7 @@ describe("ConversationClient", () => {
             deleted: false,
             open: false,
             llmEnabled: true,
+            conversationMode: "TEXT",
             analysis: {
                 resolutionStatus: "RESOLVED",
                 sentiment: "POSITIVE",
@@ -1526,6 +1530,7 @@ describe("ConversationClient", () => {
                     },
                 ],
             },
+            conversationMode: "VOICE",
         };
 
         server
@@ -1835,6 +1840,7 @@ describe("ConversationClient", () => {
                     },
                 ],
             },
+            conversationMode: "VOICE",
         });
     });
 
@@ -2371,6 +2377,7 @@ describe("ConversationClient", () => {
                     },
                 ],
             },
+            conversationMode: "VOICE",
         };
 
         server
@@ -2702,6 +2709,7 @@ describe("ConversationClient", () => {
                     },
                 ],
             },
+            conversationMode: "VOICE",
         });
     });
 
@@ -3039,6 +3047,7 @@ describe("ConversationClient", () => {
             deleted: false,
             open: false,
             llmEnabled: true,
+            conversationMode: "TEXT",
             analysis: { resolutionStatus: "RESOLVED", sentiment: "POSITIVE", resolvedByMaven: true },
             summary: {
                 actionIds: [],
@@ -3141,6 +3150,7 @@ describe("ConversationClient", () => {
             deleted: false,
             open: false,
             llmEnabled: true,
+            conversationMode: "TEXT",
             analysis: {
                 resolutionStatus: "RESOLVED",
                 sentiment: "POSITIVE",
@@ -4370,6 +4380,7 @@ describe("ConversationClient", () => {
                     },
                 ],
             },
+            conversationMode: "VOICE",
         };
 
         server
@@ -4687,6 +4698,7 @@ describe("ConversationClient", () => {
                     },
                 ],
             },
+            conversationMode: "VOICE",
         });
     });
 
@@ -5402,6 +5414,7 @@ describe("ConversationClient", () => {
                             },
                         ],
                     },
+                    conversationMode: "VOICE",
                 },
                 {
                     responseConfig: {
@@ -5560,6 +5573,7 @@ describe("ConversationClient", () => {
                             },
                         ],
                     },
+                    conversationMode: "VOICE",
                 },
             ],
             number: 1,
@@ -5771,6 +5785,7 @@ describe("ConversationClient", () => {
                             },
                         ],
                     },
+                    conversationMode: "VOICE",
                 },
                 {
                     responseConfig: {
@@ -5963,6 +5978,7 @@ describe("ConversationClient", () => {
                             },
                         ],
                     },
+                    conversationMode: "VOICE",
                 },
             ],
             number: 1,

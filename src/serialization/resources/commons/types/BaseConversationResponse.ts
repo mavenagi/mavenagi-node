@@ -4,6 +4,7 @@ import type * as MavenAGI from "../../../../api/index";
 import * as core from "../../../../core";
 import type * as serializers from "../../../index";
 import { ConversationAnalysis } from "./ConversationAnalysis";
+import { ConversationMode } from "./ConversationMode";
 import { ConversationSummary } from "./ConversationSummary";
 import { EntityId } from "./EntityId";
 import { RelationshipType } from "./RelationshipType";
@@ -35,6 +36,7 @@ export const BaseConversationResponse: core.serialization.ObjectSchema<
     relatedEntities: core.serialization
         .partialRecord(RelationshipType, core.serialization.list(EntityId).optional())
         .optional(),
+    conversationMode: ConversationMode.optional(),
 });
 
 export declare namespace BaseConversationResponse {
@@ -55,5 +57,6 @@ export declare namespace BaseConversationResponse {
         llmEnabled: boolean;
         simulationContext?: SimulationContext.Raw | null;
         relatedEntities?: Record<RelationshipType.Raw, EntityId.Raw[] | null | undefined> | null;
+        conversationMode?: ConversationMode.Raw | null;
     }
 }
