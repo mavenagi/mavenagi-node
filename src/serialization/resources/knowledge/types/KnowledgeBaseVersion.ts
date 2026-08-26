@@ -5,6 +5,7 @@ import * as core from "../../../../core";
 import type * as serializers from "../../../index";
 import { EntityId } from "../../commons/types/EntityId";
 import { KnowledgeBaseIndexingProgressState } from "./KnowledgeBaseIndexingProgressState";
+import { KnowledgeBaseVersionProgress } from "./KnowledgeBaseVersionProgress";
 import { KnowledgeBaseVersionRequest } from "./KnowledgeBaseVersionRequest";
 import { KnowledgeBaseVersionStatus } from "./KnowledgeBaseVersionStatus";
 
@@ -19,6 +20,7 @@ export const KnowledgeBaseVersion: core.serialization.ObjectSchema<
         createdAt: core.serialization.date(),
         updatedAt: core.serialization.date(),
         indexingState: KnowledgeBaseIndexingProgressState.optional(),
+        progress: KnowledgeBaseVersionProgress.optional(),
     })
     .extend(KnowledgeBaseVersionRequest);
 
@@ -30,5 +32,6 @@ export declare namespace KnowledgeBaseVersion {
         createdAt: string;
         updatedAt: string;
         indexingState?: KnowledgeBaseIndexingProgressState.Raw | null;
+        progress?: KnowledgeBaseVersionProgress.Raw | null;
     }
 }

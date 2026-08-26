@@ -3,6 +3,7 @@
 import type * as MavenAGI from "../../../../api/index";
 import * as core from "../../../../core";
 import * as serializers from "../../../index";
+import { EntityIdWithoutAgent } from "../../commons/types/EntityIdWithoutAgent";
 import { SegmentStatus } from "./SegmentStatus";
 
 export const SegmentPatchRequest: core.serialization.ObjectSchema<
@@ -14,6 +15,7 @@ export const SegmentPatchRequest: core.serialization.ObjectSchema<
     description: core.serialization.string().optional(),
     precondition: core.serialization.lazy(() => serializers.Precondition).optional(),
     status: SegmentStatus.optional(),
+    variantId: EntityIdWithoutAgent.optional(),
 });
 
 export declare namespace SegmentPatchRequest {
@@ -23,5 +25,6 @@ export declare namespace SegmentPatchRequest {
         description?: string | null;
         precondition?: serializers.Precondition.Raw | null;
         status?: SegmentStatus.Raw | null;
+        variantId?: EntityIdWithoutAgent.Raw | null;
     }
 }

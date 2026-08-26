@@ -18,5 +18,5 @@ export interface IntelligentFieldPrecondition {
     /** The ID of the intelligent field. */
     fieldIdWithoutAgent: MavenAGI.EntityIdWithoutAgent;
     /** The condition to evaluate against the field's value. */
-    fieldCondition: MavenAGI.IntelligentFieldCondition;
+    fieldCondition: MavenAGI.FieldCondition;
 }

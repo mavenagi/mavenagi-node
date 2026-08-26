@@ -12,6 +12,10 @@ export const NumericConversationField = {
     Csat: "Csat",
     ActionExecutionCount: "ActionExecutionCount",
     ActionErrorCount: "ActionErrorCount",
+    /**
+     * Selects a NUMBER-validated intelligent field rather than a built-in numeric field.
+     * When used, `intelligentFieldId` must also be set to identify which field. */
+    IntelligentField: "IntelligentField",
 } as const;
 export type NumericConversationField =
     | (typeof NumericConversationField)[keyof typeof NumericConversationField]

@@ -7,4 +7,16 @@
 export interface SegmentDeleteRequest {
     /** The App ID of the segment to delete. If not provided, the ID of the calling app will be used. */
     appId?: string;
+    /**
+     * The reference ID of the agent variant this delete is scoped to. When set, the
+     * deletion is staged in that variant's working set instead of being applied to the
+     * agent's live configuration.
+     *
+     * Omit this parameter to delete directly from the agent. Variant scoping is not
+     * active yet: a variant supplied today is accepted and ignored, and the delete applies
+     * to the agent.
+     */
+    variantReferenceId?: string;
+    /** The App ID of the agent variant named by `variantReferenceId`. If not provided, the ID of the calling app will be used. */
+    variantAppId?: string;
 }

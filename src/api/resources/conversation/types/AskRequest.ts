@@ -45,6 +45,38 @@ import type * as MavenAGI from "../../../index";
  *         type: MavenAGI.AskType.Proactive,
  *         text: "Inform the user that they should restart their machine."
  *     }
+ *
+ * @example
+ *     {
+ *         conversationMessageId: {
+ *             referenceId: "message-0"
+ *         },
+ *         userId: {
+ *             referenceId: "user-0"
+ *         },
+ *         text: "Is this customer at risk of churning, and why?",
+ *         textFormat: {
+ *             type: "jsonSchema",
+ *             schema: {
+ *                 "type": "object",
+ *                 "additionalProperties": false,
+ *                 "properties": {
+ *                     "atRisk": {
+ *                         "type": "boolean",
+ *                         "description": "Whether the customer shows churn risk."
+ *                     },
+ *                     "reason": {
+ *                         "type": "string",
+ *                         "description": "A one-sentence explanation of the assessment."
+ *                     }
+ *                 },
+ *                 "required": [
+ *                     "atRisk",
+ *                     "reason"
+ *                 ]
+ *             }
+ *         }
+ *     }
  */
 export interface AskRequest {
     /** Externally supplied ID to uniquely identify this message within the conversation. If a message with this ID already exists it will be reused and will not be updated. */
@@ -65,6 +97,33 @@ export interface AskRequest {
      * are unaffected.)
      */
     text?: string;
+    /**
+     * What form the answer takes. Omit it for prose, or send `jsonSchema` to additionally get a
+     * `BotObjectResponse` matching a schema you supply.
+     *
+     * Set per ask and independent of `type`, so one conversation can mix prose and structured
+     * turns. Only the answer's form changes: knowledge, actions, charters and segments apply
+     * the same way either way.
+     *
+     * A structured answer accompanies the prose one rather than replacing it — the same turn
+     * produces both, so the conversation stays readable. On `ask_stream` the prose still streams
+     * on `text` events as it always has, and the object arrives whole on a single `object` event
+     * near the end.
+     *
+     * Every answering turn carries an object, including one where the agent asks a clarifying
+     * question rather than answering. Shape the schema so it can say "not enough information"
+     * — a populated object is not on its own evidence of a confident answer.
+     *
+     * Two exceptions. A turn that asks the user to *act* produces an action form from the
+     * action rather than from an answer, so it carries no object; the turn that answers after
+     * the form is submitted does carry one. Leave the `FORMS` capability off if you need an
+     * object on every turn.
+     *
+     * A turn answered verbatim by a `STRICT_RETURN` charter also carries no object. That
+     * charter's manual is returned exactly as written without consulting the agent, so there is
+     * nothing to shape into the requested schema — the turn returns the manual as `text` alone.
+     */
+    textFormat?: MavenAGI.TextFormat;
     /**
      * The attachments to the message. Image attachments will be sent to the LLM as additional data.
      * Non-image attachments can be stored and downloaded from the API but will not be sent to the LLM.

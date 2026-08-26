@@ -1292,6 +1292,164 @@ export class KnowledgeClient {
     }
 
     /**
+     * Report refresh progress for an in-progress knowledge base version.
+     *
+     * Progress is advisory and shown to users while a refresh runs. Each call replaces the
+     * version's entire progress state - no history is kept, only the most recent value is
+     * retained. Will throw an exception if the target version is not in progress.
+     *
+     * @param {string} knowledgeBaseReferenceId - The reference ID of the knowledge base to report progress for. All other entity ID fields are inferred from the request.
+     * @param {MavenAGI.KnowledgeBaseVersionProgressRequest} request
+     * @param {KnowledgeClient.RequestOptions} requestOptions - Request-specific configuration.
+     *
+     * @throws {@link MavenAGI.NotFoundError}
+     * @throws {@link MavenAGI.BadRequestError}
+     * @throws {@link MavenAGI.PayloadTooLargeError}
+     * @throws {@link MavenAGI.TooManyRequestsError}
+     * @throws {@link MavenAGI.ServerError}
+     *
+     * @example
+     *     await client.knowledge.updateKnowledgeBaseVersionProgress("help-center", {
+     *         versionId: {
+     *             type: "KNOWLEDGE_BASE_VERSION",
+     *             referenceId: "versionId",
+     *             appId: "maven"
+     *         },
+     *         progress: {
+     *             message: "Fetching articles from the help center",
+     *             completedCount: 120,
+     *             totalCount: 500
+     *         }
+     *     })
+     */
+    public updateKnowledgeBaseVersionProgress(
+        knowledgeBaseReferenceId: string,
+        request: MavenAGI.KnowledgeBaseVersionProgressRequest,
+        requestOptions?: KnowledgeClient.RequestOptions,
+    ): core.HttpResponsePromise<MavenAGI.KnowledgeBaseVersion> {
+        return core.HttpResponsePromise.fromPromise(
+            this.__updateKnowledgeBaseVersionProgress(knowledgeBaseReferenceId, request, requestOptions),
+        );
+    }
+
+    private async __updateKnowledgeBaseVersionProgress(
+        knowledgeBaseReferenceId: string,
+        request: MavenAGI.KnowledgeBaseVersionProgressRequest,
+        requestOptions?: KnowledgeClient.RequestOptions,
+    ): Promise<core.WithRawResponse<MavenAGI.KnowledgeBaseVersion>> {
+        const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
+        const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
+            _authRequest.headers,
+            this._options?.headers,
+            mergeOnlyDefinedHeaders({
+                "X-Organization-Id": requestOptions?.organizationId ?? this._options?.organizationId,
+                "X-Agent-Id": requestOptions?.agentId ?? this._options?.agentId,
+            }),
+            requestOptions?.headers,
+        );
+        const _response = await (this._options.fetcher ?? core.fetcher)({
+            url: core.url.join(
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)) ??
+                    environments.MavenAGIEnvironment.Production,
+                `/v1/knowledge/${core.url.encodePathParam(knowledgeBaseReferenceId)}/version/progress`,
+            ),
+            method: "POST",
+            headers: _headers,
+            contentType: "application/json",
+            queryString: core.url.queryBuilder().mergeAdditional(requestOptions?.queryParams).build(),
+            requestType: "json",
+            body: serializers.KnowledgeBaseVersionProgressRequest.jsonOrThrow(request, {
+                unrecognizedObjectKeys: "strip",
+            }),
+            timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
+            maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
+            abortSignal: requestOptions?.abortSignal,
+            fetchFn: this._options?.fetch,
+            logging: this._options.logging,
+        });
+        if (_response.ok) {
+            return {
+                data: serializers.KnowledgeBaseVersion.parseOrThrow(_response.body, {
+                    unrecognizedObjectKeys: "passthrough",
+                    allowUnrecognizedUnionMembers: true,
+                    allowUnrecognizedEnumValues: true,
+                    breadcrumbsPrefix: ["response"],
+                }),
+                rawResponse: _response.rawResponse,
+            };
+        }
+
+        if (_response.error.reason === "status-code") {
+            switch (_response.error.statusCode) {
+                case 404:
+                    throw new MavenAGI.NotFoundError(
+                        serializers.ErrorMessage.parseOrThrow(_response.error.body, {
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
+                            breadcrumbsPrefix: ["response"],
+                        }),
+                        _response.rawResponse,
+                    );
+                case 400:
+                    throw new MavenAGI.BadRequestError(
+                        serializers.ErrorMessage.parseOrThrow(_response.error.body, {
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
+                            breadcrumbsPrefix: ["response"],
+                        }),
+                        _response.rawResponse,
+                    );
+                case 413:
+                    throw new MavenAGI.PayloadTooLargeError(
+                        serializers.ErrorMessage.parseOrThrow(_response.error.body, {
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
+                            breadcrumbsPrefix: ["response"],
+                        }),
+                        _response.rawResponse,
+                    );
+                case 429:
+                    throw new MavenAGI.TooManyRequestsError(
+                        serializers.ErrorMessage.parseOrThrow(_response.error.body, {
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
+                            breadcrumbsPrefix: ["response"],
+                        }),
+                        _response.rawResponse,
+                    );
+                case 500:
+                    throw new MavenAGI.ServerError(
+                        serializers.ErrorMessage.parseOrThrow(_response.error.body, {
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
+                            breadcrumbsPrefix: ["response"],
+                        }),
+                        _response.rawResponse,
+                    );
+                default:
+                    throw new errors.MavenAGIError({
+                        statusCode: _response.error.statusCode,
+                        body: _response.error.body,
+                        rawResponse: _response.rawResponse,
+                    });
+            }
+        }
+
+        return handleNonStatusCodeError(
+            _response.error,
+            _response.rawResponse,
+            "POST",
+            "/v1/knowledge/{knowledgeBaseReferenceId}/version/progress",
+        );
+    }
+
+    /**
      * List all active versions for a knowledge base. Returns the most recent versions first.
      *
      * @param {string} knowledgeBaseReferenceId - The reference ID of the knowledge base to list versions for. All other entity ID fields are inferred from the request.

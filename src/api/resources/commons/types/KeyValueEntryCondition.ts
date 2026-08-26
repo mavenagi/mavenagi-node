@@ -12,5 +12,5 @@ export interface KeyValueEntryCondition {
      */
     path: string;
     /** The condition to evaluate against the value at `path`. */
-    condition: MavenAGI.IntelligentFieldCondition;
+    condition: MavenAGI.FieldCondition;
 }

@@ -12,5 +12,5 @@ export interface IntelligentFieldPreconditionResponse {
     /** Human-readable display name of the intelligent field. Resolved server-side. */
     name?: string;
     /** The condition to evaluate against the field's value. */
-    fieldCondition: MavenAGI.IntelligentFieldCondition;
+    fieldCondition: MavenAGI.FieldCondition;
 }

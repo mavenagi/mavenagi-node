@@ -4,7 +4,7 @@ import type * as MavenAGI from "../../../../api/index";
 import * as core from "../../../../core";
 import type * as serializers from "../../../index";
 import { EntityIdWithoutAgent } from "./EntityIdWithoutAgent";
-import { IntelligentFieldCondition } from "./IntelligentFieldCondition";
+import { FieldCondition } from "./FieldCondition";
 
 export const IntelligentFieldPreconditionResponse: core.serialization.ObjectSchema<
     serializers.IntelligentFieldPreconditionResponse.Raw,
@@ -12,13 +12,13 @@ export const IntelligentFieldPreconditionResponse: core.serialization.ObjectSche
 > = core.serialization.object({
     fieldIdWithoutAgent: EntityIdWithoutAgent,
     name: core.serialization.string().optional(),
-    fieldCondition: IntelligentFieldCondition,
+    fieldCondition: FieldCondition,
 });
 
 export declare namespace IntelligentFieldPreconditionResponse {
     export interface Raw {
         fieldIdWithoutAgent: EntityIdWithoutAgent.Raw;
         name?: string | null;
-        fieldCondition: IntelligentFieldCondition.Raw;
+        fieldCondition: FieldCondition.Raw;
     }
 }

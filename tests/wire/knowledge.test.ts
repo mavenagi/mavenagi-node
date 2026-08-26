@@ -71,6 +71,7 @@ describe("KnowledgeClient", () => {
                         indexedCount: 1000000,
                         failedCount: 1000000,
                     },
+                    progress: { message: "message", completedCount: 1000000, totalCount: 1000000 },
                     name: "name",
                     precondition: {
                         preconditionType: "user",
@@ -133,6 +134,7 @@ describe("KnowledgeClient", () => {
                         indexedCount: 1000000,
                         failedCount: 1000000,
                     },
+                    progress: { message: "message", completedCount: 1000000, totalCount: 1000000 },
                     name: "name",
                     precondition: {
                         preconditionType: "user",
@@ -216,6 +218,11 @@ describe("KnowledgeClient", () => {
                         indexedCount: 1000000,
                         failedCount: 1000000,
                     },
+                    progress: {
+                        message: "message",
+                        completedCount: 1000000,
+                        totalCount: 1000000,
+                    },
                     name: "name",
                     precondition: {
                         preconditionType: "user",
@@ -279,6 +286,11 @@ describe("KnowledgeClient", () => {
                         expectedCount: 1000000,
                         indexedCount: 1000000,
                         failedCount: 1000000,
+                    },
+                    progress: {
+                        message: "message",
+                        completedCount: 1000000,
+                        totalCount: 1000000,
                     },
                     name: "name",
                     precondition: {
@@ -2069,6 +2081,271 @@ describe("KnowledgeClient", () => {
         }).rejects.toThrow(MavenAGI.ServerError);
     });
 
+    test("updateKnowledgeBaseVersionProgress (1)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new MavenAGIClient({
+            maxRetries: 0,
+            appId: "test",
+            appSecret: "test",
+            organizationId: "test",
+            agentId: "test",
+            environment: server.baseUrl,
+        });
+        const rawRequestBody = {
+            versionId: { type: "KNOWLEDGE_BASE_VERSION", referenceId: "versionId", appId: "maven" },
+            progress: { message: "Fetching articles from the help center", completedCount: 120, totalCount: 500 },
+        };
+        const rawResponseBody = {
+            versionId: {
+                type: "KNOWLEDGE_BASE_VERSION",
+                referenceId: "versionId",
+                appId: "maven",
+                organizationId: "acme",
+                agentId: "support",
+            },
+            type: "FULL",
+            status: "IN_PROGRESS",
+            createdAt: "2024-01-01T00:00:00Z",
+            updatedAt: "2024-02-02T00:00:00Z",
+            progress: { message: "Fetching articles from the help center", completedCount: 120, totalCount: 500 },
+        };
+
+        server
+            .mockEndpoint()
+            .post("/v1/knowledge/help-center/version/progress")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(200)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        const response = await client.knowledge.updateKnowledgeBaseVersionProgress("help-center", {
+            versionId: {
+                type: "KNOWLEDGE_BASE_VERSION",
+                referenceId: "versionId",
+                appId: "maven",
+            },
+            progress: {
+                message: "Fetching articles from the help center",
+                completedCount: 120,
+                totalCount: 500,
+            },
+        });
+        expect(response).toEqual({
+            versionId: {
+                type: "KNOWLEDGE_BASE_VERSION",
+                referenceId: "versionId",
+                appId: "maven",
+                organizationId: "acme",
+                agentId: "support",
+            },
+            type: "FULL",
+            status: "IN_PROGRESS",
+            createdAt: new Date("2024-01-01T00:00:00.000Z"),
+            updatedAt: new Date("2024-02-02T00:00:00.000Z"),
+            progress: {
+                message: "Fetching articles from the help center",
+                completedCount: 120,
+                totalCount: 500,
+            },
+        });
+    });
+
+    test("updateKnowledgeBaseVersionProgress (2)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new MavenAGIClient({
+            maxRetries: 0,
+            appId: "test",
+            appSecret: "test",
+            organizationId: "test",
+            agentId: "test",
+            environment: server.baseUrl,
+        });
+        const rawRequestBody = {
+            versionId: { type: "AGENT", appId: "appId", referenceId: "x" },
+            progress: { message: "message" },
+        };
+        const rawResponseBody = {};
+
+        server
+            .mockEndpoint()
+            .post("/v1/knowledge/knowledgeBaseReferenceId/version/progress")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(404)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.knowledge.updateKnowledgeBaseVersionProgress("knowledgeBaseReferenceId", {
+                versionId: {
+                    type: "AGENT",
+                    appId: "appId",
+                    referenceId: "x",
+                },
+                progress: {
+                    message: "message",
+                },
+            });
+        }).rejects.toThrow(MavenAGI.NotFoundError);
+    });
+
+    test("updateKnowledgeBaseVersionProgress (3)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new MavenAGIClient({
+            maxRetries: 0,
+            appId: "test",
+            appSecret: "test",
+            organizationId: "test",
+            agentId: "test",
+            environment: server.baseUrl,
+        });
+        const rawRequestBody = {
+            versionId: { type: "AGENT", appId: "appId", referenceId: "x" },
+            progress: { message: "message" },
+        };
+        const rawResponseBody = {};
+
+        server
+            .mockEndpoint()
+            .post("/v1/knowledge/knowledgeBaseReferenceId/version/progress")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(400)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.knowledge.updateKnowledgeBaseVersionProgress("knowledgeBaseReferenceId", {
+                versionId: {
+                    type: "AGENT",
+                    appId: "appId",
+                    referenceId: "x",
+                },
+                progress: {
+                    message: "message",
+                },
+            });
+        }).rejects.toThrow(MavenAGI.BadRequestError);
+    });
+
+    test("updateKnowledgeBaseVersionProgress (4)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new MavenAGIClient({
+            maxRetries: 0,
+            appId: "test",
+            appSecret: "test",
+            organizationId: "test",
+            agentId: "test",
+            environment: server.baseUrl,
+        });
+        const rawRequestBody = {
+            versionId: { type: "AGENT", appId: "appId", referenceId: "x" },
+            progress: { message: "message" },
+        };
+        const rawResponseBody = {};
+
+        server
+            .mockEndpoint()
+            .post("/v1/knowledge/knowledgeBaseReferenceId/version/progress")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(413)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.knowledge.updateKnowledgeBaseVersionProgress("knowledgeBaseReferenceId", {
+                versionId: {
+                    type: "AGENT",
+                    appId: "appId",
+                    referenceId: "x",
+                },
+                progress: {
+                    message: "message",
+                },
+            });
+        }).rejects.toThrow(MavenAGI.PayloadTooLargeError);
+    });
+
+    test("updateKnowledgeBaseVersionProgress (5)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new MavenAGIClient({
+            maxRetries: 0,
+            appId: "test",
+            appSecret: "test",
+            organizationId: "test",
+            agentId: "test",
+            environment: server.baseUrl,
+        });
+        const rawRequestBody = {
+            versionId: { type: "AGENT", appId: "appId", referenceId: "x" },
+            progress: { message: "message" },
+        };
+        const rawResponseBody = {};
+
+        server
+            .mockEndpoint()
+            .post("/v1/knowledge/knowledgeBaseReferenceId/version/progress")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(429)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.knowledge.updateKnowledgeBaseVersionProgress("knowledgeBaseReferenceId", {
+                versionId: {
+                    type: "AGENT",
+                    appId: "appId",
+                    referenceId: "x",
+                },
+                progress: {
+                    message: "message",
+                },
+            });
+        }).rejects.toThrow(MavenAGI.TooManyRequestsError);
+    });
+
+    test("updateKnowledgeBaseVersionProgress (6)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new MavenAGIClient({
+            maxRetries: 0,
+            appId: "test",
+            appSecret: "test",
+            organizationId: "test",
+            agentId: "test",
+            environment: server.baseUrl,
+        });
+        const rawRequestBody = {
+            versionId: { type: "AGENT", appId: "appId", referenceId: "x" },
+            progress: { message: "message" },
+        };
+        const rawResponseBody = {};
+
+        server
+            .mockEndpoint()
+            .post("/v1/knowledge/knowledgeBaseReferenceId/version/progress")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(500)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.knowledge.updateKnowledgeBaseVersionProgress("knowledgeBaseReferenceId", {
+                versionId: {
+                    type: "AGENT",
+                    appId: "appId",
+                    referenceId: "x",
+                },
+                progress: {
+                    message: "message",
+                },
+            });
+        }).rejects.toThrow(MavenAGI.ServerError);
+    });
+
     test("listKnowledgeBaseVersions (1)", async () => {
         const server = mockServerPool.createServer();
         const client = new MavenAGIClient({
@@ -2107,6 +2384,7 @@ describe("KnowledgeClient", () => {
                         indexedCount: 1000000,
                         failedCount: 1000000,
                     },
+                    progress: { message: "message", completedCount: 1000000, totalCount: 1000000 },
                     type: "FULL",
                 },
                 {
@@ -2134,6 +2412,7 @@ describe("KnowledgeClient", () => {
                         indexedCount: 1000000,
                         failedCount: 1000000,
                     },
+                    progress: { message: "message", completedCount: 1000000, totalCount: 1000000 },
                     type: "FULL",
                 },
             ],
@@ -2175,6 +2454,11 @@ describe("KnowledgeClient", () => {
                         indexedCount: 1000000,
                         failedCount: 1000000,
                     },
+                    progress: {
+                        message: "message",
+                        completedCount: 1000000,
+                        totalCount: 1000000,
+                    },
                     type: "FULL",
                 },
                 {
@@ -2201,6 +2485,11 @@ describe("KnowledgeClient", () => {
                         expectedCount: 1000000,
                         indexedCount: 1000000,
                         failedCount: 1000000,
+                    },
+                    progress: {
+                        message: "message",
+                        completedCount: 1000000,
+                        totalCount: 1000000,
                     },
                     type: "FULL",
                 },

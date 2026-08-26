@@ -17,6 +17,26 @@ import type * as MavenAGI from "../../../index";
  *         createdAt: new Date("2024-01-01T00:00:00.000Z"),
  *         updatedAt: new Date("2024-02-02T00:00:00.000Z")
  *     }
+ *
+ * @example
+ *     {
+ *         versionId: {
+ *             type: MavenAGI.EntityType.KnowledgeBaseVersion,
+ *             referenceId: "versionId",
+ *             appId: "maven",
+ *             organizationId: "acme",
+ *             agentId: "support"
+ *         },
+ *         type: MavenAGI.KnowledgeBaseVersionType.Full,
+ *         status: MavenAGI.KnowledgeBaseVersionStatus.InProgress,
+ *         createdAt: new Date("2024-01-01T00:00:00.000Z"),
+ *         updatedAt: new Date("2024-02-02T00:00:00.000Z"),
+ *         progress: {
+ *             message: "Fetching articles from the help center",
+ *             completedCount: 120,
+ *             totalCount: 500
+ *         }
+ *     }
  */
 export interface KnowledgeBaseVersion extends MavenAGI.KnowledgeBaseVersionRequest {
     /** The unique ID of the knowledge base version. */
@@ -31,4 +51,9 @@ export interface KnowledgeBaseVersion extends MavenAGI.KnowledgeBaseVersionReque
     updatedAt: Date;
     /** The indexing status of the knowledge base version. */
     indexingState?: MavenAGI.KnowledgeBaseIndexingProgressState;
+    /**
+     * Refresh progress most recently reported by the app that owns this knowledge base.
+     * Only populated while the version is in progress - absent once the version has completed.
+     */
+    progress?: MavenAGI.KnowledgeBaseVersionProgress;
 }

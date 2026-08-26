@@ -33,7 +33,15 @@ export const ConversationField = {
     Csat: "Csat",
     OrganizationId: "OrganizationId",
     AgentId: "AgentId",
+    /**
+     * The environment configured on the agent: DEMO, STAGING, or PRODUCTION. Constant within a
+     * single agent, so it only separates conversations on a cross-agent request. */
+    AgentEnvironment: "AgentEnvironment",
     InboxItems: "InboxItems",
     InvolvedApps: "InvolvedApps",
+    /**
+     * Selects an intelligent field rather than a built-in conversation field.
+     * When used, `intelligentFieldId` must also be set to identify which field. */
+    IntelligentField: "IntelligentField",
 } as const;
 export type ConversationField = (typeof ConversationField)[keyof typeof ConversationField] | string;

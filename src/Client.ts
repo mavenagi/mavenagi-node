@@ -10,6 +10,7 @@ import { CustomersClient } from "./api/resources/customers/client/Client";
 import { EventsClient } from "./api/resources/events/client/Client";
 import { InboxClient } from "./api/resources/inbox/client/Client";
 import { IntegrationsClient } from "./api/resources/integrations/client/Client";
+import { IntelligentFieldsClient } from "./api/resources/intelligentFields/client/Client";
 import { KnowledgeClient } from "./api/resources/knowledge/client/Client";
 import { OrganizationsClient } from "./api/resources/organizations/client/Client";
 import { SegmentsClient } from "./api/resources/segments/client/Client";
@@ -40,6 +41,7 @@ export class MavenAGIClient {
     protected _events: EventsClient | undefined;
     protected _inbox: InboxClient | undefined;
     protected _integrations: IntegrationsClient | undefined;
+    protected _intelligentFields: IntelligentFieldsClient | undefined;
     protected _knowledge: KnowledgeClient | undefined;
     protected _organizations: OrganizationsClient | undefined;
     protected _segments: SegmentsClient | undefined;
@@ -91,6 +93,10 @@ export class MavenAGIClient {
 
     public get integrations(): IntegrationsClient {
         return (this._integrations ??= new IntegrationsClient(this._options));
+    }
+
+    public get intelligentFields(): IntelligentFieldsClient {
+        return (this._intelligentFields ??= new IntelligentFieldsClient(this._options));
     }
 
     public get knowledge(): KnowledgeClient {

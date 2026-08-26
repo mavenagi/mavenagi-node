@@ -5,5 +5,6 @@ export * from "./SegmentPatchRequest";
 export * from "./SegmentRequest";
 export * from "./SegmentResponse";
 export * from "./SegmentStatus";
+export * from "./SegmentSummary";
 export * from "./SegmentsSearchRequest";
 export * from "./SegmentsSearchResponse";

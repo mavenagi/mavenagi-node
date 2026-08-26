@@ -19,6 +19,7 @@ export const NumericConversationField: core.serialization.Schema<
     "Csat",
     "ActionExecutionCount",
     "ActionErrorCount",
+    "IntelligentField",
 ]);
 
 export declare namespace NumericConversationField {
@@ -33,5 +34,6 @@ export declare namespace NumericConversationField {
         | "PredictedNPS"
         | "Csat"
         | "ActionExecutionCount"
-        | "ActionErrorCount";
+        | "ActionErrorCount"
+        | "IntelligentField";
 }

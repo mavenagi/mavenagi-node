@@ -3,19 +3,19 @@
 import type * as MavenAGI from "../../../../api/index";
 import * as core from "../../../../core";
 import type * as serializers from "../../../index";
-import { IntelligentFieldCondition } from "./IntelligentFieldCondition";
+import { FieldCondition } from "./FieldCondition";
 
 export const KeyValueEntryCondition: core.serialization.ObjectSchema<
     serializers.KeyValueEntryCondition.Raw,
     MavenAGI.KeyValueEntryCondition
 > = core.serialization.object({
     path: core.serialization.string(),
-    condition: IntelligentFieldCondition,
+    condition: FieldCondition,
 });
 
 export declare namespace KeyValueEntryCondition {
     export interface Raw {
         path: string;
-        condition: IntelligentFieldCondition.Raw;
+        condition: FieldCondition.Raw;
     }
 }

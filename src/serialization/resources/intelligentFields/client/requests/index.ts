@@ -1,0 +1,1 @@
+export { IntelligentFieldPatchRequest } from "./IntelligentFieldPatchRequest";

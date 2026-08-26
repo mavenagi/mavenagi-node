@@ -7,6 +7,7 @@ export type StreamResponse =
     | MavenAGI.StreamResponse.Action
     | MavenAGI.StreamResponse.OauthButton
     | MavenAGI.StreamResponse.Chart
+    | MavenAGI.StreamResponse.Object
     | MavenAGI.StreamResponse.Metadata
     | MavenAGI.StreamResponse.Start
     | MavenAGI.StreamResponse.End;
@@ -26,6 +27,10 @@ export namespace StreamResponse {
 
     export interface Chart extends MavenAGI.AskStreamChartEvent {
         eventType: "chart";
+    }
+
+    export interface Object extends MavenAGI.AskStreamObjectEvent {
+        eventType: "object";
     }
 
     export interface Metadata extends MavenAGI.AskStreamMetadataEvent {

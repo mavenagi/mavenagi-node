@@ -8,6 +8,7 @@ import { AskStreamChartEvent } from "./AskStreamChartEvent";
 import { AskStreamEndEvent } from "./AskStreamEndEvent";
 import { AskStreamMetadataEvent } from "./AskStreamMetadataEvent";
 import { AskStreamOAuthButtonEvent } from "./AskStreamOAuthButtonEvent";
+import { AskStreamObjectEvent } from "./AskStreamObjectEvent";
 import { AskStreamStartEvent } from "./AskStreamStartEvent";
 import { AskStreamTextEvent } from "./AskStreamTextEvent";
 
@@ -18,6 +19,7 @@ export const StreamResponse: core.serialization.Schema<serializers.StreamRespons
             action: AskStreamActionEvent,
             oauthButton: AskStreamOAuthButtonEvent,
             chart: AskStreamChartEvent,
+            object: AskStreamObjectEvent,
             metadata: AskStreamMetadataEvent,
             start: AskStreamStartEvent,
             end: AskStreamEndEvent,
@@ -33,6 +35,7 @@ export declare namespace StreamResponse {
         | StreamResponse.Action
         | StreamResponse.OauthButton
         | StreamResponse.Chart
+        | StreamResponse.Object
         | StreamResponse.Metadata
         | StreamResponse.Start
         | StreamResponse.End;
@@ -51,6 +54,10 @@ export declare namespace StreamResponse {
 
     export interface Chart extends AskStreamChartEvent.Raw {
         eventType: "chart";
+    }
+
+    export interface Object extends AskStreamObjectEvent.Raw {
+        eventType: "object";
     }
 
     export interface Metadata extends AskStreamMetadataEvent.Raw {

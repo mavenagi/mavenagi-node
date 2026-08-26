@@ -6,6 +6,7 @@ export * from "./AskStreamChartEvent";
 export * from "./AskStreamEndEvent";
 export * from "./AskStreamMetadataEvent";
 export * from "./AskStreamOAuthButtonEvent";
+export * from "./AskStreamObjectEvent";
 export * from "./AskStreamStartEvent";
 export * from "./AskStreamTextEvent";
 export * from "./BillableFilterField";

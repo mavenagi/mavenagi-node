@@ -86,4 +86,9 @@ export interface KnowledgeBaseResponse extends MavenAGI.KnowledgeBaseProperties 
     url?: string;
     /** The indexing status of the latest version of the knowledge base. */
     indexingState?: MavenAGI.KnowledgeBaseIndexingProgressState;
+    /**
+     * Refresh progress most recently reported by the app that owns this knowledge base.
+     * Only populated while the latest version is in progress - absent once it has completed.
+     */
+    progress?: MavenAGI.KnowledgeBaseVersionProgress;
 }

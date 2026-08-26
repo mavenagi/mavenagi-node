@@ -9,6 +9,7 @@ import { KnowledgeBaseIndexingProgressState } from "./KnowledgeBaseIndexingProgr
 import { KnowledgeBaseProperties } from "./KnowledgeBaseProperties";
 import { KnowledgeBaseRefreshFrequency } from "./KnowledgeBaseRefreshFrequency";
 import { KnowledgeBaseType } from "./KnowledgeBaseType";
+import { KnowledgeBaseVersionProgress } from "./KnowledgeBaseVersionProgress";
 import { KnowledgeBaseVersionStatus } from "./KnowledgeBaseVersionStatus";
 
 export const KnowledgeBaseResponse: core.serialization.ObjectSchema<
@@ -30,6 +31,7 @@ export const KnowledgeBaseResponse: core.serialization.ObjectSchema<
         segmentIds: core.serialization.list(EntityId),
         url: core.serialization.string().optional(),
         indexingState: KnowledgeBaseIndexingProgressState.optional(),
+        progress: KnowledgeBaseVersionProgress.optional(),
     })
     .extend(KnowledgeBaseProperties);
 
@@ -49,5 +51,6 @@ export declare namespace KnowledgeBaseResponse {
         segmentIds: EntityId.Raw[];
         url?: string | null;
         indexingState?: KnowledgeBaseIndexingProgressState.Raw | null;
+        progress?: KnowledgeBaseVersionProgress.Raw | null;
     }
 }

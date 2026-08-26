@@ -5,6 +5,14 @@ import type * as MavenAGI from "../../../index";
 export interface ConversationGroupBy extends MavenAGI.GroupByBase {
     /** Field used for data grouping. */
     field: MavenAGI.ConversationField;
-    /** Numeric ranges for grouping data into predefined buckets. Applies only to numeric fields. */
+    /**
+     * Fully specified ID of the intelligent field. Required when `field` is
+     * `IntelligentField`, and ignored otherwise.
+     */
+    intelligentFieldId?: MavenAGI.EntityId;
+    /**
+     * Numeric ranges for grouping data into predefined buckets.
+     * Applies only to numeric fields and to NUMBER-validated intelligent fields.
+     */
     ranges?: MavenAGI.Range[];
 }

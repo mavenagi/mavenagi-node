@@ -40,8 +40,10 @@ export const ConversationField: core.serialization.Schema<
     "Csat",
     "OrganizationId",
     "AgentId",
+    "AgentEnvironment",
     "InboxItems",
     "InvolvedApps",
+    "IntelligentField",
 ]);
 
 export declare namespace ConversationField {
@@ -78,6 +80,8 @@ export declare namespace ConversationField {
         | "Csat"
         | "OrganizationId"
         | "AgentId"
+        | "AgentEnvironment"
         | "InboxItems"
-        | "InvolvedApps";
+        | "InvolvedApps"
+        | "IntelligentField";
 }

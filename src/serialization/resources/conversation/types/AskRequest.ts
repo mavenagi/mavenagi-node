@@ -6,6 +6,7 @@ import type * as serializers from "../../../index";
 import { AskType } from "../../commons/types/AskType";
 import { AttachmentRequest } from "../../commons/types/AttachmentRequest";
 import { EntityIdBase } from "../../commons/types/EntityIdBase";
+import { TextFormat } from "../../commons/types/TextFormat";
 
 export const AskRequest: core.serialization.ObjectSchema<serializers.AskRequest.Raw, MavenAGI.AskRequest> =
     core.serialization.object({
@@ -13,6 +14,7 @@ export const AskRequest: core.serialization.ObjectSchema<serializers.AskRequest.
         userId: EntityIdBase,
         type: AskType.optional(),
         text: core.serialization.string().optional(),
+        textFormat: TextFormat.optional(),
         attachments: core.serialization.list(AttachmentRequest).optional(),
         transientData: core.serialization.record(core.serialization.string(), core.serialization.string()).optional(),
         timezone: core.serialization.string().optional(),
@@ -25,6 +27,7 @@ export declare namespace AskRequest {
         userId: EntityIdBase.Raw;
         type?: AskType.Raw | null;
         text?: string | null;
+        textFormat?: TextFormat.Raw | null;
         attachments?: AttachmentRequest.Raw[] | null;
         transientData?: Record<string, string> | null;
         timezone?: string | null;

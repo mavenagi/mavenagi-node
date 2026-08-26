@@ -15,6 +15,8 @@ export * from "./KnowledgeBasesResponse";
 export * from "./KnowledgeBaseType";
 export * from "./KnowledgeBaseVersion";
 export * from "./KnowledgeBaseVersionFinalizeStatus";
+export * from "./KnowledgeBaseVersionProgress";
+export * from "./KnowledgeBaseVersionProgressRequest";
 export * from "./KnowledgeBaseVersionRequest";
 export * from "./KnowledgeBaseVersionStatus";
 export * from "./KnowledgeBaseVersionsListResponse";

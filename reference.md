@@ -4106,6 +4106,396 @@ await client.integrations.update("organizationId", "integrationId", {});
 </dl>
 </details>
 
+## IntelligentFields
+<details><summary><code>client.intelligentFields.<a href="/src/api/resources/intelligentFields/client/Client.ts">createOrUpdate</a>({ ...params }) -> MavenAGI.IntelligentFieldResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Create a new intelligent field. Intelligent fields are used to store custom LLM-generated values on entities like conversations or events.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.intelligentFields.createOrUpdate({
+    fieldId: {
+        referenceId: "ticket-priority"
+    },
+    name: "Ticket Priority",
+    description: "The priority of the conversation based on urgency",
+    entityType: "CONVERSATION",
+    validationType: "STRING",
+    enumOptions: [{
+            value: "HIGH",
+            label: "High Priority"
+        }, {
+            value: "MEDIUM",
+            label: "Medium Priority"
+        }, {
+            value: "LOW",
+            label: "Low Priority"
+        }],
+    definition: "The priority of the conversation based on the urgency and importance; draw from the content / messages in the conversation; must be one of HIGH, MEDIUM, or LOW."
+});
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `MavenAGI.IntelligentFieldRequest` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `IntelligentFieldsClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.intelligentFields.<a href="/src/api/resources/intelligentFields/client/Client.ts">get</a>(fieldReferenceId, { ...params }) -> MavenAGI.IntelligentFieldDetailResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Get an intelligent field by its supplied ID
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.intelligentFields.get("ticket-priority");
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**fieldReferenceId:** `string` — The reference ID of the intelligent field to get. All other entity ID fields are inferred from the request.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `MavenAGI.IntelligentFieldGetRequest` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `IntelligentFieldsClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.intelligentFields.<a href="/src/api/resources/intelligentFields/client/Client.ts">patch</a>(fieldReferenceId, { ...params }) -> MavenAGI.IntelligentFieldResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Patch an intelligent field. Can be used to update the definition, status, or other mutable properties.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.intelligentFields.patch("ticket-priority", {
+    definition: "The priority of the conversation based on the urgency and importance; draw from the content / messages in the conversation; must be one of HIGH, MEDIUM, or LOW."
+});
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**fieldReferenceId:** `string` — The reference ID of the intelligent field to patch.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `MavenAGI.IntelligentFieldPatchRequest` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `IntelligentFieldsClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.intelligentFields.<a href="/src/api/resources/intelligentFields/client/Client.ts">delete</a>(fieldReferenceId, { ...params }) -> MavenAGI.IntelligentFieldResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Soft delete an intelligent field. Only INACTIVE fields can be deleted.
+
+Deleted fields are excluded from search results but can still be retrieved by ID.
+Creating a new field with the same referenceId as a deleted field will overwrite
+the deleted field and restore it to INACTIVE status.
+
+Deleted fields cannot be modified.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.intelligentFields.delete("ticket-priority");
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**fieldReferenceId:** `string` — The reference ID of the intelligent field to delete.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `MavenAGI.IntelligentFieldDeleteRequest` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `IntelligentFieldsClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.intelligentFields.<a href="/src/api/resources/intelligentFields/client/Client.ts">searchValues</a>({ ...params }) -> MavenAGI.IntelligentFieldValueSearchResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Search computed values for intelligent fields across entities. Supports filtering by field properties and target entity.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.intelligentFields.searchValues({
+    fieldFilter: {
+        fieldIds: [{
+                referenceId: "ticket-priority",
+                appId: "zendesk",
+                type: "INTELLIGENT_FIELD",
+                organizationId: "acme",
+                agentId: "support"
+            }]
+    },
+    entityFilter: {
+        entityIds: [{
+                referenceId: "conv-123",
+                appId: "zendesk",
+                type: "CONVERSATION",
+                organizationId: "acme",
+                agentId: "support"
+            }]
+    },
+    page: 0,
+    size: 20,
+    sort: "CREATED_AT",
+    sortDesc: true
+});
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `MavenAGI.IntelligentFieldValueSearchRequest` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `IntelligentFieldsClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
 ## Knowledge
 <details><summary><code>client.knowledge.<a href="/src/api/resources/knowledge/client/Client.ts">searchKnowledgeBases</a>({ ...params }) -> MavenAGI.KnowledgeBasesResponse</code></summary>
 <dl>
@@ -4743,6 +5133,92 @@ await client.knowledge.finalizeKnowledgeBaseVersion("help-center", {
 <dd>
 
 **request:** `MavenAGI.FinalizeKnowledgeBaseVersionRequest` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `KnowledgeClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.knowledge.<a href="/src/api/resources/knowledge/client/Client.ts">updateKnowledgeBaseVersionProgress</a>(knowledgeBaseReferenceId, { ...params }) -> MavenAGI.KnowledgeBaseVersion</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Report refresh progress for an in-progress knowledge base version.
+
+Progress is advisory and shown to users while a refresh runs. Each call replaces the
+version's entire progress state - no history is kept, only the most recent value is
+retained. Will throw an exception if the target version is not in progress.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.knowledge.updateKnowledgeBaseVersionProgress("help-center", {
+    versionId: {
+        type: "KNOWLEDGE_BASE_VERSION",
+        referenceId: "versionId",
+        appId: "maven"
+    },
+    progress: {
+        message: "Fetching articles from the help center",
+        completedCount: 120,
+        totalCount: 500
+    }
+});
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**knowledgeBaseReferenceId:** `string` — The reference ID of the knowledge base to report progress for. All other entity ID fields are inferred from the request.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `MavenAGI.KnowledgeBaseVersionProgressRequest` 
     
 </dd>
 </dl>

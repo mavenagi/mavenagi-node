@@ -8,13 +8,11 @@ export const BotObjectResponse: core.serialization.ObjectSchema<
     serializers.BotObjectResponse.Raw,
     MavenAGI.BotObjectResponse
 > = core.serialization.object({
-    label: core.serialization.string().optional(),
     object: core.serialization.unknown(),
 });
 
 export declare namespace BotObjectResponse {
     export interface Raw {
-        label?: string | null;
         object?: unknown;
     }
 }

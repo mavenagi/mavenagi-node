@@ -9,37 +9,35 @@ import { SetCondition } from "./SetCondition";
 import { StringCondition } from "./StringCondition";
 import { UniversalCondition } from "./UniversalCondition";
 
-export const IntelligentFieldCondition: core.serialization.Schema<
-    serializers.IntelligentFieldCondition.Raw,
-    MavenAGI.IntelligentFieldCondition
-> = core.serialization
-    .union("fieldValidationType", {
-        string: core.serialization.object({
-            value: StringCondition,
-        }),
-        numeric: core.serialization.object({
-            value: NumericCondition,
-        }),
-        boolean: BooleanCondition,
-        set: core.serialization.object({
-            value: SetCondition,
-        }),
-        universal: core.serialization.object({
-            value: UniversalCondition,
-        }),
-    })
-    .transform<MavenAGI.IntelligentFieldCondition>({
-        transform: (value) => value,
-        untransform: (value) => value,
-    });
+export const FieldCondition: core.serialization.Schema<serializers.FieldCondition.Raw, MavenAGI.FieldCondition> =
+    core.serialization
+        .union("fieldValidationType", {
+            string: core.serialization.object({
+                value: StringCondition,
+            }),
+            numeric: core.serialization.object({
+                value: NumericCondition,
+            }),
+            boolean: BooleanCondition,
+            set: core.serialization.object({
+                value: SetCondition,
+            }),
+            universal: core.serialization.object({
+                value: UniversalCondition,
+            }),
+        })
+        .transform<MavenAGI.FieldCondition>({
+            transform: (value) => value,
+            untransform: (value) => value,
+        });
 
-export declare namespace IntelligentFieldCondition {
+export declare namespace FieldCondition {
     export type Raw =
-        | IntelligentFieldCondition.String
-        | IntelligentFieldCondition.Numeric
-        | IntelligentFieldCondition.Boolean
-        | IntelligentFieldCondition.Set
-        | IntelligentFieldCondition.Universal;
+        | FieldCondition.String
+        | FieldCondition.Numeric
+        | FieldCondition.Boolean
+        | FieldCondition.Set
+        | FieldCondition.Universal;
 
     export interface String {
         fieldValidationType: "string";

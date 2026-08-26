@@ -5,4 +5,9 @@ import type * as MavenAGI from "../../../index";
 export interface ConversationNumericMetric {
     /** Numeric field to apply the metric to. */
     targetField: MavenAGI.NumericConversationField;
+    /**
+     * Fully specified ID of the intelligent field. Required when `targetField` is
+     * `IntelligentField`, and ignored otherwise.
+     */
+    intelligentFieldId?: MavenAGI.EntityId;
 }

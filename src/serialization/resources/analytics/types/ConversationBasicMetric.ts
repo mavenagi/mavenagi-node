@@ -3,6 +3,7 @@
 import type * as MavenAGI from "../../../../api/index";
 import * as core from "../../../../core";
 import type * as serializers from "../../../index";
+import { EntityId } from "../../commons/types/EntityId";
 import { ConversationField } from "../../conversation/types/ConversationField";
 
 export const ConversationBasicMetric: core.serialization.ObjectSchema<
@@ -10,10 +11,12 @@ export const ConversationBasicMetric: core.serialization.ObjectSchema<
     MavenAGI.ConversationBasicMetric
 > = core.serialization.object({
     targetField: ConversationField,
+    intelligentFieldId: EntityId.optional(),
 });
 
 export declare namespace ConversationBasicMetric {
     export interface Raw {
         targetField: ConversationField.Raw;
+        intelligentFieldId?: EntityId.Raw | null;
     }
 }

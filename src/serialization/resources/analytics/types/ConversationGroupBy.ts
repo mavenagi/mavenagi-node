@@ -3,6 +3,7 @@
 import type * as MavenAGI from "../../../../api/index";
 import * as core from "../../../../core";
 import type * as serializers from "../../../index";
+import { EntityId } from "../../commons/types/EntityId";
 import { ConversationField } from "../../conversation/types/ConversationField";
 import { GroupByBase } from "./GroupByBase";
 import { Range } from "./Range";
@@ -13,6 +14,7 @@ export const ConversationGroupBy: core.serialization.ObjectSchema<
 > = core.serialization
     .object({
         field: ConversationField,
+        intelligentFieldId: EntityId.optional(),
         ranges: core.serialization.list(Range).optional(),
     })
     .extend(GroupByBase);
@@ -20,6 +22,7 @@ export const ConversationGroupBy: core.serialization.ObjectSchema<
 export declare namespace ConversationGroupBy {
     export interface Raw extends GroupByBase.Raw {
         field: ConversationField.Raw;
+        intelligentFieldId?: EntityId.Raw | null;
         ranges?: Range.Raw[] | null;
     }
 }
