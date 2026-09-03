@@ -56,4 +56,9 @@ export interface KnowledgeBaseVersion extends MavenAGI.KnowledgeBaseVersionReque
      * Only populated while the version is in progress - absent once the version has completed.
      */
     progress?: MavenAGI.KnowledgeBaseVersionProgress;
+    /**
+     * How this version changed the knowledge base. Absent for historical versions and for
+     * versions that did not complete successfully.
+     */
+    documentDeltas?: MavenAGI.KnowledgeBaseDocumentDeltas;
 }

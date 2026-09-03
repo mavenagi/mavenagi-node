@@ -4,6 +4,7 @@ import type * as MavenAGI from "../../../../api/index";
 import * as core from "../../../../core";
 import type * as serializers from "../../../index";
 import { EntityId } from "../../commons/types/EntityId";
+import { KnowledgeBaseDocumentDeltas } from "./KnowledgeBaseDocumentDeltas";
 import { KnowledgeBaseIndexingProgressState } from "./KnowledgeBaseIndexingProgressState";
 import { KnowledgeBaseVersionProgress } from "./KnowledgeBaseVersionProgress";
 import { KnowledgeBaseVersionRequest } from "./KnowledgeBaseVersionRequest";
@@ -21,6 +22,7 @@ export const KnowledgeBaseVersion: core.serialization.ObjectSchema<
         updatedAt: core.serialization.date(),
         indexingState: KnowledgeBaseIndexingProgressState.optional(),
         progress: KnowledgeBaseVersionProgress.optional(),
+        documentDeltas: KnowledgeBaseDocumentDeltas.optional(),
     })
     .extend(KnowledgeBaseVersionRequest);
 
@@ -33,5 +35,6 @@ export declare namespace KnowledgeBaseVersion {
         updatedAt: string;
         indexingState?: KnowledgeBaseIndexingProgressState.Raw | null;
         progress?: KnowledgeBaseVersionProgress.Raw | null;
+        documentDeltas?: KnowledgeBaseDocumentDeltas.Raw | null;
     }
 }

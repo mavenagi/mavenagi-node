@@ -6123,6 +6123,881 @@ describe("ConversationClient", () => {
         }).rejects.toThrow(MavenAGI.ServerError);
     });
 
+    test("searchCursor (1)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new MavenAGIClient({
+            maxRetries: 0,
+            appId: "test",
+            appSecret: "test",
+            organizationId: "test",
+            agentId: "test",
+            environment: server.baseUrl,
+        });
+        const rawRequestBody = {};
+        const rawResponseBody = {
+            conversations: [
+                {
+                    responseConfig: {
+                        capabilities: ["MARKDOWN", "MARKDOWN"],
+                        isCopilot: true,
+                        responseLength: "SHORT",
+                        contextFilter: {
+                            scopeType: "byEntities",
+                            entities: [
+                                {
+                                    entityId: {
+                                        organizationId: "organizationId",
+                                        agentId: "agentId",
+                                        type: "AGENT",
+                                        appId: "appId",
+                                        referenceId: "x",
+                                    },
+                                },
+                            ],
+                        },
+                    },
+                    subject: "subject",
+                    url: "url",
+                    createdAt: "2024-01-15T09:30:00Z",
+                    updatedAt: "2024-01-15T09:30:00Z",
+                    tags: ["tags"],
+                    metadata: { metadata: "metadata" },
+                    allMetadata: { allMetadata: { allMetadata: "allMetadata" } },
+                    conversationId: {
+                        organizationId: "organizationId",
+                        agentId: "agentId",
+                        type: "AGENT",
+                        appId: "appId",
+                        referenceId: "x",
+                    },
+                    analysis: {
+                        userRequest: "userRequest",
+                        agentResponse: "agentResponse",
+                        resolutionStatus: "UNKNOWN",
+                        category: "category",
+                        sentiment: "POSITIVE",
+                        quality: "GOOD",
+                        qualityReason: "MISSING_KNOWLEDGE",
+                        resolvedByMaven: true,
+                        primaryLanguage: "primaryLanguage",
+                        predictedNps: 1.1,
+                        csat: 1.1,
+                        intelligentFieldValues: [
+                            {
+                                fieldId: {
+                                    organizationId: "organizationId",
+                                    agentId: "agentId",
+                                    type: "AGENT",
+                                    appId: "appId",
+                                    referenceId: "x",
+                                },
+                                name: "name",
+                                entityId: {
+                                    organizationId: "organizationId",
+                                    agentId: "agentId",
+                                    type: "AGENT",
+                                    appId: "appId",
+                                    referenceId: "x",
+                                },
+                                value: { key: "value" },
+                                confidence: 1.1,
+                                rationale: "rationale",
+                                createdAt: "2024-01-15T09:30:00Z",
+                            },
+                            {
+                                fieldId: {
+                                    organizationId: "organizationId",
+                                    agentId: "agentId",
+                                    type: "AGENT",
+                                    appId: "appId",
+                                    referenceId: "x",
+                                },
+                                name: "name",
+                                entityId: {
+                                    organizationId: "organizationId",
+                                    agentId: "agentId",
+                                    type: "AGENT",
+                                    appId: "appId",
+                                    referenceId: "x",
+                                },
+                                value: { key: "value" },
+                                confidence: 1.1,
+                                rationale: "rationale",
+                                createdAt: "2024-01-15T09:30:00Z",
+                            },
+                        ],
+                    },
+                    summary: {
+                        actionIds: [
+                            { type: "AGENT", appId: "appId", referenceId: "x" },
+                            { type: "AGENT", appId: "appId", referenceId: "x" },
+                        ],
+                        incompleteActionIds: [
+                            { type: "AGENT", appId: "appId", referenceId: "x" },
+                            { type: "AGENT", appId: "appId", referenceId: "x" },
+                        ],
+                        matchedCharterIds: [
+                            { type: "AGENT", appId: "appId", referenceId: "x" },
+                            { type: "AGENT", appId: "appId", referenceId: "x" },
+                        ],
+                        matchedCharterNames: ["matchedCharterNames", "matchedCharterNames"],
+                        matchedSegmentedCharterNames: ["matchedSegmentedCharterNames", "matchedSegmentedCharterNames"],
+                        insertCount: 1,
+                        thumbsUpCount: 1,
+                        thumbsDownCount: 1,
+                        handoffCount: 1,
+                        userMessageCount: 1,
+                        botMessageCount: 1,
+                        csat: 1.1,
+                        handleTime: 1000000,
+                        humanAgentResponseDelay: 1000000,
+                        humanAgents: ["humanAgents", "humanAgents"],
+                        humanAgentsWithInserts: ["humanAgentsWithInserts", "humanAgentsWithInserts"],
+                        users: ["users", "users"],
+                        userIdentifiers: ["userIdentifiers", "userIdentifiers"],
+                        lastUserMessage: "lastUserMessage",
+                        lastBotMessage: "lastBotMessage",
+                        involvedAppIds: ["involvedAppIds"],
+                    },
+                    deleted: true,
+                    open: true,
+                    llmEnabled: true,
+                    simulationContext: {
+                        additionalPromptText: "additionalPromptText",
+                        persona: "CASUAL_BUDDY",
+                        availableKnowledgeBases: [
+                            {
+                                organizationId: "organizationId",
+                                agentId: "agentId",
+                                type: "AGENT",
+                                appId: "appId",
+                                referenceId: "x",
+                            },
+                        ],
+                    },
+                    relatedEntities: {
+                        SPAWN_FROM: [
+                            {
+                                organizationId: "organizationId",
+                                agentId: "agentId",
+                                type: "AGENT",
+                                appId: "appId",
+                                referenceId: "x",
+                            },
+                            {
+                                organizationId: "organizationId",
+                                agentId: "agentId",
+                                type: "AGENT",
+                                appId: "appId",
+                                referenceId: "x",
+                            },
+                        ],
+                    },
+                    conversationMode: "VOICE",
+                },
+                {
+                    responseConfig: {
+                        capabilities: ["MARKDOWN", "MARKDOWN"],
+                        isCopilot: true,
+                        responseLength: "SHORT",
+                        contextFilter: {
+                            scopeType: "byEntities",
+                            entities: [
+                                {
+                                    entityId: {
+                                        organizationId: "organizationId",
+                                        agentId: "agentId",
+                                        type: "AGENT",
+                                        appId: "appId",
+                                        referenceId: "x",
+                                    },
+                                },
+                            ],
+                        },
+                    },
+                    subject: "subject",
+                    url: "url",
+                    createdAt: "2024-01-15T09:30:00Z",
+                    updatedAt: "2024-01-15T09:30:00Z",
+                    tags: ["tags"],
+                    metadata: { metadata: "metadata" },
+                    allMetadata: { allMetadata: { allMetadata: "allMetadata" } },
+                    conversationId: {
+                        organizationId: "organizationId",
+                        agentId: "agentId",
+                        type: "AGENT",
+                        appId: "appId",
+                        referenceId: "x",
+                    },
+                    analysis: {
+                        userRequest: "userRequest",
+                        agentResponse: "agentResponse",
+                        resolutionStatus: "UNKNOWN",
+                        category: "category",
+                        sentiment: "POSITIVE",
+                        quality: "GOOD",
+                        qualityReason: "MISSING_KNOWLEDGE",
+                        resolvedByMaven: true,
+                        primaryLanguage: "primaryLanguage",
+                        predictedNps: 1.1,
+                        csat: 1.1,
+                        intelligentFieldValues: [
+                            {
+                                fieldId: {
+                                    organizationId: "organizationId",
+                                    agentId: "agentId",
+                                    type: "AGENT",
+                                    appId: "appId",
+                                    referenceId: "x",
+                                },
+                                name: "name",
+                                entityId: {
+                                    organizationId: "organizationId",
+                                    agentId: "agentId",
+                                    type: "AGENT",
+                                    appId: "appId",
+                                    referenceId: "x",
+                                },
+                                value: { key: "value" },
+                                confidence: 1.1,
+                                rationale: "rationale",
+                                createdAt: "2024-01-15T09:30:00Z",
+                            },
+                            {
+                                fieldId: {
+                                    organizationId: "organizationId",
+                                    agentId: "agentId",
+                                    type: "AGENT",
+                                    appId: "appId",
+                                    referenceId: "x",
+                                },
+                                name: "name",
+                                entityId: {
+                                    organizationId: "organizationId",
+                                    agentId: "agentId",
+                                    type: "AGENT",
+                                    appId: "appId",
+                                    referenceId: "x",
+                                },
+                                value: { key: "value" },
+                                confidence: 1.1,
+                                rationale: "rationale",
+                                createdAt: "2024-01-15T09:30:00Z",
+                            },
+                        ],
+                    },
+                    summary: {
+                        actionIds: [
+                            { type: "AGENT", appId: "appId", referenceId: "x" },
+                            { type: "AGENT", appId: "appId", referenceId: "x" },
+                        ],
+                        incompleteActionIds: [
+                            { type: "AGENT", appId: "appId", referenceId: "x" },
+                            { type: "AGENT", appId: "appId", referenceId: "x" },
+                        ],
+                        matchedCharterIds: [
+                            { type: "AGENT", appId: "appId", referenceId: "x" },
+                            { type: "AGENT", appId: "appId", referenceId: "x" },
+                        ],
+                        matchedCharterNames: ["matchedCharterNames", "matchedCharterNames"],
+                        matchedSegmentedCharterNames: ["matchedSegmentedCharterNames", "matchedSegmentedCharterNames"],
+                        insertCount: 1,
+                        thumbsUpCount: 1,
+                        thumbsDownCount: 1,
+                        handoffCount: 1,
+                        userMessageCount: 1,
+                        botMessageCount: 1,
+                        csat: 1.1,
+                        handleTime: 1000000,
+                        humanAgentResponseDelay: 1000000,
+                        humanAgents: ["humanAgents", "humanAgents"],
+                        humanAgentsWithInserts: ["humanAgentsWithInserts", "humanAgentsWithInserts"],
+                        users: ["users", "users"],
+                        userIdentifiers: ["userIdentifiers", "userIdentifiers"],
+                        lastUserMessage: "lastUserMessage",
+                        lastBotMessage: "lastBotMessage",
+                        involvedAppIds: ["involvedAppIds"],
+                    },
+                    deleted: true,
+                    open: true,
+                    llmEnabled: true,
+                    simulationContext: {
+                        additionalPromptText: "additionalPromptText",
+                        persona: "CASUAL_BUDDY",
+                        availableKnowledgeBases: [
+                            {
+                                organizationId: "organizationId",
+                                agentId: "agentId",
+                                type: "AGENT",
+                                appId: "appId",
+                                referenceId: "x",
+                            },
+                        ],
+                    },
+                    relatedEntities: {
+                        SPAWN_FROM: [
+                            {
+                                organizationId: "organizationId",
+                                agentId: "agentId",
+                                type: "AGENT",
+                                appId: "appId",
+                                referenceId: "x",
+                            },
+                            {
+                                organizationId: "organizationId",
+                                agentId: "agentId",
+                                type: "AGENT",
+                                appId: "appId",
+                                referenceId: "x",
+                            },
+                        ],
+                    },
+                    conversationMode: "VOICE",
+                },
+            ],
+            totalElements: 1000000,
+            nextCursor: "nextCursor",
+        };
+
+        server
+            .mockEndpoint()
+            .post("/v1/conversations/search/cursor")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(200)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        const response = await client.conversation.searchCursor({});
+        expect(response).toEqual({
+            conversations: [
+                {
+                    responseConfig: {
+                        capabilities: ["MARKDOWN", "MARKDOWN"],
+                        isCopilot: true,
+                        responseLength: "SHORT",
+                        contextFilter: {
+                            scopeType: "byEntities",
+                            entities: [
+                                {
+                                    entityId: {
+                                        organizationId: "organizationId",
+                                        agentId: "agentId",
+                                        type: "AGENT",
+                                        appId: "appId",
+                                        referenceId: "x",
+                                    },
+                                },
+                            ],
+                        },
+                    },
+                    subject: "subject",
+                    url: "url",
+                    createdAt: new Date("2024-01-15T09:30:00.000Z"),
+                    updatedAt: new Date("2024-01-15T09:30:00.000Z"),
+                    tags: new Set(["tags"]),
+                    metadata: {
+                        metadata: "metadata",
+                    },
+                    allMetadata: {
+                        allMetadata: {
+                            allMetadata: "allMetadata",
+                        },
+                    },
+                    conversationId: {
+                        organizationId: "organizationId",
+                        agentId: "agentId",
+                        type: "AGENT",
+                        appId: "appId",
+                        referenceId: "x",
+                    },
+                    analysis: {
+                        userRequest: "userRequest",
+                        agentResponse: "agentResponse",
+                        resolutionStatus: "UNKNOWN",
+                        category: "category",
+                        sentiment: "POSITIVE",
+                        quality: "GOOD",
+                        qualityReason: "MISSING_KNOWLEDGE",
+                        resolvedByMaven: true,
+                        primaryLanguage: "primaryLanguage",
+                        predictedNps: 1.1,
+                        csat: 1.1,
+                        intelligentFieldValues: [
+                            {
+                                fieldId: {
+                                    organizationId: "organizationId",
+                                    agentId: "agentId",
+                                    type: "AGENT",
+                                    appId: "appId",
+                                    referenceId: "x",
+                                },
+                                name: "name",
+                                entityId: {
+                                    organizationId: "organizationId",
+                                    agentId: "agentId",
+                                    type: "AGENT",
+                                    appId: "appId",
+                                    referenceId: "x",
+                                },
+                                value: {
+                                    key: "value",
+                                },
+                                confidence: 1.1,
+                                rationale: "rationale",
+                                createdAt: new Date("2024-01-15T09:30:00.000Z"),
+                            },
+                            {
+                                fieldId: {
+                                    organizationId: "organizationId",
+                                    agentId: "agentId",
+                                    type: "AGENT",
+                                    appId: "appId",
+                                    referenceId: "x",
+                                },
+                                name: "name",
+                                entityId: {
+                                    organizationId: "organizationId",
+                                    agentId: "agentId",
+                                    type: "AGENT",
+                                    appId: "appId",
+                                    referenceId: "x",
+                                },
+                                value: {
+                                    key: "value",
+                                },
+                                confidence: 1.1,
+                                rationale: "rationale",
+                                createdAt: new Date("2024-01-15T09:30:00.000Z"),
+                            },
+                        ],
+                    },
+                    summary: {
+                        actionIds: [
+                            {
+                                type: "AGENT",
+                                appId: "appId",
+                                referenceId: "x",
+                            },
+                            {
+                                type: "AGENT",
+                                appId: "appId",
+                                referenceId: "x",
+                            },
+                        ],
+                        incompleteActionIds: [
+                            {
+                                type: "AGENT",
+                                appId: "appId",
+                                referenceId: "x",
+                            },
+                            {
+                                type: "AGENT",
+                                appId: "appId",
+                                referenceId: "x",
+                            },
+                        ],
+                        matchedCharterIds: [
+                            {
+                                type: "AGENT",
+                                appId: "appId",
+                                referenceId: "x",
+                            },
+                            {
+                                type: "AGENT",
+                                appId: "appId",
+                                referenceId: "x",
+                            },
+                        ],
+                        matchedCharterNames: ["matchedCharterNames", "matchedCharterNames"],
+                        matchedSegmentedCharterNames: ["matchedSegmentedCharterNames", "matchedSegmentedCharterNames"],
+                        insertCount: 1,
+                        thumbsUpCount: 1,
+                        thumbsDownCount: 1,
+                        handoffCount: 1,
+                        userMessageCount: 1,
+                        botMessageCount: 1,
+                        csat: 1.1,
+                        handleTime: 1000000,
+                        humanAgentResponseDelay: 1000000,
+                        humanAgents: ["humanAgents", "humanAgents"],
+                        humanAgentsWithInserts: ["humanAgentsWithInserts", "humanAgentsWithInserts"],
+                        users: ["users", "users"],
+                        userIdentifiers: ["userIdentifiers", "userIdentifiers"],
+                        lastUserMessage: "lastUserMessage",
+                        lastBotMessage: "lastBotMessage",
+                        involvedAppIds: new Set(["involvedAppIds"]),
+                    },
+                    deleted: true,
+                    open: true,
+                    llmEnabled: true,
+                    simulationContext: {
+                        additionalPromptText: "additionalPromptText",
+                        persona: "CASUAL_BUDDY",
+                        availableKnowledgeBases: [
+                            {
+                                organizationId: "organizationId",
+                                agentId: "agentId",
+                                type: "AGENT",
+                                appId: "appId",
+                                referenceId: "x",
+                            },
+                        ],
+                    },
+                    relatedEntities: {
+                        SPAWN_FROM: [
+                            {
+                                organizationId: "organizationId",
+                                agentId: "agentId",
+                                type: "AGENT",
+                                appId: "appId",
+                                referenceId: "x",
+                            },
+                            {
+                                organizationId: "organizationId",
+                                agentId: "agentId",
+                                type: "AGENT",
+                                appId: "appId",
+                                referenceId: "x",
+                            },
+                        ],
+                    },
+                    conversationMode: "VOICE",
+                },
+                {
+                    responseConfig: {
+                        capabilities: ["MARKDOWN", "MARKDOWN"],
+                        isCopilot: true,
+                        responseLength: "SHORT",
+                        contextFilter: {
+                            scopeType: "byEntities",
+                            entities: [
+                                {
+                                    entityId: {
+                                        organizationId: "organizationId",
+                                        agentId: "agentId",
+                                        type: "AGENT",
+                                        appId: "appId",
+                                        referenceId: "x",
+                                    },
+                                },
+                            ],
+                        },
+                    },
+                    subject: "subject",
+                    url: "url",
+                    createdAt: new Date("2024-01-15T09:30:00.000Z"),
+                    updatedAt: new Date("2024-01-15T09:30:00.000Z"),
+                    tags: new Set(["tags"]),
+                    metadata: {
+                        metadata: "metadata",
+                    },
+                    allMetadata: {
+                        allMetadata: {
+                            allMetadata: "allMetadata",
+                        },
+                    },
+                    conversationId: {
+                        organizationId: "organizationId",
+                        agentId: "agentId",
+                        type: "AGENT",
+                        appId: "appId",
+                        referenceId: "x",
+                    },
+                    analysis: {
+                        userRequest: "userRequest",
+                        agentResponse: "agentResponse",
+                        resolutionStatus: "UNKNOWN",
+                        category: "category",
+                        sentiment: "POSITIVE",
+                        quality: "GOOD",
+                        qualityReason: "MISSING_KNOWLEDGE",
+                        resolvedByMaven: true,
+                        primaryLanguage: "primaryLanguage",
+                        predictedNps: 1.1,
+                        csat: 1.1,
+                        intelligentFieldValues: [
+                            {
+                                fieldId: {
+                                    organizationId: "organizationId",
+                                    agentId: "agentId",
+                                    type: "AGENT",
+                                    appId: "appId",
+                                    referenceId: "x",
+                                },
+                                name: "name",
+                                entityId: {
+                                    organizationId: "organizationId",
+                                    agentId: "agentId",
+                                    type: "AGENT",
+                                    appId: "appId",
+                                    referenceId: "x",
+                                },
+                                value: {
+                                    key: "value",
+                                },
+                                confidence: 1.1,
+                                rationale: "rationale",
+                                createdAt: new Date("2024-01-15T09:30:00.000Z"),
+                            },
+                            {
+                                fieldId: {
+                                    organizationId: "organizationId",
+                                    agentId: "agentId",
+                                    type: "AGENT",
+                                    appId: "appId",
+                                    referenceId: "x",
+                                },
+                                name: "name",
+                                entityId: {
+                                    organizationId: "organizationId",
+                                    agentId: "agentId",
+                                    type: "AGENT",
+                                    appId: "appId",
+                                    referenceId: "x",
+                                },
+                                value: {
+                                    key: "value",
+                                },
+                                confidence: 1.1,
+                                rationale: "rationale",
+                                createdAt: new Date("2024-01-15T09:30:00.000Z"),
+                            },
+                        ],
+                    },
+                    summary: {
+                        actionIds: [
+                            {
+                                type: "AGENT",
+                                appId: "appId",
+                                referenceId: "x",
+                            },
+                            {
+                                type: "AGENT",
+                                appId: "appId",
+                                referenceId: "x",
+                            },
+                        ],
+                        incompleteActionIds: [
+                            {
+                                type: "AGENT",
+                                appId: "appId",
+                                referenceId: "x",
+                            },
+                            {
+                                type: "AGENT",
+                                appId: "appId",
+                                referenceId: "x",
+                            },
+                        ],
+                        matchedCharterIds: [
+                            {
+                                type: "AGENT",
+                                appId: "appId",
+                                referenceId: "x",
+                            },
+                            {
+                                type: "AGENT",
+                                appId: "appId",
+                                referenceId: "x",
+                            },
+                        ],
+                        matchedCharterNames: ["matchedCharterNames", "matchedCharterNames"],
+                        matchedSegmentedCharterNames: ["matchedSegmentedCharterNames", "matchedSegmentedCharterNames"],
+                        insertCount: 1,
+                        thumbsUpCount: 1,
+                        thumbsDownCount: 1,
+                        handoffCount: 1,
+                        userMessageCount: 1,
+                        botMessageCount: 1,
+                        csat: 1.1,
+                        handleTime: 1000000,
+                        humanAgentResponseDelay: 1000000,
+                        humanAgents: ["humanAgents", "humanAgents"],
+                        humanAgentsWithInserts: ["humanAgentsWithInserts", "humanAgentsWithInserts"],
+                        users: ["users", "users"],
+                        userIdentifiers: ["userIdentifiers", "userIdentifiers"],
+                        lastUserMessage: "lastUserMessage",
+                        lastBotMessage: "lastBotMessage",
+                        involvedAppIds: new Set(["involvedAppIds"]),
+                    },
+                    deleted: true,
+                    open: true,
+                    llmEnabled: true,
+                    simulationContext: {
+                        additionalPromptText: "additionalPromptText",
+                        persona: "CASUAL_BUDDY",
+                        availableKnowledgeBases: [
+                            {
+                                organizationId: "organizationId",
+                                agentId: "agentId",
+                                type: "AGENT",
+                                appId: "appId",
+                                referenceId: "x",
+                            },
+                        ],
+                    },
+                    relatedEntities: {
+                        SPAWN_FROM: [
+                            {
+                                organizationId: "organizationId",
+                                agentId: "agentId",
+                                type: "AGENT",
+                                appId: "appId",
+                                referenceId: "x",
+                            },
+                            {
+                                organizationId: "organizationId",
+                                agentId: "agentId",
+                                type: "AGENT",
+                                appId: "appId",
+                                referenceId: "x",
+                            },
+                        ],
+                    },
+                    conversationMode: "VOICE",
+                },
+            ],
+            totalElements: 1000000,
+            nextCursor: "nextCursor",
+        });
+    });
+
+    test("searchCursor (2)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new MavenAGIClient({
+            maxRetries: 0,
+            appId: "test",
+            appSecret: "test",
+            organizationId: "test",
+            agentId: "test",
+            environment: server.baseUrl,
+        });
+        const rawRequestBody = {};
+        const rawResponseBody = {};
+
+        server
+            .mockEndpoint()
+            .post("/v1/conversations/search/cursor")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(404)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.conversation.searchCursor({});
+        }).rejects.toThrow(MavenAGI.NotFoundError);
+    });
+
+    test("searchCursor (3)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new MavenAGIClient({
+            maxRetries: 0,
+            appId: "test",
+            appSecret: "test",
+            organizationId: "test",
+            agentId: "test",
+            environment: server.baseUrl,
+        });
+        const rawRequestBody = {};
+        const rawResponseBody = {};
+
+        server
+            .mockEndpoint()
+            .post("/v1/conversations/search/cursor")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(400)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.conversation.searchCursor({});
+        }).rejects.toThrow(MavenAGI.BadRequestError);
+    });
+
+    test("searchCursor (4)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new MavenAGIClient({
+            maxRetries: 0,
+            appId: "test",
+            appSecret: "test",
+            organizationId: "test",
+            agentId: "test",
+            environment: server.baseUrl,
+        });
+        const rawRequestBody = {};
+        const rawResponseBody = {};
+
+        server
+            .mockEndpoint()
+            .post("/v1/conversations/search/cursor")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(413)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.conversation.searchCursor({});
+        }).rejects.toThrow(MavenAGI.PayloadTooLargeError);
+    });
+
+    test("searchCursor (5)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new MavenAGIClient({
+            maxRetries: 0,
+            appId: "test",
+            appSecret: "test",
+            organizationId: "test",
+            agentId: "test",
+            environment: server.baseUrl,
+        });
+        const rawRequestBody = {};
+        const rawResponseBody = {};
+
+        server
+            .mockEndpoint()
+            .post("/v1/conversations/search/cursor")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(429)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.conversation.searchCursor({});
+        }).rejects.toThrow(MavenAGI.TooManyRequestsError);
+    });
+
+    test("searchCursor (6)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new MavenAGIClient({
+            maxRetries: 0,
+            appId: "test",
+            appSecret: "test",
+            organizationId: "test",
+            agentId: "test",
+            environment: server.baseUrl,
+        });
+        const rawRequestBody = {};
+        const rawResponseBody = {};
+
+        server
+            .mockEndpoint()
+            .post("/v1/conversations/search/cursor")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(500)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.conversation.searchCursor({});
+        }).rejects.toThrow(MavenAGI.ServerError);
+    });
+
     test("deliverMessage (1)", async () => {
         const server = mockServerPool.createServer();
         const client = new MavenAGIClient({

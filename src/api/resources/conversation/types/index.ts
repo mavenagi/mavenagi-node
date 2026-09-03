@@ -17,6 +17,8 @@ export * from "./ConversationMessageRequest";
 export * from "./ConversationMetadata";
 export * from "./ConversationPatchRequest";
 export * from "./ConversationRequest";
+export * from "./ConversationsCursorSearchRequest";
+export * from "./ConversationsCursorSearchResponse";
 export * from "./ConversationsResponse";
 export * from "./ConversationsSearchRequest";
 export * from "./DeliverConversationMessageRequest";

@@ -2385,6 +2385,7 @@ describe("KnowledgeClient", () => {
                         failedCount: 1000000,
                     },
                     progress: { message: "message", completedCount: 1000000, totalCount: 1000000 },
+                    documentDeltas: { addedCount: 1000000, updatedCount: 1000000, removedCount: 1000000 },
                     type: "FULL",
                 },
                 {
@@ -2413,6 +2414,7 @@ describe("KnowledgeClient", () => {
                         failedCount: 1000000,
                     },
                     progress: { message: "message", completedCount: 1000000, totalCount: 1000000 },
+                    documentDeltas: { addedCount: 1000000, updatedCount: 1000000, removedCount: 1000000 },
                     type: "FULL",
                 },
             ],
@@ -2459,6 +2461,11 @@ describe("KnowledgeClient", () => {
                         completedCount: 1000000,
                         totalCount: 1000000,
                     },
+                    documentDeltas: {
+                        addedCount: 1000000,
+                        updatedCount: 1000000,
+                        removedCount: 1000000,
+                    },
                     type: "FULL",
                 },
                 {
@@ -2490,6 +2497,11 @@ describe("KnowledgeClient", () => {
                         message: "message",
                         completedCount: 1000000,
                         totalCount: 1000000,
+                    },
+                    documentDeltas: {
+                        addedCount: 1000000,
+                        updatedCount: 1000000,
+                        removedCount: 1000000,
                     },
                     type: "FULL",
                 },
