@@ -708,6 +708,10 @@ describe("OrganizationsClient", () => {
                         Category: { type: "string", value: "Sales" },
                         CreatedAt: { type: "dateTime", value: "2023-10-01T00:00:00Z" },
                     },
+                    identifiers: [
+                        { field: "Category", value: { type: "string", value: "Sales" } },
+                        { field: "CreatedAt", value: { type: "dateTime", value: "2023-10-01T00:00:00Z" } },
+                    ],
                     data: {
                         count: { type: "double", value: 5 },
                         avg_first_response_time: { type: "millisecond", value: 150 },
@@ -719,6 +723,10 @@ describe("OrganizationsClient", () => {
                         Category: { type: "string", value: "Support" },
                         CreatedAt: { type: "dateTime", value: "2023-10-01T00:00:00Z" },
                     },
+                    identifiers: [
+                        { field: "Category", value: { type: "string", value: "Support" } },
+                        { field: "CreatedAt", value: { type: "dateTime", value: "2023-10-01T00:00:00Z" } },
+                    ],
                     data: {
                         count: { type: "double", value: 10 },
                         avg_first_response_time: { type: "millisecond", value: 300 },
@@ -727,12 +735,13 @@ describe("OrganizationsClient", () => {
                 },
                 {
                     identifier: {
-                        Category: {
-                            type: "string",
-                            value: "Sales",
-                            CreatedAt: { type: "dateTime", value: "2023-10-02T00:00:00Z" },
-                        },
+                        Category: { type: "string", value: "Sales" },
+                        CreatedAt: { type: "dateTime", value: "2023-10-02T00:00:00Z" },
                     },
+                    identifiers: [
+                        { field: "Category", value: { type: "string", value: "Sales" } },
+                        { field: "CreatedAt", value: { type: "dateTime", value: "2023-10-02T00:00:00Z" } },
+                    ],
                     data: {
                         count: { type: "double", value: 7 },
                         avg_first_response_time: { type: "millisecond", value: 180 },
@@ -744,6 +753,10 @@ describe("OrganizationsClient", () => {
                         Category: { type: "string", value: "Support" },
                         CreatedAt: { type: "dateTime", value: "2023-10-02T00:00:00Z" },
                     },
+                    identifiers: [
+                        { field: "Category", value: { type: "string", value: "Support" } },
+                        { field: "CreatedAt", value: { type: "dateTime", value: "2023-10-02T00:00:00Z" } },
+                    ],
                     data: {
                         count: { type: "double", value: 8 },
                         avg_first_response_time: { type: "millisecond", value: 320 },
@@ -810,6 +823,22 @@ describe("OrganizationsClient", () => {
                             value: new Date("2023-10-01T00:00:00.000Z"),
                         },
                     },
+                    identifiers: [
+                        {
+                            field: "Category",
+                            value: {
+                                type: "string",
+                                value: "Sales",
+                            },
+                        },
+                        {
+                            field: "CreatedAt",
+                            value: {
+                                type: "dateTime",
+                                value: new Date("2023-10-01T00:00:00.000Z"),
+                            },
+                        },
+                    ],
                     data: {
                         count: {
                             type: "double",
@@ -836,6 +865,22 @@ describe("OrganizationsClient", () => {
                             value: new Date("2023-10-01T00:00:00.000Z"),
                         },
                     },
+                    identifiers: [
+                        {
+                            field: "Category",
+                            value: {
+                                type: "string",
+                                value: "Support",
+                            },
+                        },
+                        {
+                            field: "CreatedAt",
+                            value: {
+                                type: "dateTime",
+                                value: new Date("2023-10-01T00:00:00.000Z"),
+                            },
+                        },
+                    ],
                     data: {
                         count: {
                             type: "double",
@@ -857,7 +902,27 @@ describe("OrganizationsClient", () => {
                             type: "string",
                             value: "Sales",
                         },
+                        CreatedAt: {
+                            type: "dateTime",
+                            value: new Date("2023-10-02T00:00:00.000Z"),
+                        },
                     },
+                    identifiers: [
+                        {
+                            field: "Category",
+                            value: {
+                                type: "string",
+                                value: "Sales",
+                            },
+                        },
+                        {
+                            field: "CreatedAt",
+                            value: {
+                                type: "dateTime",
+                                value: new Date("2023-10-02T00:00:00.000Z"),
+                            },
+                        },
+                    ],
                     data: {
                         count: {
                             type: "double",
@@ -884,6 +949,22 @@ describe("OrganizationsClient", () => {
                             value: new Date("2023-10-02T00:00:00.000Z"),
                         },
                     },
+                    identifiers: [
+                        {
+                            field: "Category",
+                            value: {
+                                type: "string",
+                                value: "Support",
+                            },
+                        },
+                        {
+                            field: "CreatedAt",
+                            value: {
+                                type: "dateTime",
+                                value: new Date("2023-10-02T00:00:00.000Z"),
+                            },
+                        },
+                    ],
                     data: {
                         count: {
                             type: "double",

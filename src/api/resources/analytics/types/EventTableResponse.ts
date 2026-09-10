@@ -13,6 +13,13 @@ import type * as MavenAGI from "../../../index";
  *                         value: "CHAT_OPENED"
  *                     }
  *                 },
+ *                 identifiers: [{
+ *                         field: MavenAGI.EventField.EventName,
+ *                         value: {
+ *                             type: "string",
+ *                             value: "CHAT_OPENED"
+ *                         }
+ *                     }],
  *                 data: {
  *                     "event_count": {
  *                         type: "double",
@@ -26,6 +33,13 @@ import type * as MavenAGI from "../../../index";
  *                         value: "CHAT_CLOSED"
  *                     }
  *                 },
+ *                 identifiers: [{
+ *                         field: MavenAGI.EventField.EventName,
+ *                         value: {
+ *                             type: "string",
+ *                             value: "CHAT_CLOSED"
+ *                         }
+ *                     }],
  *                 data: {
  *                     "event_count": {
  *                         type: "double",

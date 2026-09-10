@@ -1343,6 +1343,424 @@ await client.analytics.getEventChart({
 </dl>
 </details>
 
+## AppDirectory
+<details><summary><code>client.appDirectory.<a href="/src/api/resources/appDirectory/client/Client.ts">search</a>({ ...params }) -> MavenAGI.AppsResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Lists apps available to install on the agent, with filtering and pagination.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.appDirectory.search({});
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `MavenAGI.DirectoryAppsSearchRequest` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `AppDirectoryClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.appDirectory.<a href="/src/api/resources/appDirectory/client/Client.ts">get</a>(appId) -> MavenAGI.MarketplaceAppDetail</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Gets an app and its installation status for the agent.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.appDirectory.get("appId");
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**appId:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `AppDirectoryClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.appDirectory.<a href="/src/api/resources/appDirectory/client/Client.ts">install</a>(appId, { ...params }) -> void</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Installs the app on the agent, or updates settings for an existing installation. Re-runs the postInstall lifecycle hook on each call.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.appDirectory.install("appId", {
+    settings: {
+        "key": "value"
+    }
+});
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**appId:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `MavenAGI.InstallDirectoryAppRequest` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `AppDirectoryClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.appDirectory.<a href="/src/api/resources/appDirectory/client/Client.ts">uninstall</a>(appId) -> void</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Uninstalls the app from the agent.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.appDirectory.uninstall("appId");
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**appId:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `AppDirectoryClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.appDirectory.<a href="/src/api/resources/appDirectory/client/Client.ts">getSettingDownloadUrl</a>(appId, settingsKey) -> MavenAGI.GetDirectoryAppSettingDownloadUrlResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Gets a url for downloading a file app setting.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.appDirectory.getSettingDownloadUrl("appId", "settingsKey");
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**appId:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**settingsKey:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `AppDirectoryClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.appDirectory.<a href="/src/api/resources/appDirectory/client/Client.ts">getSettingUploadUrl</a>(appId, settingsKey, { ...params }) -> MavenAGI.GetDirectoryAppSettingUploadUrlResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Gets a presigned url for uploading a file app setting before installation.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.appDirectory.getSettingUploadUrl("appId", "settingsKey", {
+    contentLength: 1,
+    contentType: "contentType"
+});
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**appId:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**settingsKey:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `MavenAGI.GetAppSettingUploadUrlRequest` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `AppDirectoryClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
 ## AppSettings
 <details><summary><code>client.appSettings.<a href="/src/api/resources/appSettings/client/Client.ts">search</a>({ ...params }) -> MavenAGI.SearchAppSettingsResponse</code></summary>
 <dl>

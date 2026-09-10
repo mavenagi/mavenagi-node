@@ -13,6 +13,13 @@ import type * as MavenAGI from "../../../index";
  *                         value: new Date("2023-10-01T00:00:00.000Z")
  *                     }
  *                 },
+ *                 identifiers: [{
+ *                         field: MavenAGI.AgentUserField.CreatedAt,
+ *                         value: {
+ *                             type: "dateTime",
+ *                             value: new Date("2023-10-01T00:00:00.000Z")
+ *                         }
+ *                     }],
  *                 data: {
  *                     "user_count": {
  *                         type: "double",

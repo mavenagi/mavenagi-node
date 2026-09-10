@@ -3,6 +3,7 @@
 import { ActionsClient } from "./api/resources/actions/client/Client";
 import { AgentsClient } from "./api/resources/agents/client/Client";
 import { AnalyticsClient } from "./api/resources/analytics/client/Client";
+import { AppDirectoryClient } from "./api/resources/appDirectory/client/Client";
 import { AppSettingsClient } from "./api/resources/appSettings/client/Client";
 import { AssetsClient } from "./api/resources/assets/client/Client";
 import { ConversationClient } from "./api/resources/conversation/client/Client";
@@ -34,6 +35,7 @@ export class MavenAGIClient {
     protected _actions: ActionsClient | undefined;
     protected _agents: AgentsClient | undefined;
     protected _analytics: AnalyticsClient | undefined;
+    protected _appDirectory: AppDirectoryClient | undefined;
     protected _appSettings: AppSettingsClient | undefined;
     protected _assets: AssetsClient | undefined;
     protected _conversation: ConversationClient | undefined;
@@ -65,6 +67,10 @@ export class MavenAGIClient {
 
     public get analytics(): AnalyticsClient {
         return (this._analytics ??= new AnalyticsClient(this._options));
+    }
+
+    public get appDirectory(): AppDirectoryClient {
+        return (this._appDirectory ??= new AppDirectoryClient(this._options));
     }
 
     public get appSettings(): AppSettingsClient {

@@ -14,6 +14,9 @@ export const BotLogicActionExecutedDetail: core.serialization.ObjectSchema<
         actionParameters: core.serialization.record(core.serialization.string(), ActionExecutionParamValue),
         executionResult: core.serialization.string().optional(),
         executionError: core.serialization.string().optional(),
+        data: core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional(),
+        startedAt: core.serialization.date().optional(),
+        durationMs: core.serialization.number().optional(),
     })
     .extend(BotLogicActionReviewedDetail);
 
@@ -22,5 +25,8 @@ export declare namespace BotLogicActionExecutedDetail {
         actionParameters: Record<string, ActionExecutionParamValue.Raw>;
         executionResult?: string | null;
         executionError?: string | null;
+        data?: Record<string, unknown> | null;
+        startedAt?: string | null;
+        durationMs?: number | null;
     }
 }

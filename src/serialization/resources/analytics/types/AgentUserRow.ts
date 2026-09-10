@@ -4,6 +4,7 @@ import type * as MavenAGI from "../../../../api/index";
 import * as core from "../../../../core";
 import type * as serializers from "../../../index";
 import { AgentUserField } from "../../users/types/AgentUserField";
+import { AgentUserRowIdentifier } from "./AgentUserRowIdentifier";
 import { FieldValue } from "./FieldValue";
 import { RowBase } from "./RowBase";
 
@@ -11,11 +12,13 @@ export const AgentUserRow: core.serialization.ObjectSchema<serializers.AgentUser
     core.serialization
         .object({
             identifier: core.serialization.partialRecord(AgentUserField, FieldValue.optional()),
+            identifiers: core.serialization.list(AgentUserRowIdentifier),
         })
         .extend(RowBase);
 
 export declare namespace AgentUserRow {
     export interface Raw extends RowBase.Raw {
         identifier: Record<AgentUserField.Raw, FieldValue.Raw | null | undefined>;
+        identifiers: AgentUserRowIdentifier.Raw[];
     }
 }

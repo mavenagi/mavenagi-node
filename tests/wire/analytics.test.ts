@@ -36,6 +36,10 @@ describe("AnalyticsClient", () => {
                         Category: { type: "string", value: "Sales" },
                         CreatedAt: { type: "dateTime", value: "2023-10-01T00:00:00Z" },
                     },
+                    identifiers: [
+                        { field: "Category", value: { type: "string", value: "Sales" } },
+                        { field: "CreatedAt", value: { type: "dateTime", value: "2023-10-01T00:00:00Z" } },
+                    ],
                     data: {
                         count: { type: "double", value: 5 },
                         avg_first_response_time: { type: "millisecond", value: 150 },
@@ -47,6 +51,10 @@ describe("AnalyticsClient", () => {
                         Category: { type: "string", value: "Support" },
                         CreatedAt: { type: "dateTime", value: "2023-10-01T00:00:00Z" },
                     },
+                    identifiers: [
+                        { field: "Category", value: { type: "string", value: "Support" } },
+                        { field: "CreatedAt", value: { type: "dateTime", value: "2023-10-01T00:00:00Z" } },
+                    ],
                     data: {
                         count: { type: "double", value: 10 },
                         avg_first_response_time: { type: "millisecond", value: 300 },
@@ -55,12 +63,13 @@ describe("AnalyticsClient", () => {
                 },
                 {
                     identifier: {
-                        Category: {
-                            type: "string",
-                            value: "Sales",
-                            CreatedAt: { type: "dateTime", value: "2023-10-02T00:00:00Z" },
-                        },
+                        Category: { type: "string", value: "Sales" },
+                        CreatedAt: { type: "dateTime", value: "2023-10-02T00:00:00Z" },
                     },
+                    identifiers: [
+                        { field: "Category", value: { type: "string", value: "Sales" } },
+                        { field: "CreatedAt", value: { type: "dateTime", value: "2023-10-02T00:00:00Z" } },
+                    ],
                     data: {
                         count: { type: "double", value: 7 },
                         avg_first_response_time: { type: "millisecond", value: 180 },
@@ -72,6 +81,10 @@ describe("AnalyticsClient", () => {
                         Category: { type: "string", value: "Support" },
                         CreatedAt: { type: "dateTime", value: "2023-10-02T00:00:00Z" },
                     },
+                    identifiers: [
+                        { field: "Category", value: { type: "string", value: "Support" } },
+                        { field: "CreatedAt", value: { type: "dateTime", value: "2023-10-02T00:00:00Z" } },
+                    ],
                     data: {
                         count: { type: "double", value: 8 },
                         avg_first_response_time: { type: "millisecond", value: 320 },
@@ -138,6 +151,22 @@ describe("AnalyticsClient", () => {
                             value: new Date("2023-10-01T00:00:00.000Z"),
                         },
                     },
+                    identifiers: [
+                        {
+                            field: "Category",
+                            value: {
+                                type: "string",
+                                value: "Sales",
+                            },
+                        },
+                        {
+                            field: "CreatedAt",
+                            value: {
+                                type: "dateTime",
+                                value: new Date("2023-10-01T00:00:00.000Z"),
+                            },
+                        },
+                    ],
                     data: {
                         count: {
                             type: "double",
@@ -164,6 +193,22 @@ describe("AnalyticsClient", () => {
                             value: new Date("2023-10-01T00:00:00.000Z"),
                         },
                     },
+                    identifiers: [
+                        {
+                            field: "Category",
+                            value: {
+                                type: "string",
+                                value: "Support",
+                            },
+                        },
+                        {
+                            field: "CreatedAt",
+                            value: {
+                                type: "dateTime",
+                                value: new Date("2023-10-01T00:00:00.000Z"),
+                            },
+                        },
+                    ],
                     data: {
                         count: {
                             type: "double",
@@ -185,7 +230,27 @@ describe("AnalyticsClient", () => {
                             type: "string",
                             value: "Sales",
                         },
+                        CreatedAt: {
+                            type: "dateTime",
+                            value: new Date("2023-10-02T00:00:00.000Z"),
+                        },
                     },
+                    identifiers: [
+                        {
+                            field: "Category",
+                            value: {
+                                type: "string",
+                                value: "Sales",
+                            },
+                        },
+                        {
+                            field: "CreatedAt",
+                            value: {
+                                type: "dateTime",
+                                value: new Date("2023-10-02T00:00:00.000Z"),
+                            },
+                        },
+                    ],
                     data: {
                         count: {
                             type: "double",
@@ -212,6 +277,22 @@ describe("AnalyticsClient", () => {
                             value: new Date("2023-10-02T00:00:00.000Z"),
                         },
                     },
+                    identifiers: [
+                        {
+                            field: "Category",
+                            value: {
+                                type: "string",
+                                value: "Support",
+                            },
+                        },
+                        {
+                            field: "CreatedAt",
+                            value: {
+                                type: "dateTime",
+                                value: new Date("2023-10-02T00:00:00.000Z"),
+                            },
+                        },
+                    ],
                     data: {
                         count: {
                             type: "double",
@@ -958,10 +1039,12 @@ describe("AnalyticsClient", () => {
             rows: [
                 {
                     identifier: { CreatedBy: { type: "string", value: "John Doe" } },
+                    identifiers: [{ field: "CreatedBy", value: { type: "string", value: "John Doe" } }],
                     data: { feedback_count: { type: "double", value: 5 } },
                 },
                 {
                     identifier: { CreatedBy: { type: "string", value: "Jane Smith" } },
+                    identifiers: [{ field: "CreatedBy", value: { type: "string", value: "Jane Smith" } }],
                     data: { feedback_count: { type: "double", value: 3 } },
                 },
             ],
@@ -1004,6 +1087,15 @@ describe("AnalyticsClient", () => {
                             value: "John Doe",
                         },
                     },
+                    identifiers: [
+                        {
+                            field: "CreatedBy",
+                            value: {
+                                type: "string",
+                                value: "John Doe",
+                            },
+                        },
+                    ],
                     data: {
                         feedback_count: {
                             type: "double",
@@ -1018,6 +1110,15 @@ describe("AnalyticsClient", () => {
                             value: "Jane Smith",
                         },
                     },
+                    identifiers: [
+                        {
+                            field: "CreatedBy",
+                            value: {
+                                type: "string",
+                                value: "Jane Smith",
+                            },
+                        },
+                    ],
                     data: {
                         feedback_count: {
                             type: "double",
@@ -1328,6 +1429,7 @@ describe("AnalyticsClient", () => {
             rows: [
                 {
                     identifier: { CreatedAt: { type: "dateTime", value: "2023-10-01T00:00:00Z" } },
+                    identifiers: [{ field: "CreatedAt", value: { type: "dateTime", value: "2023-10-01T00:00:00Z" } }],
                     data: { user_count: { type: "double", value: 5 } },
                 },
             ],
@@ -1365,6 +1467,15 @@ describe("AnalyticsClient", () => {
                             value: new Date("2023-10-01T00:00:00.000Z"),
                         },
                     },
+                    identifiers: [
+                        {
+                            field: "CreatedAt",
+                            value: {
+                                type: "dateTime",
+                                value: new Date("2023-10-01T00:00:00.000Z"),
+                            },
+                        },
+                    ],
                     data: {
                         user_count: {
                             type: "double",
@@ -1631,10 +1742,12 @@ describe("AnalyticsClient", () => {
             rows: [
                 {
                     identifier: { EVENT_NAME: { type: "string", value: "CHAT_OPENED" } },
+                    identifiers: [{ field: "EVENT_NAME", value: { type: "string", value: "CHAT_OPENED" } }],
                     data: { event_count: { type: "double", value: 50 } },
                 },
                 {
                     identifier: { EVENT_NAME: { type: "string", value: "CHAT_CLOSED" } },
+                    identifiers: [{ field: "EVENT_NAME", value: { type: "string", value: "CHAT_CLOSED" } }],
                     data: { event_count: { type: "double", value: 45 } },
                 },
             ],
@@ -1677,6 +1790,15 @@ describe("AnalyticsClient", () => {
                             value: "CHAT_OPENED",
                         },
                     },
+                    identifiers: [
+                        {
+                            field: "EVENT_NAME",
+                            value: {
+                                type: "string",
+                                value: "CHAT_OPENED",
+                            },
+                        },
+                    ],
                     data: {
                         event_count: {
                             type: "double",
@@ -1691,6 +1813,15 @@ describe("AnalyticsClient", () => {
                             value: "CHAT_CLOSED",
                         },
                     },
+                    identifiers: [
+                        {
+                            field: "EVENT_NAME",
+                            value: {
+                                type: "string",
+                                value: "CHAT_CLOSED",
+                            },
+                        },
+                    ],
                     data: {
                         event_count: {
                             type: "double",

@@ -4,6 +4,7 @@ import type * as MavenAGI from "../../../../api/index";
 import * as core from "../../../../core";
 import type * as serializers from "../../../index";
 import { ConversationField } from "../../conversation/types/ConversationField";
+import { ConversationRowIdentifier } from "./ConversationRowIdentifier";
 import { FieldValue } from "./FieldValue";
 import { RowBase } from "./RowBase";
 
@@ -13,11 +14,13 @@ export const ConversationRow: core.serialization.ObjectSchema<
 > = core.serialization
     .object({
         identifier: core.serialization.partialRecord(ConversationField, FieldValue.optional()),
+        identifiers: core.serialization.list(ConversationRowIdentifier),
     })
     .extend(RowBase);
 
 export declare namespace ConversationRow {
     export interface Raw extends RowBase.Raw {
         identifier: Record<ConversationField.Raw, FieldValue.Raw | null | undefined>;
+        identifiers: ConversationRowIdentifier.Raw[];
     }
 }

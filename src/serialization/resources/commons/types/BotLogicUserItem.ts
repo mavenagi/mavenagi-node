@@ -9,10 +9,12 @@ export const BotLogicUserItem: core.serialization.ObjectSchema<
     MavenAGI.BotLogicUserItem
 > = core.serialization.object({
     userData: core.serialization.record(core.serialization.string(), core.serialization.string()),
+    displayName: core.serialization.string().optional(),
 });
 
 export declare namespace BotLogicUserItem {
     export interface Raw {
         userData: Record<string, string>;
+        displayName?: string | null;
     }
 }

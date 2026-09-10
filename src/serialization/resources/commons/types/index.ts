@@ -187,6 +187,7 @@ export * from "./SettingsSchemaDiscriminatedUnionOptions";
 export * from "./SettingsSchemaEntry";
 export * from "./SettingsSchemaEntryBase";
 export * from "./SettingsSchemaValidation";
+export * from "./SideEffects";
 export * from "./SimulationContext";
 export * from "./Source";
 export * from "./SourceInfo";

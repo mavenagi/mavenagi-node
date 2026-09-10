@@ -4,8 +4,11 @@ import type * as MavenAGI from "../../../index";
 
 export interface EventRow extends MavenAGI.RowBase {
     /**
-     * A unique identifier for each row, consisting of field names mapped to their respective values.
-     * This includes time groupings and any specified field groupings.
+     * Keyed by field, so it cannot represent two groupings that share a key - notably two
+     * intelligent fields. Use `identifiers`, which carries one entry per grouping in request
+     * order.
      */
     identifier: Partial<Record<MavenAGI.EventField, MavenAGI.FieldValue>>;
+    /** One entry per grouping, in the order the groupings were requested. */
+    identifiers: MavenAGI.EventRowIdentifier[];
 }

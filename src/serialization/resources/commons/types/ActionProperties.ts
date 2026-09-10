@@ -4,6 +4,7 @@ import type * as MavenAGI from "../../../../api/index";
 import * as core from "../../../../core";
 import * as serializers from "../../../index";
 import { ActionParameter } from "./ActionParameter";
+import { SideEffects } from "./SideEffects";
 
 export const ActionProperties: core.serialization.ObjectSchema<
     serializers.ActionProperties.Raw,
@@ -14,6 +15,7 @@ export const ActionProperties: core.serialization.ObjectSchema<
     precondition: core.serialization.lazy(() => serializers.Precondition).optional(),
     userFormParameters: core.serialization.list(ActionParameter),
     language: core.serialization.string().optional(),
+    sideEffects: SideEffects.optional(),
 });
 
 export declare namespace ActionProperties {
@@ -23,5 +25,6 @@ export declare namespace ActionProperties {
         precondition?: serializers.Precondition.Raw | null;
         userFormParameters: ActionParameter.Raw[];
         language?: string | null;
+        sideEffects?: SideEffects.Raw | null;
     }
 }

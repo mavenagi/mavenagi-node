@@ -6,4 +6,14 @@ export interface BotLogicActionExecutedDetail extends MavenAGI.BotLogicActionRev
     actionParameters: Record<string, MavenAGI.ActionExecutionParamValue>;
     executionResult?: string;
     executionError?: string;
+    /** Structured data the action returned alongside its text result. Absent for actions that returned only text. */
+    data?: Record<string, unknown>;
+    /** When the action invocation started. Absent for actions executed before per-action timing was recorded, and for an invocation that never returned — see `durationMs`. */
+    startedAt?: Date;
+    /**
+     * How long the action invocation took, in milliseconds. Measures the invocation itself, not the agent's surrounding reasoning.
+     *
+     * Absent in two cases: actions executed before per-action timing was recorded, and actions whose invocation never returned a result — it timed out, or threw before completing. The second case matters when aggregating: the attempts with no duration are disproportionately the slowest ones, so a percentile computed over this field alone is biased low. Count `executionError` alongside it rather than treating absent as "fast".
+     */
+    durationMs?: number;
 }

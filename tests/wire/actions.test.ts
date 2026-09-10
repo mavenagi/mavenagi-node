@@ -95,6 +95,7 @@ describe("ActionsClient", () => {
                         },
                     ],
                     language: "language",
+                    sideEffects: "NONE",
                 },
                 {
                     actionId: {
@@ -173,6 +174,7 @@ describe("ActionsClient", () => {
                         },
                     ],
                     language: "language",
+                    sideEffects: "NONE",
                 },
             ],
             number: 1,
@@ -298,6 +300,7 @@ describe("ActionsClient", () => {
                         },
                     ],
                     language: "language",
+                    sideEffects: "NONE",
                 },
                 {
                     actionId: {
@@ -404,6 +407,7 @@ describe("ActionsClient", () => {
                         },
                     ],
                     language: "language",
+                    sideEffects: "NONE",
                 },
             ],
             number: 1,

@@ -5,6 +5,7 @@ import * as core from "../../../../../core";
 import type * as serializers from "../../../../index";
 import { EntityId } from "../../../commons/types/EntityId";
 import { LlmInclusionStatus } from "../../../commons/types/LlmInclusionStatus";
+import { SideEffects } from "../../../commons/types/SideEffects";
 
 export const ActionPatchRequest: core.serialization.Schema<
     serializers.ActionPatchRequest.Raw,
@@ -14,6 +15,7 @@ export const ActionPatchRequest: core.serialization.Schema<
     instructions: core.serialization.string().optional(),
     llmInclusionStatus: LlmInclusionStatus.optional(),
     segmentId: EntityId.optionalNullable(),
+    sideEffects: SideEffects.optionalNullable(),
 });
 
 export declare namespace ActionPatchRequest {
@@ -22,5 +24,6 @@ export declare namespace ActionPatchRequest {
         instructions?: string | null;
         llmInclusionStatus?: LlmInclusionStatus.Raw | null;
         segmentId?: (EntityId.Raw | null | undefined) | null;
+        sideEffects?: (SideEffects.Raw | null | undefined) | null;
     }
 }

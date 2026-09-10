@@ -3,6 +3,7 @@
 import type * as MavenAGI from "../../../../api/index";
 import * as core from "../../../../core";
 import type * as serializers from "../../../index";
+import { ConversationMode } from "../../commons/types/ConversationMode";
 import { EntityIdFilter } from "../../commons/types/EntityIdFilter";
 import { FeedbackType } from "../../commons/types/FeedbackType";
 import { NumberRange } from "../../commons/types/NumberRange";
@@ -35,6 +36,7 @@ export const ConversationFilter: core.serialization.ObjectSchema<
     qualityReason: core.serialization.list(QualityReason).optional(),
     responseLength: core.serialization.list(ResponseLength).optional(),
     sentiment: core.serialization.list(Sentiment).optional(),
+    conversationMode: core.serialization.list(ConversationMode).optional(),
     tags: core.serialization.list(core.serialization.string()).optional(),
     agentUserIds: core.serialization.list(core.serialization.string()).optional(),
     resolutionStatus: core.serialization.list(ResolutionStatus).optional(),
@@ -68,6 +70,7 @@ export declare namespace ConversationFilter {
         qualityReason?: QualityReason.Raw[] | null;
         responseLength?: ResponseLength.Raw[] | null;
         sentiment?: Sentiment.Raw[] | null;
+        conversationMode?: ConversationMode.Raw[] | null;
         tags?: string[] | null;
         agentUserIds?: string[] | null;
         resolutionStatus?: ResolutionStatus.Raw[] | null;

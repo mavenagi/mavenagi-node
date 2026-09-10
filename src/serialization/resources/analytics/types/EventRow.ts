@@ -4,17 +4,20 @@ import type * as MavenAGI from "../../../../api/index";
 import * as core from "../../../../core";
 import type * as serializers from "../../../index";
 import { EventField } from "../../commons/types/EventField";
+import { EventRowIdentifier } from "./EventRowIdentifier";
 import { FieldValue } from "./FieldValue";
 import { RowBase } from "./RowBase";
 
 export const EventRow: core.serialization.ObjectSchema<serializers.EventRow.Raw, MavenAGI.EventRow> = core.serialization
     .object({
         identifier: core.serialization.partialRecord(EventField, FieldValue.optional()),
+        identifiers: core.serialization.list(EventRowIdentifier),
     })
     .extend(RowBase);
 
 export declare namespace EventRow {
     export interface Raw extends RowBase.Raw {
         identifier: Record<EventField.Raw, FieldValue.Raw | null | undefined>;
+        identifiers: EventRowIdentifier.Raw[];
     }
 }

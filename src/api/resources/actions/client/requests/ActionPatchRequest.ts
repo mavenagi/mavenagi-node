@@ -31,4 +31,9 @@ export interface ActionPatchRequest {
      * Inline precondition support will be removed in a future release.
      */
     segmentId?: MavenAGI.EntityId | null;
+    /**
+     * Whether executing this action causes side effects.
+     * A null value clears it back to undeclared.
+     */
+    sideEffects?: MavenAGI.SideEffects | null;
 }

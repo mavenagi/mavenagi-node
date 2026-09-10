@@ -13,6 +13,13 @@ import type * as MavenAGI from "../../../index";
  *                         value: "John Doe"
  *                     }
  *                 },
+ *                 identifiers: [{
+ *                         field: MavenAGI.FeedbackField.CreatedBy,
+ *                         value: {
+ *                             type: "string",
+ *                             value: "John Doe"
+ *                         }
+ *                     }],
  *                 data: {
  *                     "feedback_count": {
  *                         type: "double",
@@ -26,6 +33,13 @@ import type * as MavenAGI from "../../../index";
  *                         value: "Jane Smith"
  *                     }
  *                 },
+ *                 identifiers: [{
+ *                         field: MavenAGI.FeedbackField.CreatedBy,
+ *                         value: {
+ *                             type: "string",
+ *                             value: "Jane Smith"
+ *                         }
+ *                     }],
  *                 data: {
  *                     "feedback_count": {
  *                         type: "double",

@@ -2,4 +2,6 @@
 
 export interface BotLogicUserItem {
     userData: Record<string, string>;
+    /** The user's name, when one can be determined from their user data. Absent otherwise — how a name is derived may broaden over time, so treat this as a display convenience rather than an identifier. */
+    displayName?: string;
 }

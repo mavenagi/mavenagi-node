@@ -13,4 +13,11 @@ export interface ActionProperties {
     userFormParameters: MavenAGI.ActionParameter[];
     /** The ISO 639-1 code for the language used in all fields of this action. Will be derived using the description's text if not specified. */
     language?: string;
+    /**
+     * Whether executing this action causes side effects. Absent means the action has never
+     * declared either way.
+     *
+     * This value is informational only. It does not yet affect action execution.
+     */
+    sideEffects?: MavenAGI.SideEffects;
 }

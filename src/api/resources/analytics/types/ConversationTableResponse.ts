@@ -17,6 +17,19 @@ import type * as MavenAGI from "../../../index";
  *                         value: new Date("2023-10-01T00:00:00.000Z")
  *                     }
  *                 },
+ *                 identifiers: [{
+ *                         field: MavenAGI.ConversationField.Category,
+ *                         value: {
+ *                             type: "string",
+ *                             value: "Sales"
+ *                         }
+ *                     }, {
+ *                         field: MavenAGI.ConversationField.CreatedAt,
+ *                         value: {
+ *                             type: "dateTime",
+ *                             value: new Date("2023-10-01T00:00:00.000Z")
+ *                         }
+ *                     }],
  *                 data: {
  *                     "count": {
  *                         type: "double",
@@ -42,6 +55,19 @@ import type * as MavenAGI from "../../../index";
  *                         value: new Date("2023-10-01T00:00:00.000Z")
  *                     }
  *                 },
+ *                 identifiers: [{
+ *                         field: MavenAGI.ConversationField.Category,
+ *                         value: {
+ *                             type: "string",
+ *                             value: "Support"
+ *                         }
+ *                     }, {
+ *                         field: MavenAGI.ConversationField.CreatedAt,
+ *                         value: {
+ *                             type: "dateTime",
+ *                             value: new Date("2023-10-01T00:00:00.000Z")
+ *                         }
+ *                     }],
  *                 data: {
  *                     "count": {
  *                         type: "double",
@@ -61,8 +87,25 @@ import type * as MavenAGI from "../../../index";
  *                     [MavenAGI.ConversationField.Category]: {
  *                         type: "string",
  *                         value: "Sales"
+ *                     },
+ *                     [MavenAGI.ConversationField.CreatedAt]: {
+ *                         type: "dateTime",
+ *                         value: new Date("2023-10-02T00:00:00.000Z")
  *                     }
  *                 },
+ *                 identifiers: [{
+ *                         field: MavenAGI.ConversationField.Category,
+ *                         value: {
+ *                             type: "string",
+ *                             value: "Sales"
+ *                         }
+ *                     }, {
+ *                         field: MavenAGI.ConversationField.CreatedAt,
+ *                         value: {
+ *                             type: "dateTime",
+ *                             value: new Date("2023-10-02T00:00:00.000Z")
+ *                         }
+ *                     }],
  *                 data: {
  *                     "count": {
  *                         type: "double",
@@ -88,6 +131,19 @@ import type * as MavenAGI from "../../../index";
  *                         value: new Date("2023-10-02T00:00:00.000Z")
  *                     }
  *                 },
+ *                 identifiers: [{
+ *                         field: MavenAGI.ConversationField.Category,
+ *                         value: {
+ *                             type: "string",
+ *                             value: "Support"
+ *                         }
+ *                     }, {
+ *                         field: MavenAGI.ConversationField.CreatedAt,
+ *                         value: {
+ *                             type: "dateTime",
+ *                             value: new Date("2023-10-02T00:00:00.000Z")
+ *                         }
+ *                     }],
  *                 data: {
  *                     "count": {
  *                         type: "double",

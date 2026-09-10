@@ -4,6 +4,7 @@ import type * as MavenAGI from "../../../../api/index";
 import * as core from "../../../../core";
 import type * as serializers from "../../../index";
 import { FeedbackField } from "../../conversation/types/FeedbackField";
+import { FeedbackRowIdentifier } from "./FeedbackRowIdentifier";
 import { FieldValue } from "./FieldValue";
 import { RowBase } from "./RowBase";
 
@@ -11,11 +12,13 @@ export const FeedbackRow: core.serialization.ObjectSchema<serializers.FeedbackRo
     core.serialization
         .object({
             identifier: core.serialization.partialRecord(FeedbackField, FieldValue.optional()),
+            identifiers: core.serialization.list(FeedbackRowIdentifier),
         })
         .extend(RowBase);
 
 export declare namespace FeedbackRow {
     export interface Raw extends RowBase.Raw {
         identifier: Record<FeedbackField.Raw, FieldValue.Raw | null | undefined>;
+        identifiers: FeedbackRowIdentifier.Raw[];
     }
 }

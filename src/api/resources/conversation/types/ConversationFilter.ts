@@ -59,6 +59,11 @@ export interface ConversationFilter {
     responseLength?: MavenAGI.ResponseLength[];
     /** Filter by AI assessed sentiment analysis */
     sentiment?: MavenAGI.Sentiment[];
+    /**
+     * Filter by whether the conversation is spoken or written. Platform-assigned, never
+     * customer-writable.
+     */
+    conversationMode?: MavenAGI.ConversationMode[];
     /** Filter by tags applied to the conversation */
     tags?: string[];
     /** Filter by agent user IDs associated with the conversation */
