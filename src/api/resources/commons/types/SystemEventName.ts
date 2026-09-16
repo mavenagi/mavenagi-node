@@ -10,5 +10,29 @@ export const SystemEventName = {
     /**
      * An app was updated */
     AppUpdated: "APP_UPDATED",
+    /**
+     * An outbound notification was sent to a user */
+    NotificationSent: "NOTIFICATION_SENT",
+    /**
+     * An outbound notification reached the user */
+    NotificationDelivered: "NOTIFICATION_DELIVERED",
+    /**
+     * An outbound notification could not be delivered */
+    NotificationFailed: "NOTIFICATION_FAILED",
+    /**
+     * An external system was connected */
+    IntegrationConnected: "INTEGRATION_CONNECTED",
+    /**
+     * An external system was disconnected */
+    IntegrationDisconnected: "INTEGRATION_DISCONNECTED",
+    /**
+     * A data sync with an external system began */
+    SyncStarted: "SYNC_STARTED",
+    /**
+     * A data sync with an external system finished */
+    SyncCompleted: "SYNC_COMPLETED",
+    /**
+     * A data sync with an external system failed */
+    SyncFailed: "SYNC_FAILED",
 } as const;
 export type SystemEventName = (typeof SystemEventName)[keyof typeof SystemEventName] | string;

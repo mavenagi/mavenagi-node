@@ -1056,7 +1056,11 @@ await client.analytics.exportConversationTable({
 <dl>
 <dd>
 
-Retrieves structured feedback data formatted as a table, allowing users to group, filter,  and define specific metrics to display as columns.
+Deprecated. Use `getEventTable` instead, which reports the same thumbs up/down and insert
+activity as user events.
+
+Retrieves structured feedback data formatted as a table, allowing users to group, filter,
+and define specific metrics to display as columns.
 </dd>
 </dl>
 </dd>
@@ -2784,7 +2788,9 @@ await client.conversation.categorize("conversationId");
 <dl>
 <dd>
 
-Replaced by the Create events API, which records feedback as a user event.
+Deprecated. Use the Create events API instead, which records feedback as a user event:
+emit a `USER` event with an `eventName` of `BUTTON_CLICKED` for thumbs up/down or
+`TEXT_INSERTED` for inserts.
 
 Update feedback or create it if it doesn't exist.
 </dd>

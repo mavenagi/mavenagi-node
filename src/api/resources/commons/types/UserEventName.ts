@@ -19,5 +19,89 @@ export const UserEventName = {
     /**
      * A CSAT rating was submitted */
     CsatSubmitted: "CSAT_SUBMITTED",
+    /**
+     * A page or screen was viewed. Record which one in `pageInfo`. */
+    PageViewed: "PAGE_VIEWED",
+    /**
+     * A suggested or popular question was clicked instead of being typed */
+    SuggestionClicked: "SUGGESTION_CLICKED",
+    /**
+     * The user ended the conversation */
+    ConversationEnded: "CONVERSATION_ENDED",
+    /**
+     * The user asked to be transferred to a human agent */
+    HandoffRequested: "HANDOFF_REQUESTED",
+    /**
+     * The user opened a support ticket or case */
+    TicketCreated: "TICKET_CREATED",
+    /**
+     * Text from a response was copied */
+    TextCopied: "TEXT_COPIED",
+    /**
+     * Content was translated into another language */
+    ContentTranslated: "CONTENT_TRANSLATED",
+    /**
+     * A search query was submitted */
+    SearchSubmitted: "SEARCH_SUBMITTED",
+    /**
+     * A search result was opened */
+    SearchResultClicked: "SEARCH_RESULT_CLICKED",
+    /**
+     * A help article or knowledge document was read */
+    ArticleViewed: "ARTICLE_VIEWED",
+    /**
+     * The user uploaded a file or attachment */
+    FileUploaded: "FILE_UPLOADED",
+    /**
+     * The user downloaded a file or attachment */
+    FileDownloaded: "FILE_DOWNLOADED",
+    /**
+     * The user began filling out a form */
+    FormStarted: "FORM_STARTED",
+    /**
+     * A form was submitted */
+    FormSubmitted: "FORM_SUBMITTED",
+    /**
+     * The user left a form without submitting it */
+    FormAbandoned: "FORM_ABANDONED",
+    /**
+     * The user entered a multi-step flow, such as onboarding or checkout */
+    FlowStarted: "FLOW_STARTED",
+    /**
+     * The user finished one step of a multi-step flow */
+    FlowStepCompleted: "FLOW_STEP_COMPLETED",
+    /**
+     * The user finished a multi-step flow */
+    FlowCompleted: "FLOW_COMPLETED",
+    /**
+     * The user left a multi-step flow partway through. Pair with an `EVENT_CREATED` trigger to follow up on an onboarding or checkout that was never finished. Name the flow and the step it stopped on in `contextInfo.additionalData`. */
+    FlowAbandoned: "FLOW_ABANDONED",
+    /**
+     * The user created an account */
+    AccountCreated: "ACCOUNT_CREATED",
+    /**
+     * The user signed in */
+    SignedIn: "SIGNED_IN",
+    /**
+     * The user signed out */
+    SignedOut: "SIGNED_OUT",
+    /**
+     * The user started a subscription or plan */
+    SubscriptionStarted: "SUBSCRIPTION_STARTED",
+    /**
+     * The user cancelled a subscription or plan */
+    SubscriptionCancelled: "SUBSCRIPTION_CANCELLED",
+    /**
+     * The user placed an order */
+    OrderPlaced: "ORDER_PLACED",
+    /**
+     * The user cancelled an order */
+    OrderCancelled: "ORDER_CANCELLED",
+    /**
+     * A payment the user attempted did not go through */
+    PaymentFailed: "PAYMENT_FAILED",
+    /**
+     * The user was shown an error */
+    ErrorDisplayed: "ERROR_DISPLAYED",
 } as const;
 export type UserEventName = (typeof UserEventName)[keyof typeof UserEventName] | string;

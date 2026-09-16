@@ -24,6 +24,8 @@ export class SegmentsClient {
     }
 
     /**
+     * @deprecated
+     *
      * @param {MavenAGI.SegmentsSearchRequest} request
      * @param {SegmentsClient.RequestOptions} requestOptions - Request-specific configuration.
      *
@@ -153,6 +155,8 @@ export class SegmentsClient {
     }
 
     /**
+     * @deprecated
+     *
      * Update a segment or create it if it doesn't exist.
      *
      * @param {MavenAGI.SegmentRequest} request
@@ -300,6 +304,8 @@ export class SegmentsClient {
     }
 
     /**
+     * @deprecated
+     *
      * Get a segment by its supplied ID
      *
      * @param {string} segmentReferenceId - The reference ID of the segment to get. All other entity ID fields are inferred from the request.
@@ -444,6 +450,8 @@ export class SegmentsClient {
     }
 
     /**
+     * @deprecated
+     *
      * Update mutable segment fields
      *
      * The `appId` field can be provided to update a segment owned by a different app.
@@ -586,6 +594,8 @@ export class SegmentsClient {
     }
 
     /**
+     * @deprecated
+     *
      * Soft delete a segment. Only INACTIVE segments can be deleted.
      *
      * Deleted segments are excluded from search results but can still be retrieved by ID for archival purposes. Creating a new segment with the same referenceId as a deleted segment will overwrite the deleted segment and restore it to ACTIVE status.

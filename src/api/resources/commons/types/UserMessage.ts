@@ -31,4 +31,11 @@ export interface UserMessage extends MavenAGI.UserMessageBase {
      * - `LLM_DISABLED`: An answer was requested for this user message and the LLM was disabled.
      */
     responseState?: MavenAGI.UserMessageResponseState;
+    /**
+     * The timezone supplied with the creating request and used for the message's time-based
+     * operations, normally an IANA identifier (e.g. "America/New_York", "Europe/London").
+     * Absent when the request did not supply one, in which case the agent's default timezone
+     * applied.
+     */
+    timezone?: string;
 }

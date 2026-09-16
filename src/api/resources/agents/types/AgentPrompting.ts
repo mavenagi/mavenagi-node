@@ -3,9 +3,9 @@
 import type * as MavenAGI from "../../../index";
 
 export interface AgentPrompting {
-    /** The overall persona of the agent. */
+    /** Deprecated. Superseded by charters, which determine agent behavior per turn. Has no effect for agents using charters. */
     persona: MavenAGI.LlmPersona;
-    /** Additional text directly appended to the prompt. This field is replaced by Knowledge Documents with `llmInclusionsStatus` set to `ALWAYS`. */
+    /** Deprecated. Superseded by charters, which determine agent behavior per turn. Has no effect for agents using charters. */
     additionalPromptText?: string;
     /**
      * LLM prompt for category generation.
@@ -21,6 +21,10 @@ export interface AgentPrompting {
      * When not set, the system fallback message will be used and replies will not be personalized by the LLM as it will not be involved.
      */
     contentSafetyViolationResponsePromptText?: string;
-    /** Return the system fallback message on all questions that have no relevant knowledge bases or actions. */
+    /**
+     * Deprecated. Superseded by charters, which determine agent behavior per turn. Has no effect for agents using charters.
+     *
+     * Return the system fallback message on all questions that have no relevant knowledge bases or actions.
+     */
     rejectQuestionsWithoutKnowledge: boolean;
 }

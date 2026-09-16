@@ -57,9 +57,9 @@ export interface ActionResponse extends MavenAGI.ActionBase {
      */
     llmInclusionStatus: MavenAGI.LlmInclusionStatus;
     /**
-     * The IDs of the segment that must be matched for the action to be relevant to a conversation.
-     * Segments are replacing inline preconditions - an Action may not have both an inline precondition and a segment.
-     * Inline precondition support will be removed in a future release.
+     * Deprecated. Superseded by charters, which determine when knowledge bases and actions apply. Has no effect for agents using charters.
+     *
+     * The ID of the segment that must be matched for the action to be relevant to a conversation.
      */
     segmentId?: MavenAGI.EntityId;
     /** No longer populated. This field is always absent and will be removed in a future release. */

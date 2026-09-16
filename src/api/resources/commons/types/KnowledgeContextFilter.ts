@@ -4,6 +4,10 @@ import type * as MavenAGI from "../../../index";
 
 export type KnowledgeContextFilter =
     | MavenAGI.KnowledgeContextFilter.ByEntities
+    /**
+     * Not yet supported. This variant is accepted but has no effect on retrieval - a
+     * conversation supplying it behaves as though no `contextFilter` were provided at all.
+     * Use `byEntities` to scope retrieval today. */
     | MavenAGI.KnowledgeContextFilter.ByEntityTypes;
 
 export namespace KnowledgeContextFilter {

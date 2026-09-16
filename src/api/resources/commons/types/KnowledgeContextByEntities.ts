@@ -3,5 +3,16 @@
 import type * as MavenAGI from "../../../index";
 
 export interface KnowledgeContextByEntities {
+    /**
+     * The entities whose documents should be retrievable, in addition to the agent's own
+     * knowledge. Each `entityId` must be fully specified and must belong to the organization
+     * and agent the request is made against; one that does not is rejected. Entities are never
+     * silently dropped, which would omit exactly the documents the caller asked to bring into
+     * scope.
+     *
+     * `AGENT` and `FEEDBACK` are rejected: neither has an internal form to resolve to, and
+     * `AGENT` in particular is redundant here because the agent's own knowledge is always in
+     * scope. Every other `EntityType` is accepted.
+     */
     entities: MavenAGI.ScopedEntity[];
 }

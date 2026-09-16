@@ -5,8 +5,31 @@ import * as core from "../../../../core";
 import type * as serializers from "../../../index";
 
 export const SystemEventName: core.serialization.Schema<serializers.SystemEventName.Raw, MavenAGI.SystemEventName> =
-    core.serialization.forwardCompatibleEnum_(["APP_INSTALLED", "APP_UNINSTALLED", "APP_UPDATED"]);
+    core.serialization.forwardCompatibleEnum_([
+        "APP_INSTALLED",
+        "APP_UNINSTALLED",
+        "APP_UPDATED",
+        "NOTIFICATION_SENT",
+        "NOTIFICATION_DELIVERED",
+        "NOTIFICATION_FAILED",
+        "INTEGRATION_CONNECTED",
+        "INTEGRATION_DISCONNECTED",
+        "SYNC_STARTED",
+        "SYNC_COMPLETED",
+        "SYNC_FAILED",
+    ]);
 
 export declare namespace SystemEventName {
-    export type Raw = "APP_INSTALLED" | "APP_UNINSTALLED" | "APP_UPDATED";
+    export type Raw =
+        | "APP_INSTALLED"
+        | "APP_UNINSTALLED"
+        | "APP_UPDATED"
+        | "NOTIFICATION_SENT"
+        | "NOTIFICATION_DELIVERED"
+        | "NOTIFICATION_FAILED"
+        | "INTEGRATION_CONNECTED"
+        | "INTEGRATION_DISCONNECTED"
+        | "SYNC_STARTED"
+        | "SYNC_COMPLETED"
+        | "SYNC_FAILED";
 }

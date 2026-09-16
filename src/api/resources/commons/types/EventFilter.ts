@@ -11,6 +11,11 @@ export interface EventFilter {
     userEventNames?: MavenAGI.UserEventName[];
     systemEventNames?: MavenAGI.SystemEventName[];
     agentUserIds?: string[];
+    /**
+     * Narrow to the events that carry a rating. `ThumbsUp` and `ThumbsDown` match `BUTTON_CLICKED`
+     * events by their `feedbackInfo.thumbUp` value, and `Insert` matches `TEXT_INSERTED` events.
+     * `Handoff` is no longer supported.
+     */
     legacyFeedbackTypes?: MavenAGI.FeedbackType[];
     hasEventText?: boolean;
 }

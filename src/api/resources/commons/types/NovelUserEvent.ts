@@ -11,7 +11,10 @@ export interface NovelUserEvent extends MavenAGI.EventBaseNoId {
     userInfo: MavenAGI.EventUserInfoBase;
     /** Information about any CSAT associated with the event */
     csatInfo?: MavenAGI.CsatInfo;
-    /** Information about any feedback associated with the event */
+    /**
+     * Any rating carried by the event. A `BUTTON_CLICKED` thumbs up or down sets a single entry
+     * with `thumbUp` true or false.
+     */
     feedbackInfo?: MavenAGI.FeedbackInfo[];
     /** Information about the page on which the event occurred */
     pageInfo?: MavenAGI.PageInfo;

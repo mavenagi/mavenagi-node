@@ -12,10 +12,15 @@ export interface CharterSummary {
     /** The display name of the charter. */
     name: string;
     /**
-     * The segment controlling when this charter applies. Null means wildcard
-     * (always matches).
+     * The segment backing this charter's rule. An implementation detail of `precondition`;
+     * read that instead.
      */
     segmentSummary: MavenAGI.SegmentSummary | null;
+    /**
+     * The rule controlling when this charter applies, read from the charter's backing
+     * segment. Null means wildcard (always matches).
+     */
+    precondition: MavenAGI.PreconditionResponse | null;
     /** The ID of the parent charter. Null for root-level charters. */
     parentCharterId: MavenAGI.EntityId | null;
     /** The lifecycle status of this charter. */

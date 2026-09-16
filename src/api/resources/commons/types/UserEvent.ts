@@ -11,7 +11,10 @@ export interface UserEvent extends MavenAGI.EventBaseNoId {
     eventName: MavenAGI.UserEventName;
     /** Information about the user who triggered the event */
     userInfo: MavenAGI.EventUserInfo;
-    /** Information about any feedback associated with the event */
+    /**
+     * Any rating carried by the event. A `BUTTON_CLICKED` thumbs up or down sets a single entry
+     * with `thumbUp` true or false.
+     */
     feedbackInfo?: MavenAGI.FeedbackInfo[];
     /** Information about any CSAT survey associated with the event */
     csatInfo?: MavenAGI.CsatInfo;

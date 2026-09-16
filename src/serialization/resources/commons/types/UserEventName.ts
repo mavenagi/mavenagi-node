@@ -12,6 +12,34 @@ export const UserEventName: core.serialization.Schema<serializers.UserEventName.
         "CHAT_CLOSED",
         "TEXT_INSERTED",
         "CSAT_SUBMITTED",
+        "PAGE_VIEWED",
+        "SUGGESTION_CLICKED",
+        "CONVERSATION_ENDED",
+        "HANDOFF_REQUESTED",
+        "TICKET_CREATED",
+        "TEXT_COPIED",
+        "CONTENT_TRANSLATED",
+        "SEARCH_SUBMITTED",
+        "SEARCH_RESULT_CLICKED",
+        "ARTICLE_VIEWED",
+        "FILE_UPLOADED",
+        "FILE_DOWNLOADED",
+        "FORM_STARTED",
+        "FORM_SUBMITTED",
+        "FORM_ABANDONED",
+        "FLOW_STARTED",
+        "FLOW_STEP_COMPLETED",
+        "FLOW_COMPLETED",
+        "FLOW_ABANDONED",
+        "ACCOUNT_CREATED",
+        "SIGNED_IN",
+        "SIGNED_OUT",
+        "SUBSCRIPTION_STARTED",
+        "SUBSCRIPTION_CANCELLED",
+        "ORDER_PLACED",
+        "ORDER_CANCELLED",
+        "PAYMENT_FAILED",
+        "ERROR_DISPLAYED",
     ]);
 
 export declare namespace UserEventName {
@@ -21,5 +49,33 @@ export declare namespace UserEventName {
         | "CHAT_OPENED"
         | "CHAT_CLOSED"
         | "TEXT_INSERTED"
-        | "CSAT_SUBMITTED";
+        | "CSAT_SUBMITTED"
+        | "PAGE_VIEWED"
+        | "SUGGESTION_CLICKED"
+        | "CONVERSATION_ENDED"
+        | "HANDOFF_REQUESTED"
+        | "TICKET_CREATED"
+        | "TEXT_COPIED"
+        | "CONTENT_TRANSLATED"
+        | "SEARCH_SUBMITTED"
+        | "SEARCH_RESULT_CLICKED"
+        | "ARTICLE_VIEWED"
+        | "FILE_UPLOADED"
+        | "FILE_DOWNLOADED"
+        | "FORM_STARTED"
+        | "FORM_SUBMITTED"
+        | "FORM_ABANDONED"
+        | "FLOW_STARTED"
+        | "FLOW_STEP_COMPLETED"
+        | "FLOW_COMPLETED"
+        | "FLOW_ABANDONED"
+        | "ACCOUNT_CREATED"
+        | "SIGNED_IN"
+        | "SIGNED_OUT"
+        | "SUBSCRIPTION_STARTED"
+        | "SUBSCRIPTION_CANCELLED"
+        | "ORDER_PLACED"
+        | "ORDER_CANCELLED"
+        | "PAYMENT_FAILED"
+        | "ERROR_DISPLAYED";
 }

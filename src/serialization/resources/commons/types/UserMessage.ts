@@ -19,6 +19,7 @@ export const UserMessage: core.serialization.ObjectSchema<serializers.UserMessag
             userDisplayName: core.serialization.string().optional(),
             status: MessageStatus,
             responseState: UserMessageResponseState.optional(),
+            timezone: core.serialization.string().optional(),
         })
         .extend(UserMessageBase);
 
@@ -31,5 +32,6 @@ export declare namespace UserMessage {
         userDisplayName?: string | null;
         status: MessageStatus.Raw;
         responseState?: UserMessageResponseState.Raw | null;
+        timezone?: string | null;
     }
 }

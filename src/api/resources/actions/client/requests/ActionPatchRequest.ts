@@ -24,11 +24,10 @@ export interface ActionPatchRequest {
     /** Determines whether the action is sent to the LLM as part of a conversation. */
     llmInclusionStatus?: MavenAGI.LlmInclusionStatus;
     /**
+     * Deprecated. Superseded by charters, which determine when knowledge bases and actions apply. Has no effect for agents using charters.
+     *
      * The ID of the segment that must be matched for the action to be relevant to a conversation.
      * A null value will remove the segment from the action, it will be available on all conversations.
-     *
-     * Segments are replacing inline preconditions - an action may not have both an inline precondition and a segment.
-     * Inline precondition support will be removed in a future release.
      */
     segmentId?: MavenAGI.EntityId | null;
     /**

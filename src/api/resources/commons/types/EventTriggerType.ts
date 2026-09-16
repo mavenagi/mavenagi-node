@@ -2,6 +2,8 @@
 
 export const EventTriggerType = {
     ConversationCreated: "CONVERSATION_CREATED",
+    /**
+     * Deprecated. Use `EVENT_CREATED` instead. */
     FeedbackCreated: "FEEDBACK_CREATED",
     InboxItemCreated: "INBOX_ITEM_CREATED",
     EventCreated: "EVENT_CREATED",

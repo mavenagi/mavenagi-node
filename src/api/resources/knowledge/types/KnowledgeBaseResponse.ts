@@ -64,22 +64,26 @@ export interface KnowledgeBaseResponse extends MavenAGI.KnowledgeBaseProperties 
     type: MavenAGI.KnowledgeBaseType;
     /** Metadata for the knowledge base. */
     metadata: Record<string, string>;
-    /** The tags of the knowledge base. */
+    /**
+     * Deprecated. Superseded by charters, which determine when knowledge bases and actions apply. Has no effect for agents using charters.
+     *
+     * The tags of the knowledge base.
+     */
     tags: Set<string>;
     /** Determines whether documents in the knowledge base are sent to the LLM as part of a conversation. */
     llmInclusionStatus: MavenAGI.LlmInclusionStatus;
     /** How often the knowledge base should be refreshed. */
     refreshFrequency: MavenAGI.KnowledgeBaseRefreshFrequency;
     /**
-     * The IDs of the segment that must be matched for the knowledge base to be relevant to a conversation.
-     * Segments are replacing inline preconditions - a Knowledge Base may not have both an inline precondition and a segment.
-     * Inline precondition support will be removed in a future release.
+     * Deprecated. Superseded by charters, which determine when knowledge bases and actions apply. Has no effect for agents using charters.
+     *
+     * The ID of the segment that must be matched for the knowledge base to be relevant to a conversation.
      */
     segmentId?: MavenAGI.EntityId;
     /**
+     * Deprecated. Superseded by charters, which determine when knowledge bases and actions apply. Has no effect for agents using charters.
+     *
      * The IDs of the segments that should be matched for the knowledge base to be relevant to a conversation.
-     * Segments are replacing inline preconditions - a Knowledge Base may not have both an inline precondition and a segment.
-     * Inline precondition support will be removed in a future release.
      */
     segmentIds: MavenAGI.EntityId[];
     /** The source URL of URL and RSS knowledge bases that was used for crawl. */

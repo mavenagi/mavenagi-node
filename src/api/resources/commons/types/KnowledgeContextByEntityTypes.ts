@@ -2,6 +2,9 @@
 
 import type * as MavenAGI from "../../../index";
 
+/**
+ * Not yet supported - see the `byEntityTypes` variant of `KnowledgeContextFilter`.
+ */
 export interface KnowledgeContextByEntityTypes {
     entityTypes: Set<MavenAGI.EntityType>;
 }

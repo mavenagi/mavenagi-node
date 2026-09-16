@@ -5,6 +5,10 @@ import type * as MavenAGI from "../../../index";
 export interface KnowledgeBaseProperties {
     /** The name of the knowledge base */
     name: string;
-    /** The preconditions that must be met for knowledge base be relevant to a conversation. Can be used to restrict knowledge bases to certain types of users. */
+    /**
+     * Deprecated. Superseded by charters, which determine when knowledge bases and actions apply. Has no effect for agents using charters.
+     *
+     * The preconditions that must be met for a knowledge base to be relevant to a conversation.
+     */
     precondition?: MavenAGI.Precondition;
 }
