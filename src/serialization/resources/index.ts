@@ -14,6 +14,7 @@ export * from "./appSettings/types";
 export * as assets from "./assets";
 export * from "./assets/types";
 export * as charters from "./charters";
+export * from "./charters/client/requests";
 export * from "./charters/types";
 export * as commons from "./commons";
 export * from "./commons/types";

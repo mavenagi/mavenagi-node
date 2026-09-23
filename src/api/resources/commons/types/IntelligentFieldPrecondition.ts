@@ -9,10 +9,6 @@ import type * as MavenAGI from "../../../index";
  * the ID of the intelligent field (<referenceId, appId>).  Available
  * operators and the corresponding types of the RHS depends on the
  * validationType of the intelligent field.
- *
- * Note: in early beta, only opt-in apps and organizations/agents can
- * specify intelligent field preconditions.  Otherwise, the request will be
- * rejected.
  */
 export interface IntelligentFieldPrecondition {
     /** The ID of the intelligent field. */

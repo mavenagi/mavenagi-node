@@ -8,6 +8,9 @@ export interface Series {
      * If the metric is a percentile, the name represents the percentile value.
      */
     name: string;
-    /** List of labeled data points for the series. */
+    /**
+     * List of labeled data points for the series.
+     * A bucket the metric could not measure has no point here.
+     */
     data: MavenAGI.LabeledPoint[];
 }

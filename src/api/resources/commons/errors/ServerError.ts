@@ -5,6 +5,8 @@ import * as errors from "../../../../errors/index";
 import type * as MavenAGI from "../../../index";
 
 export class ServerError extends errors.MavenAGIError {
+    public declare readonly body: MavenAGI.ErrorMessage;
+
     constructor(body: MavenAGI.ErrorMessage, rawResponse?: core.RawResponse) {
         super({
             message: "ServerError",
@@ -17,6 +19,6 @@ export class ServerError extends errors.MavenAGIError {
             Error.captureStackTrace(this, this.constructor);
         }
 
-        this.name = this.constructor.name;
+        this.name = "ServerError";
     }
 }

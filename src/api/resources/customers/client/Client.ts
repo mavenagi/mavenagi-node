@@ -4,6 +4,7 @@ import type { BaseClientOptions, BaseRequestOptions } from "../../../../BaseClie
 import { type NormalizedClientOptionsWithAuth, normalizeClientOptionsWithAuth } from "../../../../BaseClient";
 import * as core from "../../../../core";
 import { mergeHeaders, mergeOnlyDefinedHeaders } from "../../../../core/headers";
+import { mergeAdditionalBodyParameters } from "../../../../core/requestBody";
 import * as environments from "../../../../environments";
 import { handleNonStatusCodeError } from "../../../../errors/handleNonStatusCodeError";
 import * as errors from "../../../../errors/index";
@@ -32,6 +33,8 @@ export class CustomersClient {
      * @throws {@link MavenAGI.PayloadTooLargeError}
      * @throws {@link MavenAGI.TooManyRequestsError}
      * @throws {@link MavenAGI.ServerError}
+     * @throws {@link errors.MavenAGIError}
+     * @throws {@link errors.MavenAGITimeoutError}
      *
      * @example
      *     await client.customers.search({})
@@ -69,7 +72,10 @@ export class CustomersClient {
             contentType: "application/json",
             queryString: core.url.queryBuilder().mergeAdditional(requestOptions?.queryParams).build(),
             requestType: "json",
-            body: serializers.CustomersSearchRequest.jsonOrThrow(request, { unrecognizedObjectKeys: "strip" }),
+            body: mergeAdditionalBodyParameters(
+                serializers.CustomersSearchRequest.jsonOrThrow(request, { unrecognizedObjectKeys: "strip" }),
+                requestOptions?.additionalBodyParameters,
+            ),
             timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
             maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
             abortSignal: requestOptions?.abortSignal,
@@ -163,6 +169,8 @@ export class CustomersClient {
      * @throws {@link MavenAGI.PayloadTooLargeError}
      * @throws {@link MavenAGI.TooManyRequestsError}
      * @throws {@link MavenAGI.ServerError}
+     * @throws {@link errors.MavenAGIError}
+     * @throws {@link errors.MavenAGITimeoutError}
      *
      * @example
      *     await client.customers.createOrUpdate({
@@ -205,7 +213,10 @@ export class CustomersClient {
             contentType: "application/json",
             queryString: core.url.queryBuilder().mergeAdditional(requestOptions?.queryParams).build(),
             requestType: "json",
-            body: serializers.CustomerRequest.jsonOrThrow(request, { unrecognizedObjectKeys: "strip" }),
+            body: mergeAdditionalBodyParameters(
+                serializers.CustomerRequest.jsonOrThrow(request, { unrecognizedObjectKeys: "strip" }),
+                requestOptions?.additionalBodyParameters,
+            ),
             timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
             maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
             abortSignal: requestOptions?.abortSignal,
@@ -300,6 +311,8 @@ export class CustomersClient {
      * @throws {@link MavenAGI.PayloadTooLargeError}
      * @throws {@link MavenAGI.TooManyRequestsError}
      * @throws {@link MavenAGI.ServerError}
+     * @throws {@link errors.MavenAGIError}
+     * @throws {@link errors.MavenAGITimeoutError}
      *
      * @example
      *     await client.customers.get("acme")
@@ -447,6 +460,8 @@ export class CustomersClient {
      * @throws {@link MavenAGI.PayloadTooLargeError}
      * @throws {@link MavenAGI.TooManyRequestsError}
      * @throws {@link MavenAGI.ServerError}
+     * @throws {@link errors.MavenAGIError}
+     * @throws {@link errors.MavenAGITimeoutError}
      *
      * @example
      *     await client.customers.patch("customerReferenceId", {})
@@ -486,7 +501,10 @@ export class CustomersClient {
             contentType: "application/merge-patch+json",
             queryString: core.url.queryBuilder().mergeAdditional(requestOptions?.queryParams).build(),
             requestType: "json",
-            body: serializers.CustomerPatchRequest.jsonOrThrow(request, { unrecognizedObjectKeys: "strip" }),
+            body: mergeAdditionalBodyParameters(
+                serializers.CustomerPatchRequest.jsonOrThrow(request, { unrecognizedObjectKeys: "strip" }),
+                requestOptions?.additionalBodyParameters,
+            ),
             timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
             maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
             abortSignal: requestOptions?.abortSignal,

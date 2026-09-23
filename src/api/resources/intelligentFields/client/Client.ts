@@ -4,6 +4,7 @@ import type { BaseClientOptions, BaseRequestOptions } from "../../../../BaseClie
 import { type NormalizedClientOptionsWithAuth, normalizeClientOptionsWithAuth } from "../../../../BaseClient";
 import * as core from "../../../../core";
 import { mergeHeaders, mergeOnlyDefinedHeaders } from "../../../../core/headers";
+import { mergeAdditionalBodyParameters } from "../../../../core/requestBody";
 import * as environments from "../../../../environments";
 import { handleNonStatusCodeError } from "../../../../errors/handleNonStatusCodeError";
 import * as errors from "../../../../errors/index";
@@ -24,7 +25,12 @@ export class IntelligentFieldsClient {
     }
 
     /**
-     * Create a new intelligent field. Intelligent fields are used to store custom LLM-generated values on entities like conversations or events.
+     * Create a new intelligent field, or replace it if one already exists with the same
+     * `fieldId.referenceId`. Intelligent fields hold LLM-generated values computed for
+     * entities such as conversations.
+     *
+     * New fields are created with `status: INACTIVE` and are not evaluated until activated
+     * with the patch endpoint. `definition` is limited to 5,000 characters.
      *
      * @param {MavenAGI.IntelligentFieldRequest} request
      * @param {IntelligentFieldsClient.RequestOptions} requestOptions - Request-specific configuration.
@@ -34,6 +40,8 @@ export class IntelligentFieldsClient {
      * @throws {@link MavenAGI.PayloadTooLargeError}
      * @throws {@link MavenAGI.TooManyRequestsError}
      * @throws {@link MavenAGI.ServerError}
+     * @throws {@link errors.MavenAGIError}
+     * @throws {@link errors.MavenAGITimeoutError}
      *
      * @example
      *     await client.intelligentFields.createOrUpdate({
@@ -90,7 +98,10 @@ export class IntelligentFieldsClient {
             contentType: "application/json",
             queryString: core.url.queryBuilder().mergeAdditional(requestOptions?.queryParams).build(),
             requestType: "json",
-            body: serializers.IntelligentFieldRequest.jsonOrThrow(request, { unrecognizedObjectKeys: "strip" }),
+            body: mergeAdditionalBodyParameters(
+                serializers.IntelligentFieldRequest.jsonOrThrow(request, { unrecognizedObjectKeys: "strip" }),
+                requestOptions?.additionalBodyParameters,
+            ),
             timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
             maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
             abortSignal: requestOptions?.abortSignal,
@@ -185,6 +196,8 @@ export class IntelligentFieldsClient {
      * @throws {@link MavenAGI.PayloadTooLargeError}
      * @throws {@link MavenAGI.TooManyRequestsError}
      * @throws {@link MavenAGI.ServerError}
+     * @throws {@link errors.MavenAGIError}
+     * @throws {@link errors.MavenAGITimeoutError}
      *
      * @example
      *     await client.intelligentFields.get("ticket-priority")
@@ -202,9 +215,11 @@ export class IntelligentFieldsClient {
         request: MavenAGI.IntelligentFieldGetRequest = {},
         requestOptions?: IntelligentFieldsClient.RequestOptions,
     ): Promise<core.WithRawResponse<MavenAGI.IntelligentFieldDetailResponse>> {
-        const { appId } = request;
+        const { appId, variantReferenceId, variantAppId } = request;
         const _queryParams: Record<string, unknown> = {
             appId,
+            variantReferenceId,
+            variantAppId,
         };
         const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
         const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
@@ -318,7 +333,12 @@ export class IntelligentFieldsClient {
     }
 
     /**
-     * Patch an intelligent field. Can be used to update the definition, status, or other mutable properties.
+     * Update the mutable properties of an intelligent field. Only the properties present in
+     * the request body are changed.
+     *
+     * This is also how a field is activated and deactivated: set `status` to `ACTIVE` to
+     * start evaluating it, or `INACTIVE` to stop. `name`, `entityType`, and `validationType`
+     * cannot be changed after creation.
      *
      * @param {string} fieldReferenceId - The reference ID of the intelligent field to patch.
      * @param {MavenAGI.IntelligentFieldPatchRequest} request
@@ -329,6 +349,8 @@ export class IntelligentFieldsClient {
      * @throws {@link MavenAGI.PayloadTooLargeError}
      * @throws {@link MavenAGI.TooManyRequestsError}
      * @throws {@link MavenAGI.ServerError}
+     * @throws {@link errors.MavenAGIError}
+     * @throws {@link errors.MavenAGITimeoutError}
      *
      * @example
      *     await client.intelligentFields.patch("ticket-priority", {
@@ -375,7 +397,10 @@ export class IntelligentFieldsClient {
             contentType: "application/merge-patch+json",
             queryString: core.url.queryBuilder().mergeAdditional(requestOptions?.queryParams).build(),
             requestType: "json",
-            body: serializers.IntelligentFieldPatchRequest.jsonOrThrow(request, { unrecognizedObjectKeys: "strip" }),
+            body: mergeAdditionalBodyParameters(
+                serializers.IntelligentFieldPatchRequest.jsonOrThrow(request, { unrecognizedObjectKeys: "strip" }),
+                requestOptions?.additionalBodyParameters,
+            ),
             timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
             maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
             abortSignal: requestOptions?.abortSignal,
@@ -481,6 +506,8 @@ export class IntelligentFieldsClient {
      * @throws {@link MavenAGI.PayloadTooLargeError}
      * @throws {@link MavenAGI.TooManyRequestsError}
      * @throws {@link MavenAGI.ServerError}
+     * @throws {@link errors.MavenAGIError}
+     * @throws {@link errors.MavenAGITimeoutError}
      *
      * @example
      *     await client.intelligentFields.delete("ticket-priority")
@@ -616,7 +643,12 @@ export class IntelligentFieldsClient {
     }
 
     /**
-     * Search computed values for intelligent fields across entities. Supports filtering by field properties and target entity.
+     * Search the values that have been computed for intelligent fields, across entities.
+     * Supports filtering by properties of the field, by target entity, and by when the
+     * value was computed.
+     *
+     * Values only exist for fields that were ACTIVE when the entity was evaluated, so a
+     * newly activated field returns nothing until evaluation has run.
      *
      * @param {MavenAGI.IntelligentFieldValueSearchRequest} request
      * @param {IntelligentFieldsClient.RequestOptions} requestOptions - Request-specific configuration.
@@ -626,6 +658,8 @@ export class IntelligentFieldsClient {
      * @throws {@link MavenAGI.PayloadTooLargeError}
      * @throws {@link MavenAGI.TooManyRequestsError}
      * @throws {@link MavenAGI.ServerError}
+     * @throws {@link errors.MavenAGIError}
+     * @throws {@link errors.MavenAGITimeoutError}
      *
      * @example
      *     await client.intelligentFields.searchValues({
@@ -686,9 +720,12 @@ export class IntelligentFieldsClient {
             contentType: "application/json",
             queryString: core.url.queryBuilder().mergeAdditional(requestOptions?.queryParams).build(),
             requestType: "json",
-            body: serializers.IntelligentFieldValueSearchRequest.jsonOrThrow(request, {
-                unrecognizedObjectKeys: "strip",
-            }),
+            body: mergeAdditionalBodyParameters(
+                serializers.IntelligentFieldValueSearchRequest.jsonOrThrow(request, {
+                    unrecognizedObjectKeys: "strip",
+                }),
+                requestOptions?.additionalBodyParameters,
+            ),
             timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
             maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
             abortSignal: requestOptions?.abortSignal,

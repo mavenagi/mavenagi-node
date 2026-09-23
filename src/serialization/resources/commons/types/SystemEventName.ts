@@ -17,6 +17,7 @@ export const SystemEventName: core.serialization.Schema<serializers.SystemEventN
         "SYNC_STARTED",
         "SYNC_COMPLETED",
         "SYNC_FAILED",
+        "INTELLIGENT_FIELD_VALUE_CHANGED",
     ]);
 
 export declare namespace SystemEventName {
@@ -31,5 +32,6 @@ export declare namespace SystemEventName {
         | "INTEGRATION_DISCONNECTED"
         | "SYNC_STARTED"
         | "SYNC_COMPLETED"
-        | "SYNC_FAILED";
+        | "SYNC_FAILED"
+        | "INTELLIGENT_FIELD_VALUE_CHANGED";
 }

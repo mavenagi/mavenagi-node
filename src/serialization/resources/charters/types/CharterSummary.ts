@@ -4,7 +4,6 @@ import type * as MavenAGI from "../../../../api/index";
 import * as core from "../../../../core";
 import * as serializers from "../../../index";
 import { EntityId } from "../../commons/types/EntityId";
-import { SegmentSummary } from "../../segments/types/SegmentSummary";
 import { CharterChildrenExclusionPolicy } from "./CharterChildrenExclusionPolicy";
 import { CharterStatus } from "./CharterStatus";
 import { CharterType } from "./CharterType";
@@ -13,7 +12,6 @@ export const CharterSummary: core.serialization.ObjectSchema<serializers.Charter
     core.serialization.object({
         charterId: EntityId,
         name: core.serialization.string(),
-        segmentSummary: SegmentSummary.nullable(),
         precondition: core.serialization.lazy(() => serializers.PreconditionResponse).nullable(),
         parentCharterId: EntityId.nullable(),
         status: CharterStatus,
@@ -27,7 +25,6 @@ export declare namespace CharterSummary {
     export interface Raw {
         charterId: EntityId.Raw;
         name: string;
-        segmentSummary?: SegmentSummary.Raw | null;
         precondition?: serializers.PreconditionResponse.Raw | null;
         parentCharterId?: EntityId.Raw | null;
         status: CharterStatus.Raw;

@@ -34,6 +34,9 @@ import type * as MavenAGI from "../../../index";
  *     }
  */
 export interface IntelligentFieldDetailResponse extends MavenAGI.IntelligentFieldResponse {
-    /** Charters whose attached segment precondition references this intelligent field. */
+    /**
+     * Charters whose precondition references this intelligent field. A field referenced by
+     * an active precondition cannot be deactivated.
+     */
     referencingCharters?: MavenAGI.CharterSummary[];
 }

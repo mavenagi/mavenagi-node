@@ -17,16 +17,16 @@ export interface AgentPatchRequest {
     enabledPiiCategories?: Set<MavenAGI.PiiCategory>;
     /** The system fallback message. */
     systemFallbackMessage?: string | null;
-    /** Deprecated. Superseded by charters, which determine agent behavior per turn. Has no effect for agents using charters. */
+    /** Deprecated. Superseded by charters, which determine agent behavior per round. Has no effect for agents using charters. */
     persona?: MavenAGI.LlmPersona;
-    /** Deprecated. Superseded by charters, which determine agent behavior per turn. Has no effect for agents using charters. */
+    /** Deprecated. Superseded by charters, which determine agent behavior per round. Has no effect for agents using charters. */
     additionalPromptText?: string | null;
     /** LLM prompt for category generation. */
     categoryGenerationPromptText?: string | null;
     /** LLM prompt for generating a response when the user's question has been detected as unsafe. */
     contentSafetyViolationResponsePromptText?: string | null;
     /**
-     * Deprecated. Superseded by charters, which determine agent behavior per turn. Has no effect for agents using charters.
+     * Deprecated. Superseded by charters, which determine agent behavior per round. Has no effect for agents using charters.
      *
      * Return the system fallback message on all questions that have no relevant knowledge bases or actions.
      */

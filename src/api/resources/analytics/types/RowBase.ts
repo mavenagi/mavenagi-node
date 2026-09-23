@@ -3,6 +3,10 @@
 import type * as MavenAGI from "../../../index";
 
 export interface RowBase {
-    /** The actual row data, where keys represent column headers and values contain the respective metric results. */
+    /**
+     * The actual row data, where keys represent column headers and values contain the respective metric results.
+     * A column the metric could not measure is absent from the map, so a row can carry fewer
+     * entries than there are headers.
+     */
     data: Record<string, MavenAGI.CellData>;
 }

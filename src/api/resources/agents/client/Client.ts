@@ -4,6 +4,7 @@ import type { BaseClientOptions, BaseRequestOptions } from "../../../../BaseClie
 import { type NormalizedClientOptionsWithAuth, normalizeClientOptionsWithAuth } from "../../../../BaseClient";
 import * as core from "../../../../core";
 import { mergeHeaders, mergeOnlyDefinedHeaders } from "../../../../core/headers";
+import { mergeAdditionalBodyParameters } from "../../../../core/requestBody";
 import * as environments from "../../../../environments";
 import { handleNonStatusCodeError } from "../../../../errors/handleNonStatusCodeError";
 import * as errors from "../../../../errors/index";
@@ -38,6 +39,8 @@ export class AgentsClient {
      * @throws {@link MavenAGI.PayloadTooLargeError}
      * @throws {@link MavenAGI.TooManyRequestsError}
      * @throws {@link MavenAGI.ServerError}
+     * @throws {@link errors.MavenAGIError}
+     * @throws {@link errors.MavenAGITimeoutError}
      *
      * @example
      *     await client.agents.search({})
@@ -75,7 +78,10 @@ export class AgentsClient {
             contentType: "application/json",
             queryString: core.url.queryBuilder().mergeAdditional(requestOptions?.queryParams).build(),
             requestType: "json",
-            body: serializers.AgentsSearchRequest.jsonOrThrow(request, { unrecognizedObjectKeys: "strip" }),
+            body: mergeAdditionalBodyParameters(
+                serializers.AgentsSearchRequest.jsonOrThrow(request, { unrecognizedObjectKeys: "strip" }),
+                requestOptions?.additionalBodyParameters,
+            ),
             timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
             maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
             abortSignal: requestOptions?.abortSignal,
@@ -169,6 +175,8 @@ export class AgentsClient {
      * @throws {@link MavenAGI.PayloadTooLargeError}
      * @throws {@link MavenAGI.TooManyRequestsError}
      * @throws {@link MavenAGI.ServerError}
+     * @throws {@link errors.MavenAGIError}
+     * @throws {@link errors.MavenAGITimeoutError}
      *
      * @example
      *     await client.agents.list("organizationReferenceId")
@@ -308,6 +316,8 @@ export class AgentsClient {
      * @throws {@link MavenAGI.PayloadTooLargeError}
      * @throws {@link MavenAGI.TooManyRequestsError}
      * @throws {@link MavenAGI.ServerError}
+     * @throws {@link errors.MavenAGIError}
+     * @throws {@link errors.MavenAGITimeoutError}
      *
      * @example
      *     await client.agents.create("organizationReferenceId", "agentReferenceId", {
@@ -354,7 +364,10 @@ export class AgentsClient {
             contentType: "application/json",
             queryString: core.url.queryBuilder().mergeAdditional(requestOptions?.queryParams).build(),
             requestType: "json",
-            body: serializers.CreateAgentRequest.jsonOrThrow(request, { unrecognizedObjectKeys: "strip" }),
+            body: mergeAdditionalBodyParameters(
+                serializers.CreateAgentRequest.jsonOrThrow(request, { unrecognizedObjectKeys: "strip" }),
+                requestOptions?.additionalBodyParameters,
+            ),
             timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
             maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
             abortSignal: requestOptions?.abortSignal,
@@ -454,6 +467,8 @@ export class AgentsClient {
      * @throws {@link MavenAGI.PayloadTooLargeError}
      * @throws {@link MavenAGI.TooManyRequestsError}
      * @throws {@link MavenAGI.ServerError}
+     * @throws {@link errors.MavenAGIError}
+     * @throws {@link errors.MavenAGITimeoutError}
      *
      * @example
      *     await client.agents.get("organizationReferenceId", "agentReferenceId")
@@ -598,6 +613,8 @@ export class AgentsClient {
      * @throws {@link MavenAGI.PayloadTooLargeError}
      * @throws {@link MavenAGI.TooManyRequestsError}
      * @throws {@link MavenAGI.ServerError}
+     * @throws {@link errors.MavenAGIError}
+     * @throws {@link errors.MavenAGITimeoutError}
      *
      * @example
      *     await client.agents.patch("organizationReferenceId", "agentReferenceId")
@@ -641,7 +658,10 @@ export class AgentsClient {
             contentType: "application/merge-patch+json",
             queryString: core.url.queryBuilder().mergeAdditional(requestOptions?.queryParams).build(),
             requestType: "json",
-            body: serializers.AgentPatchRequest.jsonOrThrow(request, { unrecognizedObjectKeys: "strip" }),
+            body: mergeAdditionalBodyParameters(
+                serializers.AgentPatchRequest.jsonOrThrow(request, { unrecognizedObjectKeys: "strip" }),
+                requestOptions?.additionalBodyParameters,
+            ),
             timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
             maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
             abortSignal: requestOptions?.abortSignal,
@@ -745,6 +765,8 @@ export class AgentsClient {
      * @throws {@link MavenAGI.PayloadTooLargeError}
      * @throws {@link MavenAGI.TooManyRequestsError}
      * @throws {@link MavenAGI.ServerError}
+     * @throws {@link errors.MavenAGIError}
+     * @throws {@link errors.MavenAGITimeoutError}
      *
      * @example
      *     await client.agents.delete("organizationReferenceId", "agentReferenceId")

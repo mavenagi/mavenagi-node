@@ -6,6 +6,7 @@ import { AnalyticsClient } from "./api/resources/analytics/client/Client";
 import { AppDirectoryClient } from "./api/resources/appDirectory/client/Client";
 import { AppSettingsClient } from "./api/resources/appSettings/client/Client";
 import { AssetsClient } from "./api/resources/assets/client/Client";
+import { ChartersClient } from "./api/resources/charters/client/Client";
 import { ConversationClient } from "./api/resources/conversation/client/Client";
 import { CustomersClient } from "./api/resources/customers/client/Client";
 import { EventsClient } from "./api/resources/events/client/Client";
@@ -38,6 +39,7 @@ export class MavenAGIClient {
     protected _appDirectory: AppDirectoryClient | undefined;
     protected _appSettings: AppSettingsClient | undefined;
     protected _assets: AssetsClient | undefined;
+    protected _charters: ChartersClient | undefined;
     protected _conversation: ConversationClient | undefined;
     protected _customers: CustomersClient | undefined;
     protected _events: EventsClient | undefined;
@@ -79,6 +81,10 @@ export class MavenAGIClient {
 
     public get assets(): AssetsClient {
         return (this._assets ??= new AssetsClient(this._options));
+    }
+
+    public get charters(): ChartersClient {
+        return (this._charters ??= new ChartersClient(this._options));
     }
 
     public get conversation(): ConversationClient {

@@ -4,6 +4,7 @@ import type { BaseClientOptions, BaseRequestOptions } from "../../../../BaseClie
 import { type NormalizedClientOptionsWithAuth, normalizeClientOptionsWithAuth } from "../../../../BaseClient";
 import * as core from "../../../../core";
 import { mergeHeaders, mergeOnlyDefinedHeaders } from "../../../../core/headers";
+import { mergeAdditionalBodyParameters } from "../../../../core/requestBody";
 import * as environments from "../../../../environments";
 import { handleNonStatusCodeError } from "../../../../errors/handleNonStatusCodeError";
 import * as errors from "../../../../errors/index";
@@ -34,6 +35,8 @@ export class AppDirectoryClient {
      * @throws {@link MavenAGI.PayloadTooLargeError}
      * @throws {@link MavenAGI.TooManyRequestsError}
      * @throws {@link MavenAGI.ServerError}
+     * @throws {@link errors.MavenAGIError}
+     * @throws {@link errors.MavenAGITimeoutError}
      *
      * @example
      *     await client.appDirectory.search({})
@@ -71,7 +74,10 @@ export class AppDirectoryClient {
             contentType: "application/json",
             queryString: core.url.queryBuilder().mergeAdditional(requestOptions?.queryParams).build(),
             requestType: "json",
-            body: serializers.DirectoryAppsSearchRequest.jsonOrThrow(request, { unrecognizedObjectKeys: "strip" }),
+            body: mergeAdditionalBodyParameters(
+                serializers.DirectoryAppsSearchRequest.jsonOrThrow(request, { unrecognizedObjectKeys: "strip" }),
+                requestOptions?.additionalBodyParameters,
+            ),
             timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
             maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
             abortSignal: requestOptions?.abortSignal,
@@ -165,6 +171,8 @@ export class AppDirectoryClient {
      * @throws {@link MavenAGI.PayloadTooLargeError}
      * @throws {@link MavenAGI.TooManyRequestsError}
      * @throws {@link MavenAGI.ServerError}
+     * @throws {@link errors.MavenAGIError}
+     * @throws {@link errors.MavenAGITimeoutError}
      *
      * @example
      *     await client.appDirectory.get("appId")
@@ -294,6 +302,8 @@ export class AppDirectoryClient {
      * @throws {@link MavenAGI.PayloadTooLargeError}
      * @throws {@link MavenAGI.TooManyRequestsError}
      * @throws {@link MavenAGI.ServerError}
+     * @throws {@link errors.MavenAGIError}
+     * @throws {@link errors.MavenAGITimeoutError}
      *
      * @example
      *     await client.appDirectory.install("appId", {
@@ -337,7 +347,10 @@ export class AppDirectoryClient {
             contentType: "application/json",
             queryString: core.url.queryBuilder().mergeAdditional(requestOptions?.queryParams).build(),
             requestType: "json",
-            body: serializers.InstallDirectoryAppRequest.jsonOrThrow(request, { unrecognizedObjectKeys: "strip" }),
+            body: mergeAdditionalBodyParameters(
+                serializers.InstallDirectoryAppRequest.jsonOrThrow(request, { unrecognizedObjectKeys: "strip" }),
+                requestOptions?.additionalBodyParameters,
+            ),
             timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
             maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
             abortSignal: requestOptions?.abortSignal,
@@ -428,6 +441,8 @@ export class AppDirectoryClient {
      * @throws {@link MavenAGI.PayloadTooLargeError}
      * @throws {@link MavenAGI.TooManyRequestsError}
      * @throws {@link MavenAGI.ServerError}
+     * @throws {@link errors.MavenAGIError}
+     * @throws {@link errors.MavenAGITimeoutError}
      *
      * @example
      *     await client.appDirectory.uninstall("appId")
@@ -554,6 +569,8 @@ export class AppDirectoryClient {
      * @throws {@link MavenAGI.PayloadTooLargeError}
      * @throws {@link MavenAGI.TooManyRequestsError}
      * @throws {@link MavenAGI.ServerError}
+     * @throws {@link errors.MavenAGIError}
+     * @throws {@link errors.MavenAGITimeoutError}
      *
      * @example
      *     await client.appDirectory.getSettingDownloadUrl("appId", "settingsKey")
@@ -691,6 +708,8 @@ export class AppDirectoryClient {
      * @throws {@link MavenAGI.PayloadTooLargeError}
      * @throws {@link MavenAGI.TooManyRequestsError}
      * @throws {@link MavenAGI.ServerError}
+     * @throws {@link errors.MavenAGIError}
+     * @throws {@link errors.MavenAGITimeoutError}
      *
      * @example
      *     await client.appDirectory.getSettingUploadUrl("appId", "settingsKey", {
@@ -737,7 +756,10 @@ export class AppDirectoryClient {
             contentType: "application/json",
             queryString: core.url.queryBuilder().mergeAdditional(requestOptions?.queryParams).build(),
             requestType: "json",
-            body: serializers.GetAppSettingUploadUrlRequest.jsonOrThrow(request, { unrecognizedObjectKeys: "strip" }),
+            body: mergeAdditionalBodyParameters(
+                serializers.GetAppSettingUploadUrlRequest.jsonOrThrow(request, { unrecognizedObjectKeys: "strip" }),
+                requestOptions?.additionalBodyParameters,
+            ),
             timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
             maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
             abortSignal: requestOptions?.abortSignal,

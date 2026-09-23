@@ -89,7 +89,12 @@ export interface ConversationFilter {
     userMessageCount?: MavenAGI.NumberRange;
     /** Filter by whether any message in the conversation has an attachment */
     hasAttachment?: boolean;
-    /** Filter by the segments that any message on a conversation matched. */
+    /**
+     * Filter by the segments that any message on a conversation matched.
+     *
+     * Superseded by `matchedCharterIds`. Segments are being phased out in favour of
+     * charter preconditions.
+     */
     matchedSegmentIds?: MavenAGI.EntityIdFilter[];
     /**
      * Filter by the charters that any bot-response message on a conversation matched.

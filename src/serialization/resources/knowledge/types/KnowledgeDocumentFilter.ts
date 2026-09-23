@@ -5,6 +5,7 @@ import * as core from "../../../../core";
 import type * as serializers from "../../../index";
 import { EntityIdWithoutAgent } from "../../commons/types/EntityIdWithoutAgent";
 import { LlmInclusionStatus } from "../../commons/types/LlmInclusionStatus";
+import { ScopedEntity } from "../../commons/types/ScopedEntity";
 
 export const KnowledgeDocumentFilter: core.serialization.ObjectSchema<
     serializers.KnowledgeDocumentFilter.Raw,
@@ -18,6 +19,7 @@ export const KnowledgeDocumentFilter: core.serialization.ObjectSchema<
     appIds: core.serialization.list(core.serialization.string()).optional(),
     knowledgeBaseVersionId: EntityIdWithoutAgent.optional(),
     llmInclusionStatus: core.serialization.list(LlmInclusionStatus).optional(),
+    relevantEntities: core.serialization.list(ScopedEntity).optional(),
 });
 
 export declare namespace KnowledgeDocumentFilter {
@@ -30,5 +32,6 @@ export declare namespace KnowledgeDocumentFilter {
         appIds?: string[] | null;
         knowledgeBaseVersionId?: EntityIdWithoutAgent.Raw | null;
         llmInclusionStatus?: LlmInclusionStatus.Raw[] | null;
+        relevantEntities?: ScopedEntity.Raw[] | null;
     }
 }

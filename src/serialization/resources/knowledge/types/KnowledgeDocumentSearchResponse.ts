@@ -5,6 +5,7 @@ import * as core from "../../../../core";
 import type * as serializers from "../../../index";
 import { EntityId } from "../../commons/types/EntityId";
 import { LlmInclusionStatus } from "../../commons/types/LlmInclusionStatus";
+import { ScopedEntity } from "../../commons/types/ScopedEntity";
 import { BaseKnowledgeDocument } from "./BaseKnowledgeDocument";
 
 export const KnowledgeDocumentSearchResponse: core.serialization.ObjectSchema<
@@ -20,6 +21,7 @@ export const KnowledgeDocumentSearchResponse: core.serialization.ObjectSchema<
         knowledgeBaseLlmInclusionStatus: LlmInclusionStatus,
         createdAt: core.serialization.date(),
         updatedAt: core.serialization.date(),
+        relevantEntities: core.serialization.list(ScopedEntity),
     })
     .extend(BaseKnowledgeDocument);
 
@@ -33,5 +35,6 @@ export declare namespace KnowledgeDocumentSearchResponse {
         knowledgeBaseLlmInclusionStatus: LlmInclusionStatus.Raw;
         createdAt: string;
         updatedAt: string;
+        relevantEntities: ScopedEntity.Raw[];
     }
 }

@@ -16,14 +16,23 @@ import type * as MavenAGI from "../../../../index";
 export interface IntelligentFieldPatchRequest {
     /** The App ID of the intelligent field to update. If not provided the ID of the calling app will be used. */
     appId?: string;
-    /** The definition of the intelligent field. This text will be influential in guiding the LLM to produce the desired results. */
+    /** The definition of the intelligent field. This text will be influential in guiding the LLM to produce the desired results. Limited to 5,000 characters. */
     definition?: string;
-    /** The lifecycle state for whether this field is evaluated by workflows. Use INACTIVE to deactivate. */
+    /**
+     * The lifecycle state for whether this field is evaluated. Use ACTIVE to start
+     * evaluating the field and INACTIVE to stop.
+     *
+     * Each agent has a limit on how many fields may be ACTIVE at once; activating a
+     * field beyond that limit is rejected. A field referenced by an active precondition
+     * cannot be deactivated.
+     */
     status?: MavenAGI.IntelligentFieldStatus;
     /** A plain text description of the intelligent field. */
     description?: string;
-    /** Updated enum options for select/multi-select fields. Omit to leave unchanged. The new list must be a superset of the existing options (add-only; removals are rejected). */
+    /** Updated enum options for fields that constrain the LLM to a finite set. Omit to leave unchanged. The new list must be a superset of the existing options (add-only; removals are rejected). */
     enumOptions?: MavenAGI.EnumOption[];
-    /** ID of the agent variant that this field belongs to, if applicable */
+    /** The agent variant to stage this patch in, by reference ID. Its owning app is `variantAppId`. */
     variantId?: MavenAGI.EntityIdBase;
+    /** The App ID of the agent variant named by `variantId`. If not provided, the ID of the calling app will be used — name the owning app to patch in a variant the caller does not own, as the platform's own seeded variants are. */
+    variantAppId?: string;
 }

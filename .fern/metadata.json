@@ -1,7 +1,7 @@
 {
-    "cliVersion": "3.11.0",
+    "cliVersion": "5.125.1",
     "generatorName": "fernapi/fern-typescript-node-sdk",
-    "generatorVersion": "3.69.0",
+    "generatorVersion": "3.95.0",
     "generatorConfig": {
         "namespaceExport": "MavenAGI",
         "allowCustomFetcher": true,
@@ -18,5 +18,10 @@
         "useLegacyExports": true,
         "generateWireTests": false
     },
-    "sdkVersion": "1.2.60"
+    "originGitCommit": "870e6af0782c1ba21747f3f44bf493278b12c260",
+    "originGitCommitIsDirty": false,
+    "invokedBy": "ci",
+    "requestedVersion": "1.2.61",
+    "ciProvider": "github",
+    "sdkVersion": "1.2.61"
 }

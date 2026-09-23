@@ -3,9 +3,9 @@
 import type * as MavenAGI from "../../../index";
 
 export interface AgentPrompting {
-    /** Deprecated. Superseded by charters, which determine agent behavior per turn. Has no effect for agents using charters. */
+    /** Deprecated. Superseded by charters, which determine agent behavior per round. Has no effect for agents using charters. */
     persona: MavenAGI.LlmPersona;
-    /** Deprecated. Superseded by charters, which determine agent behavior per turn. Has no effect for agents using charters. */
+    /** Deprecated. Superseded by charters, which determine agent behavior per round. Has no effect for agents using charters. */
     additionalPromptText?: string;
     /**
      * LLM prompt for category generation.
@@ -22,7 +22,7 @@ export interface AgentPrompting {
      */
     contentSafetyViolationResponsePromptText?: string;
     /**
-     * Deprecated. Superseded by charters, which determine agent behavior per turn. Has no effect for agents using charters.
+     * Deprecated. Superseded by charters, which determine agent behavior per round. Has no effect for agents using charters.
      *
      * Return the system fallback message on all questions that have no relevant knowledge bases or actions.
      */

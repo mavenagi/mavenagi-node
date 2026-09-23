@@ -87,6 +87,25 @@ export class VoiceConversationsSocket {
         this.eventHandlers[event] = callback;
     }
 
+    /**
+     * @param event - The event to detach from.
+     * @param callback - The callback previously registered with `on`. No-op if it is not the callback currently registered for this event.
+     * Usage:
+     * ```typescript
+     * const handler = () => console.log('The websocket is open');
+     * this.on('open', handler);
+     * this.off('open', handler);
+     * ```
+     */
+    public off<T extends keyof VoiceConversationsSocket.EventHandlers>(
+        event: T,
+        callback: VoiceConversationsSocket.EventHandlers[T],
+    ): void {
+        if (this.eventHandlers[event] === callback) {
+            delete this.eventHandlers[event];
+        }
+    }
+
     public sendConfig(message: MavenAGI.Config): void {
         this.assertSocketIsOpen();
         const jsonPayload = Config.jsonOrThrow(message, {

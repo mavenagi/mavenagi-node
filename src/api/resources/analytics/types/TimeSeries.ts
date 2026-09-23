@@ -5,6 +5,10 @@ import type * as MavenAGI from "../../../index";
 export interface TimeSeries {
     /** Name of the series, derived from the grouping field or percentile metric. */
     name: string;
-    /** List of time-based data points for the series. */
+    /**
+     * List of time-based data points for the series.
+     * An interval the metric could not measure has no point here, so a series can be shorter
+     * than the number of intervals in the requested range.
+     */
     data: MavenAGI.TimeDataPoint[];
 }

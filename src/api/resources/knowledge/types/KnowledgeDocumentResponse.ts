@@ -34,6 +34,39 @@ import type * as MavenAGI from "../../../index";
  *         createdAt: new Date("2024-01-01T00:00:00.000Z"),
  *         updatedAt: new Date("2024-02-02T00:00:00.000Z"),
  *         llmInclusionStatus: MavenAGI.LlmInclusionStatus.WhenRelevant,
+ *         relevantEntities: [],
+ *         knowledgeBaseLlmInclusionStatus: MavenAGI.LlmInclusionStatus.WhenRelevant
+ *     }
+ *
+ * @example
+ *     {
+ *         knowledgeDocumentId: {
+ *             referenceId: "billing-preferences",
+ *             appId: "crm",
+ *             organizationId: "acme",
+ *             agentId: "support",
+ *             type: MavenAGI.EntityType.KnowledgeDocument
+ *         },
+ *         knowledgeBaseVersionId: {
+ *             referenceId: "versionId",
+ *             appId: "crm",
+ *             organizationId: "acme",
+ *             agentId: "support",
+ *             type: MavenAGI.EntityType.KnowledgeBaseVersion
+ *         },
+ *         knowledgeBaseId: {
+ *             referenceId: "customer-notes",
+ *             appId: "crm",
+ *             organizationId: "acme",
+ *             agentId: "support",
+ *             type: MavenAGI.EntityType.KnowledgeBase
+ *         },
+ *         content: "This customer is invoiced by email.",
+ *         title: "Billing preferences",
+ *         metadata: {},
+ *         createdAt: new Date("2024-01-01T00:00:00.000Z"),
+ *         updatedAt: new Date("2024-02-02T00:00:00.000Z"),
+ *         llmInclusionStatus: MavenAGI.LlmInclusionStatus.WhenRelevant,
  *         relevantEntities: [{
  *                 entityId: {
  *                     type: MavenAGI.EntityType.Customer,
@@ -41,13 +74,6 @@ import type * as MavenAGI from "../../../index";
  *                     organizationId: "acme",
  *                     agentId: "support",
  *                     referenceId: "customer-42"
- *                 },
- *                 scopeEntityId: {
- *                     type: MavenAGI.EntityType.Agent,
- *                     appId: "maven",
- *                     organizationId: "acme",
- *                     agentId: "support",
- *                     referenceId: "support"
  *                 }
  *             }],
  *         knowledgeBaseLlmInclusionStatus: MavenAGI.LlmInclusionStatus.WhenRelevant
@@ -62,6 +88,4 @@ export interface KnowledgeDocumentResponse extends MavenAGI.KnowledgeDocumentSea
     asset?: MavenAGI.AttachmentResponse;
     /** Metadata for the knowledge document. */
     metadata: Record<string, string>;
-    /** Scoped entities this document is associated with for context-based filtering. */
-    relevantEntities: MavenAGI.ScopedEntity[];
 }

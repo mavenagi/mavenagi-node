@@ -26,6 +26,9 @@ import type * as MavenAGI from "../../../index";
  *     }
  */
 export interface IntelligentFieldRequest extends MavenAGI.IntelligentFieldBase {
-    /** ID that uniquely identifies this intelligent field */
+    /**
+     * ID that uniquely identifies this intelligent field. `referenceId` is supplied by the
+     * caller and is how the field is addressed on every other endpoint.
+     */
     fieldId: MavenAGI.EntityIdBase;
 }

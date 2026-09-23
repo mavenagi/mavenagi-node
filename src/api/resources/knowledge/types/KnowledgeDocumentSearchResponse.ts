@@ -31,7 +31,8 @@ import type * as MavenAGI from "../../../index";
  *         knowledgeBaseLlmInclusionStatus: MavenAGI.LlmInclusionStatus.Never,
  *         url: "https://help-center.acme.com/how-it-works",
  *         createdAt: new Date("2024-01-01T00:00:00.000Z"),
- *         updatedAt: new Date("2024-02-02T00:00:00.000Z")
+ *         updatedAt: new Date("2024-02-02T00:00:00.000Z"),
+ *         relevantEntities: []
  *     }
  */
 export interface KnowledgeDocumentSearchResponse extends MavenAGI.BaseKnowledgeDocument {
@@ -54,4 +55,9 @@ export interface KnowledgeDocumentSearchResponse extends MavenAGI.BaseKnowledgeD
     createdAt: Date;
     /** The time at which this document was last modified. */
     updatedAt: Date;
+    /**
+     * The entities this document is narrowed to. Empty for a document that is part of the
+     * agent's general knowledge.
+     */
+    relevantEntities: MavenAGI.ScopedEntity[];
 }

@@ -2,10 +2,20 @@
 
 /** Result type hint used for schema generation, UI, and validation */
 export const IntelligentFieldType = {
+    /**
+     * A single short string value. */
     String: "STRING",
+    /**
+     * A single string value expected to run to several lines, such as a summary. */
     Multiline: "MULTILINE",
+    /**
+     * A list of string values, normally paired with `enumOptions` to constrain the choices. */
     MultiSelect: "MULTI_SELECT",
+    /**
+     * A true/false value. */
     Boolean: "BOOLEAN",
+    /**
+     * A numeric value. */
     Number: "NUMBER",
 } as const;
 export type IntelligentFieldType = (typeof IntelligentFieldType)[keyof typeof IntelligentFieldType] | string;

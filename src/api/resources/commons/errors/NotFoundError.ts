@@ -5,6 +5,8 @@ import * as errors from "../../../../errors/index";
 import type * as MavenAGI from "../../../index";
 
 export class NotFoundError extends errors.MavenAGIError {
+    public declare readonly body: MavenAGI.ErrorMessage;
+
     constructor(body: MavenAGI.ErrorMessage, rawResponse?: core.RawResponse) {
         super({
             message: "NotFoundError",
@@ -17,6 +19,6 @@ export class NotFoundError extends errors.MavenAGIError {
             Error.captureStackTrace(this, this.constructor);
         }
 
-        this.name = this.constructor.name;
+        this.name = "NotFoundError";
     }
 }

@@ -35,4 +35,17 @@ export interface KnowledgeDocumentFilter {
     knowledgeBaseVersionId?: MavenAGI.EntityIdWithoutAgent;
     /** Filter by the LLM inclusion status */
     llmInclusionStatus?: MavenAGI.LlmInclusionStatus[];
+    /**
+     * Return only documents narrowed to one of these entities. Uses OR semantics - a document
+     * matching any of them is returned.
+     *
+     * This is an exact match on the document's `relevantEntities`, not the widening a
+     * conversation's `contextFilter` performs: filtering by a customer returns that customer's
+     * documents and not the agent's general knowledge. Omit the field to search every
+     * document regardless of what it is narrowed to; an empty list does the same.
+     *
+     * Each `entityId` must be fully specified and belong to the organization and agent the
+     * request is made against.
+     */
+    relevantEntities?: MavenAGI.ScopedEntity[];
 }

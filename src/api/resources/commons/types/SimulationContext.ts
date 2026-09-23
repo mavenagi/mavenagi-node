@@ -4,12 +4,12 @@ import type * as MavenAGI from "../../../index";
 
 export interface SimulationContext {
     /**
-     * Deprecated. Superseded by charters, which determine agent behavior per turn. Has no effect for agents using charters.
+     * Deprecated. Superseded by charters, which determine agent behavior per round. Has no effect for agents using charters.
      *
      * If provided, overrides the agent's default additional prompt text during the simulation.
      */
     additionalPromptText?: string;
-    /** Deprecated. Superseded by charters, which determine agent behavior per turn. Has no effect for agents using charters. */
+    /** Deprecated. Superseded by charters, which determine agent behavior per round. Has no effect for agents using charters. */
     persona?: MavenAGI.LlmPersona;
     /** If provided, knowledge search will be restricted to the provided list of knowledge bases. Otherwise, all active knowledge bases will be used. An empty list means no knowledge bases will be used. */
     availableKnowledgeBases?: MavenAGI.EntityId[];
