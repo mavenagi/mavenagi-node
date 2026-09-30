@@ -7,7 +7,7 @@
 export interface IntelligentFieldDeleteRequest {
     /** The App ID of the intelligent field to delete. If not provided, the ID of the calling app will be used. */
     appId?: string;
-    /** The agent variant reference ID of the intelligent field to delete. */
+    /** The agent variant to stage the delete in, by reference ID. Required on an agent with versioned intelligent fields; a delete that omits it there is rejected with reason `VARIANT_REQUIRED`. */
     variantReferenceId?: string;
     /** The App ID of the agent variant reference for the intelligent field to delete. If not provided, the ID of the calling app will be used. */
     variantAppId?: string;

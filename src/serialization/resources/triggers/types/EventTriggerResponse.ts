@@ -3,6 +3,7 @@
 import type * as MavenAGI from "../../../../api/index";
 import * as core from "../../../../core";
 import type * as serializers from "../../../index";
+import { CapabilityBase } from "../../commons/types/CapabilityBase";
 import { EntityId } from "../../commons/types/EntityId";
 import { EventTriggerBase } from "./EventTriggerBase";
 
@@ -14,10 +15,11 @@ export const EventTriggerResponse: core.serialization.ObjectSchema<
         triggerId: EntityId,
         enabled: core.serialization.boolean(),
     })
-    .extend(EventTriggerBase);
+    .extend(EventTriggerBase)
+    .extend(CapabilityBase);
 
 export declare namespace EventTriggerResponse {
-    export interface Raw extends EventTriggerBase.Raw {
+    export interface Raw extends EventTriggerBase.Raw, CapabilityBase.Raw {
         triggerId: EntityId.Raw;
         enabled: boolean;
     }

@@ -2,17 +2,20 @@
 
 import type * as MavenAGI from "../../../index";
 
+/**
+ * Filters combine with AND: a charter must match every filter given. Within one filter, a
+ * charter matches if it references any of the listed IDs. An empty list is the same as
+ * omitting the filter.
+ */
 export interface CharterSearchFilter {
-    /**
-     * Filter to charters that reference any of the specified actions (OR within this field).
-     * When combined with knowledgeBaseIds, both filters must match (AND across fields).
-     * An empty list is equivalent to omitting the field. Maximum 50 IDs.
-     */
+    /** Only return charters referencing these actions. At most 50. */
     actionIds?: MavenAGI.EntityId[];
-    /**
-     * Filter to charters that reference any of the specified knowledge bases (OR within this field).
-     * When combined with actionIds, both filters must match (AND across fields).
-     * An empty list is equivalent to omitting the field. Maximum 50 IDs.
-     */
+    /** Only return charters referencing these knowledge bases. At most 50. */
     knowledgeBaseIds?: MavenAGI.EntityId[];
+    /**
+     * Only return charters whose precondition references these intelligent fields. At most 50.
+     * A charter reaches an intelligent field through its precondition, not by referencing it
+     * directly the way it does an action or a knowledge base.
+     */
+    intelligentFieldIds?: MavenAGI.EntityId[];
 }

@@ -37,8 +37,6 @@ describe("ActionsClient", () => {
                     },
                     preconditionExplanation: "preconditionExplanation",
                     deleted: true,
-                    name: "name",
-                    description: "description",
                     userInteractionRequired: true,
                     buttonName: "buttonName",
                     precondition: {
@@ -96,6 +94,11 @@ describe("ActionsClient", () => {
                     ],
                     language: "language",
                     sideEffects: "NONE",
+                    name: "name",
+                    description: "description",
+                    createdAt: "2024-01-15T09:30:00Z",
+                    updatedAt: "2024-01-15T09:30:00Z",
+                    status: "ACTIVE",
                 },
                 {
                     actionId: {
@@ -116,8 +119,6 @@ describe("ActionsClient", () => {
                     },
                     preconditionExplanation: "preconditionExplanation",
                     deleted: true,
-                    name: "name",
-                    description: "description",
                     userInteractionRequired: true,
                     buttonName: "buttonName",
                     precondition: {
@@ -175,6 +176,11 @@ describe("ActionsClient", () => {
                     ],
                     language: "language",
                     sideEffects: "NONE",
+                    name: "name",
+                    description: "description",
+                    createdAt: "2024-01-15T09:30:00Z",
+                    updatedAt: "2024-01-15T09:30:00Z",
+                    status: "ACTIVE",
                 },
             ],
             number: 1,
@@ -214,8 +220,6 @@ describe("ActionsClient", () => {
                     },
                     preconditionExplanation: "preconditionExplanation",
                     deleted: true,
-                    name: "name",
-                    description: "description",
                     userInteractionRequired: true,
                     buttonName: "buttonName",
                     precondition: {
@@ -301,6 +305,11 @@ describe("ActionsClient", () => {
                     ],
                     language: "language",
                     sideEffects: "NONE",
+                    name: "name",
+                    description: "description",
+                    createdAt: new Date("2024-01-15T09:30:00.000Z"),
+                    updatedAt: new Date("2024-01-15T09:30:00.000Z"),
+                    status: "ACTIVE",
                 },
                 {
                     actionId: {
@@ -321,8 +330,6 @@ describe("ActionsClient", () => {
                     },
                     preconditionExplanation: "preconditionExplanation",
                     deleted: true,
-                    name: "name",
-                    description: "description",
                     userInteractionRequired: true,
                     buttonName: "buttonName",
                     precondition: {
@@ -408,6 +415,11 @@ describe("ActionsClient", () => {
                     ],
                     language: "language",
                     sideEffects: "NONE",
+                    name: "name",
+                    description: "description",
+                    createdAt: new Date("2024-01-15T09:30:00.000Z"),
+                    updatedAt: new Date("2024-01-15T09:30:00.000Z"),
+                    status: "ACTIVE",
                 },
             ],
             number: 1,
@@ -579,6 +591,9 @@ describe("ActionsClient", () => {
             language: "en",
         };
         const rawResponseBody = {
+            createdAt: "2026-01-15T10:30:00Z",
+            updatedAt: "2026-01-15T10:30:00Z",
+            status: "ACTIVE",
             actionId: {
                 referenceId: "get-balance",
                 appId: "my-billing-system",
@@ -645,6 +660,9 @@ describe("ActionsClient", () => {
             language: "en",
         });
         expect(response).toEqual({
+            createdAt: new Date("2026-01-15T10:30:00.000Z"),
+            updatedAt: new Date("2026-01-15T10:30:00.000Z"),
+            status: "ACTIVE",
             actionId: {
                 referenceId: "get-balance",
                 appId: "my-billing-system",
@@ -981,6 +999,9 @@ describe("ActionsClient", () => {
         });
 
         const rawResponseBody = {
+            createdAt: "2026-01-15T10:30:00Z",
+            updatedAt: "2026-01-15T10:30:00Z",
+            status: "ACTIVE",
             actionId: {
                 referenceId: "get-balance",
                 appId: "my-billing-system",
@@ -1023,6 +1044,9 @@ describe("ActionsClient", () => {
 
         const response = await client.actions.get("get-balance");
         expect(response).toEqual({
+            createdAt: new Date("2026-01-15T10:30:00.000Z"),
+            updatedAt: new Date("2026-01-15T10:30:00.000Z"),
+            status: "ACTIVE",
             actionId: {
                 referenceId: "get-balance",
                 appId: "my-billing-system",
@@ -1214,6 +1238,9 @@ describe("ActionsClient", () => {
             },
         };
         const rawResponseBody = {
+            createdAt: "2026-01-15T10:30:00Z",
+            updatedAt: "2026-01-15T10:30:00Z",
+            status: "ACTIVE",
             actionId: {
                 referenceId: "get-balance",
                 appId: "my-billing-system",
@@ -1267,6 +1294,9 @@ describe("ActionsClient", () => {
             },
         });
         expect(response).toEqual({
+            createdAt: new Date("2026-01-15T10:30:00.000Z"),
+            updatedAt: new Date("2026-01-15T10:30:00.000Z"),
+            status: "ACTIVE",
             actionId: {
                 referenceId: "get-balance",
                 appId: "my-billing-system",

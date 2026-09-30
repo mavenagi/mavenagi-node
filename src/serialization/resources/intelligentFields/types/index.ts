@@ -4,7 +4,6 @@ export * from "./IntelligentFieldCore";
 export * from "./IntelligentFieldDetailResponse";
 export * from "./IntelligentFieldRequest";
 export * from "./IntelligentFieldResponse";
-export * from "./IntelligentFieldStatus";
 export * from "./IntelligentFieldType";
 export * from "./IntelligentFieldValueEntityFilter";
 export * from "./IntelligentFieldValueFieldFilter";

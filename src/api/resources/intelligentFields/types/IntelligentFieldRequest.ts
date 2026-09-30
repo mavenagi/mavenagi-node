@@ -14,7 +14,8 @@ import type * as MavenAGI from "../../../index";
  *         validationType: MavenAGI.IntelligentFieldType.String,
  *         enumOptions: [{
  *                 value: "HIGH",
- *                 label: "High Priority"
+ *                 label: "High Priority",
+ *                 description: "The customer is blocked or reports an outage."
  *             }, {
  *                 value: "MEDIUM",
  *                 label: "Medium Priority"
@@ -26,6 +27,10 @@ import type * as MavenAGI from "../../../index";
  *     }
  */
 export interface IntelligentFieldRequest extends MavenAGI.IntelligentFieldBase {
+    /** Display name for the intelligent field */
+    name: string;
+    /** A plain text description of the intelligent field. */
+    description?: string;
     /**
      * ID that uniquely identifies this intelligent field. `referenceId` is supplied by the
      * caller and is how the field is addressed on every other endpoint.

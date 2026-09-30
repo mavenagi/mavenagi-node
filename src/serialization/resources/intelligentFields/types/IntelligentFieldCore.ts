@@ -10,8 +10,6 @@ export const IntelligentFieldCore: core.serialization.ObjectSchema<
     serializers.IntelligentFieldCore.Raw,
     MavenAGI.IntelligentFieldCore
 > = core.serialization.object({
-    name: core.serialization.string(),
-    description: core.serialization.string().optional(),
     validationType: IntelligentFieldType,
     definition: core.serialization.string(),
     enumOptions: core.serialization.list(EnumOption).optional(),
@@ -19,8 +17,6 @@ export const IntelligentFieldCore: core.serialization.ObjectSchema<
 
 export declare namespace IntelligentFieldCore {
     export interface Raw {
-        name: string;
-        description?: string | null;
         validationType: IntelligentFieldType.Raw;
         definition: string;
         enumOptions?: EnumOption.Raw[] | null;

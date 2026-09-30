@@ -11,7 +11,12 @@ export const EntityType = {
     User: "USER",
     Event: "EVENT",
     EventTrigger: "EVENT_TRIGGER",
+    /**
+     * Deprecated. Use `USER` instead. */
     UserProfile: "USER_PROFILE",
+    /**
+     * A user merged across apps. `referenceId` is the agent user id (`AgentUser.id`). */
+    AgentUser: "AGENT_USER",
     Feedback: "FEEDBACK",
     InboxItem: "INBOX_ITEM",
     InboxItemFix: "INBOX_ITEM_FIX",
@@ -21,7 +26,6 @@ export const EntityType = {
     Charter: "CHARTER",
     ConversationKickoff: "CONVERSATION_KICKOFF",
     AgentVariant: "AGENT_VARIANT",
-    ConfigSnapshot: "CONFIG_SNAPSHOT",
     Asset: "ASSET",
     TrafficConfig: "TRAFFIC_CONFIG",
 } as const;

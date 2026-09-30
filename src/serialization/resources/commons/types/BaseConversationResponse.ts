@@ -37,6 +37,7 @@ export const BaseConversationResponse: core.serialization.ObjectSchema<
         .partialRecord(RelationshipType, core.serialization.list(EntityId).optional())
         .optional(),
     conversationMode: ConversationMode.optional(),
+    variantId: EntityId.optional(),
 });
 
 export declare namespace BaseConversationResponse {
@@ -58,5 +59,6 @@ export declare namespace BaseConversationResponse {
         simulationContext?: SimulationContext.Raw | null;
         relatedEntities?: Record<RelationshipType.Raw, EntityId.Raw[] | null | undefined> | null;
         conversationMode?: ConversationMode.Raw | null;
+        variantId?: EntityId.Raw | null;
     }
 }

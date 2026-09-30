@@ -11,12 +11,16 @@ export const IntelligentFieldRequest: core.serialization.ObjectSchema<
     MavenAGI.IntelligentFieldRequest
 > = core.serialization
     .object({
+        name: core.serialization.string(),
+        description: core.serialization.string().optional(),
         fieldId: EntityIdBase,
     })
     .extend(IntelligentFieldBase);
 
 export declare namespace IntelligentFieldRequest {
     export interface Raw extends IntelligentFieldBase.Raw {
+        name: string;
+        description?: string | null;
         fieldId: EntityIdBase.Raw;
     }
 }

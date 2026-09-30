@@ -27,9 +27,12 @@ describe("TriggersClient", () => {
                         referenceId: "x",
                     },
                     enabled: true,
+                    type: "CONVERSATION_CREATED",
                     name: "name",
                     description: "description",
-                    type: "CONVERSATION_CREATED",
+                    createdAt: "2024-01-15T09:30:00Z",
+                    updatedAt: "2024-01-15T09:30:00Z",
+                    status: "ACTIVE",
                 },
                 {
                     triggerId: {
@@ -40,9 +43,12 @@ describe("TriggersClient", () => {
                         referenceId: "x",
                     },
                     enabled: true,
+                    type: "CONVERSATION_CREATED",
                     name: "name",
                     description: "description",
-                    type: "CONVERSATION_CREATED",
+                    createdAt: "2024-01-15T09:30:00Z",
+                    updatedAt: "2024-01-15T09:30:00Z",
+                    status: "ACTIVE",
                 },
             ],
             number: 1,
@@ -72,9 +78,12 @@ describe("TriggersClient", () => {
                         referenceId: "x",
                     },
                     enabled: true,
+                    type: "CONVERSATION_CREATED",
                     name: "name",
                     description: "description",
-                    type: "CONVERSATION_CREATED",
+                    createdAt: new Date("2024-01-15T09:30:00.000Z"),
+                    updatedAt: new Date("2024-01-15T09:30:00.000Z"),
+                    status: "ACTIVE",
                 },
                 {
                     triggerId: {
@@ -85,9 +94,12 @@ describe("TriggersClient", () => {
                         referenceId: "x",
                     },
                     enabled: true,
+                    type: "CONVERSATION_CREATED",
                     name: "name",
                     description: "description",
-                    type: "CONVERSATION_CREATED",
+                    createdAt: new Date("2024-01-15T09:30:00.000Z"),
+                    updatedAt: new Date("2024-01-15T09:30:00.000Z"),
+                    status: "ACTIVE",
                 },
             ],
             number: 1,
@@ -255,9 +267,13 @@ describe("TriggersClient", () => {
                 agentId: "support",
                 type: "EVENT_TRIGGER",
             },
+            name: "Store in Snowflake",
             description: "Stores conversation data in Snowflake",
             type: "CONVERSATION_CREATED",
             enabled: true,
+            createdAt: "2026-01-15T10:30:00Z",
+            updatedAt: "2026-01-15T10:30:00Z",
+            status: "ACTIVE",
         };
 
         server
@@ -284,9 +300,13 @@ describe("TriggersClient", () => {
                 agentId: "support",
                 type: "EVENT_TRIGGER",
             },
+            name: "Store in Snowflake",
             description: "Stores conversation data in Snowflake",
             type: "CONVERSATION_CREATED",
             enabled: true,
+            createdAt: new Date("2026-01-15T10:30:00.000Z"),
+            updatedAt: new Date("2026-01-15T10:30:00.000Z"),
+            status: "ACTIVE",
         });
     });
 
@@ -301,8 +321,8 @@ describe("TriggersClient", () => {
             environment: server.baseUrl,
         });
         const rawRequestBody = {
-            triggerId: { referenceId: "x" },
             description: "description",
+            triggerId: { referenceId: "x" },
             type: "CONVERSATION_CREATED",
         };
         const rawResponseBody = {};
@@ -318,10 +338,10 @@ describe("TriggersClient", () => {
 
         await expect(async () => {
             return await client.triggers.createOrUpdate({
+                description: "description",
                 triggerId: {
                     referenceId: "x",
                 },
-                description: "description",
                 type: "CONVERSATION_CREATED",
             });
         }).rejects.toThrow(MavenAGI.NotFoundError);
@@ -338,8 +358,8 @@ describe("TriggersClient", () => {
             environment: server.baseUrl,
         });
         const rawRequestBody = {
-            triggerId: { referenceId: "x" },
             description: "description",
+            triggerId: { referenceId: "x" },
             type: "CONVERSATION_CREATED",
         };
         const rawResponseBody = {};
@@ -355,10 +375,10 @@ describe("TriggersClient", () => {
 
         await expect(async () => {
             return await client.triggers.createOrUpdate({
+                description: "description",
                 triggerId: {
                     referenceId: "x",
                 },
-                description: "description",
                 type: "CONVERSATION_CREATED",
             });
         }).rejects.toThrow(MavenAGI.BadRequestError);
@@ -375,8 +395,8 @@ describe("TriggersClient", () => {
             environment: server.baseUrl,
         });
         const rawRequestBody = {
-            triggerId: { referenceId: "x" },
             description: "description",
+            triggerId: { referenceId: "x" },
             type: "CONVERSATION_CREATED",
         };
         const rawResponseBody = {};
@@ -392,10 +412,10 @@ describe("TriggersClient", () => {
 
         await expect(async () => {
             return await client.triggers.createOrUpdate({
+                description: "description",
                 triggerId: {
                     referenceId: "x",
                 },
-                description: "description",
                 type: "CONVERSATION_CREATED",
             });
         }).rejects.toThrow(MavenAGI.PayloadTooLargeError);
@@ -412,8 +432,8 @@ describe("TriggersClient", () => {
             environment: server.baseUrl,
         });
         const rawRequestBody = {
-            triggerId: { referenceId: "x" },
             description: "description",
+            triggerId: { referenceId: "x" },
             type: "CONVERSATION_CREATED",
         };
         const rawResponseBody = {};
@@ -429,10 +449,10 @@ describe("TriggersClient", () => {
 
         await expect(async () => {
             return await client.triggers.createOrUpdate({
+                description: "description",
                 triggerId: {
                     referenceId: "x",
                 },
-                description: "description",
                 type: "CONVERSATION_CREATED",
             });
         }).rejects.toThrow(MavenAGI.TooManyRequestsError);
@@ -449,8 +469,8 @@ describe("TriggersClient", () => {
             environment: server.baseUrl,
         });
         const rawRequestBody = {
-            triggerId: { referenceId: "x" },
             description: "description",
+            triggerId: { referenceId: "x" },
             type: "CONVERSATION_CREATED",
         };
         const rawResponseBody = {};
@@ -466,10 +486,10 @@ describe("TriggersClient", () => {
 
         await expect(async () => {
             return await client.triggers.createOrUpdate({
+                description: "description",
                 triggerId: {
                     referenceId: "x",
                 },
-                description: "description",
                 type: "CONVERSATION_CREATED",
             });
         }).rejects.toThrow(MavenAGI.ServerError);
@@ -494,9 +514,13 @@ describe("TriggersClient", () => {
                 agentId: "support",
                 type: "EVENT_TRIGGER",
             },
+            name: "Store in Snowflake",
             description: "Stores conversation data in Snowflake",
             type: "CONVERSATION_CREATED",
             enabled: true,
+            createdAt: "2026-01-15T10:30:00Z",
+            updatedAt: "2026-01-15T10:30:00Z",
+            status: "ACTIVE",
         };
 
         server
@@ -516,9 +540,13 @@ describe("TriggersClient", () => {
                 agentId: "support",
                 type: "EVENT_TRIGGER",
             },
+            name: "Store in Snowflake",
             description: "Stores conversation data in Snowflake",
             type: "CONVERSATION_CREATED",
             enabled: true,
+            createdAt: new Date("2026-01-15T10:30:00.000Z"),
+            updatedAt: new Date("2026-01-15T10:30:00.000Z"),
+            status: "ACTIVE",
         });
     });
 
@@ -819,9 +847,12 @@ describe("TriggersClient", () => {
                 referenceId: "x",
             },
             enabled: true,
+            type: "CONVERSATION_CREATED",
             name: "name",
             description: "description",
-            type: "CONVERSATION_CREATED",
+            createdAt: "2024-01-15T09:30:00Z",
+            updatedAt: "2024-01-15T09:30:00Z",
+            status: "ACTIVE",
         };
 
         server
@@ -845,9 +876,12 @@ describe("TriggersClient", () => {
                 referenceId: "x",
             },
             enabled: true,
+            type: "CONVERSATION_CREATED",
             name: "name",
             description: "description",
-            type: "CONVERSATION_CREATED",
+            createdAt: new Date("2024-01-15T09:30:00.000Z"),
+            updatedAt: new Date("2024-01-15T09:30:00.000Z"),
+            status: "ACTIVE",
         });
     });
 

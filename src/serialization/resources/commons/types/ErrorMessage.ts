@@ -3,12 +3,14 @@
 import type * as MavenAGI from "../../../../api/index";
 import * as core from "../../../../core";
 import type * as serializers from "../../../index";
+import { ErrorReason } from "./ErrorReason";
 
 export const ErrorMessage: core.serialization.ObjectSchema<serializers.ErrorMessage.Raw, MavenAGI.ErrorMessage> =
     core.serialization.object({
         status: core.serialization.number().optional(),
         error: core.serialization.string().optional(),
         message: core.serialization.string().optional(),
+        reason: ErrorReason.optional(),
     });
 
 export declare namespace ErrorMessage {
@@ -16,5 +18,6 @@ export declare namespace ErrorMessage {
         status?: number | null;
         error?: string | null;
         message?: string | null;
+        reason?: ErrorReason.Raw | null;
     }
 }

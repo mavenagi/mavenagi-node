@@ -22,7 +22,7 @@ describe("IntelligentFieldsClient", () => {
             entityType: "CONVERSATION",
             validationType: "STRING",
             enumOptions: [
-                { value: "HIGH", label: "High Priority" },
+                { value: "HIGH", label: "High Priority", description: "The customer is blocked or reports an outage." },
                 { value: "MEDIUM", label: "Medium Priority" },
                 { value: "LOW", label: "Low Priority" },
             ],
@@ -74,6 +74,7 @@ describe("IntelligentFieldsClient", () => {
                 {
                     value: "HIGH",
                     label: "High Priority",
+                    description: "The customer is blocked or reports an outage.",
                 },
                 {
                     value: "MEDIUM",
@@ -132,9 +133,9 @@ describe("IntelligentFieldsClient", () => {
             environment: server.baseUrl,
         });
         const rawRequestBody = {
+            name: "name",
             fieldId: { referenceId: "x" },
             entityType: "AGENT",
-            name: "name",
             validationType: "STRING",
             definition: "definition",
         };
@@ -151,11 +152,11 @@ describe("IntelligentFieldsClient", () => {
 
         await expect(async () => {
             return await client.intelligentFields.createOrUpdate({
+                name: "name",
                 fieldId: {
                     referenceId: "x",
                 },
                 entityType: "AGENT",
-                name: "name",
                 validationType: "STRING",
                 definition: "definition",
             });
@@ -173,9 +174,9 @@ describe("IntelligentFieldsClient", () => {
             environment: server.baseUrl,
         });
         const rawRequestBody = {
+            name: "name",
             fieldId: { referenceId: "x" },
             entityType: "AGENT",
-            name: "name",
             validationType: "STRING",
             definition: "definition",
         };
@@ -192,11 +193,11 @@ describe("IntelligentFieldsClient", () => {
 
         await expect(async () => {
             return await client.intelligentFields.createOrUpdate({
+                name: "name",
                 fieldId: {
                     referenceId: "x",
                 },
                 entityType: "AGENT",
-                name: "name",
                 validationType: "STRING",
                 definition: "definition",
             });
@@ -214,9 +215,9 @@ describe("IntelligentFieldsClient", () => {
             environment: server.baseUrl,
         });
         const rawRequestBody = {
+            name: "name",
             fieldId: { referenceId: "x" },
             entityType: "AGENT",
-            name: "name",
             validationType: "STRING",
             definition: "definition",
         };
@@ -233,11 +234,11 @@ describe("IntelligentFieldsClient", () => {
 
         await expect(async () => {
             return await client.intelligentFields.createOrUpdate({
+                name: "name",
                 fieldId: {
                     referenceId: "x",
                 },
                 entityType: "AGENT",
-                name: "name",
                 validationType: "STRING",
                 definition: "definition",
             });
@@ -255,9 +256,9 @@ describe("IntelligentFieldsClient", () => {
             environment: server.baseUrl,
         });
         const rawRequestBody = {
+            name: "name",
             fieldId: { referenceId: "x" },
             entityType: "AGENT",
-            name: "name",
             validationType: "STRING",
             definition: "definition",
         };
@@ -274,11 +275,11 @@ describe("IntelligentFieldsClient", () => {
 
         await expect(async () => {
             return await client.intelligentFields.createOrUpdate({
+                name: "name",
                 fieldId: {
                     referenceId: "x",
                 },
                 entityType: "AGENT",
-                name: "name",
                 validationType: "STRING",
                 definition: "definition",
             });
@@ -296,9 +297,9 @@ describe("IntelligentFieldsClient", () => {
             environment: server.baseUrl,
         });
         const rawRequestBody = {
+            name: "name",
             fieldId: { referenceId: "x" },
             entityType: "AGENT",
-            name: "name",
             validationType: "STRING",
             definition: "definition",
         };
@@ -315,11 +316,11 @@ describe("IntelligentFieldsClient", () => {
 
         await expect(async () => {
             return await client.intelligentFields.createOrUpdate({
+                name: "name",
                 fieldId: {
                     referenceId: "x",
                 },
                 entityType: "AGENT",
-                name: "name",
                 validationType: "STRING",
                 definition: "definition",
             });

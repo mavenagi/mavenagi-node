@@ -3,7 +3,8 @@
 import type * as MavenAGI from "../../../../api/index";
 import * as core from "../../../../core";
 import type * as serializers from "../../../index";
-import { ActionBase } from "./ActionBase";
+import { ActionProperties } from "./ActionProperties";
+import { CapabilityBase } from "./CapabilityBase";
 import { EntityId } from "./EntityId";
 import { LlmInclusionStatus } from "./LlmInclusionStatus";
 
@@ -17,10 +18,11 @@ export const ActionResponse: core.serialization.ObjectSchema<serializers.ActionR
             preconditionExplanation: core.serialization.string().optional(),
             deleted: core.serialization.boolean(),
         })
-        .extend(ActionBase);
+        .extend(ActionProperties)
+        .extend(CapabilityBase);
 
 export declare namespace ActionResponse {
-    export interface Raw extends ActionBase.Raw {
+    export interface Raw extends ActionProperties.Raw, CapabilityBase.Raw {
         actionId: EntityId.Raw;
         instructions?: string | null;
         llmInclusionStatus: LlmInclusionStatus.Raw;

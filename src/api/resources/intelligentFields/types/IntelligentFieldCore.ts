@@ -6,10 +6,6 @@ import type * as MavenAGI from "../../../index";
  * The content of an intelligent field -- what it is called, and what the LLM should produce for it.
  */
 export interface IntelligentFieldCore {
-    /** Display name for the intelligent field */
-    name: string;
-    /** A plain text description of the intelligent field. */
-    description?: string;
     /**
      * The type of value this field holds. It constrains the schema the LLM is asked to fill
      * and the JSON type of the computed `value`.

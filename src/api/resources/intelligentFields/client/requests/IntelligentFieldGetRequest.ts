@@ -7,7 +7,7 @@
 export interface IntelligentFieldGetRequest {
     /** The App ID of the intelligent field to get. If not provided the ID of the calling app will be used. */
     appId?: string;
-    /** The agent variant reference ID to resolve the intelligent field's version through. If not provided, defaults to the agent's production variant. */
+    /** The agent variant reference ID to resolve the intelligent field's version through. Required on an agent with versioned intelligent fields; a request that omits it there is rejected with reason `VARIANT_REQUIRED`. Otherwise, if omitted, the agent's only variant is used. */
     variantReferenceId?: string;
     /** The App ID of the agent variant reference. If not provided, the ID of the calling app will be used. */
     variantAppId?: string;

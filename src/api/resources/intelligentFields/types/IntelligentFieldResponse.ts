@@ -14,7 +14,7 @@ import type * as MavenAGI from "../../../index";
  *         },
  *         name: "Ticket Priority",
  *         description: "The priority of the conversation based on urgency",
- *         status: MavenAGI.IntelligentFieldStatus.Inactive,
+ *         status: MavenAGI.CapabilityStatus.Inactive,
  *         entityType: MavenAGI.EntityType.Conversation,
  *         validationType: MavenAGI.IntelligentFieldType.String,
  *         enumOptions: [{
@@ -32,13 +32,7 @@ import type * as MavenAGI from "../../../index";
  *         updatedAt: new Date("2024-01-15T10:30:00.000Z")
  *     }
  */
-export interface IntelligentFieldResponse extends MavenAGI.IntelligentFieldBase {
+export interface IntelligentFieldResponse extends MavenAGI.IntelligentFieldBase, MavenAGI.CapabilityBase {
     /** ID that uniquely identifies this intelligent field */
     fieldId: MavenAGI.EntityId;
-    /** Lifecycle state for whether this field is evaluated by workflows. Defaults to INACTIVE on creation. Use PATCH to activate. */
-    status: MavenAGI.IntelligentFieldStatus;
-    /** The date and time the intelligent field was created */
-    createdAt?: Date;
-    /** The date and time the intelligent field was last updated */
-    updatedAt?: Date;
 }

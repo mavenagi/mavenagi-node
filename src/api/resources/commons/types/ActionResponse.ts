@@ -5,6 +5,9 @@ import type * as MavenAGI from "../../../index";
 /**
  * @example
  *     {
+ *         createdAt: new Date("2026-01-15T10:30:00.000Z"),
+ *         updatedAt: new Date("2026-01-15T10:30:00.000Z"),
+ *         status: MavenAGI.CapabilityStatus.Active,
  *         actionId: {
  *             referenceId: "get-balance",
  *             appId: "my-billing-system",
@@ -40,7 +43,7 @@ import type * as MavenAGI from "../../../index";
  *         deleted: false
  *     }
  */
-export interface ActionResponse extends MavenAGI.ActionBase {
+export interface ActionResponse extends MavenAGI.ActionProperties, MavenAGI.CapabilityBase {
     /** ID that uniquely identifies this action */
     actionId: MavenAGI.EntityId;
     /**
@@ -49,6 +52,8 @@ export interface ActionResponse extends MavenAGI.ActionBase {
      */
     instructions?: string;
     /**
+     * Deprecated. Superseded by `status`, which says the same thing for every capability type.
+     *
      * Determines whether the action is sent to the LLM as part of a conversation.
      *
      * - `ALWAYS`: The action is always available for use in conversations, textual relevance is not considered.
@@ -64,6 +69,10 @@ export interface ActionResponse extends MavenAGI.ActionBase {
     segmentId?: MavenAGI.EntityId;
     /** No longer populated. This field is always absent and will be removed in a future release. */
     preconditionExplanation?: string;
-    /** Whether the action has been deleted. Deleted actions will not sent to the LLM nor returned in search results. */
+    /**
+     * Deprecated. Superseded by `status`, where a deleted action is `DELETED`.
+     *
+     * Whether the action has been deleted. Deleted actions will not sent to the LLM nor returned in search results.
+     */
     deleted: boolean;
 }

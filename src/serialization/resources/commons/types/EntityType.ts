@@ -17,6 +17,7 @@ export const EntityType: core.serialization.Schema<serializers.EntityType.Raw, M
         "EVENT",
         "EVENT_TRIGGER",
         "USER_PROFILE",
+        "AGENT_USER",
         "FEEDBACK",
         "INBOX_ITEM",
         "INBOX_ITEM_FIX",
@@ -26,7 +27,6 @@ export const EntityType: core.serialization.Schema<serializers.EntityType.Raw, M
         "CHARTER",
         "CONVERSATION_KICKOFF",
         "AGENT_VARIANT",
-        "CONFIG_SNAPSHOT",
         "ASSET",
         "TRAFFIC_CONFIG",
     ]);
@@ -44,6 +44,7 @@ export declare namespace EntityType {
         | "EVENT"
         | "EVENT_TRIGGER"
         | "USER_PROFILE"
+        | "AGENT_USER"
         | "FEEDBACK"
         | "INBOX_ITEM"
         | "INBOX_ITEM_FIX"
@@ -53,7 +54,6 @@ export declare namespace EntityType {
         | "CHARTER"
         | "CONVERSATION_KICKOFF"
         | "AGENT_VARIANT"
-        | "CONFIG_SNAPSHOT"
         | "ASSET"
         | "TRAFFIC_CONFIG";
 }

@@ -13,6 +13,10 @@ import type * as MavenAGI from "../../../index";
  *     }
  */
 export interface EventTriggerRequest extends MavenAGI.EventTriggerBase {
+    /** The name of the trigger, displayed to end users. If not set, a name is derived from the app ID and trigger type. */
+    name?: string;
+    /** The description of what the event trigger does, shown in the Maven Dashboard */
+    description: string;
     /** ID that uniquely identifies this event trigger */
     triggerId: MavenAGI.EntityIdBase;
 }

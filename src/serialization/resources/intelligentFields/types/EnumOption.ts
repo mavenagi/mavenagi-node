@@ -8,11 +8,13 @@ export const EnumOption: core.serialization.ObjectSchema<serializers.EnumOption.
     core.serialization.object({
         value: core.serialization.string(),
         label: core.serialization.string().optional(),
+        description: core.serialization.string().optional(),
     });
 
 export declare namespace EnumOption {
     export interface Raw {
         value: string;
         label?: string | null;
+        description?: string | null;
     }
 }

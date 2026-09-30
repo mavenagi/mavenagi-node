@@ -25,6 +25,12 @@ export class ActionsClient {
     }
 
     /**
+     * @deprecated
+     *
+     * Deprecated. Use `POST /v1/capabilities/search`, which searches every kind of capability
+     * at once. It returns the fields every capability shares rather than the whole Action;
+     * fetch one by its kind and reference ID for the rest.
+     *
      * @param {MavenAGI.ActionsSearchRequest} request
      * @param {ActionsClient.RequestOptions} requestOptions - Request-specific configuration.
      *
@@ -315,6 +321,11 @@ export class ActionsClient {
     }
 
     /**
+     * @deprecated
+     *
+     * Deprecated. Use `GET /v1/capabilities/ACTION/{referenceId}`, which returns this same
+     * object for an action and the equivalent for every other kind of capability.
+     *
      * Get an action by its supplied ID
      *
      * @param {string} actionReferenceId - The reference ID of the action to get. All other entity ID fields are inferred from the request.
@@ -618,6 +629,11 @@ export class ActionsClient {
     }
 
     /**
+     * @deprecated
+     *
+     * Deprecated. Use `DELETE /v1/capabilities/ACTION/{referenceId}`, which deletes any kind of
+     * capability the same way.
+     *
      * Delete an action
      *
      * @param {string} actionReferenceId - The reference ID of the action to unregister. All other entity ID fields are inferred from the request.

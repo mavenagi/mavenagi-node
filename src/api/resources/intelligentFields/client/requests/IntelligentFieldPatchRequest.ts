@@ -26,12 +26,12 @@ export interface IntelligentFieldPatchRequest {
      * field beyond that limit is rejected. A field referenced by an active precondition
      * cannot be deactivated.
      */
-    status?: MavenAGI.IntelligentFieldStatus;
+    status?: MavenAGI.CapabilityStatus;
     /** A plain text description of the intelligent field. */
     description?: string;
     /** Updated enum options for fields that constrain the LLM to a finite set. Omit to leave unchanged. The new list must be a superset of the existing options (add-only; removals are rejected). */
     enumOptions?: MavenAGI.EnumOption[];
-    /** The agent variant to stage this patch in, by reference ID. Its owning app is `variantAppId`. */
+    /** The agent variant to stage this patch in, by reference ID. Its owning app is `variantAppId`. Required on an agent with versioned intelligent fields; a patch that omits it there is rejected with reason `VARIANT_REQUIRED`. */
     variantId?: MavenAGI.EntityIdBase;
     /** The App ID of the agent variant named by `variantId`. If not provided, the ID of the calling app will be used — name the owning app to patch in a variant the caller does not own, as the platform's own seeded variants are. */
     variantAppId?: string;

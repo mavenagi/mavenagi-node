@@ -3,9 +3,9 @@
 import type * as MavenAGI from "../../../../api/index";
 import * as core from "../../../../core";
 import type * as serializers from "../../../index";
+import { CapabilityBase } from "../../commons/types/CapabilityBase";
 import { EntityId } from "../../commons/types/EntityId";
 import { IntelligentFieldBase } from "./IntelligentFieldBase";
-import { IntelligentFieldStatus } from "./IntelligentFieldStatus";
 
 export const IntelligentFieldResponse: core.serialization.ObjectSchema<
     serializers.IntelligentFieldResponse.Raw,
@@ -13,17 +13,12 @@ export const IntelligentFieldResponse: core.serialization.ObjectSchema<
 > = core.serialization
     .object({
         fieldId: EntityId,
-        status: IntelligentFieldStatus,
-        createdAt: core.serialization.date().optional(),
-        updatedAt: core.serialization.date().optional(),
     })
-    .extend(IntelligentFieldBase);
+    .extend(IntelligentFieldBase)
+    .extend(CapabilityBase);
 
 export declare namespace IntelligentFieldResponse {
-    export interface Raw extends IntelligentFieldBase.Raw {
+    export interface Raw extends IntelligentFieldBase.Raw, CapabilityBase.Raw {
         fieldId: EntityId.Raw;
-        status: IntelligentFieldStatus.Raw;
-        createdAt?: string | null;
-        updatedAt?: string | null;
     }
 }

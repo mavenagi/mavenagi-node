@@ -12,14 +12,22 @@ import type * as MavenAGI from "../../../index";
  *             agentId: "support",
  *             type: MavenAGI.EntityType.EventTrigger
  *         },
+ *         name: "Store in Snowflake",
  *         description: "Stores conversation data in Snowflake",
  *         type: MavenAGI.EventTriggerType.ConversationCreated,
- *         enabled: true
+ *         enabled: true,
+ *         createdAt: new Date("2026-01-15T10:30:00.000Z"),
+ *         updatedAt: new Date("2026-01-15T10:30:00.000Z"),
+ *         status: MavenAGI.CapabilityStatus.Active
  *     }
  */
-export interface EventTriggerResponse extends MavenAGI.EventTriggerBase {
+export interface EventTriggerResponse extends MavenAGI.EventTriggerBase, MavenAGI.CapabilityBase {
     /** ID that uniquely identifies this event trigger */
     triggerId: MavenAGI.EntityId;
-    /** Whether this trigger will be called by Maven. */
+    /**
+     * Deprecated. Superseded by `status`, which says the same thing for every capability type.
+     *
+     * Whether this trigger will be called by Maven.
+     */
     enabled: boolean;
 }

@@ -275,6 +275,13 @@ describe("ConversationClient", () => {
                 ],
             },
             conversationMode: "VOICE",
+            variantId: {
+                organizationId: "organizationId",
+                agentId: "agentId",
+                type: "AGENT",
+                appId: "appId",
+                referenceId: "x",
+            },
         };
 
         server
@@ -634,6 +641,13 @@ describe("ConversationClient", () => {
                 ],
             },
             conversationMode: "VOICE",
+            variantId: {
+                organizationId: "organizationId",
+                agentId: "agentId",
+                type: "AGENT",
+                appId: "appId",
+                referenceId: "x",
+            },
         });
     });
 
@@ -1537,6 +1551,13 @@ describe("ConversationClient", () => {
                 ],
             },
             conversationMode: "VOICE",
+            variantId: {
+                organizationId: "organizationId",
+                agentId: "agentId",
+                type: "AGENT",
+                appId: "appId",
+                referenceId: "x",
+            },
         };
 
         server
@@ -1849,6 +1870,13 @@ describe("ConversationClient", () => {
                 ],
             },
             conversationMode: "VOICE",
+            variantId: {
+                organizationId: "organizationId",
+                agentId: "agentId",
+                type: "AGENT",
+                appId: "appId",
+                referenceId: "x",
+            },
         });
     });
 
@@ -2388,6 +2416,13 @@ describe("ConversationClient", () => {
                 ],
             },
             conversationMode: "VOICE",
+            variantId: {
+                organizationId: "organizationId",
+                agentId: "agentId",
+                type: "AGENT",
+                appId: "appId",
+                referenceId: "x",
+            },
         };
 
         server
@@ -2722,6 +2757,13 @@ describe("ConversationClient", () => {
                 ],
             },
             conversationMode: "VOICE",
+            variantId: {
+                organizationId: "organizationId",
+                agentId: "agentId",
+                type: "AGENT",
+                appId: "appId",
+                referenceId: "x",
+            },
         });
     });
 
@@ -4395,6 +4437,13 @@ describe("ConversationClient", () => {
                 ],
             },
             conversationMode: "VOICE",
+            variantId: {
+                organizationId: "organizationId",
+                agentId: "agentId",
+                type: "AGENT",
+                appId: "appId",
+                referenceId: "x",
+            },
         };
 
         server
@@ -4715,6 +4764,13 @@ describe("ConversationClient", () => {
                 ],
             },
             conversationMode: "VOICE",
+            variantId: {
+                organizationId: "organizationId",
+                agentId: "agentId",
+                type: "AGENT",
+                appId: "appId",
+                referenceId: "x",
+            },
         });
     });
 
@@ -5431,6 +5487,13 @@ describe("ConversationClient", () => {
                         ],
                     },
                     conversationMode: "VOICE",
+                    variantId: {
+                        organizationId: "organizationId",
+                        agentId: "agentId",
+                        type: "AGENT",
+                        appId: "appId",
+                        referenceId: "x",
+                    },
                 },
                 {
                     responseConfig: {
@@ -5590,6 +5653,13 @@ describe("ConversationClient", () => {
                         ],
                     },
                     conversationMode: "VOICE",
+                    variantId: {
+                        organizationId: "organizationId",
+                        agentId: "agentId",
+                        type: "AGENT",
+                        appId: "appId",
+                        referenceId: "x",
+                    },
                 },
             ],
             number: 1,
@@ -5802,6 +5872,13 @@ describe("ConversationClient", () => {
                         ],
                     },
                     conversationMode: "VOICE",
+                    variantId: {
+                        organizationId: "organizationId",
+                        agentId: "agentId",
+                        type: "AGENT",
+                        appId: "appId",
+                        referenceId: "x",
+                    },
                 },
                 {
                     responseConfig: {
@@ -5995,6 +6072,13 @@ describe("ConversationClient", () => {
                         ],
                     },
                     conversationMode: "VOICE",
+                    variantId: {
+                        organizationId: "organizationId",
+                        agentId: "agentId",
+                        type: "AGENT",
+                        appId: "appId",
+                        referenceId: "x",
+                    },
                 },
             ],
             number: 1,
@@ -6310,6 +6394,13 @@ describe("ConversationClient", () => {
                         ],
                     },
                     conversationMode: "VOICE",
+                    variantId: {
+                        organizationId: "organizationId",
+                        agentId: "agentId",
+                        type: "AGENT",
+                        appId: "appId",
+                        referenceId: "x",
+                    },
                 },
                 {
                     responseConfig: {
@@ -6469,6 +6560,13 @@ describe("ConversationClient", () => {
                         ],
                     },
                     conversationMode: "VOICE",
+                    variantId: {
+                        organizationId: "organizationId",
+                        agentId: "agentId",
+                        type: "AGENT",
+                        appId: "appId",
+                        referenceId: "x",
+                    },
                 },
             ],
             totalElements: 1000000,
@@ -6679,6 +6777,13 @@ describe("ConversationClient", () => {
                         ],
                     },
                     conversationMode: "VOICE",
+                    variantId: {
+                        organizationId: "organizationId",
+                        agentId: "agentId",
+                        type: "AGENT",
+                        appId: "appId",
+                        referenceId: "x",
+                    },
                 },
                 {
                     responseConfig: {
@@ -6872,6 +6977,13 @@ describe("ConversationClient", () => {
                         ],
                     },
                     conversationMode: "VOICE",
+                    variantId: {
+                        organizationId: "organizationId",
+                        agentId: "agentId",
+                        type: "AGENT",
+                        appId: "appId",
+                        referenceId: "x",
+                    },
                 },
             ],
             totalElements: 1000000,

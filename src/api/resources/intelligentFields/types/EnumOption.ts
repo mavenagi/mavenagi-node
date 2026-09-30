@@ -10,4 +10,9 @@ export interface EnumOption {
     value: string;
     /** Display label for the option */
     label?: string;
+    /**
+     * Instructions that tell the LLM when to pick this option. Up to 1200 characters. On a
+     * patch, an option sent without a description has its description cleared.
+     */
+    description?: string;
 }

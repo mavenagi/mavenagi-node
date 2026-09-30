@@ -4,11 +4,9 @@ import type * as MavenAGI from "../../../../api/index";
 import * as core from "../../../../core";
 import type * as serializers from "../../../index";
 
-export const IntelligentFieldStatus: core.serialization.Schema<
-    serializers.IntelligentFieldStatus.Raw,
-    MavenAGI.IntelligentFieldStatus
-> = core.serialization.forwardCompatibleEnum_(["ACTIVE", "INACTIVE", "DELETED"]);
+export const CapabilityStatus: core.serialization.Schema<serializers.CapabilityStatus.Raw, MavenAGI.CapabilityStatus> =
+    core.serialization.forwardCompatibleEnum_(["ACTIVE", "INACTIVE", "DELETED"]);
 
-export declare namespace IntelligentFieldStatus {
+export declare namespace CapabilityStatus {
     export type Raw = "ACTIVE" | "INACTIVE" | "DELETED";
 }

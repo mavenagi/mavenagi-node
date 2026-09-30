@@ -54,7 +54,8 @@ export class IntelligentFieldsClient {
      *         validationType: "STRING",
      *         enumOptions: [{
      *                 value: "HIGH",
-     *                 label: "High Priority"
+     *                 label: "High Priority",
+     *                 description: "The customer is blocked or reports an outage."
      *             }, {
      *                 value: "MEDIUM",
      *                 label: "Medium Priority"
@@ -185,6 +186,12 @@ export class IntelligentFieldsClient {
     }
 
     /**
+     * @deprecated
+     *
+     * Deprecated. Use `GET /v1/capabilities/INTELLIGENT_FIELD/{referenceId}`, which reads any
+     * kind of capability the same way. It does not carry `referencingCharters`; search
+     * charters to find the ones that reference a capability.
+     *
      * Get an intelligent field by its supplied ID
      *
      * @param {string} fieldReferenceId - The reference ID of the intelligent field to get. All other entity ID fields are inferred from the request.
@@ -489,6 +496,11 @@ export class IntelligentFieldsClient {
     }
 
     /**
+     * @deprecated
+     *
+     * Deprecated. Use `DELETE /v1/capabilities/INTELLIGENT_FIELD/{referenceId}`, which
+     * deletes any kind of capability the same way. That endpoint returns no body.
+     *
      * Soft delete an intelligent field. Only INACTIVE fields can be deleted.
      *
      * Deleted fields are excluded from search results but can still be retrieved by ID.

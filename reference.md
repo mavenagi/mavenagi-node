@@ -4,6 +4,22 @@
 <dl>
 <dd>
 
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Deprecated. Use `POST /v1/capabilities/search`, which searches every kind of capability
+at once. It returns the fields every capability shares rather than the whole Action;
+fetch one by its kind and reference ID for the rest.
+</dd>
+</dl>
+</dd>
+</dl>
+
 #### 🔌 Usage
 
 <dl>
@@ -143,6 +159,9 @@ await client.actions.createOrUpdate({
 
 <dl>
 <dd>
+
+Deprecated. Use `GET /v1/capabilities/ACTION/{referenceId}`, which returns this same
+object for an action and the equivalent for every other kind of capability.
 
 Get an action by its supplied ID
 </dd>
@@ -298,6 +317,9 @@ await client.actions.patch("get-balance", {
 
 <dl>
 <dd>
+
+Deprecated. Use `DELETE /v1/capabilities/ACTION/{referenceId}`, which deletes any kind of
+capability the same way.
 
 Delete an action
 </dd>
@@ -2102,6 +2124,330 @@ await client.assets.commitUpload("assetReferenceId", {});
 </dl>
 </details>
 
+## Capabilities
+<details><summary><code>client.capabilities.<a href="/src/api/resources/capabilities/client/Client.ts">getCapability</a>(capabilityType, referenceId, { ...params }) -> MavenAGI.CapabilityResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Fetch one of an agent's capabilities by its type and reference ID.
+
+The response carries the same fields the capability's own API returns, so an Action read
+here and an Action read from the Actions API are the same object. Intelligent Fields are the
+one exception: their own API also returns the charters referencing the field, which this
+endpoint leaves out.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.capabilities.getCapability("ACTION", "referenceId");
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**capabilityType:** `MavenAGI.CapabilityType` — Which kind of capability to fetch.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**referenceId:** `string` — The capability's reference ID, unique within its type and app.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `MavenAGI.GetCapabilityByTypeRequest` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `CapabilitiesClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.capabilities.<a href="/src/api/resources/capabilities/client/Client.ts">patchCapability</a>(capabilityType, referenceId, { ...params }) -> MavenAGI.CapabilityResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Set whether the agent uses a capability, whatever kind it is. This is the publish and
+unpublish operation, and it works the same way for every capability type.
+
+Everything else about a capability -- its name, its description, and any settings
+particular to its kind -- is changed through that capability's own API.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.capabilities.patchCapability("ACTION", "referenceId");
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**capabilityType:** `MavenAGI.CapabilityType` — Which kind of capability to update.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**referenceId:** `string` — The capability's reference ID, unique within its type and app.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `MavenAGI.PatchCapabilityByTypeRequest` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `CapabilitiesClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.capabilities.<a href="/src/api/resources/capabilities/client/Client.ts">deleteCapability</a>(capabilityType, referenceId, { ...params }) -> void</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Delete one of an agent's capabilities. The agent stops using it, and it stops being
+addressable: a later get, patch or delete of the same capability is a 404, and it no longer
+appears in search.
+
+With `variantReferenceId`, an intelligent field's delete is staged in that variant instead,
+and takes effect when the variant is committed. Until then the agent keeps using the field,
+and only a later patch or delete through the same variant is a 404.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.capabilities.deleteCapability("ACTION", "referenceId");
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**capabilityType:** `MavenAGI.CapabilityType` — Which kind of capability to delete.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**referenceId:** `string` — The capability's reference ID, unique within its type and app.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `MavenAGI.DeleteCapabilityByTypeRequest` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `CapabilitiesClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.capabilities.<a href="/src/api/resources/capabilities/client/Client.ts">searchCapabilities</a>({ ...params }) -> MavenAGI.CapabilitiesSearchResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Search an agent's capabilities of every kind at once, newest first by default.
+
+Returns the fields every capability shares. Fetch one by its type and reference ID for the
+settings particular to its kind.
+
+Sorting by `NAME` or `TYPE` instead orders ascending unless `sortDesc` says otherwise;
+`sortDesc` overrides the default either way.
+
+Deleted capabilities are never returned.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.capabilities.searchCapabilities();
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `MavenAGI.CapabilitiesSearchRequest` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `CapabilitiesClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
 ## Charters
 <details><summary><code>client.charters.<a href="/src/api/resources/charters/client/Client.ts">createOrUpdate</a>({ ...params }) -> MavenAGI.CharterResponse</code></summary>
 <dl>
@@ -2671,6 +3017,83 @@ await client.charters.listChildren({
 </dl>
 </details>
 
+## ConversationKickoffs
+<details><summary><code>client.conversationKickoffs.<a href="/src/api/resources/conversationKickoffs/client/Client.ts">createOrUpdate</a>({ ...params }) -> MavenAGI.ConversationKickoff</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Register or update one of the calling app's Conversation Kickoffs for this agent. An app may
+hold multiple independent installs, and any number of an agent's kickoffs may run at once.
+
+A newly installed kickoff starts inactive, so installing one never changes an agent's
+behaviour on its own. Updating an existing one rewrites its name and description and leaves
+its status alone, so re-registering on every install refresh never deactivates a kickoff
+that is already live. Use the capability APIs to activate it, and to read, search or delete
+it afterwards.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.conversationKickoffs.createOrUpdate({
+    kickoffId: {
+        referenceId: "greet-returning-customer"
+    },
+    name: "Greet returning customer",
+    description: "Looks up the customer's open orders before the agent's first reply"
+});
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `MavenAGI.CreateConversationKickoffRequest` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `ConversationKickoffsClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
 ## Conversation
 <details><summary><code>client.conversation.<a href="/src/api/resources/conversation/client/Client.ts">initialize</a>({ ...params }) -> MavenAGI.InitializeConversationResponse</code></summary>
 <dl>
@@ -2927,6 +3350,7 @@ await client.conversation.get("conversationId");
 Wipes a conversation of all user data.
 The conversation ID will still exist and non-user specific data will still be retained.
 Attempts to modify or add messages to the conversation will throw an error.
+The conversation is sealed against further writes as soon as this call returns. A `202 Accepted` response means the wipe is still completing and will finish on its own.
 
 Simulation conversations will no longer be visible in search results nor metrics.
 Non-simulation conversations will remain visible - they can not be fully removed from the system.
@@ -5217,7 +5641,8 @@ await client.intelligentFields.createOrUpdate({
     validationType: "STRING",
     enumOptions: [{
             value: "HIGH",
-            label: "High Priority"
+            label: "High Priority",
+            description: "The customer is blocked or reports an outage."
         }, {
             value: "MEDIUM",
             label: "Medium Priority"
@@ -5273,6 +5698,10 @@ await client.intelligentFields.createOrUpdate({
 
 <dl>
 <dd>
+
+Deprecated. Use `GET /v1/capabilities/INTELLIGENT_FIELD/{referenceId}`, which reads any
+kind of capability the same way. It does not carry `referencingCharters`; search
+charters to find the ones that reference a capability.
 
 Get an intelligent field by its supplied ID
 </dd>
@@ -5422,6 +5851,9 @@ await client.intelligentFields.patch("ticket-priority", {
 
 <dl>
 <dd>
+
+Deprecated. Use `DELETE /v1/capabilities/INTELLIGENT_FIELD/{referenceId}`, which
+deletes any kind of capability the same way. That endpoint returns no body.
 
 Soft delete an intelligent field. Only INACTIVE fields can be deleted.
 
@@ -6097,6 +6529,9 @@ await client.knowledge.patchKnowledgeBase("help-center", {
 Create a new knowledge base version.
 
 If an existing version is in progress, then that version will be finalized in an error state.
+
+If another version create for the same knowledge base is still in progress, this request may
+return 503 with a `Retry-After` header. Nothing is changed in that case, so it is safe to retry.
 </dd>
 </dl>
 </dd>
@@ -7680,6 +8115,22 @@ await client.translations.translate({
 <dl>
 <dd>
 
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Deprecated. Use `POST /v1/capabilities/search`, which searches every kind of capability
+at once. It returns the fields every capability shares rather than the whole Event
+Trigger; fetch one by its kind and reference ID for the rest.
+</dd>
+</dl>
+</dd>
+</dl>
+
 #### 🔌 Usage
 
 <dl>
@@ -7806,6 +8257,9 @@ await client.triggers.createOrUpdate({
 <dl>
 <dd>
 
+Deprecated. Use `GET /v1/capabilities/TRIGGER/{referenceId}`, which returns this same
+object for a trigger and the equivalent for every other kind of capability.
+
 Get an event trigger by its supplied ID
 </dd>
 </dl>
@@ -7869,6 +8323,9 @@ await client.triggers.get("store-in-snowflake");
 <dl>
 <dd>
 
+Deprecated. Use `DELETE /v1/capabilities/TRIGGER/{referenceId}`, which deletes any kind
+of capability the same way.
+
 Delete an event trigger
 </dd>
 </dl>
@@ -7931,6 +8388,9 @@ await client.triggers.delete("store-in-snowflake");
 
 <dl>
 <dd>
+
+Deprecated. Use `PATCH /v1/capabilities/TRIGGER/{referenceId}` with a `status`, which
+publishes and unpublishes any kind of capability the same way.
 
 Updates an event trigger. Only the enabled field is editable.
 </dd>

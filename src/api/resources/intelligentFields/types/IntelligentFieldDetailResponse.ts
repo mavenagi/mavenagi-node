@@ -14,7 +14,7 @@ import type * as MavenAGI from "../../../index";
  *         },
  *         name: "Ticket Priority",
  *         description: "The priority of the conversation based on urgency",
- *         status: MavenAGI.IntelligentFieldStatus.Inactive,
+ *         status: MavenAGI.CapabilityStatus.Inactive,
  *         entityType: MavenAGI.EntityType.Conversation,
  *         validationType: MavenAGI.IntelligentFieldType.String,
  *         enumOptions: [{

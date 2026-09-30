@@ -11,11 +11,13 @@ export const CharterSearchFilter: core.serialization.ObjectSchema<
 > = core.serialization.object({
     actionIds: core.serialization.list(EntityId).optional(),
     knowledgeBaseIds: core.serialization.list(EntityId).optional(),
+    intelligentFieldIds: core.serialization.list(EntityId).optional(),
 });
 
 export declare namespace CharterSearchFilter {
     export interface Raw {
         actionIds?: EntityId.Raw[] | null;
         knowledgeBaseIds?: EntityId.Raw[] | null;
+        intelligentFieldIds?: EntityId.Raw[] | null;
     }
 }

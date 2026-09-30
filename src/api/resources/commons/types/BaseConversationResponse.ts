@@ -55,4 +55,10 @@ export interface BaseConversationResponse {
      * it cannot be supplied when creating or updating a conversation.
      */
     conversationMode?: MavenAGI.ConversationMode;
+    /**
+     * The agent variant this conversation is pinned to. Chosen by the agent's traffic rules when
+     * the conversation is created and fixed for its lifetime. Absent when the conversation was
+     * not routed to a variant, for example one created before the agent had variants.
+     */
+    variantId?: MavenAGI.EntityId;
 }

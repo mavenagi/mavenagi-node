@@ -6,8 +6,10 @@ import { AnalyticsClient } from "./api/resources/analytics/client/Client";
 import { AppDirectoryClient } from "./api/resources/appDirectory/client/Client";
 import { AppSettingsClient } from "./api/resources/appSettings/client/Client";
 import { AssetsClient } from "./api/resources/assets/client/Client";
+import { CapabilitiesClient } from "./api/resources/capabilities/client/Client";
 import { ChartersClient } from "./api/resources/charters/client/Client";
 import { ConversationClient } from "./api/resources/conversation/client/Client";
+import { ConversationKickoffsClient } from "./api/resources/conversationKickoffs/client/Client";
 import { CustomersClient } from "./api/resources/customers/client/Client";
 import { EventsClient } from "./api/resources/events/client/Client";
 import { InboxClient } from "./api/resources/inbox/client/Client";
@@ -39,7 +41,9 @@ export class MavenAGIClient {
     protected _appDirectory: AppDirectoryClient | undefined;
     protected _appSettings: AppSettingsClient | undefined;
     protected _assets: AssetsClient | undefined;
+    protected _capabilities: CapabilitiesClient | undefined;
     protected _charters: ChartersClient | undefined;
+    protected _conversationKickoffs: ConversationKickoffsClient | undefined;
     protected _conversation: ConversationClient | undefined;
     protected _customers: CustomersClient | undefined;
     protected _events: EventsClient | undefined;
@@ -83,8 +87,16 @@ export class MavenAGIClient {
         return (this._assets ??= new AssetsClient(this._options));
     }
 
+    public get capabilities(): CapabilitiesClient {
+        return (this._capabilities ??= new CapabilitiesClient(this._options));
+    }
+
     public get charters(): ChartersClient {
         return (this._charters ??= new ChartersClient(this._options));
+    }
+
+    public get conversationKickoffs(): ConversationKickoffsClient {
+        return (this._conversationKickoffs ??= new ConversationKickoffsClient(this._options));
     }
 
     public get conversation(): ConversationClient {

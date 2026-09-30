@@ -1029,6 +1029,9 @@ export class KnowledgeClient {
      *
      * If an existing version is in progress, then that version will be finalized in an error state.
      *
+     * If another version create for the same knowledge base is still in progress, this request may
+     * return 503 with a `Retry-After` header. Nothing is changed in that case, so it is safe to retry.
+     *
      * @param {string} knowledgeBaseReferenceId - The reference ID of the knowledge base to create a version for. All other entity ID fields are inferred from the request.
      * @param {MavenAGI.KnowledgeBaseVersionRequest} request
      * @param {KnowledgeClient.RequestOptions} requestOptions - Request-specific configuration.
