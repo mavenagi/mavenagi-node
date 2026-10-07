@@ -28,6 +28,11 @@ describe("TriggersClient", () => {
                     },
                     enabled: true,
                     type: "CONVERSATION_CREATED",
+                    condition: {
+                        eventConditionType: "userEventName",
+                        operator: "IN",
+                        names: ["BUTTON_CLICKED", "BUTTON_CLICKED"],
+                    },
                     name: "name",
                     description: "description",
                     createdAt: "2024-01-15T09:30:00Z",
@@ -44,6 +49,11 @@ describe("TriggersClient", () => {
                     },
                     enabled: true,
                     type: "CONVERSATION_CREATED",
+                    condition: {
+                        eventConditionType: "userEventName",
+                        operator: "IN",
+                        names: ["BUTTON_CLICKED", "BUTTON_CLICKED"],
+                    },
                     name: "name",
                     description: "description",
                     createdAt: "2024-01-15T09:30:00Z",
@@ -79,6 +89,11 @@ describe("TriggersClient", () => {
                     },
                     enabled: true,
                     type: "CONVERSATION_CREATED",
+                    condition: {
+                        eventConditionType: "userEventName",
+                        operator: "IN",
+                        names: ["BUTTON_CLICKED", "BUTTON_CLICKED"],
+                    },
                     name: "name",
                     description: "description",
                     createdAt: new Date("2024-01-15T09:30:00.000Z"),
@@ -95,6 +110,11 @@ describe("TriggersClient", () => {
                     },
                     enabled: true,
                     type: "CONVERSATION_CREATED",
+                    condition: {
+                        eventConditionType: "userEventName",
+                        operator: "IN",
+                        names: ["BUTTON_CLICKED", "BUTTON_CLICKED"],
+                    },
                     name: "name",
                     description: "description",
                     createdAt: new Date("2024-01-15T09:30:00.000Z"),
@@ -848,6 +868,11 @@ describe("TriggersClient", () => {
             },
             enabled: true,
             type: "CONVERSATION_CREATED",
+            condition: {
+                eventConditionType: "userEventName",
+                operator: "IN",
+                names: ["BUTTON_CLICKED", "BUTTON_CLICKED"],
+            },
             name: "name",
             description: "description",
             createdAt: "2024-01-15T09:30:00Z",
@@ -864,9 +889,7 @@ describe("TriggersClient", () => {
             .jsonBody(rawResponseBody)
             .build();
 
-        const response = await client.triggers.partialUpdate("triggerReferenceId", {
-            body: {},
-        });
+        const response = await client.triggers.partialUpdate("triggerReferenceId");
         expect(response).toEqual({
             triggerId: {
                 organizationId: "organizationId",
@@ -877,6 +900,11 @@ describe("TriggersClient", () => {
             },
             enabled: true,
             type: "CONVERSATION_CREATED",
+            condition: {
+                eventConditionType: "userEventName",
+                operator: "IN",
+                names: ["BUTTON_CLICKED", "BUTTON_CLICKED"],
+            },
             name: "name",
             description: "description",
             createdAt: new Date("2024-01-15T09:30:00.000Z"),
@@ -908,9 +936,7 @@ describe("TriggersClient", () => {
             .build();
 
         await expect(async () => {
-            return await client.triggers.partialUpdate("triggerReferenceId", {
-                body: {},
-            });
+            return await client.triggers.partialUpdate("triggerReferenceId");
         }).rejects.toThrow(MavenAGI.NotFoundError);
     });
 
@@ -937,9 +963,7 @@ describe("TriggersClient", () => {
             .build();
 
         await expect(async () => {
-            return await client.triggers.partialUpdate("triggerReferenceId", {
-                body: {},
-            });
+            return await client.triggers.partialUpdate("triggerReferenceId");
         }).rejects.toThrow(MavenAGI.BadRequestError);
     });
 
@@ -966,9 +990,7 @@ describe("TriggersClient", () => {
             .build();
 
         await expect(async () => {
-            return await client.triggers.partialUpdate("triggerReferenceId", {
-                body: {},
-            });
+            return await client.triggers.partialUpdate("triggerReferenceId");
         }).rejects.toThrow(MavenAGI.PayloadTooLargeError);
     });
 
@@ -995,9 +1017,7 @@ describe("TriggersClient", () => {
             .build();
 
         await expect(async () => {
-            return await client.triggers.partialUpdate("triggerReferenceId", {
-                body: {},
-            });
+            return await client.triggers.partialUpdate("triggerReferenceId");
         }).rejects.toThrow(MavenAGI.TooManyRequestsError);
     });
 
@@ -1024,9 +1044,7 @@ describe("TriggersClient", () => {
             .build();
 
         await expect(async () => {
-            return await client.triggers.partialUpdate("triggerReferenceId", {
-                body: {},
-            });
+            return await client.triggers.partialUpdate("triggerReferenceId");
         }).rejects.toThrow(MavenAGI.ServerError);
     });
 });

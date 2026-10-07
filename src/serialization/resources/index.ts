@@ -48,6 +48,7 @@ export * from "./segments/types";
 export * as translations from "./translations";
 export * from "./translations/types";
 export * as triggers from "./triggers";
+export * from "./triggers/client/requests";
 export * from "./triggers/types";
 export * as users from "./users";
 export * from "./users/types";

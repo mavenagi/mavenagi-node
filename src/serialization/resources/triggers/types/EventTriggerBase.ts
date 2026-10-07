@@ -2,7 +2,7 @@
 
 import type * as MavenAGI from "../../../../api/index";
 import * as core from "../../../../core";
-import type * as serializers from "../../../index";
+import * as serializers from "../../../index";
 import { EventTriggerType } from "../../commons/types/EventTriggerType";
 
 export const EventTriggerBase: core.serialization.ObjectSchema<
@@ -10,10 +10,12 @@ export const EventTriggerBase: core.serialization.ObjectSchema<
     MavenAGI.EventTriggerBase
 > = core.serialization.object({
     type: EventTriggerType,
+    condition: core.serialization.lazy(() => serializers.EventCondition).optional(),
 });
 
 export declare namespace EventTriggerBase {
     export interface Raw {
         type: EventTriggerType.Raw;
+        condition?: serializers.EventCondition.Raw | null;
     }
 }

@@ -3,7 +3,7 @@
 import type * as MavenAGI from "../../../../api/index";
 import * as core from "../../../../core";
 import type * as serializers from "../../../index";
-import { EntityIdFilter } from "../../commons/types/EntityIdFilter";
+import { EntityIdFilter } from "./EntityIdFilter";
 import { IntelligentFieldOperator } from "./IntelligentFieldOperator";
 
 export const IntelligentFieldSearchCondition: core.serialization.ObjectSchema<

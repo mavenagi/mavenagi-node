@@ -197,6 +197,9 @@ export class ConversationClient {
      * The `appId` field can be provided to update a conversation owned by a different app.
      * All other fields will overwrite the existing value on the conversation only if provided.
      *
+     * A closed conversation (`open` set to false) cannot be reopened: a patch setting `open` to true
+     * returns a 400. Its other fields can still be patched.
+     *
      * @param {string} conversationId - The ID of the conversation to patch
      * @param {MavenAGI.ConversationPatchRequest} request
      * @param {ConversationClient.RequestOptions} requestOptions - Request-specific configuration.
@@ -641,6 +644,8 @@ export class ConversationClient {
     /**
      * Append messages to an existing conversation. The conversation must be initialized first. If a message with the same ID already exists, it will be ignored. Messages do not allow modification.
      *
+     * A closed conversation (`open` set to false) takes no new messages and returns a 400.
+     *
      * @param {string} conversationId - The ID of the conversation to append messages to
      * @param {MavenAGI.ConversationMessageRequest[]} request
      * @param {ConversationClient.RequestOptions} requestOptions - Request-specific configuration.
@@ -805,6 +810,8 @@ export class ConversationClient {
     /**
      * Get an answer from Maven for a given user question. If the user question or its answer already exists,
      * they will be reused and will not be updated. Messages do not allow modification once generated.
+     *
+     * A closed conversation (`open` set to false) takes no new questions and returns a 400.
      *
      * Concurrency Behavior:
      * - If another API call is made for the same user question while a response is mid-stream, partial answers may be returned.
@@ -978,6 +985,8 @@ export class ConversationClient {
      *
      * If the user question or its answer already exists, they will be reused and will not be updated.
      * Messages do not allow modification once generated.
+     *
+     * A closed conversation (`open` set to false) takes no new questions and returns a 400.
      *
      * Concurrency Behavior:
      * - If another API call is made for the same user question while a response is mid-stream, partial answers may be returned.
@@ -1423,6 +1432,8 @@ export class ConversationClient {
      * Additionally, form submission is only allowed when the form is the last message in the conversation.
      * Forms should be disabled in surface UI if a conversation continues and they remain unsubmitted.
      *
+     * A form cannot be submitted on a closed conversation (`open` set to false): that returns a 400.
+     *
      * @param {string} conversationId - The ID of a conversation the form being submitted belongs to
      * @param {MavenAGI.SubmitActionFormRequest} request
      * @param {ConversationClient.RequestOptions} requestOptions - Request-specific configuration.
@@ -1577,6 +1588,8 @@ export class ConversationClient {
      * Replaced by `updateConversationMetadata`.
      *
      * Adds metadata to an existing conversation. If a metadata field already exists, it will be overwritten.
+     *
+     * A closed conversation (`open` set to false) takes no new metadata and returns a 400.
      *
      * @param {string} conversationId - The ID of a conversation the metadata being added belongs to
      * @param {Record<string, string>} request
@@ -1733,6 +1746,8 @@ export class ConversationClient {
      * If it does not exist, it will be added. Will not remove metadata fields.
      *
      * Returns all metadata saved by any app on the conversation.
+     *
+     * A closed conversation (`open` set to false) takes no new metadata and returns a 400.
      *
      * @param {string} conversationId - The ID of the conversation to modify metadata for
      * @param {MavenAGI.UpdateMetadataRequest} request

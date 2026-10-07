@@ -3,6 +3,7 @@
 import type * as MavenAGI from "../../../../api/index";
 import * as core from "../../../../core";
 import type * as serializers from "../../../index";
+import { IntelligentFieldFilter } from "../../commons/types/IntelligentFieldFilter";
 
 export const AgentUserFilter: core.serialization.ObjectSchema<
     serializers.AgentUserFilter.Raw,
@@ -12,6 +13,7 @@ export const AgentUserFilter: core.serialization.ObjectSchema<
     identifiers: core.serialization.list(core.serialization.string()).optional(),
     displayName: core.serialization.string().optional(),
     isAnonymous: core.serialization.boolean().optional(),
+    intelligentFields: IntelligentFieldFilter.optional(),
 });
 
 export declare namespace AgentUserFilter {
@@ -20,5 +22,6 @@ export declare namespace AgentUserFilter {
         identifiers?: string[] | null;
         displayName?: string | null;
         isAnonymous?: boolean | null;
+        intelligentFields?: IntelligentFieldFilter.Raw | null;
     }
 }

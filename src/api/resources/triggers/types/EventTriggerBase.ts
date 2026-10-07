@@ -14,4 +14,12 @@ export interface EventTriggerBase {
      * Inbox triggers fire when an inbox item is created or updated.
      */
     type: MavenAGI.EventTriggerType;
+    /**
+     * Narrows which events fire this trigger. Without one the trigger fires for every event on
+     * the agent. Re-registering writes whatever condition the request carries, so omitting it
+     * removes one; PATCH changes or removes a condition without re-registering.
+     *
+     * Only allowed on `EVENT_CREATED`; the other trigger types reject it.
+     */
+    condition?: MavenAGI.EventCondition;
 }

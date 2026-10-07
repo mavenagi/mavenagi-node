@@ -31,8 +31,8 @@ export interface IntelligentFieldPatchRequest {
     description?: string;
     /** Updated enum options for fields that constrain the LLM to a finite set. Omit to leave unchanged. The new list must be a superset of the existing options (add-only; removals are rejected). */
     enumOptions?: MavenAGI.EnumOption[];
-    /** The agent variant to stage this patch in, by reference ID. Its owning app is `variantAppId`. Required on an agent with versioned intelligent fields; a patch that omits it there is rejected with reason `VARIANT_REQUIRED`. */
-    variantId?: MavenAGI.EntityIdBase;
-    /** The App ID of the agent variant named by `variantId`. If not provided, the ID of the calling app will be used — name the owning app to patch in a variant the caller does not own, as the platform's own seeded variants are. */
+    /** The agent variant to stage this patch in. Required on an agent with versioned intelligent fields; a patch that omits it there is rejected with reason `VARIANT_REQUIRED`. */
+    variantId?: MavenAGI.EntityIdWithoutAgent;
+    /** Deprecated, use `variantId.appId`, which wins when both are set. */
     variantAppId?: string;
 }

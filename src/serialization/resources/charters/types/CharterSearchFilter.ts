@@ -4,6 +4,7 @@ import type * as MavenAGI from "../../../../api/index";
 import * as core from "../../../../core";
 import type * as serializers from "../../../index";
 import { EntityId } from "../../commons/types/EntityId";
+import { EntityIdWithoutAgent } from "../../commons/types/EntityIdWithoutAgent";
 
 export const CharterSearchFilter: core.serialization.ObjectSchema<
     serializers.CharterSearchFilter.Raw,
@@ -12,6 +13,7 @@ export const CharterSearchFilter: core.serialization.ObjectSchema<
     actionIds: core.serialization.list(EntityId).optional(),
     knowledgeBaseIds: core.serialization.list(EntityId).optional(),
     intelligentFieldIds: core.serialization.list(EntityId).optional(),
+    variantId: EntityIdWithoutAgent.optional(),
 });
 
 export declare namespace CharterSearchFilter {
@@ -19,5 +21,6 @@ export declare namespace CharterSearchFilter {
         actionIds?: EntityId.Raw[] | null;
         knowledgeBaseIds?: EntityId.Raw[] | null;
         intelligentFieldIds?: EntityId.Raw[] | null;
+        variantId?: EntityIdWithoutAgent.Raw | null;
     }
 }

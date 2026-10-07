@@ -15,6 +15,7 @@ export const ErrorReason: core.serialization.Schema<serializers.ErrorReason.Raw,
         "CANNOT_ARCHIVE_LIVE_VARIANT",
         "VARIANT_HAS_STAGED_EDITS",
         "VARIANT_REQUIRED",
+        "INTELLIGENT_FIELD_TYPE_CHANGED",
     ]);
 
 export declare namespace ErrorReason {
@@ -27,5 +28,6 @@ export declare namespace ErrorReason {
         | "VARIANT_ALREADY_EXISTS"
         | "CANNOT_ARCHIVE_LIVE_VARIANT"
         | "VARIANT_HAS_STAGED_EDITS"
-        | "VARIANT_REQUIRED";
+        | "VARIANT_REQUIRED"
+        | "INTELLIGENT_FIELD_TYPE_CHANGED";
 }

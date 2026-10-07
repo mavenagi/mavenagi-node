@@ -35,7 +35,10 @@ export const SystemEventName = {
      * A data sync with an external system failed */
     SyncFailed: "SYNC_FAILED",
     /**
-     * An intelligent field's value on a conversation was set or changed. `references` carries the conversation and the field; `contextInfo.additionalData` carries `fieldReferenceId`, `fieldAppId`, the new `value` and the `previousValue`, both as JSON strings. An undetermined value is the JSON string `null` on either key. `previousValue` is absent only when the field was set for the first time and had no previous value at all. */
+     * A conversation was closed, by setting `open` to false through the conversation PATCH. `references` carries the conversation. */
+    ConversationClosed: "CONVERSATION_CLOSED",
+    /**
+     * An intelligent field's value on a conversation was set or changed. `references` carries the conversation and the field; `contextInfo.additionalData` carries the new `value` and the `previousValue` (see `AdditionalDataKey`). A string value is written as is, a boolean or number as its text (`true`, `3`), and a multi-select's options as a JSON array. A key is absent when its value is undetermined or, for `previousValue`, when the field had no previous value. */
     IntelligentFieldValueChanged: "INTELLIGENT_FIELD_VALUE_CHANGED",
 } as const;
 export type SystemEventName = (typeof SystemEventName)[keyof typeof SystemEventName] | string;

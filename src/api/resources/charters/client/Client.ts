@@ -223,9 +223,11 @@ export class ChartersClient {
         request: MavenAGI.CharterGetRequest = {},
         requestOptions?: ChartersClient.RequestOptions,
     ): Promise<core.WithRawResponse<MavenAGI.CharterResponse>> {
-        const { appId } = request;
+        const { appId, variantReferenceId, variantAppId } = request;
         const _queryParams: Record<string, unknown> = {
             appId,
+            variantReferenceId,
+            variantAppId,
         };
         const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
         const _headers: core.Fetcher.Args["headers"] = mergeHeaders(

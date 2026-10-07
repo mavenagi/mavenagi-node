@@ -3,7 +3,7 @@
 import type * as MavenAGI from "../../../index";
 
 /**
- * Filter conversations by intelligent field values. All conditions are ANDed.
+ * Filter by intelligent field values. All conditions are ANDed.
  */
 export interface IntelligentFieldFilter {
     /** List of conditions to filter by. All conditions must match (AND logic). */

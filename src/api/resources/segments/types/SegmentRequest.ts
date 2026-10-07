@@ -25,14 +25,6 @@ import type * as MavenAGI from "../../../index";
 export interface SegmentRequest extends MavenAGI.SegmentBase {
     /** ID that uniquely identifies this segment */
     segmentId: MavenAGI.EntityIdBase;
-    /**
-     * The agent variant this write is scoped to. When set, the segment content is staged in
-     * that variant's working set instead of being applied to the agent's live configuration.
-     *
-     * Omit this field to write directly to the agent. Variant scoping is not active yet: a
-     * variant supplied today is accepted and ignored, and the write applies to the agent.
-     */
-    variantId?: MavenAGI.EntityIdWithoutAgent;
     /** The precondition that must be met for a conversation message to be included in the segment. */
     precondition: MavenAGI.Precondition;
     /** Desired status for the segment. If omitted, defaults to ACTIVE. In the future this will become required, so specify ACTIVE or INACTIVE if possible. */

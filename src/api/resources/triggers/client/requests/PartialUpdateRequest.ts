@@ -4,12 +4,13 @@ import type * as MavenAGI from "../../../../index";
 
 /**
  * @example
- *     {
- *         body: {}
- *     }
+ *     {}
  */
 export interface PartialUpdateRequest {
     /** The App ID of the trigger to update. If not provided, the ID of the calling app will be used. */
     appId?: string;
-    body: MavenAGI.TriggerPartialUpdate;
+    /** Whether the trigger will be called by Maven. */
+    enabled?: boolean;
+    /** Narrows which events fire this trigger. Omitted leaves the current condition alone; an explicit null removes it, so the trigger fires for every event again. */
+    condition?: MavenAGI.EventCondition | null;
 }

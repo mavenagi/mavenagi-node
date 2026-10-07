@@ -3,6 +3,7 @@
 import type * as MavenAGI from "../../../../api/index";
 import * as core from "../../../../core";
 import type * as serializers from "../../../index";
+import { EntityIdFilter } from "../../commons/types/EntityIdFilter";
 import { InboxItemStatus } from "../../commons/types/InboxItemStatus";
 import { InboxItemType } from "../../commons/types/InboxItemType";
 
@@ -13,6 +14,7 @@ export const InboxFilter: core.serialization.ObjectSchema<serializers.InboxFilte
         tags: core.serialization.set(core.serialization.string()).optional(),
         createdAfter: core.serialization.date().optional(),
         createdBefore: core.serialization.date().optional(),
+        variantIds: core.serialization.list(EntityIdFilter).optional(),
     });
 
 export declare namespace InboxFilter {
@@ -22,5 +24,6 @@ export declare namespace InboxFilter {
         tags?: string[] | null;
         createdAfter?: string | null;
         createdBefore?: string | null;
+        variantIds?: EntityIdFilter.Raw[] | null;
     }
 }

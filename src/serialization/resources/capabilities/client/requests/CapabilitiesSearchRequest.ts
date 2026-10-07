@@ -6,6 +6,7 @@ import type * as serializers from "../../../../index";
 import { BaseCappedPaginatedRequest } from "../../../commons/types/BaseCappedPaginatedRequest";
 import { CapabilityStatus } from "../../../commons/types/CapabilityStatus";
 import { CapabilityType } from "../../../commons/types/CapabilityType";
+import { EntityIdWithoutAgent } from "../../../commons/types/EntityIdWithoutAgent";
 import { CapabilitySortField } from "../../types/CapabilitySortField";
 
 export const CapabilitiesSearchRequest: core.serialization.Schema<
@@ -20,6 +21,7 @@ export const CapabilitiesSearchRequest: core.serialization.Schema<
         description: core.serialization.string().optional(),
         userInteractionRequired: core.serialization.boolean().optional(),
         sortId: CapabilitySortField.optional(),
+        variantId: EntityIdWithoutAgent.optional(),
         variantReferenceId: core.serialization.string().optional(),
         variantAppId: core.serialization.string().optional(),
     })
@@ -34,6 +36,7 @@ export declare namespace CapabilitiesSearchRequest {
         description?: string | null;
         userInteractionRequired?: boolean | null;
         sortId?: CapabilitySortField.Raw | null;
+        variantId?: EntityIdWithoutAgent.Raw | null;
         variantReferenceId?: string | null;
         variantAppId?: string | null;
     }

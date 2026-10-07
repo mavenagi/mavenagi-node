@@ -43,7 +43,9 @@ export const ConversationField: core.serialization.Schema<
     "AgentEnvironment",
     "InboxItems",
     "InvolvedApps",
+    "Variant",
     "IntelligentField",
+    "IntelligentFields",
 ]);
 
 export declare namespace ConversationField {
@@ -83,5 +85,7 @@ export declare namespace ConversationField {
         | "AgentEnvironment"
         | "InboxItems"
         | "InvolvedApps"
-        | "IntelligentField";
+        | "Variant"
+        | "IntelligentField"
+        | "IntelligentFields";
 }

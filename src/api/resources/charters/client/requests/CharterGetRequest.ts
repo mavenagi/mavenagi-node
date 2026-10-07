@@ -7,4 +7,8 @@
 export interface CharterGetRequest {
     /** The App ID of the charter to get. If not provided, the ID of the calling app will be used. */
     appId?: string;
+    /** The agent variant reference ID to resolve the charter's version through. If not provided, defaults to the agent's production variant. Currently, validated but not applied. */
+    variantReferenceId?: string;
+    /** The App ID of the agent variant reference. If not provided, the ID of the calling app will be used. */
+    variantAppId?: string;
 }

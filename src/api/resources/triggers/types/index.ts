@@ -4,4 +4,3 @@ export * from "./EventTriggerResponse";
 export * from "./EventTriggersSearchRequest";
 export * from "./EventTriggersSearchResponse";
 export * from "./TriggerField";
-export * from "./TriggerPartialUpdate";

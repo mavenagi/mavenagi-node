@@ -62,4 +62,6 @@ export interface AgentUser {
      * If two apps create users with the same identifying properties, they will be merged into a single agent user.
      */
     users: MavenAGI.AppUserSummary[];
+    /** Latest successful values of the agent user's intelligent fields. */
+    intelligentFieldValues?: MavenAGI.IntelligentFieldValueResponse[];
 }

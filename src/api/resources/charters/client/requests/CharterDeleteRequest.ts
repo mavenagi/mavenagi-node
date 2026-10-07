@@ -13,7 +13,7 @@ export interface CharterDeleteRequest {
      * agent's live configuration.
      *
      * Omit this parameter to delete directly from the agent. Variant scoping is not
-     * active yet: a variant supplied today is accepted and ignored, and the delete applies
+     * active yet: a variant supplied today is validated but not applied, and the delete applies
      * to the agent.
      */
     variantReferenceId?: string;

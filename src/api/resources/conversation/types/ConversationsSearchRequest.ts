@@ -4,8 +4,8 @@ import type * as MavenAGI from "../../../index";
 
 export interface ConversationsSearchRequest extends MavenAGI.BasePaginatedRequest {
     /**
-     * Field to sort results by. `IntelligentField` is not supported here - sorting conversations
-     * by an intelligent field value is not available. Intelligent fields can be filtered on via
+     * Field to sort results by. `IntelligentField` and `IntelligentFields` are not supported
+     * here - sorting conversations by an intelligent field value is not available. Intelligent fields can be filtered on via
      * `filter.intelligentFields`, and grouped or aggregated through the analytics APIs.
      */
     sort?: MavenAGI.ConversationField;

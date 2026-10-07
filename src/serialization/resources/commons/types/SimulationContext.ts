@@ -4,6 +4,7 @@ import type * as MavenAGI from "../../../../api/index";
 import * as core from "../../../../core";
 import type * as serializers from "../../../index";
 import { EntityId } from "./EntityId";
+import { EntityIdWithoutAgent } from "./EntityIdWithoutAgent";
 import { LlmPersona } from "./LlmPersona";
 
 export const SimulationContext: core.serialization.ObjectSchema<
@@ -13,6 +14,7 @@ export const SimulationContext: core.serialization.ObjectSchema<
     additionalPromptText: core.serialization.string().optional(),
     persona: LlmPersona.optional(),
     availableKnowledgeBases: core.serialization.list(EntityId).optional(),
+    variantId: EntityIdWithoutAgent.optional(),
 });
 
 export declare namespace SimulationContext {
@@ -20,5 +22,6 @@ export declare namespace SimulationContext {
         additionalPromptText?: string | null;
         persona?: LlmPersona.Raw | null;
         availableKnowledgeBases?: EntityId.Raw[] | null;
+        variantId?: EntityIdWithoutAgent.Raw | null;
     }
 }

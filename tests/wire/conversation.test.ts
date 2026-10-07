@@ -255,6 +255,7 @@ describe("ConversationClient", () => {
                         referenceId: "x",
                     },
                 ],
+                variantId: { type: "AGENT", appId: "appId", referenceId: "x" },
             },
             relatedEntities: {
                 SPAWN_FROM: [
@@ -621,6 +622,11 @@ describe("ConversationClient", () => {
                         referenceId: "x",
                     },
                 ],
+                variantId: {
+                    type: "AGENT",
+                    appId: "appId",
+                    referenceId: "x",
+                },
             },
             relatedEntities: {
                 SPAWN_FROM: [
@@ -1531,6 +1537,7 @@ describe("ConversationClient", () => {
                         referenceId: "x",
                     },
                 ],
+                variantId: { type: "AGENT", appId: "appId", referenceId: "x" },
             },
             relatedEntities: {
                 SPAWN_FROM: [
@@ -1850,6 +1857,11 @@ describe("ConversationClient", () => {
                         referenceId: "x",
                     },
                 ],
+                variantId: {
+                    type: "AGENT",
+                    appId: "appId",
+                    referenceId: "x",
+                },
             },
             relatedEntities: {
                 SPAWN_FROM: [
@@ -2396,6 +2408,7 @@ describe("ConversationClient", () => {
                         referenceId: "x",
                     },
                 ],
+                variantId: { type: "AGENT", appId: "appId", referenceId: "x" },
             },
             relatedEntities: {
                 SPAWN_FROM: [
@@ -2737,6 +2750,11 @@ describe("ConversationClient", () => {
                         referenceId: "x",
                     },
                 ],
+                variantId: {
+                    type: "AGENT",
+                    appId: "appId",
+                    referenceId: "x",
+                },
             },
             relatedEntities: {
                 SPAWN_FROM: [
@@ -4417,6 +4435,7 @@ describe("ConversationClient", () => {
                         referenceId: "x",
                     },
                 ],
+                variantId: { type: "AGENT", appId: "appId", referenceId: "x" },
             },
             relatedEntities: {
                 SPAWN_FROM: [
@@ -4744,6 +4763,11 @@ describe("ConversationClient", () => {
                         referenceId: "x",
                     },
                 ],
+                variantId: {
+                    type: "AGENT",
+                    appId: "appId",
+                    referenceId: "x",
+                },
             },
             relatedEntities: {
                 SPAWN_FROM: [
@@ -5467,6 +5491,7 @@ describe("ConversationClient", () => {
                                 referenceId: "x",
                             },
                         ],
+                        variantId: { type: "AGENT", appId: "appId", referenceId: "x" },
                     },
                     relatedEntities: {
                         SPAWN_FROM: [
@@ -5633,6 +5658,7 @@ describe("ConversationClient", () => {
                                 referenceId: "x",
                             },
                         ],
+                        variantId: { type: "AGENT", appId: "appId", referenceId: "x" },
                     },
                     relatedEntities: {
                         SPAWN_FROM: [
@@ -5852,6 +5878,11 @@ describe("ConversationClient", () => {
                                 referenceId: "x",
                             },
                         ],
+                        variantId: {
+                            type: "AGENT",
+                            appId: "appId",
+                            referenceId: "x",
+                        },
                     },
                     relatedEntities: {
                         SPAWN_FROM: [
@@ -6052,6 +6083,11 @@ describe("ConversationClient", () => {
                                 referenceId: "x",
                             },
                         ],
+                        variantId: {
+                            type: "AGENT",
+                            appId: "appId",
+                            referenceId: "x",
+                        },
                     },
                     relatedEntities: {
                         SPAWN_FROM: [
@@ -6374,6 +6410,7 @@ describe("ConversationClient", () => {
                                 referenceId: "x",
                             },
                         ],
+                        variantId: { type: "AGENT", appId: "appId", referenceId: "x" },
                     },
                     relatedEntities: {
                         SPAWN_FROM: [
@@ -6540,6 +6577,7 @@ describe("ConversationClient", () => {
                                 referenceId: "x",
                             },
                         ],
+                        variantId: { type: "AGENT", appId: "appId", referenceId: "x" },
                     },
                     relatedEntities: {
                         SPAWN_FROM: [
@@ -6757,6 +6795,11 @@ describe("ConversationClient", () => {
                                 referenceId: "x",
                             },
                         ],
+                        variantId: {
+                            type: "AGENT",
+                            appId: "appId",
+                            referenceId: "x",
+                        },
                     },
                     relatedEntities: {
                         SPAWN_FROM: [
@@ -6957,6 +7000,11 @@ describe("ConversationClient", () => {
                                 referenceId: "x",
                             },
                         ],
+                        variantId: {
+                            type: "AGENT",
+                            appId: "appId",
+                            referenceId: "x",
+                        },
                     },
                     relatedEntities: {
                         SPAWN_FROM: [

@@ -24,10 +24,13 @@ export const ErrorReason = {
      * The variant is receiving live traffic, so it can't be archived or deleted. Move its traffic elsewhere first. */
     CannotArchiveLiveVariant: "CANNOT_ARCHIVE_LIVE_VARIANT",
     /**
-     * A traffic rule names a variant with staged edits. Publish or discard them first. */
+     * A traffic rule, a simulation or an eval run names a variant with staged edits. Publish or discard them first. */
     VariantHasStagedEdits: "VARIANT_HAS_STAGED_EDITS",
     /**
      * The entity type is versioned on this agent, so the request must name the agent variant to read or write. Pass the variant's reference ID, and its owning app where the endpoint takes one; a request that names none is rejected. */
     VariantRequired: "VARIANT_REQUIRED",
+    /**
+     * The write would change an intelligent field's `validationType` in an agent variant. A field keeps its type across variants; to use a different type, create a new field. */
+    IntelligentFieldTypeChanged: "INTELLIGENT_FIELD_TYPE_CHANGED",
 } as const;
 export type ErrorReason = (typeof ErrorReason)[keyof typeof ErrorReason] | string;

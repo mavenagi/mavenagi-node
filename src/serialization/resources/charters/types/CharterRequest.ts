@@ -4,20 +4,17 @@ import type * as MavenAGI from "../../../../api/index";
 import * as core from "../../../../core";
 import type * as serializers from "../../../index";
 import { EntityIdBase } from "../../commons/types/EntityIdBase";
-import { EntityIdWithoutAgent } from "../../commons/types/EntityIdWithoutAgent";
 import { CharterContent } from "./CharterContent";
 
 export const CharterRequest: core.serialization.ObjectSchema<serializers.CharterRequest.Raw, MavenAGI.CharterRequest> =
     core.serialization
         .object({
             charterId: EntityIdBase,
-            variantId: EntityIdWithoutAgent.optional(),
         })
         .extend(CharterContent);
 
 export declare namespace CharterRequest {
     export interface Raw extends CharterContent.Raw {
         charterId: EntityIdBase.Raw;
-        variantId?: EntityIdWithoutAgent.Raw | null;
     }
 }

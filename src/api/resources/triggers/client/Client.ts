@@ -579,12 +579,10 @@ export class TriggersClient {
     }
 
     /**
-     * @deprecated
+     * Updates an event trigger. `enabled` and `condition` are the editable fields.
      *
-     * Deprecated. Use `PATCH /v1/capabilities/TRIGGER/{referenceId}` with a `status`, which
-     * publishes and unpublishes any kind of capability the same way.
-     *
-     * Updates an event trigger. Only the enabled field is editable.
+     * `PATCH /v1/capabilities/TRIGGER/{referenceId}` with a `status` also turns a trigger on and
+     * off, the same way it publishes and unpublishes any kind of capability.
      *
      * @param {string} triggerReferenceId - The reference ID of the event trigger to update. All other entity ID fields are inferred from the request.
      * @param {MavenAGI.PartialUpdateRequest} request
@@ -599,13 +597,11 @@ export class TriggersClient {
      * @throws {@link errors.MavenAGITimeoutError}
      *
      * @example
-     *     await client.triggers.partialUpdate("triggerReferenceId", {
-     *         body: {}
-     *     })
+     *     await client.triggers.partialUpdate("triggerReferenceId")
      */
     public partialUpdate(
         triggerReferenceId: string,
-        request: MavenAGI.PartialUpdateRequest,
+        request: MavenAGI.PartialUpdateRequest = {},
         requestOptions?: TriggersClient.RequestOptions,
     ): core.HttpResponsePromise<MavenAGI.EventTriggerResponse> {
         return core.HttpResponsePromise.fromPromise(this.__partialUpdate(triggerReferenceId, request, requestOptions));
@@ -613,10 +609,10 @@ export class TriggersClient {
 
     private async __partialUpdate(
         triggerReferenceId: string,
-        request: MavenAGI.PartialUpdateRequest,
+        request: MavenAGI.PartialUpdateRequest = {},
         requestOptions?: TriggersClient.RequestOptions,
     ): Promise<core.WithRawResponse<MavenAGI.EventTriggerResponse>> {
-        const { appId, body: _body } = request;
+        const { appId, ..._body } = request;
         const _queryParams: Record<string, unknown> = {
             appId,
         };
@@ -639,7 +635,7 @@ export class TriggersClient {
             ),
             method: "PATCH",
             headers: _headers,
-            contentType: "application/json",
+            contentType: "application/merge-patch+json",
             queryString: core.url
                 .queryBuilder()
                 .addMany(_queryParams)
@@ -647,7 +643,7 @@ export class TriggersClient {
                 .build(),
             requestType: "json",
             body: mergeAdditionalBodyParameters(
-                serializers.TriggerPartialUpdate.jsonOrThrow(_body, { unrecognizedObjectKeys: "strip" }),
+                serializers.PartialUpdateRequest.jsonOrThrow(_body, { unrecognizedObjectKeys: "strip" }),
                 requestOptions?.additionalBodyParameters,
             ),
             timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,

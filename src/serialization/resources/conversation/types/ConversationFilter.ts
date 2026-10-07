@@ -6,6 +6,7 @@ import type * as serializers from "../../../index";
 import { ConversationMode } from "../../commons/types/ConversationMode";
 import { EntityIdFilter } from "../../commons/types/EntityIdFilter";
 import { FeedbackType } from "../../commons/types/FeedbackType";
+import { IntelligentFieldFilter } from "../../commons/types/IntelligentFieldFilter";
 import { NumberRange } from "../../commons/types/NumberRange";
 import { Quality } from "../../commons/types/Quality";
 import { QualityReason } from "../../commons/types/QualityReason";
@@ -13,7 +14,6 @@ import { ResolutionStatus } from "../../commons/types/ResolutionStatus";
 import { ResponseLength } from "../../commons/types/ResponseLength";
 import { Sentiment } from "../../commons/types/Sentiment";
 import { BillableFilterField } from "./BillableFilterField";
-import { IntelligentFieldFilter } from "./IntelligentFieldFilter";
 import { SimulationFilter } from "./SimulationFilter";
 
 export const ConversationFilter: core.serialization.ObjectSchema<
@@ -37,6 +37,7 @@ export const ConversationFilter: core.serialization.ObjectSchema<
     responseLength: core.serialization.list(ResponseLength).optional(),
     sentiment: core.serialization.list(Sentiment).optional(),
     conversationMode: core.serialization.list(ConversationMode).optional(),
+    deleted: core.serialization.boolean().optional(),
     tags: core.serialization.list(core.serialization.string()).optional(),
     agentUserIds: core.serialization.list(core.serialization.string()).optional(),
     resolutionStatus: core.serialization.list(ResolutionStatus).optional(),
@@ -47,6 +48,7 @@ export const ConversationFilter: core.serialization.ObjectSchema<
     matchedCharterIds: core.serialization.list(EntityIdFilter).optional(),
     anyMsgCharterMode: core.serialization.boolean().optional(),
     inboxItemIds: core.serialization.list(EntityIdFilter).optional(),
+    variantIds: core.serialization.list(EntityIdFilter).optional(),
     simulationFilter: SimulationFilter.optional(),
     intelligentFields: IntelligentFieldFilter.optional(),
     billable: core.serialization.list(BillableFilterField).optional(),
@@ -71,6 +73,7 @@ export declare namespace ConversationFilter {
         responseLength?: ResponseLength.Raw[] | null;
         sentiment?: Sentiment.Raw[] | null;
         conversationMode?: ConversationMode.Raw[] | null;
+        deleted?: boolean | null;
         tags?: string[] | null;
         agentUserIds?: string[] | null;
         resolutionStatus?: ResolutionStatus.Raw[] | null;
@@ -81,6 +84,7 @@ export declare namespace ConversationFilter {
         matchedCharterIds?: EntityIdFilter.Raw[] | null;
         anyMsgCharterMode?: boolean | null;
         inboxItemIds?: EntityIdFilter.Raw[] | null;
+        variantIds?: EntityIdFilter.Raw[] | null;
         simulationFilter?: SimulationFilter.Raw | null;
         intelligentFields?: IntelligentFieldFilter.Raw | null;
         billable?: BillableFilterField.Raw[] | null;

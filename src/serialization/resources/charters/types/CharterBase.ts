@@ -3,10 +3,12 @@
 import type * as MavenAGI from "../../../../api/index";
 import * as core from "../../../../core";
 import type * as serializers from "../../../index";
+import { EntityIdWithoutAgent } from "../../commons/types/EntityIdWithoutAgent";
 
 export const CharterBase: core.serialization.ObjectSchema<serializers.CharterBase.Raw, MavenAGI.CharterBase> =
     core.serialization.object({
         name: core.serialization.string(),
+        variantId: EntityIdWithoutAgent.optional(),
         description: core.serialization.string().optional(),
         manual: core.serialization.string().optional(),
     });
@@ -14,6 +16,7 @@ export const CharterBase: core.serialization.ObjectSchema<serializers.CharterBas
 export declare namespace CharterBase {
     export interface Raw {
         name: string;
+        variantId?: EntityIdWithoutAgent.Raw | null;
         description?: string | null;
         manual?: string | null;
     }

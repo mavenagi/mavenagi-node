@@ -3,7 +3,10 @@
 import type * as MavenAGI from "../../../index";
 
 export interface ConversationBasicMetric {
-    /** Field to apply the metric to. */
+    /**
+     * Field to apply the metric to. `IntelligentFields` is a grouping only and is rejected
+     * here with a 400.
+     */
     targetField: MavenAGI.ConversationField;
     /**
      * Fully specified ID of the intelligent field. Required when `targetField` is

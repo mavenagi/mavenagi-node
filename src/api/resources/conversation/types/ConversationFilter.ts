@@ -65,6 +65,14 @@ export interface ConversationFilter {
      * customer-writable.
      */
     conversationMode?: MavenAGI.ConversationMode[];
+    /**
+     * Filter by whether the conversation has been deleted with `deleteConversation`. `true`
+     * returns only deleted conversations, `false` excludes them. When unset, both are returned.
+     *
+     * The filter reads the search index, which is updated shortly after a deletion. Use the
+     * `deleted` field on each result to confirm.
+     */
+    deleted?: boolean;
     /** Filter by tags applied to the conversation */
     tags?: string[];
     /** Filter by agent user IDs associated with the conversation */
@@ -109,6 +117,16 @@ export interface ConversationFilter {
     anyMsgCharterMode?: boolean;
     /** Filter by inbox item IDs associated with the conversation */
     inboxItemIds?: MavenAGI.EntityIdFilter[];
+    /**
+     * Filter by the agent variant each conversation is pinned to (its `variantId`), by
+     * reference ID and owning app, resolved against the calling agent. Matches conversations
+     * pinned to any of them.
+     *
+     * Omit it to match every conversation in the window, whichever variant it ran on. A
+     * conversation from before the agent's conversations were pinned has no variant, so it
+     * matches no list; grouping by `Variant` reports those as `BEFORE_VERSIONING`.
+     */
+    variantIds?: MavenAGI.EntityIdFilter[];
     /** Whether to include simulation conversations in search results. Defaults to only non-simulation conversations. */
     simulationFilter?: MavenAGI.SimulationFilter;
     /** Filter by intelligent field values. All conditions are ANDed together. */

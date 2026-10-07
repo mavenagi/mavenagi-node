@@ -3,8 +3,8 @@
 import type * as MavenAGI from "../../../index";
 
 export interface IntelligentFieldBase extends MavenAGI.IntelligentFieldCore {
-    /** Target entity type for evaluation. Only CONVERSATION is supported at this time. The backend will return an error for other types. */
+    /** Target entity type for evaluation. CONVERSATION is supported, and AGENT_USER is supported for agents with user-level intelligent fields enabled. The backend will return an error for other types. */
     entityType: MavenAGI.EntityType;
-    /** ID of the agent variant this field belongs to, if applicable */
+    /** On a request, the agent variant to stage the write in. On a response, the variant the request named, if any; absent when it named none. */
     variantId?: MavenAGI.EntityIdWithoutAgent;
 }

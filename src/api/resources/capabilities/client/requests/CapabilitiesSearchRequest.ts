@@ -33,7 +33,9 @@ export interface CapabilitiesSearchRequest extends MavenAGI.BaseCappedPaginatedR
      * request that omits it there is rejected with reason `VARIANT_REQUIRED`. Otherwise,
      * if omitted, the agent's only variant is used.
      */
+    variantId?: MavenAGI.EntityIdWithoutAgent;
+    /** Deprecated, use `variantId`, which wins when both are set. */
     variantReferenceId?: string;
-    /** The app that owns the agent variant. Defaults to the calling app. */
+    /** Deprecated, use `variantId`, which wins when both are set. */
     variantAppId?: string;
 }

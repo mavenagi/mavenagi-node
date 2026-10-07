@@ -28,12 +28,4 @@ import type * as MavenAGI from "../../../index";
 export interface CharterRequest extends MavenAGI.CharterContent {
     /** ID that uniquely identifies this charter. */
     charterId: MavenAGI.EntityIdBase;
-    /**
-     * The agent variant this write is scoped to. When set, the charter content is staged in
-     * that variant's working set instead of being applied to the agent's live configuration.
-     *
-     * Omit this field to write directly to the agent. Variant scoping is not active yet: a
-     * variant supplied today is accepted and ignored, and the write applies to the agent.
-     */
-    variantId?: MavenAGI.EntityIdWithoutAgent;
 }

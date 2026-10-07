@@ -4,7 +4,7 @@ import type * as MavenAGI from "../../../../../api/index";
 import * as core from "../../../../../core";
 import type * as serializers from "../../../../index";
 import { CapabilityStatus } from "../../../commons/types/CapabilityStatus";
-import { EntityIdBase } from "../../../commons/types/EntityIdBase";
+import { EntityIdWithoutAgent } from "../../../commons/types/EntityIdWithoutAgent";
 import { EnumOption } from "../../types/EnumOption";
 
 export const IntelligentFieldPatchRequest: core.serialization.Schema<
@@ -16,7 +16,7 @@ export const IntelligentFieldPatchRequest: core.serialization.Schema<
     status: CapabilityStatus.optional(),
     description: core.serialization.string().optional(),
     enumOptions: core.serialization.list(EnumOption).optional(),
-    variantId: EntityIdBase.optional(),
+    variantId: EntityIdWithoutAgent.optional(),
     variantAppId: core.serialization.string().optional(),
 });
 
@@ -27,7 +27,7 @@ export declare namespace IntelligentFieldPatchRequest {
         status?: CapabilityStatus.Raw | null;
         description?: string | null;
         enumOptions?: EnumOption.Raw[] | null;
-        variantId?: EntityIdBase.Raw | null;
+        variantId?: EntityIdWithoutAgent.Raw | null;
         variantAppId?: string | null;
     }
 }

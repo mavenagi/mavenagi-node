@@ -648,11 +648,9 @@ export class SegmentsClient {
         request: MavenAGI.SegmentDeleteRequest = {},
         requestOptions?: SegmentsClient.RequestOptions,
     ): Promise<core.WithRawResponse<MavenAGI.SegmentResponse>> {
-        const { appId, variantReferenceId, variantAppId } = request;
+        const { appId } = request;
         const _queryParams: Record<string, unknown> = {
             appId,
-            variantReferenceId,
-            variantAppId,
         };
         const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
         const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
