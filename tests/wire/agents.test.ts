@@ -39,6 +39,7 @@ describe("AgentsClient", () => {
                         contentSafetyViolationResponsePromptText: "contentSafetyViolationResponsePromptText",
                         rejectQuestionsWithoutKnowledge: true,
                     },
+                    categoryIntelligentFieldId: { type: "AGENT", appId: "appId", referenceId: "x" },
                 },
                 {
                     agentId: {
@@ -61,6 +62,7 @@ describe("AgentsClient", () => {
                         contentSafetyViolationResponsePromptText: "contentSafetyViolationResponsePromptText",
                         rejectQuestionsWithoutKnowledge: true,
                     },
+                    categoryIntelligentFieldId: { type: "AGENT", appId: "appId", referenceId: "x" },
                 },
             ],
             number: 1,
@@ -102,6 +104,11 @@ describe("AgentsClient", () => {
                         contentSafetyViolationResponsePromptText: "contentSafetyViolationResponsePromptText",
                         rejectQuestionsWithoutKnowledge: true,
                     },
+                    categoryIntelligentFieldId: {
+                        type: "AGENT",
+                        appId: "appId",
+                        referenceId: "x",
+                    },
                 },
                 {
                     agentId: {
@@ -123,6 +130,11 @@ describe("AgentsClient", () => {
                         categoryGenerationPromptText: "categoryGenerationPromptText",
                         contentSafetyViolationResponsePromptText: "contentSafetyViolationResponsePromptText",
                         rejectQuestionsWithoutKnowledge: true,
+                    },
+                    categoryIntelligentFieldId: {
+                        type: "AGENT",
+                        appId: "appId",
+                        referenceId: "x",
                     },
                 },
             ],
@@ -301,6 +313,7 @@ describe("AgentsClient", () => {
                     contentSafetyViolationResponsePromptText: "contentSafetyViolationResponsePromptText",
                     rejectQuestionsWithoutKnowledge: true,
                 },
+                categoryIntelligentFieldId: { type: "AGENT", appId: "appId", referenceId: "x" },
             },
             {
                 agentId: {
@@ -323,6 +336,7 @@ describe("AgentsClient", () => {
                     contentSafetyViolationResponsePromptText: "contentSafetyViolationResponsePromptText",
                     rejectQuestionsWithoutKnowledge: true,
                 },
+                categoryIntelligentFieldId: { type: "AGENT", appId: "appId", referenceId: "x" },
             },
         ];
 
@@ -357,6 +371,11 @@ describe("AgentsClient", () => {
                     contentSafetyViolationResponsePromptText: "contentSafetyViolationResponsePromptText",
                     rejectQuestionsWithoutKnowledge: true,
                 },
+                categoryIntelligentFieldId: {
+                    type: "AGENT",
+                    appId: "appId",
+                    referenceId: "x",
+                },
             },
             {
                 agentId: {
@@ -378,6 +397,11 @@ describe("AgentsClient", () => {
                     categoryGenerationPromptText: "categoryGenerationPromptText",
                     contentSafetyViolationResponsePromptText: "contentSafetyViolationResponsePromptText",
                     rejectQuestionsWithoutKnowledge: true,
+                },
+                categoryIntelligentFieldId: {
+                    type: "AGENT",
+                    appId: "appId",
+                    referenceId: "x",
                 },
             },
         ]);
@@ -545,6 +569,7 @@ describe("AgentsClient", () => {
                 contentSafetyViolationResponsePromptText: "contentSafetyViolationResponsePromptText",
                 rejectQuestionsWithoutKnowledge: true,
             },
+            categoryIntelligentFieldId: { type: "AGENT", appId: "appId", referenceId: "x" },
         };
 
         server
@@ -580,6 +605,11 @@ describe("AgentsClient", () => {
                 categoryGenerationPromptText: "categoryGenerationPromptText",
                 contentSafetyViolationResponsePromptText: "contentSafetyViolationResponsePromptText",
                 rejectQuestionsWithoutKnowledge: true,
+            },
+            categoryIntelligentFieldId: {
+                type: "AGENT",
+                appId: "appId",
+                referenceId: "x",
             },
         });
     });
@@ -766,6 +796,7 @@ describe("AgentsClient", () => {
                 contentSafetyViolationResponsePromptText: "contentSafetyViolationResponsePromptText",
                 rejectQuestionsWithoutKnowledge: true,
             },
+            categoryIntelligentFieldId: { type: "AGENT", appId: "appId", referenceId: "x" },
         };
 
         server
@@ -797,6 +828,11 @@ describe("AgentsClient", () => {
                 categoryGenerationPromptText: "categoryGenerationPromptText",
                 contentSafetyViolationResponsePromptText: "contentSafetyViolationResponsePromptText",
                 rejectQuestionsWithoutKnowledge: true,
+            },
+            categoryIntelligentFieldId: {
+                type: "AGENT",
+                appId: "appId",
+                referenceId: "x",
             },
         });
     });
@@ -963,6 +999,7 @@ describe("AgentsClient", () => {
                 contentSafetyViolationResponsePromptText: "contentSafetyViolationResponsePromptText",
                 rejectQuestionsWithoutKnowledge: true,
             },
+            categoryIntelligentFieldId: { type: "AGENT", appId: "appId", referenceId: "x" },
         };
 
         server
@@ -995,6 +1032,11 @@ describe("AgentsClient", () => {
                 categoryGenerationPromptText: "categoryGenerationPromptText",
                 contentSafetyViolationResponsePromptText: "contentSafetyViolationResponsePromptText",
                 rejectQuestionsWithoutKnowledge: true,
+            },
+            categoryIntelligentFieldId: {
+                type: "AGENT",
+                appId: "appId",
+                referenceId: "x",
             },
         });
     });

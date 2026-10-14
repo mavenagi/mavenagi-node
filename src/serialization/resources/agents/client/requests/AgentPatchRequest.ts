@@ -3,6 +3,7 @@
 import type * as MavenAGI from "../../../../../api/index";
 import * as core from "../../../../../core";
 import type * as serializers from "../../../../index";
+import { EntityIdWithoutAgent } from "../../../commons/types/EntityIdWithoutAgent";
 import { LlmPersona } from "../../../commons/types/LlmPersona";
 import { PiiCategory } from "../../../commons/types/PiiCategory";
 import { AgentEnvironment } from "../../types/AgentEnvironment";
@@ -19,6 +20,7 @@ export const AgentPatchRequest: core.serialization.Schema<
     persona: LlmPersona.optional(),
     additionalPromptText: core.serialization.string().optionalNullable(),
     categoryGenerationPromptText: core.serialization.string().optionalNullable(),
+    categoryIntelligentFieldId: EntityIdWithoutAgent.optionalNullable(),
     contentSafetyViolationResponsePromptText: core.serialization.string().optionalNullable(),
     rejectQuestionsWithoutKnowledge: core.serialization.boolean().optional(),
 });
@@ -33,6 +35,7 @@ export declare namespace AgentPatchRequest {
         persona?: LlmPersona.Raw | null;
         additionalPromptText?: (string | null | undefined) | null;
         categoryGenerationPromptText?: (string | null | undefined) | null;
+        categoryIntelligentFieldId?: (EntityIdWithoutAgent.Raw | null | undefined) | null;
         contentSafetyViolationResponsePromptText?: (string | null | undefined) | null;
         rejectQuestionsWithoutKnowledge?: boolean | null;
     }

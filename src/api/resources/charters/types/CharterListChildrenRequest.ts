@@ -18,4 +18,14 @@ export interface CharterListChildrenRequest extends MavenAGI.BaseCappedPaginated
      * Maximum 50 parent IDs per request.
      */
     parentIds: MavenAGI.EntityId[];
+    /**
+     * List the charters as this agent variant sees them, parents and children alike. Its staged
+     * edits are included: a charter with a staged edit is read at that edit, a charter created
+     * in the variant is included, and a charter deleted in the variant, whether the delete is
+     * staged or already in its snapshot, is left out; naming one as a parent is rejected with a
+     * 400. A parent the variant doesn't carry has no children. If not provided, the request is rejected with `VARIANT_REQUIRED` while charters
+     * are versioned for the agent, and otherwise reads through the agent's single variant, as
+     * its snapshot has it, or the published charters while variant reads are off.
+     */
+    variantId?: MavenAGI.EntityIdWithoutAgent;
 }

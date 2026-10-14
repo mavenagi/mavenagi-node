@@ -21,8 +21,20 @@ export interface AgentPatchRequest {
     persona?: MavenAGI.LlmPersona;
     /** Deprecated. Superseded by charters, which determine agent behavior per round. Has no effect for agents using charters. */
     additionalPromptText?: string | null;
-    /** LLM prompt for category generation. */
+    /**
+     * Deprecated. Use `categoryIntelligentFieldId` instead. Not supported on new agents, and ignored while `categoryIntelligentFieldId` is set.
+     *
+     * LLM prompt for category generation.
+     */
     categoryGenerationPromptText?: string | null;
+    /**
+     * The intelligent field whose value becomes each conversation's category. Send null to clear it.
+     *
+     * Must be a `STRING` conversation field on this agent. Giving the field `enumOptions` is highly recommended, so the category comes from a fixed list.
+     *
+     * The field must be `ACTIVE` to produce values. While it is inactive, conversations get no category. With agent variants, a conversation gets a category only if the field is active in its variant. Categories are capped at 280 characters.
+     */
+    categoryIntelligentFieldId?: MavenAGI.EntityIdWithoutAgent | null;
     /** LLM prompt for generating a response when the user's question has been detected as unsafe. */
     contentSafetyViolationResponsePromptText?: string | null;
     /**

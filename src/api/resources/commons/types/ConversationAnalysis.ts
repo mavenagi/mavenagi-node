@@ -9,7 +9,7 @@ export interface ConversationAnalysis {
     agentResponse?: string;
     /** Generated resolution status of the conversation */
     resolutionStatus?: MavenAGI.ResolutionStatus;
-    /** Generated category of the conversation */
+    /** Generated category of the conversation. For agents with a `categoryIntelligentFieldId`, this is that intelligent field's value. New agents without one have no category. */
     category?: string;
     /** Generated sentiment of the conversation */
     sentiment?: MavenAGI.Sentiment;

@@ -32,5 +32,8 @@ export const ErrorReason = {
     /**
      * The write would change an intelligent field's `validationType` in an agent variant. A field keeps its type across variants; to use a different type, create a new field. */
     IntelligentFieldTypeChanged: "INTELLIGENT_FIELD_TYPE_CHANGED",
+    /**
+     * The working set holds staged edits of an entity type that isn't versioned for the agentw now (see `agents.getVersionedEntityTypes`), left from before its versioning was turned off - note that this can only happen in case of a reverted rollout. Committing would  publish them. Discard them with `discardWorkingSetEdits`'`entityType`, then retry.  */
+    WorkingSetHasUnversionedEdits: "WORKING_SET_HAS_UNVERSIONED_EDITS",
 } as const;
 export type ErrorReason = (typeof ErrorReason)[keyof typeof ErrorReason] | string;

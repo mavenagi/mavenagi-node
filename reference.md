@@ -2448,6 +2448,85 @@ await client.capabilities.searchCapabilities();
 </dl>
 </details>
 
+<details><summary><code>client.capabilities.<a href="/src/api/resources/capabilities/client/Client.ts">searchCapabilityExecutions</a>({ ...params }) -> MavenAGI.CapabilityExecutionsSearchResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Search the recorded runs of an agent's capabilities, newest first by default. An execution
+is one run of one capability for one subject, with its outcome and timing: an Event
+Trigger notifying its app, or a Conversation Kickoff running when a conversation started.
+
+Pass a conversation in `subjectIds` to get the executions recorded against it. An
+`EVENT_CREATED` trigger records the event as its subject, so pass the event's ID to find
+those.
+
+Results can trail a run by a few seconds. Executions are searchable for 90 days.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.capabilities.searchCapabilityExecutions({
+    subjectIds: [{
+            referenceId: "conversation-123",
+            appId: "zendesk",
+            organizationId: "acme",
+            agentId: "support",
+            type: "CONVERSATION"
+        }]
+});
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `MavenAGI.CapabilityExecutionsSearchRequest` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `CapabilitiesClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
 ## Charters
 <details><summary><code>client.charters.<a href="/src/api/resources/charters/client/Client.ts">createOrUpdate</a>({ ...params }) -> MavenAGI.CharterResponse</code></summary>
 <dl>
@@ -3727,7 +3806,11 @@ for await (const item of response) {
 <dl>
 <dd>
 
-Uses an LLM flow to categorize the conversation. Experimental.
+Deprecated. Set the agent's `categoryIntelligentFieldId` and read that intelligent field's value instead.
+
+Uses an LLM flow to categorize the conversation.
+
+Returns a 400 for new agents and for any agent with a `categoryIntelligentFieldId`. Their conversation categories come only from that intelligent field: read the field's value, or react to it changing with an `EVENT_CREATED` trigger on the `INTELLIGENT_FIELD_VALUE_CHANGED` system event.
 </dd>
 </dl>
 </dd>
@@ -5880,7 +5963,7 @@ deletes any kind of capability the same way. That endpoint returns no body.
 
 Soft delete an intelligent field. Only INACTIVE fields can be deleted.
 
-Deleted fields are excluded from search results but can still be retrieved by ID.
+Deleted fields are excluded from search results, and getting one by ID returns 404.
 Creating a new field with the same referenceId as a deleted field will overwrite
 the deleted field and restore it with the status a new field gets.
 

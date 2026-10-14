@@ -4,6 +4,7 @@ import type * as MavenAGI from "../../../../api/index";
 import * as core from "../../../../core";
 import type * as serializers from "../../../index";
 import { EntityId } from "../../commons/types/EntityId";
+import { EntityIdWithoutAgent } from "../../commons/types/EntityIdWithoutAgent";
 import { PiiCategory } from "../../commons/types/PiiCategory";
 import { AgentEnvironment } from "./AgentEnvironment";
 import { AgentPrompting } from "./AgentPrompting";
@@ -17,6 +18,7 @@ export const Agent: core.serialization.ObjectSchema<serializers.Agent.Raw, Maven
     enabledPiiCategories: core.serialization.set(PiiCategory),
     systemFallbackMessage: core.serialization.string().optional(),
     prompting: AgentPrompting,
+    categoryIntelligentFieldId: EntityIdWithoutAgent.optional(),
 });
 
 export declare namespace Agent {
@@ -29,5 +31,6 @@ export declare namespace Agent {
         enabledPiiCategories: PiiCategory.Raw[];
         systemFallbackMessage?: string | null;
         prompting: AgentPrompting.Raw;
+        categoryIntelligentFieldId?: EntityIdWithoutAgent.Raw | null;
     }
 }

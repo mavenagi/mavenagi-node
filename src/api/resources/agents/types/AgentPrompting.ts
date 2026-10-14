@@ -8,6 +8,8 @@ export interface AgentPrompting {
     /** Deprecated. Superseded by charters, which determine agent behavior per round. Has no effect for agents using charters. */
     additionalPromptText?: string;
     /**
+     * Deprecated. Use `categoryIntelligentFieldId` instead. Not supported on new agents, and ignored while `categoryIntelligentFieldId` is set.
+     *
      * LLM prompt for category generation.
      *
      * Use this to specify a fixed set of categories that an LLM should choose from when analyzing a conversation.

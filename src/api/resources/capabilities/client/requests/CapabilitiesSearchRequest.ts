@@ -31,7 +31,10 @@ export interface CapabilitiesSearchRequest extends MavenAGI.BaseCappedPaginatedR
      * The agent variant to read intelligent field versions through. Required on an agent
      * with versioned intelligent fields unless `capabilityTypes` excludes them; a
      * request that omits it there is rejected with reason `VARIANT_REQUIRED`. Otherwise,
-     * if omitted, the agent's only variant is used.
+     * if omitted, the agent's only variant is used, as its snapshot has it. When a
+     * variant is named, its staged edits are included: each field is listed once, at its
+     * staged edit if it has one, and a field deleted in the variant, whether the delete is
+     * staged or already in its snapshot, is left out.
      */
     variantId?: MavenAGI.EntityIdWithoutAgent;
     /** Deprecated, use `variantId`, which wins when both are set. */

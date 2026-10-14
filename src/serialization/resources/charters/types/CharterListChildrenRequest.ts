@@ -5,6 +5,7 @@ import * as core from "../../../../core";
 import type * as serializers from "../../../index";
 import { BaseCappedPaginatedRequest } from "../../commons/types/BaseCappedPaginatedRequest";
 import { EntityId } from "../../commons/types/EntityId";
+import { EntityIdWithoutAgent } from "../../commons/types/EntityIdWithoutAgent";
 
 export const CharterListChildrenRequest: core.serialization.ObjectSchema<
     serializers.CharterListChildrenRequest.Raw,
@@ -12,11 +13,13 @@ export const CharterListChildrenRequest: core.serialization.ObjectSchema<
 > = core.serialization
     .object({
         parentIds: core.serialization.list(EntityId),
+        variantId: EntityIdWithoutAgent.optional(),
     })
     .extend(BaseCappedPaginatedRequest);
 
 export declare namespace CharterListChildrenRequest {
     export interface Raw extends BaseCappedPaginatedRequest.Raw {
         parentIds: EntityId.Raw[];
+        variantId?: EntityIdWithoutAgent.Raw | null;
     }
 }

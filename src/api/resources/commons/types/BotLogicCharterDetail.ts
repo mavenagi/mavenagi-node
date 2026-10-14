@@ -10,7 +10,7 @@ export interface BotLogicCharterDetail {
     charterId: MavenAGI.EntityIdWithoutAgent;
     /** Human-readable charter name at the time of evaluation. */
     name: string;
-    /** The segment that gates this charter, if any. Absent for wildcard charters. */
+    /** Deprecated, read the charter's `precondition` from the charters API instead. */
     segmentId?: MavenAGI.EntityIdWithoutAgent;
     /** The parent charter in the hierarchy, if any. Absent for root-level charters. */
     parentId?: MavenAGI.EntityIdWithoutAgent;

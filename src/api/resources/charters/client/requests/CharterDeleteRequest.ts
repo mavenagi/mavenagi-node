@@ -8,13 +8,13 @@ export interface CharterDeleteRequest {
     /** The App ID of the charter to delete. If not provided, the ID of the calling app will be used. */
     appId?: string;
     /**
-     * The reference ID of the agent variant this delete is scoped to. When set, the
-     * deletion is staged in that variant's working set instead of being applied to the
-     * agent's live configuration.
+     * The reference ID of the agent variant this delete is scoped to. While charters are
+     * versioned for the agent, the deletion is staged in that variant's working set
+     * instead of being applied to the agent's live configuration, and a delete that names
+     * no variant is rejected with `VARIANT_REQUIRED`.
      *
-     * Omit this parameter to delete directly from the agent. Variant scoping is not
-     * active yet: a variant supplied today is validated but not applied, and the delete applies
-     * to the agent.
+     * While they aren't, omit this parameter to delete directly from the agent; naming a
+     * variant then is rejected.
      */
     variantReferenceId?: string;
     /** The App ID of the agent variant named by `variantReferenceId`. If not provided, the ID of the calling app will be used. */

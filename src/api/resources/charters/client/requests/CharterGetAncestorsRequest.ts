@@ -7,4 +7,16 @@
 export interface CharterGetAncestorsRequest {
     /** The App ID of the charter. If not provided, the ID of the calling app will be used. */
     appId?: string;
+    /**
+     * The agent variant reference ID to read the ancestors through. Its staged edits are
+     * included: a charter with a staged edit is read at that edit, a charter created in the
+     * variant is included, and a charter deleted in the variant, whether the delete is
+     * staged or already in its snapshot, is a 404, as is one the variant doesn't carry. If
+     * not provided, the request is rejected with `VARIANT_REQUIRED` while charters are
+     * versioned for the agent, and otherwise reads through the agent's single variant, as
+     * its snapshot has it, or the published charters while variant reads are off.
+     */
+    variantReferenceId?: string;
+    /** The App ID of the agent variant reference. If not provided, the ID of the calling app will be used. */
+    variantAppId?: string;
 }

@@ -1132,9 +1132,13 @@ export class ConversationClient {
     }
 
     /**
-     * @beta This endpoint is in pre-release and may change.
+     * @deprecated
      *
-     * Uses an LLM flow to categorize the conversation. Experimental.
+     * Deprecated. Set the agent's `categoryIntelligentFieldId` and read that intelligent field's value instead.
+     *
+     * Uses an LLM flow to categorize the conversation.
+     *
+     * Returns a 400 for new agents and for any agent with a `categoryIntelligentFieldId`. Their conversation categories come only from that intelligent field: read the field's value, or react to it changing with an `EVENT_CREATED` trigger on the `INTELLIGENT_FIELD_VALUE_CHANGED` system event.
      *
      * @param {string} conversationId - The ID of the conversation to categorize
      * @param {ConversationClient.RequestOptions} requestOptions - Request-specific configuration.

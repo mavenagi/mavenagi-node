@@ -2,6 +2,9 @@
 
 import type * as MavenAGI from "../../../index";
 
+/**
+ * Segments that matched this bot response. Omitted when the agent is in charter mode.
+ */
 export interface BotLogicSegmentsItem {
     matchingSegmentIds: MavenAGI.EntityId[];
 }

@@ -31,4 +31,10 @@ export interface Agent {
     systemFallbackMessage?: string;
     /** Agent prompting settings. */
     prompting: MavenAGI.AgentPrompting;
+    /**
+     * The intelligent field whose value becomes each conversation's category.
+     * When set, its value replaces the category generated from `prompting.categoryGenerationPromptText`.
+     * An inactive field produces no values, so conversations get no category until it is activated.
+     */
+    categoryIntelligentFieldId?: MavenAGI.EntityIdWithoutAgent;
 }

@@ -511,7 +511,7 @@ export class IntelligentFieldsClient {
      *
      * Soft delete an intelligent field. Only INACTIVE fields can be deleted.
      *
-     * Deleted fields are excluded from search results but can still be retrieved by ID.
+     * Deleted fields are excluded from search results, and getting one by ID returns 404.
      * Creating a new field with the same referenceId as a deleted field will overwrite
      * the deleted field and restore it with the status a new field gets.
      *

@@ -1086,4 +1086,297 @@ describe("CapabilitiesClient", () => {
             return await client.capabilities.searchCapabilities();
         }).rejects.toThrow(MavenAGI.ServerError);
     });
+
+    test("searchCapabilityExecutions (1)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new MavenAGIClient({
+            maxRetries: 0,
+            appId: "test",
+            appSecret: "test",
+            organizationId: "test",
+            agentId: "test",
+            environment: server.baseUrl,
+        });
+        const rawRequestBody = {
+            subjectIds: [
+                {
+                    referenceId: "conversation-123",
+                    appId: "zendesk",
+                    organizationId: "acme",
+                    agentId: "support",
+                    type: "CONVERSATION",
+                },
+            ],
+        };
+        const rawResponseBody = {
+            number: 0,
+            size: 2,
+            totalElements: 2,
+            totalPages: 1,
+            executions: [
+                {
+                    capabilityType: "TRIGGER",
+                    capabilityId: {
+                        referenceId: "store-in-snowflake",
+                        appId: "snowflake",
+                        organizationId: "acme",
+                        agentId: "support",
+                        type: "EVENT_TRIGGER",
+                    },
+                    subjectId: {
+                        referenceId: "conversation-123",
+                        appId: "zendesk",
+                        organizationId: "acme",
+                        agentId: "support",
+                        type: "CONVERSATION",
+                    },
+                    status: "SUCCESS",
+                    completionReason: "SUCCESS",
+                    startedAt: "2026-08-31T10:30:05Z",
+                    completedAt: "2026-08-31T10:30:06Z",
+                    durationMs: 1120,
+                    createdAt: "2026-08-31T10:30:05Z",
+                    eventType: "CONVERSATION_CREATED",
+                    attempt: 1,
+                },
+                {
+                    capabilityType: "CONVERSATION_KICKOFF",
+                    capabilityId: {
+                        referenceId: "greet-returning-customer",
+                        appId: "my-billing-system",
+                        organizationId: "acme",
+                        agentId: "support",
+                        type: "CONVERSATION_KICKOFF",
+                    },
+                    subjectId: {
+                        referenceId: "conversation-123",
+                        appId: "zendesk",
+                        organizationId: "acme",
+                        agentId: "support",
+                        type: "CONVERSATION",
+                    },
+                    status: "FAILED",
+                    completionReason: "TIMEOUT",
+                    message: "Conversation Kickoff timed out",
+                    startedAt: "2026-08-31T10:30:00Z",
+                    completedAt: "2026-08-31T10:30:04Z",
+                    durationMs: 4000,
+                    createdAt: "2026-08-31T10:30:00Z",
+                },
+            ],
+        };
+
+        server
+            .mockEndpoint()
+            .post("/v1/capabilities/executions/search")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(200)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        const response = await client.capabilities.searchCapabilityExecutions({
+            subjectIds: [
+                {
+                    referenceId: "conversation-123",
+                    appId: "zendesk",
+                    organizationId: "acme",
+                    agentId: "support",
+                    type: "CONVERSATION",
+                },
+            ],
+        });
+        expect(response).toEqual({
+            number: 0,
+            size: 2,
+            totalElements: 2,
+            totalPages: 1,
+            executions: [
+                {
+                    capabilityType: "TRIGGER",
+                    capabilityId: {
+                        referenceId: "store-in-snowflake",
+                        appId: "snowflake",
+                        organizationId: "acme",
+                        agentId: "support",
+                        type: "EVENT_TRIGGER",
+                    },
+                    subjectId: {
+                        referenceId: "conversation-123",
+                        appId: "zendesk",
+                        organizationId: "acme",
+                        agentId: "support",
+                        type: "CONVERSATION",
+                    },
+                    status: "SUCCESS",
+                    completionReason: "SUCCESS",
+                    startedAt: new Date("2026-08-31T10:30:05.000Z"),
+                    completedAt: new Date("2026-08-31T10:30:06.000Z"),
+                    durationMs: 1120,
+                    createdAt: new Date("2026-08-31T10:30:05.000Z"),
+                    eventType: "CONVERSATION_CREATED",
+                    attempt: 1,
+                },
+                {
+                    capabilityType: "CONVERSATION_KICKOFF",
+                    capabilityId: {
+                        referenceId: "greet-returning-customer",
+                        appId: "my-billing-system",
+                        organizationId: "acme",
+                        agentId: "support",
+                        type: "CONVERSATION_KICKOFF",
+                    },
+                    subjectId: {
+                        referenceId: "conversation-123",
+                        appId: "zendesk",
+                        organizationId: "acme",
+                        agentId: "support",
+                        type: "CONVERSATION",
+                    },
+                    status: "FAILED",
+                    completionReason: "TIMEOUT",
+                    message: "Conversation Kickoff timed out",
+                    startedAt: new Date("2026-08-31T10:30:00.000Z"),
+                    completedAt: new Date("2026-08-31T10:30:04.000Z"),
+                    durationMs: 4000,
+                    createdAt: new Date("2026-08-31T10:30:00.000Z"),
+                },
+            ],
+        });
+    });
+
+    test("searchCapabilityExecutions (2)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new MavenAGIClient({
+            maxRetries: 0,
+            appId: "test",
+            appSecret: "test",
+            organizationId: "test",
+            agentId: "test",
+            environment: server.baseUrl,
+        });
+        const rawRequestBody = {};
+        const rawResponseBody = {};
+
+        server
+            .mockEndpoint()
+            .post("/v1/capabilities/executions/search")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(404)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.capabilities.searchCapabilityExecutions();
+        }).rejects.toThrow(MavenAGI.NotFoundError);
+    });
+
+    test("searchCapabilityExecutions (3)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new MavenAGIClient({
+            maxRetries: 0,
+            appId: "test",
+            appSecret: "test",
+            organizationId: "test",
+            agentId: "test",
+            environment: server.baseUrl,
+        });
+        const rawRequestBody = {};
+        const rawResponseBody = {};
+
+        server
+            .mockEndpoint()
+            .post("/v1/capabilities/executions/search")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(400)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.capabilities.searchCapabilityExecutions();
+        }).rejects.toThrow(MavenAGI.BadRequestError);
+    });
+
+    test("searchCapabilityExecutions (4)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new MavenAGIClient({
+            maxRetries: 0,
+            appId: "test",
+            appSecret: "test",
+            organizationId: "test",
+            agentId: "test",
+            environment: server.baseUrl,
+        });
+        const rawRequestBody = {};
+        const rawResponseBody = {};
+
+        server
+            .mockEndpoint()
+            .post("/v1/capabilities/executions/search")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(413)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.capabilities.searchCapabilityExecutions();
+        }).rejects.toThrow(MavenAGI.PayloadTooLargeError);
+    });
+
+    test("searchCapabilityExecutions (5)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new MavenAGIClient({
+            maxRetries: 0,
+            appId: "test",
+            appSecret: "test",
+            organizationId: "test",
+            agentId: "test",
+            environment: server.baseUrl,
+        });
+        const rawRequestBody = {};
+        const rawResponseBody = {};
+
+        server
+            .mockEndpoint()
+            .post("/v1/capabilities/executions/search")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(429)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.capabilities.searchCapabilityExecutions();
+        }).rejects.toThrow(MavenAGI.TooManyRequestsError);
+    });
+
+    test("searchCapabilityExecutions (6)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new MavenAGIClient({
+            maxRetries: 0,
+            appId: "test",
+            appSecret: "test",
+            organizationId: "test",
+            agentId: "test",
+            environment: server.baseUrl,
+        });
+        const rawRequestBody = {};
+        const rawResponseBody = {};
+
+        server
+            .mockEndpoint()
+            .post("/v1/capabilities/executions/search")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(500)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.capabilities.searchCapabilityExecutions();
+        }).rejects.toThrow(MavenAGI.ServerError);
+    });
 });
