@@ -18,6 +18,7 @@ export const AdditionalDataKey: core.serialization.Schema<
     "url",
     "query",
     "position",
+    "botMessageType",
     "amount",
     "currency",
     "channel",
@@ -39,6 +40,7 @@ export declare namespace AdditionalDataKey {
         | "url"
         | "query"
         | "position"
+        | "botMessageType"
         | "amount"
         | "currency"
         | "channel"

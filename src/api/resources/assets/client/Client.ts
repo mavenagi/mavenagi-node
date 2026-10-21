@@ -210,7 +210,7 @@ export class AssetsClient {
                 (await core.Supplier.get(this._options.baseUrl)) ??
                     (await core.Supplier.get(this._options.environment)) ??
                     environments.MavenAGIEnvironment.Production,
-                `/v1/assets/${core.url.encodePathParam(assetReferenceId)}/commit`,
+                `/v1/assets/${core.url.encodePathParam(assetReferenceId, errors.MavenAGIError)}/commit`,
             ),
             method: "POST",
             headers: _headers,

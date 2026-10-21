@@ -21,6 +21,9 @@ export const ErrorReason = {
      * The ID requested for a new variant is already taken. */
     VariantAlreadyExists: "VARIANT_ALREADY_EXISTS",
     /**
+     * The agent is at its limit of ACTIVE variants, so no variant can be created, forked, committed or set back to ACTIVE. Archive or delete one first. */
+    VariantLimitReached: "VARIANT_LIMIT_REACHED",
+    /**
      * The variant is receiving live traffic, so it can't be archived or deleted. Move its traffic elsewhere first. */
     CannotArchiveLiveVariant: "CANNOT_ARCHIVE_LIVE_VARIANT",
     /**
@@ -33,7 +36,7 @@ export const ErrorReason = {
      * The write would change an intelligent field's `validationType` in an agent variant. A field keeps its type across variants; to use a different type, create a new field. */
     IntelligentFieldTypeChanged: "INTELLIGENT_FIELD_TYPE_CHANGED",
     /**
-     * The working set holds staged edits of an entity type that isn't versioned for the agentw now (see `agents.getVersionedEntityTypes`), left from before its versioning was turned off - note that this can only happen in case of a reverted rollout. Committing would  publish them. Discard them with `discardWorkingSetEdits`'`entityType`, then retry.  */
+     * The working set holds staged edits of an entity type or agent setting that isn't versioned for the agent now (see `agents.getVersionedEntityTypes`), left from before its versioning was turned off - note that this can only happen in case of a reverted rollout. Committing would  publish them. Discard them with `discardWorkingSetEdits`' `entityType` or `agentSetting`, then retry. */
     WorkingSetHasUnversionedEdits: "WORKING_SET_HAS_UNVERSIONED_EDITS",
 } as const;
 export type ErrorReason = (typeof ErrorReason)[keyof typeof ErrorReason] | string;

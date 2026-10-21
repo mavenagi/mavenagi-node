@@ -23,4 +23,15 @@ import type * as MavenAGI from "../../../index";
 export interface AppUserRequest extends MavenAGI.AppUser {
     /** ID that uniquely identifies this app user */
     userId: MavenAGI.EntityIdBase;
+    /**
+     * The execution mode the user lives in. Defaults to `LIVE` for a new user, and to the existing
+     * user's execution mode on update; an update can't move a user to a different one.
+     *
+     * A `SIMULATION` user is only linked to other `SIMULATION` users, is excluded from user search
+     * unless `simulationFilter` asks for it, and may only talk in simulation conversations. A `LIVE`
+     * user can't talk in a simulation conversation either, so give each simulation its own user ids
+     * rather than reusing live ones.
+     * Creating one needs the same permission as creating a simulation conversation.
+     */
+    executionMode?: MavenAGI.ExecutionMode;
 }

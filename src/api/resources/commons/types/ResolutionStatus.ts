@@ -4,6 +4,8 @@ export const ResolutionStatus = {
     Unknown: "UNKNOWN",
     Error: "ERROR",
     InProgress: "IN_PROGRESS",
+    /**
+     * Shown in Agent Designer as "Resolved by Maven". */
     Resolved: "RESOLVED",
     Escalated: "ESCALATED",
     Incomplete: "INCOMPLETE",

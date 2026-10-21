@@ -11,7 +11,11 @@ export interface CharterSummary {
     charterId: MavenAGI.EntityId;
     /** The display name of the charter. */
     name: string;
-    /** The rule controlling when this charter applies. Null means wildcard (always matches). */
+    /**
+     * The rule controlling when this charter applies. Null means wildcard (always matches).
+     *
+     * Shown in Agent Designer as the charter's "Segment". A null precondition shows as "All conversations".
+     */
     precondition: MavenAGI.PreconditionResponse | null;
     /** The ID of the parent charter. Null for root-level charters. */
     parentCharterId: MavenAGI.EntityId | null;

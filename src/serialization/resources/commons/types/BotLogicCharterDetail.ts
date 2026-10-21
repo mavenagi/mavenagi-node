@@ -3,6 +3,7 @@
 import type * as MavenAGI from "../../../../api/index";
 import * as core from "../../../../core";
 import type * as serializers from "../../../index";
+import { CharterType } from "./CharterType";
 import { EntityIdWithoutAgent } from "./EntityIdWithoutAgent";
 
 export const BotLogicCharterDetail: core.serialization.ObjectSchema<
@@ -13,6 +14,7 @@ export const BotLogicCharterDetail: core.serialization.ObjectSchema<
     name: core.serialization.string(),
     segmentId: EntityIdWithoutAgent.optional(),
     parentId: EntityIdWithoutAgent.optional(),
+    type: CharterType.optional(),
 });
 
 export declare namespace BotLogicCharterDetail {
@@ -21,5 +23,6 @@ export declare namespace BotLogicCharterDetail {
         name: string;
         segmentId?: EntityIdWithoutAgent.Raw | null;
         parentId?: EntityIdWithoutAgent.Raw | null;
+        type?: CharterType.Raw | null;
     }
 }

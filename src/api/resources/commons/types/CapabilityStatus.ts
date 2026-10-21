@@ -6,10 +6,10 @@
  */
 export const CapabilityStatus = {
     /**
-     * The field is evaluated, and values are computed for matching entities. */
+     * The field is evaluated, and values are computed for matching entities. Shown in Agent Designer as "Enabled" on conversation kickoffs. */
     Active: "ACTIVE",
     /**
-     * The field exists but is not evaluated. This is the state a new field is created in. */
+     * The field exists but is not evaluated. This is the state a new field is created in. Shown in Agent Designer as "Disabled" on conversation kickoffs. */
     Inactive: "INACTIVE",
     /**
      * The field has been soft deleted and cannot be modified. Set by the delete endpoint

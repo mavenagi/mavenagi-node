@@ -3,6 +3,8 @@
 import type * as MavenAGI from "../../../index";
 
 /**
+ * Each version is one entry in the knowledge base's "Refresh Log" in Agent Designer.
+ *
  * @example
  *     {
  *         versionId: {

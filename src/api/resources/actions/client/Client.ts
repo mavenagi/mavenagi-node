@@ -375,7 +375,7 @@ export class ActionsClient {
                 (await core.Supplier.get(this._options.baseUrl)) ??
                     (await core.Supplier.get(this._options.environment)) ??
                     environments.MavenAGIEnvironment.Production,
-                `/v1/actions/${core.url.encodePathParam(actionReferenceId)}`,
+                `/v1/actions/${core.url.encodePathParam(actionReferenceId, errors.MavenAGIError)}`,
             ),
             method: "GET",
             headers: _headers,
@@ -530,7 +530,7 @@ export class ActionsClient {
                 (await core.Supplier.get(this._options.baseUrl)) ??
                     (await core.Supplier.get(this._options.environment)) ??
                     environments.MavenAGIEnvironment.Production,
-                `/v1/actions/${core.url.encodePathParam(actionReferenceId)}`,
+                `/v1/actions/${core.url.encodePathParam(actionReferenceId, errors.MavenAGIError)}`,
             ),
             method: "PATCH",
             headers: _headers,
@@ -676,7 +676,7 @@ export class ActionsClient {
                 (await core.Supplier.get(this._options.baseUrl)) ??
                     (await core.Supplier.get(this._options.environment)) ??
                     environments.MavenAGIEnvironment.Production,
-                `/v1/actions/${core.url.encodePathParam(actionReferenceId)}`,
+                `/v1/actions/${core.url.encodePathParam(actionReferenceId, errors.MavenAGIError)}`,
             ),
             method: "DELETE",
             headers: _headers,

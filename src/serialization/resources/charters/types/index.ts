@@ -16,4 +16,3 @@ export * from "./CharterSearchRequest";
 export * from "./CharterSearchResponse";
 export * from "./CharterStatus";
 export * from "./CharterSummary";
-export * from "./CharterType";

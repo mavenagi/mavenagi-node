@@ -98,6 +98,10 @@ describe("CapabilitiesClient", () => {
             createdAt: "2024-01-15T09:30:00Z",
             updatedAt: "2024-01-15T09:30:00Z",
             status: "ACTIVE",
+            functionBinding: {
+                functionId: { type: "AGENT", appId: "appId", referenceId: "x" },
+                versionId: { type: "AGENT", appId: "appId", referenceId: "x" },
+            },
         };
 
         server
@@ -445,6 +449,10 @@ describe("CapabilitiesClient", () => {
             createdAt: "2024-01-15T09:30:00Z",
             updatedAt: "2024-01-15T09:30:00Z",
             status: "ACTIVE",
+            functionBinding: {
+                functionId: { type: "AGENT", appId: "appId", referenceId: "x" },
+                versionId: { type: "AGENT", appId: "appId", referenceId: "x" },
+            },
         };
 
         server
@@ -849,6 +857,207 @@ describe("CapabilitiesClient", () => {
 
         await expect(async () => {
             return await client.capabilities.deleteCapability("ACTION", "referenceId");
+        }).rejects.toThrow(MavenAGI.ServerError);
+    });
+
+    test("simulateCapability (1)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new MavenAGIClient({
+            maxRetries: 0,
+            appId: "test",
+            appSecret: "test",
+            organizationId: "test",
+            agentId: "test",
+            environment: server.baseUrl,
+        });
+        const rawRequestBody = { capabilityType: "ACTION" };
+        const rawResponseBody = {
+            capabilityType: "ACTION",
+            response: "response",
+            data: { data: { key: "value" } },
+            status: "SUCCESS",
+            errorMessage: "errorMessage",
+        };
+
+        server
+            .mockEndpoint()
+            .post("/v1/capabilities/ACTION/referenceId/simulate")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(200)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        const response = await client.capabilities.simulateCapability("ACTION", "referenceId", {
+            body: {
+                capabilityType: "ACTION",
+            },
+        });
+        expect(response).toEqual({
+            capabilityType: "ACTION",
+            response: "response",
+            data: {
+                data: {
+                    key: "value",
+                },
+            },
+            status: "SUCCESS",
+            errorMessage: "errorMessage",
+        });
+    });
+
+    test("simulateCapability (2)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new MavenAGIClient({
+            maxRetries: 0,
+            appId: "test",
+            appSecret: "test",
+            organizationId: "test",
+            agentId: "test",
+            environment: server.baseUrl,
+        });
+        const rawRequestBody = { capabilityType: "ACTION" };
+        const rawResponseBody = {};
+
+        server
+            .mockEndpoint()
+            .post("/v1/capabilities/ACTION/referenceId/simulate")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(404)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.capabilities.simulateCapability("ACTION", "referenceId", {
+                body: {
+                    capabilityType: "ACTION",
+                },
+            });
+        }).rejects.toThrow(MavenAGI.NotFoundError);
+    });
+
+    test("simulateCapability (3)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new MavenAGIClient({
+            maxRetries: 0,
+            appId: "test",
+            appSecret: "test",
+            organizationId: "test",
+            agentId: "test",
+            environment: server.baseUrl,
+        });
+        const rawRequestBody = { capabilityType: "ACTION" };
+        const rawResponseBody = {};
+
+        server
+            .mockEndpoint()
+            .post("/v1/capabilities/ACTION/referenceId/simulate")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(400)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.capabilities.simulateCapability("ACTION", "referenceId", {
+                body: {
+                    capabilityType: "ACTION",
+                },
+            });
+        }).rejects.toThrow(MavenAGI.BadRequestError);
+    });
+
+    test("simulateCapability (4)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new MavenAGIClient({
+            maxRetries: 0,
+            appId: "test",
+            appSecret: "test",
+            organizationId: "test",
+            agentId: "test",
+            environment: server.baseUrl,
+        });
+        const rawRequestBody = { capabilityType: "ACTION" };
+        const rawResponseBody = {};
+
+        server
+            .mockEndpoint()
+            .post("/v1/capabilities/ACTION/referenceId/simulate")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(413)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.capabilities.simulateCapability("ACTION", "referenceId", {
+                body: {
+                    capabilityType: "ACTION",
+                },
+            });
+        }).rejects.toThrow(MavenAGI.PayloadTooLargeError);
+    });
+
+    test("simulateCapability (5)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new MavenAGIClient({
+            maxRetries: 0,
+            appId: "test",
+            appSecret: "test",
+            organizationId: "test",
+            agentId: "test",
+            environment: server.baseUrl,
+        });
+        const rawRequestBody = { capabilityType: "ACTION" };
+        const rawResponseBody = {};
+
+        server
+            .mockEndpoint()
+            .post("/v1/capabilities/ACTION/referenceId/simulate")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(429)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.capabilities.simulateCapability("ACTION", "referenceId", {
+                body: {
+                    capabilityType: "ACTION",
+                },
+            });
+        }).rejects.toThrow(MavenAGI.TooManyRequestsError);
+    });
+
+    test("simulateCapability (6)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new MavenAGIClient({
+            maxRetries: 0,
+            appId: "test",
+            appSecret: "test",
+            organizationId: "test",
+            agentId: "test",
+            environment: server.baseUrl,
+        });
+        const rawRequestBody = { capabilityType: "ACTION" };
+        const rawResponseBody = {};
+
+        server
+            .mockEndpoint()
+            .post("/v1/capabilities/ACTION/referenceId/simulate")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(500)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.capabilities.simulateCapability("ACTION", "referenceId", {
+                body: {
+                    capabilityType: "ACTION",
+                },
+            });
         }).rejects.toThrow(MavenAGI.ServerError);
     });
 

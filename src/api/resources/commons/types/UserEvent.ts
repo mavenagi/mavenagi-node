@@ -7,7 +7,7 @@ export interface UserEvent extends MavenAGI.EventBaseNoId {
     id: MavenAGI.EntityId;
     /** The date and time the event was created */
     createdAt?: Date;
-    /** The name of the event */
+    /** The name of the event. Shown in Agent Designer as "Event type". */
     eventName: MavenAGI.UserEventName;
     /** Information about the user who triggered the event */
     userInfo: MavenAGI.EventUserInfo;

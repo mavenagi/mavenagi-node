@@ -41,6 +41,9 @@ export const AdditionalDataKey = {
      * The 1-based position of the chosen item in a list, such as a search result or a suggestion. */
     Position: "position",
     /**
+     * The `botMessageType` of the bot message. Maven sets it on `BOT_REPLY_CREATED`. */
+    BotMessageType: "botMessageType",
+    /**
      * A monetary amount, as a decimal number in `currency`. */
     Amount: "amount",
     /**

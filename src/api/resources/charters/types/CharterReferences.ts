@@ -19,6 +19,8 @@ export interface CharterReferences {
     /**
      * The IDs of actions this charter makes available.
      * Maximum 50 actions per charter.
+     *
+     * Shown in Agent Designer as "Capabilities".
      */
     actionIds: MavenAGI.EntityId[];
 }

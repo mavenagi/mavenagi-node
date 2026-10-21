@@ -77,7 +77,7 @@ export class OrganizationsClient {
                 (await core.Supplier.get(this._options.baseUrl)) ??
                     (await core.Supplier.get(this._options.environment)) ??
                     environments.MavenAGIEnvironment.Production,
-                `/v1/organizations/${core.url.encodePathParam(organizationReferenceId)}`,
+                `/v1/organizations/${core.url.encodePathParam(organizationReferenceId, errors.MavenAGIError)}`,
             ),
             method: "POST",
             headers: _headers,
@@ -218,7 +218,7 @@ export class OrganizationsClient {
                 (await core.Supplier.get(this._options.baseUrl)) ??
                     (await core.Supplier.get(this._options.environment)) ??
                     environments.MavenAGIEnvironment.Production,
-                `/v1/organizations/${core.url.encodePathParam(organizationReferenceId)}`,
+                `/v1/organizations/${core.url.encodePathParam(organizationReferenceId, errors.MavenAGIError)}`,
             ),
             method: "GET",
             headers: _headers,
@@ -361,7 +361,7 @@ export class OrganizationsClient {
                 (await core.Supplier.get(this._options.baseUrl)) ??
                     (await core.Supplier.get(this._options.environment)) ??
                     environments.MavenAGIEnvironment.Production,
-                `/v1/organizations/${core.url.encodePathParam(organizationReferenceId)}`,
+                `/v1/organizations/${core.url.encodePathParam(organizationReferenceId, errors.MavenAGIError)}`,
             ),
             method: "PATCH",
             headers: _headers,
@@ -506,7 +506,7 @@ export class OrganizationsClient {
                 (await core.Supplier.get(this._options.baseUrl)) ??
                     (await core.Supplier.get(this._options.environment)) ??
                     environments.MavenAGIEnvironment.Production,
-                `/v1/organizations/${core.url.encodePathParam(organizationReferenceId)}`,
+                `/v1/organizations/${core.url.encodePathParam(organizationReferenceId, errors.MavenAGIError)}`,
             ),
             method: "DELETE",
             headers: _headers,

@@ -26,8 +26,8 @@ import type * as MavenAGI from "../../../index";
 export interface CustomerResponse extends MavenAGI.CustomerBase {
     /** ID that uniquely identifies this customer */
     customerId: MavenAGI.EntityId;
-    /** Set of agent user IDs assigned to this customer */
+    /** Set of agent user IDs assigned to this customer. Shown in Agent Designer under "People", together with `members`. */
     assignees: Set<string>;
-    /** Set of agent user IDs who are members of this customer */
+    /** Set of agent user IDs who are members of this customer. Shown in Agent Designer under "People", together with `assignees`. */
     members: Set<string>;
 }

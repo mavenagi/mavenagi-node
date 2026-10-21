@@ -2377,6 +2377,97 @@ await client.capabilities.deleteCapability("ACTION", "referenceId");
 </dl>
 </details>
 
+<details><summary><code>client.capabilities.<a href="/src/api/resources/capabilities/client/Client.ts">simulateCapability</a>(capabilityType, referenceId, { ...params }) -> MavenAGI.CapabilitySimulationResult</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Run one of an agent's capabilities once, as a simulation, and return what it produced.
+
+The caller supplies everything the capability reads, so it runs in isolation: no
+conversation or agent user has to exist first. The capability is told its mode is
+`SIMULATION`, the same as in a test suite run, so an app that honours it can avoid side
+effects in real systems. Nothing here runs a capability live.
+
+Only actions can be simulated today. Triggers and conversation kickoffs are rejected with a
+400 until they can run as simulations. Intelligent fields cannot be simulated.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.capabilities.simulateCapability("ACTION", "referenceId", {
+    body: {
+        capabilityType: "ACTION"
+    }
+});
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**capabilityType:** `MavenAGI.CapabilityType` — Which kind of capability to simulate. Must match the body's `capabilityType`.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**referenceId:** `string` — The capability's reference ID, unique within its type and app.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `MavenAGI.SimulateCapabilityByTypeRequest` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `CapabilitiesClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
 <details><summary><code>client.capabilities.<a href="/src/api/resources/capabilities/client/Client.ts">searchCapabilities</a>({ ...params }) -> MavenAGI.CapabilitiesSearchResponse</code></summary>
 <dl>
 <dd>
@@ -3429,17 +3520,19 @@ await client.conversation.get("conversationId");
 <dl>
 <dd>
 
-Wipes a conversation of all user data.
-The conversation ID will still exist and non-user specific data will still be retained.
-Attempts to modify or add messages to the conversation will throw an error.
-The conversation is sealed against further writes as soon as this call returns. A `202 Accepted` response means the wipe is still completing and will finish on its own.
+Wipes the user content from a conversation.
+The conversation and its ID still exist afterwards, and so does its non-content data, so it still counts in metrics.
+The conversation is sealed against further writes as soon as this call returns: adding or changing messages fails with `409 Conflict`, and so does deleting it again once the wipe has finished.
+A `202 Accepted` response means the wipe is still completing and will finish on its own.
 
 Simulation conversations will no longer be visible in search results nor metrics.
-Non-simulation conversations will remain visible - they can not be fully removed from the system.
+Non-simulation conversations remain visible; they cannot be fully removed from the system.
 
 <Warning>This is a destructive operation and cannot be undone. <br/><br/>
-The exact fields cleared include: the conversation subject, userRequest, agentResponse.
-As well as the text response, followup questions, and backend LLM prompt of all messages.</Warning>
+What is wiped: the conversation's `subject` and `analysis.agentResponse` are cleared, and `analysis.userRequest` is replaced with `reason`.
+Every message's text, from the user and the agent alike, is replaced with `reason`, and its attachments, follow-up questions, backend LLM prompt and history, the data actions returned, and action arguments are cleared.
+Evaluation results for the conversation are deleted, and the payloads recorded on its trigger and action executions are cleared. <br/><br/>
+What is kept: the conversation's metadata, each message's charts, structured answer and app-supplied metadata, the conversation's intelligent field values, its feedback and events, and the users who took part. To wipe a user's data, use `DELETE /users/{userId}` or `DELETE /agentusers/{agentUserId}`.</Warning>
 </dd>
 </dl>
 </dd>
@@ -5964,8 +6057,9 @@ deletes any kind of capability the same way. That endpoint returns no body.
 Soft delete an intelligent field. Only INACTIVE fields can be deleted.
 
 Deleted fields are excluded from search results, and getting one by ID returns 404.
-Creating a new field with the same referenceId as a deleted field will overwrite
-the deleted field and restore it with the status a new field gets.
+Creating a field with the same referenceId as a deleted field reclaims it: the field keeps
+its identity and entityType, every other setting comes from the request, and it gets the
+status a new field gets.
 
 Deleted fields cannot be modified.
 </dd>
@@ -8088,7 +8182,7 @@ await client.segments.patch("segmentReferenceId", {});
 
 Soft delete a segment. Only INACTIVE segments can be deleted.
 
-Deleted segments are excluded from search results but can still be retrieved by ID for archival purposes. Creating a new segment with the same referenceId as a deleted segment will overwrite the deleted segment and restore it to ACTIVE status.
+Deleted segments are excluded from search results but can still be retrieved by ID for archival purposes. Creating a segment with the same referenceId as a deleted segment reclaims it: the segment keeps its identity, and every other setting comes from the request.
 
 Deleted segments cannot be modified.
 </dd>
@@ -8688,6 +8782,84 @@ await client.users.getAgentUser("aus_1234567890");
 </dl>
 </details>
 
+<details><summary><code>client.users.<a href="/src/api/resources/users/client/Client.ts">deleteAgentUser</a>(agentUserId) -> void</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Deletes the identifiers and user data that every app has saved for an agent user.
+This is the same as calling `DELETE /users/{userId}` for each of the agent user's app users.
+
+The agent user and its app users still exist afterwards, with no identifiers or user data.
+Apps can keep writing to them; a later create or update adds data back to the same users.
+
+Conversations, their messages and events are not modified, apart from the intelligent field values below. To wipe a conversation, use `DELETE /conversations/{conversationId}`.
+
+If the ID belongs to an agent user that has been merged into another, the agent user it was merged into is wiped.
+
+<Warning>This is a destructive operation and cannot be undone.</Warning>
+
+### Intelligent fields
+
+The agent user's intelligent field values are deleted too, and removed from their `INTELLIGENT_FIELD_VALUE_CHANGED` events; the events themselves are kept.
+Unlike `DELETE /users/{userId}`, the wipe does not recompute the values. They can be computed again later from the user's remaining conversations, for example after the user sends another message; wipe those conversations first to prevent that.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.users.deleteAgentUser("aus_1234567890");
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**agentUserId:** `string` — The ID of the agent user to wipe.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `UsersClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
 <details><summary><code>client.users.<a href="/src/api/resources/users/client/Client.ts">createOrUpdate</a>({ ...params }) -> MavenAGI.AppUserResponse</code></summary>
 <dl>
 <dd>
@@ -8848,8 +9020,13 @@ await client.users.get("user-0");
 <dl>
 <dd>
 
-Deletes all identifiers and user data saved by the specified app.
+Deletes all identifiers and user data saved by the specified app for this user.
 Does not modify data or identifiers saved by other apps.
+
+The app user still exists afterwards, with no identifiers or user data, and the app can keep writing to it.
+Conversations, their messages and events are not modified.
+The agent user's intelligent field values are not deleted; they are recomputed without this app's data.
+To wipe a conversation, use `DELETE /conversations/{conversationId}`. To wipe every app's data for a user, use `DELETE /agentusers/{agentUserId}`.
 
 If this user is linked to a user from another app, it will not be unlinked. Unlinking of users is not yet supported.
 

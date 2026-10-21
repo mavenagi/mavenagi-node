@@ -11,7 +11,11 @@
  *            Deleting a charter cascades to all descendants (they are also soft-deleted).
  */
 export const CharterStatus = {
+    /**
+     * Shown in Agent Designer as "Live". */
     Active: "ACTIVE",
+    /**
+     * Shown in Agent Designer as "Draft". */
     Inactive: "INACTIVE",
     Deleted: "DELETED",
 } as const;

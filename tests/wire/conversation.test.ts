@@ -256,6 +256,35 @@ describe("ConversationClient", () => {
                     },
                 ],
                 variantId: { type: "AGENT", appId: "appId", referenceId: "x" },
+                actionMocks: [
+                    {
+                        actionId: { type: "AGENT", appId: "appId", referenceId: "x" },
+                        behavior: {
+                            type: "fixedResponse",
+                            response: "response",
+                            data: { data: { key: "value" } },
+                            status: "SUCCESS",
+                            errorMessage: "errorMessage",
+                        },
+                    },
+                    {
+                        actionId: { type: "AGENT", appId: "appId", referenceId: "x" },
+                        behavior: {
+                            type: "fixedResponse",
+                            response: "response",
+                            data: { data: { key: "value" } },
+                            status: "SUCCESS",
+                            errorMessage: "errorMessage",
+                        },
+                    },
+                ],
+                defaultActionBehavior: {
+                    type: "fixedResponse",
+                    response: "response",
+                    data: { data: { key: "value" } },
+                    status: "SUCCESS",
+                    errorMessage: "errorMessage",
+                },
             },
             relatedEntities: {
                 SPAWN_FROM: [
@@ -626,6 +655,55 @@ describe("ConversationClient", () => {
                     type: "AGENT",
                     appId: "appId",
                     referenceId: "x",
+                },
+                actionMocks: [
+                    {
+                        actionId: {
+                            type: "AGENT",
+                            appId: "appId",
+                            referenceId: "x",
+                        },
+                        behavior: {
+                            type: "fixedResponse",
+                            response: "response",
+                            data: {
+                                data: {
+                                    key: "value",
+                                },
+                            },
+                            status: "SUCCESS",
+                            errorMessage: "errorMessage",
+                        },
+                    },
+                    {
+                        actionId: {
+                            type: "AGENT",
+                            appId: "appId",
+                            referenceId: "x",
+                        },
+                        behavior: {
+                            type: "fixedResponse",
+                            response: "response",
+                            data: {
+                                data: {
+                                    key: "value",
+                                },
+                            },
+                            status: "SUCCESS",
+                            errorMessage: "errorMessage",
+                        },
+                    },
+                ],
+                defaultActionBehavior: {
+                    type: "fixedResponse",
+                    response: "response",
+                    data: {
+                        data: {
+                            key: "value",
+                        },
+                    },
+                    status: "SUCCESS",
+                    errorMessage: "errorMessage",
                 },
             },
             relatedEntities: {
@@ -1538,6 +1616,35 @@ describe("ConversationClient", () => {
                     },
                 ],
                 variantId: { type: "AGENT", appId: "appId", referenceId: "x" },
+                actionMocks: [
+                    {
+                        actionId: { type: "AGENT", appId: "appId", referenceId: "x" },
+                        behavior: {
+                            type: "fixedResponse",
+                            response: "response",
+                            data: { data: { key: "value" } },
+                            status: "SUCCESS",
+                            errorMessage: "errorMessage",
+                        },
+                    },
+                    {
+                        actionId: { type: "AGENT", appId: "appId", referenceId: "x" },
+                        behavior: {
+                            type: "fixedResponse",
+                            response: "response",
+                            data: { data: { key: "value" } },
+                            status: "SUCCESS",
+                            errorMessage: "errorMessage",
+                        },
+                    },
+                ],
+                defaultActionBehavior: {
+                    type: "fixedResponse",
+                    response: "response",
+                    data: { data: { key: "value" } },
+                    status: "SUCCESS",
+                    errorMessage: "errorMessage",
+                },
             },
             relatedEntities: {
                 SPAWN_FROM: [
@@ -1861,6 +1968,55 @@ describe("ConversationClient", () => {
                     type: "AGENT",
                     appId: "appId",
                     referenceId: "x",
+                },
+                actionMocks: [
+                    {
+                        actionId: {
+                            type: "AGENT",
+                            appId: "appId",
+                            referenceId: "x",
+                        },
+                        behavior: {
+                            type: "fixedResponse",
+                            response: "response",
+                            data: {
+                                data: {
+                                    key: "value",
+                                },
+                            },
+                            status: "SUCCESS",
+                            errorMessage: "errorMessage",
+                        },
+                    },
+                    {
+                        actionId: {
+                            type: "AGENT",
+                            appId: "appId",
+                            referenceId: "x",
+                        },
+                        behavior: {
+                            type: "fixedResponse",
+                            response: "response",
+                            data: {
+                                data: {
+                                    key: "value",
+                                },
+                            },
+                            status: "SUCCESS",
+                            errorMessage: "errorMessage",
+                        },
+                    },
+                ],
+                defaultActionBehavior: {
+                    type: "fixedResponse",
+                    response: "response",
+                    data: {
+                        data: {
+                            key: "value",
+                        },
+                    },
+                    status: "SUCCESS",
+                    errorMessage: "errorMessage",
                 },
             },
             relatedEntities: {
@@ -2409,6 +2565,35 @@ describe("ConversationClient", () => {
                     },
                 ],
                 variantId: { type: "AGENT", appId: "appId", referenceId: "x" },
+                actionMocks: [
+                    {
+                        actionId: { type: "AGENT", appId: "appId", referenceId: "x" },
+                        behavior: {
+                            type: "fixedResponse",
+                            response: "response",
+                            data: { data: { key: "value" } },
+                            status: "SUCCESS",
+                            errorMessage: "errorMessage",
+                        },
+                    },
+                    {
+                        actionId: { type: "AGENT", appId: "appId", referenceId: "x" },
+                        behavior: {
+                            type: "fixedResponse",
+                            response: "response",
+                            data: { data: { key: "value" } },
+                            status: "SUCCESS",
+                            errorMessage: "errorMessage",
+                        },
+                    },
+                ],
+                defaultActionBehavior: {
+                    type: "fixedResponse",
+                    response: "response",
+                    data: { data: { key: "value" } },
+                    status: "SUCCESS",
+                    errorMessage: "errorMessage",
+                },
             },
             relatedEntities: {
                 SPAWN_FROM: [
@@ -2754,6 +2939,55 @@ describe("ConversationClient", () => {
                     type: "AGENT",
                     appId: "appId",
                     referenceId: "x",
+                },
+                actionMocks: [
+                    {
+                        actionId: {
+                            type: "AGENT",
+                            appId: "appId",
+                            referenceId: "x",
+                        },
+                        behavior: {
+                            type: "fixedResponse",
+                            response: "response",
+                            data: {
+                                data: {
+                                    key: "value",
+                                },
+                            },
+                            status: "SUCCESS",
+                            errorMessage: "errorMessage",
+                        },
+                    },
+                    {
+                        actionId: {
+                            type: "AGENT",
+                            appId: "appId",
+                            referenceId: "x",
+                        },
+                        behavior: {
+                            type: "fixedResponse",
+                            response: "response",
+                            data: {
+                                data: {
+                                    key: "value",
+                                },
+                            },
+                            status: "SUCCESS",
+                            errorMessage: "errorMessage",
+                        },
+                    },
+                ],
+                defaultActionBehavior: {
+                    type: "fixedResponse",
+                    response: "response",
+                    data: {
+                        data: {
+                            key: "value",
+                        },
+                    },
+                    status: "SUCCESS",
+                    errorMessage: "errorMessage",
                 },
             },
             relatedEntities: {
@@ -4436,6 +4670,35 @@ describe("ConversationClient", () => {
                     },
                 ],
                 variantId: { type: "AGENT", appId: "appId", referenceId: "x" },
+                actionMocks: [
+                    {
+                        actionId: { type: "AGENT", appId: "appId", referenceId: "x" },
+                        behavior: {
+                            type: "fixedResponse",
+                            response: "response",
+                            data: { data: { key: "value" } },
+                            status: "SUCCESS",
+                            errorMessage: "errorMessage",
+                        },
+                    },
+                    {
+                        actionId: { type: "AGENT", appId: "appId", referenceId: "x" },
+                        behavior: {
+                            type: "fixedResponse",
+                            response: "response",
+                            data: { data: { key: "value" } },
+                            status: "SUCCESS",
+                            errorMessage: "errorMessage",
+                        },
+                    },
+                ],
+                defaultActionBehavior: {
+                    type: "fixedResponse",
+                    response: "response",
+                    data: { data: { key: "value" } },
+                    status: "SUCCESS",
+                    errorMessage: "errorMessage",
+                },
             },
             relatedEntities: {
                 SPAWN_FROM: [
@@ -4767,6 +5030,55 @@ describe("ConversationClient", () => {
                     type: "AGENT",
                     appId: "appId",
                     referenceId: "x",
+                },
+                actionMocks: [
+                    {
+                        actionId: {
+                            type: "AGENT",
+                            appId: "appId",
+                            referenceId: "x",
+                        },
+                        behavior: {
+                            type: "fixedResponse",
+                            response: "response",
+                            data: {
+                                data: {
+                                    key: "value",
+                                },
+                            },
+                            status: "SUCCESS",
+                            errorMessage: "errorMessage",
+                        },
+                    },
+                    {
+                        actionId: {
+                            type: "AGENT",
+                            appId: "appId",
+                            referenceId: "x",
+                        },
+                        behavior: {
+                            type: "fixedResponse",
+                            response: "response",
+                            data: {
+                                data: {
+                                    key: "value",
+                                },
+                            },
+                            status: "SUCCESS",
+                            errorMessage: "errorMessage",
+                        },
+                    },
+                ],
+                defaultActionBehavior: {
+                    type: "fixedResponse",
+                    response: "response",
+                    data: {
+                        data: {
+                            key: "value",
+                        },
+                    },
+                    status: "SUCCESS",
+                    errorMessage: "errorMessage",
                 },
             },
             relatedEntities: {
@@ -5492,6 +5804,35 @@ describe("ConversationClient", () => {
                             },
                         ],
                         variantId: { type: "AGENT", appId: "appId", referenceId: "x" },
+                        actionMocks: [
+                            {
+                                actionId: { type: "AGENT", appId: "appId", referenceId: "x" },
+                                behavior: {
+                                    type: "fixedResponse",
+                                    response: "response",
+                                    data: {},
+                                    status: "SUCCESS",
+                                    errorMessage: "errorMessage",
+                                },
+                            },
+                            {
+                                actionId: { type: "AGENT", appId: "appId", referenceId: "x" },
+                                behavior: {
+                                    type: "fixedResponse",
+                                    response: "response",
+                                    data: {},
+                                    status: "SUCCESS",
+                                    errorMessage: "errorMessage",
+                                },
+                            },
+                        ],
+                        defaultActionBehavior: {
+                            type: "fixedResponse",
+                            response: "response",
+                            data: { data: { key: "value" } },
+                            status: "SUCCESS",
+                            errorMessage: "errorMessage",
+                        },
                     },
                     relatedEntities: {
                         SPAWN_FROM: [
@@ -5659,6 +6000,35 @@ describe("ConversationClient", () => {
                             },
                         ],
                         variantId: { type: "AGENT", appId: "appId", referenceId: "x" },
+                        actionMocks: [
+                            {
+                                actionId: { type: "AGENT", appId: "appId", referenceId: "x" },
+                                behavior: {
+                                    type: "fixedResponse",
+                                    response: "response",
+                                    data: {},
+                                    status: "SUCCESS",
+                                    errorMessage: "errorMessage",
+                                },
+                            },
+                            {
+                                actionId: { type: "AGENT", appId: "appId", referenceId: "x" },
+                                behavior: {
+                                    type: "fixedResponse",
+                                    response: "response",
+                                    data: {},
+                                    status: "SUCCESS",
+                                    errorMessage: "errorMessage",
+                                },
+                            },
+                        ],
+                        defaultActionBehavior: {
+                            type: "fixedResponse",
+                            response: "response",
+                            data: { data: { key: "value" } },
+                            status: "SUCCESS",
+                            errorMessage: "errorMessage",
+                        },
                     },
                     relatedEntities: {
                         SPAWN_FROM: [
@@ -5883,6 +6253,47 @@ describe("ConversationClient", () => {
                             appId: "appId",
                             referenceId: "x",
                         },
+                        actionMocks: [
+                            {
+                                actionId: {
+                                    type: "AGENT",
+                                    appId: "appId",
+                                    referenceId: "x",
+                                },
+                                behavior: {
+                                    type: "fixedResponse",
+                                    response: "response",
+                                    data: {},
+                                    status: "SUCCESS",
+                                    errorMessage: "errorMessage",
+                                },
+                            },
+                            {
+                                actionId: {
+                                    type: "AGENT",
+                                    appId: "appId",
+                                    referenceId: "x",
+                                },
+                                behavior: {
+                                    type: "fixedResponse",
+                                    response: "response",
+                                    data: {},
+                                    status: "SUCCESS",
+                                    errorMessage: "errorMessage",
+                                },
+                            },
+                        ],
+                        defaultActionBehavior: {
+                            type: "fixedResponse",
+                            response: "response",
+                            data: {
+                                data: {
+                                    key: "value",
+                                },
+                            },
+                            status: "SUCCESS",
+                            errorMessage: "errorMessage",
+                        },
                     },
                     relatedEntities: {
                         SPAWN_FROM: [
@@ -6087,6 +6498,47 @@ describe("ConversationClient", () => {
                             type: "AGENT",
                             appId: "appId",
                             referenceId: "x",
+                        },
+                        actionMocks: [
+                            {
+                                actionId: {
+                                    type: "AGENT",
+                                    appId: "appId",
+                                    referenceId: "x",
+                                },
+                                behavior: {
+                                    type: "fixedResponse",
+                                    response: "response",
+                                    data: {},
+                                    status: "SUCCESS",
+                                    errorMessage: "errorMessage",
+                                },
+                            },
+                            {
+                                actionId: {
+                                    type: "AGENT",
+                                    appId: "appId",
+                                    referenceId: "x",
+                                },
+                                behavior: {
+                                    type: "fixedResponse",
+                                    response: "response",
+                                    data: {},
+                                    status: "SUCCESS",
+                                    errorMessage: "errorMessage",
+                                },
+                            },
+                        ],
+                        defaultActionBehavior: {
+                            type: "fixedResponse",
+                            response: "response",
+                            data: {
+                                data: {
+                                    key: "value",
+                                },
+                            },
+                            status: "SUCCESS",
+                            errorMessage: "errorMessage",
                         },
                     },
                     relatedEntities: {
@@ -6411,6 +6863,35 @@ describe("ConversationClient", () => {
                             },
                         ],
                         variantId: { type: "AGENT", appId: "appId", referenceId: "x" },
+                        actionMocks: [
+                            {
+                                actionId: { type: "AGENT", appId: "appId", referenceId: "x" },
+                                behavior: {
+                                    type: "fixedResponse",
+                                    response: "response",
+                                    data: {},
+                                    status: "SUCCESS",
+                                    errorMessage: "errorMessage",
+                                },
+                            },
+                            {
+                                actionId: { type: "AGENT", appId: "appId", referenceId: "x" },
+                                behavior: {
+                                    type: "fixedResponse",
+                                    response: "response",
+                                    data: {},
+                                    status: "SUCCESS",
+                                    errorMessage: "errorMessage",
+                                },
+                            },
+                        ],
+                        defaultActionBehavior: {
+                            type: "fixedResponse",
+                            response: "response",
+                            data: { data: { key: "value" } },
+                            status: "SUCCESS",
+                            errorMessage: "errorMessage",
+                        },
                     },
                     relatedEntities: {
                         SPAWN_FROM: [
@@ -6578,6 +7059,35 @@ describe("ConversationClient", () => {
                             },
                         ],
                         variantId: { type: "AGENT", appId: "appId", referenceId: "x" },
+                        actionMocks: [
+                            {
+                                actionId: { type: "AGENT", appId: "appId", referenceId: "x" },
+                                behavior: {
+                                    type: "fixedResponse",
+                                    response: "response",
+                                    data: {},
+                                    status: "SUCCESS",
+                                    errorMessage: "errorMessage",
+                                },
+                            },
+                            {
+                                actionId: { type: "AGENT", appId: "appId", referenceId: "x" },
+                                behavior: {
+                                    type: "fixedResponse",
+                                    response: "response",
+                                    data: {},
+                                    status: "SUCCESS",
+                                    errorMessage: "errorMessage",
+                                },
+                            },
+                        ],
+                        defaultActionBehavior: {
+                            type: "fixedResponse",
+                            response: "response",
+                            data: { data: { key: "value" } },
+                            status: "SUCCESS",
+                            errorMessage: "errorMessage",
+                        },
                     },
                     relatedEntities: {
                         SPAWN_FROM: [
@@ -6800,6 +7310,47 @@ describe("ConversationClient", () => {
                             appId: "appId",
                             referenceId: "x",
                         },
+                        actionMocks: [
+                            {
+                                actionId: {
+                                    type: "AGENT",
+                                    appId: "appId",
+                                    referenceId: "x",
+                                },
+                                behavior: {
+                                    type: "fixedResponse",
+                                    response: "response",
+                                    data: {},
+                                    status: "SUCCESS",
+                                    errorMessage: "errorMessage",
+                                },
+                            },
+                            {
+                                actionId: {
+                                    type: "AGENT",
+                                    appId: "appId",
+                                    referenceId: "x",
+                                },
+                                behavior: {
+                                    type: "fixedResponse",
+                                    response: "response",
+                                    data: {},
+                                    status: "SUCCESS",
+                                    errorMessage: "errorMessage",
+                                },
+                            },
+                        ],
+                        defaultActionBehavior: {
+                            type: "fixedResponse",
+                            response: "response",
+                            data: {
+                                data: {
+                                    key: "value",
+                                },
+                            },
+                            status: "SUCCESS",
+                            errorMessage: "errorMessage",
+                        },
                     },
                     relatedEntities: {
                         SPAWN_FROM: [
@@ -7004,6 +7555,47 @@ describe("ConversationClient", () => {
                             type: "AGENT",
                             appId: "appId",
                             referenceId: "x",
+                        },
+                        actionMocks: [
+                            {
+                                actionId: {
+                                    type: "AGENT",
+                                    appId: "appId",
+                                    referenceId: "x",
+                                },
+                                behavior: {
+                                    type: "fixedResponse",
+                                    response: "response",
+                                    data: {},
+                                    status: "SUCCESS",
+                                    errorMessage: "errorMessage",
+                                },
+                            },
+                            {
+                                actionId: {
+                                    type: "AGENT",
+                                    appId: "appId",
+                                    referenceId: "x",
+                                },
+                                behavior: {
+                                    type: "fixedResponse",
+                                    response: "response",
+                                    data: {},
+                                    status: "SUCCESS",
+                                    errorMessage: "errorMessage",
+                                },
+                            },
+                        ],
+                        defaultActionBehavior: {
+                            type: "fixedResponse",
+                            response: "response",
+                            data: {
+                                data: {
+                                    key: "value",
+                                },
+                            },
+                            status: "SUCCESS",
+                            errorMessage: "errorMessage",
                         },
                     },
                     relatedEntities: {

@@ -244,7 +244,7 @@ export class ChartersClient {
                 (await core.Supplier.get(this._options.baseUrl)) ??
                     (await core.Supplier.get(this._options.environment)) ??
                     environments.MavenAGIEnvironment.Production,
-                `/v1/charters/${core.url.encodePathParam(charterReferenceId)}`,
+                `/v1/charters/${core.url.encodePathParam(charterReferenceId, errors.MavenAGIError)}`,
             ),
             method: "GET",
             headers: _headers,
@@ -410,7 +410,7 @@ export class ChartersClient {
                 (await core.Supplier.get(this._options.baseUrl)) ??
                     (await core.Supplier.get(this._options.environment)) ??
                     environments.MavenAGIEnvironment.Production,
-                `/v1/charters/${core.url.encodePathParam(charterReferenceId)}`,
+                `/v1/charters/${core.url.encodePathParam(charterReferenceId, errors.MavenAGIError)}`,
             ),
             method: "PATCH",
             headers: _headers,
@@ -568,7 +568,7 @@ export class ChartersClient {
                 (await core.Supplier.get(this._options.baseUrl)) ??
                     (await core.Supplier.get(this._options.environment)) ??
                     environments.MavenAGIEnvironment.Production,
-                `/v1/charters/${core.url.encodePathParam(charterReferenceId)}`,
+                `/v1/charters/${core.url.encodePathParam(charterReferenceId, errors.MavenAGIError)}`,
             ),
             method: "DELETE",
             headers: _headers,
@@ -872,7 +872,7 @@ export class ChartersClient {
                 (await core.Supplier.get(this._options.baseUrl)) ??
                     (await core.Supplier.get(this._options.environment)) ??
                     environments.MavenAGIEnvironment.Production,
-                `/v1/charters/${core.url.encodePathParam(charterReferenceId)}/ancestors`,
+                `/v1/charters/${core.url.encodePathParam(charterReferenceId, errors.MavenAGIError)}/ancestors`,
             ),
             method: "GET",
             headers: _headers,

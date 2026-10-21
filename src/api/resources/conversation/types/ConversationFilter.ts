@@ -23,6 +23,8 @@ export interface ConversationFilter {
      * - `tags:myvalue OR anothervalue` - matches conversations with a tag of `myvalue` or `anothervalue`
      * - `-tags:myvalue` - matches conversations that do not have the tag `myvalue`
      * - `_exists_:tags` - matches conversations that have any tags field set
+     *
+     * Shown in Agent Designer as "Content includes".
      */
     search?: string;
     /** Filter conversations created on or after this timestamp */
@@ -44,6 +46,8 @@ export interface ConversationFilter {
      * `BUTTON_CLICKED` events by their `feedbackInfo.thumbUp` value, and `Insert` matches
      * `TEXT_INSERTED` events. `Handoff` matches bot responses that returned the system fallback
      * message.
+     *
+     * Shown in Agent Designer as "Event".
      */
     feedback?: MavenAGI.FeedbackType[];
     /** Filter by human agents who participated in the conversation */
@@ -75,7 +79,7 @@ export interface ConversationFilter {
     deleted?: boolean;
     /** Filter by tags applied to the conversation */
     tags?: string[];
-    /** Filter by agent user IDs associated with the conversation */
+    /** Filter by agent user IDs associated with the conversation. Shown in Agent Designer as "Users", where the user enters identifiers such as an email. */
     agentUserIds?: string[];
     /**
      * Filter by conversation resolution status which is determined by AI based on the conversation content.
@@ -141,6 +145,8 @@ export interface ConversationFilter {
      *
      * If billable is `null` or `[]` then defaults to all eligible conversations,
      * which means ELIGIBLE_AND_BILLABLE and ELIGIBLE_AND_NOT_BILLABLE.
+     *
+     * Shown in Agent Designer as "Billing status".
      */
     billable?: MavenAGI.BillableFilterField[];
 }

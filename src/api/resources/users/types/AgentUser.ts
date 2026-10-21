@@ -13,6 +13,7 @@ import type * as MavenAGI from "../../../index";
  *                 type: MavenAGI.AppUserIdentifyingPropertyType.Email
  *             }],
  *         defaultName: "Joe",
+ *         executionMode: MavenAGI.ExecutionMode.Live,
  *         users: [{
  *                 userId: {
  *                     type: MavenAGI.EntityType.UserProfile,
@@ -64,4 +65,6 @@ export interface AgentUser {
     users: MavenAGI.AppUserSummary[];
     /** Latest successful values of the agent user's intelligent fields. */
     intelligentFieldValues?: MavenAGI.IntelligentFieldValueResponse[];
+    /** The execution mode the agent user lives in. Its app users all share it. */
+    executionMode: MavenAGI.ExecutionMode;
 }

@@ -3,12 +3,12 @@
 import type * as MavenAGI from "../../../../api/index";
 import * as core from "../../../../core";
 import * as serializers from "../../../index";
+import { CharterType } from "../../commons/types/CharterType";
 import { EntityId } from "../../commons/types/EntityId";
 import { CharterBase } from "./CharterBase";
 import { CharterChildrenExclusionPolicy } from "./CharterChildrenExclusionPolicy";
 import { CharterReferences } from "./CharterReferences";
 import { CharterStatus } from "./CharterStatus";
-import { CharterType } from "./CharterType";
 
 export const CharterResponse: core.serialization.ObjectSchema<
     serializers.CharterResponse.Raw,

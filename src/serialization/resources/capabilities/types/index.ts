@@ -1,3 +1,4 @@
+export * from "./ActionSimulationInput";
 export * from "./CapabilitiesSearchResponse";
 export * from "./CapabilityExecution";
 export * from "./CapabilityExecutionBase";
@@ -6,7 +7,12 @@ export * from "./CapabilityExecutionRetryability";
 export * from "./CapabilityExecutionStatus";
 export * from "./CapabilityExecutionsSearchResponse";
 export * from "./CapabilityResponse";
+export * from "./CapabilitySimulationInput";
+export * from "./CapabilitySimulationResult";
 export * from "./CapabilitySortField";
 export * from "./CapabilitySummary";
+export * from "./ConversationContextSimulationInput";
 export * from "./ConversationKickoffCapabilityExecution";
+export * from "./SimulatedUser";
+export * from "./SimulatedUserData";
 export * from "./TriggerCapabilityExecution";

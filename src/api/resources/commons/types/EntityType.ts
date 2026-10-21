@@ -28,5 +28,10 @@ export const EntityType = {
     AgentVariant: "AGENT_VARIANT",
     Asset: "ASSET",
     TrafficConfig: "TRAFFIC_CONFIG",
+    Scenario: "SCENARIO",
+    ScenarioSuite: "SCENARIO_SUITE",
+    ScenarioRun: "SCENARIO_RUN",
+    Function: "FUNCTION",
+    FunctionVersion: "FUNCTION_VERSION",
 } as const;
 export type EntityType = (typeof EntityType)[keyof typeof EntityType] | string;

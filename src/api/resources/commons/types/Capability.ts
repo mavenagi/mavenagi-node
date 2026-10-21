@@ -4,7 +4,11 @@ export const Capability = {
     Markdown: "MARKDOWN",
     Forms: "FORMS",
     Images: "IMAGES",
+    /**
+     * Shown in Agent Designer as "Charts". */
     ChartsHighchartsTs: "CHARTS_HIGHCHARTS_TS",
+    /**
+     * Shown in Agent Designer as "Async messaging". */
     Async: "ASYNC",
     OauthButtons: "OAUTH_BUTTONS",
 } as const;

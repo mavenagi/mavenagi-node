@@ -245,7 +245,7 @@ export class ConversationClient {
                 (await core.Supplier.get(this._options.baseUrl)) ??
                     (await core.Supplier.get(this._options.environment)) ??
                     environments.MavenAGIEnvironment.Production,
-                `/v1/conversations/${core.url.encodePathParam(conversationId)}`,
+                `/v1/conversations/${core.url.encodePathParam(conversationId, errors.MavenAGIError)}`,
             ),
             method: "PATCH",
             headers: _headers,
@@ -394,7 +394,7 @@ export class ConversationClient {
                 (await core.Supplier.get(this._options.baseUrl)) ??
                     (await core.Supplier.get(this._options.environment)) ??
                     environments.MavenAGIEnvironment.Production,
-                `/v1/conversations/${core.url.encodePathParam(conversationId)}`,
+                `/v1/conversations/${core.url.encodePathParam(conversationId, errors.MavenAGIError)}`,
             ),
             method: "GET",
             headers: _headers,
@@ -491,17 +491,19 @@ export class ConversationClient {
     }
 
     /**
-     * Wipes a conversation of all user data.
-     * The conversation ID will still exist and non-user specific data will still be retained.
-     * Attempts to modify or add messages to the conversation will throw an error.
-     * The conversation is sealed against further writes as soon as this call returns. A `202 Accepted` response means the wipe is still completing and will finish on its own.
+     * Wipes the user content from a conversation.
+     * The conversation and its ID still exist afterwards, and so does its non-content data, so it still counts in metrics.
+     * The conversation is sealed against further writes as soon as this call returns: adding or changing messages fails with `409 Conflict`, and so does deleting it again once the wipe has finished.
+     * A `202 Accepted` response means the wipe is still completing and will finish on its own.
      *
      * Simulation conversations will no longer be visible in search results nor metrics.
-     * Non-simulation conversations will remain visible - they can not be fully removed from the system.
+     * Non-simulation conversations remain visible; they cannot be fully removed from the system.
      *
      * <Warning>This is a destructive operation and cannot be undone. <br/><br/>
-     * The exact fields cleared include: the conversation subject, userRequest, agentResponse.
-     * As well as the text response, followup questions, and backend LLM prompt of all messages.</Warning>
+     * What is wiped: the conversation's `subject` and `analysis.agentResponse` are cleared, and `analysis.userRequest` is replaced with `reason`.
+     * Every message's text, from the user and the agent alike, is replaced with `reason`, and its attachments, follow-up questions, backend LLM prompt and history, the data actions returned, and action arguments are cleared.
+     * Evaluation results for the conversation are deleted, and the payloads recorded on its trigger and action executions are cleared. <br/><br/>
+     * What is kept: the conversation's metadata, each message's charts, structured answer and app-supplied metadata, the conversation's intelligent field values, its feedback and events, and the users who took part. To wipe a user's data, use `DELETE /users/{userId}` or `DELETE /agentusers/{agentUserId}`.</Warning>
      *
      * @param {string} conversationId - The ID of the conversation to delete
      * @param {MavenAGI.ConversationDeleteRequest} request
@@ -553,7 +555,7 @@ export class ConversationClient {
                 (await core.Supplier.get(this._options.baseUrl)) ??
                     (await core.Supplier.get(this._options.environment)) ??
                     environments.MavenAGIEnvironment.Production,
-                `/v1/conversations/${core.url.encodePathParam(conversationId)}`,
+                `/v1/conversations/${core.url.encodePathParam(conversationId, errors.MavenAGIError)}`,
             ),
             method: "DELETE",
             headers: _headers,
@@ -707,7 +709,7 @@ export class ConversationClient {
                 (await core.Supplier.get(this._options.baseUrl)) ??
                     (await core.Supplier.get(this._options.environment)) ??
                     environments.MavenAGIEnvironment.Production,
-                `/v1/conversations/${core.url.encodePathParam(conversationId)}/messages`,
+                `/v1/conversations/${core.url.encodePathParam(conversationId, errors.MavenAGIError)}/messages`,
             ),
             method: "POST",
             headers: _headers,
@@ -880,7 +882,7 @@ export class ConversationClient {
                 (await core.Supplier.get(this._options.baseUrl)) ??
                     (await core.Supplier.get(this._options.environment)) ??
                     environments.MavenAGIEnvironment.Production,
-                `/v1/conversations/${core.url.encodePathParam(conversationId)}/ask`,
+                `/v1/conversations/${core.url.encodePathParam(conversationId, errors.MavenAGIError)}/ask`,
             ),
             method: "POST",
             headers: _headers,
@@ -1023,7 +1025,7 @@ export class ConversationClient {
                 (await core.Supplier.get(this._options.baseUrl)) ??
                     (await core.Supplier.get(this._options.environment)) ??
                     environments.MavenAGIEnvironment.Production,
-                `/v1/conversations/${core.url.encodePathParam(conversationId)}/ask_stream`,
+                `/v1/conversations/${core.url.encodePathParam(conversationId, errors.MavenAGIError)}/ask_stream`,
             ),
             method: "POST",
             headers: _headers,
@@ -1180,7 +1182,7 @@ export class ConversationClient {
                 (await core.Supplier.get(this._options.baseUrl)) ??
                     (await core.Supplier.get(this._options.environment)) ??
                     environments.MavenAGIEnvironment.Production,
-                `/v1/conversations/${core.url.encodePathParam(conversationId)}/categorize`,
+                `/v1/conversations/${core.url.encodePathParam(conversationId, errors.MavenAGIError)}/categorize`,
             ),
             method: "POST",
             headers: _headers,
@@ -1488,7 +1490,7 @@ export class ConversationClient {
                 (await core.Supplier.get(this._options.baseUrl)) ??
                     (await core.Supplier.get(this._options.environment)) ??
                     environments.MavenAGIEnvironment.Production,
-                `/v1/conversations/${core.url.encodePathParam(conversationId)}/submit-form`,
+                `/v1/conversations/${core.url.encodePathParam(conversationId, errors.MavenAGIError)}/submit-form`,
             ),
             method: "POST",
             headers: _headers,
@@ -1642,7 +1644,7 @@ export class ConversationClient {
                 (await core.Supplier.get(this._options.baseUrl)) ??
                     (await core.Supplier.get(this._options.environment)) ??
                     environments.MavenAGIEnvironment.Production,
-                `/v1/conversations/${core.url.encodePathParam(conversationId)}/metadata`,
+                `/v1/conversations/${core.url.encodePathParam(conversationId, errors.MavenAGIError)}/metadata`,
             ),
             method: "POST",
             headers: _headers,
@@ -1803,7 +1805,7 @@ export class ConversationClient {
                 (await core.Supplier.get(this._options.baseUrl)) ??
                     (await core.Supplier.get(this._options.environment)) ??
                     environments.MavenAGIEnvironment.Production,
-                `/v1/conversations/${core.url.encodePathParam(conversationId)}/metadata`,
+                `/v1/conversations/${core.url.encodePathParam(conversationId, errors.MavenAGIError)}/metadata`,
             ),
             method: "PUT",
             headers: _headers,
@@ -2324,6 +2326,8 @@ export class ConversationClient {
      *
      * This API is offered for backwards compatibility.
      * Most API callers should create simulations programmatically to allow for more flexibility.
+     *
+     * Shown in Agent Designer as "Import questions".
      *
      * @param {core.file.Uploadable} file
      * @param {MavenAGI.SimulationImportRequest} request

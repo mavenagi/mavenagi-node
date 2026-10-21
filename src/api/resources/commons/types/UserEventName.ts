@@ -14,7 +14,7 @@ export const UserEventName = {
      * The chat window was closed */
     ChatClosed: "CHAT_CLOSED",
     /**
-     * A text was inserted into a field */
+     * A text was inserted into a field. Shown in Agent Designer as "Inserted". */
     TextInserted: "TEXT_INSERTED",
     /**
      * A CSAT rating was submitted */

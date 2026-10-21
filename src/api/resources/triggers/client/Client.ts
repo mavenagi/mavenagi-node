@@ -354,7 +354,7 @@ export class TriggersClient {
                 (await core.Supplier.get(this._options.baseUrl)) ??
                     (await core.Supplier.get(this._options.environment)) ??
                     environments.MavenAGIEnvironment.Production,
-                `/v1/triggers/${core.url.encodePathParam(triggerReferenceId)}`,
+                `/v1/triggers/${core.url.encodePathParam(triggerReferenceId, errors.MavenAGIError)}`,
             ),
             method: "GET",
             headers: _headers,
@@ -494,7 +494,7 @@ export class TriggersClient {
                 (await core.Supplier.get(this._options.baseUrl)) ??
                     (await core.Supplier.get(this._options.environment)) ??
                     environments.MavenAGIEnvironment.Production,
-                `/v1/triggers/${core.url.encodePathParam(triggerReferenceId)}`,
+                `/v1/triggers/${core.url.encodePathParam(triggerReferenceId, errors.MavenAGIError)}`,
             ),
             method: "DELETE",
             headers: _headers,
@@ -631,7 +631,7 @@ export class TriggersClient {
                 (await core.Supplier.get(this._options.baseUrl)) ??
                     (await core.Supplier.get(this._options.environment)) ??
                     environments.MavenAGIEnvironment.Production,
-                `/v1/triggers/${core.url.encodePathParam(triggerReferenceId)}`,
+                `/v1/triggers/${core.url.encodePathParam(triggerReferenceId, errors.MavenAGIError)}`,
             ),
             method: "PATCH",
             headers: _headers,

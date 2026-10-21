@@ -4,6 +4,7 @@ import type * as MavenAGI from "../../../../api/index";
 import * as core from "../../../../core";
 import type * as serializers from "../../../index";
 import { AppUserIdentifier } from "../../commons/types/AppUserIdentifier";
+import { ExecutionMode } from "../../commons/types/ExecutionMode";
 import { IntelligentFieldValueResponse } from "../../commons/types/IntelligentFieldValueResponse";
 import { AppUserSummary } from "./AppUserSummary";
 
@@ -16,6 +17,7 @@ export const AgentUser: core.serialization.ObjectSchema<serializers.AgentUser.Ra
         defaultName: core.serialization.string().optional(),
         users: core.serialization.list(AppUserSummary),
         intelligentFieldValues: core.serialization.list(IntelligentFieldValueResponse).optional(),
+        executionMode: ExecutionMode,
     });
 
 export declare namespace AgentUser {
@@ -27,5 +29,6 @@ export declare namespace AgentUser {
         defaultName?: string | null;
         users: AppUserSummary.Raw[];
         intelligentFieldValues?: IntelligentFieldValueResponse.Raw[] | null;
+        executionMode: ExecutionMode.Raw;
     }
 }

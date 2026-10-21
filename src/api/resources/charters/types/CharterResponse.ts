@@ -46,7 +46,11 @@ export interface CharterResponse extends MavenAGI.CharterBase {
     parentCharterId?: MavenAGI.EntityId;
     /** The IDs of direct child charters, in their userRank order. */
     childCharterIds: MavenAGI.EntityId[];
-    /** The rule controlling when this charter applies. Empty means wildcard (always matches). */
+    /**
+     * The rule controlling when this charter applies. Empty means wildcard (always matches).
+     *
+     * Shown in Agent Designer as the charter's "Segment". A null precondition shows as "All conversations".
+     */
     precondition?: MavenAGI.PreconditionResponse;
     /** The lifecycle status of this charter. */
     status: MavenAGI.CharterStatus;

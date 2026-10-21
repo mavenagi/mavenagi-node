@@ -2,7 +2,7 @@
 
 export const InboxItemStatus = {
     /**
-     * The inbox item is open. */
+     * The inbox item is open. Shown in Agent Designer as "Unresolved". */
     Open: "OPEN",
     /**
      * The inbox item was resolved by the user. */

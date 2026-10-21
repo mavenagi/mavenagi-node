@@ -7,7 +7,7 @@ export interface InboxItemDuplicateDocuments extends MavenAGI.InboxItemBase {
     recommendedFixes: MavenAGI.InboxItemFixDeactivateDocument[];
     /** List of fixes associated with the inbox item. */
     otherFixes: MavenAGI.InboxItemFixDeactivateDocument[];
-    /** Information about the source document associated with the inbox item. */
+    /** Information about the source document associated with the inbox item. Shown in Agent Designer as "Reference Document". */
     sourceDocument: MavenAGI.DocumentInformation;
     /** List of Document information objects related to the inbox item. */
     documents: MavenAGI.DocumentInformation[];

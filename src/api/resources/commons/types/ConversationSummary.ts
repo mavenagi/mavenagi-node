@@ -21,7 +21,7 @@ export interface ConversationSummary {
     thumbsDownCount: number;
     /** The number of bot response messages that failed and returned the Agent's system fallback message. */
     handoffCount: number;
-    /** The number of messages of type `USER` in the conversation. */
+    /** The number of messages of type `USER` in the conversation. Shown in Agent Designer as "Customer interactions". */
     userMessageCount: number;
     /** The number of bot answer messages in the conversation. */
     botMessageCount: number;
@@ -38,11 +38,13 @@ export interface ConversationSummary {
      * minus the timestamp of the first message in the conversation.
      *
      * Will not be provided if the conversation does not have a message of type `HUMAN_AGENT`.
+     *
+     * Shown in Agent Designer as "First response time".
      */
     humanAgentResponseDelay?: number;
-    /** The names of all users that have a message of type `HUMAN_AGENT` on the conversation. */
+    /** The names of all users that have a message of type `HUMAN_AGENT` on the conversation. Shown in Agent Designer as "Agents involved". */
     humanAgents: string[];
-    /** The names of all users that have an associated insert event on the conversation. */
+    /** The names of all users that have an associated insert event on the conversation. Shown in Agent Designer as "Inserted by". */
     humanAgentsWithInserts: string[];
     /** The names of all users that have a message of type `USER` on the conversation. */
     users: string[];

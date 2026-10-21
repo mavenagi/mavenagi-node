@@ -2,6 +2,8 @@
 
 export const QualityReason = {
     MissingKnowledge: "MISSING_KNOWLEDGE",
+    /**
+     * Shown in Agent Designer as "Missing user data". */
     MissingUserInformation: "MISSING_USER_INFORMATION",
     MissingAction: "MISSING_ACTION",
     NeedsUserClarification: "NEEDS_USER_CLARIFICATION",
@@ -9,6 +11,8 @@ export const QualityReason = {
     Interrupted: "INTERRUPTED",
     UnsupportedUserBehavior: "UNSUPPORTED_USER_BEHAVIOR",
     Unknown: "UNKNOWN",
+    /**
+     * Maven did not reply in the conversation. Shown in Agent Designer as "No generated responses". */
     NoBotReplies: "NO_BOT_REPLIES",
 } as const;
 export type QualityReason = (typeof QualityReason)[keyof typeof QualityReason] | string;

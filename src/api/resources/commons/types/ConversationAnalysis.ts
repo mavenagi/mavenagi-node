@@ -3,7 +3,7 @@
 import type * as MavenAGI from "../../../index";
 
 export interface ConversationAnalysis {
-    /** Generated user request summary of the conversation */
+    /** Generated user request summary of the conversation. Shown in Agent Designer as "Subject" in the conversations table and "Customer request" on a conversation. */
     userRequest?: string;
     /** Generated agent response summary of the conversation */
     agentResponse?: string;

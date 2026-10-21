@@ -20,6 +20,8 @@ export interface CharterPatchReferences {
      * Replaces the entire set when provided. Omit to leave unchanged.
      * An empty set removes all action associations.
      * Maximum 50 actions per charter.
+     *
+     * Shown in Agent Designer as "Capabilities".
      */
     actionIds?: MavenAGI.EntityId[];
 }

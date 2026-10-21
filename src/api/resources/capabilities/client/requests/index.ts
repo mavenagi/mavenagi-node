@@ -3,3 +3,4 @@ export type { CapabilityExecutionsSearchRequest } from "./CapabilityExecutionsSe
 export type { DeleteCapabilityByTypeRequest } from "./DeleteCapabilityByTypeRequest";
 export type { GetCapabilityByTypeRequest } from "./GetCapabilityByTypeRequest";
 export type { PatchCapabilityByTypeRequest } from "./PatchCapabilityByTypeRequest";
+export type { SimulateCapabilityByTypeRequest } from "./SimulateCapabilityByTypeRequest";

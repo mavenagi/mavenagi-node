@@ -5,7 +5,11 @@ import type * as MavenAGI from "../../../index";
 export interface AgentPrompting {
     /** Deprecated. Superseded by charters, which determine agent behavior per round. Has no effect for agents using charters. */
     persona: MavenAGI.LlmPersona;
-    /** Deprecated. Superseded by charters, which determine agent behavior per round. Has no effect for agents using charters. */
+    /**
+     * Deprecated. Superseded by charters, which determine agent behavior per round. Has no effect for agents using charters.
+     *
+     * Shown in Agent Designer as "Additional persona instructions".
+     */
     additionalPromptText?: string;
     /**
      * Deprecated. Use `categoryIntelligentFieldId` instead. Not supported on new agents, and ignored while `categoryIntelligentFieldId` is set.
@@ -14,19 +18,25 @@ export interface AgentPrompting {
      *
      * Use this to specify a fixed set of categories that an LLM should choose from when analyzing a conversation.
      * When not set uses a default prompt which gives the LLM flexibility to determine appropriate categories on its own.
+     *
+     * Shown in Agent Designer as "Category prompt override".
      */
     categoryGenerationPromptText?: string;
     /**
      * LLM prompt for generating a response when the user's question has been detected as unsafe.
      *
      * Use this to provide custom LLM generated replies when dealing with content safety violations.
-     * When not set, the system fallback message will be used and replies will not be personalized by the LLM as it will not be involved.
+     * When not set, a default response is sent and replies will not be personalized by the LLM as it will not be involved.
+     *
+     * Omitted while `CONTENT_SAFETY_VIOLATION_RESPONSE_PROMPT_TEXT` is in `getVersionedEntityTypes`; read it through `getVersionedSettings`.
      */
     contentSafetyViolationResponsePromptText?: string;
     /**
      * Deprecated. Superseded by charters, which determine agent behavior per round. Has no effect for agents using charters.
      *
      * Return the system fallback message on all questions that have no relevant knowledge bases or actions.
+     *
+     * Shown in Agent Designer as "Only return answers for existing knowledge".
      */
     rejectQuestionsWithoutKnowledge: boolean;
 }

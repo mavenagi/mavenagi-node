@@ -11,4 +11,9 @@ export interface BotMessage extends MavenAGI.ConversationMessageBase {
     status: MavenAGI.MessageStatus;
     /** The logic that was used to generate the response. Response size may be large; only present on the getConversation request. */
     logic?: MavenAGI.BotLogic;
+    /**
+     * Why the agent could not answer. Present only when `status` is `REJECTED` or `FAILED`, and absent for every other status.
+     * A `FAILED` message without a reason failed for some other cause, such as the model returning no answer.
+     */
+    statusReason?: MavenAGI.BotMessageStatusReason;
 }

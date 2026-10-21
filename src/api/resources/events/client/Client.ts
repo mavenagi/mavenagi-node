@@ -359,7 +359,7 @@ export class EventsClient {
                 (await core.Supplier.get(this._options.baseUrl)) ??
                     (await core.Supplier.get(this._options.environment)) ??
                     environments.MavenAGIEnvironment.Production,
-                `/v1/events/${core.url.encodePathParam(eventId)}`,
+                `/v1/events/${core.url.encodePathParam(eventId, errors.MavenAGIError)}`,
             ),
             method: "GET",
             headers: _headers,

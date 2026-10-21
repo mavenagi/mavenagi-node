@@ -8,6 +8,7 @@ export interface EventFilter {
     createdBefore?: Date;
     references?: MavenAGI.ScopedEntity[];
     eventTypes?: MavenAGI.EventType[];
+    /** Shown in Agent Designer as "Event type". */
     userEventNames?: MavenAGI.UserEventName[];
     systemEventNames?: MavenAGI.SystemEventName[];
     agentUserIds?: string[];

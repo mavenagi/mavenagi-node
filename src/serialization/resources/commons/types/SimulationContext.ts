@@ -6,6 +6,8 @@ import type * as serializers from "../../../index";
 import { EntityId } from "./EntityId";
 import { EntityIdWithoutAgent } from "./EntityIdWithoutAgent";
 import { LlmPersona } from "./LlmPersona";
+import { SimulationActionBehavior } from "./SimulationActionBehavior";
+import { SimulationActionMock } from "./SimulationActionMock";
 
 export const SimulationContext: core.serialization.ObjectSchema<
     serializers.SimulationContext.Raw,
@@ -15,6 +17,8 @@ export const SimulationContext: core.serialization.ObjectSchema<
     persona: LlmPersona.optional(),
     availableKnowledgeBases: core.serialization.list(EntityId).optional(),
     variantId: EntityIdWithoutAgent.optional(),
+    actionMocks: core.serialization.list(SimulationActionMock).optional(),
+    defaultActionBehavior: SimulationActionBehavior.optional(),
 });
 
 export declare namespace SimulationContext {
@@ -23,5 +27,7 @@ export declare namespace SimulationContext {
         persona?: LlmPersona.Raw | null;
         availableKnowledgeBases?: EntityId.Raw[] | null;
         variantId?: EntityIdWithoutAgent.Raw | null;
+        actionMocks?: SimulationActionMock.Raw[] | null;
+        defaultActionBehavior?: SimulationActionBehavior.Raw | null;
     }
 }

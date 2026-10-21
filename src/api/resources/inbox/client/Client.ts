@@ -378,7 +378,7 @@ export class InboxClient {
                 (await core.Supplier.get(this._options.baseUrl)) ??
                     (await core.Supplier.get(this._options.environment)) ??
                     environments.MavenAGIEnvironment.Production,
-                `/v1/inbox/${core.url.encodePathParam(inboxItemId)}`,
+                `/v1/inbox/${core.url.encodePathParam(inboxItemId, errors.MavenAGIError)}`,
             ),
             method: "PATCH",
             headers: _headers,
@@ -521,7 +521,7 @@ export class InboxClient {
                 (await core.Supplier.get(this._options.baseUrl)) ??
                     (await core.Supplier.get(this._options.environment)) ??
                     environments.MavenAGIEnvironment.Production,
-                `/v1/inbox/${core.url.encodePathParam(inboxItemId)}/tags`,
+                `/v1/inbox/${core.url.encodePathParam(inboxItemId, errors.MavenAGIError)}/tags`,
             ),
             method: "PATCH",
             headers: _headers,
@@ -671,7 +671,7 @@ export class InboxClient {
                 (await core.Supplier.get(this._options.baseUrl)) ??
                     (await core.Supplier.get(this._options.environment)) ??
                     environments.MavenAGIEnvironment.Production,
-                `/v1/inbox/${core.url.encodePathParam(inboxItemId)}`,
+                `/v1/inbox/${core.url.encodePathParam(inboxItemId, errors.MavenAGIError)}`,
             ),
             method: "GET",
             headers: _headers,
@@ -814,7 +814,7 @@ export class InboxClient {
                 (await core.Supplier.get(this._options.baseUrl)) ??
                     (await core.Supplier.get(this._options.environment)) ??
                     environments.MavenAGIEnvironment.Production,
-                `/v1/inbox/fix/${core.url.encodePathParam(inboxItemFixId)}`,
+                `/v1/inbox/fix/${core.url.encodePathParam(inboxItemFixId, errors.MavenAGIError)}`,
             ),
             method: "GET",
             headers: _headers,
@@ -959,7 +959,7 @@ export class InboxClient {
                 (await core.Supplier.get(this._options.baseUrl)) ??
                     (await core.Supplier.get(this._options.environment)) ??
                     environments.MavenAGIEnvironment.Production,
-                `/v1/inbox/${core.url.encodePathParam(inboxItemId)}/applyfixes`,
+                `/v1/inbox/${core.url.encodePathParam(inboxItemId, errors.MavenAGIError)}/applyfixes`,
             ),
             method: "POST",
             headers: _headers,
@@ -1101,7 +1101,7 @@ export class InboxClient {
                 (await core.Supplier.get(this._options.baseUrl)) ??
                     (await core.Supplier.get(this._options.environment)) ??
                     environments.MavenAGIEnvironment.Production,
-                `/v1/inbox/${core.url.encodePathParam(inboxItemId)}/ignore`,
+                `/v1/inbox/${core.url.encodePathParam(inboxItemId, errors.MavenAGIError)}/ignore`,
             ),
             method: "POST",
             headers: _headers,

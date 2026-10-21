@@ -5,6 +5,8 @@
  * All other knowledge base types are deprecated and can not be created.
  */
 export const KnowledgeBaseType = {
+    /**
+     * Shown in Agent Designer as "Maven app". */
     Api: "API",
     Url: "URL",
     Manual: "MANUAL",

@@ -9,6 +9,6 @@
 export interface ConversationDeleteRequest {
     /** The App ID of the conversation to delete. If not provided the ID of the calling app will be used. */
     appId?: string;
-    /** The reason for deleting the conversation. This message will replace all user messages in the conversation. */
+    /** The reason for deleting the conversation. It replaces the text of every message in the conversation, and the conversation's `analysis.userRequest`. */
     reason: string;
 }

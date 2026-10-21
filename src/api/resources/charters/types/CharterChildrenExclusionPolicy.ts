@@ -14,6 +14,8 @@
  */
 export const CharterChildrenExclusionPolicy = {
     Default: "DEFAULT",
+    /**
+     * Shown in Agent Designer as "Turn overlapping children on". */
     AllowOverlap: "ALLOW_OVERLAP",
 } as const;
 export type CharterChildrenExclusionPolicy =

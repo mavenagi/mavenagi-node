@@ -8,7 +8,7 @@
 export interface EnumOption {
     /** The value of the option */
     value: string;
-    /** Display label for the option */
+    /** Display label for the option. Shown in Agent Designer as "Option Name". */
     label?: string;
     /**
      * Instructions that tell the LLM when to pick this option. Up to 1200 characters. On a

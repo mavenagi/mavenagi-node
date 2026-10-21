@@ -2,11 +2,16 @@
 
 import type * as MavenAGI from "../../../index";
 
+/**
+ * Conversations with a simulation context are the runs on the Agent Designer "Simulator" page.
+ */
 export interface SimulationContext {
     /**
      * Deprecated. Superseded by charters, which determine agent behavior per round. Has no effect for agents using charters.
      *
      * If provided, overrides the agent's default additional prompt text during the simulation.
+     *
+     * Shown in Agent Designer as "Additional persona instructions".
      */
     additionalPromptText?: string;
     /** Deprecated. Superseded by charters, which determine agent behavior per round. Has no effect for agents using charters. */
@@ -25,4 +30,18 @@ export interface SimulationContext {
      * keeps the variant it was created with.
      */
     variantId?: MavenAGI.EntityIdWithoutAgent;
+    /**
+     * What the platform does when the agent executes each action during this simulation. At
+     * most one entry per action; a request that names an action twice is rejected. An action
+     * with no entry follows `defaultActionBehavior`. A conversation that already exists keeps
+     * the mocks and default it was created with.
+     */
+    actionMocks?: MavenAGI.SimulationActionMock[];
+    /**
+     * What the platform does when the agent executes an action that has no `actionMocks`
+     * entry. When absent, the action's app is called as usual. A `fixedResponse` here keeps the
+     * simulation from calling any action's app that `actionMocks` doesn't name with `callApp`;
+     * its templates are rendered over the parameters of whichever action was called.
+     */
+    defaultActionBehavior?: MavenAGI.SimulationActionBehavior;
 }

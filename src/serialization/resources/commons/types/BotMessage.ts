@@ -5,6 +5,7 @@ import * as core from "../../../../core";
 import type * as serializers from "../../../index";
 import { BotConversationMessageType } from "./BotConversationMessageType";
 import { BotLogic } from "./BotLogic";
+import { BotMessageStatusReason } from "./BotMessageStatusReason";
 import { BotResponse } from "./BotResponse";
 import { BotResponseMetadata } from "./BotResponseMetadata";
 import { ConversationMessageBase } from "./ConversationMessageBase";
@@ -20,6 +21,7 @@ export const BotMessage: core.serialization.ObjectSchema<serializers.BotMessage.
             metadata: BotResponseMetadata,
             status: MessageStatus,
             logic: BotLogic.optional(),
+            statusReason: BotMessageStatusReason.optional(),
         })
         .extend(ConversationMessageBase);
 
@@ -31,5 +33,6 @@ export declare namespace BotMessage {
         metadata: BotResponseMetadata.Raw;
         status: MessageStatus.Raw;
         logic?: BotLogic.Raw | null;
+        statusReason?: BotMessageStatusReason.Raw | null;
     }
 }

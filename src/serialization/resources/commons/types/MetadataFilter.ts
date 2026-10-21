@@ -3,12 +3,14 @@
 import type * as MavenAGI from "../../../../api/index";
 import * as core from "../../../../core";
 import * as serializers from "../../../index";
+import { MetadataConversationValueFilter } from "./MetadataConversationValueFilter";
 import { MetadataEntryCondition } from "./MetadataEntryCondition";
 
 export const MetadataFilter: core.serialization.Schema<serializers.MetadataFilter.Raw, MavenAGI.MetadataFilter> =
     core.serialization
         .union("metadataFilterType", {
             entry: MetadataEntryCondition,
+            conversationValue: MetadataConversationValueFilter,
             group: core.serialization.lazyObject(() => serializers.MetadataFilterGroup),
         })
         .transform<MavenAGI.MetadataFilter>({
@@ -17,10 +19,14 @@ export const MetadataFilter: core.serialization.Schema<serializers.MetadataFilte
         });
 
 export declare namespace MetadataFilter {
-    export type Raw = MetadataFilter.Entry | MetadataFilter.Group;
+    export type Raw = MetadataFilter.Entry | MetadataFilter.ConversationValue | MetadataFilter.Group;
 
     export interface Entry extends MetadataEntryCondition.Raw {
         metadataFilterType: "entry";
+    }
+
+    export interface ConversationValue extends MetadataConversationValueFilter.Raw {
+        metadataFilterType: "conversationValue";
     }
 
     export interface Group extends serializers.MetadataFilterGroup.Raw {

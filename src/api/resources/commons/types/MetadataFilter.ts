@@ -3,12 +3,36 @@
 import type * as MavenAGI from "../../../index";
 
 /**
- * A predicate over a string-to-string metadata map: either a condition on the value
- * under one key, or a group of predicates combined with a logical operator.
+ * A predicate over a string-to-string metadata map: a condition on the value under one
+ * key, a match against a value read from the conversation, or a group of predicates
+ * combined with a logical operator.
  *
- * Kept small on purpose: at most 3 levels of nesting and 10 nodes in total, counting
- * groups as well as entries. A filter is meant to narrow a knowledge base to a
- * recognisable slice, not to encode a query language. Exceeding either is a 400.
+ * Kept small on purpose: by default at most 3 levels of nesting and 10 nodes in total,
+ * counting every group, entry and conversation value. A filter is meant to narrow a
+ * knowledge base to a recognisable slice, not to encode a query language. Exceeding
+ * either is a 400.
+ *
+ * @example
+ *     {
+ *         metadataFilterType: "group",
+ *         operator: MavenAGI.PreconditionGroupOperator.Or,
+ *         filters: [{
+ *                 metadataFilterType: "conversationValue",
+ *                 key: "state",
+ *                 source: {
+ *                     type: "conversationMetadata",
+ *                     key: "case_state"
+ *                 }
+ *             }, {
+ *                 metadataFilterType: "entry",
+ *                 key: "state",
+ *                 condition: {
+ *                     opType: "comparison",
+ *                     operator: MavenAGI.MetadataComparisonOperator.Eq,
+ *                     value: "All"
+ *                 }
+ *             }]
+ *     }
  *
  * @example
  *     {
@@ -33,11 +57,18 @@ import type * as MavenAGI from "../../../index";
  *             }]
  *     }
  */
-export type MetadataFilter = MavenAGI.MetadataFilter.Entry | MavenAGI.MetadataFilter.Group;
+export type MetadataFilter =
+    | MavenAGI.MetadataFilter.Entry
+    | MavenAGI.MetadataFilter.ConversationValue
+    | MavenAGI.MetadataFilter.Group;
 
 export namespace MetadataFilter {
     export interface Entry extends MavenAGI.MetadataEntryCondition {
         metadataFilterType: "entry";
+    }
+
+    export interface ConversationValue extends MavenAGI.MetadataConversationValueFilter {
+        metadataFilterType: "conversationValue";
     }
 
     export interface Group extends MavenAGI.MetadataFilterGroup {

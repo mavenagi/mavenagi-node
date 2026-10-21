@@ -353,7 +353,7 @@ export class KnowledgeClient {
                 (await core.Supplier.get(this._options.baseUrl)) ??
                     (await core.Supplier.get(this._options.environment)) ??
                     environments.MavenAGIEnvironment.Production,
-                `/v1/knowledge/${core.url.encodePathParam(knowledgeBaseReferenceId)}`,
+                `/v1/knowledge/${core.url.encodePathParam(knowledgeBaseReferenceId, errors.MavenAGIError)}`,
             ),
             method: "GET",
             headers: _headers,
@@ -502,7 +502,7 @@ export class KnowledgeClient {
                 (await core.Supplier.get(this._options.baseUrl)) ??
                     (await core.Supplier.get(this._options.environment)) ??
                     environments.MavenAGIEnvironment.Production,
-                `/v1/knowledge/${core.url.encodePathParam(knowledgeBaseReferenceId)}/refresh`,
+                `/v1/knowledge/${core.url.encodePathParam(knowledgeBaseReferenceId, errors.MavenAGIError)}/refresh`,
             ),
             method: "POST",
             headers: _headers,
@@ -646,7 +646,7 @@ export class KnowledgeClient {
                 (await core.Supplier.get(this._options.baseUrl)) ??
                     (await core.Supplier.get(this._options.environment)) ??
                     environments.MavenAGIEnvironment.Production,
-                `/v1/knowledge/${core.url.encodePathParam(knowledgeBaseReferenceId)}/cancel`,
+                `/v1/knowledge/${core.url.encodePathParam(knowledgeBaseReferenceId, errors.MavenAGIError)}/cancel`,
             ),
             method: "POST",
             headers: _headers,
@@ -781,7 +781,7 @@ export class KnowledgeClient {
                 (await core.Supplier.get(this._options.baseUrl)) ??
                     (await core.Supplier.get(this._options.environment)) ??
                     environments.MavenAGIEnvironment.Production,
-                `/v1/knowledge/${core.url.encodePathParam(knowledgeBaseReferenceId)}/rollback`,
+                `/v1/knowledge/${core.url.encodePathParam(knowledgeBaseReferenceId, errors.MavenAGIError)}/rollback`,
             ),
             method: "POST",
             headers: _headers,
@@ -926,7 +926,7 @@ export class KnowledgeClient {
                 (await core.Supplier.get(this._options.baseUrl)) ??
                     (await core.Supplier.get(this._options.environment)) ??
                     environments.MavenAGIEnvironment.Production,
-                `/v1/knowledge/${core.url.encodePathParam(knowledgeBaseReferenceId)}`,
+                `/v1/knowledge/${core.url.encodePathParam(knowledgeBaseReferenceId, errors.MavenAGIError)}`,
             ),
             method: "PATCH",
             headers: _headers,
@@ -1079,7 +1079,7 @@ export class KnowledgeClient {
                 (await core.Supplier.get(this._options.baseUrl)) ??
                     (await core.Supplier.get(this._options.environment)) ??
                     environments.MavenAGIEnvironment.Production,
-                `/v1/knowledge/${core.url.encodePathParam(knowledgeBaseReferenceId)}/version`,
+                `/v1/knowledge/${core.url.encodePathParam(knowledgeBaseReferenceId, errors.MavenAGIError)}/version`,
             ),
             method: "POST",
             headers: _headers,
@@ -1232,7 +1232,7 @@ export class KnowledgeClient {
                 (await core.Supplier.get(this._options.baseUrl)) ??
                     (await core.Supplier.get(this._options.environment)) ??
                     environments.MavenAGIEnvironment.Production,
-                `/v1/knowledge/${core.url.encodePathParam(knowledgeBaseReferenceId)}/version/finalize`,
+                `/v1/knowledge/${core.url.encodePathParam(knowledgeBaseReferenceId, errors.MavenAGIError)}/version/finalize`,
             ),
             method: "POST",
             headers: _headers,
@@ -1395,7 +1395,7 @@ export class KnowledgeClient {
                 (await core.Supplier.get(this._options.baseUrl)) ??
                     (await core.Supplier.get(this._options.environment)) ??
                     environments.MavenAGIEnvironment.Production,
-                `/v1/knowledge/${core.url.encodePathParam(knowledgeBaseReferenceId)}/version/progress`,
+                `/v1/knowledge/${core.url.encodePathParam(knowledgeBaseReferenceId, errors.MavenAGIError)}/version/progress`,
             ),
             method: "POST",
             headers: _headers,
@@ -1547,7 +1547,7 @@ export class KnowledgeClient {
                 (await core.Supplier.get(this._options.baseUrl)) ??
                     (await core.Supplier.get(this._options.environment)) ??
                     environments.MavenAGIEnvironment.Production,
-                `/v1/knowledge/${core.url.encodePathParam(knowledgeBaseReferenceId)}/versions`,
+                `/v1/knowledge/${core.url.encodePathParam(knowledgeBaseReferenceId, errors.MavenAGIError)}/versions`,
             ),
             method: "GET",
             headers: _headers,
@@ -1853,7 +1853,7 @@ export class KnowledgeClient {
                 (await core.Supplier.get(this._options.baseUrl)) ??
                     (await core.Supplier.get(this._options.environment)) ??
                     environments.MavenAGIEnvironment.Production,
-                `/v1/knowledge/${core.url.encodePathParam(knowledgeBaseReferenceId)}/document`,
+                `/v1/knowledge/${core.url.encodePathParam(knowledgeBaseReferenceId, errors.MavenAGIError)}/document`,
             ),
             method: "POST",
             headers: _headers,
@@ -2016,7 +2016,7 @@ export class KnowledgeClient {
                 (await core.Supplier.get(this._options.baseUrl)) ??
                     (await core.Supplier.get(this._options.environment)) ??
                     environments.MavenAGIEnvironment.Production,
-                `/v1/knowledge/${core.url.encodePathParam(knowledgeBaseReferenceId)}/${core.url.encodePathParam(knowledgeDocumentReferenceId)}/document`,
+                `/v1/knowledge/${core.url.encodePathParam(knowledgeBaseReferenceId, errors.MavenAGIError)}/${core.url.encodePathParam(knowledgeDocumentReferenceId, errors.MavenAGIError)}/document`,
             ),
             method: "DELETE",
             headers: _headers,
@@ -2168,7 +2168,7 @@ export class KnowledgeClient {
                 (await core.Supplier.get(this._options.baseUrl)) ??
                     (await core.Supplier.get(this._options.environment)) ??
                     environments.MavenAGIEnvironment.Production,
-                `/v1/knowledge/versions/${core.url.encodePathParam(knowledgeBaseVersionReferenceId)}/documents/${core.url.encodePathParam(knowledgeDocumentReferenceId)}`,
+                `/v1/knowledge/versions/${core.url.encodePathParam(knowledgeBaseVersionReferenceId, errors.MavenAGIError)}/documents/${core.url.encodePathParam(knowledgeDocumentReferenceId, errors.MavenAGIError)}`,
             ),
             method: "GET",
             headers: _headers,
@@ -2327,7 +2327,7 @@ export class KnowledgeClient {
                 (await core.Supplier.get(this._options.baseUrl)) ??
                     (await core.Supplier.get(this._options.environment)) ??
                     environments.MavenAGIEnvironment.Production,
-                `/v1/knowledge/${core.url.encodePathParam(knowledgeBaseReferenceId)}/${core.url.encodePathParam(knowledgeDocumentReferenceId)}/document`,
+                `/v1/knowledge/${core.url.encodePathParam(knowledgeBaseReferenceId, errors.MavenAGIError)}/${core.url.encodePathParam(knowledgeDocumentReferenceId, errors.MavenAGIError)}/document`,
             ),
             method: "PATCH",
             headers: _headers,

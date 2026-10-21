@@ -203,7 +203,7 @@ export class AppDirectoryClient {
                 (await core.Supplier.get(this._options.baseUrl)) ??
                     (await core.Supplier.get(this._options.environment)) ??
                     environments.MavenAGIEnvironment.Production,
-                `v1/directory/${core.url.encodePathParam(appId)}`,
+                `v1/directory/${core.url.encodePathParam(appId, errors.MavenAGIError)}`,
             ),
             method: "GET",
             headers: _headers,
@@ -340,7 +340,7 @@ export class AppDirectoryClient {
                 (await core.Supplier.get(this._options.baseUrl)) ??
                     (await core.Supplier.get(this._options.environment)) ??
                     environments.MavenAGIEnvironment.Production,
-                `v1/directory/${core.url.encodePathParam(appId)}/install`,
+                `v1/directory/${core.url.encodePathParam(appId, errors.MavenAGIError)}/install`,
             ),
             method: "POST",
             headers: _headers,
@@ -473,7 +473,7 @@ export class AppDirectoryClient {
                 (await core.Supplier.get(this._options.baseUrl)) ??
                     (await core.Supplier.get(this._options.environment)) ??
                     environments.MavenAGIEnvironment.Production,
-                `v1/directory/${core.url.encodePathParam(appId)}/install`,
+                `v1/directory/${core.url.encodePathParam(appId, errors.MavenAGIError)}/install`,
             ),
             method: "DELETE",
             headers: _headers,
@@ -603,7 +603,7 @@ export class AppDirectoryClient {
                 (await core.Supplier.get(this._options.baseUrl)) ??
                     (await core.Supplier.get(this._options.environment)) ??
                     environments.MavenAGIEnvironment.Production,
-                `v1/directory/${core.url.encodePathParam(appId)}/settings/${core.url.encodePathParam(settingsKey)}`,
+                `v1/directory/${core.url.encodePathParam(appId, errors.MavenAGIError)}/settings/${core.url.encodePathParam(settingsKey, errors.MavenAGIError)}`,
             ),
             method: "GET",
             headers: _headers,
@@ -749,7 +749,7 @@ export class AppDirectoryClient {
                 (await core.Supplier.get(this._options.baseUrl)) ??
                     (await core.Supplier.get(this._options.environment)) ??
                     environments.MavenAGIEnvironment.Production,
-                `v1/directory/${core.url.encodePathParam(appId)}/settings/${core.url.encodePathParam(settingsKey)}/upload-url`,
+                `v1/directory/${core.url.encodePathParam(appId, errors.MavenAGIError)}/settings/${core.url.encodePathParam(settingsKey, errors.MavenAGIError)}/upload-url`,
             ),
             method: "POST",
             headers: _headers,

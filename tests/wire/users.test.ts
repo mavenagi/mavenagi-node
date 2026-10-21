@@ -92,6 +92,7 @@ describe("UsersClient", () => {
                             createdAt: "2024-01-15T09:30:00Z",
                         },
                     ],
+                    executionMode: "LIVE",
                 },
                 {
                     id: "id",
@@ -167,6 +168,7 @@ describe("UsersClient", () => {
                             createdAt: "2024-01-15T09:30:00Z",
                         },
                     ],
+                    executionMode: "LIVE",
                 },
             ],
             number: 1,
@@ -284,6 +286,7 @@ describe("UsersClient", () => {
                             createdAt: new Date("2024-01-15T09:30:00.000Z"),
                         },
                     ],
+                    executionMode: "LIVE",
                 },
                 {
                     id: "id",
@@ -382,6 +385,7 @@ describe("UsersClient", () => {
                             createdAt: new Date("2024-01-15T09:30:00.000Z"),
                         },
                     ],
+                    executionMode: "LIVE",
                 },
             ],
             number: 1,
@@ -543,6 +547,7 @@ describe("UsersClient", () => {
             updatedAt: "2021-01-01T00:00:00Z",
             identifiers: [{ value: "joe@myapp.com", type: "EMAIL" }],
             defaultName: "Joe",
+            executionMode: "LIVE",
             users: [
                 {
                     userId: {
@@ -589,6 +594,7 @@ describe("UsersClient", () => {
                 },
             ],
             defaultName: "Joe",
+            executionMode: "LIVE",
             users: [
                 {
                     userId: {
@@ -752,6 +758,153 @@ describe("UsersClient", () => {
 
         await expect(async () => {
             return await client.users.getAgentUser("agentUserId");
+        }).rejects.toThrow(MavenAGI.ServerError);
+    });
+
+    test("deleteAgentUser (1)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new MavenAGIClient({
+            maxRetries: 0,
+            appId: "test",
+            appSecret: "test",
+            organizationId: "test",
+            agentId: "test",
+            environment: server.baseUrl,
+        });
+
+        server.mockEndpoint().delete("/v1/agentusers/aus_1234567890").respondWith().statusCode(200).build();
+
+        const response = await client.users.deleteAgentUser("aus_1234567890");
+        expect(response).toEqual(undefined);
+    });
+
+    test("deleteAgentUser (2)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new MavenAGIClient({
+            maxRetries: 0,
+            appId: "test",
+            appSecret: "test",
+            organizationId: "test",
+            agentId: "test",
+            environment: server.baseUrl,
+        });
+
+        const rawResponseBody = {};
+
+        server
+            .mockEndpoint()
+            .delete("/v1/agentusers/agentUserId")
+            .respondWith()
+            .statusCode(404)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.users.deleteAgentUser("agentUserId");
+        }).rejects.toThrow(MavenAGI.NotFoundError);
+    });
+
+    test("deleteAgentUser (3)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new MavenAGIClient({
+            maxRetries: 0,
+            appId: "test",
+            appSecret: "test",
+            organizationId: "test",
+            agentId: "test",
+            environment: server.baseUrl,
+        });
+
+        const rawResponseBody = {};
+
+        server
+            .mockEndpoint()
+            .delete("/v1/agentusers/agentUserId")
+            .respondWith()
+            .statusCode(400)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.users.deleteAgentUser("agentUserId");
+        }).rejects.toThrow(MavenAGI.BadRequestError);
+    });
+
+    test("deleteAgentUser (4)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new MavenAGIClient({
+            maxRetries: 0,
+            appId: "test",
+            appSecret: "test",
+            organizationId: "test",
+            agentId: "test",
+            environment: server.baseUrl,
+        });
+
+        const rawResponseBody = {};
+
+        server
+            .mockEndpoint()
+            .delete("/v1/agentusers/agentUserId")
+            .respondWith()
+            .statusCode(413)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.users.deleteAgentUser("agentUserId");
+        }).rejects.toThrow(MavenAGI.PayloadTooLargeError);
+    });
+
+    test("deleteAgentUser (5)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new MavenAGIClient({
+            maxRetries: 0,
+            appId: "test",
+            appSecret: "test",
+            organizationId: "test",
+            agentId: "test",
+            environment: server.baseUrl,
+        });
+
+        const rawResponseBody = {};
+
+        server
+            .mockEndpoint()
+            .delete("/v1/agentusers/agentUserId")
+            .respondWith()
+            .statusCode(429)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.users.deleteAgentUser("agentUserId");
+        }).rejects.toThrow(MavenAGI.TooManyRequestsError);
+    });
+
+    test("deleteAgentUser (6)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new MavenAGIClient({
+            maxRetries: 0,
+            appId: "test",
+            appSecret: "test",
+            organizationId: "test",
+            agentId: "test",
+            environment: server.baseUrl,
+        });
+
+        const rawResponseBody = {};
+
+        server
+            .mockEndpoint()
+            .delete("/v1/agentusers/agentUserId")
+            .respondWith()
+            .statusCode(500)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.users.deleteAgentUser("agentUserId");
         }).rejects.toThrow(MavenAGI.ServerError);
     });
 

@@ -6,6 +6,8 @@ export interface AgentUserFilter {
     /**
      * Full-text search query for matching agent users by content.
      * When you search with this parameter, you're performing a full-text search across the user identifiers.
+     *
+     * Shown in Agent Designer as "Content includes".
      */
     search?: string;
     /** Filter by identifiers */
@@ -22,4 +24,6 @@ export interface AgentUserFilter {
     isAnonymous?: boolean;
     /** Filter by intelligent field values. All conditions are ANDed together. */
     intelligentFields?: MavenAGI.IntelligentFieldFilter;
+    /** Whether to include simulation users in search results. Defaults to only non-simulation users. */
+    simulationFilter?: MavenAGI.SimulationFilter;
 }

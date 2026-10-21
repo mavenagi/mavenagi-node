@@ -5,16 +5,19 @@ import * as core from "../../../../core";
 import type * as serializers from "../../../index";
 import { AppUser } from "./AppUser";
 import { EntityIdBase } from "./EntityIdBase";
+import { ExecutionMode } from "./ExecutionMode";
 
 export const AppUserRequest: core.serialization.ObjectSchema<serializers.AppUserRequest.Raw, MavenAGI.AppUserRequest> =
     core.serialization
         .object({
             userId: EntityIdBase,
+            executionMode: ExecutionMode.optional(),
         })
         .extend(AppUser);
 
 export declare namespace AppUserRequest {
     export interface Raw extends AppUser.Raw {
         userId: EntityIdBase.Raw;
+        executionMode?: ExecutionMode.Raw | null;
     }
 }

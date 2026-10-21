@@ -349,7 +349,7 @@ export class CustomersClient {
                 (await core.Supplier.get(this._options.baseUrl)) ??
                     (await core.Supplier.get(this._options.environment)) ??
                     environments.MavenAGIEnvironment.Production,
-                `/v1/customers/${core.url.encodePathParam(customerReferenceId)}`,
+                `/v1/customers/${core.url.encodePathParam(customerReferenceId, errors.MavenAGIError)}`,
             ),
             method: "GET",
             headers: _headers,
@@ -494,7 +494,7 @@ export class CustomersClient {
                 (await core.Supplier.get(this._options.baseUrl)) ??
                     (await core.Supplier.get(this._options.environment)) ??
                     environments.MavenAGIEnvironment.Production,
-                `/v1/customers/${core.url.encodePathParam(customerReferenceId)}`,
+                `/v1/customers/${core.url.encodePathParam(customerReferenceId, errors.MavenAGIError)}`,
             ),
             method: "PATCH",
             headers: _headers,

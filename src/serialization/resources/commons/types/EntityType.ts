@@ -29,6 +29,11 @@ export const EntityType: core.serialization.Schema<serializers.EntityType.Raw, M
         "AGENT_VARIANT",
         "ASSET",
         "TRAFFIC_CONFIG",
+        "SCENARIO",
+        "SCENARIO_SUITE",
+        "SCENARIO_RUN",
+        "FUNCTION",
+        "FUNCTION_VERSION",
     ]);
 
 export declare namespace EntityType {
@@ -55,5 +60,10 @@ export declare namespace EntityType {
         | "CONVERSATION_KICKOFF"
         | "AGENT_VARIANT"
         | "ASSET"
-        | "TRAFFIC_CONFIG";
+        | "TRAFFIC_CONFIG"
+        | "SCENARIO"
+        | "SCENARIO_SUITE"
+        | "SCENARIO_RUN"
+        | "FUNCTION"
+        | "FUNCTION_VERSION";
 }

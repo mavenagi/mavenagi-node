@@ -2,8 +2,12 @@
 
 /** The status of the knowledge base version */
 export const KnowledgeBaseVersionStatus = {
+    /**
+     * Shown in Agent Designer as "Success". */
     Succeeded: "SUCCEEDED",
     Failed: "FAILED",
+    /**
+     * Shown in Agent Designer as "Processing". */
     InProgress: "IN_PROGRESS",
     /**
      * Stopped before completing, by a cancel request rather than a failure. */

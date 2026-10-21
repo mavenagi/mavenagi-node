@@ -58,9 +58,11 @@ export interface KnowledgeBaseResponse extends MavenAGI.KnowledgeBaseProperties 
      * The status of the most recent version of the knowledge base.
      * The `activeVersionId` will only be populated if this status is `SUCCEEDED`.
      * Use the `listKnowledgeBaseVersions` endpoint to get the full list of versions.
+     *
+     * Shown in Agent Designer as "Refresh status".
      */
     mostRecentVersionStatus: MavenAGI.KnowledgeBaseVersionStatus;
-    /** The type of the knowledge base. Can not be changed once created. */
+    /** The type of the knowledge base. Can not be changed once created. Shown in Agent Designer as "Source". */
     type: MavenAGI.KnowledgeBaseType;
     /** Metadata for the knowledge base. */
     metadata: Record<string, string>;

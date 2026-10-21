@@ -3,6 +3,8 @@
 export const Quality = {
     Good: "GOOD",
     NeedsImprovement: "NEEDS_IMPROVEMENT",
+    /**
+     * Shown in Agent Designer as "Ineligible". */
     Unknown: "UNKNOWN",
 } as const;
 export type Quality = (typeof Quality)[keyof typeof Quality] | string;

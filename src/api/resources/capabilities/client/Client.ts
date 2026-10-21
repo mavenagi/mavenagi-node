@@ -86,7 +86,7 @@ export class CapabilitiesClient {
                 (await core.Supplier.get(this._options.baseUrl)) ??
                     (await core.Supplier.get(this._options.environment)) ??
                     environments.MavenAGIEnvironment.Production,
-                `/v1/capabilities/${core.url.encodePathParam(serializers.CapabilityType.jsonOrThrow(capabilityType))}/${core.url.encodePathParam(referenceId)}`,
+                `/v1/capabilities/${core.url.encodePathParam(serializers.CapabilityType.jsonOrThrow(capabilityType), errors.MavenAGIError)}/${core.url.encodePathParam(referenceId, errors.MavenAGIError)}`,
             ),
             method: "GET",
             headers: _headers,
@@ -243,7 +243,7 @@ export class CapabilitiesClient {
                 (await core.Supplier.get(this._options.baseUrl)) ??
                     (await core.Supplier.get(this._options.environment)) ??
                     environments.MavenAGIEnvironment.Production,
-                `/v1/capabilities/${core.url.encodePathParam(serializers.CapabilityType.jsonOrThrow(capabilityType))}/${core.url.encodePathParam(referenceId)}`,
+                `/v1/capabilities/${core.url.encodePathParam(serializers.CapabilityType.jsonOrThrow(capabilityType), errors.MavenAGIError)}/${core.url.encodePathParam(referenceId, errors.MavenAGIError)}`,
             ),
             method: "PATCH",
             headers: _headers,
@@ -408,7 +408,7 @@ export class CapabilitiesClient {
                 (await core.Supplier.get(this._options.baseUrl)) ??
                     (await core.Supplier.get(this._options.environment)) ??
                     environments.MavenAGIEnvironment.Production,
-                `/v1/capabilities/${core.url.encodePathParam(serializers.CapabilityType.jsonOrThrow(capabilityType))}/${core.url.encodePathParam(referenceId)}`,
+                `/v1/capabilities/${core.url.encodePathParam(serializers.CapabilityType.jsonOrThrow(capabilityType), errors.MavenAGIError)}/${core.url.encodePathParam(referenceId, errors.MavenAGIError)}`,
             ),
             method: "DELETE",
             headers: _headers,
@@ -493,6 +493,175 @@ export class CapabilitiesClient {
             _response.rawResponse,
             "DELETE",
             "/v1/capabilities/{capabilityType}/{referenceId}",
+        );
+    }
+
+    /**
+     * Run one of an agent's capabilities once, as a simulation, and return what it produced.
+     *
+     * The caller supplies everything the capability reads, so it runs in isolation: no
+     * conversation or agent user has to exist first. The capability is told its mode is
+     * `SIMULATION`, the same as in a test suite run, so an app that honours it can avoid side
+     * effects in real systems. Nothing here runs a capability live.
+     *
+     * Only actions can be simulated today. Triggers and conversation kickoffs are rejected with a
+     * 400 until they can run as simulations. Intelligent fields cannot be simulated.
+     *
+     * @param {MavenAGI.CapabilityType} capabilityType - Which kind of capability to simulate. Must match the body's `capabilityType`.
+     * @param {string} referenceId - The capability's reference ID, unique within its type and app.
+     * @param {MavenAGI.SimulateCapabilityByTypeRequest} request
+     * @param {CapabilitiesClient.RequestOptions} requestOptions - Request-specific configuration.
+     *
+     * @throws {@link MavenAGI.NotFoundError}
+     * @throws {@link MavenAGI.BadRequestError}
+     * @throws {@link MavenAGI.PayloadTooLargeError}
+     * @throws {@link MavenAGI.TooManyRequestsError}
+     * @throws {@link MavenAGI.ServerError}
+     * @throws {@link errors.MavenAGIError}
+     * @throws {@link errors.MavenAGITimeoutError}
+     *
+     * @example
+     *     await client.capabilities.simulateCapability("ACTION", "referenceId", {
+     *         body: {
+     *             capabilityType: "ACTION"
+     *         }
+     *     })
+     */
+    public simulateCapability(
+        capabilityType: MavenAGI.CapabilityType,
+        referenceId: string,
+        request: MavenAGI.SimulateCapabilityByTypeRequest,
+        requestOptions?: CapabilitiesClient.RequestOptions,
+    ): core.HttpResponsePromise<MavenAGI.CapabilitySimulationResult> {
+        return core.HttpResponsePromise.fromPromise(
+            this.__simulateCapability(capabilityType, referenceId, request, requestOptions),
+        );
+    }
+
+    private async __simulateCapability(
+        capabilityType: MavenAGI.CapabilityType,
+        referenceId: string,
+        request: MavenAGI.SimulateCapabilityByTypeRequest,
+        requestOptions?: CapabilitiesClient.RequestOptions,
+    ): Promise<core.WithRawResponse<MavenAGI.CapabilitySimulationResult>> {
+        const { appId, body: _body } = request;
+        const _queryParams: Record<string, unknown> = {
+            appId,
+        };
+        const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
+        const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
+            _authRequest.headers,
+            this._options?.headers,
+            mergeOnlyDefinedHeaders({
+                "X-Organization-Id": requestOptions?.organizationId ?? this._options?.organizationId,
+                "X-Agent-Id": requestOptions?.agentId ?? this._options?.agentId,
+            }),
+            requestOptions?.headers,
+        );
+        const _response = await (this._options.fetcher ?? core.fetcher)({
+            url: core.url.join(
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)) ??
+                    environments.MavenAGIEnvironment.Production,
+                `/v1/capabilities/${core.url.encodePathParam(serializers.CapabilityType.jsonOrThrow(capabilityType), errors.MavenAGIError)}/${core.url.encodePathParam(referenceId, errors.MavenAGIError)}/simulate`,
+            ),
+            method: "POST",
+            headers: _headers,
+            contentType: "application/json",
+            queryString: core.url
+                .queryBuilder()
+                .addMany(_queryParams)
+                .mergeAdditional(requestOptions?.queryParams)
+                .build(),
+            requestType: "json",
+            body: mergeAdditionalBodyParameters(
+                serializers.CapabilitySimulationInput.jsonOrThrow(_body, { unrecognizedObjectKeys: "strip" }),
+                requestOptions?.additionalBodyParameters,
+            ),
+            timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
+            maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
+            abortSignal: requestOptions?.abortSignal,
+            fetchFn: this._options?.fetch,
+            logging: this._options.logging,
+        });
+        if (_response.ok) {
+            return {
+                data: serializers.CapabilitySimulationResult.parseOrThrow(_response.body, {
+                    unrecognizedObjectKeys: "passthrough",
+                    allowUnrecognizedUnionMembers: true,
+                    allowUnrecognizedEnumValues: true,
+                    breadcrumbsPrefix: ["response"],
+                }),
+                rawResponse: _response.rawResponse,
+            };
+        }
+
+        if (_response.error.reason === "status-code") {
+            switch (_response.error.statusCode) {
+                case 404:
+                    throw new MavenAGI.NotFoundError(
+                        serializers.ErrorMessage.parseOrThrow(_response.error.body, {
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
+                            breadcrumbsPrefix: ["response"],
+                        }),
+                        _response.rawResponse,
+                    );
+                case 400:
+                    throw new MavenAGI.BadRequestError(
+                        serializers.ErrorMessage.parseOrThrow(_response.error.body, {
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
+                            breadcrumbsPrefix: ["response"],
+                        }),
+                        _response.rawResponse,
+                    );
+                case 413:
+                    throw new MavenAGI.PayloadTooLargeError(
+                        serializers.ErrorMessage.parseOrThrow(_response.error.body, {
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
+                            breadcrumbsPrefix: ["response"],
+                        }),
+                        _response.rawResponse,
+                    );
+                case 429:
+                    throw new MavenAGI.TooManyRequestsError(
+                        serializers.ErrorMessage.parseOrThrow(_response.error.body, {
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
+                            breadcrumbsPrefix: ["response"],
+                        }),
+                        _response.rawResponse,
+                    );
+                case 500:
+                    throw new MavenAGI.ServerError(
+                        serializers.ErrorMessage.parseOrThrow(_response.error.body, {
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
+                            breadcrumbsPrefix: ["response"],
+                        }),
+                        _response.rawResponse,
+                    );
+                default:
+                    throw new errors.MavenAGIError({
+                        statusCode: _response.error.statusCode,
+                        body: _response.error.body,
+                        rawResponse: _response.rawResponse,
+                    });
+            }
+        }
+
+        return handleNonStatusCodeError(
+            _response.error,
+            _response.rawResponse,
+            "POST",
+            "/v1/capabilities/{capabilityType}/{referenceId}/simulate",
         );
     }
 

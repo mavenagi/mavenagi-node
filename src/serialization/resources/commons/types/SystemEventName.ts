@@ -18,6 +18,7 @@ export const SystemEventName: core.serialization.Schema<serializers.SystemEventN
         "SYNC_COMPLETED",
         "SYNC_FAILED",
         "CONVERSATION_CLOSED",
+        "BOT_REPLY_CREATED",
         "INTELLIGENT_FIELD_VALUE_CHANGED",
     ]);
 
@@ -35,5 +36,6 @@ export declare namespace SystemEventName {
         | "SYNC_COMPLETED"
         | "SYNC_FAILED"
         | "CONVERSATION_CLOSED"
+        | "BOT_REPLY_CREATED"
         | "INTELLIGENT_FIELD_VALUE_CHANGED";
 }

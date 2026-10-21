@@ -251,7 +251,7 @@ export class IntelligentFieldsClient {
                 (await core.Supplier.get(this._options.baseUrl)) ??
                     (await core.Supplier.get(this._options.environment)) ??
                     environments.MavenAGIEnvironment.Production,
-                `/v1/intelligent-fields/${core.url.encodePathParam(fieldReferenceId)}`,
+                `/v1/intelligent-fields/${core.url.encodePathParam(fieldReferenceId, errors.MavenAGIError)}`,
             ),
             method: "GET",
             headers: _headers,
@@ -405,7 +405,7 @@ export class IntelligentFieldsClient {
                 (await core.Supplier.get(this._options.baseUrl)) ??
                     (await core.Supplier.get(this._options.environment)) ??
                     environments.MavenAGIEnvironment.Production,
-                `/v1/intelligent-fields/${core.url.encodePathParam(fieldReferenceId)}`,
+                `/v1/intelligent-fields/${core.url.encodePathParam(fieldReferenceId, errors.MavenAGIError)}`,
             ),
             method: "PATCH",
             headers: _headers,
@@ -512,8 +512,9 @@ export class IntelligentFieldsClient {
      * Soft delete an intelligent field. Only INACTIVE fields can be deleted.
      *
      * Deleted fields are excluded from search results, and getting one by ID returns 404.
-     * Creating a new field with the same referenceId as a deleted field will overwrite
-     * the deleted field and restore it with the status a new field gets.
+     * Creating a field with the same referenceId as a deleted field reclaims it: the field keeps
+     * its identity and entityType, every other setting comes from the request, and it gets the
+     * status a new field gets.
      *
      * Deleted fields cannot be modified.
      *
@@ -566,7 +567,7 @@ export class IntelligentFieldsClient {
                 (await core.Supplier.get(this._options.baseUrl)) ??
                     (await core.Supplier.get(this._options.environment)) ??
                     environments.MavenAGIEnvironment.Production,
-                `/v1/intelligent-fields/${core.url.encodePathParam(fieldReferenceId)}`,
+                `/v1/intelligent-fields/${core.url.encodePathParam(fieldReferenceId, errors.MavenAGIError)}`,
             ),
             method: "DELETE",
             headers: _headers,

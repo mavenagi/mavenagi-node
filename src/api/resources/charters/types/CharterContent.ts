@@ -25,6 +25,8 @@ export interface CharterContent extends MavenAGI.CharterBase {
      * precondition to determine whether there is a match. When null, the
      * charter is a wildcard and always matches (subject to ancestor
      * preconditions still combining with AND logic).
+     *
+     * Shown in Agent Designer as the charter's "Segment". A null precondition shows as "All conversations".
      */
     precondition?: MavenAGI.Precondition | null;
     /** Desired lifecycle status. */

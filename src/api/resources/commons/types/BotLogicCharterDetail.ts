@@ -14,4 +14,6 @@ export interface BotLogicCharterDetail {
     segmentId?: MavenAGI.EntityIdWithoutAgent;
     /** The parent charter in the hierarchy, if any. Absent for root-level charters. */
     parentId?: MavenAGI.EntityIdWithoutAgent;
+    /** The charter's type when the response was generated. A matched `STRICT_RETURN` charter's manual is the whole response. */
+    type?: MavenAGI.CharterType;
 }

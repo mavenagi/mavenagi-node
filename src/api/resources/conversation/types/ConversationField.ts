@@ -4,6 +4,8 @@ export const ConversationField = {
     Category: "Category",
     FirstResponseTime: "FirstResponseTime",
     HandleTime: "HandleTime",
+    /**
+     * Shown in Agent Designer Insights as the "Top agents" table. */
     HumanAgents: "HumanAgents",
     HumanAgentsWithInserts: "HumanAgentsWithInserts",
     App: "App",
@@ -12,12 +14,16 @@ export const ConversationField = {
     ResolutionStatus: "ResolutionStatus",
     ResolvedByMaven: "ResolvedByMaven",
     Quality: "Quality",
+    /**
+     * Shown in Agent Designer as "Active users" when counted distinctly. */
     Users: "Users",
     ResponseLength: "ResponseLength",
     ThumbsUpCount: "ThumbsUpCount",
     ThumbsDownCount: "ThumbsDownCount",
     InsertCount: "InsertCount",
     Tags: "Tags",
+    /**
+     * Shown in Agent Designer as "Customer interactions". */
     UserMessageCount: "UserMessageCount",
     BotMessageCount: "BotMessageCount",
     Languages: "Languages",
@@ -27,6 +33,8 @@ export const ConversationField = {
     ActionExecutionCount: "ActionExecutionCount",
     ActionErrorCount: "ActionErrorCount",
     Charters: "Charters",
+    /**
+     * Shown in Agent Designer Insights as the "Top knowledge documents" table. */
     Sources: "Sources",
     CreatedAt: "CreatedAt",
     PredictedNps: "PredictedNPS",

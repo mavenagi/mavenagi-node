@@ -12,6 +12,7 @@ export const ErrorReason: core.serialization.Schema<serializers.ErrorReason.Raw,
         "STALE_WORKING_SET",
         "NOTHING_TO_COMMIT",
         "VARIANT_ALREADY_EXISTS",
+        "VARIANT_LIMIT_REACHED",
         "CANNOT_ARCHIVE_LIVE_VARIANT",
         "VARIANT_HAS_STAGED_EDITS",
         "VARIANT_REQUIRED",
@@ -27,6 +28,7 @@ export declare namespace ErrorReason {
         | "STALE_WORKING_SET"
         | "NOTHING_TO_COMMIT"
         | "VARIANT_ALREADY_EXISTS"
+        | "VARIANT_LIMIT_REACHED"
         | "CANNOT_ARCHIVE_LIVE_VARIANT"
         | "VARIANT_HAS_STAGED_EDITS"
         | "VARIANT_REQUIRED"

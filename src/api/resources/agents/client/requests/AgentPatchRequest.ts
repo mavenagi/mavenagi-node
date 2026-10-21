@@ -15,7 +15,11 @@ export interface AgentPatchRequest {
     defaultTimezone?: string;
     /** The PII categories that are enabled for the agent. */
     enabledPiiCategories?: Set<MavenAGI.PiiCategory>;
-    /** The system fallback message. */
+    /**
+     * The system fallback message.
+     *
+     * Rejected with reason `VARIANT_REQUIRED` while `SYSTEM_FALLBACK_MESSAGE` is in `getVersionedEntityTypes`; set it through `patchVersionedSettings`.
+     */
     systemFallbackMessage?: string | null;
     /** Deprecated. Superseded by charters, which determine agent behavior per round. Has no effect for agents using charters. */
     persona?: MavenAGI.LlmPersona;
@@ -35,7 +39,11 @@ export interface AgentPatchRequest {
      * The field must be `ACTIVE` to produce values. While it is inactive, conversations get no category. With agent variants, a conversation gets a category only if the field is active in its variant. Categories are capped at 280 characters.
      */
     categoryIntelligentFieldId?: MavenAGI.EntityIdWithoutAgent | null;
-    /** LLM prompt for generating a response when the user's question has been detected as unsafe. */
+    /**
+     * LLM prompt for generating a response when the user's question has been detected as unsafe.
+     *
+     * Rejected with reason `VARIANT_REQUIRED` while `CONTENT_SAFETY_VIOLATION_RESPONSE_PROMPT_TEXT` is in `getVersionedEntityTypes`; set it through `patchVersionedSettings`.
+     */
     contentSafetyViolationResponsePromptText?: string | null;
     /**
      * Deprecated. Superseded by charters, which determine agent behavior per round. Has no effect for agents using charters.

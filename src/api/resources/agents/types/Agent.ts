@@ -21,12 +21,14 @@ export interface Agent {
      * Defaults to `AbaRoutingNumber`, `CreditCardNumber`, `IpAddress`, `PhoneNumber`, `SwiftCode`,
      * `UsBankAccountNumber`, `UsDriversLicenseNumber`, `UsIndividualTaxpayerIdentification`,
      * `UsUkPassportNumber`, `UsSocialSecurityNumber`.
+     *
+     * Shown in Agent Designer as "PII Redaction".
      */
     enabledPiiCategories: Set<MavenAGI.PiiCategory>;
     /**
      * Text shown to end users when the system encounters an error while generating a bot response message.
      *
-     * This text is also used when a content safety violation is detected, unless `contentSafetyViolationPromptText` is set.
+     * Omitted while `SYSTEM_FALLBACK_MESSAGE` is in `getVersionedEntityTypes`; read it through `getVersionedSettings`.
      */
     systemFallbackMessage?: string;
     /** Agent prompting settings. */

@@ -207,7 +207,7 @@ export class AgentsClient {
                 (await core.Supplier.get(this._options.baseUrl)) ??
                     (await core.Supplier.get(this._options.environment)) ??
                     environments.MavenAGIEnvironment.Production,
-                `/v1/organizations/${core.url.encodePathParam(organizationReferenceId)}/agents`,
+                `/v1/organizations/${core.url.encodePathParam(organizationReferenceId, errors.MavenAGIError)}/agents`,
             ),
             method: "GET",
             headers: _headers,
@@ -357,7 +357,7 @@ export class AgentsClient {
                 (await core.Supplier.get(this._options.baseUrl)) ??
                     (await core.Supplier.get(this._options.environment)) ??
                     environments.MavenAGIEnvironment.Production,
-                `/v1/organizations/${core.url.encodePathParam(organizationReferenceId)}/agents/${core.url.encodePathParam(agentReferenceId)}`,
+                `/v1/organizations/${core.url.encodePathParam(organizationReferenceId, errors.MavenAGIError)}/agents/${core.url.encodePathParam(agentReferenceId, errors.MavenAGIError)}`,
             ),
             method: "POST",
             headers: _headers,
@@ -503,7 +503,7 @@ export class AgentsClient {
                 (await core.Supplier.get(this._options.baseUrl)) ??
                     (await core.Supplier.get(this._options.environment)) ??
                     environments.MavenAGIEnvironment.Production,
-                `/v1/organizations/${core.url.encodePathParam(organizationReferenceId)}/agents/${core.url.encodePathParam(agentReferenceId)}`,
+                `/v1/organizations/${core.url.encodePathParam(organizationReferenceId, errors.MavenAGIError)}/agents/${core.url.encodePathParam(agentReferenceId, errors.MavenAGIError)}`,
             ),
             method: "GET",
             headers: _headers,
@@ -651,7 +651,7 @@ export class AgentsClient {
                 (await core.Supplier.get(this._options.baseUrl)) ??
                     (await core.Supplier.get(this._options.environment)) ??
                     environments.MavenAGIEnvironment.Production,
-                `/v1/organizations/${core.url.encodePathParam(organizationReferenceId)}/agents/${core.url.encodePathParam(agentReferenceId)}`,
+                `/v1/organizations/${core.url.encodePathParam(organizationReferenceId, errors.MavenAGIError)}/agents/${core.url.encodePathParam(agentReferenceId, errors.MavenAGIError)}`,
             ),
             method: "PATCH",
             headers: _headers,
@@ -801,7 +801,7 @@ export class AgentsClient {
                 (await core.Supplier.get(this._options.baseUrl)) ??
                     (await core.Supplier.get(this._options.environment)) ??
                     environments.MavenAGIEnvironment.Production,
-                `/v1/organizations/${core.url.encodePathParam(organizationReferenceId)}/agents/${core.url.encodePathParam(agentReferenceId)}`,
+                `/v1/organizations/${core.url.encodePathParam(organizationReferenceId, errors.MavenAGIError)}/agents/${core.url.encodePathParam(agentReferenceId, errors.MavenAGIError)}`,
             ),
             method: "DELETE",
             headers: _headers,

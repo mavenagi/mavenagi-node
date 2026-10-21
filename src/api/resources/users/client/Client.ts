@@ -207,7 +207,7 @@ export class UsersClient {
                 (await core.Supplier.get(this._options.baseUrl)) ??
                     (await core.Supplier.get(this._options.environment)) ??
                     environments.MavenAGIEnvironment.Production,
-                `/v1/agentusers/${core.url.encodePathParam(agentUserId)}`,
+                `/v1/agentusers/${core.url.encodePathParam(agentUserId, errors.MavenAGIError)}`,
             ),
             method: "GET",
             headers: _headers,
@@ -292,6 +292,150 @@ export class UsersClient {
         }
 
         return handleNonStatusCodeError(_response.error, _response.rawResponse, "GET", "/v1/agentusers/{agentUserId}");
+    }
+
+    /**
+     * @beta This endpoint is in development and may change.
+     *
+     * Deletes the identifiers and user data that every app has saved for an agent user.
+     * This is the same as calling `DELETE /users/{userId}` for each of the agent user's app users.
+     *
+     * The agent user and its app users still exist afterwards, with no identifiers or user data.
+     * Apps can keep writing to them; a later create or update adds data back to the same users.
+     *
+     * Conversations, their messages and events are not modified, apart from the intelligent field values below. To wipe a conversation, use `DELETE /conversations/{conversationId}`.
+     *
+     * If the ID belongs to an agent user that has been merged into another, the agent user it was merged into is wiped.
+     *
+     * <Warning>This is a destructive operation and cannot be undone.</Warning>
+     *
+     * ### Intelligent fields
+     *
+     * The agent user's intelligent field values are deleted too, and removed from their `INTELLIGENT_FIELD_VALUE_CHANGED` events; the events themselves are kept.
+     * Unlike `DELETE /users/{userId}`, the wipe does not recompute the values. They can be computed again later from the user's remaining conversations, for example after the user sends another message; wipe those conversations first to prevent that.
+     *
+     * @param {string} agentUserId - The ID of the agent user to wipe.
+     * @param {UsersClient.RequestOptions} requestOptions - Request-specific configuration.
+     *
+     * @throws {@link MavenAGI.NotFoundError}
+     * @throws {@link MavenAGI.BadRequestError}
+     * @throws {@link MavenAGI.PayloadTooLargeError}
+     * @throws {@link MavenAGI.TooManyRequestsError}
+     * @throws {@link MavenAGI.ServerError}
+     * @throws {@link errors.MavenAGIError}
+     * @throws {@link errors.MavenAGITimeoutError}
+     *
+     * @example
+     *     await client.users.deleteAgentUser("aus_1234567890")
+     */
+    public deleteAgentUser(
+        agentUserId: string,
+        requestOptions?: UsersClient.RequestOptions,
+    ): core.HttpResponsePromise<void> {
+        return core.HttpResponsePromise.fromPromise(this.__deleteAgentUser(agentUserId, requestOptions));
+    }
+
+    private async __deleteAgentUser(
+        agentUserId: string,
+        requestOptions?: UsersClient.RequestOptions,
+    ): Promise<core.WithRawResponse<void>> {
+        const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
+        const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
+            _authRequest.headers,
+            this._options?.headers,
+            mergeOnlyDefinedHeaders({
+                "X-Organization-Id": requestOptions?.organizationId ?? this._options?.organizationId,
+                "X-Agent-Id": requestOptions?.agentId ?? this._options?.agentId,
+            }),
+            requestOptions?.headers,
+        );
+        const _response = await (this._options.fetcher ?? core.fetcher)({
+            url: core.url.join(
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)) ??
+                    environments.MavenAGIEnvironment.Production,
+                `/v1/agentusers/${core.url.encodePathParam(agentUserId, errors.MavenAGIError)}`,
+            ),
+            method: "DELETE",
+            headers: _headers,
+            queryString: core.url.queryBuilder().mergeAdditional(requestOptions?.queryParams).build(),
+            timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
+            maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
+            abortSignal: requestOptions?.abortSignal,
+            fetchFn: this._options?.fetch,
+            logging: this._options.logging,
+        });
+        if (_response.ok) {
+            return { data: undefined, rawResponse: _response.rawResponse };
+        }
+
+        if (_response.error.reason === "status-code") {
+            switch (_response.error.statusCode) {
+                case 404:
+                    throw new MavenAGI.NotFoundError(
+                        serializers.ErrorMessage.parseOrThrow(_response.error.body, {
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
+                            breadcrumbsPrefix: ["response"],
+                        }),
+                        _response.rawResponse,
+                    );
+                case 400:
+                    throw new MavenAGI.BadRequestError(
+                        serializers.ErrorMessage.parseOrThrow(_response.error.body, {
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
+                            breadcrumbsPrefix: ["response"],
+                        }),
+                        _response.rawResponse,
+                    );
+                case 413:
+                    throw new MavenAGI.PayloadTooLargeError(
+                        serializers.ErrorMessage.parseOrThrow(_response.error.body, {
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
+                            breadcrumbsPrefix: ["response"],
+                        }),
+                        _response.rawResponse,
+                    );
+                case 429:
+                    throw new MavenAGI.TooManyRequestsError(
+                        serializers.ErrorMessage.parseOrThrow(_response.error.body, {
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
+                            breadcrumbsPrefix: ["response"],
+                        }),
+                        _response.rawResponse,
+                    );
+                case 500:
+                    throw new MavenAGI.ServerError(
+                        serializers.ErrorMessage.parseOrThrow(_response.error.body, {
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
+                            breadcrumbsPrefix: ["response"],
+                        }),
+                        _response.rawResponse,
+                    );
+                default:
+                    throw new errors.MavenAGIError({
+                        statusCode: _response.error.statusCode,
+                        body: _response.error.body,
+                        rawResponse: _response.rawResponse,
+                    });
+            }
+        }
+
+        return handleNonStatusCodeError(
+            _response.error,
+            _response.rawResponse,
+            "DELETE",
+            "/v1/agentusers/{agentUserId}",
+        );
     }
 
     /**
@@ -494,7 +638,7 @@ export class UsersClient {
                 (await core.Supplier.get(this._options.baseUrl)) ??
                     (await core.Supplier.get(this._options.environment)) ??
                     environments.MavenAGIEnvironment.Production,
-                `/v1/users/${core.url.encodePathParam(userId)}`,
+                `/v1/users/${core.url.encodePathParam(userId, errors.MavenAGIError)}`,
             ),
             method: "GET",
             headers: _headers,
@@ -586,8 +730,13 @@ export class UsersClient {
     }
 
     /**
-     * Deletes all identifiers and user data saved by the specified app.
+     * Deletes all identifiers and user data saved by the specified app for this user.
      * Does not modify data or identifiers saved by other apps.
+     *
+     * The app user still exists afterwards, with no identifiers or user data, and the app can keep writing to it.
+     * Conversations, their messages and events are not modified.
+     * The agent user's intelligent field values are not deleted; they are recomputed without this app's data.
+     * To wipe a conversation, use `DELETE /conversations/{conversationId}`. To wipe every app's data for a user, use `DELETE /agentusers/{agentUserId}`.
      *
      * If this user is linked to a user from another app, it will not be unlinked. Unlinking of users is not yet supported.
      *
@@ -640,7 +789,7 @@ export class UsersClient {
                 (await core.Supplier.get(this._options.baseUrl)) ??
                     (await core.Supplier.get(this._options.environment)) ??
                     environments.MavenAGIEnvironment.Production,
-                `/v1/users/${core.url.encodePathParam(userId)}`,
+                `/v1/users/${core.url.encodePathParam(userId, errors.MavenAGIError)}`,
             ),
             method: "DELETE",
             headers: _headers,
