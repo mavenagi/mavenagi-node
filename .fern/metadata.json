@@ -19,10 +19,10 @@
         "useLegacyExports": true,
         "generateWireTests": false
     },
-    "originGitCommit": "b573f617c0b96d81749c2a0db94458fce9382f99",
+    "originGitCommit": "5930e9e855b793b83dd16b2f69ee49a3560b0856",
     "originGitCommitIsDirty": false,
     "invokedBy": "ci",
-    "requestedVersion": "1.2.66",
+    "requestedVersion": "1.2.67",
     "ciProvider": "github",
-    "sdkVersion": "1.2.66"
+    "sdkVersion": "1.2.67"
 }
