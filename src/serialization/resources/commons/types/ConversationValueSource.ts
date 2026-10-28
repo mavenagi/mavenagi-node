@@ -4,6 +4,7 @@ import type * as MavenAGI from "../../../../api/index";
 import * as core from "../../../../core";
 import type * as serializers from "../../../index";
 import { ConversationMetadataValueSource } from "./ConversationMetadataValueSource";
+import { UserDataValueSource } from "./UserDataValueSource";
 
 export const ConversationValueSource: core.serialization.Schema<
     serializers.ConversationValueSource.Raw,
@@ -11,6 +12,7 @@ export const ConversationValueSource: core.serialization.Schema<
 > = core.serialization
     .union("type", {
         conversationMetadata: ConversationMetadataValueSource,
+        userData: UserDataValueSource,
     })
     .transform<MavenAGI.ConversationValueSource>({
         transform: (value) => value,
@@ -18,9 +20,13 @@ export const ConversationValueSource: core.serialization.Schema<
     });
 
 export declare namespace ConversationValueSource {
-    export type Raw = ConversationValueSource.ConversationMetadata;
+    export type Raw = ConversationValueSource.ConversationMetadata | ConversationValueSource.UserData;
 
     export interface ConversationMetadata extends ConversationMetadataValueSource.Raw {
         type: "conversationMetadata";
+    }
+
+    export interface UserData extends UserDataValueSource.Raw {
+        type: "userData";
     }
 }

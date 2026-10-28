@@ -17,7 +17,6 @@ export const IntelligentFieldPatchRequest: core.serialization.Schema<
     description: core.serialization.string().optional(),
     enumOptions: core.serialization.list(EnumOption).optional(),
     variantId: EntityIdWithoutAgent.optional(),
-    variantAppId: core.serialization.string().optional(),
 });
 
 export declare namespace IntelligentFieldPatchRequest {
@@ -28,6 +27,5 @@ export declare namespace IntelligentFieldPatchRequest {
         description?: string | null;
         enumOptions?: EnumOption.Raw[] | null;
         variantId?: EntityIdWithoutAgent.Raw | null;
-        variantAppId?: string | null;
     }
 }

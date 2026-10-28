@@ -23,6 +23,13 @@ export interface AgentUserTableRequest extends MavenAGI.AgentUserAnalyticsReques
      */
     timeGrouping?: MavenAGI.TimeInterval;
     /**
+     * Specifies the fields by which data should be grouped. Each unique combination forms a row.
+     * If multiple fields are provided, the result is grouped by their unique value combinations.
+     * If omitted or empty, all data is aggregated into a single row.
+     * `CreatedAt` and `UpdatedAt` are rejected here; group by time with `timeGrouping`.
+     */
+    fieldGroupings?: MavenAGI.AgentUserGroupBy[];
+    /**
      * Specifies the metrics to be displayed as columns.
      * Only the `count` metric is supported for agent user tables, so each table will have a single column definition using `count`.
      */

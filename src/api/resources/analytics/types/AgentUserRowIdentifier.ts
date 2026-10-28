@@ -5,4 +5,6 @@ import type * as MavenAGI from "../../../index";
 export interface AgentUserRowIdentifier extends MavenAGI.RowIdentifierBase {
     /** Field this grouping was on. */
     field: MavenAGI.AgentUserField;
+    /** Which intelligent field this grouping was on, set when `field` is `IntelligentField`. */
+    intelligentFieldId?: MavenAGI.EntityId;
 }

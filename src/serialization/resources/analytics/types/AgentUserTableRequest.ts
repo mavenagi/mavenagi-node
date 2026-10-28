@@ -5,6 +5,7 @@ import * as core from "../../../../core";
 import type * as serializers from "../../../index";
 import { AgentUserAnalyticsRequest } from "./AgentUserAnalyticsRequest";
 import { AgentUserColumnDefinition } from "./AgentUserColumnDefinition";
+import { AgentUserGroupBy } from "./AgentUserGroupBy";
 import { TimeInterval } from "./TimeInterval";
 
 export const AgentUserTableRequest: core.serialization.ObjectSchema<
@@ -13,6 +14,7 @@ export const AgentUserTableRequest: core.serialization.ObjectSchema<
 > = core.serialization
     .object({
         timeGrouping: TimeInterval.optional(),
+        fieldGroupings: core.serialization.list(AgentUserGroupBy).optional(),
         columnDefinitions: core.serialization.list(AgentUserColumnDefinition),
     })
     .extend(AgentUserAnalyticsRequest);
@@ -20,6 +22,7 @@ export const AgentUserTableRequest: core.serialization.ObjectSchema<
 export declare namespace AgentUserTableRequest {
     export interface Raw extends AgentUserAnalyticsRequest.Raw {
         timeGrouping?: TimeInterval.Raw | null;
+        fieldGroupings?: AgentUserGroupBy.Raw[] | null;
         columnDefinitions: AgentUserColumnDefinition.Raw[];
     }
 }

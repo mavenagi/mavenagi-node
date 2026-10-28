@@ -13,8 +13,8 @@ import { QualityReason } from "../../commons/types/QualityReason";
 import { ResolutionStatus } from "../../commons/types/ResolutionStatus";
 import { ResponseLength } from "../../commons/types/ResponseLength";
 import { Sentiment } from "../../commons/types/Sentiment";
+import { SimulationFilter } from "../../commons/types/SimulationFilter";
 import { BillableFilterField } from "./BillableFilterField";
-import { SimulationFilter } from "./SimulationFilter";
 
 export const ConversationFilter: core.serialization.ObjectSchema<
     serializers.ConversationFilter.Raw,

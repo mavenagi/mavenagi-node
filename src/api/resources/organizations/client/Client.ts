@@ -27,9 +27,9 @@ export class OrganizationsClient {
     /**
      * Create a new organization.
      *
-     * <Tip>
-     * This endpoint requires additional permissions. Contact support to request access.
-     * </Tip>
+     * Only Maven staff hold this permission.
+     *
+     * <Note>**Required permission:** `create:organization`</Note>
      *
      * @param {string} organizationReferenceId - The reference ID of the organization.
      * @param {MavenAGI.CreateOrganizationRequest} request
@@ -178,6 +178,8 @@ export class OrganizationsClient {
     /**
      * Get an organization by ID
      *
+     * <Note>**Required permission:** `read:organization`</Note>
+     *
      * @param {string} organizationReferenceId - The reference ID of the organization.
      * @param {OrganizationsClient.RequestOptions} requestOptions - Request-specific configuration.
      *
@@ -314,9 +316,7 @@ export class OrganizationsClient {
      * Update mutable organization fields.
      * All fields will overwrite the existing value on the organization only if provided.
      *
-     * <Tip>
-     * This endpoint requires additional permissions. Contact support to request access.
-     * </Tip>
+     * <Note>**Required permission:** `edit:organization`</Note>
      *
      * @param {string} organizationReferenceId - The reference ID of the organization.
      * @param {MavenAGI.OrganizationPatchRequest} request
@@ -462,9 +462,7 @@ export class OrganizationsClient {
     /**
      * Delete an organization.
      *
-     * <Tip>
-     * This endpoint requires additional permissions. Contact support to request access.
-     * </Tip>
+     * <Note>**Required permission:** `delete:organization`</Note>
      *
      * @param {string} organizationReferenceId - The reference ID of the organization.
      * @param {OrganizationsClient.RequestOptions} requestOptions - Request-specific configuration.
@@ -596,9 +594,9 @@ export class OrganizationsClient {
      * Retrieves structured conversation data across all organizations, formatted as a table,
      * allowing users to group, filter, and define specific metrics to display as columns.
      *
-     * <Tip>
-     * This endpoint requires additional permissions. Contact support to request access.
-     * </Tip>
+     * Only Maven staff hold this permission.
+     *
+     * <Note>**Required permission:** `read:all-organizations`</Note>
      *
      * @param {MavenAGI.ConversationTableRequest} request
      * @param {OrganizationsClient.RequestOptions} requestOptions - Request-specific configuration.
@@ -771,9 +769,9 @@ export class OrganizationsClient {
      * Fetches conversation data across all organizations, visualized in a chart format.
      * Supported chart types include pie chart, date histogram, and stacked bar charts.
      *
-     * <Tip>
-     * This endpoint requires additional permissions. Contact support to request access.
-     * </Tip>
+     * Only Maven staff hold this permission.
+     *
+     * <Note>**Required permission:** `read:all-organizations`</Note>
      *
      * @param {MavenAGI.ConversationChartRequest} request
      * @param {OrganizationsClient.RequestOptions} requestOptions - Request-specific configuration.

@@ -6,12 +6,14 @@ import type * as serializers from "../../../index";
 import { EventType } from "./EventType";
 import { FeedbackType } from "./FeedbackType";
 import { ScopedEntity } from "./ScopedEntity";
+import { SimulationFilter } from "./SimulationFilter";
 import { SystemEventName } from "./SystemEventName";
 import { UserEventName } from "./UserEventName";
 
 export const EventFilter: core.serialization.ObjectSchema<serializers.EventFilter.Raw, MavenAGI.EventFilter> =
     core.serialization.object({
         search: core.serialization.string().optional(),
+        simulationFilter: SimulationFilter.optional(),
         createdAfter: core.serialization.date().optional(),
         createdBefore: core.serialization.date().optional(),
         references: core.serialization.list(ScopedEntity).optional(),
@@ -26,6 +28,7 @@ export const EventFilter: core.serialization.ObjectSchema<serializers.EventFilte
 export declare namespace EventFilter {
     export interface Raw {
         search?: string | null;
+        simulationFilter?: SimulationFilter.Raw | null;
         createdAfter?: string | null;
         createdBefore?: string | null;
         references?: ScopedEntity.Raw[] | null;

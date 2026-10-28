@@ -8,4 +8,10 @@ export interface EventBaseNoId {
     sourceInfo?: MavenAGI.SourceInfo;
     sessionInfo?: MavenAGI.SessionInfo;
     contextInfo?: MavenAGI.ContextInfo;
+    /**
+     * Whether the event happened on live data or in a simulation. Defaults to `LIVE` when
+     * creating an event, and is always set on a returned event. Creating a `SIMULATION` event
+     * requires the `create:simulations` permission.
+     */
+    executionMode?: MavenAGI.ExecutionMode;
 }

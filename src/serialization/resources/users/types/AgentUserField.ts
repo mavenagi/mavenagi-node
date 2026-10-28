@@ -5,8 +5,8 @@ import * as core from "../../../../core";
 import type * as serializers from "../../../index";
 
 export const AgentUserField: core.serialization.Schema<serializers.AgentUserField.Raw, MavenAGI.AgentUserField> =
-    core.serialization.forwardCompatibleEnum_(["CreatedAt", "UpdatedAt"]);
+    core.serialization.forwardCompatibleEnum_(["CreatedAt", "UpdatedAt", "Anonymous", "IntelligentField"]);
 
 export declare namespace AgentUserField {
-    export type Raw = "CreatedAt" | "UpdatedAt";
+    export type Raw = "CreatedAt" | "UpdatedAt" | "Anonymous" | "IntelligentField";
 }

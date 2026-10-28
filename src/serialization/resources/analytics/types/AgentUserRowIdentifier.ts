@@ -3,6 +3,7 @@
 import type * as MavenAGI from "../../../../api/index";
 import * as core from "../../../../core";
 import type * as serializers from "../../../index";
+import { EntityId } from "../../commons/types/EntityId";
 import { AgentUserField } from "../../users/types/AgentUserField";
 import { RowIdentifierBase } from "./RowIdentifierBase";
 
@@ -12,11 +13,13 @@ export const AgentUserRowIdentifier: core.serialization.ObjectSchema<
 > = core.serialization
     .object({
         field: AgentUserField,
+        intelligentFieldId: EntityId.optional(),
     })
     .extend(RowIdentifierBase);
 
 export declare namespace AgentUserRowIdentifier {
     export interface Raw extends RowIdentifierBase.Raw {
         field: AgentUserField.Raw;
+        intelligentFieldId?: EntityId.Raw | null;
     }
 }

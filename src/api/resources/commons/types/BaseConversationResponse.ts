@@ -44,6 +44,12 @@ export interface BaseConversationResponse {
      */
     simulationContext?: MavenAGI.SimulationContext;
     /**
+     * Whether the conversation runs on live data or is a simulation. A conversation created
+     * with a `simulationContext` is a `SIMULATION`, and so are the conversations Maven runs
+     * itself, such as evaluations, which have no `simulationContext`.
+     */
+    executionMode: MavenAGI.ExecutionMode;
+    /**
      * Related entity ids grouped by relationship type.
      *
      * - `SPAWN_FROM`: the conversation this one was spawned from (set via `ConversationCreateRequest.spawnedFromConversationId`).

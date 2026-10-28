@@ -40,6 +40,31 @@ export const UserEventName: core.serialization.Schema<serializers.UserEventName.
         "ORDER_CANCELLED",
         "PAYMENT_FAILED",
         "ERROR_DISPLAYED",
+        "AD_IMPRESSION",
+        "EARN_VIRTUAL_CURRENCY",
+        "JOIN_GROUP",
+        "SELECT_CONTENT",
+        "SHARE",
+        "SPEND_VIRTUAL_CURRENCY",
+        "VIEW_ITEM_LIST",
+        "SELECT_ITEM",
+        "VIEW_ITEM",
+        "VIEW_PROMOTION",
+        "SELECT_PROMOTION",
+        "ADD_TO_WISHLIST",
+        "ADD_TO_CART",
+        "REMOVE_FROM_CART",
+        "VIEW_CART",
+        "BEGIN_CHECKOUT",
+        "ADD_SHIPPING_INFO",
+        "ADD_PAYMENT_INFO",
+        "REFUND",
+        "GENERATE_LEAD",
+        "QUALIFY_LEAD",
+        "DISQUALIFY_LEAD",
+        "WORKING_LEAD",
+        "CLOSE_CONVERT_LEAD",
+        "CLOSE_UNCONVERT_LEAD",
     ]);
 
 export declare namespace UserEventName {
@@ -77,5 +102,30 @@ export declare namespace UserEventName {
         | "ORDER_PLACED"
         | "ORDER_CANCELLED"
         | "PAYMENT_FAILED"
-        | "ERROR_DISPLAYED";
+        | "ERROR_DISPLAYED"
+        | "AD_IMPRESSION"
+        | "EARN_VIRTUAL_CURRENCY"
+        | "JOIN_GROUP"
+        | "SELECT_CONTENT"
+        | "SHARE"
+        | "SPEND_VIRTUAL_CURRENCY"
+        | "VIEW_ITEM_LIST"
+        | "SELECT_ITEM"
+        | "VIEW_ITEM"
+        | "VIEW_PROMOTION"
+        | "SELECT_PROMOTION"
+        | "ADD_TO_WISHLIST"
+        | "ADD_TO_CART"
+        | "REMOVE_FROM_CART"
+        | "VIEW_CART"
+        | "BEGIN_CHECKOUT"
+        | "ADD_SHIPPING_INFO"
+        | "ADD_PAYMENT_INFO"
+        | "REFUND"
+        | "GENERATE_LEAD"
+        | "QUALIFY_LEAD"
+        | "DISQUALIFY_LEAD"
+        | "WORKING_LEAD"
+        | "CLOSE_CONVERT_LEAD"
+        | "CLOSE_UNCONVERT_LEAD";
 }

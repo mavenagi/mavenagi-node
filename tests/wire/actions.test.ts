@@ -9,6 +9,7 @@ describe("ActionsClient", () => {
         const server = mockServerPool.createServer();
         const client = new MavenAGIClient({
             maxRetries: 0,
+            token: "test",
             appId: "test",
             appSecret: "test",
             organizationId: "test",
@@ -433,6 +434,7 @@ describe("ActionsClient", () => {
         const server = mockServerPool.createServer();
         const client = new MavenAGIClient({
             maxRetries: 0,
+            token: "test",
             appId: "test",
             appSecret: "test",
             organizationId: "test",
@@ -460,6 +462,7 @@ describe("ActionsClient", () => {
         const server = mockServerPool.createServer();
         const client = new MavenAGIClient({
             maxRetries: 0,
+            token: "test",
             appId: "test",
             appSecret: "test",
             organizationId: "test",
@@ -487,6 +490,7 @@ describe("ActionsClient", () => {
         const server = mockServerPool.createServer();
         const client = new MavenAGIClient({
             maxRetries: 0,
+            token: "test",
             appId: "test",
             appSecret: "test",
             organizationId: "test",
@@ -514,6 +518,7 @@ describe("ActionsClient", () => {
         const server = mockServerPool.createServer();
         const client = new MavenAGIClient({
             maxRetries: 0,
+            token: "test",
             appId: "test",
             appSecret: "test",
             organizationId: "test",
@@ -541,6 +546,7 @@ describe("ActionsClient", () => {
         const server = mockServerPool.createServer();
         const client = new MavenAGIClient({
             maxRetries: 0,
+            token: "test",
             appId: "test",
             appSecret: "test",
             organizationId: "test",
@@ -568,6 +574,7 @@ describe("ActionsClient", () => {
         const server = mockServerPool.createServer();
         const client = new MavenAGIClient({
             maxRetries: 0,
+            token: "test",
             appId: "test",
             appSecret: "test",
             organizationId: "test",
@@ -706,6 +713,7 @@ describe("ActionsClient", () => {
         const server = mockServerPool.createServer();
         const client = new MavenAGIClient({
             maxRetries: 0,
+            token: "test",
             appId: "test",
             appSecret: "test",
             organizationId: "test",
@@ -763,6 +771,7 @@ describe("ActionsClient", () => {
         const server = mockServerPool.createServer();
         const client = new MavenAGIClient({
             maxRetries: 0,
+            token: "test",
             appId: "test",
             appSecret: "test",
             organizationId: "test",
@@ -820,6 +829,7 @@ describe("ActionsClient", () => {
         const server = mockServerPool.createServer();
         const client = new MavenAGIClient({
             maxRetries: 0,
+            token: "test",
             appId: "test",
             appSecret: "test",
             organizationId: "test",
@@ -877,6 +887,7 @@ describe("ActionsClient", () => {
         const server = mockServerPool.createServer();
         const client = new MavenAGIClient({
             maxRetries: 0,
+            token: "test",
             appId: "test",
             appSecret: "test",
             organizationId: "test",
@@ -934,6 +945,7 @@ describe("ActionsClient", () => {
         const server = mockServerPool.createServer();
         const client = new MavenAGIClient({
             maxRetries: 0,
+            token: "test",
             appId: "test",
             appSecret: "test",
             organizationId: "test",
@@ -991,6 +1003,7 @@ describe("ActionsClient", () => {
         const server = mockServerPool.createServer();
         const client = new MavenAGIClient({
             maxRetries: 0,
+            token: "test",
             appId: "test",
             appSecret: "test",
             organizationId: "test",
@@ -1090,6 +1103,7 @@ describe("ActionsClient", () => {
         const server = mockServerPool.createServer();
         const client = new MavenAGIClient({
             maxRetries: 0,
+            token: "test",
             appId: "test",
             appSecret: "test",
             organizationId: "test",
@@ -1116,6 +1130,7 @@ describe("ActionsClient", () => {
         const server = mockServerPool.createServer();
         const client = new MavenAGIClient({
             maxRetries: 0,
+            token: "test",
             appId: "test",
             appSecret: "test",
             organizationId: "test",
@@ -1142,6 +1157,7 @@ describe("ActionsClient", () => {
         const server = mockServerPool.createServer();
         const client = new MavenAGIClient({
             maxRetries: 0,
+            token: "test",
             appId: "test",
             appSecret: "test",
             organizationId: "test",
@@ -1168,6 +1184,7 @@ describe("ActionsClient", () => {
         const server = mockServerPool.createServer();
         const client = new MavenAGIClient({
             maxRetries: 0,
+            token: "test",
             appId: "test",
             appSecret: "test",
             organizationId: "test",
@@ -1194,6 +1211,7 @@ describe("ActionsClient", () => {
         const server = mockServerPool.createServer();
         const client = new MavenAGIClient({
             maxRetries: 0,
+            token: "test",
             appId: "test",
             appSecret: "test",
             organizationId: "test",
@@ -1220,6 +1238,7 @@ describe("ActionsClient", () => {
         const server = mockServerPool.createServer();
         const client = new MavenAGIClient({
             maxRetries: 0,
+            token: "test",
             appId: "test",
             appSecret: "test",
             organizationId: "test",
@@ -1340,6 +1359,7 @@ describe("ActionsClient", () => {
         const server = mockServerPool.createServer();
         const client = new MavenAGIClient({
             maxRetries: 0,
+            token: "test",
             appId: "test",
             appSecret: "test",
             organizationId: "test",
@@ -1367,6 +1387,7 @@ describe("ActionsClient", () => {
         const server = mockServerPool.createServer();
         const client = new MavenAGIClient({
             maxRetries: 0,
+            token: "test",
             appId: "test",
             appSecret: "test",
             organizationId: "test",
@@ -1394,6 +1415,7 @@ describe("ActionsClient", () => {
         const server = mockServerPool.createServer();
         const client = new MavenAGIClient({
             maxRetries: 0,
+            token: "test",
             appId: "test",
             appSecret: "test",
             organizationId: "test",
@@ -1421,6 +1443,7 @@ describe("ActionsClient", () => {
         const server = mockServerPool.createServer();
         const client = new MavenAGIClient({
             maxRetries: 0,
+            token: "test",
             appId: "test",
             appSecret: "test",
             organizationId: "test",
@@ -1448,6 +1471,7 @@ describe("ActionsClient", () => {
         const server = mockServerPool.createServer();
         const client = new MavenAGIClient({
             maxRetries: 0,
+            token: "test",
             appId: "test",
             appSecret: "test",
             organizationId: "test",
@@ -1475,6 +1499,7 @@ describe("ActionsClient", () => {
         const server = mockServerPool.createServer();
         const client = new MavenAGIClient({
             maxRetries: 0,
+            token: "test",
             appId: "test",
             appSecret: "test",
             organizationId: "test",
@@ -1492,6 +1517,7 @@ describe("ActionsClient", () => {
         const server = mockServerPool.createServer();
         const client = new MavenAGIClient({
             maxRetries: 0,
+            token: "test",
             appId: "test",
             appSecret: "test",
             organizationId: "test",
@@ -1518,6 +1544,7 @@ describe("ActionsClient", () => {
         const server = mockServerPool.createServer();
         const client = new MavenAGIClient({
             maxRetries: 0,
+            token: "test",
             appId: "test",
             appSecret: "test",
             organizationId: "test",
@@ -1544,6 +1571,7 @@ describe("ActionsClient", () => {
         const server = mockServerPool.createServer();
         const client = new MavenAGIClient({
             maxRetries: 0,
+            token: "test",
             appId: "test",
             appSecret: "test",
             organizationId: "test",
@@ -1570,6 +1598,7 @@ describe("ActionsClient", () => {
         const server = mockServerPool.createServer();
         const client = new MavenAGIClient({
             maxRetries: 0,
+            token: "test",
             appId: "test",
             appSecret: "test",
             organizationId: "test",
@@ -1596,6 +1625,7 @@ describe("ActionsClient", () => {
         const server = mockServerPool.createServer();
         const client = new MavenAGIClient({
             maxRetries: 0,
+            token: "test",
             appId: "test",
             appSecret: "test",
             organizationId: "test",

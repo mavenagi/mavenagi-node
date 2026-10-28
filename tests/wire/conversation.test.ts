@@ -9,309 +9,51 @@ describe("ConversationClient", () => {
         const server = mockServerPool.createServer();
         const client = new MavenAGIClient({
             maxRetries: 0,
+            token: "test",
             appId: "test",
             appSecret: "test",
             organizationId: "test",
             agentId: "test",
             environment: server.baseUrl,
         });
-        const rawRequestBody = {
-            conversationId: { referenceId: "x" },
-            messages: [
-                {
-                    conversationMessageId: { referenceId: "x" },
-                    userId: { referenceId: "x" },
-                    text: "text",
-                    userMessageType: "USER",
-                },
-                {
-                    conversationMessageId: { referenceId: "x" },
-                    userId: { referenceId: "x" },
-                    text: "text",
-                    userMessageType: "USER",
-                },
-            ],
-        };
+        const rawRequestBody = { conversationId: { referenceId: "conversation-0" }, messages: [] };
         const rawResponseBody = {
-            conversationKickoffResults: [
-                {
-                    referenceId: "referenceId",
-                    appId: "appId",
-                    status: "SUCCESS",
-                    message: "message",
-                    startedAt: "2024-01-15T09:30:00Z",
-                    completedAt: "2024-01-15T09:30:00Z",
-                    durationMs: 1000000,
-                },
-                {
-                    referenceId: "referenceId",
-                    appId: "appId",
-                    status: "SUCCESS",
-                    message: "message",
-                    startedAt: "2024-01-15T09:30:00Z",
-                    completedAt: "2024-01-15T09:30:00Z",
-                    durationMs: 1000000,
-                },
-            ],
-            messages: [
-                {
-                    type: "user",
-                    conversationMessageId: {
-                        organizationId: "organizationId",
-                        agentId: "agentId",
-                        type: "AGENT",
-                        appId: "appId",
-                        referenceId: "x",
-                    },
-                    language: "language",
-                    attachments: [
-                        { url: "url", sizeBytes: 1000000, status: "PENDING", type: "type", name: "name" },
-                        { url: "url", sizeBytes: 1000000, status: "PENDING", type: "type", name: "name" },
-                    ],
-                    agentUserId: "agentUserId",
-                    userDisplayName: "userDisplayName",
-                    status: "SENDING",
-                    responseState: "NOT_ASKED",
-                    timezone: "timezone",
-                    userId: { referenceId: "x" },
-                    text: "text",
-                    userMessageType: "USER",
-                    createdAt: "2024-01-15T09:30:00Z",
-                    updatedAt: "2024-01-15T09:30:00Z",
-                    appMetadata: { appMetadata: "appMetadata" },
-                },
-                {
-                    type: "user",
-                    conversationMessageId: {
-                        organizationId: "organizationId",
-                        agentId: "agentId",
-                        type: "AGENT",
-                        appId: "appId",
-                        referenceId: "x",
-                    },
-                    language: "language",
-                    attachments: [
-                        { url: "url", sizeBytes: 1000000, status: "PENDING", type: "type", name: "name" },
-                        { url: "url", sizeBytes: 1000000, status: "PENDING", type: "type", name: "name" },
-                    ],
-                    agentUserId: "agentUserId",
-                    userDisplayName: "userDisplayName",
-                    status: "SENDING",
-                    responseState: "NOT_ASKED",
-                    timezone: "timezone",
-                    userId: { referenceId: "x" },
-                    text: "text",
-                    userMessageType: "USER",
-                    createdAt: "2024-01-15T09:30:00Z",
-                    updatedAt: "2024-01-15T09:30:00Z",
-                    appMetadata: { appMetadata: "appMetadata" },
-                },
-            ],
-            attachments: [
-                { url: "url", sizeBytes: 1000000, status: "PENDING", type: "type", name: "name" },
-                { url: "url", sizeBytes: 1000000, status: "PENDING", type: "type", name: "name" },
-            ],
-            responseConfig: {
-                capabilities: ["MARKDOWN", "MARKDOWN"],
-                isCopilot: true,
-                responseLength: "SHORT",
-                contextFilter: {
-                    scopeType: "byEntities",
-                    entities: [
-                        {
-                            entityId: {
-                                organizationId: "organizationId",
-                                agentId: "agentId",
-                                type: "AGENT",
-                                appId: "appId",
-                                referenceId: "x",
-                            },
-                            scopeEntityId: {
-                                organizationId: "organizationId",
-                                agentId: "agentId",
-                                type: "AGENT",
-                                appId: "appId",
-                                referenceId: "x",
-                            },
-                        },
-                    ],
-                },
-            },
-            subject: "subject",
-            url: "url",
-            createdAt: "2024-01-15T09:30:00Z",
-            updatedAt: "2024-01-15T09:30:00Z",
-            tags: ["tags"],
-            metadata: { metadata: "metadata" },
-            allMetadata: { allMetadata: { allMetadata: "allMetadata" } },
             conversationId: {
-                organizationId: "organizationId",
-                agentId: "agentId",
-                type: "AGENT",
-                appId: "appId",
-                referenceId: "x",
+                referenceId: "conversation-0",
+                appId: "myapp",
+                organizationId: "acme",
+                agentId: "support",
+                type: "CONVERSATION",
             },
-            analysis: {
-                userRequest: "userRequest",
-                agentResponse: "agentResponse",
-                resolutionStatus: "UNKNOWN",
-                category: "category",
-                sentiment: "POSITIVE",
-                quality: "GOOD",
-                qualityReason: "MISSING_KNOWLEDGE",
-                resolvedByMaven: true,
-                primaryLanguage: "primaryLanguage",
-                predictedNps: 1.1,
-                csat: 1.1,
-                intelligentFieldValues: [
-                    {
-                        fieldId: {
-                            organizationId: "organizationId",
-                            agentId: "agentId",
-                            type: "AGENT",
-                            appId: "appId",
-                            referenceId: "x",
-                        },
-                        name: "name",
-                        entityId: {
-                            organizationId: "organizationId",
-                            agentId: "agentId",
-                            type: "AGENT",
-                            appId: "appId",
-                            referenceId: "x",
-                        },
-                        value: { key: "value" },
-                        confidence: 1.1,
-                        rationale: "rationale",
-                        createdAt: "2024-01-15T09:30:00Z",
-                    },
-                    {
-                        fieldId: {
-                            organizationId: "organizationId",
-                            agentId: "agentId",
-                            type: "AGENT",
-                            appId: "appId",
-                            referenceId: "x",
-                        },
-                        name: "name",
-                        entityId: {
-                            organizationId: "organizationId",
-                            agentId: "agentId",
-                            type: "AGENT",
-                            appId: "appId",
-                            referenceId: "x",
-                        },
-                        value: { key: "value" },
-                        confidence: 1.1,
-                        rationale: "rationale",
-                        createdAt: "2024-01-15T09:30:00Z",
-                    },
-                ],
-            },
-            summary: {
-                actionIds: [
-                    { type: "AGENT", appId: "appId", referenceId: "x" },
-                    { type: "AGENT", appId: "appId", referenceId: "x" },
-                ],
-                incompleteActionIds: [
-                    { type: "AGENT", appId: "appId", referenceId: "x" },
-                    { type: "AGENT", appId: "appId", referenceId: "x" },
-                ],
-                matchedCharterIds: [
-                    { type: "AGENT", appId: "appId", referenceId: "x" },
-                    { type: "AGENT", appId: "appId", referenceId: "x" },
-                ],
-                matchedCharterNames: ["matchedCharterNames", "matchedCharterNames"],
-                matchedSegmentedCharterNames: ["matchedSegmentedCharterNames", "matchedSegmentedCharterNames"],
-                insertCount: 1,
-                thumbsUpCount: 1,
-                thumbsDownCount: 1,
-                handoffCount: 1,
-                userMessageCount: 1,
-                botMessageCount: 1,
-                csat: 1.1,
-                handleTime: 1000000,
-                humanAgentResponseDelay: 1000000,
-                humanAgents: ["humanAgents", "humanAgents"],
-                humanAgentsWithInserts: ["humanAgentsWithInserts", "humanAgentsWithInserts"],
-                users: ["users", "users"],
-                userIdentifiers: ["userIdentifiers", "userIdentifiers"],
-                lastUserMessage: "lastUserMessage",
-                lastBotMessage: "lastBotMessage",
-                involvedAppIds: ["involvedAppIds"],
-            },
-            deleted: true,
+            deleted: false,
             open: true,
             llmEnabled: true,
-            simulationContext: {
-                additionalPromptText: "additionalPromptText",
-                persona: "CASUAL_BUDDY",
-                availableKnowledgeBases: [
-                    {
-                        organizationId: "organizationId",
-                        agentId: "agentId",
-                        type: "AGENT",
-                        appId: "appId",
-                        referenceId: "x",
-                    },
-                ],
-                variantId: { type: "AGENT", appId: "appId", referenceId: "x" },
-                actionMocks: [
-                    {
-                        actionId: { type: "AGENT", appId: "appId", referenceId: "x" },
-                        behavior: {
-                            type: "fixedResponse",
-                            response: "response",
-                            data: { data: { key: "value" } },
-                            status: "SUCCESS",
-                            errorMessage: "errorMessage",
-                        },
-                    },
-                    {
-                        actionId: { type: "AGENT", appId: "appId", referenceId: "x" },
-                        behavior: {
-                            type: "fixedResponse",
-                            response: "response",
-                            data: { data: { key: "value" } },
-                            status: "SUCCESS",
-                            errorMessage: "errorMessage",
-                        },
-                    },
-                ],
-                defaultActionBehavior: {
-                    type: "fixedResponse",
-                    response: "response",
-                    data: { data: { key: "value" } },
-                    status: "SUCCESS",
-                    errorMessage: "errorMessage",
-                },
+            conversationMode: "TEXT",
+            analysis: {},
+            summary: {
+                actionIds: [],
+                incompleteActionIds: [],
+                matchedCharterIds: [],
+                matchedCharterNames: [],
+                matchedSegmentedCharterNames: [],
+                insertCount: 0,
+                thumbsUpCount: 0,
+                thumbsDownCount: 0,
+                handoffCount: 0,
+                userMessageCount: 0,
+                botMessageCount: 0,
+                humanAgents: [],
+                humanAgentsWithInserts: [],
+                users: [],
+                userIdentifiers: [],
+                involvedAppIds: ["myapp"],
             },
-            relatedEntities: {
-                SPAWN_FROM: [
-                    {
-                        organizationId: "organizationId",
-                        agentId: "agentId",
-                        type: "AGENT",
-                        appId: "appId",
-                        referenceId: "x",
-                    },
-                    {
-                        organizationId: "organizationId",
-                        agentId: "agentId",
-                        type: "AGENT",
-                        appId: "appId",
-                        referenceId: "x",
-                    },
-                ],
-            },
-            conversationMode: "VOICE",
-            variantId: {
-                organizationId: "organizationId",
-                agentId: "agentId",
-                type: "AGENT",
-                appId: "appId",
-                referenceId: "x",
-            },
+            metadata: {},
+            allMetadata: {},
+            attachments: [],
+            messages: [],
+            executionMode: "LIVE",
+            conversationKickoffResults: [],
         };
 
         server
@@ -325,413 +67,47 @@ describe("ConversationClient", () => {
 
         const response = await client.conversation.initialize({
             conversationId: {
-                referenceId: "x",
+                referenceId: "conversation-0",
             },
-            messages: [
-                {
-                    conversationMessageId: {
-                        referenceId: "x",
-                    },
-                    userId: {
-                        referenceId: "x",
-                    },
-                    text: "text",
-                    userMessageType: "USER",
-                },
-                {
-                    conversationMessageId: {
-                        referenceId: "x",
-                    },
-                    userId: {
-                        referenceId: "x",
-                    },
-                    text: "text",
-                    userMessageType: "USER",
-                },
-            ],
+            messages: [],
         });
         expect(response).toEqual({
-            conversationKickoffResults: [
-                {
-                    referenceId: "referenceId",
-                    appId: "appId",
-                    status: "SUCCESS",
-                    message: "message",
-                    startedAt: new Date("2024-01-15T09:30:00.000Z"),
-                    completedAt: new Date("2024-01-15T09:30:00.000Z"),
-                    durationMs: 1000000,
-                },
-                {
-                    referenceId: "referenceId",
-                    appId: "appId",
-                    status: "SUCCESS",
-                    message: "message",
-                    startedAt: new Date("2024-01-15T09:30:00.000Z"),
-                    completedAt: new Date("2024-01-15T09:30:00.000Z"),
-                    durationMs: 1000000,
-                },
-            ],
-            messages: [
-                {
-                    type: "user",
-                    conversationMessageId: {
-                        organizationId: "organizationId",
-                        agentId: "agentId",
-                        type: "AGENT",
-                        appId: "appId",
-                        referenceId: "x",
-                    },
-                    language: "language",
-                    attachments: [
-                        {
-                            url: "url",
-                            sizeBytes: 1000000,
-                            status: "PENDING",
-                            type: "type",
-                            name: "name",
-                        },
-                        {
-                            url: "url",
-                            sizeBytes: 1000000,
-                            status: "PENDING",
-                            type: "type",
-                            name: "name",
-                        },
-                    ],
-                    agentUserId: "agentUserId",
-                    userDisplayName: "userDisplayName",
-                    status: "SENDING",
-                    responseState: "NOT_ASKED",
-                    timezone: "timezone",
-                    userId: {
-                        referenceId: "x",
-                    },
-                    text: "text",
-                    userMessageType: "USER",
-                    createdAt: new Date("2024-01-15T09:30:00.000Z"),
-                    updatedAt: new Date("2024-01-15T09:30:00.000Z"),
-                    appMetadata: {
-                        appMetadata: "appMetadata",
-                    },
-                },
-                {
-                    type: "user",
-                    conversationMessageId: {
-                        organizationId: "organizationId",
-                        agentId: "agentId",
-                        type: "AGENT",
-                        appId: "appId",
-                        referenceId: "x",
-                    },
-                    language: "language",
-                    attachments: [
-                        {
-                            url: "url",
-                            sizeBytes: 1000000,
-                            status: "PENDING",
-                            type: "type",
-                            name: "name",
-                        },
-                        {
-                            url: "url",
-                            sizeBytes: 1000000,
-                            status: "PENDING",
-                            type: "type",
-                            name: "name",
-                        },
-                    ],
-                    agentUserId: "agentUserId",
-                    userDisplayName: "userDisplayName",
-                    status: "SENDING",
-                    responseState: "NOT_ASKED",
-                    timezone: "timezone",
-                    userId: {
-                        referenceId: "x",
-                    },
-                    text: "text",
-                    userMessageType: "USER",
-                    createdAt: new Date("2024-01-15T09:30:00.000Z"),
-                    updatedAt: new Date("2024-01-15T09:30:00.000Z"),
-                    appMetadata: {
-                        appMetadata: "appMetadata",
-                    },
-                },
-            ],
-            attachments: [
-                {
-                    url: "url",
-                    sizeBytes: 1000000,
-                    status: "PENDING",
-                    type: "type",
-                    name: "name",
-                },
-                {
-                    url: "url",
-                    sizeBytes: 1000000,
-                    status: "PENDING",
-                    type: "type",
-                    name: "name",
-                },
-            ],
-            responseConfig: {
-                capabilities: ["MARKDOWN", "MARKDOWN"],
-                isCopilot: true,
-                responseLength: "SHORT",
-                contextFilter: {
-                    scopeType: "byEntities",
-                    entities: [
-                        {
-                            entityId: {
-                                organizationId: "organizationId",
-                                agentId: "agentId",
-                                type: "AGENT",
-                                appId: "appId",
-                                referenceId: "x",
-                            },
-                            scopeEntityId: {
-                                organizationId: "organizationId",
-                                agentId: "agentId",
-                                type: "AGENT",
-                                appId: "appId",
-                                referenceId: "x",
-                            },
-                        },
-                    ],
-                },
-            },
-            subject: "subject",
-            url: "url",
-            createdAt: new Date("2024-01-15T09:30:00.000Z"),
-            updatedAt: new Date("2024-01-15T09:30:00.000Z"),
-            tags: new Set(["tags"]),
-            metadata: {
-                metadata: "metadata",
-            },
-            allMetadata: {
-                allMetadata: {
-                    allMetadata: "allMetadata",
-                },
-            },
             conversationId: {
-                organizationId: "organizationId",
-                agentId: "agentId",
-                type: "AGENT",
-                appId: "appId",
-                referenceId: "x",
+                referenceId: "conversation-0",
+                appId: "myapp",
+                organizationId: "acme",
+                agentId: "support",
+                type: "CONVERSATION",
             },
-            analysis: {
-                userRequest: "userRequest",
-                agentResponse: "agentResponse",
-                resolutionStatus: "UNKNOWN",
-                category: "category",
-                sentiment: "POSITIVE",
-                quality: "GOOD",
-                qualityReason: "MISSING_KNOWLEDGE",
-                resolvedByMaven: true,
-                primaryLanguage: "primaryLanguage",
-                predictedNps: 1.1,
-                csat: 1.1,
-                intelligentFieldValues: [
-                    {
-                        fieldId: {
-                            organizationId: "organizationId",
-                            agentId: "agentId",
-                            type: "AGENT",
-                            appId: "appId",
-                            referenceId: "x",
-                        },
-                        name: "name",
-                        entityId: {
-                            organizationId: "organizationId",
-                            agentId: "agentId",
-                            type: "AGENT",
-                            appId: "appId",
-                            referenceId: "x",
-                        },
-                        value: {
-                            key: "value",
-                        },
-                        confidence: 1.1,
-                        rationale: "rationale",
-                        createdAt: new Date("2024-01-15T09:30:00.000Z"),
-                    },
-                    {
-                        fieldId: {
-                            organizationId: "organizationId",
-                            agentId: "agentId",
-                            type: "AGENT",
-                            appId: "appId",
-                            referenceId: "x",
-                        },
-                        name: "name",
-                        entityId: {
-                            organizationId: "organizationId",
-                            agentId: "agentId",
-                            type: "AGENT",
-                            appId: "appId",
-                            referenceId: "x",
-                        },
-                        value: {
-                            key: "value",
-                        },
-                        confidence: 1.1,
-                        rationale: "rationale",
-                        createdAt: new Date("2024-01-15T09:30:00.000Z"),
-                    },
-                ],
-            },
-            summary: {
-                actionIds: [
-                    {
-                        type: "AGENT",
-                        appId: "appId",
-                        referenceId: "x",
-                    },
-                    {
-                        type: "AGENT",
-                        appId: "appId",
-                        referenceId: "x",
-                    },
-                ],
-                incompleteActionIds: [
-                    {
-                        type: "AGENT",
-                        appId: "appId",
-                        referenceId: "x",
-                    },
-                    {
-                        type: "AGENT",
-                        appId: "appId",
-                        referenceId: "x",
-                    },
-                ],
-                matchedCharterIds: [
-                    {
-                        type: "AGENT",
-                        appId: "appId",
-                        referenceId: "x",
-                    },
-                    {
-                        type: "AGENT",
-                        appId: "appId",
-                        referenceId: "x",
-                    },
-                ],
-                matchedCharterNames: ["matchedCharterNames", "matchedCharterNames"],
-                matchedSegmentedCharterNames: ["matchedSegmentedCharterNames", "matchedSegmentedCharterNames"],
-                insertCount: 1,
-                thumbsUpCount: 1,
-                thumbsDownCount: 1,
-                handoffCount: 1,
-                userMessageCount: 1,
-                botMessageCount: 1,
-                csat: 1.1,
-                handleTime: 1000000,
-                humanAgentResponseDelay: 1000000,
-                humanAgents: ["humanAgents", "humanAgents"],
-                humanAgentsWithInserts: ["humanAgentsWithInserts", "humanAgentsWithInserts"],
-                users: ["users", "users"],
-                userIdentifiers: ["userIdentifiers", "userIdentifiers"],
-                lastUserMessage: "lastUserMessage",
-                lastBotMessage: "lastBotMessage",
-                involvedAppIds: new Set(["involvedAppIds"]),
-            },
-            deleted: true,
+            deleted: false,
             open: true,
             llmEnabled: true,
-            simulationContext: {
-                additionalPromptText: "additionalPromptText",
-                persona: "CASUAL_BUDDY",
-                availableKnowledgeBases: [
-                    {
-                        organizationId: "organizationId",
-                        agentId: "agentId",
-                        type: "AGENT",
-                        appId: "appId",
-                        referenceId: "x",
-                    },
-                ],
-                variantId: {
-                    type: "AGENT",
-                    appId: "appId",
-                    referenceId: "x",
-                },
-                actionMocks: [
-                    {
-                        actionId: {
-                            type: "AGENT",
-                            appId: "appId",
-                            referenceId: "x",
-                        },
-                        behavior: {
-                            type: "fixedResponse",
-                            response: "response",
-                            data: {
-                                data: {
-                                    key: "value",
-                                },
-                            },
-                            status: "SUCCESS",
-                            errorMessage: "errorMessage",
-                        },
-                    },
-                    {
-                        actionId: {
-                            type: "AGENT",
-                            appId: "appId",
-                            referenceId: "x",
-                        },
-                        behavior: {
-                            type: "fixedResponse",
-                            response: "response",
-                            data: {
-                                data: {
-                                    key: "value",
-                                },
-                            },
-                            status: "SUCCESS",
-                            errorMessage: "errorMessage",
-                        },
-                    },
-                ],
-                defaultActionBehavior: {
-                    type: "fixedResponse",
-                    response: "response",
-                    data: {
-                        data: {
-                            key: "value",
-                        },
-                    },
-                    status: "SUCCESS",
-                    errorMessage: "errorMessage",
-                },
+            conversationMode: "TEXT",
+            analysis: {},
+            summary: {
+                actionIds: [],
+                incompleteActionIds: [],
+                matchedCharterIds: [],
+                matchedCharterNames: [],
+                matchedSegmentedCharterNames: [],
+                insertCount: 0,
+                thumbsUpCount: 0,
+                thumbsDownCount: 0,
+                handoffCount: 0,
+                userMessageCount: 0,
+                botMessageCount: 0,
+                humanAgents: [],
+                humanAgentsWithInserts: [],
+                users: [],
+                userIdentifiers: [],
+                involvedAppIds: new Set(["myapp"]),
             },
-            relatedEntities: {
-                SPAWN_FROM: [
-                    {
-                        organizationId: "organizationId",
-                        agentId: "agentId",
-                        type: "AGENT",
-                        appId: "appId",
-                        referenceId: "x",
-                    },
-                    {
-                        organizationId: "organizationId",
-                        agentId: "agentId",
-                        type: "AGENT",
-                        appId: "appId",
-                        referenceId: "x",
-                    },
-                ],
-            },
-            conversationMode: "VOICE",
-            variantId: {
-                organizationId: "organizationId",
-                agentId: "agentId",
-                type: "AGENT",
-                appId: "appId",
-                referenceId: "x",
-            },
+            metadata: {},
+            allMetadata: {},
+            attachments: [],
+            messages: [],
+            executionMode: "LIVE",
+            conversationKickoffResults: [],
         });
     });
 
@@ -739,6 +115,165 @@ describe("ConversationClient", () => {
         const server = mockServerPool.createServer();
         const client = new MavenAGIClient({
             maxRetries: 0,
+            token: "test",
+            appId: "test",
+            appSecret: "test",
+            organizationId: "test",
+            agentId: "test",
+            environment: server.baseUrl,
+        });
+        const rawRequestBody = {
+            conversationId: { referenceId: "simulation-0" },
+            simulationContext: {
+                actionMocks: [
+                    {
+                        actionId: { type: "ACTION", appId: "my-app", referenceId: "refund-order" },
+                        behavior: { type: "fixedResponse", response: "Refunded order {{orderId}}" },
+                    },
+                    {
+                        actionId: { type: "ACTION", appId: "my-app", referenceId: "get-order-status" },
+                        behavior: {
+                            type: "fixedResponse",
+                            status: "ERROR",
+                            response: "Order {{orderId}} was not found",
+                            errorMessage: "No order with ID {{orderId}}",
+                        },
+                    },
+                ],
+                defaultActionBehavior: { type: "callApp" },
+            },
+            messages: [],
+        };
+        const rawResponseBody = {
+            conversationId: {
+                referenceId: "conversation-0",
+                appId: "myapp",
+                organizationId: "acme",
+                agentId: "support",
+                type: "CONVERSATION",
+            },
+            deleted: false,
+            open: true,
+            llmEnabled: true,
+            conversationMode: "TEXT",
+            analysis: {},
+            summary: {
+                actionIds: [],
+                incompleteActionIds: [],
+                matchedCharterIds: [],
+                matchedCharterNames: [],
+                matchedSegmentedCharterNames: [],
+                insertCount: 0,
+                thumbsUpCount: 0,
+                thumbsDownCount: 0,
+                handoffCount: 0,
+                userMessageCount: 0,
+                botMessageCount: 0,
+                humanAgents: [],
+                humanAgentsWithInserts: [],
+                users: [],
+                userIdentifiers: [],
+                involvedAppIds: ["myapp"],
+            },
+            metadata: {},
+            allMetadata: {},
+            attachments: [],
+            messages: [],
+            executionMode: "LIVE",
+            conversationKickoffResults: [],
+        };
+
+        server
+            .mockEndpoint()
+            .post("/v1/conversations")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(200)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        const response = await client.conversation.initialize({
+            conversationId: {
+                referenceId: "simulation-0",
+            },
+            simulationContext: {
+                actionMocks: [
+                    {
+                        actionId: {
+                            type: "ACTION",
+                            appId: "my-app",
+                            referenceId: "refund-order",
+                        },
+                        behavior: {
+                            type: "fixedResponse",
+                            response: "Refunded order {{orderId}}",
+                        },
+                    },
+                    {
+                        actionId: {
+                            type: "ACTION",
+                            appId: "my-app",
+                            referenceId: "get-order-status",
+                        },
+                        behavior: {
+                            type: "fixedResponse",
+                            status: "ERROR",
+                            response: "Order {{orderId}} was not found",
+                            errorMessage: "No order with ID {{orderId}}",
+                        },
+                    },
+                ],
+                defaultActionBehavior: {
+                    type: "callApp",
+                },
+            },
+            messages: [],
+        });
+        expect(response).toEqual({
+            conversationId: {
+                referenceId: "conversation-0",
+                appId: "myapp",
+                organizationId: "acme",
+                agentId: "support",
+                type: "CONVERSATION",
+            },
+            deleted: false,
+            open: true,
+            llmEnabled: true,
+            conversationMode: "TEXT",
+            analysis: {},
+            summary: {
+                actionIds: [],
+                incompleteActionIds: [],
+                matchedCharterIds: [],
+                matchedCharterNames: [],
+                matchedSegmentedCharterNames: [],
+                insertCount: 0,
+                thumbsUpCount: 0,
+                thumbsDownCount: 0,
+                handoffCount: 0,
+                userMessageCount: 0,
+                botMessageCount: 0,
+                humanAgents: [],
+                humanAgentsWithInserts: [],
+                users: [],
+                userIdentifiers: [],
+                involvedAppIds: new Set(["myapp"]),
+            },
+            metadata: {},
+            allMetadata: {},
+            attachments: [],
+            messages: [],
+            executionMode: "LIVE",
+            conversationKickoffResults: [],
+        });
+    });
+
+    test("initialize (3)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new MavenAGIClient({
+            maxRetries: 0,
+            token: "test",
             appId: "test",
             appSecret: "test",
             organizationId: "test",
@@ -804,10 +339,11 @@ describe("ConversationClient", () => {
         }).rejects.toThrow(MavenAGI.NotFoundError);
     });
 
-    test("initialize (3)", async () => {
+    test("initialize (4)", async () => {
         const server = mockServerPool.createServer();
         const client = new MavenAGIClient({
             maxRetries: 0,
+            token: "test",
             appId: "test",
             appSecret: "test",
             organizationId: "test",
@@ -873,10 +409,11 @@ describe("ConversationClient", () => {
         }).rejects.toThrow(MavenAGI.BadRequestError);
     });
 
-    test("initialize (4)", async () => {
+    test("initialize (5)", async () => {
         const server = mockServerPool.createServer();
         const client = new MavenAGIClient({
             maxRetries: 0,
+            token: "test",
             appId: "test",
             appSecret: "test",
             organizationId: "test",
@@ -942,10 +479,11 @@ describe("ConversationClient", () => {
         }).rejects.toThrow(MavenAGI.PayloadTooLargeError);
     });
 
-    test("initialize (5)", async () => {
+    test("initialize (6)", async () => {
         const server = mockServerPool.createServer();
         const client = new MavenAGIClient({
             maxRetries: 0,
+            token: "test",
             appId: "test",
             appSecret: "test",
             organizationId: "test",
@@ -1011,10 +549,11 @@ describe("ConversationClient", () => {
         }).rejects.toThrow(MavenAGI.TooManyRequestsError);
     });
 
-    test("initialize (6)", async () => {
+    test("initialize (7)", async () => {
         const server = mockServerPool.createServer();
         const client = new MavenAGIClient({
             maxRetries: 0,
+            token: "test",
             appId: "test",
             appSecret: "test",
             organizationId: "test",
@@ -1084,6 +623,7 @@ describe("ConversationClient", () => {
         const server = mockServerPool.createServer();
         const client = new MavenAGIClient({
             maxRetries: 0,
+            token: "test",
             appId: "test",
             appSecret: "test",
             organizationId: "test",
@@ -1102,6 +642,7 @@ describe("ConversationClient", () => {
             deleted: false,
             open: false,
             llmEnabled: true,
+            executionMode: "LIVE",
             conversationMode: "TEXT",
             analysis: { resolutionStatus: "RESOLVED", sentiment: "POSITIVE", resolvedByMaven: true },
             summary: {
@@ -1188,6 +729,7 @@ describe("ConversationClient", () => {
             deleted: false,
             open: false,
             llmEnabled: true,
+            executionMode: "LIVE",
             conversationMode: "TEXT",
             analysis: {
                 resolutionStatus: "RESOLVED",
@@ -1270,6 +812,7 @@ describe("ConversationClient", () => {
         const server = mockServerPool.createServer();
         const client = new MavenAGIClient({
             maxRetries: 0,
+            token: "test",
             appId: "test",
             appSecret: "test",
             organizationId: "test",
@@ -1297,6 +840,7 @@ describe("ConversationClient", () => {
         const server = mockServerPool.createServer();
         const client = new MavenAGIClient({
             maxRetries: 0,
+            token: "test",
             appId: "test",
             appSecret: "test",
             organizationId: "test",
@@ -1324,6 +868,7 @@ describe("ConversationClient", () => {
         const server = mockServerPool.createServer();
         const client = new MavenAGIClient({
             maxRetries: 0,
+            token: "test",
             appId: "test",
             appSecret: "test",
             organizationId: "test",
@@ -1351,6 +896,7 @@ describe("ConversationClient", () => {
         const server = mockServerPool.createServer();
         const client = new MavenAGIClient({
             maxRetries: 0,
+            token: "test",
             appId: "test",
             appSecret: "test",
             organizationId: "test",
@@ -1378,6 +924,7 @@ describe("ConversationClient", () => {
         const server = mockServerPool.createServer();
         const client = new MavenAGIClient({
             maxRetries: 0,
+            token: "test",
             appId: "test",
             appSecret: "test",
             organizationId: "test",
@@ -1405,6 +952,7 @@ describe("ConversationClient", () => {
         const server = mockServerPool.createServer();
         const client = new MavenAGIClient({
             maxRetries: 0,
+            token: "test",
             appId: "test",
             appSecret: "test",
             organizationId: "test",
@@ -1646,6 +1194,7 @@ describe("ConversationClient", () => {
                     errorMessage: "errorMessage",
                 },
             },
+            executionMode: "LIVE",
             relatedEntities: {
                 SPAWN_FROM: [
                     {
@@ -2019,6 +1568,7 @@ describe("ConversationClient", () => {
                     errorMessage: "errorMessage",
                 },
             },
+            executionMode: "LIVE",
             relatedEntities: {
                 SPAWN_FROM: [
                     {
@@ -2052,6 +1602,7 @@ describe("ConversationClient", () => {
         const server = mockServerPool.createServer();
         const client = new MavenAGIClient({
             maxRetries: 0,
+            token: "test",
             appId: "test",
             appSecret: "test",
             organizationId: "test",
@@ -2078,6 +1629,7 @@ describe("ConversationClient", () => {
         const server = mockServerPool.createServer();
         const client = new MavenAGIClient({
             maxRetries: 0,
+            token: "test",
             appId: "test",
             appSecret: "test",
             organizationId: "test",
@@ -2104,6 +1656,7 @@ describe("ConversationClient", () => {
         const server = mockServerPool.createServer();
         const client = new MavenAGIClient({
             maxRetries: 0,
+            token: "test",
             appId: "test",
             appSecret: "test",
             organizationId: "test",
@@ -2130,6 +1683,7 @@ describe("ConversationClient", () => {
         const server = mockServerPool.createServer();
         const client = new MavenAGIClient({
             maxRetries: 0,
+            token: "test",
             appId: "test",
             appSecret: "test",
             organizationId: "test",
@@ -2156,6 +1710,7 @@ describe("ConversationClient", () => {
         const server = mockServerPool.createServer();
         const client = new MavenAGIClient({
             maxRetries: 0,
+            token: "test",
             appId: "test",
             appSecret: "test",
             organizationId: "test",
@@ -2182,6 +1737,7 @@ describe("ConversationClient", () => {
         const server = mockServerPool.createServer();
         const client = new MavenAGIClient({
             maxRetries: 0,
+            token: "test",
             appId: "test",
             appSecret: "test",
             organizationId: "test",
@@ -2201,6 +1757,7 @@ describe("ConversationClient", () => {
         const server = mockServerPool.createServer();
         const client = new MavenAGIClient({
             maxRetries: 0,
+            token: "test",
             appId: "test",
             appSecret: "test",
             organizationId: "test",
@@ -2229,6 +1786,7 @@ describe("ConversationClient", () => {
         const server = mockServerPool.createServer();
         const client = new MavenAGIClient({
             maxRetries: 0,
+            token: "test",
             appId: "test",
             appSecret: "test",
             organizationId: "test",
@@ -2257,6 +1815,7 @@ describe("ConversationClient", () => {
         const server = mockServerPool.createServer();
         const client = new MavenAGIClient({
             maxRetries: 0,
+            token: "test",
             appId: "test",
             appSecret: "test",
             organizationId: "test",
@@ -2285,6 +1844,7 @@ describe("ConversationClient", () => {
         const server = mockServerPool.createServer();
         const client = new MavenAGIClient({
             maxRetries: 0,
+            token: "test",
             appId: "test",
             appSecret: "test",
             organizationId: "test",
@@ -2313,6 +1873,7 @@ describe("ConversationClient", () => {
         const server = mockServerPool.createServer();
         const client = new MavenAGIClient({
             maxRetries: 0,
+            token: "test",
             appId: "test",
             appSecret: "test",
             organizationId: "test",
@@ -2341,6 +1902,7 @@ describe("ConversationClient", () => {
         const server = mockServerPool.createServer();
         const client = new MavenAGIClient({
             maxRetries: 0,
+            token: "test",
             appId: "test",
             appSecret: "test",
             organizationId: "test",
@@ -2595,6 +2157,7 @@ describe("ConversationClient", () => {
                     errorMessage: "errorMessage",
                 },
             },
+            executionMode: "LIVE",
             relatedEntities: {
                 SPAWN_FROM: [
                     {
@@ -2990,6 +2553,7 @@ describe("ConversationClient", () => {
                     errorMessage: "errorMessage",
                 },
             },
+            executionMode: "LIVE",
             relatedEntities: {
                 SPAWN_FROM: [
                     {
@@ -3023,6 +2587,7 @@ describe("ConversationClient", () => {
         const server = mockServerPool.createServer();
         const client = new MavenAGIClient({
             maxRetries: 0,
+            token: "test",
             appId: "test",
             appSecret: "test",
             organizationId: "test",
@@ -3084,6 +2649,7 @@ describe("ConversationClient", () => {
         const server = mockServerPool.createServer();
         const client = new MavenAGIClient({
             maxRetries: 0,
+            token: "test",
             appId: "test",
             appSecret: "test",
             organizationId: "test",
@@ -3145,6 +2711,7 @@ describe("ConversationClient", () => {
         const server = mockServerPool.createServer();
         const client = new MavenAGIClient({
             maxRetries: 0,
+            token: "test",
             appId: "test",
             appSecret: "test",
             organizationId: "test",
@@ -3206,6 +2773,7 @@ describe("ConversationClient", () => {
         const server = mockServerPool.createServer();
         const client = new MavenAGIClient({
             maxRetries: 0,
+            token: "test",
             appId: "test",
             appSecret: "test",
             organizationId: "test",
@@ -3267,6 +2835,7 @@ describe("ConversationClient", () => {
         const server = mockServerPool.createServer();
         const client = new MavenAGIClient({
             maxRetries: 0,
+            token: "test",
             appId: "test",
             appSecret: "test",
             organizationId: "test",
@@ -3328,6 +2897,7 @@ describe("ConversationClient", () => {
         const server = mockServerPool.createServer();
         const client = new MavenAGIClient({
             maxRetries: 0,
+            token: "test",
             appId: "test",
             appSecret: "test",
             organizationId: "test",
@@ -3353,6 +2923,7 @@ describe("ConversationClient", () => {
             deleted: false,
             open: false,
             llmEnabled: true,
+            executionMode: "LIVE",
             conversationMode: "TEXT",
             analysis: { resolutionStatus: "RESOLVED", sentiment: "POSITIVE", resolvedByMaven: true },
             summary: {
@@ -3456,6 +3027,7 @@ describe("ConversationClient", () => {
             deleted: false,
             open: false,
             llmEnabled: true,
+            executionMode: "LIVE",
             conversationMode: "TEXT",
             analysis: {
                 resolutionStatus: "RESOLVED",
@@ -3538,6 +3110,7 @@ describe("ConversationClient", () => {
         const server = mockServerPool.createServer();
         const client = new MavenAGIClient({
             maxRetries: 0,
+            token: "test",
             appId: "test",
             appSecret: "test",
             organizationId: "test",
@@ -3572,6 +3145,7 @@ describe("ConversationClient", () => {
         const server = mockServerPool.createServer();
         const client = new MavenAGIClient({
             maxRetries: 0,
+            token: "test",
             appId: "test",
             appSecret: "test",
             organizationId: "test",
@@ -3606,6 +3180,7 @@ describe("ConversationClient", () => {
         const server = mockServerPool.createServer();
         const client = new MavenAGIClient({
             maxRetries: 0,
+            token: "test",
             appId: "test",
             appSecret: "test",
             organizationId: "test",
@@ -3640,6 +3215,7 @@ describe("ConversationClient", () => {
         const server = mockServerPool.createServer();
         const client = new MavenAGIClient({
             maxRetries: 0,
+            token: "test",
             appId: "test",
             appSecret: "test",
             organizationId: "test",
@@ -3674,6 +3250,7 @@ describe("ConversationClient", () => {
         const server = mockServerPool.createServer();
         const client = new MavenAGIClient({
             maxRetries: 0,
+            token: "test",
             appId: "test",
             appSecret: "test",
             organizationId: "test",
@@ -3708,6 +3285,7 @@ describe("ConversationClient", () => {
         const server = mockServerPool.createServer();
         const client = new MavenAGIClient({
             maxRetries: 0,
+            token: "test",
             appId: "test",
             appSecret: "test",
             organizationId: "test",
@@ -3813,6 +3391,7 @@ describe("ConversationClient", () => {
         const server = mockServerPool.createServer();
         const client = new MavenAGIClient({
             maxRetries: 0,
+            token: "test",
             appId: "test",
             appSecret: "test",
             organizationId: "test",
@@ -3847,6 +3426,7 @@ describe("ConversationClient", () => {
         const server = mockServerPool.createServer();
         const client = new MavenAGIClient({
             maxRetries: 0,
+            token: "test",
             appId: "test",
             appSecret: "test",
             organizationId: "test",
@@ -3881,6 +3461,7 @@ describe("ConversationClient", () => {
         const server = mockServerPool.createServer();
         const client = new MavenAGIClient({
             maxRetries: 0,
+            token: "test",
             appId: "test",
             appSecret: "test",
             organizationId: "test",
@@ -3915,6 +3496,7 @@ describe("ConversationClient", () => {
         const server = mockServerPool.createServer();
         const client = new MavenAGIClient({
             maxRetries: 0,
+            token: "test",
             appId: "test",
             appSecret: "test",
             organizationId: "test",
@@ -3949,6 +3531,7 @@ describe("ConversationClient", () => {
         const server = mockServerPool.createServer();
         const client = new MavenAGIClient({
             maxRetries: 0,
+            token: "test",
             appId: "test",
             appSecret: "test",
             organizationId: "test",
@@ -3983,6 +3566,7 @@ describe("ConversationClient", () => {
         const server = mockServerPool.createServer();
         const client = new MavenAGIClient({
             maxRetries: 0,
+            token: "test",
             appId: "test",
             appSecret: "test",
             organizationId: "test",
@@ -4010,6 +3594,7 @@ describe("ConversationClient", () => {
         const server = mockServerPool.createServer();
         const client = new MavenAGIClient({
             maxRetries: 0,
+            token: "test",
             appId: "test",
             appSecret: "test",
             organizationId: "test",
@@ -4036,6 +3621,7 @@ describe("ConversationClient", () => {
         const server = mockServerPool.createServer();
         const client = new MavenAGIClient({
             maxRetries: 0,
+            token: "test",
             appId: "test",
             appSecret: "test",
             organizationId: "test",
@@ -4062,6 +3648,7 @@ describe("ConversationClient", () => {
         const server = mockServerPool.createServer();
         const client = new MavenAGIClient({
             maxRetries: 0,
+            token: "test",
             appId: "test",
             appSecret: "test",
             organizationId: "test",
@@ -4088,6 +3675,7 @@ describe("ConversationClient", () => {
         const server = mockServerPool.createServer();
         const client = new MavenAGIClient({
             maxRetries: 0,
+            token: "test",
             appId: "test",
             appSecret: "test",
             organizationId: "test",
@@ -4114,6 +3702,7 @@ describe("ConversationClient", () => {
         const server = mockServerPool.createServer();
         const client = new MavenAGIClient({
             maxRetries: 0,
+            token: "test",
             appId: "test",
             appSecret: "test",
             organizationId: "test",
@@ -4140,6 +3729,7 @@ describe("ConversationClient", () => {
         const server = mockServerPool.createServer();
         const client = new MavenAGIClient({
             maxRetries: 0,
+            token: "test",
             appId: "test",
             appSecret: "test",
             organizationId: "test",
@@ -4244,6 +3834,7 @@ describe("ConversationClient", () => {
         const server = mockServerPool.createServer();
         const client = new MavenAGIClient({
             maxRetries: 0,
+            token: "test",
             appId: "test",
             appSecret: "test",
             organizationId: "test",
@@ -4287,6 +3878,7 @@ describe("ConversationClient", () => {
         const server = mockServerPool.createServer();
         const client = new MavenAGIClient({
             maxRetries: 0,
+            token: "test",
             appId: "test",
             appSecret: "test",
             organizationId: "test",
@@ -4330,6 +3922,7 @@ describe("ConversationClient", () => {
         const server = mockServerPool.createServer();
         const client = new MavenAGIClient({
             maxRetries: 0,
+            token: "test",
             appId: "test",
             appSecret: "test",
             organizationId: "test",
@@ -4373,6 +3966,7 @@ describe("ConversationClient", () => {
         const server = mockServerPool.createServer();
         const client = new MavenAGIClient({
             maxRetries: 0,
+            token: "test",
             appId: "test",
             appSecret: "test",
             organizationId: "test",
@@ -4416,6 +4010,7 @@ describe("ConversationClient", () => {
         const server = mockServerPool.createServer();
         const client = new MavenAGIClient({
             maxRetries: 0,
+            token: "test",
             appId: "test",
             appSecret: "test",
             organizationId: "test",
@@ -4459,6 +4054,7 @@ describe("ConversationClient", () => {
         const server = mockServerPool.createServer();
         const client = new MavenAGIClient({
             maxRetries: 0,
+            token: "test",
             appId: "test",
             appSecret: "test",
             organizationId: "test",
@@ -4700,6 +4296,7 @@ describe("ConversationClient", () => {
                     errorMessage: "errorMessage",
                 },
             },
+            executionMode: "LIVE",
             relatedEntities: {
                 SPAWN_FROM: [
                     {
@@ -5081,6 +4678,7 @@ describe("ConversationClient", () => {
                     errorMessage: "errorMessage",
                 },
             },
+            executionMode: "LIVE",
             relatedEntities: {
                 SPAWN_FROM: [
                     {
@@ -5114,6 +4712,7 @@ describe("ConversationClient", () => {
         const server = mockServerPool.createServer();
         const client = new MavenAGIClient({
             maxRetries: 0,
+            token: "test",
             appId: "test",
             appSecret: "test",
             organizationId: "test",
@@ -5148,6 +4747,7 @@ describe("ConversationClient", () => {
         const server = mockServerPool.createServer();
         const client = new MavenAGIClient({
             maxRetries: 0,
+            token: "test",
             appId: "test",
             appSecret: "test",
             organizationId: "test",
@@ -5182,6 +4782,7 @@ describe("ConversationClient", () => {
         const server = mockServerPool.createServer();
         const client = new MavenAGIClient({
             maxRetries: 0,
+            token: "test",
             appId: "test",
             appSecret: "test",
             organizationId: "test",
@@ -5216,6 +4817,7 @@ describe("ConversationClient", () => {
         const server = mockServerPool.createServer();
         const client = new MavenAGIClient({
             maxRetries: 0,
+            token: "test",
             appId: "test",
             appSecret: "test",
             organizationId: "test",
@@ -5250,6 +4852,7 @@ describe("ConversationClient", () => {
         const server = mockServerPool.createServer();
         const client = new MavenAGIClient({
             maxRetries: 0,
+            token: "test",
             appId: "test",
             appSecret: "test",
             organizationId: "test",
@@ -5284,6 +4887,7 @@ describe("ConversationClient", () => {
         const server = mockServerPool.createServer();
         const client = new MavenAGIClient({
             maxRetries: 0,
+            token: "test",
             appId: "test",
             appSecret: "test",
             organizationId: "test",
@@ -5314,6 +4918,7 @@ describe("ConversationClient", () => {
         const server = mockServerPool.createServer();
         const client = new MavenAGIClient({
             maxRetries: 0,
+            token: "test",
             appId: "test",
             appSecret: "test",
             organizationId: "test",
@@ -5343,6 +4948,7 @@ describe("ConversationClient", () => {
         const server = mockServerPool.createServer();
         const client = new MavenAGIClient({
             maxRetries: 0,
+            token: "test",
             appId: "test",
             appSecret: "test",
             organizationId: "test",
@@ -5372,6 +4978,7 @@ describe("ConversationClient", () => {
         const server = mockServerPool.createServer();
         const client = new MavenAGIClient({
             maxRetries: 0,
+            token: "test",
             appId: "test",
             appSecret: "test",
             organizationId: "test",
@@ -5401,6 +5008,7 @@ describe("ConversationClient", () => {
         const server = mockServerPool.createServer();
         const client = new MavenAGIClient({
             maxRetries: 0,
+            token: "test",
             appId: "test",
             appSecret: "test",
             organizationId: "test",
@@ -5430,6 +5038,7 @@ describe("ConversationClient", () => {
         const server = mockServerPool.createServer();
         const client = new MavenAGIClient({
             maxRetries: 0,
+            token: "test",
             appId: "test",
             appSecret: "test",
             organizationId: "test",
@@ -5459,6 +5068,7 @@ describe("ConversationClient", () => {
         const server = mockServerPool.createServer();
         const client = new MavenAGIClient({
             maxRetries: 0,
+            token: "test",
             appId: "test",
             appSecret: "test",
             organizationId: "test",
@@ -5501,6 +5111,7 @@ describe("ConversationClient", () => {
         const server = mockServerPool.createServer();
         const client = new MavenAGIClient({
             maxRetries: 0,
+            token: "test",
             appId: "test",
             appSecret: "test",
             organizationId: "test",
@@ -5532,6 +5143,7 @@ describe("ConversationClient", () => {
         const server = mockServerPool.createServer();
         const client = new MavenAGIClient({
             maxRetries: 0,
+            token: "test",
             appId: "test",
             appSecret: "test",
             organizationId: "test",
@@ -5563,6 +5175,7 @@ describe("ConversationClient", () => {
         const server = mockServerPool.createServer();
         const client = new MavenAGIClient({
             maxRetries: 0,
+            token: "test",
             appId: "test",
             appSecret: "test",
             organizationId: "test",
@@ -5594,6 +5207,7 @@ describe("ConversationClient", () => {
         const server = mockServerPool.createServer();
         const client = new MavenAGIClient({
             maxRetries: 0,
+            token: "test",
             appId: "test",
             appSecret: "test",
             organizationId: "test",
@@ -5625,6 +5239,7 @@ describe("ConversationClient", () => {
         const server = mockServerPool.createServer();
         const client = new MavenAGIClient({
             maxRetries: 0,
+            token: "test",
             appId: "test",
             appSecret: "test",
             organizationId: "test",
@@ -5656,6 +5271,7 @@ describe("ConversationClient", () => {
         const server = mockServerPool.createServer();
         const client = new MavenAGIClient({
             maxRetries: 0,
+            token: "test",
             appId: "test",
             appSecret: "test",
             organizationId: "test",
@@ -5834,6 +5450,7 @@ describe("ConversationClient", () => {
                             errorMessage: "errorMessage",
                         },
                     },
+                    executionMode: "LIVE",
                     relatedEntities: {
                         SPAWN_FROM: [
                             {
@@ -6030,6 +5647,7 @@ describe("ConversationClient", () => {
                             errorMessage: "errorMessage",
                         },
                     },
+                    executionMode: "LIVE",
                     relatedEntities: {
                         SPAWN_FROM: [
                             {
@@ -6295,6 +5913,7 @@ describe("ConversationClient", () => {
                             errorMessage: "errorMessage",
                         },
                     },
+                    executionMode: "LIVE",
                     relatedEntities: {
                         SPAWN_FROM: [
                             {
@@ -6541,6 +6160,7 @@ describe("ConversationClient", () => {
                             errorMessage: "errorMessage",
                         },
                     },
+                    executionMode: "LIVE",
                     relatedEntities: {
                         SPAWN_FROM: [
                             {
@@ -6580,6 +6200,7 @@ describe("ConversationClient", () => {
         const server = mockServerPool.createServer();
         const client = new MavenAGIClient({
             maxRetries: 0,
+            token: "test",
             appId: "test",
             appSecret: "test",
             organizationId: "test",
@@ -6607,6 +6228,7 @@ describe("ConversationClient", () => {
         const server = mockServerPool.createServer();
         const client = new MavenAGIClient({
             maxRetries: 0,
+            token: "test",
             appId: "test",
             appSecret: "test",
             organizationId: "test",
@@ -6634,6 +6256,7 @@ describe("ConversationClient", () => {
         const server = mockServerPool.createServer();
         const client = new MavenAGIClient({
             maxRetries: 0,
+            token: "test",
             appId: "test",
             appSecret: "test",
             organizationId: "test",
@@ -6661,6 +6284,7 @@ describe("ConversationClient", () => {
         const server = mockServerPool.createServer();
         const client = new MavenAGIClient({
             maxRetries: 0,
+            token: "test",
             appId: "test",
             appSecret: "test",
             organizationId: "test",
@@ -6688,6 +6312,7 @@ describe("ConversationClient", () => {
         const server = mockServerPool.createServer();
         const client = new MavenAGIClient({
             maxRetries: 0,
+            token: "test",
             appId: "test",
             appSecret: "test",
             organizationId: "test",
@@ -6715,6 +6340,7 @@ describe("ConversationClient", () => {
         const server = mockServerPool.createServer();
         const client = new MavenAGIClient({
             maxRetries: 0,
+            token: "test",
             appId: "test",
             appSecret: "test",
             organizationId: "test",
@@ -6893,6 +6519,7 @@ describe("ConversationClient", () => {
                             errorMessage: "errorMessage",
                         },
                     },
+                    executionMode: "LIVE",
                     relatedEntities: {
                         SPAWN_FROM: [
                             {
@@ -7089,6 +6716,7 @@ describe("ConversationClient", () => {
                             errorMessage: "errorMessage",
                         },
                     },
+                    executionMode: "LIVE",
                     relatedEntities: {
                         SPAWN_FROM: [
                             {
@@ -7352,6 +6980,7 @@ describe("ConversationClient", () => {
                             errorMessage: "errorMessage",
                         },
                     },
+                    executionMode: "LIVE",
                     relatedEntities: {
                         SPAWN_FROM: [
                             {
@@ -7598,6 +7227,7 @@ describe("ConversationClient", () => {
                             errorMessage: "errorMessage",
                         },
                     },
+                    executionMode: "LIVE",
                     relatedEntities: {
                         SPAWN_FROM: [
                             {
@@ -7635,6 +7265,7 @@ describe("ConversationClient", () => {
         const server = mockServerPool.createServer();
         const client = new MavenAGIClient({
             maxRetries: 0,
+            token: "test",
             appId: "test",
             appSecret: "test",
             organizationId: "test",
@@ -7662,6 +7293,7 @@ describe("ConversationClient", () => {
         const server = mockServerPool.createServer();
         const client = new MavenAGIClient({
             maxRetries: 0,
+            token: "test",
             appId: "test",
             appSecret: "test",
             organizationId: "test",
@@ -7689,6 +7321,7 @@ describe("ConversationClient", () => {
         const server = mockServerPool.createServer();
         const client = new MavenAGIClient({
             maxRetries: 0,
+            token: "test",
             appId: "test",
             appSecret: "test",
             organizationId: "test",
@@ -7716,6 +7349,7 @@ describe("ConversationClient", () => {
         const server = mockServerPool.createServer();
         const client = new MavenAGIClient({
             maxRetries: 0,
+            token: "test",
             appId: "test",
             appSecret: "test",
             organizationId: "test",
@@ -7743,6 +7377,7 @@ describe("ConversationClient", () => {
         const server = mockServerPool.createServer();
         const client = new MavenAGIClient({
             maxRetries: 0,
+            token: "test",
             appId: "test",
             appSecret: "test",
             organizationId: "test",
@@ -7770,6 +7405,7 @@ describe("ConversationClient", () => {
         const server = mockServerPool.createServer();
         const client = new MavenAGIClient({
             maxRetries: 0,
+            token: "test",
             appId: "test",
             appSecret: "test",
             organizationId: "test",
@@ -7824,6 +7460,7 @@ describe("ConversationClient", () => {
         const server = mockServerPool.createServer();
         const client = new MavenAGIClient({
             maxRetries: 0,
+            token: "test",
             appId: "test",
             appSecret: "test",
             organizationId: "test",
@@ -7877,6 +7514,7 @@ describe("ConversationClient", () => {
         const server = mockServerPool.createServer();
         const client = new MavenAGIClient({
             maxRetries: 0,
+            token: "test",
             appId: "test",
             appSecret: "test",
             organizationId: "test",
@@ -7930,6 +7568,7 @@ describe("ConversationClient", () => {
         const server = mockServerPool.createServer();
         const client = new MavenAGIClient({
             maxRetries: 0,
+            token: "test",
             appId: "test",
             appSecret: "test",
             organizationId: "test",
@@ -7983,6 +7622,7 @@ describe("ConversationClient", () => {
         const server = mockServerPool.createServer();
         const client = new MavenAGIClient({
             maxRetries: 0,
+            token: "test",
             appId: "test",
             appSecret: "test",
             organizationId: "test",
@@ -8036,6 +7676,7 @@ describe("ConversationClient", () => {
         const server = mockServerPool.createServer();
         const client = new MavenAGIClient({
             maxRetries: 0,
+            token: "test",
             appId: "test",
             appSecret: "test",
             organizationId: "test",

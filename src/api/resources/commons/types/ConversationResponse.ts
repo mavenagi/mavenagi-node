@@ -15,6 +15,7 @@ import type * as MavenAGI from "../../../index";
  *         deleted: false,
  *         open: false,
  *         llmEnabled: true,
+ *         executionMode: MavenAGI.ExecutionMode.Live,
  *         conversationMode: MavenAGI.ConversationMode.Text,
  *         analysis: {
  *             resolutionStatus: MavenAGI.ResolutionStatus.Resolved,

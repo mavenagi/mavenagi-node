@@ -4,6 +4,7 @@ export * from "./FinalizeKnowledgeBaseVersionRequest";
 export * from "./KnowledgeBaseDocumentDeltas";
 export * from "./KnowledgeBaseField";
 export * from "./KnowledgeBaseFilter";
+export * from "./KnowledgeBaseFunctionBindings";
 export * from "./KnowledgeBaseIndexingProgressState";
 export * from "./KnowledgeBaseIndexingStatus";
 export * from "./KnowledgeBaseProperties";

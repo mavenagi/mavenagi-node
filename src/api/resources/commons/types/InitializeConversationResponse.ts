@@ -6,6 +6,46 @@ import type * as MavenAGI from "../../../index";
  * A conversation as returned by the `initialize` endpoint. Extends the shared
  * ConversationResponse with the Conversation Kickoff result, which is only available at
  * initialization time.
+ *
+ * @example
+ *     {
+ *         conversationId: {
+ *             referenceId: "conversation-0",
+ *             appId: "myapp",
+ *             organizationId: "acme",
+ *             agentId: "support",
+ *             type: MavenAGI.EntityType.Conversation
+ *         },
+ *         deleted: false,
+ *         open: true,
+ *         llmEnabled: true,
+ *         conversationMode: MavenAGI.ConversationMode.Text,
+ *         analysis: {},
+ *         summary: {
+ *             actionIds: [],
+ *             incompleteActionIds: [],
+ *             matchedCharterIds: [],
+ *             matchedCharterNames: [],
+ *             matchedSegmentedCharterNames: [],
+ *             insertCount: 0,
+ *             thumbsUpCount: 0,
+ *             thumbsDownCount: 0,
+ *             handoffCount: 0,
+ *             userMessageCount: 0,
+ *             botMessageCount: 0,
+ *             humanAgents: [],
+ *             humanAgentsWithInserts: [],
+ *             users: [],
+ *             userIdentifiers: [],
+ *             involvedAppIds: new Set(["myapp"])
+ *         },
+ *         metadata: {},
+ *         allMetadata: {},
+ *         attachments: [],
+ *         messages: [],
+ *         executionMode: MavenAGI.ExecutionMode.Live,
+ *         conversationKickoffResults: []
+ *     }
  */
 export interface InitializeConversationResponse extends MavenAGI.ConversationResponse {
     /**

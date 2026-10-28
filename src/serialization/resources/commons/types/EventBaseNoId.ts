@@ -4,6 +4,7 @@ import type * as MavenAGI from "../../../../api/index";
 import * as core from "../../../../core";
 import type * as serializers from "../../../index";
 import { ContextInfo } from "./ContextInfo";
+import { ExecutionMode } from "./ExecutionMode";
 import { ScopedEntity } from "./ScopedEntity";
 import { SessionInfo } from "./SessionInfo";
 import { SourceInfo } from "./SourceInfo";
@@ -15,6 +16,7 @@ export const EventBaseNoId: core.serialization.ObjectSchema<serializers.EventBas
         sourceInfo: SourceInfo.optional(),
         sessionInfo: SessionInfo.optional(),
         contextInfo: ContextInfo.optional(),
+        executionMode: ExecutionMode.optional(),
     });
 
 export declare namespace EventBaseNoId {
@@ -24,5 +26,6 @@ export declare namespace EventBaseNoId {
         sourceInfo?: SourceInfo.Raw | null;
         sessionInfo?: SessionInfo.Raw | null;
         contextInfo?: ContextInfo.Raw | null;
+        executionMode?: ExecutionMode.Raw | null;
     }
 }

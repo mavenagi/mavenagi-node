@@ -32,4 +32,9 @@ export interface CapabilityExecutionBase {
     durationMs?: number;
     /** When the execution was recorded. Results are ordered by this field. */
     createdAt: Date;
+    /**
+     * Whether the execution ran on live data or in a simulation. A Conversation Kickoff takes
+     * its conversation's mode, and an Event Trigger its event's.
+     */
+    executionMode: MavenAGI.ExecutionMode;
 }

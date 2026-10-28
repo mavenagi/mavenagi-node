@@ -36,4 +36,9 @@ export interface CapabilityExecutionsSearchRequest extends MavenAGI.BaseCappedPa
     capabilityIds?: MavenAGI.EntityId[];
     /** Only return executions in these states. */
     statuses?: MavenAGI.CapabilityExecutionStatus[];
+    /**
+     * Whether to include executions from simulations. Defaults to `ALL`, so a
+     * simulation conversation's executions are found by its ID like any other.
+     */
+    simulationFilter?: MavenAGI.SimulationFilter;
 }

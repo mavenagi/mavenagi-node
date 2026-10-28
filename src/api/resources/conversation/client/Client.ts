@@ -49,27 +49,45 @@ export class ConversationClient {
      * @example
      *     await client.conversation.initialize({
      *         conversationId: {
-     *             referenceId: "x"
+     *             referenceId: "conversation-0"
      *         },
-     *         messages: [{
-     *                 conversationMessageId: {
-     *                     referenceId: "x"
-     *                 },
-     *                 userId: {
-     *                     referenceId: "x"
-     *                 },
-     *                 text: "text",
-     *                 userMessageType: "USER"
-     *             }, {
-     *                 conversationMessageId: {
-     *                     referenceId: "x"
-     *                 },
-     *                 userId: {
-     *                     referenceId: "x"
-     *                 },
-     *                 text: "text",
-     *                 userMessageType: "USER"
-     *             }]
+     *         messages: []
+     *     })
+     *
+     * @example
+     *     await client.conversation.initialize({
+     *         conversationId: {
+     *             referenceId: "simulation-0"
+     *         },
+     *         simulationContext: {
+     *             actionMocks: [{
+     *                     actionId: {
+     *                         type: "ACTION",
+     *                         appId: "my-app",
+     *                         referenceId: "refund-order"
+     *                     },
+     *                     behavior: {
+     *                         type: "fixedResponse",
+     *                         response: "Refunded order {{orderId}}"
+     *                     }
+     *                 }, {
+     *                     actionId: {
+     *                         type: "ACTION",
+     *                         appId: "my-app",
+     *                         referenceId: "get-order-status"
+     *                     },
+     *                     behavior: {
+     *                         type: "fixedResponse",
+     *                         status: "ERROR",
+     *                         response: "Order {{orderId}} was not found",
+     *                         errorMessage: "No order with ID {{orderId}}"
+     *                     }
+     *                 }],
+     *             defaultActionBehavior: {
+     *                 type: "callApp"
+     *             }
+     *         },
+     *         messages: []
      *     })
      */
     public initialize(
@@ -374,10 +392,11 @@ export class ConversationClient {
         request: MavenAGI.ConversationGetRequest = {},
         requestOptions?: ConversationClient.RequestOptions,
     ): Promise<core.WithRawResponse<MavenAGI.ConversationResponse>> {
-        const { appId, translationLanguage } = request;
+        const { appId, translationLanguage, includeLogic } = request;
         const _queryParams: Record<string, unknown> = {
             appId,
             translationLanguage,
+            includeLogic,
         };
         const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
         const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
@@ -2474,9 +2493,11 @@ export class ConversationClient {
      *
      * Deliver a message to a user or conversation.
      *
+     * A closed conversation (`open` set to false) takes no new messages and returns a 400.
+     *
      * <Warning>
-     * Currently, messages can only be successfully delivered to conversations with the `ASYNC` capability that are `open`.
-     * User message delivery is not yet supported.
+     * Currently, messages can only be successfully delivered to conversations with the `ASYNC` capability.
+     * User message delivery is not yet supported and returns a 400.
      * </Warning>
      *
      * @param {MavenAGI.DeliverMessageRequest} request

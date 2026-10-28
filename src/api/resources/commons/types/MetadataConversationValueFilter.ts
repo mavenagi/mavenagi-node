@@ -6,9 +6,9 @@ import type * as MavenAGI from "../../../index";
  * Matches documents whose value under `key` equals a value read from the conversation
  * being answered, so one filter follows each conversation instead of naming a fixed value.
  *
- * When the conversation has no value at `source`, nothing matches. To also keep documents
- * that apply everywhere, combine this with an entry in an `OR` group, for example
- * `state = All`.
+ * When the conversation has no value at `source`, nothing matches. For `userData`, that
+ * includes a conversation with no user. To also keep documents that apply everywhere,
+ * combine this with an entry in an `OR` group, for example `state = All`.
  */
 export interface MetadataConversationValueFilter {
     /** The document metadata key to test, as in `MetadataEntryCondition`. */

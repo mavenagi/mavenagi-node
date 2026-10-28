@@ -4,6 +4,8 @@ import type * as MavenAGI from "../../../index";
 
 export interface EventFilter {
     search?: string;
+    /** Whether to include simulation events in search results. Defaults to only non-simulation events. */
+    simulationFilter?: MavenAGI.SimulationFilter;
     createdAfter?: Date;
     createdBefore?: Date;
     references?: MavenAGI.ScopedEntity[];

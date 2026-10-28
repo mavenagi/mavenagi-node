@@ -5,8 +5,9 @@ import type * as MavenAGI from "../../../index";
 export type SimulationActionBehavior =
     /**
      * The platform does not call the action's app and uses this result as the action's
-     * result. `response` and `errorMessage` are Handlebars templates over the action's input
-     * parameters, such as `{{parameterId}}`, rendered without HTML escaping. */
+     * result. `response` is required. `response` and `errorMessage` are Handlebars templates
+     * over the action's input parameters, such as `{{parameterId}}`, rendered without HTML
+     * escaping. Set `status` to `ERROR` to mock a failed action. */
     | MavenAGI.SimulationActionBehavior.FixedResponse
     /**
      * The platform calls the action's app instead of returning a mocked result. */

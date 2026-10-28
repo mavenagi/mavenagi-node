@@ -9,6 +9,7 @@ describe("EventsClient", () => {
         const server = mockServerPool.createServer();
         const client = new MavenAGIClient({
             maxRetries: 0,
+            token: "test",
             appId: "test",
             appSecret: "test",
             organizationId: "test",
@@ -103,6 +104,7 @@ describe("EventsClient", () => {
             },
             sessionInfo: { id: "id", start: "2024-01-15T09:30:00Z", end: "2024-01-15T09:30:00Z", duration: 1000000 },
             contextInfo: { additionalData: { additionalData: "additionalData" } },
+            executionMode: "LIVE",
         };
 
         server
@@ -239,6 +241,7 @@ describe("EventsClient", () => {
                     additionalData: "additionalData",
                 },
             },
+            executionMode: "LIVE",
         });
     });
 
@@ -246,6 +249,7 @@ describe("EventsClient", () => {
         const server = mockServerPool.createServer();
         const client = new MavenAGIClient({
             maxRetries: 0,
+            token: "test",
             appId: "test",
             appSecret: "test",
             organizationId: "test",
@@ -289,6 +293,7 @@ describe("EventsClient", () => {
         const server = mockServerPool.createServer();
         const client = new MavenAGIClient({
             maxRetries: 0,
+            token: "test",
             appId: "test",
             appSecret: "test",
             organizationId: "test",
@@ -332,6 +337,7 @@ describe("EventsClient", () => {
         const server = mockServerPool.createServer();
         const client = new MavenAGIClient({
             maxRetries: 0,
+            token: "test",
             appId: "test",
             appSecret: "test",
             organizationId: "test",
@@ -375,6 +381,7 @@ describe("EventsClient", () => {
         const server = mockServerPool.createServer();
         const client = new MavenAGIClient({
             maxRetries: 0,
+            token: "test",
             appId: "test",
             appSecret: "test",
             organizationId: "test",
@@ -418,6 +425,7 @@ describe("EventsClient", () => {
         const server = mockServerPool.createServer();
         const client = new MavenAGIClient({
             maxRetries: 0,
+            token: "test",
             appId: "test",
             appSecret: "test",
             organizationId: "test",
@@ -461,6 +469,7 @@ describe("EventsClient", () => {
         const server = mockServerPool.createServer();
         const client = new MavenAGIClient({
             maxRetries: 0,
+            token: "test",
             appId: "test",
             appSecret: "test",
             organizationId: "test",
@@ -557,6 +566,7 @@ describe("EventsClient", () => {
                         duration: 1000000,
                     },
                     contextInfo: { additionalData: { additionalData: "additionalData" } },
+                    executionMode: "LIVE",
                 },
                 {
                     eventType: "userEvent",
@@ -645,6 +655,7 @@ describe("EventsClient", () => {
                         duration: 1000000,
                     },
                     contextInfo: { additionalData: { additionalData: "additionalData" } },
+                    executionMode: "LIVE",
                 },
             ],
             number: 1,
@@ -778,6 +789,7 @@ describe("EventsClient", () => {
                             additionalData: "additionalData",
                         },
                     },
+                    executionMode: "LIVE",
                 },
                 {
                     eventType: "userEvent",
@@ -892,6 +904,7 @@ describe("EventsClient", () => {
                             additionalData: "additionalData",
                         },
                     },
+                    executionMode: "LIVE",
                 },
             ],
             number: 1,
@@ -905,6 +918,7 @@ describe("EventsClient", () => {
         const server = mockServerPool.createServer();
         const client = new MavenAGIClient({
             maxRetries: 0,
+            token: "test",
             appId: "test",
             appSecret: "test",
             organizationId: "test",
@@ -932,6 +946,7 @@ describe("EventsClient", () => {
         const server = mockServerPool.createServer();
         const client = new MavenAGIClient({
             maxRetries: 0,
+            token: "test",
             appId: "test",
             appSecret: "test",
             organizationId: "test",
@@ -959,6 +974,7 @@ describe("EventsClient", () => {
         const server = mockServerPool.createServer();
         const client = new MavenAGIClient({
             maxRetries: 0,
+            token: "test",
             appId: "test",
             appSecret: "test",
             organizationId: "test",
@@ -986,6 +1002,7 @@ describe("EventsClient", () => {
         const server = mockServerPool.createServer();
         const client = new MavenAGIClient({
             maxRetries: 0,
+            token: "test",
             appId: "test",
             appSecret: "test",
             organizationId: "test",
@@ -1013,6 +1030,7 @@ describe("EventsClient", () => {
         const server = mockServerPool.createServer();
         const client = new MavenAGIClient({
             maxRetries: 0,
+            token: "test",
             appId: "test",
             appSecret: "test",
             organizationId: "test",
@@ -1040,6 +1058,7 @@ describe("EventsClient", () => {
         const server = mockServerPool.createServer();
         const client = new MavenAGIClient({
             maxRetries: 0,
+            token: "test",
             appId: "test",
             appSecret: "test",
             organizationId: "test",
@@ -1129,6 +1148,7 @@ describe("EventsClient", () => {
             },
             sessionInfo: { id: "id", start: "2024-01-15T09:30:00Z", end: "2024-01-15T09:30:00Z", duration: 1000000 },
             contextInfo: { additionalData: { additionalData: "additionalData" } },
+            executionMode: "LIVE",
         };
 
         server.mockEndpoint().get("/v1/events/eventId").respondWith().statusCode(200).jsonBody(rawResponseBody).build();
@@ -1249,6 +1269,7 @@ describe("EventsClient", () => {
                     additionalData: "additionalData",
                 },
             },
+            executionMode: "LIVE",
         });
     });
 
@@ -1256,6 +1277,7 @@ describe("EventsClient", () => {
         const server = mockServerPool.createServer();
         const client = new MavenAGIClient({
             maxRetries: 0,
+            token: "test",
             appId: "test",
             appSecret: "test",
             organizationId: "test",
@@ -1278,6 +1300,7 @@ describe("EventsClient", () => {
         const server = mockServerPool.createServer();
         const client = new MavenAGIClient({
             maxRetries: 0,
+            token: "test",
             appId: "test",
             appSecret: "test",
             organizationId: "test",
@@ -1300,6 +1323,7 @@ describe("EventsClient", () => {
         const server = mockServerPool.createServer();
         const client = new MavenAGIClient({
             maxRetries: 0,
+            token: "test",
             appId: "test",
             appSecret: "test",
             organizationId: "test",
@@ -1322,6 +1346,7 @@ describe("EventsClient", () => {
         const server = mockServerPool.createServer();
         const client = new MavenAGIClient({
             maxRetries: 0,
+            token: "test",
             appId: "test",
             appSecret: "test",
             organizationId: "test",
@@ -1344,6 +1369,7 @@ describe("EventsClient", () => {
         const server = mockServerPool.createServer();
         const client = new MavenAGIClient({
             maxRetries: 0,
+            token: "test",
             appId: "test",
             appSecret: "test",
             organizationId: "test",

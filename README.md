@@ -48,7 +48,7 @@ Instantiate and use the client with the following:
 ```typescript
 import { MavenAGI, MavenAGIClient } from "mavenagi";
 
-const client = new MavenAGIClient({ appId: "YOUR_APP_ID", appSecret: "YOUR_APP_SECRET", organizationId: "YOUR_ORGANIZATION_ID", agentId: "YOUR_AGENT_ID" });
+const client = new MavenAGIClient({ token: "YOUR_TOKEN", appId: "YOUR_APP_ID", appSecret: "YOUR_APP_SECRET", organizationId: "YOUR_ORGANIZATION_ID", agentId: "YOUR_AGENT_ID" });
 await client.actions.search({});
 ```
 
@@ -143,7 +143,7 @@ The SDK uses async iterators, so you can consume the responses using a `for awai
 ```typescript
 import { MavenAGIClient } from "mavenagi";
 
-const client = new MavenAGIClient({ appId: "YOUR_APP_ID", appSecret: "YOUR_APP_SECRET", organizationId: "YOUR_ORGANIZATION_ID", agentId: "YOUR_AGENT_ID" });
+const client = new MavenAGIClient({ token: "YOUR_TOKEN", appId: "YOUR_APP_ID", appSecret: "YOUR_APP_SECRET", organizationId: "YOUR_ORGANIZATION_ID", agentId: "YOUR_AGENT_ID" });
 const response = await client.conversation.askStream("conversation-0", {
     conversationMessageId: {
         referenceId: "message-0"

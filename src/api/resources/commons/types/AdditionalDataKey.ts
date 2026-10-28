@@ -11,13 +11,13 @@
  */
 export const AdditionalDataKey = {
     /**
-     * The new value of whatever changed. Absent when undetermined. Maven sets it on `INTELLIGENT_FIELD_VALUE_CHANGED`. */
+     * The new value of whatever changed, never a sum of money (that is `amount`). Absent when undetermined. Maven sets it on `INTELLIGENT_FIELD_VALUE_CHANGED`. */
     Value: "value",
     /**
      * The value before the change. Absent when it was undetermined or there was none. Maven sets it on `INTELLIGENT_FIELD_VALUE_CHANGED`. */
     PreviousValue: "previousValue",
     /**
-     * The name of the thing acted on, such as a form, flow, file or plan. */
+     * The name of the thing acted on, such as a form, flow, file, plan or item bought. */
     Name: "name",
     /**
      * The step reached within a flow or form, as its name or number. */
@@ -44,7 +44,7 @@ export const AdditionalDataKey = {
      * The `botMessageType` of the bot message. Maven sets it on `BOT_REPLY_CREATED`. */
     BotMessageType: "botMessageType",
     /**
-     * A monetary amount, as a decimal number in `currency`. */
+     * A monetary amount, as a decimal number in `currency`. A Google Analytics 4 `value` goes here. */
     Amount: "amount",
     /**
      * The ISO 4217 code of `amount`'s currency, such as `USD`. */
@@ -64,5 +64,83 @@ export const AdditionalDataKey = {
     /**
      * The size of the file involved, in bytes. */
     SizeBytes: "sizeBytes",
+    /**
+     * How it was done, such as the sign-in method (`google`) or the way content was shared (`copy link`). */
+    Method: "method",
+    /**
+     * The products involved, as a JSON array in a string. Each object uses the Google Analytics 4 item parameter names (`item_id`, `item_name`, `price`, `quantity`, …), so a GA4 `items` array can be sent as is. */
+    Items: "items",
+    /**
+     * The ID of the order or transaction. */
+    TransactionId: "transactionId",
+    /**
+     * The coupon code applied. */
+    Coupon: "coupon",
+    /**
+     * The shipping cost, as a decimal number in `currency`. */
+    Shipping: "shipping",
+    /**
+     * The tax, as a decimal number in `currency`. */
+    Tax: "tax",
+    /**
+     * Whether the customer is `new` or `returning`. */
+    CustomerType: "customerType",
+    /**
+     * The payment method chosen, such as `credit card`. */
+    PaymentType: "paymentType",
+    /**
+     * The shipping option chosen, such as `ground` or `next day`. */
+    ShippingTier: "shippingTier",
+    /**
+     * The ID of the list the products were shown in. */
+    ItemListId: "itemListId",
+    /**
+     * The name of the list the products were shown in, such as `related products`. */
+    ItemListName: "itemListName",
+    /**
+     * The ID of the promotion. */
+    PromotionId: "promotionId",
+    /**
+     * The name of the promotion. */
+    PromotionName: "promotionName",
+    /**
+     * The name of the promotion's creative, such as a banner. */
+    CreativeName: "creativeName",
+    /**
+     * Where the promotion's creative was shown. */
+    CreativeSlot: "creativeSlot",
+    /**
+     * Where the lead came from, such as `trade show`. */
+    LeadSource: "leadSource",
+    /**
+     * The lead's status in the sales process, such as `contacted`. */
+    LeadStatus: "leadStatus",
+    /**
+     * The type of the content involved, such as `video` or `article`. */
+    ContentType: "contentType",
+    /**
+     * The ID of the content involved. */
+    ContentId: "contentId",
+    /**
+     * The ID of the group, team or community involved. */
+    GroupId: "groupId",
+    /**
+     * The name of an in-app currency, such as `gems`. */
+    VirtualCurrencyName: "virtualCurrencyName",
+    /**
+     * A number of `virtualCurrencyName` units, as a decimal number. */
+    VirtualCurrencyAmount: "virtualCurrencyAmount",
+    /**
+     * The platform that served the ad, such as `AdMob`. */
+    AdPlatform: "adPlatform",
+    /**
+     * The ad network the ad came from, such as `AdColony`. */
+    AdSource: "adSource",
+    /**
+     * The ad's format, such as `banner` or `interstitial`. */
+    AdFormat: "adFormat",
+    /**
+     * The name of the ad unit. */
+    AdUnitName: "adUnitName",
 } as const;
 export type AdditionalDataKey = (typeof AdditionalDataKey)[keyof typeof AdditionalDataKey] | string;

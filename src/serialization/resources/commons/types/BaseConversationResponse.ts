@@ -7,6 +7,7 @@ import { ConversationAnalysis } from "./ConversationAnalysis";
 import { ConversationMode } from "./ConversationMode";
 import { ConversationSummary } from "./ConversationSummary";
 import { EntityId } from "./EntityId";
+import { ExecutionMode } from "./ExecutionMode";
 import { RelationshipType } from "./RelationshipType";
 import { ResponseConfig } from "./ResponseConfig";
 import { SimulationContext } from "./SimulationContext";
@@ -33,6 +34,7 @@ export const BaseConversationResponse: core.serialization.ObjectSchema<
     open: core.serialization.boolean(),
     llmEnabled: core.serialization.boolean(),
     simulationContext: SimulationContext.optional(),
+    executionMode: ExecutionMode,
     relatedEntities: core.serialization
         .partialRecord(RelationshipType, core.serialization.list(EntityId).optional())
         .optional(),
@@ -57,6 +59,7 @@ export declare namespace BaseConversationResponse {
         open: boolean;
         llmEnabled: boolean;
         simulationContext?: SimulationContext.Raw | null;
+        executionMode: ExecutionMode.Raw;
         relatedEntities?: Record<RelationshipType.Raw, EntityId.Raw[] | null | undefined> | null;
         conversationMode?: ConversationMode.Raw | null;
         variantId?: EntityId.Raw | null;

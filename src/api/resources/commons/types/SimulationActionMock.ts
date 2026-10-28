@@ -3,7 +3,8 @@
 import type * as MavenAGI from "../../../index";
 
 export interface SimulationActionMock {
-    /** The action this entry applies to. */
+    /** The action this entry applies to. Its `type` must be `ACTION`. */
     actionId: MavenAGI.EntityIdWithoutAgent;
+    /** What the platform does when the agent executes this action. */
     behavior: MavenAGI.SimulationActionBehavior;
 }

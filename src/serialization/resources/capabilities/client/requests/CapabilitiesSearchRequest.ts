@@ -22,8 +22,6 @@ export const CapabilitiesSearchRequest: core.serialization.Schema<
         userInteractionRequired: core.serialization.boolean().optional(),
         sortId: CapabilitySortField.optional(),
         variantId: EntityIdWithoutAgent.optional(),
-        variantReferenceId: core.serialization.string().optional(),
-        variantAppId: core.serialization.string().optional(),
     })
     .extend(BaseCappedPaginatedRequest);
 
@@ -37,7 +35,5 @@ export declare namespace CapabilitiesSearchRequest {
         userInteractionRequired?: boolean | null;
         sortId?: CapabilitySortField.Raw | null;
         variantId?: EntityIdWithoutAgent.Raw | null;
-        variantReferenceId?: string | null;
-        variantAppId?: string | null;
     }
 }

@@ -8,6 +8,7 @@
         "useBrandedStringAliases": true,
         "shouldGenerateWebsocketClients": true,
         "alwaysSendAuth": true,
+        "flattenAnyAuthOptions": true,
         "enableForwardCompatibleEnums": true,
         "inlineFileProperties": false,
         "inlinePathParameters": false,
@@ -18,10 +19,10 @@
         "useLegacyExports": true,
         "generateWireTests": false
     },
-    "originGitCommit": "e60b7647543125b722ed3aa71ff2704c57c37ebe",
+    "originGitCommit": "b573f617c0b96d81749c2a0db94458fce9382f99",
     "originGitCommitIsDirty": false,
     "invokedBy": "ci",
-    "requestedVersion": "1.2.65",
+    "requestedVersion": "1.2.66",
     "ciProvider": "github",
-    "sdkVersion": "1.2.65"
+    "sdkVersion": "1.2.66"
 }

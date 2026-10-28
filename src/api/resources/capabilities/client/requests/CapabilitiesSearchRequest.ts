@@ -37,8 +37,4 @@ export interface CapabilitiesSearchRequest extends MavenAGI.BaseCappedPaginatedR
      * staged or already in its snapshot, is left out.
      */
     variantId?: MavenAGI.EntityIdWithoutAgent;
-    /** Deprecated, use `variantId`, which wins when both are set. */
-    variantReferenceId?: string;
-    /** Deprecated, use `variantId`, which wins when both are set. */
-    variantAppId?: string;
 }

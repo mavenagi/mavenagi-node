@@ -2,6 +2,51 @@
 
 import type * as MavenAGI from "../../../index";
 
+/**
+ * @example
+ *     {
+ *         conversationId: {
+ *             referenceId: "conversation-0"
+ *         },
+ *         messages: []
+ *     }
+ *
+ * @example
+ *     {
+ *         conversationId: {
+ *             referenceId: "simulation-0"
+ *         },
+ *         simulationContext: {
+ *             actionMocks: [{
+ *                     actionId: {
+ *                         type: MavenAGI.EntityType.Action,
+ *                         appId: "my-app",
+ *                         referenceId: "refund-order"
+ *                     },
+ *                     behavior: {
+ *                         type: "fixedResponse",
+ *                         response: "Refunded order {{orderId}}"
+ *                     }
+ *                 }, {
+ *                     actionId: {
+ *                         type: MavenAGI.EntityType.Action,
+ *                         appId: "my-app",
+ *                         referenceId: "get-order-status"
+ *                     },
+ *                     behavior: {
+ *                         type: "fixedResponse",
+ *                         status: MavenAGI.ActionExecutionStatus.Error,
+ *                         response: "Order {{orderId}} was not found",
+ *                         errorMessage: "No order with ID {{orderId}}"
+ *                     }
+ *                 }],
+ *             defaultActionBehavior: {
+ *                 type: "callApp"
+ *             }
+ *         },
+ *         messages: []
+ *     }
+ */
 export interface ConversationRequest {
     /** An externally supplied ID to uniquely identify this conversation */
     conversationId: MavenAGI.EntityIdBase;

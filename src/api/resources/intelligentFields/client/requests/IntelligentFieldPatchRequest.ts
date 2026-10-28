@@ -33,6 +33,4 @@ export interface IntelligentFieldPatchRequest {
     enumOptions?: MavenAGI.EnumOption[];
     /** The agent variant to stage this patch in. Required on an agent with versioned intelligent fields; a patch that omits it there is rejected with reason `VARIANT_REQUIRED`. */
     variantId?: MavenAGI.EntityIdWithoutAgent;
-    /** Deprecated, use `variantId.appId`, which wins when both are set. */
-    variantAppId?: string;
 }

@@ -31,6 +31,7 @@ import type * as MavenAGI from "../../../index";
  *                 completedAt: new Date("2026-08-31T10:30:06.000Z"),
  *                 durationMs: 1120,
  *                 createdAt: new Date("2026-08-31T10:30:05.000Z"),
+ *                 executionMode: MavenAGI.ExecutionMode.Live,
  *                 eventType: MavenAGI.EventTriggerType.ConversationCreated,
  *                 attempt: 1
  *             }, {
@@ -55,7 +56,8 @@ import type * as MavenAGI from "../../../index";
  *                 startedAt: new Date("2026-08-31T10:30:00.000Z"),
  *                 completedAt: new Date("2026-08-31T10:30:04.000Z"),
  *                 durationMs: 4000,
- *                 createdAt: new Date("2026-08-31T10:30:00.000Z")
+ *                 createdAt: new Date("2026-08-31T10:30:00.000Z"),
+ *                 executionMode: MavenAGI.ExecutionMode.Live
  *             }]
  *     }
  */

@@ -41,7 +41,7 @@ export const UserEventName = {
      * Content was translated into another language */
     ContentTranslated: "CONTENT_TRANSLATED",
     /**
-     * A search query was submitted */
+     * A search query was submitted. `contextInfo.additionalData` carries `query` (see `AdditionalDataKey`). */
     SearchSubmitted: "SEARCH_SUBMITTED",
     /**
      * A search result was opened */
@@ -77,10 +77,10 @@ export const UserEventName = {
      * The user left a multi-step flow partway through. Pair with an `EVENT_CREATED` trigger to follow up on an onboarding or checkout that was never finished. Name the flow and the step it stopped on in `contextInfo.additionalData`. */
     FlowAbandoned: "FLOW_ABANDONED",
     /**
-     * The user created an account */
+     * The user created an account. `contextInfo.additionalData` carries `method` (see `AdditionalDataKey`). */
     AccountCreated: "ACCOUNT_CREATED",
     /**
-     * The user signed in */
+     * The user signed in. `contextInfo.additionalData` carries `method` (see `AdditionalDataKey`). */
     SignedIn: "SIGNED_IN",
     /**
      * The user signed out */
@@ -92,7 +92,7 @@ export const UserEventName = {
      * The user cancelled a subscription or plan */
     SubscriptionCancelled: "SUBSCRIPTION_CANCELLED",
     /**
-     * The user placed an order */
+     * The user placed an order. `contextInfo.additionalData` carries `transactionId`, `amount`, `currency`, `coupon`, `shipping`, `tax`, `customerType` and `items` (see `AdditionalDataKey`). */
     OrderPlaced: "ORDER_PLACED",
     /**
      * The user cancelled an order */
@@ -103,5 +103,80 @@ export const UserEventName = {
     /**
      * The user was shown an error */
     ErrorDisplayed: "ERROR_DISPLAYED",
+    /**
+     * The user was shown an ad. `contextInfo.additionalData` carries `adPlatform`, `adSource`, `adFormat`, `adUnitName`, `amount` and `currency` (see `AdditionalDataKey`). */
+    AdImpression: "AD_IMPRESSION",
+    /**
+     * The user earned points, credits or another in-app currency. `contextInfo.additionalData` carries `virtualCurrencyName` and `virtualCurrencyAmount` (see `AdditionalDataKey`). */
+    EarnVirtualCurrency: "EARN_VIRTUAL_CURRENCY",
+    /**
+     * The user joined a group, team or community. `contextInfo.additionalData` carries `groupId` (see `AdditionalDataKey`). */
+    JoinGroup: "JOIN_GROUP",
+    /**
+     * The user selected a piece of content, such as a video or a card. `contextInfo.additionalData` carries `contentType` and `contentId` (see `AdditionalDataKey`). */
+    SelectContent: "SELECT_CONTENT",
+    /**
+     * The user shared content. `contextInfo.additionalData` carries `method`, `contentType` and `contentId` (see `AdditionalDataKey`). */
+    Share: "SHARE",
+    /**
+     * The user spent points, credits or another in-app currency. `contextInfo.additionalData` carries `virtualCurrencyName`, `virtualCurrencyAmount` and `name` (see `AdditionalDataKey`). */
+    SpendVirtualCurrency: "SPEND_VIRTUAL_CURRENCY",
+    /**
+     * The user was shown a list of products, such as category or search results. `contextInfo.additionalData` carries `itemListId`, `itemListName` and `items` (see `AdditionalDataKey`). */
+    ViewItemList: "VIEW_ITEM_LIST",
+    /**
+     * The user selected a product from a list. `contextInfo.additionalData` carries `itemListId`, `itemListName` and `items` (see `AdditionalDataKey`). */
+    SelectItem: "SELECT_ITEM",
+    /**
+     * The user viewed a product. `contextInfo.additionalData` carries `amount`, `currency` and `items` (see `AdditionalDataKey`). */
+    ViewItem: "VIEW_ITEM",
+    /**
+     * The user was shown a promotion. `contextInfo.additionalData` carries `promotionId`, `promotionName`, `creativeName`, `creativeSlot` and `items` (see `AdditionalDataKey`). */
+    ViewPromotion: "VIEW_PROMOTION",
+    /**
+     * The user selected a promotion. `contextInfo.additionalData` carries `promotionId`, `promotionName`, `creativeName`, `creativeSlot` and `items` (see `AdditionalDataKey`). */
+    SelectPromotion: "SELECT_PROMOTION",
+    /**
+     * The user added a product to a wishlist. `contextInfo.additionalData` carries `amount`, `currency` and `items` (see `AdditionalDataKey`). */
+    AddToWishlist: "ADD_TO_WISHLIST",
+    /**
+     * The user added a product to their cart. `contextInfo.additionalData` carries `amount`, `currency` and `items` (see `AdditionalDataKey`). */
+    AddToCart: "ADD_TO_CART",
+    /**
+     * The user removed a product from their cart. `contextInfo.additionalData` carries `amount`, `currency` and `items` (see `AdditionalDataKey`). */
+    RemoveFromCart: "REMOVE_FROM_CART",
+    /**
+     * The user viewed their cart. `contextInfo.additionalData` carries `amount`, `currency` and `items` (see `AdditionalDataKey`). */
+    ViewCart: "VIEW_CART",
+    /**
+     * The user started checkout. `contextInfo.additionalData` carries `amount`, `currency`, `coupon` and `items` (see `AdditionalDataKey`). */
+    BeginCheckout: "BEGIN_CHECKOUT",
+    /**
+     * The user submitted shipping information during checkout. `contextInfo.additionalData` carries `amount`, `currency`, `coupon`, `shippingTier` and `items` (see `AdditionalDataKey`). */
+    AddShippingInfo: "ADD_SHIPPING_INFO",
+    /**
+     * The user submitted payment information during checkout. `contextInfo.additionalData` carries `amount`, `currency`, `coupon`, `paymentType` and `items` (see `AdditionalDataKey`). */
+    AddPaymentInfo: "ADD_PAYMENT_INFO",
+    /**
+     * An order, or part of one, was refunded. `contextInfo.additionalData` carries `transactionId`, `amount`, `currency`, `coupon`, `shipping`, `tax` and `items` (see `AdditionalDataKey`). */
+    Refund: "REFUND",
+    /**
+     * The user became a lead, for example by submitting a contact form. `contextInfo.additionalData` carries `amount`, `currency` and `leadSource` (see `AdditionalDataKey`). */
+    GenerateLead: "GENERATE_LEAD",
+    /**
+     * A lead was marked qualified. `contextInfo.additionalData` carries `amount` and `currency` (see `AdditionalDataKey`). */
+    QualifyLead: "QUALIFY_LEAD",
+    /**
+     * A lead was marked disqualified. `contextInfo.additionalData` carries `amount`, `currency` and `reason` (see `AdditionalDataKey`). */
+    DisqualifyLead: "DISQUALIFY_LEAD",
+    /**
+     * A lead was contacted and is being worked. `contextInfo.additionalData` carries `amount`, `currency` and `leadStatus` (see `AdditionalDataKey`). */
+    WorkingLead: "WORKING_LEAD",
+    /**
+     * A lead converted into a customer. `contextInfo.additionalData` carries `amount` and `currency` (see `AdditionalDataKey`). */
+    CloseConvertLead: "CLOSE_CONVERT_LEAD",
+    /**
+     * A lead was closed without converting. `contextInfo.additionalData` carries `amount`, `currency` and `reason` (see `AdditionalDataKey`). */
+    CloseUnconvertLead: "CLOSE_UNCONVERT_LEAD",
 } as const;
 export type UserEventName = (typeof UserEventName)[keyof typeof UserEventName] | string;

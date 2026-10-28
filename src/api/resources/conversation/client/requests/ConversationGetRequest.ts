@@ -9,4 +9,6 @@ export interface ConversationGetRequest {
     appId?: string;
     /** The language to translate the conversation analysis into */
     translationLanguage?: string;
+    /** Whether to return `logic` on each bot message. Defaults to `true`. Pass `false` to leave it out, which makes the response much smaller. */
+    includeLogic?: boolean;
 }

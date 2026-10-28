@@ -26,6 +26,32 @@ export const AdditionalDataKey: core.serialization.Schema<
     "targetLanguage",
     "mimeType",
     "sizeBytes",
+    "method",
+    "items",
+    "transactionId",
+    "coupon",
+    "shipping",
+    "tax",
+    "customerType",
+    "paymentType",
+    "shippingTier",
+    "itemListId",
+    "itemListName",
+    "promotionId",
+    "promotionName",
+    "creativeName",
+    "creativeSlot",
+    "leadSource",
+    "leadStatus",
+    "contentType",
+    "contentId",
+    "groupId",
+    "virtualCurrencyName",
+    "virtualCurrencyAmount",
+    "adPlatform",
+    "adSource",
+    "adFormat",
+    "adUnitName",
 ]);
 
 export declare namespace AdditionalDataKey {
@@ -47,5 +73,31 @@ export declare namespace AdditionalDataKey {
         | "sourceLanguage"
         | "targetLanguage"
         | "mimeType"
-        | "sizeBytes";
+        | "sizeBytes"
+        | "method"
+        | "items"
+        | "transactionId"
+        | "coupon"
+        | "shipping"
+        | "tax"
+        | "customerType"
+        | "paymentType"
+        | "shippingTier"
+        | "itemListId"
+        | "itemListName"
+        | "promotionId"
+        | "promotionName"
+        | "creativeName"
+        | "creativeSlot"
+        | "leadSource"
+        | "leadStatus"
+        | "contentType"
+        | "contentId"
+        | "groupId"
+        | "virtualCurrencyName"
+        | "virtualCurrencyAmount"
+        | "adPlatform"
+        | "adSource"
+        | "adFormat"
+        | "adUnitName";
 }

@@ -6,13 +6,22 @@ import type * as MavenAGI from "../../../index";
  * An app with the extra detail needed to render its page and drive installation.
  */
 export interface BaseDetailApp extends MavenAGI.BaseApp {
-    /** Guidance shown while installing the app, for example how to obtain the credentials it asks for. */
+    /**
+     * Guidance shown while installing the app, for example how to obtain the credentials it asks for.
+     * May use [placeholders](https://developers.mavenagi.com/docs/documentation/configuration-and-integration/placeholders) such as `${agentId}`.
+     */
     installationInstructions?: string;
-    /** Guidance shown once the app is installed. */
+    /** Guidance shown once the app is installed. May use [placeholders](https://developers.mavenagi.com/docs/documentation/configuration-and-integration/placeholders), settings included. */
     instructions?: string;
-    /** URL of a preview image or demo for the app's detail page. */
+    /**
+     * URL of a preview image or demo for the app's detail page. May use [placeholders](https://developers.mavenagi.com/docs/documentation/configuration-and-integration/placeholders) such as
+     * `${appHost}` and `${settings.region}`.
+     */
     previewUrl?: string;
-    /** Supporting links published by the author, such as documentation or a privacy policy. */
+    /**
+     * Supporting links published by the author, such as documentation or a privacy policy. Their URLs
+     * may use [placeholders](https://developers.mavenagi.com/docs/documentation/configuration-and-integration/placeholders) such as `${appHost}`, but never settings: links are public.
+     */
     links: MavenAGI.Link[];
     /**
      * The settings the app accepts. Drives the install form, and describes which values are files

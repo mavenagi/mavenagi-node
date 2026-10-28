@@ -4,6 +4,7 @@ import type * as MavenAGI from "../../../../api/index";
 import * as core from "../../../../core";
 import type * as serializers from "../../../index";
 import { EntityId } from "../../commons/types/EntityId";
+import { ExecutionMode } from "../../commons/types/ExecutionMode";
 import { CapabilityExecutionCompletionReason } from "./CapabilityExecutionCompletionReason";
 import { CapabilityExecutionStatus } from "./CapabilityExecutionStatus";
 
@@ -20,6 +21,7 @@ export const CapabilityExecutionBase: core.serialization.ObjectSchema<
     completedAt: core.serialization.date().optional(),
     durationMs: core.serialization.number().optional(),
     createdAt: core.serialization.date(),
+    executionMode: ExecutionMode,
 });
 
 export declare namespace CapabilityExecutionBase {
@@ -33,5 +35,6 @@ export declare namespace CapabilityExecutionBase {
         completedAt?: string | null;
         durationMs?: number | null;
         createdAt: string;
+        executionMode: ExecutionMode.Raw;
     }
 }

@@ -9,6 +9,7 @@ describe("AnalyticsClient", () => {
         const server = mockServerPool.createServer();
         const client = new MavenAGIClient({
             maxRetries: 0,
+            token: "test",
             appId: "test",
             appSecret: "test",
             organizationId: "test",
@@ -316,6 +317,7 @@ describe("AnalyticsClient", () => {
         const server = mockServerPool.createServer();
         const client = new MavenAGIClient({
             maxRetries: 0,
+            token: "test",
             appId: "test",
             appSecret: "test",
             organizationId: "test",
@@ -372,6 +374,7 @@ describe("AnalyticsClient", () => {
         const server = mockServerPool.createServer();
         const client = new MavenAGIClient({
             maxRetries: 0,
+            token: "test",
             appId: "test",
             appSecret: "test",
             organizationId: "test",
@@ -428,6 +431,7 @@ describe("AnalyticsClient", () => {
         const server = mockServerPool.createServer();
         const client = new MavenAGIClient({
             maxRetries: 0,
+            token: "test",
             appId: "test",
             appSecret: "test",
             organizationId: "test",
@@ -484,6 +488,7 @@ describe("AnalyticsClient", () => {
         const server = mockServerPool.createServer();
         const client = new MavenAGIClient({
             maxRetries: 0,
+            token: "test",
             appId: "test",
             appSecret: "test",
             organizationId: "test",
@@ -540,6 +545,7 @@ describe("AnalyticsClient", () => {
         const server = mockServerPool.createServer();
         const client = new MavenAGIClient({
             maxRetries: 0,
+            token: "test",
             appId: "test",
             appSecret: "test",
             organizationId: "test",
@@ -596,6 +602,7 @@ describe("AnalyticsClient", () => {
         const server = mockServerPool.createServer();
         const client = new MavenAGIClient({
             maxRetries: 0,
+            token: "test",
             appId: "test",
             appSecret: "test",
             organizationId: "test",
@@ -662,6 +669,7 @@ describe("AnalyticsClient", () => {
         const server = mockServerPool.createServer();
         const client = new MavenAGIClient({
             maxRetries: 0,
+            token: "test",
             appId: "test",
             appSecret: "test",
             organizationId: "test",
@@ -754,6 +762,7 @@ describe("AnalyticsClient", () => {
         const server = mockServerPool.createServer();
         const client = new MavenAGIClient({
             maxRetries: 0,
+            token: "test",
             appId: "test",
             appSecret: "test",
             organizationId: "test",
@@ -848,6 +857,7 @@ describe("AnalyticsClient", () => {
         const server = mockServerPool.createServer();
         const client = new MavenAGIClient({
             maxRetries: 0,
+            token: "test",
             appId: "test",
             appSecret: "test",
             organizationId: "test",
@@ -883,6 +893,7 @@ describe("AnalyticsClient", () => {
         const server = mockServerPool.createServer();
         const client = new MavenAGIClient({
             maxRetries: 0,
+            token: "test",
             appId: "test",
             appSecret: "test",
             organizationId: "test",
@@ -918,6 +929,7 @@ describe("AnalyticsClient", () => {
         const server = mockServerPool.createServer();
         const client = new MavenAGIClient({
             maxRetries: 0,
+            token: "test",
             appId: "test",
             appSecret: "test",
             organizationId: "test",
@@ -953,6 +965,7 @@ describe("AnalyticsClient", () => {
         const server = mockServerPool.createServer();
         const client = new MavenAGIClient({
             maxRetries: 0,
+            token: "test",
             appId: "test",
             appSecret: "test",
             organizationId: "test",
@@ -988,6 +1001,7 @@ describe("AnalyticsClient", () => {
         const server = mockServerPool.createServer();
         const client = new MavenAGIClient({
             maxRetries: 0,
+            token: "test",
             appId: "test",
             appSecret: "test",
             organizationId: "test",
@@ -1019,401 +1033,11 @@ describe("AnalyticsClient", () => {
         }).rejects.toThrow(MavenAGI.ServerError);
     });
 
-    test("getFeedbackTable (1)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new MavenAGIClient({
-            maxRetries: 0,
-            appId: "test",
-            appSecret: "test",
-            organizationId: "test",
-            agentId: "test",
-            environment: server.baseUrl,
-        });
-        const rawRequestBody = {
-            feedbackFilter: { types: ["THUMBS_UP", "INSERT"] },
-            fieldGroupings: [{ field: "CreatedBy" }],
-            columnDefinitions: [{ header: "feedback_count", metric: { type: "count" } }],
-        };
-        const rawResponseBody = {
-            headers: ["feedback_count", "unique_users"],
-            rows: [
-                {
-                    identifier: { CreatedBy: { type: "string", value: "John Doe" } },
-                    identifiers: [{ field: "CreatedBy", value: { type: "string", value: "John Doe" } }],
-                    data: { feedback_count: { type: "double", value: 5 } },
-                },
-                {
-                    identifier: { CreatedBy: { type: "string", value: "Jane Smith" } },
-                    identifiers: [{ field: "CreatedBy", value: { type: "string", value: "Jane Smith" } }],
-                    data: { feedback_count: { type: "double", value: 3 } },
-                },
-            ],
-        };
-
-        server
-            .mockEndpoint()
-            .post("/v1/tables/feedback")
-            .jsonBody(rawRequestBody)
-            .respondWith()
-            .statusCode(200)
-            .jsonBody(rawResponseBody)
-            .build();
-
-        const response = await client.analytics.getFeedbackTable({
-            feedbackFilter: {
-                types: ["THUMBS_UP", "INSERT"],
-            },
-            fieldGroupings: [
-                {
-                    field: "CreatedBy",
-                },
-            ],
-            columnDefinitions: [
-                {
-                    header: "feedback_count",
-                    metric: {
-                        type: "count",
-                    },
-                },
-            ],
-        });
-        expect(response).toEqual({
-            headers: ["feedback_count", "unique_users"],
-            rows: [
-                {
-                    identifier: {
-                        CreatedBy: {
-                            type: "string",
-                            value: "John Doe",
-                        },
-                    },
-                    identifiers: [
-                        {
-                            field: "CreatedBy",
-                            value: {
-                                type: "string",
-                                value: "John Doe",
-                            },
-                        },
-                    ],
-                    data: {
-                        feedback_count: {
-                            type: "double",
-                            value: 5,
-                        },
-                    },
-                },
-                {
-                    identifier: {
-                        CreatedBy: {
-                            type: "string",
-                            value: "Jane Smith",
-                        },
-                    },
-                    identifiers: [
-                        {
-                            field: "CreatedBy",
-                            value: {
-                                type: "string",
-                                value: "Jane Smith",
-                            },
-                        },
-                    ],
-                    data: {
-                        feedback_count: {
-                            type: "double",
-                            value: 3,
-                        },
-                    },
-                },
-            ],
-        });
-    });
-
-    test("getFeedbackTable (2)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new MavenAGIClient({
-            maxRetries: 0,
-            appId: "test",
-            appSecret: "test",
-            organizationId: "test",
-            agentId: "test",
-            environment: server.baseUrl,
-        });
-        const rawRequestBody = {
-            fieldGroupings: [{ field: "Type" }, { field: "Type" }],
-            columnDefinitions: [
-                { metric: { type: "count" }, header: "header" },
-                { metric: { type: "count" }, header: "header" },
-            ],
-        };
-        const rawResponseBody = {};
-
-        server
-            .mockEndpoint()
-            .post("/v1/tables/feedback")
-            .jsonBody(rawRequestBody)
-            .respondWith()
-            .statusCode(404)
-            .jsonBody(rawResponseBody)
-            .build();
-
-        await expect(async () => {
-            return await client.analytics.getFeedbackTable({
-                fieldGroupings: [
-                    {
-                        field: "Type",
-                    },
-                    {
-                        field: "Type",
-                    },
-                ],
-                columnDefinitions: [
-                    {
-                        metric: {
-                            type: "count",
-                        },
-                        header: "header",
-                    },
-                    {
-                        metric: {
-                            type: "count",
-                        },
-                        header: "header",
-                    },
-                ],
-            });
-        }).rejects.toThrow(MavenAGI.NotFoundError);
-    });
-
-    test("getFeedbackTable (3)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new MavenAGIClient({
-            maxRetries: 0,
-            appId: "test",
-            appSecret: "test",
-            organizationId: "test",
-            agentId: "test",
-            environment: server.baseUrl,
-        });
-        const rawRequestBody = {
-            fieldGroupings: [{ field: "Type" }, { field: "Type" }],
-            columnDefinitions: [
-                { metric: { type: "count" }, header: "header" },
-                { metric: { type: "count" }, header: "header" },
-            ],
-        };
-        const rawResponseBody = {};
-
-        server
-            .mockEndpoint()
-            .post("/v1/tables/feedback")
-            .jsonBody(rawRequestBody)
-            .respondWith()
-            .statusCode(400)
-            .jsonBody(rawResponseBody)
-            .build();
-
-        await expect(async () => {
-            return await client.analytics.getFeedbackTable({
-                fieldGroupings: [
-                    {
-                        field: "Type",
-                    },
-                    {
-                        field: "Type",
-                    },
-                ],
-                columnDefinitions: [
-                    {
-                        metric: {
-                            type: "count",
-                        },
-                        header: "header",
-                    },
-                    {
-                        metric: {
-                            type: "count",
-                        },
-                        header: "header",
-                    },
-                ],
-            });
-        }).rejects.toThrow(MavenAGI.BadRequestError);
-    });
-
-    test("getFeedbackTable (4)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new MavenAGIClient({
-            maxRetries: 0,
-            appId: "test",
-            appSecret: "test",
-            organizationId: "test",
-            agentId: "test",
-            environment: server.baseUrl,
-        });
-        const rawRequestBody = {
-            fieldGroupings: [{ field: "Type" }, { field: "Type" }],
-            columnDefinitions: [
-                { metric: { type: "count" }, header: "header" },
-                { metric: { type: "count" }, header: "header" },
-            ],
-        };
-        const rawResponseBody = {};
-
-        server
-            .mockEndpoint()
-            .post("/v1/tables/feedback")
-            .jsonBody(rawRequestBody)
-            .respondWith()
-            .statusCode(413)
-            .jsonBody(rawResponseBody)
-            .build();
-
-        await expect(async () => {
-            return await client.analytics.getFeedbackTable({
-                fieldGroupings: [
-                    {
-                        field: "Type",
-                    },
-                    {
-                        field: "Type",
-                    },
-                ],
-                columnDefinitions: [
-                    {
-                        metric: {
-                            type: "count",
-                        },
-                        header: "header",
-                    },
-                    {
-                        metric: {
-                            type: "count",
-                        },
-                        header: "header",
-                    },
-                ],
-            });
-        }).rejects.toThrow(MavenAGI.PayloadTooLargeError);
-    });
-
-    test("getFeedbackTable (5)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new MavenAGIClient({
-            maxRetries: 0,
-            appId: "test",
-            appSecret: "test",
-            organizationId: "test",
-            agentId: "test",
-            environment: server.baseUrl,
-        });
-        const rawRequestBody = {
-            fieldGroupings: [{ field: "Type" }, { field: "Type" }],
-            columnDefinitions: [
-                { metric: { type: "count" }, header: "header" },
-                { metric: { type: "count" }, header: "header" },
-            ],
-        };
-        const rawResponseBody = {};
-
-        server
-            .mockEndpoint()
-            .post("/v1/tables/feedback")
-            .jsonBody(rawRequestBody)
-            .respondWith()
-            .statusCode(429)
-            .jsonBody(rawResponseBody)
-            .build();
-
-        await expect(async () => {
-            return await client.analytics.getFeedbackTable({
-                fieldGroupings: [
-                    {
-                        field: "Type",
-                    },
-                    {
-                        field: "Type",
-                    },
-                ],
-                columnDefinitions: [
-                    {
-                        metric: {
-                            type: "count",
-                        },
-                        header: "header",
-                    },
-                    {
-                        metric: {
-                            type: "count",
-                        },
-                        header: "header",
-                    },
-                ],
-            });
-        }).rejects.toThrow(MavenAGI.TooManyRequestsError);
-    });
-
-    test("getFeedbackTable (6)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new MavenAGIClient({
-            maxRetries: 0,
-            appId: "test",
-            appSecret: "test",
-            organizationId: "test",
-            agentId: "test",
-            environment: server.baseUrl,
-        });
-        const rawRequestBody = {
-            fieldGroupings: [{ field: "Type" }, { field: "Type" }],
-            columnDefinitions: [
-                { metric: { type: "count" }, header: "header" },
-                { metric: { type: "count" }, header: "header" },
-            ],
-        };
-        const rawResponseBody = {};
-
-        server
-            .mockEndpoint()
-            .post("/v1/tables/feedback")
-            .jsonBody(rawRequestBody)
-            .respondWith()
-            .statusCode(500)
-            .jsonBody(rawResponseBody)
-            .build();
-
-        await expect(async () => {
-            return await client.analytics.getFeedbackTable({
-                fieldGroupings: [
-                    {
-                        field: "Type",
-                    },
-                    {
-                        field: "Type",
-                    },
-                ],
-                columnDefinitions: [
-                    {
-                        metric: {
-                            type: "count",
-                        },
-                        header: "header",
-                    },
-                    {
-                        metric: {
-                            type: "count",
-                        },
-                        header: "header",
-                    },
-                ],
-            });
-        }).rejects.toThrow(MavenAGI.ServerError);
-    });
-
     test("getAgentUserTable (1)", async () => {
         const server = mockServerPool.createServer();
         const client = new MavenAGIClient({
             maxRetries: 0,
+            token: "test",
             appId: "test",
             appSecret: "test",
             organizationId: "test",
@@ -1491,6 +1115,7 @@ describe("AnalyticsClient", () => {
         const server = mockServerPool.createServer();
         const client = new MavenAGIClient({
             maxRetries: 0,
+            token: "test",
             appId: "test",
             appSecret: "test",
             organizationId: "test",
@@ -1538,6 +1163,7 @@ describe("AnalyticsClient", () => {
         const server = mockServerPool.createServer();
         const client = new MavenAGIClient({
             maxRetries: 0,
+            token: "test",
             appId: "test",
             appSecret: "test",
             organizationId: "test",
@@ -1585,6 +1211,7 @@ describe("AnalyticsClient", () => {
         const server = mockServerPool.createServer();
         const client = new MavenAGIClient({
             maxRetries: 0,
+            token: "test",
             appId: "test",
             appSecret: "test",
             organizationId: "test",
@@ -1632,6 +1259,7 @@ describe("AnalyticsClient", () => {
         const server = mockServerPool.createServer();
         const client = new MavenAGIClient({
             maxRetries: 0,
+            token: "test",
             appId: "test",
             appSecret: "test",
             organizationId: "test",
@@ -1679,6 +1307,7 @@ describe("AnalyticsClient", () => {
         const server = mockServerPool.createServer();
         const client = new MavenAGIClient({
             maxRetries: 0,
+            token: "test",
             appId: "test",
             appSecret: "test",
             organizationId: "test",
@@ -1726,6 +1355,7 @@ describe("AnalyticsClient", () => {
         const server = mockServerPool.createServer();
         const client = new MavenAGIClient({
             maxRetries: 0,
+            token: "test",
             appId: "test",
             appSecret: "test",
             organizationId: "test",
@@ -1837,6 +1467,7 @@ describe("AnalyticsClient", () => {
         const server = mockServerPool.createServer();
         const client = new MavenAGIClient({
             maxRetries: 0,
+            token: "test",
             appId: "test",
             appSecret: "test",
             organizationId: "test",
@@ -1893,6 +1524,7 @@ describe("AnalyticsClient", () => {
         const server = mockServerPool.createServer();
         const client = new MavenAGIClient({
             maxRetries: 0,
+            token: "test",
             appId: "test",
             appSecret: "test",
             organizationId: "test",
@@ -1949,6 +1581,7 @@ describe("AnalyticsClient", () => {
         const server = mockServerPool.createServer();
         const client = new MavenAGIClient({
             maxRetries: 0,
+            token: "test",
             appId: "test",
             appSecret: "test",
             organizationId: "test",
@@ -2005,6 +1638,7 @@ describe("AnalyticsClient", () => {
         const server = mockServerPool.createServer();
         const client = new MavenAGIClient({
             maxRetries: 0,
+            token: "test",
             appId: "test",
             appSecret: "test",
             organizationId: "test",
@@ -2061,6 +1695,7 @@ describe("AnalyticsClient", () => {
         const server = mockServerPool.createServer();
         const client = new MavenAGIClient({
             maxRetries: 0,
+            token: "test",
             appId: "test",
             appSecret: "test",
             organizationId: "test",
@@ -2117,6 +1752,7 @@ describe("AnalyticsClient", () => {
         const server = mockServerPool.createServer();
         const client = new MavenAGIClient({
             maxRetries: 0,
+            token: "test",
             appId: "test",
             appSecret: "test",
             organizationId: "test",
@@ -2183,6 +1819,7 @@ describe("AnalyticsClient", () => {
         const server = mockServerPool.createServer();
         const client = new MavenAGIClient({
             maxRetries: 0,
+            token: "test",
             appId: "test",
             appSecret: "test",
             organizationId: "test",
@@ -2275,6 +1912,7 @@ describe("AnalyticsClient", () => {
         const server = mockServerPool.createServer();
         const client = new MavenAGIClient({
             maxRetries: 0,
+            token: "test",
             appId: "test",
             appSecret: "test",
             organizationId: "test",
@@ -2369,6 +2007,7 @@ describe("AnalyticsClient", () => {
         const server = mockServerPool.createServer();
         const client = new MavenAGIClient({
             maxRetries: 0,
+            token: "test",
             appId: "test",
             appSecret: "test",
             organizationId: "test",
@@ -2404,6 +2043,7 @@ describe("AnalyticsClient", () => {
         const server = mockServerPool.createServer();
         const client = new MavenAGIClient({
             maxRetries: 0,
+            token: "test",
             appId: "test",
             appSecret: "test",
             organizationId: "test",
@@ -2439,6 +2079,7 @@ describe("AnalyticsClient", () => {
         const server = mockServerPool.createServer();
         const client = new MavenAGIClient({
             maxRetries: 0,
+            token: "test",
             appId: "test",
             appSecret: "test",
             organizationId: "test",
@@ -2474,6 +2115,7 @@ describe("AnalyticsClient", () => {
         const server = mockServerPool.createServer();
         const client = new MavenAGIClient({
             maxRetries: 0,
+            token: "test",
             appId: "test",
             appSecret: "test",
             organizationId: "test",
@@ -2509,6 +2151,7 @@ describe("AnalyticsClient", () => {
         const server = mockServerPool.createServer();
         const client = new MavenAGIClient({
             maxRetries: 0,
+            token: "test",
             appId: "test",
             appSecret: "test",
             organizationId: "test",

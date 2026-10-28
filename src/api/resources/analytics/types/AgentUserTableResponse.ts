@@ -30,6 +30,9 @@ import type * as MavenAGI from "../../../index";
  *     }
  */
 export interface AgentUserTableResponse extends MavenAGI.TableResponseBase {
-    /** Each row contains the user count for the given search query and corresponding time grouping. */
+    /**
+     * One row per combination of time bucket and field grouping values, each holding the user
+     * count for the given filter.
+     */
     rows: MavenAGI.AgentUserRow[];
 }

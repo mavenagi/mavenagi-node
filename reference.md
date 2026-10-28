@@ -1066,86 +1066,6 @@ await client.analytics.exportConversationTable({
 </dl>
 </details>
 
-<details><summary><code>client.analytics.<a href="/src/api/resources/analytics/client/Client.ts">getFeedbackTable</a>({ ...params }) -> MavenAGI.FeedbackTableResponse</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Deprecated. Use `getEventTable` instead, which reports the same thumbs up/down and insert
-activity as user events.
-
-Retrieves structured feedback data formatted as a table, allowing users to group, filter,
-and define specific metrics to display as columns.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.analytics.getFeedbackTable({
-    feedbackFilter: {
-        types: ["THUMBS_UP", "INSERT"]
-    },
-    fieldGroupings: [{
-            field: "CreatedBy"
-        }],
-    columnDefinitions: [{
-            header: "feedback_count",
-            metric: {
-                type: "count"
-            }
-        }]
-});
-
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `MavenAGI.FeedbackTableRequest` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `AnalyticsClient.RequestOptions` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
 <details><summary><code>client.analytics.<a href="/src/api/resources/analytics/client/Client.ts">getAgentUserTable</a>({ ...params }) -> MavenAGI.AgentUserTableResponse</code></summary>
 <dl>
 <dd>
@@ -3301,27 +3221,9 @@ After initialization,
 ```typescript
 await client.conversation.initialize({
     conversationId: {
-        referenceId: "x"
+        referenceId: "conversation-0"
     },
-    messages: [{
-            conversationMessageId: {
-                referenceId: "x"
-            },
-            userId: {
-                referenceId: "x"
-            },
-            text: "text",
-            userMessageType: "USER"
-        }, {
-            conversationMessageId: {
-                referenceId: "x"
-            },
-            userId: {
-                referenceId: "x"
-            },
-            text: "text",
-            userMessageType: "USER"
-        }]
+    messages: []
 });
 
 ```
@@ -4499,9 +4401,11 @@ await client.conversation.export({});
 
 Deliver a message to a user or conversation.
 
+A closed conversation (`open` set to false) takes no new messages and returns a 400.
+
 <Warning>
-Currently, messages can only be successfully delivered to conversations with the `ASYNC` capability that are `open`.
-User message delivery is not yet supported.
+Currently, messages can only be successfully delivered to conversations with the `ASYNC` capability.
+User message delivery is not yet supported and returns a 400.
 </Warning>
 </dd>
 </dl>
@@ -7450,9 +7354,9 @@ await client.knowledge.patchKnowledgeDocument("help-center", "how-it-works", {
 
 Create a new organization.
 
-<Tip>
-This endpoint requires additional permissions. Contact support to request access.
-</Tip>
+Only Maven staff hold this permission.
+
+<Note>**Required permission:** `create:organization`</Note>
 </dd>
 </dl>
 </dd>
@@ -7527,6 +7431,8 @@ await client.organizations.create("organizationReferenceId", {
 <dd>
 
 Get an organization by ID
+
+<Note>**Required permission:** `read:organization`</Note>
 </dd>
 </dl>
 </dd>
@@ -7592,9 +7498,7 @@ await client.organizations.get("organizationReferenceId");
 Update mutable organization fields.
 All fields will overwrite the existing value on the organization only if provided.
 
-<Tip>
-This endpoint requires additional permissions. Contact support to request access.
-</Tip>
+<Note>**Required permission:** `edit:organization`</Note>
 </dd>
 </dl>
 </dd>
@@ -7667,9 +7571,7 @@ await client.organizations.patch("organizationReferenceId", {});
 
 Delete an organization.
 
-<Tip>
-This endpoint requires additional permissions. Contact support to request access.
-</Tip>
+<Note>**Required permission:** `delete:organization`</Note>
 </dd>
 </dl>
 </dd>
@@ -7735,9 +7637,9 @@ await client.organizations.delete("organizationReferenceId");
 Retrieves structured conversation data across all organizations, formatted as a table, 
 allowing users to group, filter, and define specific metrics to display as columns.
 
-<Tip>
-This endpoint requires additional permissions. Contact support to request access.
-</Tip>
+Only Maven staff hold this permission.
+
+<Note>**Required permission:** `read:all-organizations`</Note>
 </dd>
 </dl>
 </dd>
@@ -7830,9 +7732,9 @@ await client.organizations.getConversationTable({
 Fetches conversation data across all organizations, visualized in a chart format. 
 Supported chart types include pie chart, date histogram, and stacked bar charts.
 
-<Tip>
-This endpoint requires additional permissions. Contact support to request access.
-</Tip>
+Only Maven staff hold this permission.
+
+<Note>**Required permission:** `read:all-organizations`</Note>
 </dd>
 </dl>
 </dd>

@@ -3,6 +3,10 @@
 import type * as MavenAGI from "../../../index";
 
 export interface AgentUserSearchRequest extends MavenAGI.BasePaginatedRequest {
+    /**
+     * Field to sort results by. `IntelligentField` is not supported here; intelligent fields
+     * can be filtered on via `filter.intelligentFields` and grouped through the analytics APIs.
+     */
     sort?: MavenAGI.AgentUserField;
     filter?: MavenAGI.AgentUserFilter;
 }

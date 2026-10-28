@@ -3,5 +3,13 @@
 export const AgentUserField = {
     CreatedAt: "CreatedAt",
     UpdatedAt: "UpdatedAt",
+    /**
+     * Whether the user is anonymous, as `isAnonymous` filters on. Groups as a `boolean` value. */
+    Anonymous: "Anonymous",
+    /**
+     * Selects a user-level intelligent field. When used, `intelligentFieldId` must also be set
+     * to identify which field. Grouping by it splits that field's users by value; a user without
+     * a value for it is left out. */
+    IntelligentField: "IntelligentField",
 } as const;
 export type AgentUserField = (typeof AgentUserField)[keyof typeof AgentUserField] | string;

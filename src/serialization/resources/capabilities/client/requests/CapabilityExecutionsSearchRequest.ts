@@ -6,6 +6,7 @@ import type * as serializers from "../../../../index";
 import { BaseCappedPaginatedRequest } from "../../../commons/types/BaseCappedPaginatedRequest";
 import { CapabilityType } from "../../../commons/types/CapabilityType";
 import { EntityId } from "../../../commons/types/EntityId";
+import { SimulationFilter } from "../../../commons/types/SimulationFilter";
 import { CapabilityExecutionStatus } from "../../types/CapabilityExecutionStatus";
 
 export const CapabilityExecutionsSearchRequest: core.serialization.Schema<
@@ -17,6 +18,7 @@ export const CapabilityExecutionsSearchRequest: core.serialization.Schema<
         capabilityTypes: core.serialization.list(CapabilityType).optional(),
         capabilityIds: core.serialization.list(EntityId).optional(),
         statuses: core.serialization.list(CapabilityExecutionStatus).optional(),
+        simulationFilter: SimulationFilter.optional(),
     })
     .extend(BaseCappedPaginatedRequest);
 
@@ -26,5 +28,6 @@ export declare namespace CapabilityExecutionsSearchRequest {
         capabilityTypes?: CapabilityType.Raw[] | null;
         capabilityIds?: EntityId.Raw[] | null;
         statuses?: CapabilityExecutionStatus.Raw[] | null;
+        simulationFilter?: SimulationFilter.Raw | null;
     }
 }

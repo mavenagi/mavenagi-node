@@ -4,7 +4,7 @@ import type * as MavenAGI from "../../../../api/index";
 import * as core from "../../../../core";
 import type * as serializers from "../../../index";
 import { IntelligentFieldFilter } from "../../commons/types/IntelligentFieldFilter";
-import { SimulationFilter } from "../../conversation/types/SimulationFilter";
+import { SimulationFilter } from "../../commons/types/SimulationFilter";
 
 export const AgentUserFilter: core.serialization.ObjectSchema<
     serializers.AgentUserFilter.Raw,

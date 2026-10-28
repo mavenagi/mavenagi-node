@@ -5,10 +5,16 @@ import type * as MavenAGI from "../../../index";
 /**
  * Where on a conversation a value is read from.
  */
-export type ConversationValueSource = MavenAGI.ConversationValueSource.ConversationMetadata;
+export type ConversationValueSource =
+    | MavenAGI.ConversationValueSource.ConversationMetadata
+    | MavenAGI.ConversationValueSource.UserData;
 
 export namespace ConversationValueSource {
     export interface ConversationMetadata extends MavenAGI.ConversationMetadataValueSource {
         type: "conversationMetadata";
+    }
+
+    export interface UserData extends MavenAGI.UserDataValueSource {
+        type: "userData";
     }
 }
