@@ -40,6 +40,8 @@ export class ChartersClient {
      * pick only the highest ranked (lowest numerical value) leaf to include in
      * the round. userRank may have gaps.
      *
+     * <Note>**Required permission:** `edit:agents`</Note>
+     *
      * @param {MavenAGI.CharterRequest} request
      * @param {ChartersClient.RequestOptions} requestOptions - Request-specific configuration.
      *
@@ -194,6 +196,8 @@ export class ChartersClient {
 
     /**
      * Get a charter by its reference ID.
+     *
+     * <Note>**Required permission:** `read:agents`</Note>
      *
      * @param {string} charterReferenceId - The reference ID of the charter to get. All other entity ID fields are inferred from the request.
      * @param {MavenAGI.CharterGetRequest} request
@@ -358,6 +362,8 @@ export class ChartersClient {
      * sibling, siblings at that rank and above are shifted up by 1 (like linked list semantics).
      * The caller does not need to manage uniqueness explicitly.
      *
+     * <Note>**Required permission:** `edit:agents`</Note>
+     *
      * @param {string} charterReferenceId - The reference ID of the charter to patch.
      * @param {MavenAGI.CharterPatchRequest} request
      * @param {ChartersClient.RequestOptions} requestOptions - Request-specific configuration.
@@ -519,6 +525,8 @@ export class ChartersClient {
      *
      * Deleted charters cannot be modified.
      *
+     * <Note>**Required permission:** `edit:agents`</Note>
+     *
      * @param {string} charterReferenceId - The reference ID of the charter to delete.
      * @param {MavenAGI.CharterDeleteRequest} request
      * @param {ChartersClient.RequestOptions} requestOptions - Request-specific configuration.
@@ -675,6 +683,12 @@ export class ChartersClient {
      * to control direction (defaults to descending). An empty filter list is
      * equivalent to omitting the field (no filter applied).
      *
+     * Pagination is limited to the first 10,000 matching charters: `(page + 1) * size` must not
+     * exceed 10,000, and a request beyond that is rejected with a 400. Narrow the filter to reach
+     * later results.
+     *
+     * <Note>**Required permission:** `read:agents`</Note>
+     *
      * @param {MavenAGI.CharterSearchRequest} request
      * @param {ChartersClient.RequestOptions} requestOptions - Request-specific configuration.
      *
@@ -822,6 +836,8 @@ export class ChartersClient {
      * ancestor and the walk to the root terminates.
      *
      * Returns 404 if the charter does not exist or is deleted.
+     *
+     * <Note>**Required permission:** `read:agents`</Note>
      *
      * @param {string} charterReferenceId - The reference ID of the charter. All other entity ID fields are inferred from the request.
      * @param {MavenAGI.CharterGetAncestorsRequest} request
@@ -979,6 +995,8 @@ export class ChartersClient {
      * in one request.
      *
      * DELETED charters are never returned.
+     *
+     * <Note>**Required permission:** `read:agents`</Note>
      *
      * @param {MavenAGI.CharterListChildrenRequest} request
      * @param {ChartersClient.RequestOptions} requestOptions - Request-specific configuration.

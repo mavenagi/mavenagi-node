@@ -7,12 +7,8 @@ import type * as MavenAGI from "../../../index";
  */
 export interface Config {
     type: "config";
-    /** The input audio format from the client. */
+    /** The audio format the client sends. Must be `PCM_8000` or `MULAW_8000`. */
     inputFormat: MavenAGI.AudioFormat;
-    /** The output audio format to send to the client. */
+    /** The audio format the server sends. Must equal `inputFormat`, or the server returns an `invalid_configuration` error. */
     outputFormat: MavenAGI.AudioFormat;
-    /** The conversation ID which was created prior to starting this conversation. */
-    conversationId: string;
-    /** The app ID this conversation ID is associated with. */
-    appId: string;
 }

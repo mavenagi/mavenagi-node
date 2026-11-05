@@ -19,6 +19,8 @@ export const CapabilityExecutionsSearchRequest: core.serialization.Schema<
         capabilityIds: core.serialization.list(EntityId).optional(),
         statuses: core.serialization.list(CapabilityExecutionStatus).optional(),
         simulationFilter: SimulationFilter.optional(),
+        createdAfter: core.serialization.date().optional(),
+        createdBefore: core.serialization.date().optional(),
     })
     .extend(BaseCappedPaginatedRequest);
 
@@ -29,5 +31,7 @@ export declare namespace CapabilityExecutionsSearchRequest {
         capabilityIds?: EntityId.Raw[] | null;
         statuses?: CapabilityExecutionStatus.Raw[] | null;
         simulationFilter?: SimulationFilter.Raw | null;
+        createdAfter?: string | null;
+        createdBefore?: string | null;
     }
 }

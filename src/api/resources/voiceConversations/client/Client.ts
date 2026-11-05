@@ -11,8 +11,11 @@ export declare namespace VoiceConversationsClient {
     export type Options = BaseClientOptions;
 
     export interface ConnectArgs {
-        version?: string;
-        Authorization: string;
+        orgId: string;
+        agentId: string;
+        voiceModel?: string;
+        token?: string;
+        Authorization?: string | undefined;
         /** WebSocket subprotocols to use for the connection. */
         protocols?: string | string[];
         /** Additional query parameters to send with the websocket connect request. */
@@ -41,7 +44,10 @@ export class VoiceConversationsClient {
 
     public async connect(args: VoiceConversationsClient.ConnectArgs): Promise<VoiceConversationsSocket> {
         const {
-            version,
+            orgId,
+            agentId,
+            voiceModel,
+            token,
             protocols,
             queryParams,
             headers,
@@ -52,7 +58,10 @@ export class VoiceConversationsClient {
             shouldReconnect,
         } = args;
         const _queryParams: Record<string, unknown> = {
-            version,
+            orgId,
+            agentId,
+            voiceModel,
+            token,
         };
         const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
         const _headers: Record<string, unknown> = mergeHeaders(
@@ -66,7 +75,7 @@ export class VoiceConversationsClient {
                 (await core.Supplier.get(this._options.baseUrl)) ??
                     (await core.Supplier.get(this._options.environment)) ??
                     environments.MavenAGIEnvironment.Production,
-                "/v1/voice/conversations",
+                "/v1/realtime/conversations",
             ),
             protocols: protocols ?? [],
             queryParameters: { ..._queryParams, ...queryParams },

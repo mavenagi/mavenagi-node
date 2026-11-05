@@ -9,16 +9,16 @@
  */
 export const MetadataComparisonOperator = {
     /**
-     * Equals (=) */
+     * Equals (=). On a list value, any element equals. */
     Eq: "EQ",
     /**
-     * Not equals (!=) */
+     * Not equals (!=). On a list value, no element equals. */
     Neq: "NEQ",
     /**
-     * Value starts with the specified prefix */
+     * Value starts with the specified prefix. On a list value, any element does. */
     StartsWith: "STARTS_WITH",
     /**
-     * Value does not start with the specified prefix */
+     * Value does not start with the specified prefix. On a list value, no element does. */
     NotStartsWith: "NOT_STARTS_WITH",
 } as const;
 export type MetadataComparisonOperator =

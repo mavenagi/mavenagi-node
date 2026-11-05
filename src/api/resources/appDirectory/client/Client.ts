@@ -431,7 +431,9 @@ export class AppDirectoryClient {
     }
 
     /**
-     * Uninstalls the app from the agent.
+     * Uninstalls the app from the agent, and deletes the actions and triggers it created.
+     *
+     * <Note>**Required permission:** `install:apps`</Note>
      *
      * @param {string} appId
      * @param {AppDirectoryClient.RequestOptions} requestOptions - Request-specific configuration.

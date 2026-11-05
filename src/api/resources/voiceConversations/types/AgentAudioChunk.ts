@@ -7,6 +7,6 @@ import type * as MavenAGI from "../../../index";
  */
 export interface AgentAudioChunk extends MavenAGI.ServerEventBase {
     type: "agent_audio_chunk";
-    /** Base64-encoded AI audio data */
+    /** Base64-encoded agent audio, in the `outputFormat` from the `Config` message. */
     data: string;
 }

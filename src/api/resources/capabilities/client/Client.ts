@@ -32,6 +32,8 @@ export class CapabilitiesClient {
      * one exception: their own API also returns the charters referencing the field, which this
      * endpoint leaves out.
      *
+     * <Note>**Required permission:** `read:agents`</Note>
+     *
      * @param {MavenAGI.CapabilityType} capabilityType - Which kind of capability to fetch.
      * @param {string} referenceId - The capability's reference ID, unique within its type and app.
      * @param {MavenAGI.GetCapabilityByTypeRequest} request
@@ -188,6 +190,8 @@ export class CapabilitiesClient {
      *
      * Everything else about a capability -- its name, its description, and any settings
      * particular to its kind -- is changed through that capability's own API.
+     *
+     * <Note>**Required permission:** `edit:agents`</Note>
      *
      * @param {MavenAGI.CapabilityType} capabilityType - Which kind of capability to update.
      * @param {string} referenceId - The capability's reference ID, unique within its type and app.
@@ -354,6 +358,8 @@ export class CapabilitiesClient {
      * and takes effect when the variant is committed. Until then the agent keeps using the field,
      * and only a later patch or delete through the same variant is a 404.
      *
+     * <Note>**Required permission:** `edit:agents`</Note>
+     *
      * @param {MavenAGI.CapabilityType} capabilityType - Which kind of capability to delete.
      * @param {string} referenceId - The capability's reference ID, unique within its type and app.
      * @param {MavenAGI.DeleteCapabilityByTypeRequest} request
@@ -506,6 +512,8 @@ export class CapabilitiesClient {
      *
      * Only actions can be simulated today. Triggers and conversation kickoffs are rejected with a
      * 400 until they can run as simulations. Intelligent fields cannot be simulated.
+     *
+     * <Note>**Required permission:** `create:simulations`</Note>
      *
      * @param {MavenAGI.CapabilityType} capabilityType - Which kind of capability to simulate. Must match the body's `capabilityType`.
      * @param {string} referenceId - The capability's reference ID, unique within its type and app.
@@ -676,6 +684,12 @@ export class CapabilitiesClient {
      *
      * Deleted capabilities are never returned.
      *
+     * Pagination is limited to the first 10,000 matching capabilities: `(page + 1) * size` must
+     * not exceed 10,000, and a request beyond that is rejected with a 400. Add filters to reach
+     * later results.
+     *
+     * <Note>**Required permission:** `read:agents`</Note>
+     *
      * @param {MavenAGI.CapabilitiesSearchRequest} request
      * @param {CapabilitiesClient.RequestOptions} requestOptions - Request-specific configuration.
      *
@@ -819,6 +833,12 @@ export class CapabilitiesClient {
      * those.
      *
      * Results can trail a run by a few seconds. Executions are searchable for 90 days.
+     *
+     * Pagination is limited to the first 10,000 matching executions: `(page + 1) * size` must not
+     * exceed 10,000, and a request beyond that is rejected with a 400. Narrow `createdAfter` and
+     * `createdBefore` to reach later results.
+     *
+     * <Note>**Required permission:** `read:agents`</Note>
      *
      * @param {MavenAGI.CapabilityExecutionsSearchRequest} request
      * @param {CapabilitiesClient.RequestOptions} requestOptions - Request-specific configuration.

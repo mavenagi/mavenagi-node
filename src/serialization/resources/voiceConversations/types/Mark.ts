@@ -5,17 +5,16 @@ import * as core from "../../../../core";
 import type * as serializers from "../../../index";
 import { ServerEventBase } from "./ServerEventBase";
 
-export const UserStartedSpeaking: core.serialization.ObjectSchema<
-    serializers.UserStartedSpeaking.Raw,
-    MavenAGI.UserStartedSpeaking
-> = core.serialization
+export const Mark: core.serialization.ObjectSchema<serializers.Mark.Raw, MavenAGI.Mark> = core.serialization
     .object({
-        type: core.serialization.stringLiteral("user_started_speaking"),
+        type: core.serialization.stringLiteral("mark"),
+        name: core.serialization.string(),
     })
     .extend(ServerEventBase);
 
-export declare namespace UserStartedSpeaking {
+export declare namespace Mark {
     export interface Raw extends ServerEventBase.Raw {
-        type: "user_started_speaking";
+        type: "mark";
+        name: string;
     }
 }

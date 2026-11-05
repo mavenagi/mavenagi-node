@@ -8,5 +8,13 @@ import type * as MavenAGI from "../../../index";
 export interface Error_ extends MavenAGI.ServerEventBase {
     type: "error";
     message: string;
+    /**
+     * One of:
+     * - `invalid_message`: the server could not parse a client message, or its `type` is unknown.
+     * - `invalid_configuration`: `outputFormat` differs from `inputFormat`.
+     * - `invalid_audio_format`: the format is not `PCM_8000` or `MULAW_8000`.
+     * - `initialization_error`: the connection failed before the conversation started, including authentication and rate-limit failures.
+     * - `internal_error`: the voice model reported an error during the conversation.
+     */
     code: string;
 }

@@ -27,6 +27,7 @@ export * from "./KnowledgeDeleteRequest";
 export * from "./KnowledgeDocumentContentType";
 export * from "./KnowledgeDocumentField";
 export * from "./KnowledgeDocumentFilter";
+export * from "./KnowledgeDocumentMetadataValue";
 export * from "./KnowledgeDocumentRequest";
 export * from "./KnowledgeDocumentResponse";
 export * from "./KnowledgeDocumentSearchRequest";

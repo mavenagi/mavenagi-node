@@ -31,6 +31,12 @@ export class ActionsClient {
      * at once. It returns the fields every capability shares rather than the whole Action;
      * fetch one by its kind and reference ID for the rest.
      *
+     * Pagination is limited to the first 10,000 matching actions: `(page + 1) * size` must not
+     * exceed 10,000, and a request beyond that is rejected with a 400. Narrow the filter to reach
+     * later results.
+     *
+     * <Note>**Required permission:** `read:agents`</Note>
+     *
      * @param {MavenAGI.ActionsSearchRequest} request
      * @param {ActionsClient.RequestOptions} requestOptions - Request-specific configuration.
      *
@@ -166,6 +172,8 @@ export class ActionsClient {
 
     /**
      * Update an action or create it if it doesn't exist
+     *
+     * <Note>**Required permission:** `edit:agents`</Note>
      *
      * @param {MavenAGI.ActionRequest} request
      * @param {ActionsClient.RequestOptions} requestOptions - Request-specific configuration.
@@ -328,6 +336,8 @@ export class ActionsClient {
      *
      * Get an action by its supplied ID
      *
+     * <Note>**Required permission:** `read:agents`</Note>
+     *
      * @param {string} actionReferenceId - The reference ID of the action to get. All other entity ID fields are inferred from the request.
      * @param {MavenAGI.ActionGetRequest} request
      * @param {ActionsClient.RequestOptions} requestOptions - Request-specific configuration.
@@ -476,6 +486,8 @@ export class ActionsClient {
      *
      * The `appId` field can be provided to update an action owned by a different app.
      * All other fields will overwrite the existing value on the action only if provided.
+     *
+     * <Note>**Required permission:** `edit:agents`</Note>
      *
      * @param {string} actionReferenceId - The reference ID of the action to patch.
      * @param {MavenAGI.ActionPatchRequest} request
@@ -635,6 +647,8 @@ export class ActionsClient {
      * capability the same way.
      *
      * Delete an action
+     *
+     * <Note>**Required permission:** `edit:agents`</Note>
      *
      * @param {string} actionReferenceId - The reference ID of the action to unregister. All other entity ID fields are inferred from the request.
      * @param {ActionsClient.RequestOptions} requestOptions - Request-specific configuration.

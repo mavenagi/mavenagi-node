@@ -5,19 +5,17 @@ import * as core from "../../../../core";
 import type * as serializers from "../../../index";
 import { ServerEventBase } from "./ServerEventBase";
 
-export const AgentTranscript: core.serialization.ObjectSchema<
-    serializers.AgentTranscript.Raw,
-    MavenAGI.AgentTranscript
+export const VadSpeechStarted: core.serialization.ObjectSchema<
+    serializers.VadSpeechStarted.Raw,
+    MavenAGI.VadSpeechStarted
 > = core.serialization
     .object({
-        type: core.serialization.stringLiteral("agent_transcript"),
-        text: core.serialization.string(),
+        type: core.serialization.stringLiteral("vad_speech_started"),
     })
     .extend(ServerEventBase);
 
-export declare namespace AgentTranscript {
+export declare namespace VadSpeechStarted {
     export interface Raw extends ServerEventBase.Raw {
-        type: "agent_transcript";
-        text: string;
+        type: "vad_speech_started";
     }
 }

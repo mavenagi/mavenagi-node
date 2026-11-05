@@ -27,6 +27,8 @@ export class AnalyticsClient {
     /**
      * Retrieves structured conversation data formatted as a table, allowing users to group, filter, and define specific metrics to display as columns.
      *
+     * <Note>**Required permission:** `read:conversations`</Note>
+     *
      * @param {MavenAGI.ConversationTableRequest} request
      * @param {AnalyticsClient.RequestOptions} requestOptions - Request-specific configuration.
      *
@@ -189,6 +191,8 @@ export class AnalyticsClient {
 
     /**
      * Fetches conversation data visualized in a chart format. Supported chart types include pie chart, date histogram, and stacked bar charts.
+     *
+     * <Note>**Required permission:** `read:conversations`</Note>
      *
      * @param {MavenAGI.ConversationChartRequest} request
      * @param {AnalyticsClient.RequestOptions} requestOptions - Request-specific configuration.
@@ -371,6 +375,8 @@ export class AnalyticsClient {
      *
      * This outputs the current table view defined by the request. For most programmatic use cases, prefer `getConversationTable` and format client-side. The CSV format may change and should not be relied upon by code consumers. A maximum of 10,000 rows can be exported at a time.
      *
+     * <Note>**Required permission:** `read:conversations`</Note>
+     *
      * @throws {@link MavenAGI.NotFoundError}
      * @throws {@link MavenAGI.BadRequestError}
      * @throws {@link MavenAGI.PayloadTooLargeError}
@@ -498,6 +504,7 @@ export class AnalyticsClient {
 
     /**
      * Retrieves structured agent user data formatted as a table, allowing users to group, filter,  and define specific metrics to display as columns.
+     * <Note>**Required permission:** `read:agents`</Note>
      *
      * @param {MavenAGI.AgentUserTableRequest} request
      * @param {AnalyticsClient.RequestOptions} requestOptions - Request-specific configuration.
@@ -644,6 +651,7 @@ export class AnalyticsClient {
 
     /**
      * Retrieves structured event data formatted as a table, allowing users to group, filter,  and define specific metrics to display as columns.
+     * <Note>**Required permission:** `read:events`</Note>
      *
      * @param {MavenAGI.EventTableRequest} request
      * @param {AnalyticsClient.RequestOptions} requestOptions - Request-specific configuration.
@@ -793,6 +801,8 @@ export class AnalyticsClient {
 
     /**
      * Fetches event data visualized in a chart format. Supported chart types include pie chart, date histogram, and stacked bar charts.
+     *
+     * <Note>**Required permission:** `read:events`</Note>
      *
      * @param {MavenAGI.EventChartRequest} request
      * @param {AnalyticsClient.RequestOptions} requestOptions - Request-specific configuration.

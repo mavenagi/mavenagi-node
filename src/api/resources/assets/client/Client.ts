@@ -28,6 +28,8 @@ export class AssetsClient {
      * Initiate an upload.
      * Returns a pre-signed URL for direct file upload and an asset ID for subsequent operations.
      *
+     * <Note>**Required permission:** `ask:agent`</Note>
+     *
      * @param {MavenAGI.InitiateAssetUploadRequest} request
      * @param {AssetsClient.RequestOptions} requestOptions - Request-specific configuration.
      *
@@ -166,6 +168,8 @@ export class AssetsClient {
     /**
      * Commit an upload after successful file transfer.
      * Updates the asset status and makes it available for use.
+     *
+     * <Note>**Required permission:** `ask:agent`</Note>
      *
      * @param {string} assetReferenceId - The reference ID of the asset to commit (provided by the initiate call). All other entity ID fields are inferred from the API request.
      * @param {MavenAGI.CommitAssetUploadRequest} request

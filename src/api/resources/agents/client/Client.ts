@@ -27,9 +27,9 @@ export class AgentsClient {
     /**
      * Search for agents across all organizations.
      *
-     * <Tip>
-     * This endpoint requires additional permissions. Contact support to request access.
-     * </Tip>
+     * Only Maven staff hold this permission.
+     *
+     * <Note>**Required permission:** `read:all-organizations`</Note>
      *
      * @param {MavenAGI.AgentsSearchRequest} request
      * @param {AgentsClient.RequestOptions} requestOptions - Request-specific configuration.
@@ -167,6 +167,8 @@ export class AgentsClient {
     /**
      * Lists all agents for an organization
      *
+     * <Note>**Required permission:** `read:agents`</Note>
+     *
      * @param {string} organizationReferenceId - The ID of the organization.
      * @param {AgentsClient.RequestOptions} requestOptions - Request-specific configuration.
      *
@@ -302,9 +304,7 @@ export class AgentsClient {
     /**
      * Create a new agent
      *
-     * <Tip>
-     * This endpoint requires additional permissions. Contact support to request access.
-     * </Tip>
+     * <Note>**Required permission:** `create:agents`</Note>
      *
      * @param {string} organizationReferenceId - The ID of the organization.
      * @param {string} agentReferenceId - The ID of the agent.
@@ -458,6 +458,8 @@ export class AgentsClient {
     /**
      * Get an agent
      *
+     * <Note>**Required permission:** `read:agents`</Note>
+     *
      * @param {string} organizationReferenceId - The ID of the organization.
      * @param {string} agentReferenceId - The ID of the agent.
      * @param {AgentsClient.RequestOptions} requestOptions - Request-specific configuration.
@@ -599,9 +601,7 @@ export class AgentsClient {
      * Update mutable agent fields
      * All fields will overwrite the existing value on the agent only if provided.
      *
-     * <Tip>
-     * This endpoint requires additional permissions. Contact support to request access.
-     * </Tip>
+     * <Note>**Required permission:** `edit:agents`</Note>
      *
      * @param {string} organizationReferenceId - The ID of the organization.
      * @param {string} agentReferenceId - The ID of the agent.
@@ -752,9 +752,7 @@ export class AgentsClient {
     /**
      * Delete an agent.
      *
-     * <Tip>
-     * This endpoint requires additional permissions. Contact support to request access.
-     * </Tip>
+     * <Note>**Required permission:** `delete:agents`</Note>
      *
      * @param {string} organizationReferenceId - The ID of the organization.
      * @param {string} agentReferenceId - The ID of the agent.

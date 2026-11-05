@@ -3,16 +3,21 @@
 import type * as MavenAGI from "../../../../api/index";
 import * as core from "../../../../core";
 import type * as serializers from "../../../index";
+import { ServerEventBase } from "./ServerEventBase";
 
 export const ConversationReady: core.serialization.ObjectSchema<
     serializers.ConversationReady.Raw,
     MavenAGI.ConversationReady
-> = core.serialization.object({
-    type: core.serialization.stringLiteral("conversation_ready"),
-});
+> = core.serialization
+    .object({
+        type: core.serialization.stringLiteral("conversation_ready"),
+        sessionId: core.serialization.string(),
+    })
+    .extend(ServerEventBase);
 
 export declare namespace ConversationReady {
-    export interface Raw {
+    export interface Raw extends ServerEventBase.Raw {
         type: "conversation_ready";
+        sessionId: string;
     }
 }

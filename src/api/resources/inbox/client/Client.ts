@@ -27,6 +27,12 @@ export class InboxClient {
     /**
      * Retrieve a paginated list of inbox items for an agent.
      *
+     * Pagination is limited to the first 10,000 matching inbox items: `(page + 1) * size` must not
+     * exceed 10,000, and a request beyond that is rejected with a 400. Narrow the filter to reach
+     * later results.
+     *
+     * <Note>**Required permission:** `read:agents`. A search whose results include a Duplicate Documents item also needs `read:documents`.</Note>
+     *
      * @param {MavenAGI.InboxSearchRequest} request
      * @param {InboxClient.RequestOptions} requestOptions - Request-specific configuration.
      *
@@ -162,6 +168,8 @@ export class InboxClient {
 
     /**
      * Update an inbox item or create it if it doesn't exist.
+     *
+     * <Note>**Required permission:** `edit:agents`</Note>
      *
      * @param {MavenAGI.InboxItemCreateRequest} request
      * @param {InboxClient.RequestOptions} requestOptions - Request-specific configuration.
@@ -330,6 +338,8 @@ export class InboxClient {
      * The `appId` field can be provided to update a inbox item owned by a different app.
      * All other fields will overwrite the existing value on the inbox item only if provided.
      *
+     * <Note>**Required permission:** `edit:agents`. Patching a Duplicate Documents item also needs `read:documents`.</Note>
+     *
      * @param {string} inboxItemId - The ID of the inbox item to patch
      * @param {MavenAGI.InboxItemPatchRequest} request
      * @param {InboxClient.RequestOptions} requestOptions - Request-specific configuration.
@@ -475,6 +485,8 @@ export class InboxClient {
      * @deprecated
      *
      * Update inbox item tag fields. All tags provided will overwrite the existing tags on the inbox item.
+     *
+     * <Note>**Required permission:** `edit:agents`. Updating tags on a Missing Knowledge or Duplicate Documents item also needs `read:agents`, and on a Duplicate Documents item `read:documents` too.</Note>
      *
      * @param {string} inboxItemId - The ID of the inbox item to add tags to.
      * @param {MavenAGI.InboxItemApplyTagsRequest} request
@@ -622,6 +634,8 @@ export class InboxClient {
     /**
      * Retrieve details of a specific inbox item by its ID.
      *
+     * <Note>**Required permission:** `read:agents`. Getting a Duplicate Documents item also needs `read:documents`.</Note>
+     *
      * @param {string} inboxItemId - The ID of the inbox item to get. All other entity ID fields are inferred from the request.
      * @param {MavenAGI.InboxItemRequest} request
      * @param {InboxClient.RequestOptions} requestOptions - Request-specific configuration.
@@ -764,6 +778,8 @@ export class InboxClient {
 
     /**
      * Retrieve a suggested fix. Includes document information if the fix is a Missing Knowledge suggestion.
+     *
+     * <Note>**Required permission:** `read:agents`. Getting a Duplicate Documents fix also needs `read:documents`.</Note>
      *
      * @param {string} inboxItemFixId - Unique identifier for the inbox fix.
      * @param {MavenAGI.InboxItemFixRequest} request
@@ -913,6 +929,8 @@ export class InboxClient {
     /**
      * Apply a list of fixes belonging to an inbox item.
      *
+     * <Note>**Required permission:** `edit:agents`. Applying fixes also needs `read:agents`. A Missing Knowledge fix also needs `create:documents`, and a Duplicate Documents fix also needs `read:documents`, `edit:documents` and `create:documents`.</Note>
+     *
      * @param {string} inboxItemId - Unique identifier for the inbox item.
      * @param {MavenAGI.ApplyFixesRequest} request
      * @param {InboxClient.RequestOptions} requestOptions - Request-specific configuration.
@@ -1051,6 +1069,8 @@ export class InboxClient {
 
     /**
      * Ignore a specific inbox item by its ID.
+     *
+     * <Note>**Required permission:** `edit:agents`</Note>
      *
      * @param {string} inboxItemId - Unique identifier for the inbox item.
      * @param {MavenAGI.InboxItemIgnoreRequest} request

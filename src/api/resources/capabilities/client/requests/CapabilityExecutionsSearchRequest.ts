@@ -41,4 +41,8 @@ export interface CapabilityExecutionsSearchRequest extends MavenAGI.BaseCappedPa
      * simulation conversation's executions are found by its ID like any other.
      */
     simulationFilter?: MavenAGI.SimulationFilter;
+    /** Only return executions whose `createdAt` is on or after this timestamp. */
+    createdAfter?: Date;
+    /** Only return executions whose `createdAt` is on or before this timestamp. */
+    createdBefore?: Date;
 }

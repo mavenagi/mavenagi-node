@@ -17,6 +17,7 @@ export const SimulationContext: core.serialization.ObjectSchema<
     persona: LlmPersona.optional(),
     availableKnowledgeBases: core.serialization.list(EntityId).optional(),
     variantId: EntityIdWithoutAgent.optional(),
+    evaluateWithCharters: core.serialization.boolean().optional(),
     actionMocks: core.serialization.list(SimulationActionMock).optional(),
     defaultActionBehavior: SimulationActionBehavior.optional(),
 });
@@ -27,6 +28,7 @@ export declare namespace SimulationContext {
         persona?: LlmPersona.Raw | null;
         availableKnowledgeBases?: EntityId.Raw[] | null;
         variantId?: EntityIdWithoutAgent.Raw | null;
+        evaluateWithCharters?: boolean | null;
         actionMocks?: SimulationActionMock.Raw[] | null;
         defaultActionBehavior?: SimulationActionBehavior.Raw | null;
     }

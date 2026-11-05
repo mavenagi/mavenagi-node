@@ -53,10 +53,16 @@ export interface KnowledgeDocumentRequest extends MavenAGI.BaseKnowledgeDocument
      * for storing additional information about the object in a structured format, and querying for
      * objects via API or the dashboard.
      *
-     * Keys are strings with a maximum length of 64 characters. Values are strings with a maximum
-     * length of 512 characters.
+     * Keys are strings with a maximum length of 64 characters. A value is a string, or a list of up
+     * to 100 strings for a document with several values under one key (for example the states it
+     * applies to). A list is a set: it is stored sorted and without duplicates, so reordering it
+     * doesn't change the document. Each string has a maximum length of 512 characters.
+     *
+     * A charter document filter treats a list as "contains": `EQ` and `IN` match when any value in
+     * the list matches, and `NEQ` and `NOT_IN` match when none does. An empty list is the same as
+     * no value.
      */
-    metadata?: Record<string, string>;
+    metadata?: Record<string, MavenAGI.KnowledgeDocumentMetadataValue>;
     /** The time at which this document was created. */
     createdAt?: Date;
     /** The time at which this document was last modified. */

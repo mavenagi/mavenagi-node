@@ -4,6 +4,7 @@ import type * as MavenAGI from "../../../../api/index";
 import * as core from "../../../../core";
 import type * as serializers from "../../../index";
 import { AttachmentResponse } from "../../commons/types/AttachmentResponse";
+import { KnowledgeDocumentMetadataValue } from "./KnowledgeDocumentMetadataValue";
 import { KnowledgeDocumentSearchResponse } from "./KnowledgeDocumentSearchResponse";
 import { KnowledgeDocumentStatus } from "./KnowledgeDocumentStatus";
 
@@ -15,7 +16,7 @@ export const KnowledgeDocumentResponse: core.serialization.ObjectSchema<
         processingStatus: KnowledgeDocumentStatus.optional(),
         content: core.serialization.string().optional(),
         asset: AttachmentResponse.optional(),
-        metadata: core.serialization.record(core.serialization.string(), core.serialization.string()),
+        metadata: core.serialization.record(core.serialization.string(), KnowledgeDocumentMetadataValue),
     })
     .extend(KnowledgeDocumentSearchResponse);
 
@@ -24,6 +25,6 @@ export declare namespace KnowledgeDocumentResponse {
         processingStatus?: KnowledgeDocumentStatus.Raw | null;
         content?: string | null;
         asset?: AttachmentResponse.Raw | null;
-        metadata: Record<string, string>;
+        metadata: Record<string, KnowledgeDocumentMetadataValue.Raw>;
     }
 }

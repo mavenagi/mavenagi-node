@@ -86,6 +86,6 @@ export interface KnowledgeDocumentResponse extends MavenAGI.KnowledgeDocumentSea
     content?: string;
     /** If the document is associated with an asset, this will contain the asset metadata */
     asset?: MavenAGI.AttachmentResponse;
-    /** Metadata for the knowledge document. */
-    metadata: Record<string, string>;
+    /** Metadata for the knowledge document. A value is a string or a list of strings. */
+    metadata: Record<string, MavenAGI.KnowledgeDocumentMetadataValue>;
 }

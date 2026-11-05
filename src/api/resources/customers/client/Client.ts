@@ -25,6 +25,14 @@ export class CustomersClient {
     }
 
     /**
+     * Search customers of an agent.
+     *
+     * Pagination is limited to the first 10,000 matching customers: `(page + 1) * size` must not
+     * exceed 10,000, and a request beyond that is rejected with a 400. Narrow the filter to reach
+     * later results.
+     *
+     * <Note>**Required permission:** `read:agents`</Note>
+     *
      * @param {MavenAGI.CustomersSearchRequest} request
      * @param {CustomersClient.RequestOptions} requestOptions - Request-specific configuration.
      *
@@ -160,6 +168,8 @@ export class CustomersClient {
 
     /**
      * Update a customer of an agent or create it if it doesn't exist. In case of an update, fields not provided (e.g., description, status) will be preserved.
+     *
+     * <Note>**Required permission:** `edit:agents`</Note>
      *
      * @param {MavenAGI.CustomerRequest} request
      * @param {CustomersClient.RequestOptions} requestOptions - Request-specific configuration.
@@ -301,6 +311,8 @@ export class CustomersClient {
 
     /**
      * Get a customer by its supplied ID
+     *
+     * <Note>**Required permission:** `read:agents`</Note>
      *
      * @param {string} customerReferenceId - The reference ID of the customer to get. All other entity ID fields are inferred from the request.
      * @param {MavenAGI.CustomerGetRequest} request
@@ -450,6 +462,8 @@ export class CustomersClient {
      *
      * The `appId` field can be provided to update a customer owned by a different app.
      * All other fields will overwrite the existing value on the customer only if provided.
+     *
+     * <Note>**Required permission:** `edit:agents`</Note>
      *
      * @param {string} customerReferenceId - The reference ID of the customer to update. All other entity ID fields are inferred from the request.
      * @param {MavenAGI.CustomerPatchRequest} request

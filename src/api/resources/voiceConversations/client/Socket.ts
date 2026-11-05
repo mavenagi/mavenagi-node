@@ -3,6 +3,7 @@
 import * as core from "../../../../core";
 import { fromJson } from "../../../../core/json";
 import * as serializers from "../../../../serialization/index";
+import { ClientMark } from "../../../../serialization/resources/voiceConversations/types/ClientMark";
 import { Config } from "../../../../serialization/resources/voiceConversations/types/Config";
 import { UserAudioChunk } from "../../../../serialization/resources/voiceConversations/types/UserAudioChunk";
 import type * as MavenAGI from "../../../index";
@@ -15,11 +16,10 @@ export declare namespace VoiceConversationsSocket {
     export type Response =
         | MavenAGI.ConversationReady
         | MavenAGI.AgentAudioChunk
-        | MavenAGI.UserTranscript
-        | MavenAGI.AgentTranscript
-        | MavenAGI.ConversationEnded
-        | MavenAGI.UserStartedSpeaking
-        | MavenAGI.UserFinishedSpeaking
+        | MavenAGI.Mark
+        | MavenAGI.Transcript
+        | MavenAGI.VadSpeechStarted
+        | MavenAGI.VadSpeechStopped
         | MavenAGI.Error_;
     type EventHandlers = {
         open?: () => void;
@@ -119,6 +119,16 @@ export class VoiceConversationsSocket {
     public sendUserAudioChunk(message: MavenAGI.UserAudioChunk): void {
         this.assertSocketIsOpen();
         const jsonPayload = UserAudioChunk.jsonOrThrow(message, {
+            unrecognizedObjectKeys: "passthrough",
+            allowUnrecognizedUnionMembers: true,
+            allowUnrecognizedEnumValues: true,
+        });
+        this.socket.send(JSON.stringify(jsonPayload));
+    }
+
+    public sendClientMark(message: MavenAGI.ClientMark): void {
+        this.assertSocketIsOpen();
+        const jsonPayload = ClientMark.jsonOrThrow(message, {
             unrecognizedObjectKeys: "passthrough",
             allowUnrecognizedUnionMembers: true,
             allowUnrecognizedEnumValues: true,

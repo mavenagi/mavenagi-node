@@ -27,6 +27,14 @@ export class SegmentsClient {
     /**
      * @deprecated
      *
+     * Search segments.
+     *
+     * Pagination is limited to the first 10,000 matching segments: `(page + 1) * size` must not
+     * exceed 10,000, and a request beyond that is rejected with a 400. Narrow the filter to reach
+     * later results.
+     *
+     * <Note>**Required permission:** `read:agents`</Note>
+     *
      * @param {MavenAGI.SegmentsSearchRequest} request
      * @param {SegmentsClient.RequestOptions} requestOptions - Request-specific configuration.
      *
@@ -164,6 +172,8 @@ export class SegmentsClient {
      * @deprecated
      *
      * Update a segment or create it if it doesn't exist.
+     *
+     * <Note>**Required permission:** `edit:agents`</Note>
      *
      * @param {MavenAGI.SegmentRequest} request
      * @param {SegmentsClient.RequestOptions} requestOptions - Request-specific configuration.
@@ -319,6 +329,8 @@ export class SegmentsClient {
      *
      * Get a segment by its supplied ID
      *
+     * <Note>**Required permission:** `read:agents`</Note>
+     *
      * @param {string} segmentReferenceId - The reference ID of the segment to get. All other entity ID fields are inferred from the request.
      * @param {MavenAGI.SegmentGetRequest} request
      * @param {SegmentsClient.RequestOptions} requestOptions - Request-specific configuration.
@@ -470,6 +482,8 @@ export class SegmentsClient {
      * The `appId` field can be provided to update a segment owned by a different app.
      * All other fields will overwrite the existing value on the segment only if provided.
      *
+     * <Note>**Required permission:** `edit:agents`</Note>
+     *
      * @param {string} segmentReferenceId - The reference ID of the segment to update. All other entity ID fields are inferred from the request.
      * @param {MavenAGI.SegmentPatchRequest} request
      * @param {SegmentsClient.RequestOptions} requestOptions - Request-specific configuration.
@@ -619,6 +633,8 @@ export class SegmentsClient {
      * Deleted segments are excluded from search results but can still be retrieved by ID for archival purposes. Creating a segment with the same referenceId as a deleted segment reclaims it: the segment keeps its identity, and every other setting comes from the request.
      *
      * Deleted segments cannot be modified.
+     *
+     * <Note>**Required permission:** `edit:agents`</Note>
      *
      * @param {string} segmentReferenceId - The reference ID of the segment to delete. All other entity ID fields are inferred from the request.
      * @param {MavenAGI.SegmentDeleteRequest} request

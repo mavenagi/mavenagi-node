@@ -1,6 +1,7 @@
 export * from "./ActionFormAttachment";
 export * from "./ActionFormRequestParamValue";
 export * from "./AskRequest";
+export * from "./AskRequestBase";
 export * from "./AskStreamActionEvent";
 export * from "./AskStreamChartEvent";
 export * from "./AskStreamEndEvent";

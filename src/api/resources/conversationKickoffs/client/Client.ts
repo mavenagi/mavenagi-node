@@ -34,6 +34,8 @@ export class ConversationKickoffsClient {
      * that is already live. Use the capability APIs to activate it, and to read, search or delete
      * it afterwards.
      *
+     * <Note>**Required permission:** `edit:agents`</Note>
+     *
      * @param {MavenAGI.CreateConversationKickoffRequest} request
      * @param {ConversationKickoffsClient.RequestOptions} requestOptions - Request-specific configuration.
      *

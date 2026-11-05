@@ -29,7 +29,7 @@ export interface IntelligentFieldPatchRequest {
     status?: MavenAGI.CapabilityStatus;
     /** A plain text description of the intelligent field. */
     description?: string;
-    /** Updated enum options for fields that constrain the LLM to a finite set. Omit to leave unchanged. The new list must be a superset of the existing options (add-only; removals are rejected). */
+    /** Updated enum options for fields that constrain the LLM to a finite set. Omit to leave unchanged. The list replaces the existing options: an option left out is removed and is no longer offered to the LLM, while values already computed with it are kept. A field that has options must keep at least one, so an empty list is rejected. An option kept from the existing list must keep its `label`; changing it is rejected. */
     enumOptions?: MavenAGI.EnumOption[];
     /** The agent variant to stage this patch in. Required on an agent with versioned intelligent fields; a patch that omits it there is rejected with reason `VARIANT_REQUIRED`. */
     variantId?: MavenAGI.EntityIdWithoutAgent;

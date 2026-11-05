@@ -8,6 +8,7 @@ import { EntityIdWithoutAgent } from "../../commons/types/EntityIdWithoutAgent";
 import { ScopedEntity } from "../../commons/types/ScopedEntity";
 import { BaseKnowledgeDocument } from "./BaseKnowledgeDocument";
 import { KnowledgeDocumentContentType } from "./KnowledgeDocumentContentType";
+import { KnowledgeDocumentMetadataValue } from "./KnowledgeDocumentMetadataValue";
 
 export const KnowledgeDocumentRequest: core.serialization.ObjectSchema<
     serializers.KnowledgeDocumentRequest.Raw,
@@ -20,7 +21,7 @@ export const KnowledgeDocumentRequest: core.serialization.ObjectSchema<
         title: core.serialization.string(),
         assetId: EntityIdWithoutAgent.optional(),
         content: core.serialization.string().optional(),
-        metadata: core.serialization.record(core.serialization.string(), core.serialization.string()).optional(),
+        metadata: core.serialization.record(core.serialization.string(), KnowledgeDocumentMetadataValue).optional(),
         createdAt: core.serialization.date().optional(),
         updatedAt: core.serialization.date().optional(),
         relevantEntities: core.serialization.list(ScopedEntity).optional(),
@@ -35,7 +36,7 @@ export declare namespace KnowledgeDocumentRequest {
         title: string;
         assetId?: EntityIdWithoutAgent.Raw | null;
         content?: string | null;
-        metadata?: Record<string, string> | null;
+        metadata?: Record<string, KnowledgeDocumentMetadataValue.Raw> | null;
         createdAt?: string | null;
         updatedAt?: string | null;
         relevantEntities?: ScopedEntity.Raw[] | null;

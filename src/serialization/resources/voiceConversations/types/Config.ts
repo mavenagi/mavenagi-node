@@ -10,8 +10,6 @@ export const Config: core.serialization.ObjectSchema<serializers.Config.Raw, Mav
         type: core.serialization.stringLiteral("config"),
         inputFormat: AudioFormat,
         outputFormat: AudioFormat,
-        conversationId: core.serialization.string(),
-        appId: core.serialization.string(),
     });
 
 export declare namespace Config {
@@ -19,7 +17,5 @@ export declare namespace Config {
         type: "config";
         inputFormat: AudioFormat.Raw;
         outputFormat: AudioFormat.Raw;
-        conversationId: string;
-        appId: string;
     }
 }

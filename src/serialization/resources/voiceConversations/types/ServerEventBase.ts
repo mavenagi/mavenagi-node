@@ -8,11 +8,11 @@ export const ServerEventBase: core.serialization.ObjectSchema<
     serializers.ServerEventBase.Raw,
     MavenAGI.ServerEventBase
 > = core.serialization.object({
-    eventId: core.serialization.string(),
+    timestamp: core.serialization.date(),
 });
 
 export declare namespace ServerEventBase {
     export interface Raw {
-        eventId: string;
+        timestamp: string;
     }
 }

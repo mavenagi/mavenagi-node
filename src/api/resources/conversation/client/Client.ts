@@ -35,6 +35,8 @@ export class ConversationClient {
      * - metadata can be changed using the `updateConversationMetadata` API.
      * - messages can be added to the conversation with the `appendNewMessages` or `ask` APIs.
      *
+     * <Note>**Required permission:** `ask:agent`</Note>
+     *
      * @param {MavenAGI.ConversationRequest} request
      * @param {ConversationClient.RequestOptions} requestOptions - Request-specific configuration.
      *
@@ -218,6 +220,8 @@ export class ConversationClient {
      * A closed conversation (`open` set to false) cannot be reopened: a patch setting `open` to true
      * returns a 400. Its other fields can still be patched.
      *
+     * <Note>**Required permission:** `ask:agent`</Note>
+     *
      * @param {string} conversationId - The ID of the conversation to patch
      * @param {MavenAGI.ConversationPatchRequest} request
      * @param {ConversationClient.RequestOptions} requestOptions - Request-specific configuration.
@@ -363,6 +367,8 @@ export class ConversationClient {
 
     /**
      * Get a conversation
+     *
+     * <Note>**Required permission:** `read:conversations`</Note>
      *
      * @param {string} conversationId - The ID of the conversation to get
      * @param {MavenAGI.ConversationGetRequest} request
@@ -513,7 +519,7 @@ export class ConversationClient {
      * Wipes the user content from a conversation.
      * The conversation and its ID still exist afterwards, and so does its non-content data, so it still counts in metrics.
      * The conversation is sealed against further writes as soon as this call returns: adding or changing messages fails with `409 Conflict`, and so does deleting it again once the wipe has finished.
-     * A `202 Accepted` response means the wipe is still completing and will finish on its own.
+     * The call answers `202 Accepted` and the wipe finishes on its own shortly after. Until it does, getting or searching the conversation can still return its original message text.
      *
      * Simulation conversations will no longer be visible in search results nor metrics.
      * Non-simulation conversations remain visible; they cannot be fully removed from the system.
@@ -523,6 +529,8 @@ export class ConversationClient {
      * Every message's text, from the user and the agent alike, is replaced with `reason`, and its attachments, follow-up questions, backend LLM prompt and history, the data actions returned, and action arguments are cleared.
      * Evaluation results for the conversation are deleted, and the payloads recorded on its trigger and action executions are cleared. <br/><br/>
      * What is kept: the conversation's metadata, each message's charts, structured answer and app-supplied metadata, the conversation's intelligent field values, its feedback and events, and the users who took part. To wipe a user's data, use `DELETE /users/{userId}` or `DELETE /agentusers/{agentUserId}`.</Warning>
+     *
+     * <Note>**Required permission:** `delete:conversations`</Note>
      *
      * @param {string} conversationId - The ID of the conversation to delete
      * @param {MavenAGI.ConversationDeleteRequest} request
@@ -666,6 +674,8 @@ export class ConversationClient {
      * Append messages to an existing conversation. The conversation must be initialized first. If a message with the same ID already exists, it will be ignored. Messages do not allow modification.
      *
      * A closed conversation (`open` set to false) takes no new messages and returns a 400.
+     *
+     * <Note>**Required permission:** `ask:agent`</Note>
      *
      * @param {string} conversationId - The ID of the conversation to append messages to
      * @param {MavenAGI.ConversationMessageRequest[]} request
@@ -841,6 +851,8 @@ export class ConversationClient {
      * Known Limitation:
      * - The API does not currently expose metadata indicating whether a response or message is incomplete. This will be addressed in a future update.
      *
+     * <Note>**Required permission:** `ask:agent`</Note>
+     *
      * @param {string} conversationId - The ID of a new or existing conversation to use as context for the question
      * @param {MavenAGI.AskRequest} request
      * @param {ConversationClient.RequestOptions} requestOptions - Request-specific configuration.
@@ -1015,6 +1027,8 @@ export class ConversationClient {
      *
      * Known Limitation:
      * - The API does not currently expose metadata indicating whether a response or message is incomplete. This will be addressed in a future update.
+     *
+     * <Note>**Required permission:** `ask:agent`</Note>
      */
     public askStream(
         conversationId: string,
@@ -1459,6 +1473,8 @@ export class ConversationClient {
      *
      * A form cannot be submitted on a closed conversation (`open` set to false): that returns a 400.
      *
+     * <Note>**Required permission:** `ask:agent`</Note>
+     *
      * @param {string} conversationId - The ID of a conversation the form being submitted belongs to
      * @param {MavenAGI.SubmitActionFormRequest} request
      * @param {ConversationClient.RequestOptions} requestOptions - Request-specific configuration.
@@ -1774,6 +1790,8 @@ export class ConversationClient {
      *
      * A closed conversation (`open` set to false) takes no new metadata and returns a 400.
      *
+     * <Note>**Required permission:** `ask:agent`</Note>
+     *
      * @param {string} conversationId - The ID of the conversation to modify metadata for
      * @param {MavenAGI.UpdateMetadataRequest} request
      * @param {ConversationClient.RequestOptions} requestOptions - Request-specific configuration.
@@ -1923,7 +1941,20 @@ export class ConversationClient {
     }
 
     /**
-     * Search conversations
+     * Search conversations.
+     *
+     * Pagination is limited to the first 10,000 matching conversations: `(page + 1) * size` must
+     * not exceed 10,000, and a request beyond that is rejected with a 400. To read past the
+     * 10,000th result, use `searchCursor`.
+     *
+     * `searchCursor` orders results by creation time and has no `sort` field. Its defaults differ
+     * from `search` in two ways:
+     * - Without `sort`, `search` returns the oldest conversations first. `searchCursor` returns the
+     *   newest first unless `sortDesc` is `false`.
+     * - Without a `filter`, `search` returns conversations of every `billable` value.
+     *   `searchCursor` leaves out `INELIGIBLE` ones unless `filter.billable` includes it.
+     *
+     * <Note>**Required permission:** `read:conversations`</Note>
      *
      * @param {MavenAGI.ConversationsSearchRequest} request
      * @param {ConversationClient.RequestOptions} requestOptions - Request-specific configuration.
@@ -2071,6 +2102,8 @@ export class ConversationClient {
      * came back with fewer conversations than you asked for: that happens legitimately, and more
      * pages may still remain.
      *
+     * <Note>**Required permission:** `read:conversations`</Note>
+     *
      * @param {MavenAGI.ConversationsCursorSearchRequest} request
      * @param {ConversationClient.RequestOptions} requestOptions - Request-specific configuration.
      *
@@ -2212,10 +2245,12 @@ export class ConversationClient {
     /**
      * Export conversations to a CSV file.
      *
-     * This will output a summary of each conversation that matches the supplied filter. A maximum of 10,000 conversations can be exported at a time.
+     * This will output a summary of each conversation that matches the supplied filter. Only the first 10,000 matching conversations can be exported: `(page + 1) * size` must not exceed 10,000, and a request beyond that is rejected with a 400.
      *
      * For most use cases it is recommended to use the `search` API instead and convert the JSON response to your desired format.
      * The CSV format may change over time and should not be relied upon by code consumers.
+     *
+     * <Note>**Required permission:** `read:conversations`</Note>
      *
      * @throws {@link MavenAGI.NotFoundError}
      * @throws {@link MavenAGI.BadRequestError}
@@ -2347,6 +2382,8 @@ export class ConversationClient {
      * Most API callers should create simulations programmatically to allow for more flexibility.
      *
      * Shown in Agent Designer as "Import questions".
+     *
+     * <Note>**Required permission:** `ask:agent`. Importing simulations also needs `read:agents` and `edit:agents`.</Note>
      *
      * @param {core.file.Uploadable} file
      * @param {MavenAGI.SimulationImportRequest} request
@@ -2499,6 +2536,8 @@ export class ConversationClient {
      * Currently, messages can only be successfully delivered to conversations with the `ASYNC` capability.
      * User message delivery is not yet supported and returns a 400.
      * </Warning>
+     *
+     * <Note>**Required permission:** `ask:agent`</Note>
      *
      * @param {MavenAGI.DeliverMessageRequest} request
      * @param {ConversationClient.RequestOptions} requestOptions - Request-specific configuration.

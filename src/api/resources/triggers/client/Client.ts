@@ -31,6 +31,8 @@ export class TriggersClient {
      * at once. It returns the fields every capability shares rather than the whole Event
      * Trigger; fetch one by its kind and reference ID for the rest.
      *
+     * <Note>**Required permission:** `read:agents`</Note>
+     *
      * @param {MavenAGI.EventTriggersSearchRequest} request
      * @param {TriggersClient.RequestOptions} requestOptions - Request-specific configuration.
      *
@@ -166,6 +168,8 @@ export class TriggersClient {
 
     /**
      * Update an event trigger or create it if it doesn't exist.
+     *
+     * <Note>**Required permission:** `edit:agents`</Note>
      *
      * @param {MavenAGI.EventTriggerRequest} request
      * @param {TriggersClient.RequestOptions} requestOptions - Request-specific configuration.
@@ -314,6 +318,8 @@ export class TriggersClient {
      *
      * Get an event trigger by its supplied ID
      *
+     * <Note>**Required permission:** `read:agents`</Note>
+     *
      * @param {string} triggerReferenceId - The reference ID of the event trigger to get. All other entity ID fields are inferred from the request.
      * @param {TriggersClient.RequestOptions} requestOptions - Request-specific configuration.
      *
@@ -454,6 +460,8 @@ export class TriggersClient {
      *
      * Delete an event trigger
      *
+     * <Note>**Required permission:** `edit:agents`</Note>
+     *
      * @param {string} triggerReferenceId - The reference ID of the event trigger to delete. All other entity ID fields are inferred from the request.
      * @param {TriggersClient.RequestOptions} requestOptions - Request-specific configuration.
      *
@@ -583,6 +591,8 @@ export class TriggersClient {
      *
      * `PATCH /v1/capabilities/TRIGGER/{referenceId}` with a `status` also turns a trigger on and
      * off, the same way it publishes and unpublishes any kind of capability.
+     *
+     * <Note>**Required permission:** `edit:agents`</Note>
      *
      * @param {string} triggerReferenceId - The reference ID of the event trigger to update. All other entity ID fields are inferred from the request.
      * @param {MavenAGI.PartialUpdateRequest} request

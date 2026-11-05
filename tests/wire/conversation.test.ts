@@ -1164,6 +1164,7 @@ describe("ConversationClient", () => {
                     },
                 ],
                 variantId: { type: "AGENT", appId: "appId", referenceId: "x" },
+                evaluateWithCharters: true,
                 actionMocks: [
                     {
                         actionId: { type: "AGENT", appId: "appId", referenceId: "x" },
@@ -1518,6 +1519,7 @@ describe("ConversationClient", () => {
                     appId: "appId",
                     referenceId: "x",
                 },
+                evaluateWithCharters: true,
                 actionMocks: [
                     {
                         actionId: {
@@ -2127,6 +2129,7 @@ describe("ConversationClient", () => {
                     },
                 ],
                 variantId: { type: "AGENT", appId: "appId", referenceId: "x" },
+                evaluateWithCharters: true,
                 actionMocks: [
                     {
                         actionId: { type: "AGENT", appId: "appId", referenceId: "x" },
@@ -2503,6 +2506,7 @@ describe("ConversationClient", () => {
                     appId: "appId",
                     referenceId: "x",
                 },
+                evaluateWithCharters: true,
                 actionMocks: [
                     {
                         actionId: {
@@ -3117,7 +3121,7 @@ describe("ConversationClient", () => {
             agentId: "test",
             environment: server.baseUrl,
         });
-        const rawRequestBody = { conversationMessageId: { referenceId: "x" }, userId: { referenceId: "x" } };
+        const rawRequestBody = { userId: { referenceId: "x" }, conversationMessageId: { referenceId: "x" } };
         const rawResponseBody = {};
 
         server
@@ -3131,10 +3135,10 @@ describe("ConversationClient", () => {
 
         await expect(async () => {
             return await client.conversation.ask("conversationId", {
-                conversationMessageId: {
+                userId: {
                     referenceId: "x",
                 },
-                userId: {
+                conversationMessageId: {
                     referenceId: "x",
                 },
             });
@@ -3152,7 +3156,7 @@ describe("ConversationClient", () => {
             agentId: "test",
             environment: server.baseUrl,
         });
-        const rawRequestBody = { conversationMessageId: { referenceId: "x" }, userId: { referenceId: "x" } };
+        const rawRequestBody = { userId: { referenceId: "x" }, conversationMessageId: { referenceId: "x" } };
         const rawResponseBody = {};
 
         server
@@ -3166,10 +3170,10 @@ describe("ConversationClient", () => {
 
         await expect(async () => {
             return await client.conversation.ask("conversationId", {
-                conversationMessageId: {
+                userId: {
                     referenceId: "x",
                 },
-                userId: {
+                conversationMessageId: {
                     referenceId: "x",
                 },
             });
@@ -3187,7 +3191,7 @@ describe("ConversationClient", () => {
             agentId: "test",
             environment: server.baseUrl,
         });
-        const rawRequestBody = { conversationMessageId: { referenceId: "x" }, userId: { referenceId: "x" } };
+        const rawRequestBody = { userId: { referenceId: "x" }, conversationMessageId: { referenceId: "x" } };
         const rawResponseBody = {};
 
         server
@@ -3201,10 +3205,10 @@ describe("ConversationClient", () => {
 
         await expect(async () => {
             return await client.conversation.ask("conversationId", {
-                conversationMessageId: {
+                userId: {
                     referenceId: "x",
                 },
-                userId: {
+                conversationMessageId: {
                     referenceId: "x",
                 },
             });
@@ -3222,7 +3226,7 @@ describe("ConversationClient", () => {
             agentId: "test",
             environment: server.baseUrl,
         });
-        const rawRequestBody = { conversationMessageId: { referenceId: "x" }, userId: { referenceId: "x" } };
+        const rawRequestBody = { userId: { referenceId: "x" }, conversationMessageId: { referenceId: "x" } };
         const rawResponseBody = {};
 
         server
@@ -3236,10 +3240,10 @@ describe("ConversationClient", () => {
 
         await expect(async () => {
             return await client.conversation.ask("conversationId", {
-                conversationMessageId: {
+                userId: {
                     referenceId: "x",
                 },
-                userId: {
+                conversationMessageId: {
                     referenceId: "x",
                 },
             });
@@ -3257,7 +3261,7 @@ describe("ConversationClient", () => {
             agentId: "test",
             environment: server.baseUrl,
         });
-        const rawRequestBody = { conversationMessageId: { referenceId: "x" }, userId: { referenceId: "x" } };
+        const rawRequestBody = { userId: { referenceId: "x" }, conversationMessageId: { referenceId: "x" } };
         const rawResponseBody = {};
 
         server
@@ -3271,10 +3275,10 @@ describe("ConversationClient", () => {
 
         await expect(async () => {
             return await client.conversation.ask("conversationId", {
-                conversationMessageId: {
+                userId: {
                     referenceId: "x",
                 },
-                userId: {
+                conversationMessageId: {
                     referenceId: "x",
                 },
             });
@@ -3398,7 +3402,7 @@ describe("ConversationClient", () => {
             agentId: "test",
             environment: server.baseUrl,
         });
-        const rawRequestBody = { conversationMessageId: { referenceId: "x" }, userId: { referenceId: "x" } };
+        const rawRequestBody = { userId: { referenceId: "x" }, conversationMessageId: { referenceId: "x" } };
         const rawResponseBody = {};
 
         server
@@ -3412,10 +3416,10 @@ describe("ConversationClient", () => {
 
         await expect(async () => {
             return await client.conversation.askStream("conversationId", {
-                conversationMessageId: {
+                userId: {
                     referenceId: "x",
                 },
-                userId: {
+                conversationMessageId: {
                     referenceId: "x",
                 },
             });
@@ -3433,7 +3437,7 @@ describe("ConversationClient", () => {
             agentId: "test",
             environment: server.baseUrl,
         });
-        const rawRequestBody = { conversationMessageId: { referenceId: "x" }, userId: { referenceId: "x" } };
+        const rawRequestBody = { userId: { referenceId: "x" }, conversationMessageId: { referenceId: "x" } };
         const rawResponseBody = {};
 
         server
@@ -3447,10 +3451,10 @@ describe("ConversationClient", () => {
 
         await expect(async () => {
             return await client.conversation.askStream("conversationId", {
-                conversationMessageId: {
+                userId: {
                     referenceId: "x",
                 },
-                userId: {
+                conversationMessageId: {
                     referenceId: "x",
                 },
             });
@@ -3468,7 +3472,7 @@ describe("ConversationClient", () => {
             agentId: "test",
             environment: server.baseUrl,
         });
-        const rawRequestBody = { conversationMessageId: { referenceId: "x" }, userId: { referenceId: "x" } };
+        const rawRequestBody = { userId: { referenceId: "x" }, conversationMessageId: { referenceId: "x" } };
         const rawResponseBody = {};
 
         server
@@ -3482,10 +3486,10 @@ describe("ConversationClient", () => {
 
         await expect(async () => {
             return await client.conversation.askStream("conversationId", {
-                conversationMessageId: {
+                userId: {
                     referenceId: "x",
                 },
-                userId: {
+                conversationMessageId: {
                     referenceId: "x",
                 },
             });
@@ -3503,7 +3507,7 @@ describe("ConversationClient", () => {
             agentId: "test",
             environment: server.baseUrl,
         });
-        const rawRequestBody = { conversationMessageId: { referenceId: "x" }, userId: { referenceId: "x" } };
+        const rawRequestBody = { userId: { referenceId: "x" }, conversationMessageId: { referenceId: "x" } };
         const rawResponseBody = {};
 
         server
@@ -3517,10 +3521,10 @@ describe("ConversationClient", () => {
 
         await expect(async () => {
             return await client.conversation.askStream("conversationId", {
-                conversationMessageId: {
+                userId: {
                     referenceId: "x",
                 },
-                userId: {
+                conversationMessageId: {
                     referenceId: "x",
                 },
             });
@@ -3538,7 +3542,7 @@ describe("ConversationClient", () => {
             agentId: "test",
             environment: server.baseUrl,
         });
-        const rawRequestBody = { conversationMessageId: { referenceId: "x" }, userId: { referenceId: "x" } };
+        const rawRequestBody = { userId: { referenceId: "x" }, conversationMessageId: { referenceId: "x" } };
         const rawResponseBody = {};
 
         server
@@ -3552,10 +3556,10 @@ describe("ConversationClient", () => {
 
         await expect(async () => {
             return await client.conversation.askStream("conversationId", {
-                conversationMessageId: {
+                userId: {
                     referenceId: "x",
                 },
-                userId: {
+                conversationMessageId: {
                     referenceId: "x",
                 },
             });
@@ -4266,6 +4270,7 @@ describe("ConversationClient", () => {
                     },
                 ],
                 variantId: { type: "AGENT", appId: "appId", referenceId: "x" },
+                evaluateWithCharters: true,
                 actionMocks: [
                     {
                         actionId: { type: "AGENT", appId: "appId", referenceId: "x" },
@@ -4628,6 +4633,7 @@ describe("ConversationClient", () => {
                     appId: "appId",
                     referenceId: "x",
                 },
+                evaluateWithCharters: true,
                 actionMocks: [
                     {
                         actionId: {
@@ -5420,6 +5426,7 @@ describe("ConversationClient", () => {
                             },
                         ],
                         variantId: { type: "AGENT", appId: "appId", referenceId: "x" },
+                        evaluateWithCharters: true,
                         actionMocks: [
                             {
                                 actionId: { type: "AGENT", appId: "appId", referenceId: "x" },
@@ -5617,6 +5624,7 @@ describe("ConversationClient", () => {
                             },
                         ],
                         variantId: { type: "AGENT", appId: "appId", referenceId: "x" },
+                        evaluateWithCharters: true,
                         actionMocks: [
                             {
                                 actionId: { type: "AGENT", appId: "appId", referenceId: "x" },
@@ -5871,6 +5879,7 @@ describe("ConversationClient", () => {
                             appId: "appId",
                             referenceId: "x",
                         },
+                        evaluateWithCharters: true,
                         actionMocks: [
                             {
                                 actionId: {
@@ -6118,6 +6127,7 @@ describe("ConversationClient", () => {
                             appId: "appId",
                             referenceId: "x",
                         },
+                        evaluateWithCharters: true,
                         actionMocks: [
                             {
                                 actionId: {
@@ -6489,6 +6499,7 @@ describe("ConversationClient", () => {
                             },
                         ],
                         variantId: { type: "AGENT", appId: "appId", referenceId: "x" },
+                        evaluateWithCharters: true,
                         actionMocks: [
                             {
                                 actionId: { type: "AGENT", appId: "appId", referenceId: "x" },
@@ -6686,6 +6697,7 @@ describe("ConversationClient", () => {
                             },
                         ],
                         variantId: { type: "AGENT", appId: "appId", referenceId: "x" },
+                        evaluateWithCharters: true,
                         actionMocks: [
                             {
                                 actionId: { type: "AGENT", appId: "appId", referenceId: "x" },
@@ -6938,6 +6950,7 @@ describe("ConversationClient", () => {
                             appId: "appId",
                             referenceId: "x",
                         },
+                        evaluateWithCharters: true,
                         actionMocks: [
                             {
                                 actionId: {
@@ -7185,6 +7198,7 @@ describe("ConversationClient", () => {
                             appId: "appId",
                             referenceId: "x",
                         },
+                        evaluateWithCharters: true,
                         actionMocks: [
                             {
                                 actionId: {

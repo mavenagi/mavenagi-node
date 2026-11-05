@@ -29,6 +29,12 @@ export class UsersClient {
      *
      * Agent users are a merged view of the users created by individual apps.
      *
+     * Pagination is limited to the first 10,000 matching agent users: `(page + 1) * size` must not
+     * exceed 10,000, and a request beyond that is rejected with a 400. Narrow the filter to reach
+     * later results.
+     *
+     * <Note>**Required permission:** `read:agents`</Note>
+     *
      * @param {MavenAGI.AgentUserSearchRequest} request
      * @param {UsersClient.RequestOptions} requestOptions - Request-specific configuration.
      *
@@ -166,6 +172,8 @@ export class UsersClient {
      * Get an agent user by its supplied ID.
      *
      * Agent users are a merged view of the users created by individual apps.
+     *
+     * <Note>**Required permission:** `read:agents`</Note>
      *
      * @param {string} agentUserId - The ID of the agent user to get.
      * @param {UsersClient.RequestOptions} requestOptions - Request-specific configuration.
@@ -314,6 +322,8 @@ export class UsersClient {
      * The agent user's intelligent field values are deleted too, and removed from their `INTELLIGENT_FIELD_VALUE_CHANGED` events; the events themselves are kept.
      * Unlike `DELETE /users/{userId}`, the wipe does not recompute the values. They can be computed again later from the user's remaining conversations, for example after the user sends another message; wipe those conversations first to prevent that.
      *
+     * <Note>**Required permission:** `edit:agents`</Note>
+     *
      * @param {string} agentUserId - The ID of the agent user to wipe.
      * @param {UsersClient.RequestOptions} requestOptions - Request-specific configuration.
      *
@@ -440,6 +450,8 @@ export class UsersClient {
 
     /**
      * Update an app user or create it if it doesn't exist.
+     *
+     * <Note>**Required permission:** `edit:agents`. A user with `executionMode` `SIMULATION` also needs `create:simulations`.</Note>
      *
      * @param {MavenAGI.AppUserRequest} request
      * @param {UsersClient.RequestOptions} requestOptions - Request-specific configuration.
@@ -591,6 +603,8 @@ export class UsersClient {
     /**
      * Get an app user by its supplied ID
      *
+     * <Note>**Required permission:** `read:agents`</Note>
+     *
      * @param {string} userId - The reference ID of the app user to get. All other entity ID fields are inferred from the request.
      * @param {MavenAGI.UserGetRequest} request
      * @param {UsersClient.RequestOptions} requestOptions - Request-specific configuration.
@@ -741,6 +755,8 @@ export class UsersClient {
      * If this user is linked to a user from another app, it will not be unlinked. Unlinking of users is not yet supported.
      *
      * <Warning>This is a destructive operation and cannot be undone.</Warning>
+     *
+     * <Note>**Required permission:** `edit:agents`</Note>
      *
      * @param {string} userId - The reference ID of the app user to delete. All other entity ID fields are inferred from the request.
      * @param {MavenAGI.UserDeleteRequest} request

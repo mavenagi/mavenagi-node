@@ -5,17 +5,17 @@ import * as core from "../../../../core";
 import type * as serializers from "../../../index";
 import { ServerEventBase } from "./ServerEventBase";
 
-export const UserFinishedSpeaking: core.serialization.ObjectSchema<
-    serializers.UserFinishedSpeaking.Raw,
-    MavenAGI.UserFinishedSpeaking
+export const VadSpeechStopped: core.serialization.ObjectSchema<
+    serializers.VadSpeechStopped.Raw,
+    MavenAGI.VadSpeechStopped
 > = core.serialization
     .object({
-        type: core.serialization.stringLiteral("user_finished_speaking"),
+        type: core.serialization.stringLiteral("vad_speech_stopped"),
     })
     .extend(ServerEventBase);
 
-export declare namespace UserFinishedSpeaking {
+export declare namespace VadSpeechStopped {
     export interface Raw extends ServerEventBase.Raw {
-        type: "user_finished_speaking";
+        type: "vad_speech_stopped";
     }
 }

@@ -4,18 +4,21 @@ import type * as MavenAGI from "../../../../api/index";
 import * as core from "../../../../core";
 import type * as serializers from "../../../index";
 import { ServerEventBase } from "./ServerEventBase";
+import { TranscriptRole } from "./TranscriptRole";
 
-export const UserTranscript: core.serialization.ObjectSchema<serializers.UserTranscript.Raw, MavenAGI.UserTranscript> =
+export const Transcript: core.serialization.ObjectSchema<serializers.Transcript.Raw, MavenAGI.Transcript> =
     core.serialization
         .object({
-            type: core.serialization.stringLiteral("user_transcript"),
+            type: core.serialization.stringLiteral("transcript"),
+            role: TranscriptRole,
             text: core.serialization.string(),
         })
         .extend(ServerEventBase);
 
-export declare namespace UserTranscript {
+export declare namespace Transcript {
     export interface Raw extends ServerEventBase.Raw {
-        type: "user_transcript";
+        type: "transcript";
+        role: TranscriptRole.Raw;
         text: string;
     }
 }

@@ -27,6 +27,8 @@ export class TranslationsClient {
     /**
      * Translate text from one language to another
      *
+     * <Note>**Required permission:** `ask:agent`</Note>
+     *
      * @param {MavenAGI.TranslationRequest} request
      * @param {TranslationsClient.RequestOptions} requestOptions - Request-specific configuration.
      *

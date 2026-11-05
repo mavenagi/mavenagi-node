@@ -4,32 +4,29 @@ import type * as MavenAGI from "../../../../../api/index";
 import * as core from "../../../../../core";
 import type * as serializers from "../../../../index";
 import { AgentAudioChunk } from "../../types/AgentAudioChunk";
-import { AgentTranscript } from "../../types/AgentTranscript";
-import { ConversationEnded } from "../../types/ConversationEnded";
 import { ConversationReady } from "../../types/ConversationReady";
 import { Error_ } from "../../types/Error_";
-import { UserFinishedSpeaking } from "../../types/UserFinishedSpeaking";
-import { UserStartedSpeaking } from "../../types/UserStartedSpeaking";
-import { UserTranscript } from "../../types/UserTranscript";
+import { Mark } from "../../types/Mark";
+import { Transcript } from "../../types/Transcript";
+import { VadSpeechStarted } from "../../types/VadSpeechStarted";
+import { VadSpeechStopped } from "../../types/VadSpeechStopped";
 
 export const VoiceConversationsSocketResponse: core.serialization.Schema<
     serializers.VoiceConversationsSocketResponse.Raw,
     | MavenAGI.ConversationReady
     | MavenAGI.AgentAudioChunk
-    | MavenAGI.UserTranscript
-    | MavenAGI.AgentTranscript
-    | MavenAGI.ConversationEnded
-    | MavenAGI.UserStartedSpeaking
-    | MavenAGI.UserFinishedSpeaking
+    | MavenAGI.Mark
+    | MavenAGI.Transcript
+    | MavenAGI.VadSpeechStarted
+    | MavenAGI.VadSpeechStopped
     | MavenAGI.Error_
 > = core.serialization.undiscriminatedUnion([
     ConversationReady,
     AgentAudioChunk,
-    UserTranscript,
-    AgentTranscript,
-    ConversationEnded,
-    UserStartedSpeaking,
-    UserFinishedSpeaking,
+    Mark,
+    Transcript,
+    VadSpeechStarted,
+    VadSpeechStopped,
     Error_,
 ]);
 
@@ -37,10 +34,9 @@ export declare namespace VoiceConversationsSocketResponse {
     export type Raw =
         | ConversationReady.Raw
         | AgentAudioChunk.Raw
-        | UserTranscript.Raw
-        | AgentTranscript.Raw
-        | ConversationEnded.Raw
-        | UserStartedSpeaking.Raw
-        | UserFinishedSpeaking.Raw
+        | Mark.Raw
+        | Transcript.Raw
+        | VadSpeechStarted.Raw
+        | VadSpeechStopped.Raw
         | Error_.Raw;
 }

@@ -40,6 +40,8 @@ export class IntelligentFieldsClient {
      * a different type, create a new field. A field deleted in the variant may be recreated
      * with any type.
      *
+     * <Note>**Required permission:** `edit:agents`</Note>
+     *
      * @param {MavenAGI.IntelligentFieldRequest} request
      * @param {IntelligentFieldsClient.RequestOptions} requestOptions - Request-specific configuration.
      *
@@ -202,6 +204,8 @@ export class IntelligentFieldsClient {
      *
      * Get an intelligent field by its supplied ID
      *
+     * <Note>**Required permission:** `read:agents`</Note>
+     *
      * @param {string} fieldReferenceId - The reference ID of the intelligent field to get. All other entity ID fields are inferred from the request.
      * @param {MavenAGI.IntelligentFieldGetRequest} request
      * @param {IntelligentFieldsClient.RequestOptions} requestOptions - Request-specific configuration.
@@ -354,6 +358,8 @@ export class IntelligentFieldsClient {
      * This is also how a field is activated and deactivated: set `status` to `ACTIVE` to
      * start evaluating it, or `INACTIVE` to stop. `name`, `entityType`, and `validationType`
      * cannot be changed after creation.
+     *
+     * <Note>**Required permission:** `edit:agents`</Note>
      *
      * @param {string} fieldReferenceId - The reference ID of the intelligent field to patch.
      * @param {MavenAGI.IntelligentFieldPatchRequest} request
@@ -518,6 +524,8 @@ export class IntelligentFieldsClient {
      *
      * Deleted fields cannot be modified.
      *
+     * <Note>**Required permission:** `edit:agents`</Note>
+     *
      * @param {string} fieldReferenceId - The reference ID of the intelligent field to delete.
      * @param {MavenAGI.IntelligentFieldDeleteRequest} request
      * @param {IntelligentFieldsClient.RequestOptions} requestOptions - Request-specific configuration.
@@ -670,6 +678,8 @@ export class IntelligentFieldsClient {
      *
      * Values only exist for fields that were ACTIVE when the entity was evaluated, so a
      * newly activated field returns nothing until evaluation has run.
+     *
+     * <Note>**Required permission:** `read:agents`</Note>
      *
      * @param {MavenAGI.IntelligentFieldValueSearchRequest} request
      * @param {IntelligentFieldsClient.RequestOptions} requestOptions - Request-specific configuration.

@@ -3,7 +3,7 @@
 import type * as MavenAGI from "../../../index";
 
 /**
- * Each version is one entry in the knowledge base's "Refresh Log" in Agent Designer.
+ * Each version is one entry in the knowledge base's "Version history" in Agent Designer.
  *
  * @example
  *     {
