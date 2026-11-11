@@ -4,6 +4,7 @@ import type * as MavenAGI from "../../../../api/index";
 import * as core from "../../../../core";
 import type * as serializers from "../../../index";
 import { VoiceTokenType } from "./VoiceTokenType";
+import { VoiceWebRtcTransport } from "./VoiceWebRtcTransport";
 
 export const VoiceSessionTokenRequest: core.serialization.ObjectSchema<
     serializers.VoiceSessionTokenRequest.Raw,
@@ -11,6 +12,7 @@ export const VoiceSessionTokenRequest: core.serialization.ObjectSchema<
 > = core.serialization.object({
     appUserId: core.serialization.string(),
     type: VoiceTokenType,
+    transport: VoiceWebRtcTransport.optional(),
     customData: core.serialization.record(core.serialization.string(), core.serialization.string()).optional(),
 });
 
@@ -18,6 +20,7 @@ export declare namespace VoiceSessionTokenRequest {
     export interface Raw {
         appUserId: string;
         type: VoiceTokenType.Raw;
+        transport?: VoiceWebRtcTransport.Raw | null;
         customData?: Record<string, string> | null;
     }
 }

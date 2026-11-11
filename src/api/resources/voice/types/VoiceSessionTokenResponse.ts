@@ -3,7 +3,11 @@
 import type * as MavenAGI from "../../../index";
 
 export interface VoiceSessionTokenResponse {
-    /** Opaque JWT session token. Pass this in the Authorization header when connecting. */
+    /**
+     * Opaque session token. Pass this in the Authorization header when connecting.
+     * For "websocket", the token is an ES256 JWT.
+     * For "webrtc", the token format depends on `transport`.
+     */
     token: string;
     /** The identity string associated with this token (echoes appUserId). */
     identity: string;
@@ -11,4 +15,10 @@ export interface VoiceSessionTokenResponse {
     type: MavenAGI.VoiceTokenType;
     /** Time in seconds until the token expires. */
     expiresIn: number;
+    /**
+     * The URL that starts a "webrtc" call through the Maven telephony gateway.
+     * The client sends `token` to this URL to start the call.
+     * Present only when the request sets `transport` to "gateway".
+     */
+    connectUrl?: string;
 }

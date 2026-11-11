@@ -17,7 +17,13 @@ describe("VoiceClient", () => {
             environment: server.baseUrl,
         });
         const rawRequestBody = { appUserId: "x", type: "webrtc" };
-        const rawResponseBody = { token: "token", identity: "identity", type: "webrtc", expiresIn: 1 };
+        const rawResponseBody = {
+            token: "token",
+            identity: "identity",
+            type: "webrtc",
+            expiresIn: 1,
+            connectUrl: "connectUrl",
+        };
 
         server
             .mockEndpoint()
@@ -37,6 +43,7 @@ describe("VoiceClient", () => {
             identity: "identity",
             type: "webrtc",
             expiresIn: 1,
+            connectUrl: "connectUrl",
         });
     });
 

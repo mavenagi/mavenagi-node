@@ -13,6 +13,7 @@ export const VoiceSessionTokenResponse: core.serialization.ObjectSchema<
     identity: core.serialization.string(),
     type: VoiceTokenType,
     expiresIn: core.serialization.number(),
+    connectUrl: core.serialization.string().optional(),
 });
 
 export declare namespace VoiceSessionTokenResponse {
@@ -21,5 +22,6 @@ export declare namespace VoiceSessionTokenResponse {
         identity: string;
         type: VoiceTokenType.Raw;
         expiresIn: number;
+        connectUrl?: string | null;
     }
 }

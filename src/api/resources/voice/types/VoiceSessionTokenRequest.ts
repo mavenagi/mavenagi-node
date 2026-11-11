@@ -11,9 +11,18 @@ export interface VoiceSessionTokenRequest {
     appUserId: string;
     /**
      * The type of session token to generate.
-     * Use "webrtc" for browser-based calls via Twilio, or "websocket" for direct WebSocket connections.
+     * Use "webrtc" for browser-based calls, or "websocket" for direct WebSocket connections.
+     * For "webrtc", `transport` selects the Maven telephony gateway (default) or Twilio.
      */
     type: MavenAGI.VoiceTokenType;
+    /**
+     * The transport for a "webrtc" call. Default: "gateway".
+     * - "gateway": the response `token` is a token for the Maven telephony gateway, and the response includes `connectUrl`.
+     * - "twilio": the response `token` is a Twilio access token.
+     *
+     * The server ignores this field for "websocket" tokens.
+     */
+    transport?: MavenAGI.VoiceWebRtcTransport;
     /**
      * Arbitrary key-value metadata to associate with this session (e.g., conversationId, topic).
      *
