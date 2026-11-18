@@ -11,6 +11,7 @@ import { IntelligentFieldPreconditionResponse } from "./IntelligentFieldPrecondi
 import { MetadataPrecondition } from "./MetadataPrecondition";
 import { ResponseConfigPrecondition } from "./ResponseConfigPrecondition";
 import { TagsPrecondition } from "./TagsPrecondition";
+import { TimePrecondition } from "./TimePrecondition";
 
 export const ConversationPreconditionResponse: core.serialization.Schema<
     serializers.ConversationPreconditionResponse.Raw,
@@ -25,6 +26,7 @@ export const ConversationPreconditionResponse: core.serialization.Schema<
         conversationState: ConversationStatePrecondition,
         conversationMode: ConversationModePrecondition,
         intelligentField: IntelligentFieldPreconditionResponse,
+        time: TimePrecondition,
     })
     .transform<MavenAGI.ConversationPreconditionResponse>({
         transform: (value) => value,
@@ -40,7 +42,8 @@ export declare namespace ConversationPreconditionResponse {
         | ConversationPreconditionResponse.App
         | ConversationPreconditionResponse.ConversationState
         | ConversationPreconditionResponse.ConversationMode
-        | ConversationPreconditionResponse.IntelligentField;
+        | ConversationPreconditionResponse.IntelligentField
+        | ConversationPreconditionResponse.Time;
 
     export interface Tags extends TagsPrecondition.Raw {
         conversationPreconditionType: "tags";
@@ -72,5 +75,9 @@ export declare namespace ConversationPreconditionResponse {
 
     export interface IntelligentField extends IntelligentFieldPreconditionResponse.Raw {
         conversationPreconditionType: "intelligentField";
+    }
+
+    export interface Time extends TimePrecondition.Raw {
+        conversationPreconditionType: "time";
     }
 }

@@ -4,6 +4,8 @@ import type * as MavenAGI from "../../../../api/index";
 import * as core from "../../../../core";
 import type * as serializers from "../../../index";
 import { ActionSimulationInput } from "./ActionSimulationInput";
+import { ConversationKickoffSimulationInput } from "./ConversationKickoffSimulationInput";
+import { TriggerSimulationInput } from "./TriggerSimulationInput";
 
 export const CapabilitySimulationInput: core.serialization.Schema<
     serializers.CapabilitySimulationInput.Raw,
@@ -11,6 +13,8 @@ export const CapabilitySimulationInput: core.serialization.Schema<
 > = core.serialization
     .union("capabilityType", {
         ACTION: ActionSimulationInput,
+        CONVERSATION_KICKOFF: ConversationKickoffSimulationInput,
+        TRIGGER: TriggerSimulationInput,
     })
     .transform<MavenAGI.CapabilitySimulationInput>({
         transform: (value) => value,
@@ -18,9 +22,20 @@ export const CapabilitySimulationInput: core.serialization.Schema<
     });
 
 export declare namespace CapabilitySimulationInput {
-    export type Raw = CapabilitySimulationInput.Action;
+    export type Raw =
+        | CapabilitySimulationInput.Action
+        | CapabilitySimulationInput.ConversationKickoff
+        | CapabilitySimulationInput.Trigger;
 
     export interface Action extends ActionSimulationInput.Raw {
         capabilityType: "ACTION";
+    }
+
+    export interface ConversationKickoff extends ConversationKickoffSimulationInput.Raw {
+        capabilityType: "CONVERSATION_KICKOFF";
+    }
+
+    export interface Trigger extends TriggerSimulationInput.Raw {
+        capabilityType: "TRIGGER";
     }
 }

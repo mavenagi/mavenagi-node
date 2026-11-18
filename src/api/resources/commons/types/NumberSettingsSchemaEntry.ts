@@ -2,7 +2,6 @@
 
 import type * as MavenAGI from "../../../index";
 
-export interface NumberSettingsSchemaEntry extends MavenAGI.SettingsSchemaEntryBase {
+export interface NumberSettingsSchemaEntry extends MavenAGI.ValidatedSettingsSchemaEntryBase {
     defaultValue?: number;
-    validation?: MavenAGI.SettingsSchemaValidation;
 }

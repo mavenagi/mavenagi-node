@@ -527,7 +527,7 @@ export class ConversationClient {
      * <Warning>This is a destructive operation and cannot be undone. <br/><br/>
      * What is wiped: the conversation's `subject` and `analysis.agentResponse` are cleared, and `analysis.userRequest` is replaced with `reason`.
      * Every message's text, from the user and the agent alike, is replaced with `reason`, and its attachments, follow-up questions, backend LLM prompt and history, the data actions returned, and action arguments are cleared.
-     * Evaluation results for the conversation are deleted, and the payloads recorded on its trigger and action executions are cleared. <br/><br/>
+     * Evaluation results for the conversation are deleted, the payloads recorded on its trigger and action executions are cleared, and the message recorded on each of its Conversation Kickoff executions is cleared. <br/><br/>
      * What is kept: the conversation's metadata, each message's charts, structured answer and app-supplied metadata, the conversation's intelligent field values, its feedback and events, and the users who took part. To wipe a user's data, use `DELETE /users/{userId}` or `DELETE /agentusers/{agentUserId}`.</Warning>
      *
      * <Note>**Required permission:** `delete:conversations`</Note>
@@ -1630,6 +1630,8 @@ export class ConversationClient {
      *
      * Adds metadata to an existing conversation. If a metadata field already exists, it will be overwritten.
      *
+     * When a metadata size limit is enforced for the agent, each entry may be at most 8,192 bytes by default, counting the key and value together, plus one byte, in UTF-8. A larger entry returns a 400 that names the key.
+     *
      * A closed conversation (`open` set to false) takes no new metadata and returns a 400.
      *
      * @param {string} conversationId - The ID of a conversation the metadata being added belongs to
@@ -2530,6 +2532,10 @@ export class ConversationClient {
      *
      * Deliver a message to a user or conversation.
      *
+     * Send `content` with `contentType: message` to deliver a message as written, or `contentType: ask`
+     * to have the agent take a `WELCOME` or `PROACTIVE` turn and deliver its reply. Either way the app
+     * that owns the conversation receives the message through its `handleMessage` hook.
+     *
      * A closed conversation (`open` set to false) takes no new messages and returns a 400.
      *
      * <Warning>
@@ -2552,21 +2558,43 @@ export class ConversationClient {
      *
      * @example
      *     await client.conversation.deliverMessage({
-     *         type: "user",
-     *         userId: {
-     *             type: "AGENT",
-     *             appId: "appId",
-     *             referenceId: "x"
+     *         type: "conversation",
+     *         conversationId: {
+     *             type: "CONVERSATION",
+     *             appId: "chat-app",
+     *             referenceId: "conversation-0"
      *         },
-     *         message: {
+     *         content: {
+     *             contentType: "message",
      *             conversationMessageId: {
-     *                 referenceId: "x"
+     *                 referenceId: "message-0"
      *             },
      *             userId: {
-     *                 referenceId: "x"
+     *                 referenceId: "human-agent-0"
      *             },
-     *             text: "text",
-     *             userMessageType: "USER"
+     *             text: "Hi, I'm Priya. I can help with your refund.",
+     *             userMessageType: "HUMAN_AGENT"
+     *         }
+     *     })
+     *
+     * @example
+     *     await client.conversation.deliverMessage({
+     *         type: "conversation",
+     *         conversationId: {
+     *             type: "CONVERSATION",
+     *             appId: "chat-app",
+     *             referenceId: "conversation-0"
+     *         },
+     *         content: {
+     *             contentType: "ask",
+     *             conversationMessageId: {
+     *                 referenceId: "message-1"
+     *             },
+     *             userId: {
+     *                 referenceId: "system-live-support"
+     *             },
+     *             type: "PROACTIVE",
+     *             text: "Tell the user their refund was approved."
      *         }
      *     })
      */

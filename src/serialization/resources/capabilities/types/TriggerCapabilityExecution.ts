@@ -3,27 +3,21 @@
 import type * as MavenAGI from "../../../../api/index";
 import * as core from "../../../../core";
 import type * as serializers from "../../../index";
-import { EventTriggerType } from "../../commons/types/EventTriggerType";
 import { CapabilityExecutionBase } from "./CapabilityExecutionBase";
-import { CapabilityExecutionRetryability } from "./CapabilityExecutionRetryability";
+import { TriggerRunDetails } from "./TriggerRunDetails";
 
 export const TriggerCapabilityExecution: core.serialization.ObjectSchema<
     serializers.TriggerCapabilityExecution.Raw,
     MavenAGI.TriggerCapabilityExecution
 > = core.serialization
     .object({
-        eventType: EventTriggerType,
         attempt: core.serialization.number(),
-        retryability: CapabilityExecutionRetryability.optional(),
-        httpStatus: core.serialization.number().optional(),
     })
-    .extend(CapabilityExecutionBase);
+    .extend(CapabilityExecutionBase)
+    .extend(TriggerRunDetails);
 
 export declare namespace TriggerCapabilityExecution {
-    export interface Raw extends CapabilityExecutionBase.Raw {
-        eventType: EventTriggerType.Raw;
+    export interface Raw extends CapabilityExecutionBase.Raw, TriggerRunDetails.Raw {
         attempt: number;
-        retryability?: CapabilityExecutionRetryability.Raw | null;
-        httpStatus?: number | null;
     }
 }

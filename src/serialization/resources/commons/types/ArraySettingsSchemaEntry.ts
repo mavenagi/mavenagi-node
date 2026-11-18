@@ -3,8 +3,7 @@
 import type * as MavenAGI from "../../../../api/index";
 import * as core from "../../../../core";
 import type * as serializers from "../../../index";
-import { SettingsSchemaEntryBase } from "./SettingsSchemaEntryBase";
-import { SettingsSchemaValidation } from "./SettingsSchemaValidation";
+import { ValidatedSettingsSchemaEntryBase } from "./ValidatedSettingsSchemaEntryBase";
 
 export const ArraySettingsSchemaEntry: core.serialization.ObjectSchema<
     serializers.ArraySettingsSchemaEntry.Raw,
@@ -12,13 +11,11 @@ export const ArraySettingsSchemaEntry: core.serialization.ObjectSchema<
 > = core.serialization
     .object({
         defaultValue: core.serialization.list(core.serialization.string()).optional(),
-        validation: SettingsSchemaValidation.optional(),
     })
-    .extend(SettingsSchemaEntryBase);
+    .extend(ValidatedSettingsSchemaEntryBase);
 
 export declare namespace ArraySettingsSchemaEntry {
-    export interface Raw extends SettingsSchemaEntryBase.Raw {
+    export interface Raw extends ValidatedSettingsSchemaEntryBase.Raw {
         defaultValue?: string[] | null;
-        validation?: SettingsSchemaValidation.Raw | null;
     }
 }

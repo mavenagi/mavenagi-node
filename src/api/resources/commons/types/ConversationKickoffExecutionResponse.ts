@@ -3,7 +3,7 @@
 import type * as MavenAGI from "../../../index";
 
 /**
- * A single persisted Conversation Kickoff execution result, with timing.
+ * One Conversation Kickoff execution result, with timing: one recorded when a conversation ran its kickoffs, or one from a simulation, which is not recorded.
  */
 export interface ConversationKickoffExecutionResponse {
     /** The kickoff config (external) id that ran. */

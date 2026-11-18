@@ -304,6 +304,8 @@ export class AppSettingsClient {
      *
      * Note that if an array value is provided it will fully replace an existing value as arrays cannot be merged.
      *
+     * Returns the full app settings after the merge, including keys that were not in the request. This is the same object that Get app settings returns.
+     *
      * @param {Record<string, unknown>} request
      * @param {AppSettingsClient.RequestOptions} requestOptions - Request-specific configuration.
      *

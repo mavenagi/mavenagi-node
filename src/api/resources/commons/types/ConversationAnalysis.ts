@@ -7,7 +7,11 @@ export interface ConversationAnalysis {
     userRequest?: string;
     /** Generated agent response summary of the conversation */
     agentResponse?: string;
-    /** Generated resolution status of the conversation */
+    /**
+     * Resolution status of the conversation. Code computes it from the messages, feedback,
+     * CSAT and inserts. The one AI input is the transcript summary, which can report a
+     * handoff and set `ESCALATED`. See `ResolutionStatus` for how each status is set.
+     */
     resolutionStatus?: MavenAGI.ResolutionStatus;
     /** Generated category of the conversation. For agents with a `categoryIntelligentFieldId`, this is that intelligent field's value. New agents without one have no category. */
     category?: string;
@@ -17,7 +21,11 @@ export interface ConversationAnalysis {
     quality?: MavenAGI.Quality;
     /** If the quality of the conversation is `UNKNOWN` or `NEEDS_IMPROVEMENT` then a reason for the quality will be provided when possible. */
     qualityReason?: MavenAGI.QualityReason;
-    /** Whether the conversation was resolved by Maven */
+    /**
+     * Whether the conversation was resolved by Maven: `true` exactly when `resolutionStatus`
+     * is `RESOLVED`. These are the conversations billed under resolution-based pricing, and
+     * the ones the `ELIGIBLE_AND_BILLABLE` billing status matches.
+     */
     resolvedByMaven?: boolean;
     /** Primary language of the conversation in ISO 639-1 code format */
     primaryLanguage?: string;

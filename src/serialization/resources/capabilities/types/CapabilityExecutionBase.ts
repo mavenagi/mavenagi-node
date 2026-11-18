@@ -4,37 +4,21 @@ import type * as MavenAGI from "../../../../api/index";
 import * as core from "../../../../core";
 import type * as serializers from "../../../index";
 import { EntityId } from "../../commons/types/EntityId";
-import { ExecutionMode } from "../../commons/types/ExecutionMode";
-import { CapabilityExecutionCompletionReason } from "./CapabilityExecutionCompletionReason";
-import { CapabilityExecutionStatus } from "./CapabilityExecutionStatus";
+import { CapabilityRunBase } from "./CapabilityRunBase";
 
 export const CapabilityExecutionBase: core.serialization.ObjectSchema<
     serializers.CapabilityExecutionBase.Raw,
     MavenAGI.CapabilityExecutionBase
-> = core.serialization.object({
-    capabilityId: EntityId,
-    subjectId: EntityId,
-    status: CapabilityExecutionStatus,
-    completionReason: CapabilityExecutionCompletionReason.optional(),
-    message: core.serialization.string().optional(),
-    startedAt: core.serialization.date(),
-    completedAt: core.serialization.date().optional(),
-    durationMs: core.serialization.number().optional(),
-    createdAt: core.serialization.date(),
-    executionMode: ExecutionMode,
-});
+> = core.serialization
+    .object({
+        subjectId: EntityId,
+        createdAt: core.serialization.date(),
+    })
+    .extend(CapabilityRunBase);
 
 export declare namespace CapabilityExecutionBase {
-    export interface Raw {
-        capabilityId: EntityId.Raw;
+    export interface Raw extends CapabilityRunBase.Raw {
         subjectId: EntityId.Raw;
-        status: CapabilityExecutionStatus.Raw;
-        completionReason?: CapabilityExecutionCompletionReason.Raw | null;
-        message?: string | null;
-        startedAt: string;
-        completedAt?: string | null;
-        durationMs?: number | null;
         createdAt: string;
-        executionMode: ExecutionMode.Raw;
     }
 }

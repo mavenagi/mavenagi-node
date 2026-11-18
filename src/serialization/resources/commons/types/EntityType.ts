@@ -34,6 +34,7 @@ export const EntityType: core.serialization.Schema<serializers.EntityType.Raw, M
         "SCENARIO_RUN",
         "FUNCTION",
         "FUNCTION_VERSION",
+        "MAVEN_USER",
     ]);
 
 export declare namespace EntityType {
@@ -65,5 +66,6 @@ export declare namespace EntityType {
         | "SCENARIO_SUITE"
         | "SCENARIO_RUN"
         | "FUNCTION"
-        | "FUNCTION_VERSION";
+        | "FUNCTION_VERSION"
+        | "MAVEN_USER";
 }

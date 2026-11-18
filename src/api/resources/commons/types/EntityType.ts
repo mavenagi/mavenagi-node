@@ -33,5 +33,9 @@ export const EntityType = {
     ScenarioRun: "SCENARIO_RUN",
     Function: "FUNCTION",
     FunctionVersion: "FUNCTION_VERSION",
+    /**
+     * In development. A person or a service account, identified above the organization level. No
+     * `EntityId` has this type: a mavenUser belongs to no organization or agent. */
+    MavenUser: "MAVEN_USER",
 } as const;
 export type EntityType = (typeof EntityType)[keyof typeof EntityType] | string;

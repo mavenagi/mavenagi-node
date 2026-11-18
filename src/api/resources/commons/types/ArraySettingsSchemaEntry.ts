@@ -2,7 +2,6 @@
 
 import type * as MavenAGI from "../../../index";
 
-export interface ArraySettingsSchemaEntry extends MavenAGI.SettingsSchemaEntryBase {
+export interface ArraySettingsSchemaEntry extends MavenAGI.ValidatedSettingsSchemaEntryBase {
     defaultValue?: string[];
-    validation?: MavenAGI.SettingsSchemaValidation;
 }

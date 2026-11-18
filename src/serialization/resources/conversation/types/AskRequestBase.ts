@@ -3,32 +3,18 @@
 import type * as MavenAGI from "../../../../api/index";
 import * as core from "../../../../core";
 import type * as serializers from "../../../index";
-import { AskType } from "../../commons/types/AskType";
-import { AttachmentRequest } from "../../commons/types/AttachmentRequest";
-import { EntityIdBase } from "../../commons/types/EntityIdBase";
 import { TextFormat } from "../../commons/types/TextFormat";
+import { AskRequestFields } from "./AskRequestFields";
 
 export const AskRequestBase: core.serialization.ObjectSchema<serializers.AskRequestBase.Raw, MavenAGI.AskRequestBase> =
-    core.serialization.object({
-        conversationMessageId: EntityIdBase,
-        type: AskType.optional(),
-        text: core.serialization.string().optional(),
-        textFormat: TextFormat.optional(),
-        attachments: core.serialization.list(AttachmentRequest).optional(),
-        transientData: core.serialization.record(core.serialization.string(), core.serialization.string()).optional(),
-        timezone: core.serialization.string().optional(),
-        appMetadata: core.serialization.record(core.serialization.string(), core.serialization.string()).optional(),
-    });
+    core.serialization
+        .object({
+            textFormat: TextFormat.optional(),
+        })
+        .extend(AskRequestFields);
 
 export declare namespace AskRequestBase {
-    export interface Raw {
-        conversationMessageId: EntityIdBase.Raw;
-        type?: AskType.Raw | null;
-        text?: string | null;
+    export interface Raw extends AskRequestFields.Raw {
         textFormat?: TextFormat.Raw | null;
-        attachments?: AttachmentRequest.Raw[] | null;
-        transientData?: Record<string, string> | null;
-        timezone?: string | null;
-        appMetadata?: Record<string, string> | null;
     }
 }

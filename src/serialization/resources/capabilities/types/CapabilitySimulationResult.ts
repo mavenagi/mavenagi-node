@@ -3,7 +3,9 @@
 import type * as MavenAGI from "../../../../api/index";
 import * as core from "../../../../core";
 import type * as serializers from "../../../index";
+import { ConversationKickoffExecutionResponse } from "../../commons/types/ConversationKickoffExecutionResponse";
 import { ExecuteActionResponse } from "../../commons/types/ExecuteActionResponse";
+import { TriggerSimulationResult } from "./TriggerSimulationResult";
 
 export const CapabilitySimulationResult: core.serialization.Schema<
     serializers.CapabilitySimulationResult.Raw,
@@ -11,6 +13,8 @@ export const CapabilitySimulationResult: core.serialization.Schema<
 > = core.serialization
     .union("capabilityType", {
         ACTION: ExecuteActionResponse,
+        CONVERSATION_KICKOFF: ConversationKickoffExecutionResponse,
+        TRIGGER: TriggerSimulationResult,
     })
     .transform<MavenAGI.CapabilitySimulationResult>({
         transform: (value) => value,
@@ -18,9 +22,20 @@ export const CapabilitySimulationResult: core.serialization.Schema<
     });
 
 export declare namespace CapabilitySimulationResult {
-    export type Raw = CapabilitySimulationResult.Action;
+    export type Raw =
+        | CapabilitySimulationResult.Action
+        | CapabilitySimulationResult.ConversationKickoff
+        | CapabilitySimulationResult.Trigger;
 
     export interface Action extends ExecuteActionResponse.Raw {
         capabilityType: "ACTION";
+    }
+
+    export interface ConversationKickoff extends ConversationKickoffExecutionResponse.Raw {
+        capabilityType: "CONVERSATION_KICKOFF";
+    }
+
+    export interface Trigger extends TriggerSimulationResult.Raw {
+        capabilityType: "TRIGGER";
     }
 }

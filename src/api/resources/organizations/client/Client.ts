@@ -589,8 +589,6 @@ export class OrganizationsClient {
     }
 
     /**
-     * @beta This endpoint is in development and may change.
-     *
      * Retrieves structured conversation data across all organizations, formatted as a table,
      * allowing users to group, filter, and define specific metrics to display as columns.
      *
@@ -764,8 +762,6 @@ export class OrganizationsClient {
     }
 
     /**
-     * @beta This endpoint is in development and may change.
-     *
      * Fetches conversation data across all organizations, visualized in a chart format.
      * Supported chart types include pie chart, date histogram, and stacked bar charts.
      *

@@ -2,9 +2,7 @@
 
 import type * as MavenAGI from "../../../index";
 
-export interface DeliverUserMessageRequest {
+export interface DeliverUserMessageRequest extends MavenAGI.DeliverMessageBase {
     /** The ID of the user to deliver the message to. */
     userId: MavenAGI.EntityIdWithoutAgent;
-    /** The message to deliver. */
-    message: MavenAGI.ConversationMessageRequest;
 }

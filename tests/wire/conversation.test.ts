@@ -7427,13 +7427,14 @@ describe("ConversationClient", () => {
             environment: server.baseUrl,
         });
         const rawRequestBody = {
-            type: "user",
-            userId: { type: "AGENT", appId: "appId", referenceId: "x" },
-            message: {
-                conversationMessageId: { referenceId: "x" },
-                userId: { referenceId: "x" },
-                text: "text",
-                userMessageType: "USER",
+            type: "conversation",
+            conversationId: { type: "CONVERSATION", appId: "chat-app", referenceId: "conversation-0" },
+            content: {
+                contentType: "message",
+                conversationMessageId: { referenceId: "message-0" },
+                userId: { referenceId: "human-agent-0" },
+                text: "Hi, I'm Priya. I can help with your refund.",
+                userMessageType: "HUMAN_AGENT",
             },
         };
         const rawResponseBody = { status: "DELIVERED" };
@@ -7448,21 +7449,22 @@ describe("ConversationClient", () => {
             .build();
 
         const response = await client.conversation.deliverMessage({
-            type: "user",
-            userId: {
-                type: "AGENT",
-                appId: "appId",
-                referenceId: "x",
+            type: "conversation",
+            conversationId: {
+                type: "CONVERSATION",
+                appId: "chat-app",
+                referenceId: "conversation-0",
             },
-            message: {
+            content: {
+                contentType: "message",
                 conversationMessageId: {
-                    referenceId: "x",
+                    referenceId: "message-0",
                 },
                 userId: {
-                    referenceId: "x",
+                    referenceId: "human-agent-0",
                 },
-                text: "text",
-                userMessageType: "USER",
+                text: "Hi, I'm Priya. I can help with your refund.",
+                userMessageType: "HUMAN_AGENT",
             },
         });
         expect(response).toEqual({
@@ -7482,15 +7484,63 @@ describe("ConversationClient", () => {
             environment: server.baseUrl,
         });
         const rawRequestBody = {
-            type: "user",
-            userId: { type: "AGENT", appId: "appId", referenceId: "x" },
-            message: {
-                conversationMessageId: { referenceId: "x" },
-                userId: { referenceId: "x" },
-                text: "text",
-                userMessageType: "USER",
+            type: "conversation",
+            conversationId: { type: "CONVERSATION", appId: "chat-app", referenceId: "conversation-0" },
+            content: {
+                contentType: "ask",
+                conversationMessageId: { referenceId: "message-1" },
+                userId: { referenceId: "system-live-support" },
+                type: "PROACTIVE",
+                text: "Tell the user their refund was approved.",
             },
         };
+        const rawResponseBody = { status: "DELIVERED" };
+
+        server
+            .mockEndpoint()
+            .post("/v1/conversations/deliver-message")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(200)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        const response = await client.conversation.deliverMessage({
+            type: "conversation",
+            conversationId: {
+                type: "CONVERSATION",
+                appId: "chat-app",
+                referenceId: "conversation-0",
+            },
+            content: {
+                contentType: "ask",
+                conversationMessageId: {
+                    referenceId: "message-1",
+                },
+                userId: {
+                    referenceId: "system-live-support",
+                },
+                type: "PROACTIVE",
+                text: "Tell the user their refund was approved.",
+            },
+        });
+        expect(response).toEqual({
+            status: "DELIVERED",
+        });
+    });
+
+    test("deliverMessage (3)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new MavenAGIClient({
+            maxRetries: 0,
+            token: "test",
+            appId: "test",
+            appSecret: "test",
+            organizationId: "test",
+            agentId: "test",
+            environment: server.baseUrl,
+        });
+        const rawRequestBody = { type: "user", userId: { type: "AGENT", appId: "appId", referenceId: "x" } };
         const rawResponseBody = {};
 
         server
@@ -7510,21 +7560,11 @@ describe("ConversationClient", () => {
                     appId: "appId",
                     referenceId: "x",
                 },
-                message: {
-                    conversationMessageId: {
-                        referenceId: "x",
-                    },
-                    userId: {
-                        referenceId: "x",
-                    },
-                    text: "text",
-                    userMessageType: "USER",
-                },
             });
         }).rejects.toThrow(MavenAGI.NotFoundError);
     });
 
-    test("deliverMessage (3)", async () => {
+    test("deliverMessage (4)", async () => {
         const server = mockServerPool.createServer();
         const client = new MavenAGIClient({
             maxRetries: 0,
@@ -7535,16 +7575,7 @@ describe("ConversationClient", () => {
             agentId: "test",
             environment: server.baseUrl,
         });
-        const rawRequestBody = {
-            type: "user",
-            userId: { type: "AGENT", appId: "appId", referenceId: "x" },
-            message: {
-                conversationMessageId: { referenceId: "x" },
-                userId: { referenceId: "x" },
-                text: "text",
-                userMessageType: "USER",
-            },
-        };
+        const rawRequestBody = { type: "user", userId: { type: "AGENT", appId: "appId", referenceId: "x" } };
         const rawResponseBody = {};
 
         server
@@ -7564,21 +7595,11 @@ describe("ConversationClient", () => {
                     appId: "appId",
                     referenceId: "x",
                 },
-                message: {
-                    conversationMessageId: {
-                        referenceId: "x",
-                    },
-                    userId: {
-                        referenceId: "x",
-                    },
-                    text: "text",
-                    userMessageType: "USER",
-                },
             });
         }).rejects.toThrow(MavenAGI.BadRequestError);
     });
 
-    test("deliverMessage (4)", async () => {
+    test("deliverMessage (5)", async () => {
         const server = mockServerPool.createServer();
         const client = new MavenAGIClient({
             maxRetries: 0,
@@ -7589,16 +7610,7 @@ describe("ConversationClient", () => {
             agentId: "test",
             environment: server.baseUrl,
         });
-        const rawRequestBody = {
-            type: "user",
-            userId: { type: "AGENT", appId: "appId", referenceId: "x" },
-            message: {
-                conversationMessageId: { referenceId: "x" },
-                userId: { referenceId: "x" },
-                text: "text",
-                userMessageType: "USER",
-            },
-        };
+        const rawRequestBody = { type: "user", userId: { type: "AGENT", appId: "appId", referenceId: "x" } };
         const rawResponseBody = {};
 
         server
@@ -7618,21 +7630,11 @@ describe("ConversationClient", () => {
                     appId: "appId",
                     referenceId: "x",
                 },
-                message: {
-                    conversationMessageId: {
-                        referenceId: "x",
-                    },
-                    userId: {
-                        referenceId: "x",
-                    },
-                    text: "text",
-                    userMessageType: "USER",
-                },
             });
         }).rejects.toThrow(MavenAGI.PayloadTooLargeError);
     });
 
-    test("deliverMessage (5)", async () => {
+    test("deliverMessage (6)", async () => {
         const server = mockServerPool.createServer();
         const client = new MavenAGIClient({
             maxRetries: 0,
@@ -7643,16 +7645,7 @@ describe("ConversationClient", () => {
             agentId: "test",
             environment: server.baseUrl,
         });
-        const rawRequestBody = {
-            type: "user",
-            userId: { type: "AGENT", appId: "appId", referenceId: "x" },
-            message: {
-                conversationMessageId: { referenceId: "x" },
-                userId: { referenceId: "x" },
-                text: "text",
-                userMessageType: "USER",
-            },
-        };
+        const rawRequestBody = { type: "user", userId: { type: "AGENT", appId: "appId", referenceId: "x" } };
         const rawResponseBody = {};
 
         server
@@ -7672,21 +7665,11 @@ describe("ConversationClient", () => {
                     appId: "appId",
                     referenceId: "x",
                 },
-                message: {
-                    conversationMessageId: {
-                        referenceId: "x",
-                    },
-                    userId: {
-                        referenceId: "x",
-                    },
-                    text: "text",
-                    userMessageType: "USER",
-                },
             });
         }).rejects.toThrow(MavenAGI.TooManyRequestsError);
     });
 
-    test("deliverMessage (6)", async () => {
+    test("deliverMessage (7)", async () => {
         const server = mockServerPool.createServer();
         const client = new MavenAGIClient({
             maxRetries: 0,
@@ -7697,16 +7680,7 @@ describe("ConversationClient", () => {
             agentId: "test",
             environment: server.baseUrl,
         });
-        const rawRequestBody = {
-            type: "user",
-            userId: { type: "AGENT", appId: "appId", referenceId: "x" },
-            message: {
-                conversationMessageId: { referenceId: "x" },
-                userId: { referenceId: "x" },
-                text: "text",
-                userMessageType: "USER",
-            },
-        };
+        const rawRequestBody = { type: "user", userId: { type: "AGENT", appId: "appId", referenceId: "x" } };
         const rawResponseBody = {};
 
         server
@@ -7725,16 +7699,6 @@ describe("ConversationClient", () => {
                     type: "AGENT",
                     appId: "appId",
                     referenceId: "x",
-                },
-                message: {
-                    conversationMessageId: {
-                        referenceId: "x",
-                    },
-                    userId: {
-                        referenceId: "x",
-                    },
-                    text: "text",
-                    userMessageType: "USER",
                 },
             });
         }).rejects.toThrow(MavenAGI.ServerError);

@@ -3,13 +3,24 @@
 import type * as MavenAGI from "../../../index";
 
 /**
- * What a capability is simulated with, by kind. Only actions can be simulated today; a variant
- * is added for each kind as it becomes simulation-aware.
+ * What a capability is simulated with, by kind. A variant is added for each kind as it becomes
+ * simulation-aware.
  */
-export type CapabilitySimulationInput = MavenAGI.CapabilitySimulationInput.Action;
+export type CapabilitySimulationInput =
+    | MavenAGI.CapabilitySimulationInput.Action
+    | MavenAGI.CapabilitySimulationInput.ConversationKickoff
+    | MavenAGI.CapabilitySimulationInput.Trigger;
 
 export namespace CapabilitySimulationInput {
     export interface Action extends MavenAGI.ActionSimulationInput {
         capabilityType: "ACTION";
+    }
+
+    export interface ConversationKickoff extends MavenAGI.ConversationKickoffSimulationInput {
+        capabilityType: "CONVERSATION_KICKOFF";
+    }
+
+    export interface Trigger extends MavenAGI.TriggerSimulationInput {
+        capabilityType: "TRIGGER";
     }
 }

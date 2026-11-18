@@ -82,19 +82,22 @@ export interface ConversationFilter {
     /** Filter by agent user IDs associated with the conversation. Shown in Agent Designer as "Users", where the user enters identifiers such as an email. */
     agentUserIds?: string[];
     /**
-     * Filter by conversation resolution status which is determined by AI based on the conversation content.
+     * Filter by conversation resolution status. Matches conversations with any of the listed
+     * statuses. See `ResolutionStatus` for how each status is set.
      *
      * When `resolutionStatus`, `resolvedByMaven`, and `billable` are combined in a single filter,
-     * precedence is applied in the following order: `resolutionStatus`, `resolvedByMaven`,
-     * and then `billable`.
+     * only the first one set is applied, in this order: `resolutionStatus`, `resolvedByMaven`,
+     * then `billable`. The others are ignored.
      */
     resolutionStatus?: MavenAGI.ResolutionStatus[];
     /**
-     * Filter conversations based on whether they were resolved by Maven AI.
+     * Filter conversations based on whether they were resolved by Maven. `true` is the same as
+     * `billable: [ELIGIBLE_AND_BILLABLE]` and `false` the same as
+     * `billable: [ELIGIBLE_AND_NOT_BILLABLE]`. Use `billable` or `resolutionStatus` instead.
      *
      * When `resolutionStatus`, `resolvedByMaven`, and `billable` are combined in a single filter,
-     * precedence is applied in the following order: `resolutionStatus`, `resolvedByMaven`,
-     * and then `billable`.
+     * only the first one set is applied, in this order: `resolutionStatus`, `resolvedByMaven`,
+     * then `billable`. The others are ignored.
      */
     resolvedByMaven?: boolean;
     /** Filter by the number of messages sent by the user in the conversation */
@@ -140,8 +143,8 @@ export interface ConversationFilter {
      * which means ELIGIBLE_AND_BILLABLE and ELIGIBLE_AND_NOT_BILLABLE.
      *
      * When `resolutionStatus`, `resolvedByMaven`, and `billable` are combined in a single filter,
-     * precedence is applied in the following order: `resolutionStatus`, `resolvedByMaven`,
-     * and then `billable`.
+     * only the first one set is applied, in this order: `resolutionStatus`, `resolvedByMaven`,
+     * then `billable`. The others are ignored.
      *
      * If billable is `null` or `[]` then defaults to all eligible conversations,
      * which means ELIGIBLE_AND_BILLABLE and ELIGIBLE_AND_NOT_BILLABLE.

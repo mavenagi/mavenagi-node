@@ -2,9 +2,10 @@
 
 import type * as MavenAGI from "../../../index";
 
-export interface CapabilityExecutionBase {
-    /** The capability that ran. */
-    capabilityId: MavenAGI.EntityId;
+/**
+ * A recorded run, with the subject it ran for.
+ */
+export interface CapabilityExecutionBase extends MavenAGI.CapabilityRunBase {
     /**
      * What it ran for: a conversation, inbox item or event. The same shape `subjectIds`
      * accepts, so it can be fed straight back in as a filter.
@@ -13,28 +14,6 @@ export interface CapabilityExecutionBase {
      * cannot filter on. Switch those triggers to `EVENT_CREATED`.
      */
     subjectId: MavenAGI.EntityId;
-    status: MavenAGI.CapabilityExecutionStatus;
-    /** Why the execution ended the way it did. Absent while RUNNING. */
-    completionReason?: MavenAGI.CapabilityExecutionCompletionReason;
-    /**
-     * Detail from the app, truncated. Cleared when the subject conversation is
-     * wiped.
-     */
-    message?: string;
-    /** When the execution began. */
-    startedAt: Date;
-    /** When it ended. Absent while RUNNING. */
-    completedAt?: Date;
-    /**
-     * End-to-end duration in milliseconds. Includes Maven's own work, so it is not purely the
-     * app's response time.
-     */
-    durationMs?: number;
     /** When the execution was recorded. Results are ordered by this field. */
     createdAt: Date;
-    /**
-     * Whether the execution ran on live data or in a simulation. A Conversation Kickoff takes
-     * its conversation's mode, and an Event Trigger its event's.
-     */
-    executionMode: MavenAGI.ExecutionMode;
 }

@@ -314,6 +314,10 @@ describe("AppDirectoryClient", () => {
                     type: "text",
                     defaultValue: "defaultValue",
                     validation: { pattern: "pattern", errorMessage: "errorMessage" },
+                    validations: [
+                        { pattern: "pattern", errorMessage: "errorMessage" },
+                        { pattern: "pattern", errorMessage: "errorMessage" },
+                    ],
                     key: "key",
                     displayName: "displayName",
                     description: "description",
@@ -324,6 +328,10 @@ describe("AppDirectoryClient", () => {
                     type: "text",
                     defaultValue: "defaultValue",
                     validation: { pattern: "pattern", errorMessage: "errorMessage" },
+                    validations: [
+                        { pattern: "pattern", errorMessage: "errorMessage" },
+                        { pattern: "pattern", errorMessage: "errorMessage" },
+                    ],
                     key: "key",
                     displayName: "displayName",
                     description: "description",
@@ -387,6 +395,16 @@ describe("AppDirectoryClient", () => {
                         pattern: "pattern",
                         errorMessage: "errorMessage",
                     },
+                    validations: [
+                        {
+                            pattern: "pattern",
+                            errorMessage: "errorMessage",
+                        },
+                        {
+                            pattern: "pattern",
+                            errorMessage: "errorMessage",
+                        },
+                    ],
                     key: "key",
                     displayName: "displayName",
                     description: "description",
@@ -400,6 +418,16 @@ describe("AppDirectoryClient", () => {
                         pattern: "pattern",
                         errorMessage: "errorMessage",
                     },
+                    validations: [
+                        {
+                            pattern: "pattern",
+                            errorMessage: "errorMessage",
+                        },
+                        {
+                            pattern: "pattern",
+                            errorMessage: "errorMessage",
+                        },
+                    ],
                     key: "key",
                     displayName: "displayName",
                     description: "description",

@@ -4,19 +4,19 @@ import type * as MavenAGI from "../../../../api/index";
 import * as core from "../../../../core";
 import type * as serializers from "../../../index";
 import { EntityIdWithoutAgent } from "../../commons/types/EntityIdWithoutAgent";
-import { ConversationMessageRequest } from "./ConversationMessageRequest";
+import { DeliverMessageBase } from "./DeliverMessageBase";
 
 export const DeliverUserMessageRequest: core.serialization.ObjectSchema<
     serializers.DeliverUserMessageRequest.Raw,
     MavenAGI.DeliverUserMessageRequest
-> = core.serialization.object({
-    userId: EntityIdWithoutAgent,
-    message: ConversationMessageRequest,
-});
+> = core.serialization
+    .object({
+        userId: EntityIdWithoutAgent,
+    })
+    .extend(DeliverMessageBase);
 
 export declare namespace DeliverUserMessageRequest {
-    export interface Raw {
+    export interface Raw extends DeliverMessageBase.Raw {
         userId: EntityIdWithoutAgent.Raw;
-        message: ConversationMessageRequest.Raw;
     }
 }

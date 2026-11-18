@@ -2,9 +2,7 @@
 
 import type * as MavenAGI from "../../../index";
 
-export interface DeliverConversationMessageRequest {
+export interface DeliverConversationMessageRequest extends MavenAGI.DeliverMessageBase {
     /** The ID of the conversation to deliver the message to. Message delivery will fail if the conversation does not have the `ASYNC` capability, and a closed conversation (`open` set to false) returns a 400. */
     conversationId: MavenAGI.EntityIdWithoutAgent;
-    /** The message to deliver. */
-    message: MavenAGI.ConversationMessageRequest;
 }

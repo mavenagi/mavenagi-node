@@ -5,23 +5,7 @@ import type * as MavenAGI from "../../../index";
 /**
  * An ask without the user who asks, for endpoints that take the user from the caller's credentials.
  */
-export interface AskRequestBase {
-    /** Externally supplied ID to uniquely identify this message within the conversation. If a message with this ID already exists it will be reused and will not be updated. */
-    conversationMessageId: MavenAGI.EntityIdBase;
-    /**
-     * What prompts this assistant response. Omit (or send USER_MESSAGE) for a normal user
-     * question — this is the backwards-compatible default. Use WELCOME for an agent-authored
-     * opener, or PROACTIVE for a message the user did not prompt.
-     */
-    type?: MavenAGI.AskType;
-    /**
-     * For USER_MESSAGE (the default) this is the user's message, in the user's own words, and
-     * is required. For WELCOME and PROACTIVE it is optional and, when provided, steers the
-     * agent's response (a directive to the agent, not the user's own words). (Changed from
-     * required to optional to support the non-user ask types — existing USER_MESSAGE callers
-     * are unaffected.)
-     */
-    text?: string;
+export interface AskRequestBase extends MavenAGI.AskRequestFields {
     /**
      * What form the answer takes. Omit it for prose, or send `jsonSchema` to additionally get a
      * `BotObjectResponse` matching a schema you supply.
@@ -49,22 +33,4 @@ export interface AskRequestBase {
      * nothing to shape into the requested schema — the round returns the manual as `text` alone.
      */
     textFormat?: MavenAGI.TextFormat;
-    /**
-     * The attachments to the message. Image attachments will be sent to the LLM as additional data.
-     * Non-image attachments can be stored and downloaded from the API but will not be sent to the LLM.
-     */
-    attachments?: MavenAGI.AttachmentRequest[];
-    /** Transient data which the Maven platform will not persist. This data will only be forwarded to actions taken by this ask request. For example, one may put in user tokens as transient data. */
-    transientData?: Record<string, string>;
-    /** IANA timezone identifier (e.g. "America/New_York", "Europe/London") to be used for time-based operations in the conversation. */
-    timezone?: string;
-    /**
-     * Key-value metadata to persist on the user message created by this request. Unlike
-     * `transientData` (which is never persisted) this is stored and returned when the message
-     * is read back via the API or dashboard, and unlike user data it is not sent to the LLM.
-     * Applied only when the message is first created — if `conversationMessageId` already
-     * exists the message is reused and its metadata is not updated. Keys and values are strings
-     * with a maximum length of 500 characters each.
-     */
-    appMetadata?: Record<string, string>;
 }

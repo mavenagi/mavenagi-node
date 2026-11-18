@@ -5,10 +5,21 @@ import type * as MavenAGI from "../../../index";
 /**
  * What one simulated run of a capability produced, by kind.
  */
-export type CapabilitySimulationResult = MavenAGI.CapabilitySimulationResult.Action;
+export type CapabilitySimulationResult =
+    | MavenAGI.CapabilitySimulationResult.Action
+    | MavenAGI.CapabilitySimulationResult.ConversationKickoff
+    | MavenAGI.CapabilitySimulationResult.Trigger;
 
 export namespace CapabilitySimulationResult {
     export interface Action extends MavenAGI.ExecuteActionResponse {
         capabilityType: "ACTION";
+    }
+
+    export interface ConversationKickoff extends MavenAGI.ConversationKickoffExecutionResponse {
+        capabilityType: "CONVERSATION_KICKOFF";
+    }
+
+    export interface Trigger extends MavenAGI.TriggerSimulationResult {
+        capabilityType: "TRIGGER";
     }
 }

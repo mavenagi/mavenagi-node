@@ -2,7 +2,6 @@
 
 import type * as MavenAGI from "../../../index";
 
-export interface ColorSettingsSchemaEntry extends MavenAGI.SettingsSchemaEntryBase {
+export interface ColorSettingsSchemaEntry extends MavenAGI.ValidatedSettingsSchemaEntryBase {
     defaultValue?: string;
-    validation?: MavenAGI.SettingsSchemaValidation;
 }
