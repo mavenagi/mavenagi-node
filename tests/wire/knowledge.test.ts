@@ -2448,6 +2448,20 @@ describe("KnowledgeClient", () => {
                     progress: { message: "message", completedCount: 1000000, totalCount: 1000000 },
                     documentDeltas: { addedCount: 1000000, updatedCount: 1000000, removedCount: 1000000 },
                     type: "FULL",
+                    functionVersions: {
+                        fetchMetadata: {
+                            functionId: { type: "AGENT", appId: "appId", referenceId: "x" },
+                            versionId: { type: "AGENT", appId: "appId", referenceId: "x" },
+                        },
+                        fetchDocuments: {
+                            functionId: { type: "AGENT", appId: "appId", referenceId: "x" },
+                            versionId: { type: "AGENT", appId: "appId", referenceId: "x" },
+                        },
+                        convertDocuments: {
+                            functionId: { type: "AGENT", appId: "appId", referenceId: "x" },
+                            versionId: { type: "AGENT", appId: "appId", referenceId: "x" },
+                        },
+                    },
                 },
                 {
                     versionId: {
@@ -2477,6 +2491,20 @@ describe("KnowledgeClient", () => {
                     progress: { message: "message", completedCount: 1000000, totalCount: 1000000 },
                     documentDeltas: { addedCount: 1000000, updatedCount: 1000000, removedCount: 1000000 },
                     type: "FULL",
+                    functionVersions: {
+                        fetchMetadata: {
+                            functionId: { type: "AGENT", appId: "appId", referenceId: "x" },
+                            versionId: { type: "AGENT", appId: "appId", referenceId: "x" },
+                        },
+                        fetchDocuments: {
+                            functionId: { type: "AGENT", appId: "appId", referenceId: "x" },
+                            versionId: { type: "AGENT", appId: "appId", referenceId: "x" },
+                        },
+                        convertDocuments: {
+                            functionId: { type: "AGENT", appId: "appId", referenceId: "x" },
+                            versionId: { type: "AGENT", appId: "appId", referenceId: "x" },
+                        },
+                    },
                 },
             ],
         };
@@ -2528,6 +2556,44 @@ describe("KnowledgeClient", () => {
                         removedCount: 1000000,
                     },
                     type: "FULL",
+                    functionVersions: {
+                        fetchMetadata: {
+                            functionId: {
+                                type: "AGENT",
+                                appId: "appId",
+                                referenceId: "x",
+                            },
+                            versionId: {
+                                type: "AGENT",
+                                appId: "appId",
+                                referenceId: "x",
+                            },
+                        },
+                        fetchDocuments: {
+                            functionId: {
+                                type: "AGENT",
+                                appId: "appId",
+                                referenceId: "x",
+                            },
+                            versionId: {
+                                type: "AGENT",
+                                appId: "appId",
+                                referenceId: "x",
+                            },
+                        },
+                        convertDocuments: {
+                            functionId: {
+                                type: "AGENT",
+                                appId: "appId",
+                                referenceId: "x",
+                            },
+                            versionId: {
+                                type: "AGENT",
+                                appId: "appId",
+                                referenceId: "x",
+                            },
+                        },
+                    },
                 },
                 {
                     versionId: {
@@ -2565,6 +2631,44 @@ describe("KnowledgeClient", () => {
                         removedCount: 1000000,
                     },
                     type: "FULL",
+                    functionVersions: {
+                        fetchMetadata: {
+                            functionId: {
+                                type: "AGENT",
+                                appId: "appId",
+                                referenceId: "x",
+                            },
+                            versionId: {
+                                type: "AGENT",
+                                appId: "appId",
+                                referenceId: "x",
+                            },
+                        },
+                        fetchDocuments: {
+                            functionId: {
+                                type: "AGENT",
+                                appId: "appId",
+                                referenceId: "x",
+                            },
+                            versionId: {
+                                type: "AGENT",
+                                appId: "appId",
+                                referenceId: "x",
+                            },
+                        },
+                        convertDocuments: {
+                            functionId: {
+                                type: "AGENT",
+                                appId: "appId",
+                                referenceId: "x",
+                            },
+                            versionId: {
+                                type: "AGENT",
+                                appId: "appId",
+                                referenceId: "x",
+                            },
+                        },
+                    },
                 },
             ],
         });

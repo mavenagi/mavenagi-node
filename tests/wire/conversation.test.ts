@@ -25,6 +25,7 @@ describe("ConversationClient", () => {
                 agentId: "support",
                 type: "CONVERSATION",
             },
+            audience: { type: "allUsers" },
             deleted: false,
             open: true,
             llmEnabled: true,
@@ -78,6 +79,9 @@ describe("ConversationClient", () => {
                 organizationId: "acme",
                 agentId: "support",
                 type: "CONVERSATION",
+            },
+            audience: {
+                type: "allUsers",
             },
             deleted: false,
             open: true,
@@ -152,6 +156,7 @@ describe("ConversationClient", () => {
                 agentId: "support",
                 type: "CONVERSATION",
             },
+            audience: { type: "allUsers" },
             deleted: false,
             open: true,
             llmEnabled: true,
@@ -236,6 +241,9 @@ describe("ConversationClient", () => {
                 organizationId: "acme",
                 agentId: "support",
                 type: "CONVERSATION",
+            },
+            audience: {
+                type: "allUsers",
             },
             deleted: false,
             open: true,
@@ -639,6 +647,7 @@ describe("ConversationClient", () => {
                 agentId: "support",
                 type: "CONVERSATION",
             },
+            audience: { type: "allUsers" },
             deleted: false,
             open: false,
             llmEnabled: true,
@@ -725,6 +734,9 @@ describe("ConversationClient", () => {
                 organizationId: "acme",
                 agentId: "support",
                 type: "CONVERSATION",
+            },
+            audience: {
+                type: "allUsers",
             },
             deleted: false,
             open: false,
@@ -1019,6 +1031,7 @@ describe("ConversationClient", () => {
                 { url: "url", sizeBytes: 1000000, status: "PENDING", type: "type", name: "name" },
                 { url: "url", sizeBytes: 1000000, status: "PENDING", type: "type", name: "name" },
             ],
+            audience: { type: "allUsers" },
             responseConfig: {
                 capabilities: ["MARKDOWN", "MARKDOWN"],
                 isCopilot: true,
@@ -1170,6 +1183,7 @@ describe("ConversationClient", () => {
                         actionId: { type: "AGENT", appId: "appId", referenceId: "x" },
                         behavior: {
                             type: "fixedResponse",
+                            effects: { conversationMetadata: {}, userData: {} },
                             response: "response",
                             data: { data: { key: "value" } },
                             status: "SUCCESS",
@@ -1180,6 +1194,7 @@ describe("ConversationClient", () => {
                         actionId: { type: "AGENT", appId: "appId", referenceId: "x" },
                         behavior: {
                             type: "fixedResponse",
+                            effects: { conversationMetadata: {}, userData: {} },
                             response: "response",
                             data: { data: { key: "value" } },
                             status: "SUCCESS",
@@ -1189,6 +1204,10 @@ describe("ConversationClient", () => {
                 ],
                 defaultActionBehavior: {
                     type: "fixedResponse",
+                    effects: {
+                        conversationMetadata: { conversationMetadata: "conversationMetadata" },
+                        userData: { data: {}, removeKeys: [] },
+                    },
                     response: "response",
                     data: { data: { key: "value" } },
                     status: "SUCCESS",
@@ -1336,6 +1355,9 @@ describe("ConversationClient", () => {
                     name: "name",
                 },
             ],
+            audience: {
+                type: "allUsers",
+            },
             responseConfig: {
                 capabilities: ["MARKDOWN", "MARKDOWN"],
                 isCopilot: true,
@@ -1529,6 +1551,10 @@ describe("ConversationClient", () => {
                         },
                         behavior: {
                             type: "fixedResponse",
+                            effects: {
+                                conversationMetadata: {},
+                                userData: {},
+                            },
                             response: "response",
                             data: {
                                 data: {
@@ -1547,6 +1573,10 @@ describe("ConversationClient", () => {
                         },
                         behavior: {
                             type: "fixedResponse",
+                            effects: {
+                                conversationMetadata: {},
+                                userData: {},
+                            },
                             response: "response",
                             data: {
                                 data: {
@@ -1560,6 +1590,15 @@ describe("ConversationClient", () => {
                 ],
                 defaultActionBehavior: {
                     type: "fixedResponse",
+                    effects: {
+                        conversationMetadata: {
+                            conversationMetadata: "conversationMetadata",
+                        },
+                        userData: {
+                            data: {},
+                            removeKeys: [],
+                        },
+                    },
                     response: "response",
                     data: {
                         data: {
@@ -1984,6 +2023,7 @@ describe("ConversationClient", () => {
                 { url: "url", sizeBytes: 1000000, status: "PENDING", type: "type", name: "name" },
                 { url: "url", sizeBytes: 1000000, status: "PENDING", type: "type", name: "name" },
             ],
+            audience: { type: "allUsers" },
             responseConfig: {
                 capabilities: ["MARKDOWN", "MARKDOWN"],
                 isCopilot: true,
@@ -2135,6 +2175,7 @@ describe("ConversationClient", () => {
                         actionId: { type: "AGENT", appId: "appId", referenceId: "x" },
                         behavior: {
                             type: "fixedResponse",
+                            effects: { conversationMetadata: {}, userData: {} },
                             response: "response",
                             data: { data: { key: "value" } },
                             status: "SUCCESS",
@@ -2145,6 +2186,7 @@ describe("ConversationClient", () => {
                         actionId: { type: "AGENT", appId: "appId", referenceId: "x" },
                         behavior: {
                             type: "fixedResponse",
+                            effects: { conversationMetadata: {}, userData: {} },
                             response: "response",
                             data: { data: { key: "value" } },
                             status: "SUCCESS",
@@ -2154,6 +2196,10 @@ describe("ConversationClient", () => {
                 ],
                 defaultActionBehavior: {
                     type: "fixedResponse",
+                    effects: {
+                        conversationMetadata: { conversationMetadata: "conversationMetadata" },
+                        userData: { data: {}, removeKeys: [] },
+                    },
                     response: "response",
                     data: { data: { key: "value" } },
                     status: "SUCCESS",
@@ -2323,6 +2369,9 @@ describe("ConversationClient", () => {
                     name: "name",
                 },
             ],
+            audience: {
+                type: "allUsers",
+            },
             responseConfig: {
                 capabilities: ["MARKDOWN", "MARKDOWN"],
                 isCopilot: true,
@@ -2516,6 +2565,10 @@ describe("ConversationClient", () => {
                         },
                         behavior: {
                             type: "fixedResponse",
+                            effects: {
+                                conversationMetadata: {},
+                                userData: {},
+                            },
                             response: "response",
                             data: {
                                 data: {
@@ -2534,6 +2587,10 @@ describe("ConversationClient", () => {
                         },
                         behavior: {
                             type: "fixedResponse",
+                            effects: {
+                                conversationMetadata: {},
+                                userData: {},
+                            },
                             response: "response",
                             data: {
                                 data: {
@@ -2547,6 +2604,15 @@ describe("ConversationClient", () => {
                 ],
                 defaultActionBehavior: {
                     type: "fixedResponse",
+                    effects: {
+                        conversationMetadata: {
+                            conversationMetadata: "conversationMetadata",
+                        },
+                        userData: {
+                            data: {},
+                            removeKeys: [],
+                        },
+                    },
                     response: "response",
                     data: {
                         data: {
@@ -2924,6 +2990,7 @@ describe("ConversationClient", () => {
                 agentId: "support",
                 type: "CONVERSATION",
             },
+            audience: { type: "allUsers" },
             deleted: false,
             open: false,
             llmEnabled: true,
@@ -3027,6 +3094,9 @@ describe("ConversationClient", () => {
                 organizationId: "acme",
                 agentId: "support",
                 type: "CONVERSATION",
+            },
+            audience: {
+                type: "allUsers",
             },
             deleted: false,
             open: false,
@@ -4125,6 +4195,7 @@ describe("ConversationClient", () => {
                 { url: "url", sizeBytes: 1000000, status: "PENDING", type: "type", name: "name" },
                 { url: "url", sizeBytes: 1000000, status: "PENDING", type: "type", name: "name" },
             ],
+            audience: { type: "allUsers" },
             responseConfig: {
                 capabilities: ["MARKDOWN", "MARKDOWN"],
                 isCopilot: true,
@@ -4276,6 +4347,7 @@ describe("ConversationClient", () => {
                         actionId: { type: "AGENT", appId: "appId", referenceId: "x" },
                         behavior: {
                             type: "fixedResponse",
+                            effects: { conversationMetadata: {}, userData: {} },
                             response: "response",
                             data: { data: { key: "value" } },
                             status: "SUCCESS",
@@ -4286,6 +4358,7 @@ describe("ConversationClient", () => {
                         actionId: { type: "AGENT", appId: "appId", referenceId: "x" },
                         behavior: {
                             type: "fixedResponse",
+                            effects: { conversationMetadata: {}, userData: {} },
                             response: "response",
                             data: { data: { key: "value" } },
                             status: "SUCCESS",
@@ -4295,6 +4368,10 @@ describe("ConversationClient", () => {
                 ],
                 defaultActionBehavior: {
                     type: "fixedResponse",
+                    effects: {
+                        conversationMetadata: { conversationMetadata: "conversationMetadata" },
+                        userData: { data: {}, removeKeys: [] },
+                    },
                     response: "response",
                     data: { data: { key: "value" } },
                     status: "SUCCESS",
@@ -4450,6 +4527,9 @@ describe("ConversationClient", () => {
                     name: "name",
                 },
             ],
+            audience: {
+                type: "allUsers",
+            },
             responseConfig: {
                 capabilities: ["MARKDOWN", "MARKDOWN"],
                 isCopilot: true,
@@ -4643,6 +4723,10 @@ describe("ConversationClient", () => {
                         },
                         behavior: {
                             type: "fixedResponse",
+                            effects: {
+                                conversationMetadata: {},
+                                userData: {},
+                            },
                             response: "response",
                             data: {
                                 data: {
@@ -4661,6 +4745,10 @@ describe("ConversationClient", () => {
                         },
                         behavior: {
                             type: "fixedResponse",
+                            effects: {
+                                conversationMetadata: {},
+                                userData: {},
+                            },
                             response: "response",
                             data: {
                                 data: {
@@ -4674,6 +4762,15 @@ describe("ConversationClient", () => {
                 ],
                 defaultActionBehavior: {
                     type: "fixedResponse",
+                    effects: {
+                        conversationMetadata: {
+                            conversationMetadata: "conversationMetadata",
+                        },
+                        userData: {
+                            data: {},
+                            removeKeys: [],
+                        },
+                    },
                     response: "response",
                     data: {
                         data: {
@@ -5432,6 +5529,7 @@ describe("ConversationClient", () => {
                                 actionId: { type: "AGENT", appId: "appId", referenceId: "x" },
                                 behavior: {
                                     type: "fixedResponse",
+                                    effects: {},
                                     response: "response",
                                     data: {},
                                     status: "SUCCESS",
@@ -5442,6 +5540,7 @@ describe("ConversationClient", () => {
                                 actionId: { type: "AGENT", appId: "appId", referenceId: "x" },
                                 behavior: {
                                     type: "fixedResponse",
+                                    effects: {},
                                     response: "response",
                                     data: {},
                                     status: "SUCCESS",
@@ -5451,6 +5550,7 @@ describe("ConversationClient", () => {
                         ],
                         defaultActionBehavior: {
                             type: "fixedResponse",
+                            effects: { conversationMetadata: {}, userData: {} },
                             response: "response",
                             data: { data: { key: "value" } },
                             status: "SUCCESS",
@@ -5630,6 +5730,7 @@ describe("ConversationClient", () => {
                                 actionId: { type: "AGENT", appId: "appId", referenceId: "x" },
                                 behavior: {
                                     type: "fixedResponse",
+                                    effects: {},
                                     response: "response",
                                     data: {},
                                     status: "SUCCESS",
@@ -5640,6 +5741,7 @@ describe("ConversationClient", () => {
                                 actionId: { type: "AGENT", appId: "appId", referenceId: "x" },
                                 behavior: {
                                     type: "fixedResponse",
+                                    effects: {},
                                     response: "response",
                                     data: {},
                                     status: "SUCCESS",
@@ -5649,6 +5751,7 @@ describe("ConversationClient", () => {
                         ],
                         defaultActionBehavior: {
                             type: "fixedResponse",
+                            effects: { conversationMetadata: {}, userData: {} },
                             response: "response",
                             data: { data: { key: "value" } },
                             status: "SUCCESS",
@@ -5889,6 +5992,7 @@ describe("ConversationClient", () => {
                                 },
                                 behavior: {
                                     type: "fixedResponse",
+                                    effects: {},
                                     response: "response",
                                     data: {},
                                     status: "SUCCESS",
@@ -5903,6 +6007,7 @@ describe("ConversationClient", () => {
                                 },
                                 behavior: {
                                     type: "fixedResponse",
+                                    effects: {},
                                     response: "response",
                                     data: {},
                                     status: "SUCCESS",
@@ -5912,6 +6017,10 @@ describe("ConversationClient", () => {
                         ],
                         defaultActionBehavior: {
                             type: "fixedResponse",
+                            effects: {
+                                conversationMetadata: {},
+                                userData: {},
+                            },
                             response: "response",
                             data: {
                                 data: {
@@ -6137,6 +6246,7 @@ describe("ConversationClient", () => {
                                 },
                                 behavior: {
                                     type: "fixedResponse",
+                                    effects: {},
                                     response: "response",
                                     data: {},
                                     status: "SUCCESS",
@@ -6151,6 +6261,7 @@ describe("ConversationClient", () => {
                                 },
                                 behavior: {
                                     type: "fixedResponse",
+                                    effects: {},
                                     response: "response",
                                     data: {},
                                     status: "SUCCESS",
@@ -6160,6 +6271,10 @@ describe("ConversationClient", () => {
                         ],
                         defaultActionBehavior: {
                             type: "fixedResponse",
+                            effects: {
+                                conversationMetadata: {},
+                                userData: {},
+                            },
                             response: "response",
                             data: {
                                 data: {
@@ -6505,6 +6620,7 @@ describe("ConversationClient", () => {
                                 actionId: { type: "AGENT", appId: "appId", referenceId: "x" },
                                 behavior: {
                                     type: "fixedResponse",
+                                    effects: {},
                                     response: "response",
                                     data: {},
                                     status: "SUCCESS",
@@ -6515,6 +6631,7 @@ describe("ConversationClient", () => {
                                 actionId: { type: "AGENT", appId: "appId", referenceId: "x" },
                                 behavior: {
                                     type: "fixedResponse",
+                                    effects: {},
                                     response: "response",
                                     data: {},
                                     status: "SUCCESS",
@@ -6524,6 +6641,7 @@ describe("ConversationClient", () => {
                         ],
                         defaultActionBehavior: {
                             type: "fixedResponse",
+                            effects: { conversationMetadata: {}, userData: {} },
                             response: "response",
                             data: { data: { key: "value" } },
                             status: "SUCCESS",
@@ -6703,6 +6821,7 @@ describe("ConversationClient", () => {
                                 actionId: { type: "AGENT", appId: "appId", referenceId: "x" },
                                 behavior: {
                                     type: "fixedResponse",
+                                    effects: {},
                                     response: "response",
                                     data: {},
                                     status: "SUCCESS",
@@ -6713,6 +6832,7 @@ describe("ConversationClient", () => {
                                 actionId: { type: "AGENT", appId: "appId", referenceId: "x" },
                                 behavior: {
                                     type: "fixedResponse",
+                                    effects: {},
                                     response: "response",
                                     data: {},
                                     status: "SUCCESS",
@@ -6722,6 +6842,7 @@ describe("ConversationClient", () => {
                         ],
                         defaultActionBehavior: {
                             type: "fixedResponse",
+                            effects: { conversationMetadata: {}, userData: {} },
                             response: "response",
                             data: { data: { key: "value" } },
                             status: "SUCCESS",
@@ -6960,6 +7081,7 @@ describe("ConversationClient", () => {
                                 },
                                 behavior: {
                                     type: "fixedResponse",
+                                    effects: {},
                                     response: "response",
                                     data: {},
                                     status: "SUCCESS",
@@ -6974,6 +7096,7 @@ describe("ConversationClient", () => {
                                 },
                                 behavior: {
                                     type: "fixedResponse",
+                                    effects: {},
                                     response: "response",
                                     data: {},
                                     status: "SUCCESS",
@@ -6983,6 +7106,10 @@ describe("ConversationClient", () => {
                         ],
                         defaultActionBehavior: {
                             type: "fixedResponse",
+                            effects: {
+                                conversationMetadata: {},
+                                userData: {},
+                            },
                             response: "response",
                             data: {
                                 data: {
@@ -7208,6 +7335,7 @@ describe("ConversationClient", () => {
                                 },
                                 behavior: {
                                     type: "fixedResponse",
+                                    effects: {},
                                     response: "response",
                                     data: {},
                                     status: "SUCCESS",
@@ -7222,6 +7350,7 @@ describe("ConversationClient", () => {
                                 },
                                 behavior: {
                                     type: "fixedResponse",
+                                    effects: {},
                                     response: "response",
                                     data: {},
                                     status: "SUCCESS",
@@ -7231,6 +7360,10 @@ describe("ConversationClient", () => {
                         ],
                         defaultActionBehavior: {
                             type: "fixedResponse",
+                            effects: {
+                                conversationMetadata: {},
+                                userData: {},
+                            },
                             response: "response",
                             data: {
                                 data: {
@@ -7437,7 +7570,16 @@ describe("ConversationClient", () => {
                 userMessageType: "HUMAN_AGENT",
             },
         };
-        const rawResponseBody = { status: "DELIVERED" };
+        const rawResponseBody = {
+            status: "DELIVERED",
+            conversationId: {
+                type: "CONVERSATION",
+                appId: "chat-app",
+                referenceId: "conversation-0",
+                organizationId: "acme",
+                agentId: "support",
+            },
+        };
 
         server
             .mockEndpoint()
@@ -7469,6 +7611,13 @@ describe("ConversationClient", () => {
         });
         expect(response).toEqual({
             status: "DELIVERED",
+            conversationId: {
+                type: "CONVERSATION",
+                appId: "chat-app",
+                referenceId: "conversation-0",
+                organizationId: "acme",
+                agentId: "support",
+            },
         });
     });
 
@@ -7494,7 +7643,16 @@ describe("ConversationClient", () => {
                 text: "Tell the user their refund was approved.",
             },
         };
-        const rawResponseBody = { status: "DELIVERED" };
+        const rawResponseBody = {
+            status: "DELIVERED",
+            conversationId: {
+                type: "CONVERSATION",
+                appId: "chat-app",
+                referenceId: "conversation-0",
+                organizationId: "acme",
+                agentId: "support",
+            },
+        };
 
         server
             .mockEndpoint()
@@ -7526,10 +7684,92 @@ describe("ConversationClient", () => {
         });
         expect(response).toEqual({
             status: "DELIVERED",
+            conversationId: {
+                type: "CONVERSATION",
+                appId: "chat-app",
+                referenceId: "conversation-0",
+                organizationId: "acme",
+                agentId: "support",
+            },
         });
     });
 
     test("deliverMessage (3)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new MavenAGIClient({
+            maxRetries: 0,
+            token: "test",
+            appId: "test",
+            appSecret: "test",
+            organizationId: "test",
+            agentId: "test",
+            environment: server.baseUrl,
+        });
+        const rawRequestBody = {
+            type: "user",
+            userId: { type: "USER", appId: "shop-app", referenceId: "customer-42" },
+            appIds: ["chat-app", "email-app"],
+            content: {
+                contentType: "ask",
+                conversationMessageId: { referenceId: "message-2" },
+                userId: { referenceId: "system-orders" },
+                type: "PROACTIVE",
+                text: "Tell the user their order has shipped.",
+            },
+        };
+        const rawResponseBody = {
+            status: "DELIVERED",
+            conversationId: {
+                type: "CONVERSATION",
+                appId: "chat-app",
+                referenceId: "conversation-7",
+                organizationId: "acme",
+                agentId: "support",
+            },
+        };
+
+        server
+            .mockEndpoint()
+            .post("/v1/conversations/deliver-message")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(200)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        const response = await client.conversation.deliverMessage({
+            type: "user",
+            userId: {
+                type: "USER",
+                appId: "shop-app",
+                referenceId: "customer-42",
+            },
+            appIds: ["chat-app", "email-app"],
+            content: {
+                contentType: "ask",
+                conversationMessageId: {
+                    referenceId: "message-2",
+                },
+                userId: {
+                    referenceId: "system-orders",
+                },
+                type: "PROACTIVE",
+                text: "Tell the user their order has shipped.",
+            },
+        });
+        expect(response).toEqual({
+            status: "DELIVERED",
+            conversationId: {
+                type: "CONVERSATION",
+                appId: "chat-app",
+                referenceId: "conversation-7",
+                organizationId: "acme",
+                agentId: "support",
+            },
+        });
+    });
+
+    test("deliverMessage (4)", async () => {
         const server = mockServerPool.createServer();
         const client = new MavenAGIClient({
             maxRetries: 0,
@@ -7564,7 +7804,7 @@ describe("ConversationClient", () => {
         }).rejects.toThrow(MavenAGI.NotFoundError);
     });
 
-    test("deliverMessage (4)", async () => {
+    test("deliverMessage (5)", async () => {
         const server = mockServerPool.createServer();
         const client = new MavenAGIClient({
             maxRetries: 0,
@@ -7599,7 +7839,7 @@ describe("ConversationClient", () => {
         }).rejects.toThrow(MavenAGI.BadRequestError);
     });
 
-    test("deliverMessage (5)", async () => {
+    test("deliverMessage (6)", async () => {
         const server = mockServerPool.createServer();
         const client = new MavenAGIClient({
             maxRetries: 0,
@@ -7634,7 +7874,7 @@ describe("ConversationClient", () => {
         }).rejects.toThrow(MavenAGI.PayloadTooLargeError);
     });
 
-    test("deliverMessage (6)", async () => {
+    test("deliverMessage (7)", async () => {
         const server = mockServerPool.createServer();
         const client = new MavenAGIClient({
             maxRetries: 0,
@@ -7669,7 +7909,7 @@ describe("ConversationClient", () => {
         }).rejects.toThrow(MavenAGI.TooManyRequestsError);
     });
 
-    test("deliverMessage (7)", async () => {
+    test("deliverMessage (8)", async () => {
         const server = mockServerPool.createServer();
         const client = new MavenAGIClient({
             maxRetries: 0,

@@ -6,30 +6,25 @@ import type * as serializers from "../../../index";
 import { EntityId } from "./EntityId";
 import { EntityIdWithoutAgent } from "./EntityIdWithoutAgent";
 import { LlmPersona } from "./LlmPersona";
-import { SimulationActionBehavior } from "./SimulationActionBehavior";
-import { SimulationActionMock } from "./SimulationActionMock";
+import { SimulationSetupFields } from "./SimulationSetupFields";
 
 export const SimulationContext: core.serialization.ObjectSchema<
     serializers.SimulationContext.Raw,
     MavenAGI.SimulationContext
-> = core.serialization.object({
-    additionalPromptText: core.serialization.string().optional(),
-    persona: LlmPersona.optional(),
-    availableKnowledgeBases: core.serialization.list(EntityId).optional(),
-    variantId: EntityIdWithoutAgent.optional(),
-    evaluateWithCharters: core.serialization.boolean().optional(),
-    actionMocks: core.serialization.list(SimulationActionMock).optional(),
-    defaultActionBehavior: SimulationActionBehavior.optional(),
-});
+> = core.serialization
+    .object({
+        additionalPromptText: core.serialization.string().optional(),
+        persona: LlmPersona.optional(),
+        availableKnowledgeBases: core.serialization.list(EntityId).optional(),
+        variantId: EntityIdWithoutAgent.optional(),
+    })
+    .extend(SimulationSetupFields);
 
 export declare namespace SimulationContext {
-    export interface Raw {
+    export interface Raw extends SimulationSetupFields.Raw {
         additionalPromptText?: string | null;
         persona?: LlmPersona.Raw | null;
         availableKnowledgeBases?: EntityId.Raw[] | null;
         variantId?: EntityIdWithoutAgent.Raw | null;
-        evaluateWithCharters?: boolean | null;
-        actionMocks?: SimulationActionMock.Raw[] | null;
-        defaultActionBehavior?: SimulationActionBehavior.Raw | null;
     }
 }

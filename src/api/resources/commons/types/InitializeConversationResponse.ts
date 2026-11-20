@@ -16,6 +16,9 @@ import type * as MavenAGI from "../../../index";
  *             agentId: "support",
  *             type: MavenAGI.EntityType.Conversation
  *         },
+ *         audience: {
+ *             type: "allUsers"
+ *         },
  *         deleted: false,
  *         open: true,
  *         llmEnabled: true,

@@ -35,4 +35,8 @@ import type * as MavenAGI from "../../../index";
 export interface IntelligentFieldResponse extends MavenAGI.IntelligentFieldBase, MavenAGI.CapabilityBase {
     /** ID that uniquely identifies this intelligent field */
     fieldId: MavenAGI.EntityId;
+    /** Who wrote this version of the field. Absent when no one was recorded. Shown in Agent Designer as "Created by" on a field a variant adds. */
+    createdBy?: MavenAGI.ChangeAuthor;
+    /** Who last changed this version of the field. Absent when no one was recorded. Shown in Agent Designer as "Modified by" on a field a variant changes. */
+    updatedBy?: MavenAGI.ChangeAuthor;
 }

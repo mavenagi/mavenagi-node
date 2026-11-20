@@ -14,6 +14,20 @@ import type * as MavenAGI from "../../../index";
  * @example
  *     {
  *         conversationId: {
+ *             referenceId: "conversation-1"
+ *         },
+ *         audience: {
+ *             type: "users",
+ *             userIds: [{
+ *                     referenceId: "user-0"
+ *                 }]
+ *         },
+ *         messages: []
+ *     }
+ *
+ * @example
+ *     {
+ *         conversationId: {
  *             referenceId: "simulation-0"
  *         },
  *         simulationContext: {
@@ -47,7 +61,7 @@ import type * as MavenAGI from "../../../index";
  *         messages: []
  *     }
  */
-export interface ConversationRequest {
+export interface ConversationRequest extends MavenAGI.ConversationSetupFields {
     /** An externally supplied ID to uniquely identify this conversation */
     conversationId: MavenAGI.EntityIdBase;
     /**
@@ -56,8 +70,6 @@ export interface ConversationRequest {
      * search results unless explicitly included via the `simulationFilter` field.
      */
     simulationContext?: MavenAGI.SimulationContext;
-    /** Optional configurations for responses to this conversation */
-    responseConfig?: MavenAGI.ResponseConfig;
     /** The subject of the conversation */
     subject?: string;
     /** The url of the conversation */
@@ -66,19 +78,6 @@ export interface ConversationRequest {
     createdAt?: Date;
     /** The date and time the conversation was last updated */
     updatedAt?: Date;
-    /** The tags of the conversation. Used for filtering in Agent Designer. */
-    tags?: Set<string>;
-    /**
-     * Set of 16 key-value pairs that can be attached to an object. This can be useful for storing
-     * additional information about the object in a structured format, and querying for objects
-     * via API or the dashboard.
-     *
-     * Keys are strings with a maximum length of 500 characters. Values are strings with a maximum
-     * length of 512 characters.
-     *
-     * The metadata of the conversation supplied by the app which created the conversation.
-     */
-    metadata?: Record<string, string>;
     /** The messages in the conversation */
     messages: MavenAGI.ConversationMessageRequest[];
     /**
@@ -94,4 +93,15 @@ export interface ConversationRequest {
      * back to the end user, only set this to a conversation the current user is entitled to see.
      */
     spawnedFromConversationId?: MavenAGI.EntityId;
+    /**
+     * Who the conversation is for. Omit this field or send `allUsers` for a conversation that any of
+     * the agent's users may take part in. Send `users` to restrict the conversation to the listed users.
+     * A `USER` message from any other user, sent through `ask`, `askStream`, `appendNewMessages` or
+     * this request's `messages` when this request creates the conversation, is rejected with a 400.
+     * Initializing an existing conversation saves none of its `messages`.
+     *
+     * The audience is set when the conversation is created and cannot be changed. Initializing an
+     * existing conversation leaves its audience unchanged.
+     */
+    audience?: MavenAGI.ConversationAudience;
 }

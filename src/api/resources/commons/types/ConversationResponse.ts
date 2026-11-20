@@ -12,6 +12,9 @@ import type * as MavenAGI from "../../../index";
  *             agentId: "support",
  *             type: MavenAGI.EntityType.Conversation
  *         },
+ *         audience: {
+ *             type: "allUsers"
+ *         },
  *         deleted: false,
  *         open: false,
  *         llmEnabled: true,
@@ -95,4 +98,9 @@ export interface ConversationResponse extends MavenAGI.BaseConversationResponse 
      * Message attachments are included in LLM context, conversation attachments are not.
      */
     attachments: MavenAGI.AttachmentResponse[];
+    /**
+     * Who the conversation is for, as set when it was initialized. `allUsers` for a conversation
+     * initialized without an audience or created by an ask.
+     */
+    audience: MavenAGI.ConversationAudienceResponse;
 }

@@ -3,6 +3,7 @@
 import type * as MavenAGI from "../../../../api/index";
 import * as core from "../../../../core";
 import type * as serializers from "../../../index";
+import { EntityId } from "../../commons/types/EntityId";
 import { DeliveryStatus } from "./DeliveryStatus";
 
 export const DeliverMessageResponse: core.serialization.ObjectSchema<
@@ -10,10 +11,12 @@ export const DeliverMessageResponse: core.serialization.ObjectSchema<
     MavenAGI.DeliverMessageResponse
 > = core.serialization.object({
     status: DeliveryStatus,
+    conversationId: EntityId.optional(),
 });
 
 export declare namespace DeliverMessageResponse {
     export interface Raw {
         status: DeliveryStatus.Raw;
+        conversationId?: EntityId.Raw | null;
     }
 }

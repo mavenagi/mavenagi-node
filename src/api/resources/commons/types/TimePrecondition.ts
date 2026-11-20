@@ -60,6 +60,7 @@ import type * as MavenAGI from "../../../index";
  *     {
  *         window: {
  *             windowType: "absolute",
+ *             timezone: "America/Los_Angeles",
  *             start: new Date("2026-11-27T08:00:00.000Z"),
  *             end: new Date("2026-11-28T08:00:00.000Z")
  *         }

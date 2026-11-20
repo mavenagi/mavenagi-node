@@ -11,4 +11,6 @@ import type * as MavenAGI from "../../../index";
 export interface KnowledgeBaseVersionRequest {
     /** Indicates whether the completed version constitutes a full or partial refresh of the knowledge base. Deleting and updating documents is only supported for partial refreshes. */
     type: MavenAGI.KnowledgeBaseVersionType;
+    /** The Function versions that build this version. On a version, absent for historical versions and for versions created without them. */
+    functionVersions?: MavenAGI.KnowledgeBaseFunctionBindings;
 }

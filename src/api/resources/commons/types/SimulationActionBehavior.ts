@@ -14,7 +14,7 @@ export type SimulationActionBehavior =
     | MavenAGI.SimulationActionBehavior.CallApp;
 
 export namespace SimulationActionBehavior {
-    export interface FixedResponse extends MavenAGI.ExecuteActionResponse {
+    export interface FixedResponse extends MavenAGI.SimulationFixedResponse {
         type: "fixedResponse";
     }
 

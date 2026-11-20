@@ -3,15 +3,15 @@
 import type * as MavenAGI from "../../../../api/index";
 import * as core from "../../../../core";
 import type * as serializers from "../../../index";
-import { ExecuteActionResponse } from "./ExecuteActionResponse";
 import { SimulationActionCallApp } from "./SimulationActionCallApp";
+import { SimulationFixedResponse } from "./SimulationFixedResponse";
 
 export const SimulationActionBehavior: core.serialization.Schema<
     serializers.SimulationActionBehavior.Raw,
     MavenAGI.SimulationActionBehavior
 > = core.serialization
     .union("type", {
-        fixedResponse: ExecuteActionResponse,
+        fixedResponse: SimulationFixedResponse,
         callApp: SimulationActionCallApp,
     })
     .transform<MavenAGI.SimulationActionBehavior>({
@@ -22,7 +22,7 @@ export const SimulationActionBehavior: core.serialization.Schema<
 export declare namespace SimulationActionBehavior {
     export type Raw = SimulationActionBehavior.FixedResponse | SimulationActionBehavior.CallApp;
 
-    export interface FixedResponse extends ExecuteActionResponse.Raw {
+    export interface FixedResponse extends SimulationFixedResponse.Raw {
         type: "fixedResponse";
     }
 

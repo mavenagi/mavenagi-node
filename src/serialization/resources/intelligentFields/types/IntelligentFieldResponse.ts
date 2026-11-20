@@ -4,6 +4,7 @@ import type * as MavenAGI from "../../../../api/index";
 import * as core from "../../../../core";
 import type * as serializers from "../../../index";
 import { CapabilityBase } from "../../commons/types/CapabilityBase";
+import { ChangeAuthor } from "../../commons/types/ChangeAuthor";
 import { EntityId } from "../../commons/types/EntityId";
 import { IntelligentFieldBase } from "./IntelligentFieldBase";
 
@@ -13,6 +14,8 @@ export const IntelligentFieldResponse: core.serialization.ObjectSchema<
 > = core.serialization
     .object({
         fieldId: EntityId,
+        createdBy: ChangeAuthor.optional(),
+        updatedBy: ChangeAuthor.optional(),
     })
     .extend(IntelligentFieldBase)
     .extend(CapabilityBase);
@@ -20,5 +23,7 @@ export const IntelligentFieldResponse: core.serialization.ObjectSchema<
 export declare namespace IntelligentFieldResponse {
     export interface Raw extends IntelligentFieldBase.Raw, CapabilityBase.Raw {
         fieldId: EntityId.Raw;
+        createdBy?: ChangeAuthor.Raw | null;
+        updatedBy?: ChangeAuthor.Raw | null;
     }
 }

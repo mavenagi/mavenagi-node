@@ -12,11 +12,13 @@ export const DeliverUserMessageRequest: core.serialization.ObjectSchema<
 > = core.serialization
     .object({
         userId: EntityIdWithoutAgent,
+        appIds: core.serialization.list(core.serialization.string()).optional(),
     })
     .extend(DeliverMessageBase);
 
 export declare namespace DeliverUserMessageRequest {
     export interface Raw extends DeliverMessageBase.Raw {
         userId: EntityIdWithoutAgent.Raw;
+        appIds?: string[] | null;
     }
 }

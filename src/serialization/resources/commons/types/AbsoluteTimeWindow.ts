@@ -8,12 +8,14 @@ export const AbsoluteTimeWindow: core.serialization.ObjectSchema<
     serializers.AbsoluteTimeWindow.Raw,
     MavenAGI.AbsoluteTimeWindow
 > = core.serialization.object({
+    timezone: core.serialization.string().optional(),
     start: core.serialization.date().optional(),
     end: core.serialization.date().optional(),
 });
 
 export declare namespace AbsoluteTimeWindow {
     export interface Raw {
+        timezone?: string | null;
         start?: string | null;
         end?: string | null;
     }

@@ -3,6 +3,7 @@
 import type * as MavenAGI from "../../../../api/index";
 import * as core from "../../../../core";
 import type * as serializers from "../../../index";
+import { KnowledgeBaseFunctionBindings } from "./KnowledgeBaseFunctionBindings";
 import { KnowledgeBaseVersionType } from "./KnowledgeBaseVersionType";
 
 export const KnowledgeBaseVersionRequest: core.serialization.ObjectSchema<
@@ -10,10 +11,12 @@ export const KnowledgeBaseVersionRequest: core.serialization.ObjectSchema<
     MavenAGI.KnowledgeBaseVersionRequest
 > = core.serialization.object({
     type: KnowledgeBaseVersionType,
+    functionVersions: KnowledgeBaseFunctionBindings.optional(),
 });
 
 export declare namespace KnowledgeBaseVersionRequest {
     export interface Raw {
         type: KnowledgeBaseVersionType.Raw;
+        functionVersions?: KnowledgeBaseFunctionBindings.Raw | null;
     }
 }

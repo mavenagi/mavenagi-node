@@ -3,41 +3,40 @@
 import type * as MavenAGI from "../../../../api/index";
 import * as core from "../../../../core";
 import type * as serializers from "../../../index";
+import { ConversationAudience } from "../../commons/types/ConversationAudience";
+import { ConversationSetupFields } from "../../commons/types/ConversationSetupFields";
 import { EntityId } from "../../commons/types/EntityId";
 import { EntityIdBase } from "../../commons/types/EntityIdBase";
-import { ResponseConfig } from "../../commons/types/ResponseConfig";
 import { SimulationContext } from "../../commons/types/SimulationContext";
 import { ConversationMessageRequest } from "./ConversationMessageRequest";
 
 export const ConversationRequest: core.serialization.ObjectSchema<
     serializers.ConversationRequest.Raw,
     MavenAGI.ConversationRequest
-> = core.serialization.object({
-    conversationId: EntityIdBase,
-    simulationContext: SimulationContext.optional(),
-    responseConfig: ResponseConfig.optional(),
-    subject: core.serialization.string().optional(),
-    url: core.serialization.string().optional(),
-    createdAt: core.serialization.date().optional(),
-    updatedAt: core.serialization.date().optional(),
-    tags: core.serialization.set(core.serialization.string()).optional(),
-    metadata: core.serialization.record(core.serialization.string(), core.serialization.string()).optional(),
-    messages: core.serialization.list(ConversationMessageRequest),
-    spawnedFromConversationId: EntityId.optional(),
-});
+> = core.serialization
+    .object({
+        conversationId: EntityIdBase,
+        simulationContext: SimulationContext.optional(),
+        subject: core.serialization.string().optional(),
+        url: core.serialization.string().optional(),
+        createdAt: core.serialization.date().optional(),
+        updatedAt: core.serialization.date().optional(),
+        messages: core.serialization.list(ConversationMessageRequest),
+        spawnedFromConversationId: EntityId.optional(),
+        audience: ConversationAudience.optional(),
+    })
+    .extend(ConversationSetupFields);
 
 export declare namespace ConversationRequest {
-    export interface Raw {
+    export interface Raw extends ConversationSetupFields.Raw {
         conversationId: EntityIdBase.Raw;
         simulationContext?: SimulationContext.Raw | null;
-        responseConfig?: ResponseConfig.Raw | null;
         subject?: string | null;
         url?: string | null;
         createdAt?: string | null;
         updatedAt?: string | null;
-        tags?: string[] | null;
-        metadata?: Record<string, string> | null;
         messages: ConversationMessageRequest.Raw[];
         spawnedFromConversationId?: EntityId.Raw | null;
+        audience?: ConversationAudience.Raw | null;
     }
 }

@@ -5,6 +5,7 @@ import * as core from "../../../../core";
 import type * as serializers from "../../../index";
 import { AttachmentResponse } from "./AttachmentResponse";
 import { BaseConversationResponse } from "./BaseConversationResponse";
+import { ConversationAudienceResponse } from "./ConversationAudienceResponse";
 import { ConversationMessageResponse } from "./ConversationMessageResponse";
 
 export const ConversationResponse: core.serialization.ObjectSchema<
@@ -14,6 +15,7 @@ export const ConversationResponse: core.serialization.ObjectSchema<
     .object({
         messages: core.serialization.list(ConversationMessageResponse),
         attachments: core.serialization.list(AttachmentResponse),
+        audience: ConversationAudienceResponse,
     })
     .extend(BaseConversationResponse);
 
@@ -21,5 +23,6 @@ export declare namespace ConversationResponse {
     export interface Raw extends BaseConversationResponse.Raw {
         messages: ConversationMessageResponse.Raw[];
         attachments: AttachmentResponse.Raw[];
+        audience: ConversationAudienceResponse.Raw;
     }
 }

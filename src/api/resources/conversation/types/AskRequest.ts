@@ -79,6 +79,9 @@ import type * as MavenAGI from "../../../index";
  *     }
  */
 export interface AskRequest extends MavenAGI.AskRequestBase {
-    /** Externally supplied ID to uniquely identify the user that created this message */
+    /**
+     * Externally supplied ID to uniquely identify the user that created this message. On a conversation
+     * with a `users` audience, a `USER_MESSAGE` ask from a user outside it is rejected with a 400.
+     */
     userId: MavenAGI.EntityIdBase;
 }

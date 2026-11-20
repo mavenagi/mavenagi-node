@@ -4,4 +4,9 @@ import type * as MavenAGI from "../../../index";
 
 export interface DeliverMessageResponse {
     status: MavenAGI.DeliveryStatus;
+    /**
+     * The conversation the message was delivered to, or attempted on when `status` is `FAILED`. Absent when
+     * no conversation qualified for a delivery to a user.
+     */
+    conversationId?: MavenAGI.EntityId;
 }

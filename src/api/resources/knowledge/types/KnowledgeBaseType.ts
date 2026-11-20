@@ -10,6 +10,8 @@ export const KnowledgeBaseType = {
     Api: "API",
     Url: "URL",
     Manual: "MANUAL",
+    /**
+     * No longer returned. RSS knowledge bases are `LEGACY`; filtering on `RSS` still matches them. */
     Rss: "RSS",
     Legacy: "LEGACY",
 } as const;
