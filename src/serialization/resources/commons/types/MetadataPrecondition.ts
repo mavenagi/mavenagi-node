@@ -3,6 +3,7 @@
 import type * as MavenAGI from "../../../../api/index";
 import * as core from "../../../../core";
 import type * as serializers from "../../../index";
+import { FieldCondition } from "./FieldCondition";
 import { PreconditionBase } from "./PreconditionBase";
 
 export const MetadataPrecondition: core.serialization.ObjectSchema<
@@ -13,6 +14,7 @@ export const MetadataPrecondition: core.serialization.ObjectSchema<
         key: core.serialization.string(),
         value: core.serialization.string().optional(),
         values: core.serialization.list(core.serialization.string()).optional(),
+        fieldCondition: FieldCondition.optional(),
     })
     .extend(PreconditionBase);
 
@@ -21,5 +23,6 @@ export declare namespace MetadataPrecondition {
         key: string;
         value?: string | null;
         values?: string[] | null;
+        fieldCondition?: FieldCondition.Raw | null;
     }
 }

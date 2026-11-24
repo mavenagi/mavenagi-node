@@ -32,6 +32,10 @@ describe("SegmentsClient", () => {
                         key: "key",
                         value: "value",
                         values: ["values", "values"],
+                        fieldCondition: {
+                            fieldValidationType: "string",
+                            value: { opType: "comparison", operator: "EQ", value: "value" },
+                        },
                         operator: "NOT",
                     },
                     createdAt: "2024-01-15T09:30:00Z",
@@ -56,6 +60,10 @@ describe("SegmentsClient", () => {
                         key: "key",
                         value: "value",
                         values: ["values", "values"],
+                        fieldCondition: {
+                            fieldValidationType: "string",
+                            value: { opType: "comparison", operator: "EQ", value: "value" },
+                        },
                         operator: "NOT",
                     },
                     createdAt: "2024-01-15T09:30:00Z",
@@ -99,6 +107,14 @@ describe("SegmentsClient", () => {
                         key: "key",
                         value: "value",
                         values: ["values", "values"],
+                        fieldCondition: {
+                            fieldValidationType: "string",
+                            value: {
+                                opType: "comparison",
+                                operator: "EQ",
+                                value: "value",
+                            },
+                        },
                         operator: "NOT",
                     },
                     createdAt: new Date("2024-01-15T09:30:00.000Z"),
@@ -123,6 +139,14 @@ describe("SegmentsClient", () => {
                         key: "key",
                         value: "value",
                         values: ["values", "values"],
+                        fieldCondition: {
+                            fieldValidationType: "string",
+                            value: {
+                                opType: "comparison",
+                                operator: "EQ",
+                                value: "value",
+                            },
+                        },
                         operator: "NOT",
                     },
                     createdAt: new Date("2024-01-15T09:30:00.000Z"),
@@ -834,6 +858,10 @@ describe("SegmentsClient", () => {
                 key: "key",
                 value: "value",
                 values: ["values", "values"],
+                fieldCondition: {
+                    fieldValidationType: "string",
+                    value: { opType: "comparison", operator: "EQ", value: "value" },
+                },
                 operator: "NOT",
             },
             createdAt: "2024-01-15T09:30:00Z",
@@ -869,6 +897,14 @@ describe("SegmentsClient", () => {
                 key: "key",
                 value: "value",
                 values: ["values", "values"],
+                fieldCondition: {
+                    fieldValidationType: "string",
+                    value: {
+                        opType: "comparison",
+                        operator: "EQ",
+                        value: "value",
+                    },
+                },
                 operator: "NOT",
             },
             createdAt: new Date("2024-01-15T09:30:00.000Z"),
@@ -1047,6 +1083,10 @@ describe("SegmentsClient", () => {
                 key: "key",
                 value: "value",
                 values: ["values", "values"],
+                fieldCondition: {
+                    fieldValidationType: "string",
+                    value: { opType: "comparison", operator: "EQ", value: "value" },
+                },
                 operator: "NOT",
             },
             createdAt: "2024-01-15T09:30:00Z",
@@ -1081,6 +1121,14 @@ describe("SegmentsClient", () => {
                 key: "key",
                 value: "value",
                 values: ["values", "values"],
+                fieldCondition: {
+                    fieldValidationType: "string",
+                    value: {
+                        opType: "comparison",
+                        operator: "EQ",
+                        value: "value",
+                    },
+                },
                 operator: "NOT",
             },
             createdAt: new Date("2024-01-15T09:30:00.000Z"),

@@ -45,6 +45,10 @@ describe("ActionsClient", () => {
                         key: "key",
                         value: "value",
                         values: ["values", "values"],
+                        fieldCondition: {
+                            fieldValidationType: "string",
+                            value: { opType: "comparison", operator: "EQ", value: "value" },
+                        },
                         operator: "NOT",
                     },
                     userFormParameters: [
@@ -127,6 +131,10 @@ describe("ActionsClient", () => {
                         key: "key",
                         value: "value",
                         values: ["values", "values"],
+                        fieldCondition: {
+                            fieldValidationType: "string",
+                            value: { opType: "comparison", operator: "EQ", value: "value" },
+                        },
                         operator: "NOT",
                     },
                     userFormParameters: [
@@ -228,6 +236,14 @@ describe("ActionsClient", () => {
                         key: "key",
                         value: "value",
                         values: ["values", "values"],
+                        fieldCondition: {
+                            fieldValidationType: "string",
+                            value: {
+                                opType: "comparison",
+                                operator: "EQ",
+                                value: "value",
+                            },
+                        },
                         operator: "NOT",
                     },
                     userFormParameters: [
@@ -338,6 +354,14 @@ describe("ActionsClient", () => {
                         key: "key",
                         value: "value",
                         values: ["values", "values"],
+                        fieldCondition: {
+                            fieldValidationType: "string",
+                            value: {
+                                opType: "comparison",
+                                operator: "EQ",
+                                value: "value",
+                            },
+                        },
                         operator: "NOT",
                     },
                     userFormParameters: [

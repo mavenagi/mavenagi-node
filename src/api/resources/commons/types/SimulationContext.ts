@@ -4,6 +4,11 @@ import type * as MavenAGI from "../../../index";
 
 /**
  * Conversations with a simulation context are the runs on the Agent Designer "Simulator" page.
+ *
+ * By default, an action the agent executes in a simulation calls its app, with mode
+ * `SIMULATION`, and the app may act on real systems. To keep an action's app from being called, give it an
+ * `actionMocks` entry with a `fixedResponse`, or set `defaultActionBehavior` to a
+ * `fixedResponse`.
  */
 export interface SimulationContext extends MavenAGI.SimulationSetupFields {
     /**

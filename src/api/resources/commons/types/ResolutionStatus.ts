@@ -40,8 +40,10 @@ export const ResolutionStatus = {
      * The conversation was handed off to a human agent. Either an AI analysis of the
      * transcript found a handoff, or a handoff action that Maven recognizes ran successfully.
      * The AI analysis can be wrong. Once escalation is detected, later messages do not undo
-     * it, but the earlier checks, such as `NEGATIVE_FEEDBACK`, still take precedence. Copilot
-     * conversations are never `ESCALATED`. Billing status: not billable. Shown in Agent
+     * it, but the earlier checks, such as `NEGATIVE_FEEDBACK`, still take precedence. Agent
+     * Assist copilot conversations are never `ESCALATED`, in any mode: those tagged `copilot`
+     * or `copilot-research` count as `RESOLVED` instead, and copilot chat and Advice
+     * conversations are `INELIGIBLE`. Billing status: not billable. Shown in Agent
      * Designer as "Escalated". */
     Escalated: "ESCALATED",
     /**
@@ -66,9 +68,11 @@ export const ResolutionStatus = {
      * status: not eligible. Shown in Agent Designer as "Hangup". */
     Hangup: "HANGUP",
     /**
-     * A copilot chat conversation. Billing status: not eligible. Shown in Agent Designer as
-     * "Ineligible". Not the same as the `INELIGIBLE` billing status, which covers every not
-     * eligible status. */
+     * A copilot chat or Advice conversation (tagged `copilot-chat` or `copilot-advice`). Other
+     * Agent Assist copilot conversations, such as those tagged `copilot` or `copilot-research`,
+     * keep the normal statuses but are never `ESCALATED`. Billing status: not eligible. Shown in
+     * Agent Designer as "Ineligible". Not the same as the `INELIGIBLE` billing status, which
+     * covers every not eligible status. */
     Ineligible: "INELIGIBLE",
 } as const;
 export type ResolutionStatus = (typeof ResolutionStatus)[keyof typeof ResolutionStatus] | string;

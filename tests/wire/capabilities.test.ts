@@ -44,6 +44,10 @@ describe("CapabilitiesClient", () => {
                 key: "key",
                 value: "value",
                 values: ["values", "values"],
+                fieldCondition: {
+                    fieldValidationType: "string",
+                    value: { opType: "comparison", operator: "EQ", value: "value" },
+                },
                 operator: "NOT",
             },
             userFormParameters: [
@@ -141,6 +145,14 @@ describe("CapabilitiesClient", () => {
                 key: "key",
                 value: "value",
                 values: ["values", "values"],
+                fieldCondition: {
+                    fieldValidationType: "string",
+                    value: {
+                        opType: "comparison",
+                        operator: "EQ",
+                        value: "value",
+                    },
+                },
                 operator: "NOT",
             },
             userFormParameters: [
@@ -401,6 +413,10 @@ describe("CapabilitiesClient", () => {
                 key: "key",
                 value: "value",
                 values: ["values", "values"],
+                fieldCondition: {
+                    fieldValidationType: "string",
+                    value: { opType: "comparison", operator: "EQ", value: "value" },
+                },
                 operator: "NOT",
             },
             userFormParameters: [
@@ -499,6 +515,14 @@ describe("CapabilitiesClient", () => {
                 key: "key",
                 value: "value",
                 values: ["values", "values"],
+                fieldCondition: {
+                    fieldValidationType: "string",
+                    value: {
+                        opType: "comparison",
+                        operator: "EQ",
+                        value: "value",
+                    },
+                },
                 operator: "NOT",
             },
             userFormParameters: [

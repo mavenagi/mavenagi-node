@@ -79,6 +79,10 @@ describe("KnowledgeClient", () => {
                         key: "key",
                         value: "value",
                         values: ["values", "values"],
+                        fieldCondition: {
+                            fieldValidationType: "string",
+                            value: { opType: "comparison", operator: "EQ", value: "value" },
+                        },
                         operator: "NOT",
                     },
                 },
@@ -142,6 +146,10 @@ describe("KnowledgeClient", () => {
                         key: "key",
                         value: "value",
                         values: ["values", "values"],
+                        fieldCondition: {
+                            fieldValidationType: "string",
+                            value: { opType: "comparison", operator: "EQ", value: "value" },
+                        },
                         operator: "NOT",
                     },
                 },
@@ -230,6 +238,14 @@ describe("KnowledgeClient", () => {
                         key: "key",
                         value: "value",
                         values: ["values", "values"],
+                        fieldCondition: {
+                            fieldValidationType: "string",
+                            value: {
+                                opType: "comparison",
+                                operator: "EQ",
+                                value: "value",
+                            },
+                        },
                         operator: "NOT",
                     },
                 },
@@ -299,6 +315,14 @@ describe("KnowledgeClient", () => {
                         key: "key",
                         value: "value",
                         values: ["values", "values"],
+                        fieldCondition: {
+                            fieldValidationType: "string",
+                            value: {
+                                opType: "comparison",
+                                operator: "EQ",
+                                value: "value",
+                            },
+                        },
                         operator: "NOT",
                     },
                 },
